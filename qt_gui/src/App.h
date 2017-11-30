@@ -4,7 +4,9 @@
 #ifndef AppH
 #define AppH
 
+#include <QString>
 class CMainWnd;
+class QString;
 //----------------------------------------------------------------------------
 // アプリケーションの管理を行うクラス
 //----------------------------------------------------------------------------
@@ -16,10 +18,16 @@ public: // 関数
 	~CApp();
 
 	int Run(int argc, char *argv[]); // 実行
+	void ShowError(const QString & strError); // エラーを出力して終了
 
 private: // メンバ変数
 
+	QString m_cstrName; // アプリケーションの名前
+
 	CMainWnd * m_wnd;
+
+public: // メンバ変数の取得・設定
+	QString GetName() const { return m_cstrName; }
 };
 //----------------------------------------------------------------------------
 

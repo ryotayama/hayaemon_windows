@@ -17,7 +17,75 @@
    <iconset resource="../Hayaemon.qrc">
     <normaloff>:/icon/resource/icon1.ico</normaloff>:/icon/resource/icon1.ico</iconset>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QToolButton" name="playButton">
+        <property name="toolTip">
+         <string>Play</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../Hayaemon.qrc">
+          <normaloff>:/icon/resource/play.png</normaloff>:/icon/resource/play.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="pauseButton">
+        <property name="toolTip">
+         <string>Pause</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../Hayaemon.qrc">
+          <normaloff>:/icon/resource/pause.png</normaloff>:/icon/resource/pause.png</iconset>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="stopButton">
+        <property name="toolTip">
+         <string>Stop</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../Hayaemon.qrc">
+          <normaloff>:/icon/resource/stop.png</normaloff>:/icon/resource/stop.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="CTab_MainWnd" name="m_tab"/>
+    </item>
+   </layout>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
@@ -27,9 +95,41 @@
      <height>31</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuPlay_P">
+    <property name="title">
+     <string>Play(&amp;P)</string>
+    </property>
+    <addaction name="actionPlayPlayPause"/>
+    <addaction name="actionPlayStop"/>
+   </widget>
+   <addaction name="menuPlay_P"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionPlayPlayPause">
+   <property name="text">
+    <string>Play/Pause(&amp;P)</string>
+   </property>
+  </action>
+  <action name="actionPlayStop">
+   <property name="text">
+    <string>Stop(&amp;S)</string>
+   </property>
+  </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CTab_MainWnd</class>
+   <extends>QTabWidget</extends>
+   <header>Tab_MainWnd.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>playButton</tabstop>
+  <tabstop>pauseButton</tabstop>
+  <tabstop>stopButton</tabstop>
+  <tabstop>m_tab</tabstop>
+ </tabstops>
  <resources>
   <include location="../Hayaemon.qrc"/>
  </resources>

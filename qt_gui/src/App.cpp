@@ -3,6 +3,9 @@
 //----------------------------------------------------------------------------
 #include "App.h"
 #include <QApplication>
+#include <QMessageBox>
+#include <QString>
+#include <QTranslator>
 #include "./MainWnd/MainWnd.h"
 //----------------------------------------------------------------------------
 // main 関数
@@ -34,6 +37,15 @@ CApp::~CApp()
 int CApp::Run(int argc, char *argv[])
 {
 	QApplication app(argc, argv);
+
+	// 翻訳のインストール
+	QTranslator ts;
+	if(ts.load(":/translation/Hayaemon_ja.qm")) {
+		app.installTranslator(&ts);
+	}
+	
+	m_cstrName = QObject::tr("Hayaemon");
+
 	m_wnd = new CMainWnd(*this);
 	if(!m_wnd->Create()) return 0;
 
@@ -41,3 +53,13 @@ int CApp::Run(int argc, char *argv[])
 
 	return app.exec();
 }
+//----------------------------------------------------------------------------
+// エラーを出力して終了
+//----------------------------------------------------------------------------
+void CApp::ShowError(const QString & strError)
+{
+	QString str = QString(QObject::tr("%1\nApplication exit.")).arg(strError);
+	QMessageBox::critical(m_wnd, QObject::tr("Error"), str);
+	m_wnd->close();
+}
+//----------------------------------------------------------------------------

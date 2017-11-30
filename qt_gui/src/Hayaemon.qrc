@@ -1,5 +1,13 @@
 <RCC>
   <qresource prefix="icon">
+    <file>../resource/pause.png</file>
+    <file>../resource/play.png</file>
+    <file>../resource/stop.png</file>
     <file>../resource/icon1.ico</file>
+    <file>../resource/pause.ico</file>
+    <file>../resource/play.ico</file>
+  </qresource>
+  <qresource prefix="translation">
+    <file>Hayaemon_ja.qm</file>
   </qresource>
 </RCC>

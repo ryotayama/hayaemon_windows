@@ -7,13 +7,50 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
 set(SRC_COMMON
+  ${SRC_DIR}/Common/Bass.h
+  ${SRC_DIR}/Common/BassFx.h
   ${SRC_DIR}/Common/Define.h
+  ${SRC_DIR}/Common/Tab.h
 )
 set(SRC_MAINWND
   ${SRC_DIR}/MainWnd/MainWnd.cpp
   ${SRC_DIR}/MainWnd/MainWnd.h
+  ${SRC_DIR}/MainWnd/Menu_MainWnd.cpp
+  ${SRC_DIR}/MainWnd/Menu_MainWnd.h
+  ${SRC_DIR}/MainWnd/PlayListView_MainWnd.cpp
+  ${SRC_DIR}/MainWnd/PlayListView_MainWnd.h
+  ${SRC_DIR}/MainWnd/Sound.cpp
+  ${SRC_DIR}/MainWnd/Sound.h
+  ${SRC_DIR}/MainWnd/ToolBar_MainWnd.cpp
+  ${SRC_DIR}/MainWnd/ToolBar_MainWnd.h
+  ${SRC_DIR}/MainWnd/Tab_MainWnd.h
+  ${SRC_DIR}/MainWnd/Utility.h
 )
 
+if (WIN32)
+set(BASS_DIR ${CMAKE_SOURCE_DIR}/3rdparty/bass/win32)
+elseif (APPLE)
+set(BASS_DIR ${CMAKE_SOURCE_DIR}/3rdparty/bass/macOS)
+endif()
+
+if (WIN32)
+set(SRC_BASS
+  ${BASS_DIR}/include/bass/bass.h
+  ${BASS_DIR}/include/bass/bass_aac.h
+  ${BASS_DIR}/include/bass/bass_ape.h
+  ${BASS_DIR}/include/bass/bassalac.h
+  ${BASS_DIR}/include/bass/basscd.h
+  ${BASS_DIR}/include/bass/bassflac.h
+)
+elseif (APPLE)
+set(SRC_BASS
+  ${BASS_DIR}/include/bass/bass.h
+  ${BASS_DIR}/include/bass/bass_ape.h
+  ${BASS_DIR}/include/bass/bassflac.h
+)
+endif()
+
+source_group(Bass FILES ${SRC_BASS})
 source_group(Common FILES ${SRC_COMMON})
 source_group(MainWnd FILES ${SRC_MAINWND})
 source_group("" FILES
@@ -21,16 +58,45 @@ source_group("" FILES
   ${SRC_DIR}/App.h
 )
 
+set(CMAKE_CXX_STANDARD 11)
+add_definitions(-D_UNICODE -DUNICODE)
+
 qt5_add_resources(RESOURCES ${SRC_DIR}/Hayaemon.qrc)
 qt5_wrap_ui(UI_MOC ${SRC_DIR}/MainWnd/MainWnd.ui)
+
+include_directories(
+  ${SRC_DIR}/MainWnd
+  ${BASS_DIR}/include)
+if (WIN32)
+link_directories(${BASS_DIR}/lib/x64)
+elseif (APPLE)
+link_directories(${BASS_DIR}/lib)
+endif()
 
 add_executable(Hayaemon
   ${SRC_DIR}/App.cpp
   ${SRC_DIR}/App.h
+  ${SRC_BASS}
   ${SRC_COMMON}
   ${SRC_MAINWND}
   ${RESOURCES}
   ${UI_MOC}
 )
+if (WIN32)
+target_link_libraries(Hayaemon
+  bass
+  bass_aac
+  bass_ape
+  bassalac
+  basscd
+  bassflac
+)
+elseif (APPLE)
+target_link_libraries(Hayaemon
+  bass
+  bass_ape
+  bassflac
+)
+endif()
 
 qt5_use_modules(Hayaemon Widgets)
