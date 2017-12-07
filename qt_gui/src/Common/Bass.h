@@ -26,7 +26,7 @@ class CBass
 {
 public: // 関数
 
-	CBass(): m_hStream(0) { }
+	CBass(): m_hStream(0), m_hSync(0) { }
 	virtual ~CBass() { Destroy(); }
 
 	virtual void Destroy() {
@@ -43,8 +43,14 @@ public: // 関数
 	virtual QWORD ChannelGetLength() const {
 		return BASS_ChannelGetLength(m_hStream, 0);
 	}
+	virtual QWORD ChannelGetPosition() const {
+		return BASS_ChannelGetPosition(m_hStream, 0);
+	}
 	virtual double ChannelGetSecondsLength() const {
 		return ChannelBytes2Seconds(ChannelGetLength());
+	}
+	virtual double ChannelGetSecondsPosition() const {
+		return ChannelBytes2Seconds(ChannelGetPosition());
 	}
 	virtual DWORD ChannelIsActive() const {
 		return BASS_ChannelIsActive(m_hStream);
@@ -65,6 +71,9 @@ public: // 関数
 	virtual BOOL ChannelPlay() {
 		return BASS_ChannelPlay(m_hStream, FALSE);
 	}
+	virtual BOOL ChannelRemoveSync() {
+		return BASS_ChannelRemoveSync(m_hStream, m_hSync);
+	}
 	virtual BOOL ChannelSetAttribute(DWORD attrib, float value) {
 		return BASS_ChannelSetAttribute(m_hStream, attrib, value);
 	}
@@ -73,6 +82,10 @@ public: // 関数
 	}
 	virtual BOOL ChannelStop() {
 		return BASS_ChannelStop(m_hStream);
+	}
+	virtual void ChannelSetSync(DWORD type, QWORD param, SYNCPROC *proc,
+								DWORD *user) {
+		m_hSync = BASS_ChannelSetSync(m_hStream, type, param, proc, user);
 	}
 	virtual BOOL Init() {
 		return BASS_Init(-1, 44100, 0, 0, NULL);
@@ -106,6 +119,7 @@ public: // 関数
 public: // メンバ変数
 
 	HSTREAM m_hStream;
+	HSYNC m_hSync;
 };
 //----------------------------------------------------------------------------
 

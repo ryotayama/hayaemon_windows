@@ -10,6 +10,9 @@ set(SRC_COMMON
   ${SRC_DIR}/Common/Bass.h
   ${SRC_DIR}/Common/BassFx.h
   ${SRC_DIR}/Common/Define.h
+  ${SRC_DIR}/Common/SliderCtrl.h
+  ${SRC_DIR}/Common/SliderCtrlCore.h
+  ${SRC_DIR}/Common/StaticCore.h
   ${SRC_DIR}/Common/Tab.h
 )
 set(SRC_MAINWND
@@ -21,6 +24,10 @@ set(SRC_MAINWND
   ${SRC_DIR}/MainWnd/PlayListView_MainWnd.h
   ${SRC_DIR}/MainWnd/Sound.cpp
   ${SRC_DIR}/MainWnd/Sound.h
+  ${SRC_DIR}/MainWnd/TimeLabel_MainWnd.cpp
+  ${SRC_DIR}/MainWnd/TimeLabel_MainWnd.h
+  ${SRC_DIR}/MainWnd/TimeSlider_MainWnd.cpp
+  ${SRC_DIR}/MainWnd/TimeSlider_MainWnd.h
   ${SRC_DIR}/MainWnd/ToolBar_MainWnd.cpp
   ${SRC_DIR}/MainWnd/ToolBar_MainWnd.h
   ${SRC_DIR}/MainWnd/Tab_MainWnd.h
@@ -60,11 +67,15 @@ source_group("" FILES
 
 set(CMAKE_CXX_STANDARD 11)
 add_definitions(-D_UNICODE -DUNICODE)
+if (WIN32)
+add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+endif()
 
 qt5_add_resources(RESOURCES ${SRC_DIR}/Hayaemon.qrc)
 qt5_wrap_ui(UI_MOC ${SRC_DIR}/MainWnd/MainWnd.ui)
 
 include_directories(
+  ${SRC_DIR}/Common
   ${SRC_DIR}/MainWnd
   ${BASS_DIR}/include)
 if (WIN32)

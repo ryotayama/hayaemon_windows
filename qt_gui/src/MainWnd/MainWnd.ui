@@ -79,7 +79,21 @@
         </property>
        </spacer>
       </item>
+      <item>
+       <widget class="CStaticCore" name="timeLabel">
+        <property name="text">
+         <string>00:00 / 00:00</string>
+        </property>
+       </widget>
+      </item>
      </layout>
+    </item>
+    <item>
+     <widget class="CSliderCtrlCore" name="timeSlider">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="CTab_MainWnd" name="m_tab"/>
@@ -123,11 +137,22 @@
    <header>Tab_MainWnd.h</header>
    <container>1</container>
   </customwidget>
+  <customwidget>
+   <class>CSliderCtrlCore</class>
+   <extends>QSlider</extends>
+   <header>SliderCtrlCore.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CStaticCore</class>
+   <extends>QLabel</extends>
+   <header>StaticCore.h</header>
+  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>playButton</tabstop>
   <tabstop>pauseButton</tabstop>
   <tabstop>stopButton</tabstop>
+  <tabstop>timeSlider</tabstop>
   <tabstop>m_tab</tabstop>
  </tabstops>
  <resources>

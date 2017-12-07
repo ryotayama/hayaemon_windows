@@ -39,8 +39,10 @@
 // TYPES
 //--------------------------------------------------------------------------
 typedef int BOOL;
+typedef long LONG;
 typedef unsigned int UINT;
 typedef unsigned long long UINT_PTR;
+typedef uint64_t QWORD;
 typedef long long LRESULT;
 
 #ifdef UNICODE

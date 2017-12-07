@@ -2,6 +2,8 @@
 // MainWnd.cpp : メインウィンドウの作成・管理を行う
 //----------------------------------------------------------------------------
 #include "MainWnd.h"
+#include <chrono>
+#include <functional>
 #include <QDragEnterEvent>
 #include <QFileInfo>
 #include <QMimeData>
@@ -9,6 +11,14 @@
 #include "../App.h"
 #include "PlayListView_MainWnd.h"
 #include "Utility.h"
+//----------------------------------------------------------------------------
+// ドロップされたファイルの追加
+//----------------------------------------------------------------------------
+CMainWnd::~CMainWnd()
+{
+	m_timeThreadRunning = false;
+	m_timeThread->join();
+}
 //----------------------------------------------------------------------------
 // ドロップされたファイルの追加
 //----------------------------------------------------------------------------
@@ -52,6 +62,18 @@ BOOL CMainWnd::CreateControls()
 		return FALSE;
 	}
 
+	// 再生時間表示用ラベルの作成
+	if(!m_timeLabel.Create()) {
+		m_rApp.ShowError(tr("failed to create time label."));
+		return FALSE;
+	}
+
+	// 再生時間設定用スライダの作成
+	if(!m_timeSlider.Create()) {
+		m_rApp.ShowError(tr("failed to create time slider."));
+		return FALSE;
+	}
+
 	// タブの作成
 	m_arrayList.push_back(new CPlayListView_MainWnd(*this, m_tab));
 	m_tab->addTab(m_arrayList[0], tr("No Title"));
@@ -73,10 +95,14 @@ BOOL CMainWnd::OpenFile(const QString & lpszFilePath, int nCount)
 																	nCount);
 	if(!bRet) {
 		KillTimer(IDT_TIME);
+		m_timeLabel.SetTime(0, 0);
+		m_timeSlider.SetTime(0, 10);
 		m_toolBar.SetPlayingState(FALSE);
 		return FALSE;
 	}
 	m_toolBar.SetPlayingState(FALSE);
+	m_timeLabel.SetTime(0, m_sound.ChannelGetSecondsLength());
+	m_timeSlider.SetTime(0, m_sound.ChannelGetLength());
 
 	return TRUE;
 }
@@ -139,6 +165,8 @@ BOOL CMainWnd::Play()
 	if(!m_sound.ChannelPlay()) {
 		// 再生に失敗
 		KillTimer(IDT_TIME);
+		m_timeLabel.SetTime(0, 0);
+		m_timeSlider.SetTime(0, 10);
 		m_toolBar.SetPlayingState(FALSE);
 		return FALSE;
 	}
@@ -198,6 +226,16 @@ void CMainWnd::SetTime(QWORD qwTime, BOOL bReset)
 	else if(qwTime > m_sound.ChannelGetLength() - m_sound.ChannelGetFreq())
 		qwTime = m_sound.ChannelGetLength() - (QWORD)m_sound.ChannelGetFreq();
 	if(bReset) m_sound.ChannelSetPosition(qwTime);
+	ShowTime();
+}
+//----------------------------------------------------------------------------
+// 再生時間の表示
+//----------------------------------------------------------------------------
+void CMainWnd::ShowTime(BOOL bReset)
+{
+	m_timeLabel.SetTime(m_sound.ChannelGetSecondsPosition(),
+						m_sound.ChannelGetSecondsLength(), bReset);
+	m_timeSlider.SetThumbPos((LONG)(m_sound.ChannelGetPosition() / 100000));
 }
 //----------------------------------------------------------------------------
 // 停止
@@ -230,13 +268,49 @@ LRESULT CMainWnd::OnCreate()
 	if(!CreateControls())
 		return FALSE;
 
+	m_timeLabel.SetTime(0, 0);
+
 	// bass の初期化
 	if(!m_sound.Init()) {
 		m_rApp.ShowError(tr("failed to init BASS.DLL."));
 		return FALSE;
 	}
 
+	m_timeThreadRunning = true;
+	m_timeThread.reset(
+			new std::thread(std::bind(&CMainWnd::UpdateTimeThreadProc, this)));
+
 	return TRUE;
+}
+//----------------------------------------------------------------------------
+// タイマーの周期が来た
+//----------------------------------------------------------------------------
+void CMainWnd::OnTimer(UINT id)
+{
+	switch(id)
+	{
+	case IDT_TIME:
+		if(m_bFinish) {
+			m_bFinish = FALSE;
+			KillTimer(IDT_TIME);
+			PlayNext(FALSE, TRUE);
+		}
+		break;
+	}
+}
+//----------------------------------------------------------------------------
+// 時間表示の更新用スレッド
+//----------------------------------------------------------------------------
+void CMainWnd::UpdateTimeThreadProc(void * pParam)
+{
+	CMainWnd* pMainWnd = (CMainWnd *)pParam;
+	while(1) {
+		if(!pMainWnd->m_timeThreadRunning) {
+			break;
+		}
+		pMainWnd->ShowTime(FALSE);
+		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	}
 }
 //----------------------------------------------------------------------------
 // Qt固有の実装
@@ -267,10 +341,13 @@ void CMainWnd::SetTimer(UINT_PTR nIDEvent, UINT nElapse)
 	auto it = m_timers.find(nIDEvent);
 	if(it == m_timers.end()) {
 		timer = new QTimer(this);
+		connect(timer, &QTimer::timeout,
+						std::bind(&CMainWnd::OnTimer, this, static_cast<UINT>(nIDEvent)));
 		m_timers.insert({nIDEvent, timer});
 	} else {
 		timer = it->second;
 	}
 	timer->setInterval(nElapse);
+	timer->start();
 }
 //----------------------------------------------------------------------------

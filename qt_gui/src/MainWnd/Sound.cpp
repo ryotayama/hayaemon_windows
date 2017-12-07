@@ -5,11 +5,13 @@
 #include <algorithm>
 #include <cctype>
 #include "../Common/Define.h"
+#include "MainWnd.h"
 //----------------------------------------------------------------------------
 // コンストラクタ
 //----------------------------------------------------------------------------
-CSound::CSound(BOOL bMainStream)
-	: m_nCurFile(0), m_bMainStream(bMainStream), m_bLoop(FALSE)
+CSound::CSound(CMainWnd & mainWnd, BOOL bMainStream)
+	: m_rMainWnd(mainWnd), m_bLoop(FALSE), m_nCurFile(0),
+	  m_bMainStream(bMainStream)
 {
 }
 //----------------------------------------------------------------------------
@@ -49,10 +51,36 @@ BOOL CSound::StreamCreateFile(LPCTSTR lpFilePath, BOOL bDecode, int nCount)
 	return bRet;
 }
 //----------------------------------------------------------------------------
+// 再生
+//----------------------------------------------------------------------------
+BOOL CSound::ChannelPlay()
+{
+	ChannelRemoveSync();
+	ChannelSetSync(BASS_SYNC_END, 0, LoopSyncProc, (DWORD *)this);
+	return CBass::ChannelPlay();
+}
+//----------------------------------------------------------------------------
+// ループ用コールバック関数
+//----------------------------------------------------------------------------
+void CALLBACK CSound::LoopSyncProc(HSYNC handle, DWORD channel,
+	DWORD data, void *user)
+{
+	CSound* pthis = (CSound*)user;
+	CMainWnd* mainWnd = &pthis->GetMainWnd();
+ 	if(!pthis->OnLoop()) mainWnd->SetFinish(TRUE);
+}
+//----------------------------------------------------------------------------
 // ループの設定
 //----------------------------------------------------------------------------
 void CSound::SetLoop(BOOL bLoop)
 {
 	m_bLoop = bLoop;
+}
+//----------------------------------------------------------------------------
+// ループ
+//----------------------------------------------------------------------------
+UINT CSound::OnLoop()
+{
+	return 0;
 }
 //----------------------------------------------------------------------------

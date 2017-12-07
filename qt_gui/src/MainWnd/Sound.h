@@ -6,6 +6,7 @@
 
 #include "../Common/BassFx.h"
 #include "../Common/Define.h"
+class CMainWnd;
 //----------------------------------------------------------------------------
 // 音の再生管理クラス
 //----------------------------------------------------------------------------
@@ -13,13 +14,19 @@ class CSound : public CBassFx
 {
 public: // 関数
 
-	explicit CSound(BOOL bMainStream = TRUE);
+	CSound(CMainWnd & mainWnd, BOOL bMainStream = TRUE);
 
 	virtual BOOL StreamCreateFile(LPCTSTR lpFilePath, BOOL bDecode = FALSE,
 		int nCount = 1);
+	virtual BOOL ChannelPlay();
+	static void CALLBACK LoopSyncProc(HSYNC handle, DWORD channel, DWORD data,
+									  void *user);
 	virtual void SetLoop(BOOL bLoop);
+	virtual UINT OnLoop();
 
 private: // メンバ変数
+
+	CMainWnd & m_rMainWnd;
 
 	BOOL m_bLoop; // １曲ループがオンかどうか
 
@@ -32,6 +39,7 @@ public: // メンバ変数の取得・設定
 	virtual BOOL IsLoop() const { return m_bLoop; }
 	virtual int GetCurFileNum() const { return m_nCurFile; }
 	virtual void SetCurFileNum(int n) { m_nCurFile = n; }
+	CMainWnd & GetMainWnd() { return m_rMainWnd; }
 };
 //----------------------------------------------------------------------------
 
