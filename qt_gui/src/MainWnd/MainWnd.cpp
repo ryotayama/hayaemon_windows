@@ -74,6 +74,18 @@ BOOL CMainWnd::CreateControls()
 		return FALSE;
 	}
 
+	// 音量表示用ラベルの作成
+	if(!m_volumeLabel.Create()) {
+		m_rApp.ShowError(tr("failed to create volume label."));
+		return FALSE;
+	}
+
+	// 音量設定用スライダの作成
+	if(!m_volumeSlider.Create()) {
+		m_rApp.ShowError(tr("failed to create volume slider."));
+		return FALSE;
+	}
+
 	// タブの作成
 	m_arrayList.push_back(new CPlayListView_MainWnd(*this, m_tab));
 	m_tab->addTab(m_arrayList[0], tr("No Title"));
@@ -83,6 +95,8 @@ BOOL CMainWnd::CreateControls()
 		return FALSE;
 	}
 
+	SetContextMenus();
+	
 	return TRUE;
 }
 //----------------------------------------------------------------------------
@@ -100,6 +114,7 @@ BOOL CMainWnd::OpenFile(const QString & lpszFilePath, int nCount)
 		m_toolBar.SetPlayingState(FALSE);
 		return FALSE;
 	}
+	SetAllEffects();
 	m_toolBar.SetPlayingState(FALSE);
 	m_timeLabel.SetTime(0, m_sound.ChannelGetSecondsLength());
 	m_timeSlider.SetTime(0, m_sound.ChannelGetLength());
@@ -218,6 +233,27 @@ void CMainWnd::PlayNext(BOOL bPlay, BOOL bFadeoutCancel)
 	}
 }
 //----------------------------------------------------------------------------
+// 音量をデフォルトに戻す
+//----------------------------------------------------------------------------
+void CMainWnd::ResetVolume()
+{
+	m_volumeLabel.SetVolume(100.0);
+}
+//----------------------------------------------------------------------------
+// 全てのエフェクトを設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetAllEffects()
+{
+	SetVolume((double)m_volumeSlider.GetThumbPos() / 10.0);
+}
+//----------------------------------------------------------------------------
+// 音量の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetVolume(double nVolume)
+{
+	m_sound.ChannelSetVolume((float)nVolume);
+}
+//----------------------------------------------------------------------------
 // 時間の設定
 //----------------------------------------------------------------------------
 void CMainWnd::SetTime(QWORD qwTime, BOOL bReset)
@@ -313,6 +349,35 @@ void CMainWnd::UpdateTimeThreadProc(void * pParam)
 	}
 }
 //----------------------------------------------------------------------------
+// 各種コントロールにコンテキストメニューを割り当てる
+//----------------------------------------------------------------------------
+void CMainWnd::SetContextMenus()
+{
+	// Volume
+	QWidget * volumeWidgets[] = { volumeLabel, volumeLabel2, volumeSlider,
+																 volumeSpinBox };
+	for (auto w : volumeWidgets) {
+		w->setContextMenuPolicy(Qt::CustomContextMenu);
+		connect(w, &QWidget::customContextMenuRequested,
+						std::bind(&CMainWnd::ShowContextMenu, this, w, menuVolume,
+											std::placeholders::_1));
+	}
+}
+//----------------------------------------------------------------------------
+// コンテキストメニューを作成
+//----------------------------------------------------------------------------
+void CMainWnd::ShowContextMenu(QWidget * widget, QMenu * menu,
+															 const QPoint & pos)
+{
+	QMenu contextMenu;
+	if (menu != nullptr) {
+		for (auto action : menu->actions()) {
+			contextMenu.addAction(action);
+		}
+	}
+	contextMenu.exec(widget->mapToGlobal(pos));
+}
+//----------------------------------------------------------------------------
 // Qt固有の実装
 //----------------------------------------------------------------------------
 void CMainWnd::dragEnterEvent(QDragEnterEvent * e)
@@ -326,7 +391,7 @@ void CMainWnd::dropEvent(QDropEvent * e)
 void CMainWnd::KillTimer(UINT_PTR nIDEvent)
 {
 	auto it = m_timers.find(nIDEvent);
-	if (it == m_timers.end()) {
+	if(it == m_timers.end()) {
 		return;
 	}
 	it->second->stop();

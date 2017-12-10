@@ -11,37 +11,47 @@
 <context>
     <name>CMainWnd</name>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="60"/>
+        <location filename="MainWnd/MainWnd.cpp" line="61"/>
         <source>failed to create toolbar.</source>
         <translation>ツールバーの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="69"/>
+        <location filename="MainWnd/MainWnd.cpp" line="67"/>
         <source>failed to create time label.</source>
         <translation>再生時間表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="76"/>
+        <location filename="MainWnd/MainWnd.cpp" line="73"/>
         <source>failed to create time slider.</source>
         <translation>再生時間設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
         <location filename="MainWnd/MainWnd.cpp" line="82"/>
+        <source>failed to create volume label.</source>
+        <translation>音量表示用ラベルの作成に失敗しました。</translation>
+    </message>
+    <message>
+        <location filename="MainWnd/MainWnd.cpp" line="89"/>
+        <source>failed to create volume slider.</source>
+        <translation>音量設定用スライダの作成に失敗しました。</translation>
+    </message>
+    <message>
+        <location filename="MainWnd/MainWnd.cpp" line="95"/>
         <source>No Title</source>
         <translation>無題</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="85"/>
+        <location filename="MainWnd/MainWnd.cpp" line="98"/>
         <source>failed to create playlist.</source>
         <translation>プレイリスト用リストビューの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="267"/>
+        <location filename="MainWnd/MainWnd.cpp" line="287"/>
         <source>failed to create menu.</source>
         <translation>メニューの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="278"/>
+        <location filename="MainWnd/MainWnd.cpp" line="298"/>
         <source>failed to init BASS.DLL.</source>
         <translation>BASS の初期化に失敗しました。</translation>
     </message>

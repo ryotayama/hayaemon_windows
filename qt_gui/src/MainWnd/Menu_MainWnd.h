@@ -20,6 +20,18 @@ public: // 関数
 	virtual BOOL Create();
 	void OnPauseMenuSelected();
 	void OnStopMenuSelected();
+	void OnResetVolumeMenuSelected();
+	void OnSetVolume0MenuSelected();
+	void OnSetVolume10MenuSelected();
+	void OnSetVolume20MenuSelected();
+	void OnSetVolume30MenuSelected();
+	void OnSetVolume40MenuSelected();
+	void OnSetVolume50MenuSelected();
+	void OnSetVolume60MenuSelected();
+	void OnSetVolume70MenuSelected();
+	void OnSetVolume80MenuSelected();
+	void OnSetVolume90MenuSelected();
+	void OnSetVolume100MenuSelected();
 
 private: // メンバ変数
 

@@ -22,6 +22,7 @@ public: // 関数
 	static void CALLBACK LoopSyncProc(HSYNC handle, DWORD channel, DWORD data,
 									  void *user);
 	virtual void SetLoop(BOOL bLoop);
+	virtual BOOL ChannelSetVolume(float volume);
 	virtual UINT OnLoop();
 
 private: // メンバ変数
@@ -33,6 +34,8 @@ private: // メンバ変数
 	tstring m_strCurFile;
 	int m_nCurFile;
 	BOOL m_bMainStream;
+
+	HFX m_hFxVolume;
 
 public: // メンバ変数の取得・設定
 

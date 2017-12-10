@@ -32,6 +32,10 @@ set(SRC_MAINWND
   ${SRC_DIR}/MainWnd/ToolBar_MainWnd.h
   ${SRC_DIR}/MainWnd/Tab_MainWnd.h
   ${SRC_DIR}/MainWnd/Utility.h
+  ${SRC_DIR}/MainWnd/VolumeLabel_MainWnd.cpp
+  ${SRC_DIR}/MainWnd/VolumeLabel_MainWnd.h
+  ${SRC_DIR}/MainWnd/VolumeSlider_MainWnd.cpp
+  ${SRC_DIR}/MainWnd/VolumeSlider_MainWnd.h
 )
 
 if (WIN32)
@@ -45,6 +49,7 @@ set(SRC_BASS
   ${BASS_DIR}/include/bass/bass.h
   ${BASS_DIR}/include/bass/bass_aac.h
   ${BASS_DIR}/include/bass/bass_ape.h
+  ${BASS_DIR}/include/bass/bass_fx.h
   ${BASS_DIR}/include/bass/bassalac.h
   ${BASS_DIR}/include/bass/basscd.h
   ${BASS_DIR}/include/bass/bassflac.h
@@ -53,6 +58,7 @@ elseif (APPLE)
 set(SRC_BASS
   ${BASS_DIR}/include/bass/bass.h
   ${BASS_DIR}/include/bass/bass_ape.h
+  ${BASS_DIR}/include/bass/bass_fx.h
   ${BASS_DIR}/include/bass/bassflac.h
 )
 endif()
@@ -98,6 +104,7 @@ target_link_libraries(Hayaemon
   bass
   bass_aac
   bass_ape
+  bass_fx
   bassalac
   basscd
   bassflac
@@ -106,6 +113,7 @@ elseif (APPLE)
 target_link_libraries(Hayaemon
   bass
   bass_ape
+  bass_fx
   bassflac
 )
 endif()

@@ -11,8 +11,11 @@
 //----------------------------------------------------------------------------
 CSound::CSound(CMainWnd & mainWnd, BOOL bMainStream)
 	: m_rMainWnd(mainWnd), m_bLoop(FALSE), m_nCurFile(0),
-	  m_bMainStream(bMainStream)
+		m_bMainStream(bMainStream), m_hFxVolume(0)
 {
+	// BASS_FXSetParametersでボリュームを変更しようとするだけでは、bass_fxが
+	// ロードされないので、明示的にbass_fxの関数を実行する。
+	auto v = BASS_FX_GetVersion();
 }
 //----------------------------------------------------------------------------
 // ファイルの読み込み
@@ -47,6 +50,7 @@ BOOL CSound::StreamCreateFile(LPCTSTR lpFilePath, BOOL bDecode, int nCount)
 	if(!bRet) {
 		bRet = CBassFx::StreamCreateFile(lpFilePath);
 		m_strCurFile = lpFilePath;
+		m_hFxVolume = ChannelSetFX(BASS_FX_BFX_VOLUME, 1);
 	}
 	return bRet;
 }
@@ -75,6 +79,14 @@ void CALLBACK CSound::LoopSyncProc(HSYNC handle, DWORD channel,
 void CSound::SetLoop(BOOL bLoop)
 {
 	m_bLoop = bLoop;
+}
+//----------------------------------------------------------------------------
+// 音量の設定
+//----------------------------------------------------------------------------
+BOOL CSound::ChannelSetVolume(float volume)
+{
+	BASS_BFX_VOLUME p = {0, volume / 100.0f};
+	return BASS_FXSetParameters(m_hFxVolume, &p);
 }
 //----------------------------------------------------------------------------
 // ループ

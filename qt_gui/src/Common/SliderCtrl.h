@@ -17,6 +17,9 @@ public: // 関数
 	virtual LONG GetRangeMax() const {
 		return m_slider->maximum();
 	}
+	virtual LONG GetThumbPos() const {
+		return (LONG)m_slider->sliderPosition();
+	}
 	virtual LRESULT SetLineSize(LONG lLineSize)
 	{
 		int old = m_slider->singleStep();

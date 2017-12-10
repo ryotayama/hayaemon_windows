@@ -74,6 +74,9 @@ public: // 関数
 	virtual BOOL ChannelRemoveSync() {
 		return BASS_ChannelRemoveSync(m_hStream, m_hSync);
 	}
+	virtual HFX ChannelSetFX(DWORD type, int priority) {
+		return BASS_ChannelSetFX(m_hStream, type, priority);
+	}
 	virtual BOOL ChannelSetAttribute(DWORD attrib, float value) {
 		return BASS_ChannelSetAttribute(m_hStream, attrib, value);
 	}

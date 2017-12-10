@@ -20,6 +20,8 @@ class QUrl;
 #include "TimeLabel_MainWnd.h"
 #include "TimeSlider_MainWnd.h"
 #include "ToolBar_MainWnd.h"
+#include "VolumeLabel_MainWnd.h"
+#include "VolumeSlider_MainWnd.h"
 #include "ui_MainWnd.h"
 //----------------------------------------------------------------------------
 // メインウィンドウの作成・管理を行うクラス
@@ -31,8 +33,9 @@ class CMainWnd : public QMainWindow, public Ui::MainWnd
 public: // 関数
 
 	CMainWnd(CApp & app): m_rApp(app), m_menu(*this), m_toolBar(*this),
-		m_timeLabel(*this), m_timeSlider(*this), m_sound(*this), m_bFinish(FALSE),
-		nCurPlayTab(0), m_timeThreadRunning(false) { }
+		m_timeLabel(*this), m_timeSlider(*this), m_volumeLabel(*this),
+		m_volumeSlider(*this), m_sound(*this), m_bFinish(FALSE), nCurPlayTab(0),
+		m_timeThreadRunning(false) { }
 	virtual ~CMainWnd();
 
 	virtual void AddDropFiles(const QList<QUrl> & urls, BOOL bClear);
@@ -43,6 +46,9 @@ public: // 関数
 	virtual void Pause();
 	virtual BOOL Play();
 	virtual void PlayNext(BOOL bPlay, BOOL bFadeoutCancel);
+	virtual void ResetVolume();
+	virtual void SetAllEffects();
+	virtual void SetVolume(double nVolume);
 	virtual void SetTime(QWORD qwTime, BOOL bReset = TRUE);
 	virtual void ShowTime(BOOL bReset = TRUE);
 	virtual void Stop(BOOL bForce = TRUE);
@@ -59,6 +65,8 @@ protected: // メンバ変数
 	CToolBar_MainWnd m_toolBar;
 	CTimeLabel_MainWnd m_timeLabel;
 	CTimeSlider_MainWnd m_timeSlider;
+	CVolumeLabel_MainWnd m_volumeLabel;
+	CVolumeSlider_MainWnd m_volumeSlider;
 	std::vector<CPlayListView_MainWnd*> m_arrayList;
 
 	CSound m_sound;
@@ -77,6 +85,8 @@ public: // 定数
 
 public: // メンバ変数の取得・設定
 
+	CVolumeLabel_MainWnd & GetVolumeLabel() { return m_volumeLabel; }
+	CVolumeSlider_MainWnd & GetVolumeSlider() { return m_volumeSlider; }
 	CPlayListView_MainWnd & GetCurPlayList() {
 		return *m_arrayList[nCurPlayTab];
 	}
@@ -85,6 +95,8 @@ public: // メンバ変数の取得・設定
 
 private:
 
+	void SetContextMenus();
+	void ShowContextMenu(QWidget * widget, QMenu * menu, const QPoint & pos);
 	void dragEnterEvent(QDragEnterEvent * e) final;
 	void dropEvent(QDropEvent * e) final;
 	// Qtのラッパー

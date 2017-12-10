@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>479</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -96,6 +96,42 @@
      </widget>
     </item>
     <item>
+     <widget class="QGroupBox" name="groupBox">
+      <property name="title">
+       <string/>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="volumeLabel">
+         <property name="text">
+          <string>Volume :</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDoubleSpinBox" name="volumeSpinBox"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="volumeLabel2">
+         <property name="text">
+          <string>%</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="CSliderCtrlCore" name="volumeSlider">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
      <widget class="CTab_MainWnd" name="m_tab"/>
     </item>
    </layout>
@@ -116,7 +152,38 @@
     <addaction name="actionPlayPlayPause"/>
     <addaction name="actionPlayStop"/>
    </widget>
+   <widget class="QMenu" name="menuEffect">
+    <property name="title">
+     <string>Effect(&amp;E)</string>
+    </property>
+    <widget class="QMenu" name="menuVolume">
+     <property name="title">
+      <string>Volume(&amp;V)</string>
+     </property>
+     <widget class="QMenu" name="menuSet_Volume">
+      <property name="title">
+       <string>Set Volume(&amp;V)</string>
+      </property>
+      <addaction name="actionSetVolume0"/>
+      <addaction name="actionSetVolume10"/>
+      <addaction name="actionSetVolume20"/>
+      <addaction name="actionSetVolume30"/>
+      <addaction name="actionSetVolume40"/>
+      <addaction name="actionSetVolume50"/>
+      <addaction name="actionSetVolume60"/>
+      <addaction name="actionSetVolume70"/>
+      <addaction name="actionSetVolume80"/>
+      <addaction name="actionSetVolume90"/>
+      <addaction name="actionSetVolume100"/>
+     </widget>
+     <addaction name="actionResetVolume"/>
+     <addaction name="separator"/>
+     <addaction name="menuSet_Volume"/>
+    </widget>
+    <addaction name="menuVolume"/>
+   </widget>
    <addaction name="menuPlay_P"/>
+   <addaction name="menuEffect"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionPlayPlayPause">
@@ -127,6 +194,66 @@
   <action name="actionPlayStop">
    <property name="text">
     <string>Stop(&amp;S)</string>
+   </property>
+  </action>
+  <action name="actionResetVolume">
+   <property name="text">
+    <string>Reset Volume(&amp;R)</string>
+   </property>
+  </action>
+  <action name="actionSetVolume0">
+   <property name="text">
+    <string>0%(&amp;A)</string>
+   </property>
+  </action>
+  <action name="actionSetVolume10">
+   <property name="text">
+    <string>10%(&amp;B)</string>
+   </property>
+  </action>
+  <action name="actionSetVolume20">
+   <property name="text">
+    <string>20%(&amp;C)</string>
+   </property>
+  </action>
+  <action name="actionSetVolume30">
+   <property name="text">
+    <string>30%(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionSetVolume40">
+   <property name="text">
+    <string>40%(&amp;E)</string>
+   </property>
+  </action>
+  <action name="actionSetVolume50">
+   <property name="text">
+    <string>50%(&amp;F)</string>
+   </property>
+  </action>
+  <action name="actionSetVolume60">
+   <property name="text">
+    <string>60%(&amp;G)</string>
+   </property>
+  </action>
+  <action name="actionSetVolume70">
+   <property name="text">
+    <string>70%(&amp;H)</string>
+   </property>
+  </action>
+  <action name="actionSetVolume80">
+   <property name="text">
+    <string>80%(&amp;I)</string>
+   </property>
+  </action>
+  <action name="actionSetVolume90">
+   <property name="text">
+    <string>90%(&amp;J)</string>
+   </property>
+  </action>
+  <action name="actionSetVolume100">
+   <property name="text">
+    <string>100%(&amp;K)</string>
    </property>
   </action>
  </widget>
@@ -153,6 +280,8 @@
   <tabstop>pauseButton</tabstop>
   <tabstop>stopButton</tabstop>
   <tabstop>timeSlider</tabstop>
+  <tabstop>volumeSpinBox</tabstop>
+  <tabstop>volumeSlider</tabstop>
   <tabstop>m_tab</tabstop>
  </tabstops>
  <resources>

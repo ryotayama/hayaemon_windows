@@ -4,6 +4,8 @@
 #ifndef BassFxH
 #define BassFxH
 
+#include "bass/bass.h"
+#include "bass/bass_fx.h"
 #include "Bass.h"
 //----------------------------------------------------------------------------
 // bass_fx.dll の管理を行うクラス
