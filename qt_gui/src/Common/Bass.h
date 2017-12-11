@@ -80,6 +80,10 @@ public: // 関数
 	virtual BOOL ChannelSetAttribute(DWORD attrib, float value) {
 		return BASS_ChannelSetAttribute(m_hStream, attrib, value);
 	}
+	virtual BOOL ChannelSetPan(int pan) {
+		return BASS_ChannelSetAttribute(m_hStream, BASS_ATTRIB_PAN,
+										(float)pan / 100.0f);
+	}
 	virtual BOOL ChannelSetPosition(QWORD pos) {
 		return BASS_ChannelSetPosition(m_hStream, pos, 0);
 	}

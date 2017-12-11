@@ -26,32 +26,42 @@
         <translation>再生時間設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="82"/>
+        <location filename="MainWnd/MainWnd.cpp" line="79"/>
         <source>failed to create volume label.</source>
         <translation>音量表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="89"/>
+        <location filename="MainWnd/MainWnd.cpp" line="85"/>
         <source>failed to create volume slider.</source>
         <translation>音量設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="95"/>
+        <location filename="MainWnd/MainWnd.cpp" line="94"/>
+        <source>failed to create pan label.</source>
+        <translation>パン表示用ラベルの作成に失敗しました。</translation>
+    </message>
+    <message>
+        <location filename="MainWnd/MainWnd.cpp" line="101"/>
+        <source>failed to create pan slider.</source>
+        <translation>パン設定用スライダの作成に失敗しました。</translation>
+    </message>
+    <message>
+        <location filename="MainWnd/MainWnd.cpp" line="107"/>
         <source>No Title</source>
         <translation>無題</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="98"/>
+        <location filename="MainWnd/MainWnd.cpp" line="110"/>
         <source>failed to create playlist.</source>
         <translation>プレイリスト用リストビューの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="287"/>
+        <location filename="MainWnd/MainWnd.cpp" line="323"/>
         <source>failed to create menu.</source>
         <translation>メニューの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="298"/>
+        <location filename="MainWnd/MainWnd.cpp" line="334"/>
         <source>failed to init BASS.DLL.</source>
         <translation>BASS の初期化に失敗しました。</translation>
     </message>

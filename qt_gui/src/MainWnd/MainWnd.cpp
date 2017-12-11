@@ -86,6 +86,18 @@ BOOL CMainWnd::CreateControls()
 		return FALSE;
 	}
 
+	// パン表示用ラベルの作成
+	if(!m_panLabel.Create()) {
+		m_rApp.ShowError(tr("failed to create pan label."));
+		return FALSE;
+	}
+
+	// パン設定用スライダの作成
+	if(!m_panSlider.Create()) {
+		m_rApp.ShowError(tr("failed to create pan slider."));
+		return FALSE;
+	}
+
 	// タブの作成
 	m_arrayList.push_back(new CPlayListView_MainWnd(*this, m_tab));
 	m_tab->addTab(m_arrayList[0], tr("No Title"));
@@ -245,6 +257,7 @@ void CMainWnd::ResetVolume()
 void CMainWnd::SetAllEffects()
 {
 	SetVolume((double)m_volumeSlider.GetThumbPos() / 10.0);
+	SetPan(m_panSlider.GetThumbPos());
 }
 //----------------------------------------------------------------------------
 // 音量の設定
@@ -263,6 +276,13 @@ void CMainWnd::SetTime(QWORD qwTime, BOOL bReset)
 		qwTime = m_sound.ChannelGetLength() - (QWORD)m_sound.ChannelGetFreq();
 	if(bReset) m_sound.ChannelSetPosition(qwTime);
 	ShowTime();
+}
+//----------------------------------------------------------------------------
+// パンの設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetPan(int nPan)
+{
+	m_sound.ChannelSetPan(nPan);
 }
 //----------------------------------------------------------------------------
 // 再生時間の表示

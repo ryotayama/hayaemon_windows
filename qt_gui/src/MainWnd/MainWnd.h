@@ -16,6 +16,8 @@ class QUrl;
 #include <QMainWindow>
 #include "../Common/Define.h"
 #include "Menu_MainWnd.h"
+#include "PanLabel_MainWnd.h"
+#include "PanSlider_MainWnd.h"
 #include "Sound.h"
 #include "TimeLabel_MainWnd.h"
 #include "TimeSlider_MainWnd.h"
@@ -34,7 +36,8 @@ public: // 関数
 
 	CMainWnd(CApp & app): m_rApp(app), m_menu(*this), m_toolBar(*this),
 		m_timeLabel(*this), m_timeSlider(*this), m_volumeLabel(*this),
-		m_volumeSlider(*this), m_sound(*this), m_bFinish(FALSE), nCurPlayTab(0),
+		m_volumeSlider(*this), m_panLabel(*this), m_panSlider(*this),
+		m_sound(*this), m_bFinish(FALSE), nCurPlayTab(0),
 		m_timeThreadRunning(false) { }
 	virtual ~CMainWnd();
 
@@ -50,6 +53,7 @@ public: // 関数
 	virtual void SetAllEffects();
 	virtual void SetVolume(double nVolume);
 	virtual void SetTime(QWORD qwTime, BOOL bReset = TRUE);
+	virtual void SetPan(int nPan);
 	virtual void ShowTime(BOOL bReset = TRUE);
 	virtual void Stop(BOOL bForce = TRUE);
 
@@ -67,6 +71,8 @@ protected: // メンバ変数
 	CTimeSlider_MainWnd m_timeSlider;
 	CVolumeLabel_MainWnd m_volumeLabel;
 	CVolumeSlider_MainWnd m_volumeSlider;
+	CPanLabel_MainWnd m_panLabel;
+	CPanSlider_MainWnd m_panSlider;
 	std::vector<CPlayListView_MainWnd*> m_arrayList;
 
 	CSound m_sound;
@@ -87,6 +93,8 @@ public: // メンバ変数の取得・設定
 
 	CVolumeLabel_MainWnd & GetVolumeLabel() { return m_volumeLabel; }
 	CVolumeSlider_MainWnd & GetVolumeSlider() { return m_volumeSlider; }
+	CPanLabel_MainWnd & GetPanLabel() { return m_panLabel; }
+	CPanSlider_MainWnd & GetPanSlider() { return m_panSlider; }
 	CPlayListView_MainWnd & GetCurPlayList() {
 		return *m_arrayList[nCurPlayTab];
 	}
