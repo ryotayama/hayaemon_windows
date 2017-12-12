@@ -13,6 +13,8 @@ class CSliderCtrl
 {
 public: // 関数
 
+	virtual ~CSliderCtrl() { }
+
 	virtual void Init(CSliderCtrlCore * slider) { m_slider = slider; }
 	virtual LONG GetRangeMax() const {
 		return m_slider->maximum();
@@ -43,6 +45,10 @@ public: // 関数
 	virtual void SetThumbPos(LONG lPos, BOOL bRedraw = TRUE)
 	{
 		m_slider->setSliderPosition(lPos);
+	}
+	virtual void Show(int nCmdShow)
+	{
+		m_slider->setVisible(nCmdShow != SW_HIDE);
 	}
 
 private: // メンバ変数

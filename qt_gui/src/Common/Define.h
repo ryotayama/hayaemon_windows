@@ -58,4 +58,18 @@ typedef const TCHAR *LPCTSTR;
 
 typedef std::basic_string<TCHAR> tstring;
 
+#ifndef SW_HIDE
+# define SW_HIDE 0
+#endif
+#ifndef SW_SHOW
+# define SW_SHOW 5
+#endif
+
+#ifndef MF_UNCHECKED
+# define MF_UNCHECKED        0x00000000L
+#endif
+#ifndef MF_CHECKED
+# define MF_CHECKED          0x00000008L
+#endif
+
 #endif // DefineH

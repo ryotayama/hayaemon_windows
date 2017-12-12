@@ -4,9 +4,11 @@
 #ifndef Menu_MainWndH
 #define Menu_MainWndH
 
+#include <unordered_map>
 #include <QObject>
 #include "../Common/Define.h"
 class CMainWnd;
+class QAction;
 //----------------------------------------------------------------------------
 // メインウィンドウ用メニューの作成・管理を行うクラス
 //----------------------------------------------------------------------------
@@ -18,6 +20,8 @@ public: // 関数
 		: m_rMainWnd(mainWnd) { }
 
 	virtual BOOL Create();
+	void OnVolumeMenuSelected(bool checked);
+	void OnPanMenuSelected(bool checked);
 	void OnPauseMenuSelected();
 	void OnStopMenuSelected();
 	void OnResetVolumeMenuSelected();
@@ -36,9 +40,16 @@ public: // 関数
 private: // メンバ変数
 
 	CMainWnd & m_rMainWnd;
+	std::unordered_map<UINT, QAction*> m_actionMap;
+
+public:
+	// Qtのラッパー
+	void CheckItem(UINT uIDCheckItem, UINT uCheck);
+	BOOL IsItemChecked(UINT uID);
 
 private:
 	// Qtのラッパー
+	void CreateActionMap();
 	void CreateConnections();
 };
 //----------------------------------------------------------------------------

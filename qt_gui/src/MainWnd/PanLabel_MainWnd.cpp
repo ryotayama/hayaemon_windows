@@ -31,3 +31,12 @@ void CPanLabel_MainWnd::SetPan(int nPan)
 	m_rMainWnd.panSpinBox->setValue(nPan);
 }
 //----------------------------------------------------------------------------
+// コントロールの表示状態を設定
+//----------------------------------------------------------------------------
+void CPanLabel_MainWnd::Show(int nCmdShow)
+{
+	bool visible = nCmdShow != SW_HIDE;
+	m_rMainWnd.panLabel->setVisible(visible);
+	m_rMainWnd.panSpinBox->setVisible(visible);
+}
+//----------------------------------------------------------------------------

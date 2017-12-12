@@ -11,59 +11,69 @@
 <context>
     <name>CMainWnd</name>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="61"/>
+        <location filename="MainWnd/MainWnd.cpp" line="62"/>
         <source>failed to create toolbar.</source>
         <translation>ツールバーの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="67"/>
+        <location filename="MainWnd/MainWnd.cpp" line="68"/>
         <source>failed to create time label.</source>
         <translation>再生時間表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="73"/>
+        <location filename="MainWnd/MainWnd.cpp" line="74"/>
         <source>failed to create time slider.</source>
         <translation>再生時間設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="79"/>
+        <location filename="MainWnd/MainWnd.cpp" line="80"/>
         <source>failed to create volume label.</source>
         <translation>音量表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="85"/>
+        <location filename="MainWnd/MainWnd.cpp" line="86"/>
         <source>failed to create volume slider.</source>
         <translation>音量設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="94"/>
+        <location filename="MainWnd/MainWnd.cpp" line="92"/>
         <source>failed to create pan label.</source>
         <translation>パン表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="101"/>
+        <location filename="MainWnd/MainWnd.cpp" line="98"/>
         <source>failed to create pan slider.</source>
         <translation>パン設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="107"/>
+        <location filename="MainWnd/MainWnd.cpp" line="104"/>
         <source>No Title</source>
         <translation>無題</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="110"/>
+        <location filename="MainWnd/MainWnd.cpp" line="107"/>
         <source>failed to create playlist.</source>
         <translation>プレイリスト用リストビューの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="323"/>
+        <location filename="MainWnd/MainWnd.cpp" line="348"/>
         <source>failed to create menu.</source>
         <translation>メニューの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="334"/>
+        <location filename="MainWnd/MainWnd.cpp" line="362"/>
         <source>failed to init BASS.DLL.</source>
         <translation>BASS の初期化に失敗しました。</translation>
+    </message>
+    <message>
+        <location filename="MainWnd/MainWnd.cpp" line="413"/>
+        <source>Show Volume Control(&amp;S)</source>
+        <translation>音量コントロールの表示(&amp;V)</translation>
+    </message>
+    <message>
+        <location filename="MainWnd/MainWnd.cpp" line="422"/>
+        <source>Show Pan Control(&amp;S)</source>
+        <translation>パンの表示(&amp;V)</translation>
     </message>
 </context>
 <context>

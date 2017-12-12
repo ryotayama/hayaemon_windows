@@ -96,7 +96,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QGroupBox" name="groupBox">
+     <widget class="QGroupBox" name="volumeGroupBox">
       <property name="title">
        <string/>
       </property>
@@ -207,6 +207,14 @@
     </widget>
     <addaction name="menuVolume"/>
    </widget>
+   <widget class="QMenu" name="menuView_V">
+    <property name="title">
+     <string>View(&amp;V)</string>
+    </property>
+    <addaction name="actionVolumeVisible"/>
+    <addaction name="actionPanVisible"/>
+   </widget>
+   <addaction name="menuView_V"/>
    <addaction name="menuPlay_P"/>
    <addaction name="menuEffect"/>
   </widget>
@@ -279,6 +287,22 @@
   <action name="actionSetVolume100">
    <property name="text">
     <string>100%(&amp;K)</string>
+   </property>
+  </action>
+  <action name="actionVolumeVisible">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Volume(&amp;V)</string>
+   </property>
+  </action>
+  <action name="actionPanVisible">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Pan(&amp;P)</string>
    </property>
   </action>
  </widget>

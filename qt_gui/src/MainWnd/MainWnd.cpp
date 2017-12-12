@@ -9,6 +9,7 @@
 #include <QMimeData>
 #include <QTimer>
 #include "../App.h"
+#include "../Common/CommandList.h"
 #include "PlayListView_MainWnd.h"
 #include "Utility.h"
 //----------------------------------------------------------------------------
@@ -260,6 +261,33 @@ void CMainWnd::SetAllEffects()
 	SetPan(m_panSlider.GetThumbPos());
 }
 //----------------------------------------------------------------------------
+// 音量の表示状態を設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetVolumeVisible(bool bVolumeVisible)
+{
+	int nCmdShow = bVolumeVisible ? SW_SHOW : SW_HIDE;
+	UINT uCheck = bVolumeVisible ? MF_CHECKED : MF_UNCHECKED;
+	if(bVolumeVisible || m_menu.IsItemChecked(ID_PAN))
+		volumeGroupBox->show();
+	else volumeGroupBox->hide();
+	m_volumeLabel.Show(nCmdShow);
+	m_volumeSlider.Show(nCmdShow);
+	m_menu.CheckItem(ID_VOLUME, uCheck);
+}
+//----------------------------------------------------------------------------
+// パンの表示状態を設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetPanVisible(bool bPanVisible)
+{
+	int nCmdShow = bPanVisible ? SW_SHOW : SW_HIDE;
+	UINT uCheck = bPanVisible ? MF_CHECKED : MF_UNCHECKED;
+	if(m_menu.IsItemChecked(ID_VOLUME) || bPanVisible) volumeGroupBox->show();
+	else volumeGroupBox->hide();
+	m_panLabel.Show(nCmdShow);
+	m_panSlider.Show(nCmdShow);
+	m_menu.CheckItem(ID_PAN, uCheck);
+}
+//----------------------------------------------------------------------------
 // 音量の設定
 //----------------------------------------------------------------------------
 void CMainWnd::SetVolume(double nVolume)
@@ -324,6 +352,9 @@ LRESULT CMainWnd::OnCreate()
 	if(!CreateControls())
 		return FALSE;
 
+	SetVolumeVisible(true);
+	SetPanVisible(true);
+
 	m_timeLabel.SetTime(0, 0);
 
 	// bass の初期化
@@ -374,19 +405,31 @@ void CMainWnd::UpdateTimeThreadProc(void * pParam)
 void CMainWnd::SetContextMenus()
 {
 	// Volume
-	QWidget * volumeWidgets[] = { volumeLabel, volumeLabel2, volumeSlider,
-																 volumeSpinBox };
+	QWidget * volumeWidgets[] = { volumeLabel, volumeSlider };
 	for (auto w : volumeWidgets) {
 		w->setContextMenuPolicy(Qt::CustomContextMenu);
 		connect(w, &QWidget::customContextMenuRequested,
 						std::bind(&CMainWnd::ShowContextMenu, this, w, menuVolume,
-											std::placeholders::_1));
+											actionVolumeVisible, tr("Show Volume Control(&S)"),
+											&CMainWnd::SetVolumeVisible, std::placeholders::_1));
+	}
+	// Pan
+	QWidget * panWidgets[] = { panLabel, panSlider };
+	for (auto w : panWidgets) {
+		w->setContextMenuPolicy(Qt::CustomContextMenu);
+		connect(w, &QWidget::customContextMenuRequested,
+						std::bind(&CMainWnd::ShowContextMenu, this, w, nullptr,
+											actionPanVisible, tr("Show Pan Control(&S)"),
+											&CMainWnd::SetPanVisible, std::placeholders::_1));
 	}
 }
 //----------------------------------------------------------------------------
 // コンテキストメニューを作成
 //----------------------------------------------------------------------------
 void CMainWnd::ShowContextMenu(QWidget * widget, QMenu * menu,
+															 QAction * visibilityAction,
+															 const QString &title,
+															 void (CMainWnd::*callback)(bool visible),
 															 const QPoint & pos)
 {
 	QMenu contextMenu;
@@ -395,6 +438,13 @@ void CMainWnd::ShowContextMenu(QWidget * widget, QMenu * menu,
 			contextMenu.addAction(action);
 		}
 	}
+	auto act = new QAction(title, &contextMenu);
+	act->setCheckable(true);
+	act->setChecked(visibilityAction->isChecked());
+	connect(act, &QAction::toggled, this, callback);
+	contextMenu.addSeparator();
+	contextMenu.addAction(act);
+
 	contextMenu.exec(widget->mapToGlobal(pos));
 }
 //----------------------------------------------------------------------------

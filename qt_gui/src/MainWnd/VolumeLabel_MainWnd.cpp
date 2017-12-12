@@ -33,3 +33,13 @@ void CVolumeLabel_MainWnd::SetVolume(double nVolume)
 	m_rMainWnd.volumeSpinBox->setValue(nVolume);
 }
 //----------------------------------------------------------------------------
+// コントロールの表示状態を設定
+//----------------------------------------------------------------------------
+void CVolumeLabel_MainWnd::Show(int nCmdShow)
+{
+	bool visible = nCmdShow != SW_HIDE;
+	m_rMainWnd.volumeLabel->setVisible(visible);
+	m_rMainWnd.volumeLabel2->setVisible(visible);
+	m_rMainWnd.volumeSpinBox->setVisible(visible);
+}
+//----------------------------------------------------------------------------

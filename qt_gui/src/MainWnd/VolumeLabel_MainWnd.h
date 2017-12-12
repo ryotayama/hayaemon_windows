@@ -22,6 +22,10 @@ public: // 関数
 private: // メンバ変数
 
 	CMainWnd & m_rMainWnd;
+
+public:
+	// Qtのラッパー
+	virtual void Show(int nCmdShow);
 };
 //----------------------------------------------------------------------------
 

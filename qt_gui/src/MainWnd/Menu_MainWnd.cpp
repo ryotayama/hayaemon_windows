@@ -2,6 +2,8 @@
 // Menu_MainWnd.cpp : メインウィンドウ用メニューの作成・管理を行う
 //----------------------------------------------------------------------------
 #include "Menu_MainWnd.h"
+#include <cassert>
+#include "../Common/CommandList.h"
 #include "MainWnd.h"
 //----------------------------------------------------------------------------
 // 作成
@@ -9,7 +11,22 @@
 BOOL CMenu_MainWnd::Create()
 {
 	CreateConnections();
+	CreateActionMap();
 	return TRUE;
+}
+//----------------------------------------------------------------------------
+// 表示 → 音量メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnVolumeMenuSelected(bool checked)
+{
+	m_rMainWnd.SetVolumeVisible(checked);
+}
+//----------------------------------------------------------------------------
+// 表示 → パンメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnPanMenuSelected(bool checked)
+{
+	m_rMainWnd.SetPanVisible(checked);
 }
 //----------------------------------------------------------------------------
 // 再生 → 一時停止メニューが選択された
@@ -110,10 +127,50 @@ void CMenu_MainWnd::OnSetVolume100MenuSelected()
 	m_rMainWnd.GetVolumeLabel().SetVolume(100.0);
 }
 //----------------------------------------------------------------------------
+// メニューの項目のチェック状態を設定
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::CheckItem(UINT uIDCheckItem, UINT uCheck)
+{
+	auto it = m_actionMap.find(uIDCheckItem);
+	assert(it != m_actionMap.end());
+	if(it == m_actionMap.end()) {
+		return;
+	}
+	it->second->setChecked(uCheck == MF_CHECKED);
+}
+//----------------------------------------------------------------------------
+// メニューの項目のチェック状態を取得
+//----------------------------------------------------------------------------
+BOOL CMenu_MainWnd::IsItemChecked(UINT uID)
+{
+	auto it = m_actionMap.find(uID);
+	assert(it != m_actionMap.end());
+	if(it == m_actionMap.end()) {
+		return FALSE;
+	}
+	return it->second->isChecked() ? TRUE : FALSE;
+}
+//----------------------------------------------------------------------------
+// メニューの項目IDとQActionの対応付け
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::CreateActionMap()
+{
+	m_actionMap = std::unordered_map<UINT, QAction*>{
+		{ID_VOLUME, m_rMainWnd.actionVolumeVisible},
+		{ID_PAN, m_rMainWnd.actionPanVisible},
+	};
+}
+//----------------------------------------------------------------------------
 // シグナル&スロットの設定
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::CreateConnections()
 {
+	// View
+	connect(m_rMainWnd.actionVolumeVisible, &QAction::toggled,
+					this, &CMenu_MainWnd::OnVolumeMenuSelected);
+	connect(m_rMainWnd.actionPanVisible, &QAction::toggled,
+					this, &CMenu_MainWnd::OnPanMenuSelected);
+	// Play
 	connect(m_rMainWnd.actionPlayPlayPause, &QAction::triggered,
 					this, &CMenu_MainWnd::OnPauseMenuSelected);
 	connect(m_rMainWnd.actionPlayStop, &QAction::triggered,

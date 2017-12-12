@@ -9,6 +9,7 @@ set(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
 set(SRC_COMMON
   ${SRC_DIR}/Common/Bass.h
   ${SRC_DIR}/Common/BassFx.h
+  ${SRC_DIR}/Common/CommandList.h
   ${SRC_DIR}/Common/Define.h
   ${SRC_DIR}/Common/SliderCtrl.h
   ${SRC_DIR}/Common/SliderCtrlCore.h

@@ -30,7 +30,7 @@ class QUrl;
 //----------------------------------------------------------------------------
 class CMainWnd : public QMainWindow, public Ui::MainWnd
 {
-  Q_OBJECT
+	Q_OBJECT
 
 public: // 関数
 
@@ -51,6 +51,8 @@ public: // 関数
 	virtual void PlayNext(BOOL bPlay, BOOL bFadeoutCancel);
 	virtual void ResetVolume();
 	virtual void SetAllEffects();
+	virtual void SetVolumeVisible(bool bVolumeVisible);
+	virtual void SetPanVisible(bool bPanVisible);
 	virtual void SetVolume(double nVolume);
 	virtual void SetTime(QWORD qwTime, BOOL bReset = TRUE);
 	virtual void SetPan(int nPan);
@@ -104,7 +106,10 @@ public: // メンバ変数の取得・設定
 private:
 
 	void SetContextMenus();
-	void ShowContextMenu(QWidget * widget, QMenu * menu, const QPoint & pos);
+	void ShowContextMenu(QWidget * widget, QMenu * menu,
+											 QAction * visibilityAction, const QString &title,
+											 void (CMainWnd::*callback)(bool visible),
+											 const QPoint & pos);
 	void dragEnterEvent(QDragEnterEvent * e) final;
 	void dropEvent(QDropEvent * e) final;
 	// Qtのラッパー
