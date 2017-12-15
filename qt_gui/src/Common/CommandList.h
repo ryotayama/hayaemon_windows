@@ -11,6 +11,10 @@ typedef enum CMDID {
 	// 表示メニュー
 		ID_VOLUME,
 		ID_PAN,
+	// エフェクトメニュー
+		ID_SPEEDDEC_0,
+		ID_SPEEDDEC_1,
+		ID_SPEEDDEC_2,
 };
 
 #endif // CommandListH

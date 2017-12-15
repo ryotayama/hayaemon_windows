@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>479</height>
+    <height>547</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -93,6 +93,46 @@
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="groupBox">
+      <property name="title">
+       <string/>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QLabel" name="speedLabel">
+           <property name="text">
+            <string>Speed :</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QDoubleSpinBox" name="speedSpinBox"/>
+         </item>
+         <item>
+          <widget class="QLabel" name="speedLabel2">
+           <property name="text">
+            <string>%</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="CSliderCtrlCore" name="speedSlider">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
     </item>
     <item>
@@ -205,6 +245,64 @@
      <addaction name="separator"/>
      <addaction name="menuSet_Volume"/>
     </widget>
+    <widget class="QMenu" name="menuSpeed">
+     <property name="title">
+      <string>Speed(&amp;S)</string>
+     </property>
+     <widget class="QMenu" name="menuSet_Speed_S">
+      <property name="title">
+       <string>Set Speed(&amp;S)</string>
+      </property>
+      <addaction name="actionSetSpeed50"/>
+      <addaction name="actionSetSpeed60"/>
+      <addaction name="actionSetSpeed70"/>
+      <addaction name="actionSetSpeed80"/>
+      <addaction name="actionSetSpeed90"/>
+      <addaction name="actionSetSpeed100"/>
+      <addaction name="actionSetSpeed110"/>
+      <addaction name="actionSetSpeed120"/>
+      <addaction name="actionSetSpeed130"/>
+      <addaction name="actionSetSpeed140"/>
+      <addaction name="actionSetSpeed150"/>
+      <addaction name="actionSetSpeed160"/>
+      <addaction name="actionSetSpeed170"/>
+      <addaction name="actionSetSpeed180"/>
+      <addaction name="actionSetSpeed190"/>
+      <addaction name="actionSetSpeed200"/>
+      <addaction name="actionSetSpeed250"/>
+      <addaction name="actionSetSpeed300"/>
+      <addaction name="actionSetSpeed350"/>
+      <addaction name="actionSetSpeed400"/>
+     </widget>
+     <widget class="QMenu" name="menuDecimal_digit">
+      <property name="title">
+       <string>Decimal digit</string>
+      </property>
+      <addaction name="actionSpeedDigit0"/>
+      <addaction name="actionSpeedDigit1"/>
+      <addaction name="actionSpeedDigit2"/>
+     </widget>
+     <addaction name="actionResetSpeed"/>
+     <addaction name="separator"/>
+     <addaction name="menuSet_Speed_S"/>
+     <addaction name="separator"/>
+     <addaction name="actionSpeedDown01"/>
+     <addaction name="actionSpeedDown1"/>
+     <addaction name="actionSpeedDown2"/>
+     <addaction name="actionSpeedDown3"/>
+     <addaction name="actionSpeedDown5"/>
+     <addaction name="actionSpeedDown10"/>
+     <addaction name="separator"/>
+     <addaction name="actionSpeedUp01"/>
+     <addaction name="actionSpeedUp1"/>
+     <addaction name="actionSpeedUp2"/>
+     <addaction name="actionSpeedUp3"/>
+     <addaction name="actionSpeedUp5"/>
+     <addaction name="actionSpeedUp10"/>
+     <addaction name="separator"/>
+     <addaction name="menuDecimal_digit"/>
+    </widget>
+    <addaction name="menuSpeed"/>
     <addaction name="menuVolume"/>
    </widget>
    <widget class="QMenu" name="menuView_V">
@@ -305,6 +403,195 @@
     <string>Pan(&amp;P)</string>
    </property>
   </action>
+  <action name="actionResetSpeed">
+   <property name="text">
+    <string>Reset Speed(&amp;R)</string>
+   </property>
+  </action>
+  <action name="actionSetSpeed50">
+   <property name="text">
+    <string>50%(&amp;A)</string>
+   </property>
+  </action>
+  <action name="actionSetSpeed60">
+   <property name="text">
+    <string>60%(&amp;B)</string>
+   </property>
+  </action>
+  <action name="actionSetSpeed70">
+   <property name="text">
+    <string>70%(&amp;C)</string>
+   </property>
+  </action>
+  <action name="actionSetSpeed80">
+   <property name="text">
+    <string>80%(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionSetSpeed90">
+   <property name="text">
+    <string>90%(&amp;E)</string>
+   </property>
+  </action>
+  <action name="actionSetSpeed100">
+   <property name="text">
+    <string>100%(&amp;F)</string>
+   </property>
+  </action>
+  <action name="actionSetSpeed110">
+   <property name="text">
+    <string>110%(&amp;G)</string>
+   </property>
+  </action>
+  <action name="actionSetSpeed120">
+   <property name="text">
+    <string>120%(&amp;H)</string>
+   </property>
+  </action>
+  <action name="actionSetSpeed130">
+   <property name="text">
+    <string>130%(&amp;I)</string>
+   </property>
+  </action>
+  <action name="actionSetSpeed140">
+   <property name="text">
+    <string>140%(&amp;J)</string>
+   </property>
+  </action>
+  <action name="actionSetSpeed150">
+   <property name="text">
+    <string>150%(&amp;K)</string>
+   </property>
+  </action>
+  <action name="actionSetSpeed160">
+   <property name="text">
+    <string>160%(&amp;L)</string>
+   </property>
+  </action>
+  <action name="actionSetSpeed170">
+   <property name="text">
+    <string>170%(&amp;M)</string>
+   </property>
+  </action>
+  <action name="actionSetSpeed180">
+   <property name="text">
+    <string>180%(&amp;N)</string>
+   </property>
+  </action>
+  <action name="actionSetSpeed190">
+   <property name="text">
+    <string>190%(&amp;O)</string>
+   </property>
+  </action>
+  <action name="actionSetSpeed200">
+   <property name="text">
+    <string>200%(&amp;P)</string>
+   </property>
+  </action>
+  <action name="actionSetSpeed250">
+   <property name="text">
+    <string>250%(&amp;Q)</string>
+   </property>
+  </action>
+  <action name="actionSetSpeed300">
+   <property name="text">
+    <string>300%(&amp;R)</string>
+   </property>
+  </action>
+  <action name="actionSetSpeed350">
+   <property name="text">
+    <string>350%(&amp;S)</string>
+   </property>
+  </action>
+  <action name="actionSetSpeed400">
+   <property name="text">
+    <string>400%(&amp;T)</string>
+   </property>
+  </action>
+  <action name="actionSpeedDown01">
+   <property name="text">
+    <string>Turn down 0.1%(&amp;0)</string>
+   </property>
+  </action>
+  <action name="actionSpeedDown1">
+   <property name="text">
+    <string>Turn down 1%(&amp;1)</string>
+   </property>
+  </action>
+  <action name="actionSpeedDown2">
+   <property name="text">
+    <string>Turn down 2%(&amp;2)</string>
+   </property>
+  </action>
+  <action name="actionSpeedDown3">
+   <property name="text">
+    <string>Turn down 3%(&amp;3)</string>
+   </property>
+  </action>
+  <action name="actionSpeedDown5">
+   <property name="text">
+    <string>Turn down 5%(&amp;5)</string>
+   </property>
+  </action>
+  <action name="actionSpeedDown10">
+   <property name="text">
+    <string>Turn down 10%(&amp;T)</string>
+   </property>
+  </action>
+  <action name="actionSpeedUp01">
+   <property name="text">
+    <string>Turn up 0.1%(&amp;Z)</string>
+   </property>
+  </action>
+  <action name="actionSpeedUp1">
+   <property name="text">
+    <string>Turn up 1%(&amp;A)</string>
+   </property>
+  </action>
+  <action name="actionSpeedUp2">
+   <property name="text">
+    <string>Turn up 2%(&amp;B)</string>
+   </property>
+  </action>
+  <action name="actionSpeedUp3">
+   <property name="text">
+    <string>Turn up 3%(&amp;C)</string>
+   </property>
+  </action>
+  <action name="actionSpeedUp5">
+   <property name="text">
+    <string>Turn up 5%(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionSpeedUp10">
+   <property name="text">
+    <string>Turn up 10%(&amp;E)</string>
+   </property>
+  </action>
+  <action name="actionSpeedDigit0">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>0 digit(&amp;0)</string>
+   </property>
+  </action>
+  <action name="actionSpeedDigit1">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>1 digit(&amp;1)</string>
+   </property>
+  </action>
+  <action name="actionSpeedDigit2">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>2 digit(&amp;2)</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -329,6 +616,12 @@
   <tabstop>pauseButton</tabstop>
   <tabstop>stopButton</tabstop>
   <tabstop>timeSlider</tabstop>
+  <tabstop>speedSpinBox</tabstop>
+  <tabstop>speedSlider</tabstop>
+  <tabstop>volumeSpinBox</tabstop>
+  <tabstop>volumeSlider</tabstop>
+  <tabstop>panSpinBox</tabstop>
+  <tabstop>panSlider</tabstop>
   <tabstop>m_tab</tabstop>
  </tabstops>
  <resources>

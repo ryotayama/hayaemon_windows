@@ -22,6 +22,7 @@ public: // 関数
 	static void CALLBACK LoopSyncProc(HSYNC handle, DWORD channel, DWORD data,
 									  void *user);
 	virtual void SetLoop(BOOL bLoop);
+	virtual BOOL SetTempo(float tempo);
 	virtual BOOL ChannelSetVolume(float volume);
 	virtual UINT OnLoop();
 

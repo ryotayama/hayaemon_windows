@@ -3,6 +3,7 @@
 //----------------------------------------------------------------------------
 #include "MainWnd.h"
 #include <chrono>
+#include <cmath>
 #include <functional>
 #include <QDragEnterEvent>
 #include <QFileInfo>
@@ -75,6 +76,30 @@ BOOL CMainWnd::CreateControls()
 		return FALSE;
 	}
 
+	// 再生速度表示用ラベルの作成
+	if(!m_speedLabel.Create()) {
+		m_rApp.ShowError(tr("failed to create speed label."));
+		return FALSE;
+	}
+
+	// 再生速度設定用スライダの作成
+	if(!m_speedSlider.Create()) {
+		m_rApp.ShowError(tr("failed to create speed slider."));
+		return FALSE;
+	}
+
+	double _dMinSpeed = 10.0;
+	double _dMaxSpeed = 1200.0;
+	int _nSpeedDecimalDigit = 1;
+	if(_nSpeedDecimalDigit == 0) m_menu.OnSetSpeedDecimal0MenuSelected();
+	else if(_nSpeedDecimalDigit == 1)
+		m_menu.OnSetSpeedDecimal1MenuSelected();
+	else if(_nSpeedDecimalDigit == 2)
+		m_menu.OnSetSpeedDecimal2MenuSelected();
+
+	m_speedSlider.SetLimit(_dMinSpeed, _dMaxSpeed);
+	m_speedLabel.SetLimit(_dMinSpeed, _dMaxSpeed);
+
 	// 音量表示用ラベルの作成
 	if(!m_volumeLabel.Create()) {
 		m_rApp.ShowError(tr("failed to create volume label."));
@@ -111,6 +136,15 @@ BOOL CMainWnd::CreateControls()
 	SetContextMenus();
 	
 	return TRUE;
+}
+//----------------------------------------------------------------------------
+// 指定した%再生速度を下げる
+//----------------------------------------------------------------------------
+void CMainWnd::DownSpeed(double speed)
+{
+	double dCalc = pow(10.0, m_speedSlider.GetDecimalDigit());
+	int newSpeed = m_speedSlider.GetThumbPos() - (int)(speed * dCalc);
+	m_speedLabel.SetSpeed((double)(newSpeed / dCalc));
 }
 //----------------------------------------------------------------------------
 // ファイルを開く
@@ -246,6 +280,13 @@ void CMainWnd::PlayNext(BOOL bPlay, BOOL bFadeoutCancel)
 	}
 }
 //----------------------------------------------------------------------------
+// 再生速度をデフォルトに戻す
+//----------------------------------------------------------------------------
+void CMainWnd::ResetSpeed()
+{
+	m_speedLabel.SetSpeed(100.0);
+}
+//----------------------------------------------------------------------------
 // 音量をデフォルトに戻す
 //----------------------------------------------------------------------------
 void CMainWnd::ResetVolume()
@@ -257,6 +298,8 @@ void CMainWnd::ResetVolume()
 //----------------------------------------------------------------------------
 void CMainWnd::SetAllEffects()
 {
+	SetSpeed((double)(m_speedSlider.GetThumbPos()
+		/ pow(10.0, m_speedLabel.GetDecimalDigit())));
 	SetVolume((double)m_volumeSlider.GetThumbPos() / 10.0);
 	SetPan(m_panSlider.GetThumbPos());
 }
@@ -286,6 +329,13 @@ void CMainWnd::SetPanVisible(bool bPanVisible)
 	m_panLabel.Show(nCmdShow);
 	m_panSlider.Show(nCmdShow);
 	m_menu.CheckItem(ID_PAN, uCheck);
+}
+//----------------------------------------------------------------------------
+// 再生速度の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetSpeed(double dSpeed)
+{
+	m_sound.SetTempo((float)dSpeed);
 }
 //----------------------------------------------------------------------------
 // 音量の設定
@@ -334,6 +384,15 @@ void CMainWnd::Stop(BOOL bForce)
 	m_sound.ChannelSetAttribute(BASS_ATTRIB_VOL, 1.0f);
 	if(m_arrayList[nCurPlayTab]->GetItemCount() == 0)
 		SetCaption(m_rApp.GetName());
+}
+//----------------------------------------------------------------------------
+// 指定した%再生速度を上げる
+//----------------------------------------------------------------------------
+void CMainWnd::UpSpeed(double speed)
+{
+	double dCalc = pow(10.0, m_speedSlider.GetDecimalDigit());
+	int newSpeed = m_speedSlider.GetThumbPos() + (int)(speed * dCalc);
+	m_speedLabel.SetSpeed((double)(newSpeed / dCalc));
 }
 //----------------------------------------------------------------------------
 // 作成された
@@ -404,6 +463,15 @@ void CMainWnd::UpdateTimeThreadProc(void * pParam)
 //----------------------------------------------------------------------------
 void CMainWnd::SetContextMenus()
 {
+	// Speed
+	QWidget * speedWidgets[] = { speedLabel, speedSlider };
+	for (auto w : speedWidgets) {
+		w->setContextMenuPolicy(Qt::CustomContextMenu);
+		connect(w, &QWidget::customContextMenuRequested,
+						std::bind(&CMainWnd::ShowContextMenu, this, w, menuSpeed,
+											nullptr, "",
+											nullptr, std::placeholders::_1));
+	}
 	// Volume
 	QWidget * volumeWidgets[] = { volumeLabel, volumeSlider };
 	for (auto w : volumeWidgets) {
@@ -438,12 +506,14 @@ void CMainWnd::ShowContextMenu(QWidget * widget, QMenu * menu,
 			contextMenu.addAction(action);
 		}
 	}
-	auto act = new QAction(title, &contextMenu);
-	act->setCheckable(true);
-	act->setChecked(visibilityAction->isChecked());
-	connect(act, &QAction::toggled, this, callback);
-	contextMenu.addSeparator();
-	contextMenu.addAction(act);
+	if (visibilityAction != nullptr) {
+		auto act = new QAction(title, &contextMenu);
+		act->setCheckable(true);
+		act->setChecked(visibilityAction->isChecked());
+		connect(act, &QAction::toggled, this, callback);
+		contextMenu.addSeparator();
+		contextMenu.addAction(act);
+	}
 
 	contextMenu.exec(widget->mapToGlobal(pos));
 }

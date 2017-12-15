@@ -29,6 +29,10 @@ set(SRC_MAINWND
   ${SRC_DIR}/MainWnd/PlayListView_MainWnd.h
   ${SRC_DIR}/MainWnd/Sound.cpp
   ${SRC_DIR}/MainWnd/Sound.h
+  ${SRC_DIR}/MainWnd/SpeedLabel_MainWnd.cpp
+  ${SRC_DIR}/MainWnd/SpeedLabel_MainWnd.h
+  ${SRC_DIR}/MainWnd/SpeedSlider_MainWnd.cpp
+  ${SRC_DIR}/MainWnd/SpeedSlider_MainWnd.h
   ${SRC_DIR}/MainWnd/TimeLabel_MainWnd.cpp
   ${SRC_DIR}/MainWnd/TimeLabel_MainWnd.h
   ${SRC_DIR}/MainWnd/TimeSlider_MainWnd.cpp

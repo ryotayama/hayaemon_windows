@@ -15,6 +15,16 @@ class CBassFx : public CBass
 public: // 関数
 
 	virtual ~CBassFx() { }
+
+	virtual void TempoCreate(BOOL bDecode = FALSE) {
+		if(bDecode)
+			m_hStream = BASS_FX_TempoCreate(m_hStream, BASS_FX_FREESOURCE | BASS_STREAM_DECODE);
+		else
+			m_hStream = BASS_FX_TempoCreate(m_hStream, BASS_FX_FREESOURCE);
+	}
+	virtual BOOL SetTempo(float tempo) {
+		return BASS_ChannelSetAttribute(m_hStream, BASS_ATTRIB_TEMPO, tempo);
+	}
 };
 //----------------------------------------------------------------------------
 

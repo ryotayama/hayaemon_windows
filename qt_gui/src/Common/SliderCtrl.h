@@ -16,11 +16,14 @@ public: // 関数
 	virtual ~CSliderCtrl() { }
 
 	virtual void Init(CSliderCtrlCore * slider) { m_slider = slider; }
+	virtual LONG GetRangeMin() const {
+		return m_slider->minimum();
+	}
 	virtual LONG GetRangeMax() const {
 		return m_slider->maximum();
 	}
 	virtual LONG GetThumbPos() const {
-		return (LONG)m_slider->sliderPosition();
+		return (LONG)m_slider->value();
 	}
 	virtual LRESULT SetLineSize(LONG lLineSize)
 	{
@@ -44,7 +47,7 @@ public: // 関数
 	}
 	virtual void SetThumbPos(LONG lPos, BOOL bRedraw = TRUE)
 	{
-		m_slider->setSliderPosition(lPos);
+		m_slider->setValue(lPos);
 	}
 	virtual void Show(int nCmdShow)
 	{

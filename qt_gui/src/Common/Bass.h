@@ -100,22 +100,22 @@ public: // 関数
 	virtual BOOL StreamCreateFile(LPCTSTR lpFilePath) {
 		StreamFree();
 		m_hStream = BASS_StreamCreateFile(FALSE, lpFilePath, 0, 0,
-			BASS_IF_UNICODE);
+			BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
 		if(!m_hStream) m_hStream = BASS_APE_StreamCreateFile(FALSE, lpFilePath,
-			0, 0, BASS_IF_UNICODE);
+			0, 0, BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
 #if _WIN32
 		if(!m_hStream) m_hStream = BASS_CD_StreamCreateFile((char*)lpFilePath,
-			BASS_IF_UNICODE);
+			BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
 #endif
 		if(!m_hStream) m_hStream = BASS_FLAC_StreamCreateFile(FALSE, lpFilePath,
-			0, 0, BASS_IF_UNICODE);
+			0, 0, BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
 #if _WIN32
 		if(!m_hStream) m_hStream = BASS_AAC_StreamCreateFile(FALSE, lpFilePath,
-			0, 0, BASS_IF_UNICODE);
+			0, 0, BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
 		if(!m_hStream) m_hStream = BASS_MP4_StreamCreateFile(FALSE, lpFilePath,
-			0, 0, BASS_IF_UNICODE);
+			0, 0, BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
 		if(!m_hStream) m_hStream = BASS_ALAC_StreamCreateFile(FALSE, lpFilePath,
-			0, 0, BASS_IF_UNICODE);
+			0, 0, BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
 #endif
 		return m_hStream ? TRUE : FALSE;
 	}

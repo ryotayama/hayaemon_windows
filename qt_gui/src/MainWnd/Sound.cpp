@@ -25,6 +25,7 @@ BOOL CSound::StreamCreateFile(LPCTSTR lpFilePath, BOOL bDecode, int nCount)
 	BOOL bRet = FALSE;
 	if(!m_bMainStream) {
 		bRet = CBassFx::StreamCreateFile(lpFilePath);
+		TempoCreate(bDecode);
 		m_strCurFile = lpFilePath;
 		return bRet;
 	}
@@ -49,6 +50,7 @@ BOOL CSound::StreamCreateFile(LPCTSTR lpFilePath, BOOL bDecode, int nCount)
 
 	if(!bRet) {
 		bRet = CBassFx::StreamCreateFile(lpFilePath);
+		TempoCreate(bDecode);
 		m_strCurFile = lpFilePath;
 		m_hFxVolume = ChannelSetFX(BASS_FX_BFX_VOLUME, 1);
 	}
@@ -79,6 +81,13 @@ void CALLBACK CSound::LoopSyncProc(HSYNC handle, DWORD channel,
 void CSound::SetLoop(BOOL bLoop)
 {
 	m_bLoop = bLoop;
+}
+//----------------------------------------------------------------------------
+// テンポの設定
+//----------------------------------------------------------------------------
+BOOL CSound::SetTempo(float tempo)
+{
+	return CBassFx::SetTempo(tempo - 100.0f);
 }
 //----------------------------------------------------------------------------
 // 音量の設定
