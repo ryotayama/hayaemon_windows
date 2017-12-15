@@ -309,6 +309,39 @@ void CMenu_MainWnd::OnSetSpeedDecimal2MenuSelected()
 	m_rMainWnd.GetSpeedSlider().SetDecimalDigit(2);
 }
 //----------------------------------------------------------------------------
+// システム → 再生周波数 → 小数点桁数 → 0桁メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetFreqDecimal0MenuSelected()
+{
+	CheckItem(ID_FREQDEC_0, MF_CHECKED);
+	CheckItem(ID_FREQDEC_1, MF_UNCHECKED);
+	CheckItem(ID_FREQDEC_2, MF_UNCHECKED);
+	m_rMainWnd.GetFreqLabel().SetDecimalDigit(0);
+	m_rMainWnd.GetFreqSlider().SetDecimalDigit(0);
+}
+//----------------------------------------------------------------------------
+// システム → 再生周波数 → 小数点桁数 → 1桁メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetFreqDecimal1MenuSelected()
+{
+	CheckItem(ID_FREQDEC_0, MF_UNCHECKED);
+	CheckItem(ID_FREQDEC_1, MF_CHECKED);
+	CheckItem(ID_FREQDEC_2, MF_UNCHECKED);
+	m_rMainWnd.GetFreqLabel().SetDecimalDigit(1);
+	m_rMainWnd.GetFreqSlider().SetDecimalDigit(1);
+}
+//----------------------------------------------------------------------------
+// システム → 再生周波数 → 小数点桁数 → 2桁メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetFreqDecimal2MenuSelected()
+{
+	CheckItem(ID_FREQDEC_0, MF_UNCHECKED);
+	CheckItem(ID_FREQDEC_1, MF_UNCHECKED);
+	CheckItem(ID_FREQDEC_2, MF_CHECKED);
+	m_rMainWnd.GetFreqLabel().SetDecimalDigit(2);
+	m_rMainWnd.GetFreqSlider().SetDecimalDigit(2);
+}
+//----------------------------------------------------------------------------
 // エフェクト → 音量 → デフォルトに戻すメニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnResetVolumeMenuSelected()
@@ -393,6 +426,237 @@ void CMenu_MainWnd::OnSetVolume100MenuSelected()
 	m_rMainWnd.GetVolumeLabel().SetVolume(100.0);
 }
 //----------------------------------------------------------------------------
+// 再生 → 再生周波数 → デフォルトに戻すメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnResetFreqMenuSelected()
+{
+	m_rMainWnd.ResetFreq();
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生速度 → 設定 → 50%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetFreq50MenuSelected()
+{
+	m_rMainWnd.GetFreqLabel().SetFreq(50.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生速度 → 設定 → 60%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetFreq60MenuSelected()
+{
+	m_rMainWnd.GetFreqLabel().SetFreq(60.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生速度 → 設定 → 70%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetFreq70MenuSelected()
+{
+	m_rMainWnd.GetFreqLabel().SetFreq(70.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生速度 → 設定 → 80%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetFreq80MenuSelected()
+{
+	m_rMainWnd.GetFreqLabel().SetFreq(80.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生速度 → 設定 → 90%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetFreq90MenuSelected()
+{
+	m_rMainWnd.GetFreqLabel().SetFreq(90.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生速度 → 設定 → 100%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetFreq100MenuSelected()
+{
+	m_rMainWnd.GetFreqLabel().SetFreq(100.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生速度 → 設定 → 110%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetFreq110MenuSelected()
+{
+	m_rMainWnd.GetFreqLabel().SetFreq(110.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生速度 → 設定 → 120%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetFreq120MenuSelected()
+{
+	m_rMainWnd.GetFreqLabel().SetFreq(120.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生速度 → 設定 → 130%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetFreq130MenuSelected()
+{
+	m_rMainWnd.GetFreqLabel().SetFreq(130.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生速度 → 設定 → 140%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetFreq140MenuSelected()
+{
+	m_rMainWnd.GetFreqLabel().SetFreq(140.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生速度 → 設定 → 150%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetFreq150MenuSelected()
+{
+	m_rMainWnd.GetFreqLabel().SetFreq(150.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生速度 → 設定 → 160%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetFreq160MenuSelected()
+{
+	m_rMainWnd.GetFreqLabel().SetFreq(160.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生速度 → 設定 → 170%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetFreq170MenuSelected()
+{
+	m_rMainWnd.GetFreqLabel().SetFreq(170.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生速度 → 設定 → 180%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetFreq180MenuSelected()
+{
+	m_rMainWnd.GetFreqLabel().SetFreq(180.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生速度 → 設定 → 190%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetFreq190MenuSelected()
+{
+	m_rMainWnd.GetFreqLabel().SetFreq(190.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生速度 → 設定 → 200%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetFreq200MenuSelected()
+{
+	m_rMainWnd.GetFreqLabel().SetFreq(200.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生速度 → 設定 → 250%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetFreq250MenuSelected()
+{
+	m_rMainWnd.GetFreqLabel().SetFreq(250.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生速度 → 設定 → 300%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetFreq300MenuSelected()
+{
+	m_rMainWnd.GetFreqLabel().SetFreq(300.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生速度 → 設定 → 350%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetFreq350MenuSelected()
+{
+	m_rMainWnd.GetFreqLabel().SetFreq(350.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生速度 → 設定 → 400%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetFreq400MenuSelected()
+{
+	m_rMainWnd.GetFreqLabel().SetFreq(400.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生周波数 → 0.1%下げるメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDown0_1FreqMenuSelected()
+{
+	m_rMainWnd.DownFreq(0.1);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生周波数 → 1%下げるメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDown1FreqMenuSelected()
+{
+	m_rMainWnd.DownFreq(1);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生周波数 → 2%下げるメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDown2FreqMenuSelected()
+{
+	m_rMainWnd.DownFreq(2);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生周波数 → 3%下げるメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDown3FreqMenuSelected()
+{
+	m_rMainWnd.DownFreq(3);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生周波数 → 5%下げるメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDown5FreqMenuSelected()
+{
+	m_rMainWnd.DownFreq(5);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生周波数 → 10%下げるメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDown10FreqMenuSelected()
+{
+	m_rMainWnd.DownFreq(10);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生周波数 → 0.1%上げるメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnUp0_1FreqMenuSelected()
+{
+	m_rMainWnd.UpFreq(0.1);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生周波数 → 1%上げるメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnUp1FreqMenuSelected()
+{
+	m_rMainWnd.UpFreq(1);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生周波数 → 2%上げるメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnUp2FreqMenuSelected()
+{
+	m_rMainWnd.UpFreq(2);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生周波数 → 3%上げるメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnUp3FreqMenuSelected()
+{
+	m_rMainWnd.UpFreq(3);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生周波数 → 5%上げるメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnUp5FreqMenuSelected()
+{
+	m_rMainWnd.UpFreq(5);
+}
+//----------------------------------------------------------------------------
+// 再生 → 再生周波数 → 10%上げるメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnUp10FreqMenuSelected()
+{
+	m_rMainWnd.UpFreq(10);
+}
+//----------------------------------------------------------------------------
 // メニューの項目のチェック状態を設定
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::CheckItem(UINT uIDCheckItem, UINT uCheck)
@@ -427,6 +691,9 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_SPEEDDEC_0, m_rMainWnd.actionSpeedDigit0},
 		{ID_SPEEDDEC_1, m_rMainWnd.actionSpeedDigit1},
 		{ID_SPEEDDEC_2, m_rMainWnd.actionSpeedDigit2},
+		{ID_FREQDEC_0, m_rMainWnd.actionFreqDigit0},
+		{ID_FREQDEC_1, m_rMainWnd.actionFreqDigit1},
+		{ID_FREQDEC_2, m_rMainWnd.actionFreqDigit2},
 	};
 }
 //----------------------------------------------------------------------------
@@ -434,11 +701,19 @@ void CMenu_MainWnd::CreateActionMap()
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::CreateActionGroups()
 {
+	// Speed - Decimal digit
 	auto speed_digit_group = new QActionGroup(&m_rMainWnd);
 	for (auto action : {m_rMainWnd.actionSpeedDigit0,
 											m_rMainWnd.actionSpeedDigit1,
 											m_rMainWnd.actionSpeedDigit2}) {
 		speed_digit_group->addAction(action);
+	}
+	// Frequency - Decimal digit
+	auto freq_digit_group = new QActionGroup(&m_rMainWnd);
+	for (auto action : {m_rMainWnd.actionFreqDigit0,
+											m_rMainWnd.actionFreqDigit1,
+											m_rMainWnd.actionFreqDigit2}) {
+		freq_digit_group->addAction(action);
 	}
 }
 //----------------------------------------------------------------------------
@@ -535,6 +810,86 @@ void CMenu_MainWnd::CreateConnections()
 	connect(m_rMainWnd.actionSpeedDigit2, &QAction::toggled,
 					[&] (bool checked) {
 						if (checked) { emit OnSetSpeedDecimal2MenuSelected(); }
+					});
+	// Effect - Frequency
+	connect(m_rMainWnd.actionResetFreq, &QAction::triggered,
+					this, &CMenu_MainWnd::OnResetFreqMenuSelected);
+	connect(m_rMainWnd.actionSetFreq50, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetFreq50MenuSelected);
+	connect(m_rMainWnd.actionSetFreq60, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetFreq60MenuSelected);
+	connect(m_rMainWnd.actionSetFreq70, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetFreq70MenuSelected);
+	connect(m_rMainWnd.actionSetFreq80, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetFreq80MenuSelected);
+	connect(m_rMainWnd.actionSetFreq90, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetFreq90MenuSelected);
+	connect(m_rMainWnd.actionSetFreq100, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetFreq100MenuSelected);
+	connect(m_rMainWnd.actionSetFreq110, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetFreq110MenuSelected);
+	connect(m_rMainWnd.actionSetFreq120, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetFreq120MenuSelected);
+	connect(m_rMainWnd.actionSetFreq130, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetFreq130MenuSelected);
+	connect(m_rMainWnd.actionSetFreq140, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetFreq140MenuSelected);
+	connect(m_rMainWnd.actionSetFreq150, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetFreq150MenuSelected);
+	connect(m_rMainWnd.actionSetFreq160, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetFreq160MenuSelected);
+	connect(m_rMainWnd.actionSetFreq170, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetFreq170MenuSelected);
+	connect(m_rMainWnd.actionSetFreq180, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetFreq180MenuSelected);
+	connect(m_rMainWnd.actionSetFreq190, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetFreq190MenuSelected);
+	connect(m_rMainWnd.actionSetFreq200, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetFreq200MenuSelected);
+	connect(m_rMainWnd.actionSetFreq250, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetFreq250MenuSelected);
+	connect(m_rMainWnd.actionSetFreq300, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetFreq300MenuSelected);
+	connect(m_rMainWnd.actionSetFreq350, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetFreq350MenuSelected);
+	connect(m_rMainWnd.actionSetFreq400, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetFreq400MenuSelected);
+	connect(m_rMainWnd.actionFreqDown01, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDown0_1FreqMenuSelected);
+	connect(m_rMainWnd.actionFreqDown1, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDown1FreqMenuSelected);
+	connect(m_rMainWnd.actionFreqDown2, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDown2FreqMenuSelected);
+	connect(m_rMainWnd.actionFreqDown3, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDown3FreqMenuSelected);
+	connect(m_rMainWnd.actionFreqDown5, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDown5FreqMenuSelected);
+	connect(m_rMainWnd.actionFreqDown10, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDown10FreqMenuSelected);
+	connect(m_rMainWnd.actionFreqUp01, &QAction::triggered,
+					this, &CMenu_MainWnd::OnUp0_1FreqMenuSelected);
+	connect(m_rMainWnd.actionFreqUp1, &QAction::triggered,
+					this, &CMenu_MainWnd::OnUp1FreqMenuSelected);
+	connect(m_rMainWnd.actionFreqUp2, &QAction::triggered,
+					this, &CMenu_MainWnd::OnUp2FreqMenuSelected);
+	connect(m_rMainWnd.actionFreqUp3, &QAction::triggered,
+					this, &CMenu_MainWnd::OnUp3FreqMenuSelected);
+	connect(m_rMainWnd.actionFreqUp5, &QAction::triggered,
+					this, &CMenu_MainWnd::OnUp5FreqMenuSelected);
+	connect(m_rMainWnd.actionFreqUp10, &QAction::triggered,
+					this, &CMenu_MainWnd::OnUp10FreqMenuSelected);
+	// Effecgt - Frequency - Decimal digit
+	connect(m_rMainWnd.actionFreqDigit0, &QAction::toggled,
+					[&] (bool checked) {
+						if (checked) { emit OnSetFreqDecimal0MenuSelected(); }
+					});
+	connect(m_rMainWnd.actionFreqDigit1, &QAction::toggled,
+					[&] (bool checked) {
+						if (checked) { emit OnSetFreqDecimal1MenuSelected(); }
+					});
+	connect(m_rMainWnd.actionFreqDigit2, &QAction::toggled,
+					[&] (bool checked) {
+						if (checked) { emit OnSetFreqDecimal2MenuSelected(); }
 					});
 	// Effect - Volume
 	connect(m_rMainWnd.actionResetVolume, &QAction::triggered,

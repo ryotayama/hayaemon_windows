@@ -100,6 +100,28 @@ BOOL CMainWnd::CreateControls()
 	m_speedSlider.SetLimit(_dMinSpeed, _dMaxSpeed);
 	m_speedLabel.SetLimit(_dMinSpeed, _dMaxSpeed);
 
+	// 再生周波数表示用ラベルの作成
+	if(!m_freqLabel.Create()) {
+		m_rApp.ShowError(tr("failed to create frequency label."));
+		return FALSE;
+	}
+
+	// 再生周波数設定用スライダの作成
+	if(!m_freqSlider.Create()) {
+		m_rApp.ShowError(tr("failed to create frequency slider."));
+		return FALSE;
+	}
+
+	double _dMinFreq = 10.0;
+	double _dMaxFreq = 1200.0;
+	int _nFreqDecimalDigit = 1;
+	if(_nFreqDecimalDigit == 0) m_menu.OnSetFreqDecimal0MenuSelected();
+	else if(_nFreqDecimalDigit == 1) m_menu.OnSetFreqDecimal1MenuSelected();
+	else if(_nFreqDecimalDigit == 2) m_menu.OnSetFreqDecimal2MenuSelected();
+
+	m_freqSlider.SetLimit(_dMinFreq, _dMaxFreq);
+	m_freqLabel.SetLimit(_dMinFreq, _dMaxFreq);
+
 	// 音量表示用ラベルの作成
 	if(!m_volumeLabel.Create()) {
 		m_rApp.ShowError(tr("failed to create volume label."));
@@ -136,6 +158,16 @@ BOOL CMainWnd::CreateControls()
 	SetContextMenus();
 	
 	return TRUE;
+}
+//----------------------------------------------------------------------------
+// 指定した%再生周波数を下げる
+//----------------------------------------------------------------------------
+void CMainWnd::DownFreq(double freq)
+{
+	double dCalc = pow(10.0, m_freqSlider.GetDecimalDigit());
+	int newFreq = m_freqSlider.GetThumbPos() - (int)(freq
+		* dCalc);
+	m_freqLabel.SetFreq((double)(newFreq / dCalc));
 }
 //----------------------------------------------------------------------------
 // 指定した%再生速度を下げる
@@ -280,6 +312,13 @@ void CMainWnd::PlayNext(BOOL bPlay, BOOL bFadeoutCancel)
 	}
 }
 //----------------------------------------------------------------------------
+// 再生周波数をデフォルトに戻す
+//----------------------------------------------------------------------------
+void CMainWnd::ResetFreq()
+{
+	m_freqLabel.SetFreq(100.0);
+}
+//----------------------------------------------------------------------------
 // 再生速度をデフォルトに戻す
 //----------------------------------------------------------------------------
 void CMainWnd::ResetSpeed()
@@ -300,6 +339,8 @@ void CMainWnd::SetAllEffects()
 {
 	SetSpeed((double)(m_speedSlider.GetThumbPos()
 		/ pow(10.0, m_speedLabel.GetDecimalDigit())));
+	SetFreq((double)(m_freqSlider.GetThumbPos()
+		/ pow(10.0, m_freqLabel.GetDecimalDigit())));
 	SetVolume((double)m_volumeSlider.GetThumbPos() / 10.0);
 	SetPan(m_panSlider.GetThumbPos());
 }
@@ -336,6 +377,13 @@ void CMainWnd::SetPanVisible(bool bPanVisible)
 void CMainWnd::SetSpeed(double dSpeed)
 {
 	m_sound.SetTempo((float)dSpeed);
+}
+//----------------------------------------------------------------------------
+// 再生周波数の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetFreq(double dFreq)
+{
+	m_sound.SetSampleRate((float)dFreq);
 }
 //----------------------------------------------------------------------------
 // 音量の設定
@@ -384,6 +432,15 @@ void CMainWnd::Stop(BOOL bForce)
 	m_sound.ChannelSetAttribute(BASS_ATTRIB_VOL, 1.0f);
 	if(m_arrayList[nCurPlayTab]->GetItemCount() == 0)
 		SetCaption(m_rApp.GetName());
+}
+//----------------------------------------------------------------------------
+// 指定した%再生周波数を上げる
+//----------------------------------------------------------------------------
+void CMainWnd::UpFreq(double freq)
+{
+	double dCalc = pow(10.0, m_freqSlider.GetDecimalDigit());
+	int newFreq = m_freqSlider.GetThumbPos() + (int)(freq * dCalc);
+	m_freqLabel.SetFreq((double)(newFreq / dCalc));
 }
 //----------------------------------------------------------------------------
 // 指定した%再生速度を上げる
@@ -469,6 +526,15 @@ void CMainWnd::SetContextMenus()
 		w->setContextMenuPolicy(Qt::CustomContextMenu);
 		connect(w, &QWidget::customContextMenuRequested,
 						std::bind(&CMainWnd::ShowContextMenu, this, w, menuSpeed,
+											nullptr, "",
+											nullptr, std::placeholders::_1));
+	}
+	// Frequency
+	QWidget * freqWidgets[] = { freqLabel, freqSlider };
+	for (auto w : freqWidgets) {
+		w->setContextMenuPolicy(Qt::CustomContextMenu);
+		connect(w, &QWidget::customContextMenuRequested,
+						std::bind(&CMainWnd::ShowContextMenu, this, w, menuFreq,
 											nullptr, "",
 											nullptr, std::placeholders::_1));
 	}

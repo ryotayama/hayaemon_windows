@@ -11,77 +11,87 @@
 <context>
     <name>CMainWnd</name>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="62"/>
+        <location filename="MainWnd/MainWnd.cpp" line="63"/>
         <source>failed to create toolbar.</source>
         <translation>ツールバーの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="68"/>
+        <location filename="MainWnd/MainWnd.cpp" line="69"/>
         <source>failed to create time label.</source>
         <translation>再生時間表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="74"/>
+        <location filename="MainWnd/MainWnd.cpp" line="75"/>
         <source>failed to create time slider.</source>
         <translation>再生時間設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="83"/>
+        <location filename="MainWnd/MainWnd.cpp" line="81"/>
         <source>failed to create speed label.</source>
         <translation>再生速度表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="93"/>
+        <location filename="MainWnd/MainWnd.cpp" line="87"/>
         <source>failed to create speed slider.</source>
         <translation>再生速度設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="100"/>
+        <location filename="MainWnd/MainWnd.cpp" line="108"/>
+        <source>failed to create frequency label.</source>
+        <translation>再生周波数表示用ラベルの作成に失敗しました。</translation>
+    </message>
+    <message>
+        <location filename="MainWnd/MainWnd.cpp" line="118"/>
+        <source>failed to create frequency slider.</source>
+        <translation>再生周波数設定用スライダの作成に失敗しました。</translation>
+    </message>
+    <message>
+        <location filename="MainWnd/MainWnd.cpp" line="125"/>
         <source>failed to create volume label.</source>
         <translation>音量表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="106"/>
+        <location filename="MainWnd/MainWnd.cpp" line="131"/>
         <source>failed to create volume slider.</source>
         <translation>音量設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="112"/>
+        <location filename="MainWnd/MainWnd.cpp" line="137"/>
         <source>failed to create pan label.</source>
         <translation>パン表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="118"/>
+        <location filename="MainWnd/MainWnd.cpp" line="143"/>
         <source>failed to create pan slider.</source>
         <translation>パン設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="124"/>
+        <location filename="MainWnd/MainWnd.cpp" line="149"/>
         <source>No Title</source>
         <translation>無題</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="127"/>
+        <location filename="MainWnd/MainWnd.cpp" line="152"/>
         <source>failed to create playlist.</source>
         <translation>プレイリスト用リストビューの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="368"/>
+        <location filename="MainWnd/MainWnd.cpp" line="434"/>
         <source>failed to create menu.</source>
         <translation>メニューの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="382"/>
+        <location filename="MainWnd/MainWnd.cpp" line="448"/>
         <source>failed to init BASS.DLL.</source>
         <translation>BASS の初期化に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="433"/>
+        <location filename="MainWnd/MainWnd.cpp" line="508"/>
         <source>Show Volume Control(&amp;S)</source>
         <translation>音量コントロールの表示(&amp;V)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="442"/>
+        <location filename="MainWnd/MainWnd.cpp" line="517"/>
         <source>Show Pan Control(&amp;S)</source>
         <translation>パンの表示(&amp;V)</translation>
     </message>

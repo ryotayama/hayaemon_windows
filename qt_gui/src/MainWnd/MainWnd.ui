@@ -132,6 +132,34 @@
          </item>
         </layout>
        </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QLabel" name="freqLabel">
+           <property name="text">
+            <string>Frequency :</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QDoubleSpinBox" name="freqSpinBox"/>
+         </item>
+         <item>
+          <widget class="QLabel" name="freqLabel2">
+           <property name="text">
+            <string>%</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="CSliderCtrlCore" name="freqSlider">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
       </layout>
      </widget>
     </item>
@@ -302,7 +330,65 @@
      <addaction name="separator"/>
      <addaction name="menuDecimal_digit"/>
     </widget>
+    <widget class="QMenu" name="menuFreq">
+     <property name="title">
+      <string>Frequency(&amp;F)</string>
+     </property>
+     <widget class="QMenu" name="menuSetFrequency">
+      <property name="title">
+       <string>Set Frequency(&amp;F)</string>
+      </property>
+      <addaction name="actionSetFreq50"/>
+      <addaction name="actionSetFreq60"/>
+      <addaction name="actionSetFreq70"/>
+      <addaction name="actionSetFreq80"/>
+      <addaction name="actionSetFreq90"/>
+      <addaction name="actionSetFreq100"/>
+      <addaction name="actionSetFreq110"/>
+      <addaction name="actionSetFreq120"/>
+      <addaction name="actionSetFreq130"/>
+      <addaction name="actionSetFreq140"/>
+      <addaction name="actionSetFreq150"/>
+      <addaction name="actionSetFreq160"/>
+      <addaction name="actionSetFreq170"/>
+      <addaction name="actionSetFreq180"/>
+      <addaction name="actionSetFreq190"/>
+      <addaction name="actionSetFreq200"/>
+      <addaction name="actionSetFreq250"/>
+      <addaction name="actionSetFreq300"/>
+      <addaction name="actionSetFreq350"/>
+      <addaction name="actionSetFreq400"/>
+     </widget>
+     <widget class="QMenu" name="menuDecimal_digit_2">
+      <property name="title">
+       <string>Decimal digit</string>
+      </property>
+      <addaction name="actionFreqDigit0"/>
+      <addaction name="actionFreqDigit1"/>
+      <addaction name="actionFreqDigit2"/>
+     </widget>
+     <addaction name="actionResetFreq"/>
+     <addaction name="separator"/>
+     <addaction name="menuSetFrequency"/>
+     <addaction name="separator"/>
+     <addaction name="actionFreqDown01"/>
+     <addaction name="actionFreqDown1"/>
+     <addaction name="actionFreqDown2"/>
+     <addaction name="actionFreqDown3"/>
+     <addaction name="actionFreqDown5"/>
+     <addaction name="actionFreqDown10"/>
+     <addaction name="separator"/>
+     <addaction name="actionFreqUp01"/>
+     <addaction name="actionFreqUp1"/>
+     <addaction name="actionFreqUp2"/>
+     <addaction name="actionFreqUp3"/>
+     <addaction name="actionFreqUp5"/>
+     <addaction name="actionFreqUp10"/>
+     <addaction name="separator"/>
+     <addaction name="menuDecimal_digit_2"/>
+    </widget>
     <addaction name="menuSpeed"/>
+    <addaction name="menuFreq"/>
     <addaction name="menuVolume"/>
    </widget>
    <widget class="QMenu" name="menuView_V">
@@ -592,6 +678,195 @@
     <string>2 digit(&amp;2)</string>
    </property>
   </action>
+  <action name="actionResetFreq">
+   <property name="text">
+    <string>Reset Frequency(&amp;R)</string>
+   </property>
+  </action>
+  <action name="actionSetFreq50">
+   <property name="text">
+    <string>50%(&amp;A)</string>
+   </property>
+  </action>
+  <action name="actionSetFreq60">
+   <property name="text">
+    <string>60%(&amp;B)</string>
+   </property>
+  </action>
+  <action name="actionSetFreq70">
+   <property name="text">
+    <string>70%(&amp;C)</string>
+   </property>
+  </action>
+  <action name="actionSetFreq80">
+   <property name="text">
+    <string>80%(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionSetFreq90">
+   <property name="text">
+    <string>90%(&amp;E)</string>
+   </property>
+  </action>
+  <action name="actionSetFreq100">
+   <property name="text">
+    <string>100%(&amp;F)</string>
+   </property>
+  </action>
+  <action name="actionSetFreq110">
+   <property name="text">
+    <string>110%(&amp;G)</string>
+   </property>
+  </action>
+  <action name="actionSetFreq120">
+   <property name="text">
+    <string>120%(&amp;H)</string>
+   </property>
+  </action>
+  <action name="actionSetFreq130">
+   <property name="text">
+    <string>130%(&amp;I)</string>
+   </property>
+  </action>
+  <action name="actionSetFreq140">
+   <property name="text">
+    <string>140%(&amp;J)</string>
+   </property>
+  </action>
+  <action name="actionSetFreq150">
+   <property name="text">
+    <string>150%(&amp;K)</string>
+   </property>
+  </action>
+  <action name="actionSetFreq160">
+   <property name="text">
+    <string>160%(&amp;L)</string>
+   </property>
+  </action>
+  <action name="actionSetFreq170">
+   <property name="text">
+    <string>170%(&amp;M)</string>
+   </property>
+  </action>
+  <action name="actionSetFreq180">
+   <property name="text">
+    <string>180%(&amp;N)</string>
+   </property>
+  </action>
+  <action name="actionSetFreq190">
+   <property name="text">
+    <string>190%(&amp;O)</string>
+   </property>
+  </action>
+  <action name="actionSetFreq200">
+   <property name="text">
+    <string>200%(&amp;P)</string>
+   </property>
+  </action>
+  <action name="actionSetFreq250">
+   <property name="text">
+    <string>250%(&amp;Q)</string>
+   </property>
+  </action>
+  <action name="actionSetFreq300">
+   <property name="text">
+    <string>300%(&amp;R)</string>
+   </property>
+  </action>
+  <action name="actionSetFreq350">
+   <property name="text">
+    <string>350%(&amp;S)</string>
+   </property>
+  </action>
+  <action name="actionSetFreq400">
+   <property name="text">
+    <string>400%(&amp;T)</string>
+   </property>
+  </action>
+  <action name="actionFreqDown01">
+   <property name="text">
+    <string>Turn down 0.1%(&amp;0)</string>
+   </property>
+  </action>
+  <action name="actionFreqDown1">
+   <property name="text">
+    <string>Turn down 1%(&amp;1)</string>
+   </property>
+  </action>
+  <action name="actionFreqDown2">
+   <property name="text">
+    <string>Turn down 2%(&amp;2)</string>
+   </property>
+  </action>
+  <action name="actionFreqDown3">
+   <property name="text">
+    <string>Turn down 3%(&amp;3)</string>
+   </property>
+  </action>
+  <action name="actionFreqDown5">
+   <property name="text">
+    <string>Turn down 5%(&amp;5)</string>
+   </property>
+  </action>
+  <action name="actionFreqDown10">
+   <property name="text">
+    <string>Turn down 10%(&amp;T)</string>
+   </property>
+  </action>
+  <action name="actionFreqUp01">
+   <property name="text">
+    <string>Turn up 0.1%(&amp;Z)</string>
+   </property>
+  </action>
+  <action name="actionFreqUp1">
+   <property name="text">
+    <string>Turn up 1%(&amp;A)</string>
+   </property>
+  </action>
+  <action name="actionFreqUp2">
+   <property name="text">
+    <string>Turn up 2%(&amp;B)</string>
+   </property>
+  </action>
+  <action name="actionFreqUp3">
+   <property name="text">
+    <string>Turn up 3%(&amp;C)</string>
+   </property>
+  </action>
+  <action name="actionFreqUp5">
+   <property name="text">
+    <string>Turn up 5%(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionFreqUp10">
+   <property name="text">
+    <string>Turn up 10%(&amp;E)</string>
+   </property>
+  </action>
+  <action name="actionFreqDigit0">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>0 digit(&amp;0)</string>
+   </property>
+  </action>
+  <action name="actionFreqDigit1">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>1 digit(&amp;1)</string>
+   </property>
+  </action>
+  <action name="actionFreqDigit2">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>2 digit(&amp;2)</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -618,6 +893,8 @@
   <tabstop>timeSlider</tabstop>
   <tabstop>speedSpinBox</tabstop>
   <tabstop>speedSlider</tabstop>
+  <tabstop>freqSpinBox</tabstop>
+  <tabstop>freqSlider</tabstop>
   <tabstop>volumeSpinBox</tabstop>
   <tabstop>volumeSlider</tabstop>
   <tabstop>panSpinBox</tabstop>

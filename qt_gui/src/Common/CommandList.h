@@ -15,6 +15,9 @@ typedef enum CMDID {
 		ID_SPEEDDEC_0,
 		ID_SPEEDDEC_1,
 		ID_SPEEDDEC_2,
+		ID_FREQDEC_0,
+		ID_FREQDEC_1,
+		ID_FREQDEC_2,
 };
 
 #endif // CommandListH

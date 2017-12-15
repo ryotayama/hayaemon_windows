@@ -23,6 +23,7 @@ public: // 関数
 									  void *user);
 	virtual void SetLoop(BOOL bLoop);
 	virtual BOOL SetTempo(float tempo);
+	virtual BOOL SetSampleRate(float samplerate);
 	virtual BOOL ChannelSetVolume(float volume);
 	virtual UINT OnLoop();
 

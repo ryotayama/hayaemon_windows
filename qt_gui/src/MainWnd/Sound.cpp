@@ -90,6 +90,13 @@ BOOL CSound::SetTempo(float tempo)
 	return CBassFx::SetTempo(tempo - 100.0f);
 }
 //----------------------------------------------------------------------------
+// サンプルレートの設定
+//----------------------------------------------------------------------------
+BOOL CSound::SetSampleRate(float samplerate)
+{
+	return CBassFx::SetSampleRate(ChannelGetFreq() * samplerate / 100.0f);
+}
+//----------------------------------------------------------------------------
 // 音量の設定
 //----------------------------------------------------------------------------
 BOOL CSound::ChannelSetVolume(float volume)
