@@ -28,6 +28,9 @@ public: // 関数
 	virtual BOOL SetSampleRate(float samplerate) {
 		return BASS_ChannelSetAttribute(m_hStream, BASS_ATTRIB_TEMPO_FREQ, samplerate);
 	}
+	virtual BOOL SetPitch(float pitch) {
+		return BASS_ChannelSetAttribute(m_hStream, BASS_ATTRIB_TEMPO_PITCH, pitch);
+	}
 };
 //----------------------------------------------------------------------------
 

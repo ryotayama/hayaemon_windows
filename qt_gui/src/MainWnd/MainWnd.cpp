@@ -122,6 +122,33 @@ BOOL CMainWnd::CreateControls()
 	m_freqSlider.SetLimit(_dMinFreq, _dMaxFreq);
 	m_freqLabel.SetLimit(_dMinFreq, _dMaxFreq);
 
+	// 音程表示用ラベルの作成
+	if(!m_pitchLabel.Create()) {
+		m_rApp.ShowError(tr("failed to create pitch label."));
+		return FALSE;
+	}
+
+	// 音程設定用スライダの作成
+	if(!m_pitchSlider.Create()) {
+		m_rApp.ShowError(tr("failed to create pitch slider."));
+		return FALSE;
+	}
+
+	double _dMinPitch = -24.0;
+	double _dMaxPitch = 24.0;
+	int _nPitchDecimalDigit = 1;
+	if(_nPitchDecimalDigit == 0) m_menu.OnSetPitchDecimal0MenuSelected();
+	else if(_nPitchDecimalDigit == 1)
+		m_menu.OnSetPitchDecimal1MenuSelected();
+	else if(_nPitchDecimalDigit == 2)
+		m_menu.OnSetPitchDecimal2MenuSelected();
+
+	if(_dMinPitch < -60.0) _dMinPitch = -60.0;
+	if(_dMaxPitch > 60.0) _dMaxPitch = 60.0;
+
+	m_pitchSlider.SetLimit(_dMinPitch, _dMaxPitch);
+	m_pitchLabel.SetLimit(_dMinPitch, _dMaxPitch);
+
 	// 音量表示用ラベルの作成
 	if(!m_volumeLabel.Create()) {
 		m_rApp.ShowError(tr("failed to create volume label."));
@@ -168,6 +195,15 @@ void CMainWnd::DownFreq(double freq)
 	int newFreq = m_freqSlider.GetThumbPos() - (int)(freq
 		* dCalc);
 	m_freqLabel.SetFreq((double)(newFreq / dCalc));
+}
+//----------------------------------------------------------------------------
+// 指定した数値×半音分音程を下げる
+//----------------------------------------------------------------------------
+void CMainWnd::DownPitch(double pitch)
+{
+	double dCalc = pow(10.0, m_pitchSlider.GetDecimalDigit());
+	int newPitch = m_pitchSlider.GetThumbPos() - (int)(pitch * dCalc);
+	m_pitchLabel.SetPitch((double)(newPitch / dCalc));
 }
 //----------------------------------------------------------------------------
 // 指定した%再生速度を下げる
@@ -319,6 +355,13 @@ void CMainWnd::ResetFreq()
 	m_freqLabel.SetFreq(100.0);
 }
 //----------------------------------------------------------------------------
+// 音程をデフォルトに戻す
+//----------------------------------------------------------------------------
+void CMainWnd::ResetPitch()
+{
+	m_pitchLabel.SetPitch(0.0);
+}
+//----------------------------------------------------------------------------
 // 再生速度をデフォルトに戻す
 //----------------------------------------------------------------------------
 void CMainWnd::ResetSpeed()
@@ -341,6 +384,8 @@ void CMainWnd::SetAllEffects()
 		/ pow(10.0, m_speedLabel.GetDecimalDigit())));
 	SetFreq((double)(m_freqSlider.GetThumbPos()
 		/ pow(10.0, m_freqLabel.GetDecimalDigit())));
+	SetPitch((double)(m_pitchSlider.GetThumbPos()
+		/ pow(10.0, m_pitchLabel.GetDecimalDigit())));
 	SetVolume((double)m_volumeSlider.GetThumbPos() / 10.0);
 	SetPan(m_panSlider.GetThumbPos());
 }
@@ -384,6 +429,13 @@ void CMainWnd::SetSpeed(double dSpeed)
 void CMainWnd::SetFreq(double dFreq)
 {
 	m_sound.SetSampleRate((float)dFreq);
+}
+//----------------------------------------------------------------------------
+// 音程の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetPitch(double dPitch)
+{
+	m_sound.SetPitch((float)dPitch);
 }
 //----------------------------------------------------------------------------
 // 音量の設定
@@ -441,6 +493,15 @@ void CMainWnd::UpFreq(double freq)
 	double dCalc = pow(10.0, m_freqSlider.GetDecimalDigit());
 	int newFreq = m_freqSlider.GetThumbPos() + (int)(freq * dCalc);
 	m_freqLabel.SetFreq((double)(newFreq / dCalc));
+}
+//----------------------------------------------------------------------------
+// 指定した数値×半音分音程を上げる
+//----------------------------------------------------------------------------
+void CMainWnd::UpPitch(double pitch)
+{
+	double dCalc = pow(10.0, m_pitchSlider.GetDecimalDigit());
+	int newPitch = m_pitchSlider.GetThumbPos() + (int)(pitch * dCalc);
+	m_pitchLabel.SetPitch((double)(newPitch / dCalc));
 }
 //----------------------------------------------------------------------------
 // 指定した%再生速度を上げる
@@ -535,6 +596,15 @@ void CMainWnd::SetContextMenus()
 		w->setContextMenuPolicy(Qt::CustomContextMenu);
 		connect(w, &QWidget::customContextMenuRequested,
 						std::bind(&CMainWnd::ShowContextMenu, this, w, menuFreq,
+											nullptr, "",
+											nullptr, std::placeholders::_1));
+	}
+	// Pitch
+	QWidget * pitchWidgets[] = { pitchLabel, pitchSlider };
+	for (auto w : pitchWidgets) {
+		w->setContextMenuPolicy(Qt::CustomContextMenu);
+		connect(w, &QWidget::customContextMenuRequested,
+						std::bind(&CMainWnd::ShowContextMenu, this, w, menuPitch,
 											nullptr, "",
 											nullptr, std::placeholders::_1));
 	}

@@ -342,6 +342,30 @@ void CMenu_MainWnd::OnSetFreqDecimal2MenuSelected()
 	m_rMainWnd.GetFreqSlider().SetDecimalDigit(2);
 }
 //----------------------------------------------------------------------------
+// システム → 音程 → 小数点桁数 → 0桁メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchDecimal0MenuSelected()
+{
+	CheckItem(ID_PITCHDEC_0, MF_CHECKED);
+	m_rMainWnd.GetPitchLabel().SetDecimalDigit(0);
+}
+//----------------------------------------------------------------------------
+// システム → 音程 → 小数点桁数 → 1桁メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchDecimal1MenuSelected()
+{
+	CheckItem(ID_PITCHDEC_1, MF_CHECKED);
+	m_rMainWnd.GetPitchLabel().SetDecimalDigit(1);
+}
+//----------------------------------------------------------------------------
+// システム → 音程 → 小数点桁数 → 2桁メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchDecimal2MenuSelected()
+{
+	CheckItem(ID_PITCHDEC_2, MF_CHECKED);
+	m_rMainWnd.GetPitchLabel().SetDecimalDigit(2);
+}
+//----------------------------------------------------------------------------
 // エフェクト → 音量 → デフォルトに戻すメニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnResetVolumeMenuSelected()
@@ -657,6 +681,230 @@ void CMenu_MainWnd::OnUp10FreqMenuSelected()
 	m_rMainWnd.UpFreq(10);
 }
 //----------------------------------------------------------------------------
+// 再生 → 音程 → デフォルトに戻すメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnResetPitchMenuSelected()
+{
+	m_rMainWnd.ResetPitch();
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 音程指定 → ♭12メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchFlat12MenuSelected()
+{
+	m_rMainWnd.GetPitchLabel().SetPitch(-12.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 音程指定 → ♭11メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchFlat11MenuSelected()
+{
+	m_rMainWnd.GetPitchLabel().SetPitch(-11.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 音程指定 → ♭10メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchFlat10MenuSelected()
+{
+	m_rMainWnd.GetPitchLabel().SetPitch(-10.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 音程指定 → ♭9メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchFlat9MenuSelected()
+{
+	m_rMainWnd.GetPitchLabel().SetPitch(-9.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 音程指定 → ♭8メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchFlat8MenuSelected()
+{
+	m_rMainWnd.GetPitchLabel().SetPitch(-8.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 音程指定 → ♭7メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchFlat7MenuSelected()
+{
+	m_rMainWnd.GetPitchLabel().SetPitch(-7.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 音程指定 → ♭6メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchFlat6MenuSelected()
+{
+	m_rMainWnd.GetPitchLabel().SetPitch(-6.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 音程指定 → ♭5メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchFlat5MenuSelected()
+{
+	m_rMainWnd.GetPitchLabel().SetPitch(-5.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 音程指定 → ♭4メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchFlat4MenuSelected()
+{
+	m_rMainWnd.GetPitchLabel().SetPitch(-4.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 音程指定 → ♭3メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchFlat3MenuSelected()
+{
+	m_rMainWnd.GetPitchLabel().SetPitch(-3.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 音程指定 → ♭2メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchFlat2MenuSelected()
+{
+	m_rMainWnd.GetPitchLabel().SetPitch(-2.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 音程指定 → ♭1メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchFlat1MenuSelected()
+{
+	m_rMainWnd.GetPitchLabel().SetPitch(-1.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 音程指定 → 0メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchNaturalMenuSelected()
+{
+	m_rMainWnd.GetPitchLabel().SetPitch(0.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 音程指定 → ♯1メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchSharp1MenuSelected()
+{
+	m_rMainWnd.GetPitchLabel().SetPitch(1.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 音程指定 → ♯2メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchSharp2MenuSelected()
+{
+	m_rMainWnd.GetPitchLabel().SetPitch(2.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 音程指定 → ♯3メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchSharp3MenuSelected()
+{
+	m_rMainWnd.GetPitchLabel().SetPitch(3.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 音程指定 → ♯4メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchSharp4MenuSelected()
+{
+	m_rMainWnd.GetPitchLabel().SetPitch(4.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 音程指定 → ♯5メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchSharp5MenuSelected()
+{
+	m_rMainWnd.GetPitchLabel().SetPitch(5.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 音程指定 → ♯6メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchSharp6MenuSelected()
+{
+	m_rMainWnd.GetPitchLabel().SetPitch(6.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 音程指定 → ♯7メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchSharp7MenuSelected()
+{
+	m_rMainWnd.GetPitchLabel().SetPitch(7.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 音程指定 → ♯8メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchSharp8MenuSelected()
+{
+	m_rMainWnd.GetPitchLabel().SetPitch(8.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 音程指定 → ♯9メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchSharp9MenuSelected()
+{
+	m_rMainWnd.GetPitchLabel().SetPitch(9.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 音程指定 → ♯10メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchSharp10MenuSelected()
+{
+	m_rMainWnd.GetPitchLabel().SetPitch(10.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 音程指定 → ♯11メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchSharp11MenuSelected()
+{
+	m_rMainWnd.GetPitchLabel().SetPitch(11.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 音程指定 → ♯12メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchSharp12MenuSelected()
+{
+	m_rMainWnd.GetPitchLabel().SetPitch(12.0);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 半音下げるメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDown1PitchMenuSelected()
+{
+	m_rMainWnd.DownPitch(1);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 全音下げるメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDown2PitchMenuSelected()
+{
+	m_rMainWnd.DownPitch(2);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → １オクターブ下げるメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDown1OctavePitchMenuSelected()
+{
+	m_rMainWnd.DownPitch(12);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 半音上げるメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnUp1PitchMenuSelected()
+{
+	m_rMainWnd.UpPitch(1);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → 全音上げるメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnUp2PitchMenuSelected()
+{
+	m_rMainWnd.UpPitch(2);
+}
+//----------------------------------------------------------------------------
+// 再生 → 音程 → １オクターブ上げるメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnUp1OctavePitchMenuSelected()
+{
+	m_rMainWnd.UpPitch(12);
+}
+//----------------------------------------------------------------------------
 // メニューの項目のチェック状態を設定
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::CheckItem(UINT uIDCheckItem, UINT uCheck)
@@ -694,6 +942,9 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_FREQDEC_0, m_rMainWnd.actionFreqDigit0},
 		{ID_FREQDEC_1, m_rMainWnd.actionFreqDigit1},
 		{ID_FREQDEC_2, m_rMainWnd.actionFreqDigit2},
+		{ID_PITCHDEC_0, m_rMainWnd.actionPitchDigit0},
+		{ID_PITCHDEC_1, m_rMainWnd.actionPitchDigit1},
+		{ID_PITCHDEC_2, m_rMainWnd.actionPitchDigit2},
 	};
 }
 //----------------------------------------------------------------------------
@@ -714,6 +965,13 @@ void CMenu_MainWnd::CreateActionGroups()
 											m_rMainWnd.actionFreqDigit1,
 											m_rMainWnd.actionFreqDigit2}) {
 		freq_digit_group->addAction(action);
+	}
+	// Pitch - Decimal digit
+	auto pitch_digit_group = new QActionGroup(&m_rMainWnd);
+	for (auto action : {m_rMainWnd.actionPitchDigit0,
+											m_rMainWnd.actionPitchDigit1,
+											m_rMainWnd.actionPitchDigit2}) {
+		pitch_digit_group->addAction(action);
 	}
 }
 //----------------------------------------------------------------------------
@@ -890,6 +1148,84 @@ void CMenu_MainWnd::CreateConnections()
 	connect(m_rMainWnd.actionFreqDigit2, &QAction::toggled,
 					[&] (bool checked) {
 						if (checked) { emit OnSetFreqDecimal2MenuSelected(); }
+					});
+	// Effect - Pitch
+	connect(m_rMainWnd.actionResetPitch, &QAction::triggered,
+					this, &CMenu_MainWnd::OnResetPitchMenuSelected);
+	connect(m_rMainWnd.actionSetPitchFlat12, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetPitchFlat12MenuSelected);
+	connect(m_rMainWnd.actionSetPitchFlat11, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetPitchFlat11MenuSelected);
+	connect(m_rMainWnd.actionSetPitchFlat10, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetPitchFlat10MenuSelected);
+	connect(m_rMainWnd.actionSetPitchFlat9, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetPitchFlat9MenuSelected);
+	connect(m_rMainWnd.actionSetPitchFlat8, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetPitchFlat8MenuSelected);
+	connect(m_rMainWnd.actionSetPitchFlat7, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetPitchFlat7MenuSelected);
+	connect(m_rMainWnd.actionSetPitchFlat6, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetPitchFlat6MenuSelected);
+	connect(m_rMainWnd.actionSetPitchFlat5, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetPitchFlat5MenuSelected);
+	connect(m_rMainWnd.actionSetPitchFlat4, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetPitchFlat4MenuSelected);
+	connect(m_rMainWnd.actionSetPitchFlat3, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetPitchFlat3MenuSelected);
+	connect(m_rMainWnd.actionSetPitchFlat2, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetPitchFlat2MenuSelected);
+	connect(m_rMainWnd.actionSetPitchFlat1, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetPitchFlat1MenuSelected);
+	connect(m_rMainWnd.actionSetPitch0, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetPitchNaturalMenuSelected);
+	connect(m_rMainWnd.actionSetPitchSharp1, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetPitchSharp1MenuSelected);
+	connect(m_rMainWnd.actionSetPitchSharp2, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetPitchSharp2MenuSelected);
+	connect(m_rMainWnd.actionSetPitchSharp3, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetPitchSharp3MenuSelected);
+	connect(m_rMainWnd.actionSetPitchSharp4, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetPitchSharp4MenuSelected);
+	connect(m_rMainWnd.actionSetPitchSharp5, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetPitchSharp5MenuSelected);
+	connect(m_rMainWnd.actionSetPitchSharp6, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetPitchSharp6MenuSelected);
+	connect(m_rMainWnd.actionSetPitchSharp7, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetPitchSharp7MenuSelected);
+	connect(m_rMainWnd.actionSetPitchSharp8, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetPitchSharp8MenuSelected);
+	connect(m_rMainWnd.actionSetPitchSharp9, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetPitchSharp9MenuSelected);
+	connect(m_rMainWnd.actionSetPitchSharp10, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetPitchSharp10MenuSelected);
+	connect(m_rMainWnd.actionSetPitchSharp11, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetPitchSharp11MenuSelected);
+	connect(m_rMainWnd.actionSetPitchSharp12, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetPitchSharp12MenuSelected);
+	connect(m_rMainWnd.actionPitchFlat, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDown1PitchMenuSelected);
+	connect(m_rMainWnd.actionPitchDoubleFlat, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDown2PitchMenuSelected);
+	connect(m_rMainWnd.actionPitchDown1Octave, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDown1OctavePitchMenuSelected);
+	connect(m_rMainWnd.actionPitchSharp, &QAction::triggered,
+					this, &CMenu_MainWnd::OnUp1PitchMenuSelected);
+	connect(m_rMainWnd.actionPitchDoubleSharp, &QAction::triggered,
+					this, &CMenu_MainWnd::OnUp2PitchMenuSelected);
+	connect(m_rMainWnd.actionPitchUp1Octave, &QAction::triggered,
+					this, &CMenu_MainWnd::OnUp1OctavePitchMenuSelected);
+	// Effecgt - Pitch - Decimal digit
+	connect(m_rMainWnd.actionPitchDigit0, &QAction::toggled,
+					[&] (bool checked) {
+						if (checked) { emit OnSetPitchDecimal0MenuSelected(); }
+					});
+	connect(m_rMainWnd.actionPitchDigit1, &QAction::toggled,
+					[&] (bool checked) {
+						if (checked) { emit OnSetPitchDecimal1MenuSelected(); }
+					});
+	connect(m_rMainWnd.actionPitchDigit2, &QAction::toggled,
+					[&] (bool checked) {
+						if (checked) { emit OnSetPitchDecimal2MenuSelected(); }
 					});
 	// Effect - Volume
 	connect(m_rMainWnd.actionResetVolume, &QAction::triggered,

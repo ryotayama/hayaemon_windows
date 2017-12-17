@@ -29,6 +29,11 @@ set(SRC_MAINWND
   ${SRC_DIR}/MainWnd/PanLabel_MainWnd.h
   ${SRC_DIR}/MainWnd/PanSlider_MainWnd.cpp
   ${SRC_DIR}/MainWnd/PanSlider_MainWnd.h
+  ${SRC_DIR}/MainWnd/PitchLabel_MainWnd.cpp
+  ${SRC_DIR}/MainWnd/PitchLabel_MainWnd.h
+  ${SRC_DIR}/MainWnd/PitchSlider_MainWnd.cpp
+  ${SRC_DIR}/MainWnd/PitchSlider_MainWnd.h
+  ${SRC_DIR}/MainWnd/PitchSpinBox.h
   ${SRC_DIR}/MainWnd/PlayListView_MainWnd.cpp
   ${SRC_DIR}/MainWnd/PlayListView_MainWnd.h
   ${SRC_DIR}/MainWnd/Sound.cpp

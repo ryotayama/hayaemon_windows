@@ -160,6 +160,27 @@
          </item>
         </layout>
        </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <item>
+          <widget class="QLabel" name="pitchLabel">
+           <property name="text">
+            <string>Pitch :</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="CPitchSpinBox" name="pitchSpinBox"/>
+         </item>
+         <item>
+          <widget class="CSliderCtrlCore" name="pitchSlider">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
       </layout>
      </widget>
     </item>
@@ -387,8 +408,65 @@
      <addaction name="separator"/>
      <addaction name="menuDecimal_digit_2"/>
     </widget>
+    <widget class="QMenu" name="menuPitch">
+     <property name="title">
+      <string>Pitch(&amp;P)</string>
+     </property>
+     <widget class="QMenu" name="menuDecimal_digit_3">
+      <property name="title">
+       <string>Decimal digit</string>
+      </property>
+      <addaction name="actionPitchDigit0"/>
+      <addaction name="actionPitchDigit1"/>
+      <addaction name="actionPitchDigit2"/>
+     </widget>
+     <widget class="QMenu" name="menuSet_Pitch_F">
+      <property name="title">
+       <string>Set Pitch(&amp;F)</string>
+      </property>
+      <addaction name="actionSetPitchFlat12"/>
+      <addaction name="actionSetPitchFlat11"/>
+      <addaction name="actionSetPitchFlat10"/>
+      <addaction name="actionSetPitchFlat9"/>
+      <addaction name="actionSetPitchFlat8"/>
+      <addaction name="actionSetPitchFlat7"/>
+      <addaction name="actionSetPitchFlat6"/>
+      <addaction name="actionSetPitchFlat5"/>
+      <addaction name="actionSetPitchFlat4"/>
+      <addaction name="actionSetPitchFlat3"/>
+      <addaction name="actionSetPitchFlat2"/>
+      <addaction name="actionSetPitchFlat1"/>
+      <addaction name="actionSetPitch0"/>
+      <addaction name="actionSetPitchSharp1"/>
+      <addaction name="actionSetPitchSharp2"/>
+      <addaction name="actionSetPitchSharp3"/>
+      <addaction name="actionSetPitchSharp4"/>
+      <addaction name="actionSetPitchSharp5"/>
+      <addaction name="actionSetPitchSharp6"/>
+      <addaction name="actionSetPitchSharp7"/>
+      <addaction name="actionSetPitchSharp8"/>
+      <addaction name="actionSetPitchSharp9"/>
+      <addaction name="actionSetPitchSharp10"/>
+      <addaction name="actionSetPitchSharp11"/>
+      <addaction name="actionSetPitchSharp12"/>
+     </widget>
+     <addaction name="actionResetPitch"/>
+     <addaction name="separator"/>
+     <addaction name="menuSet_Pitch_F"/>
+     <addaction name="separator"/>
+     <addaction name="actionPitchFlat"/>
+     <addaction name="actionPitchDoubleFlat"/>
+     <addaction name="actionPitchDown1Octave"/>
+     <addaction name="separator"/>
+     <addaction name="actionPitchSharp"/>
+     <addaction name="actionPitchDoubleSharp"/>
+     <addaction name="actionPitchUp1Octave"/>
+     <addaction name="separator"/>
+     <addaction name="menuDecimal_digit_3"/>
+    </widget>
     <addaction name="menuSpeed"/>
     <addaction name="menuFreq"/>
+    <addaction name="menuPitch"/>
     <addaction name="menuVolume"/>
    </widget>
    <widget class="QMenu" name="menuView_V">
@@ -867,6 +945,190 @@
     <string>2 digit(&amp;2)</string>
    </property>
   </action>
+  <action name="actionResetPitch">
+   <property name="text">
+    <string>Reset pitch(&amp;R)</string>
+   </property>
+  </action>
+  <action name="actionPitchFlat">
+   <property name="text">
+    <string>Flat(&amp;1)</string>
+   </property>
+  </action>
+  <action name="actionPitchDoubleFlat">
+   <property name="text">
+    <string>Double flat(&amp;2)</string>
+   </property>
+  </action>
+  <action name="actionPitchDown1Octave">
+   <property name="text">
+    <string>Down 1 Octave(&amp;3)</string>
+   </property>
+  </action>
+  <action name="actionPitchSharp">
+   <property name="text">
+    <string>Sharp(&amp;A)</string>
+   </property>
+  </action>
+  <action name="actionPitchDoubleSharp">
+   <property name="text">
+    <string>Double sharp(&amp;B)</string>
+   </property>
+  </action>
+  <action name="actionPitchUp1Octave">
+   <property name="text">
+    <string>Up 1 Octave(&amp;C)</string>
+   </property>
+  </action>
+  <action name="actionPitchDigit0">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>0 digit(&amp;0)</string>
+   </property>
+  </action>
+  <action name="actionPitchDigit1">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>1 digit(&amp;1)</string>
+   </property>
+  </action>
+  <action name="actionPitchDigit2">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>2 digit(&amp;2)</string>
+   </property>
+  </action>
+  <action name="actionSetPitchFlat12">
+   <property name="text">
+    <string>♭12(&amp;A)</string>
+   </property>
+  </action>
+  <action name="actionSetPitchFlat11">
+   <property name="text">
+    <string>♭11(&amp;B)</string>
+   </property>
+  </action>
+  <action name="actionSetPitchFlat10">
+   <property name="text">
+    <string>♭10(&amp;C)</string>
+   </property>
+  </action>
+  <action name="actionSetPitchFlat9">
+   <property name="text">
+    <string>♭9(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionSetPitchFlat8">
+   <property name="text">
+    <string>♭8(&amp;E)</string>
+   </property>
+  </action>
+  <action name="actionSetPitchFlat7">
+   <property name="text">
+    <string>♭7(&amp;F)</string>
+   </property>
+  </action>
+  <action name="actionSetPitchFlat6">
+   <property name="text">
+    <string>♭6(&amp;G)</string>
+   </property>
+  </action>
+  <action name="actionSetPitchFlat5">
+   <property name="text">
+    <string>♭5(&amp;H)</string>
+   </property>
+  </action>
+  <action name="actionSetPitchFlat4">
+   <property name="text">
+    <string>♭4(&amp;I)</string>
+   </property>
+  </action>
+  <action name="actionSetPitchFlat3">
+   <property name="text">
+    <string>♭3(&amp;J)</string>
+   </property>
+  </action>
+  <action name="actionSetPitchFlat2">
+   <property name="text">
+    <string>♭2(&amp;K)</string>
+   </property>
+  </action>
+  <action name="actionSetPitchFlat1">
+   <property name="text">
+    <string>♭1(&amp;L)</string>
+   </property>
+  </action>
+  <action name="actionSetPitch0">
+   <property name="text">
+    <string>0(&amp;M)</string>
+   </property>
+  </action>
+  <action name="actionSetPitchSharp1">
+   <property name="text">
+    <string>#1(N)</string>
+   </property>
+  </action>
+  <action name="actionSetPitchSharp2">
+   <property name="text">
+    <string>#2(&amp;O)</string>
+   </property>
+  </action>
+  <action name="actionSetPitchSharp3">
+   <property name="text">
+    <string>#3(&amp;P)</string>
+   </property>
+  </action>
+  <action name="actionSetPitchSharp4">
+   <property name="text">
+    <string>#4(&amp;Q)</string>
+   </property>
+  </action>
+  <action name="actionSetPitchSharp5">
+   <property name="text">
+    <string>#5(&amp;R)</string>
+   </property>
+  </action>
+  <action name="actionSetPitchSharp6">
+   <property name="text">
+    <string>#6(&amp;S)</string>
+   </property>
+  </action>
+  <action name="actionSetPitchSharp7">
+   <property name="text">
+    <string>#7(&amp;T)</string>
+   </property>
+  </action>
+  <action name="actionSetPitchSharp8">
+   <property name="text">
+    <string>#8(&amp;U)</string>
+   </property>
+  </action>
+  <action name="actionSetPitchSharp9">
+   <property name="text">
+    <string>#9(&amp;V)</string>
+   </property>
+  </action>
+  <action name="actionSetPitchSharp10">
+   <property name="text">
+    <string>#10(&amp;W)</string>
+   </property>
+  </action>
+  <action name="actionSetPitchSharp11">
+   <property name="text">
+    <string>#11(&amp;X)</string>
+   </property>
+  </action>
+  <action name="actionSetPitchSharp12">
+   <property name="text">
+    <string>#12(&amp;Y)</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -885,6 +1147,11 @@
    <extends>QLabel</extends>
    <header>StaticCore.h</header>
   </customwidget>
+  <customwidget>
+   <class>CPitchSpinBox</class>
+   <extends>QDoubleSpinBox</extends>
+   <header>PitchSpinBox.h</header>
+  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>playButton</tabstop>
@@ -895,6 +1162,8 @@
   <tabstop>speedSlider</tabstop>
   <tabstop>freqSpinBox</tabstop>
   <tabstop>freqSlider</tabstop>
+  <tabstop>pitchSpinBox</tabstop>
+  <tabstop>pitchSlider</tabstop>
   <tabstop>volumeSpinBox</tabstop>
   <tabstop>volumeSlider</tabstop>
   <tabstop>panSpinBox</tabstop>

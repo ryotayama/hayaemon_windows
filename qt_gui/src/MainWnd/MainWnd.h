@@ -20,6 +20,8 @@ class QUrl;
 #include "Menu_MainWnd.h"
 #include "PanLabel_MainWnd.h"
 #include "PanSlider_MainWnd.h"
+#include "PitchLabel_MainWnd.h"
+#include "PitchSlider_MainWnd.h"
 #include "Sound.h"
 #include "SpeedLabel_MainWnd.h"
 #include "SpeedSlider_MainWnd.h"
@@ -41,8 +43,9 @@ public: // 関数
 	CMainWnd(CApp & app): m_rApp(app), m_menu(*this), m_toolBar(*this),
 		m_timeLabel(*this), m_timeSlider(*this), m_speedLabel(*this),
 		m_speedSlider(*this), m_freqLabel(*this), m_freqSlider(*this),
-		m_volumeLabel(*this), m_volumeSlider(*this), m_panLabel(*this),
-		m_panSlider(*this), m_sound(*this), m_bFinish(FALSE), nCurPlayTab(0),
+		m_pitchLabel(*this), m_pitchSlider(*this), m_volumeLabel(*this),
+		m_volumeSlider(*this), m_panLabel(*this), m_panSlider(*this),
+		m_sound(*this), m_bFinish(FALSE), nCurPlayTab(0),
 		m_timeThreadRunning(false) { }
 	virtual ~CMainWnd();
 
@@ -50,6 +53,7 @@ public: // 関数
 	virtual BOOL Create() { return OnCreate(); }
 	virtual BOOL CreateControls();
 	virtual void DownFreq(double freq);
+	virtual void DownPitch(double pitch);
 	virtual void DownSpeed(double speed);
 	virtual BOOL OpenFile(const QString & lpszFilePath, int nCount = 1);
 	virtual BOOL OpenNext();
@@ -57,6 +61,7 @@ public: // 関数
 	virtual BOOL Play();
 	virtual void PlayNext(BOOL bPlay, BOOL bFadeoutCancel);
 	virtual void ResetFreq();
+	virtual void ResetPitch();
 	virtual void ResetSpeed();
 	virtual void ResetVolume();
 	virtual void SetAllEffects();
@@ -64,12 +69,14 @@ public: // 関数
 	virtual void SetPanVisible(bool bPanVisible);
 	virtual void SetSpeed(double dSpeed);
 	virtual void SetFreq(double dFreq);
+	virtual void SetPitch(double dPitch);
 	virtual void SetVolume(double nVolume);
 	virtual void SetTime(QWORD qwTime, BOOL bReset = TRUE);
 	virtual void SetPan(int nPan);
 	virtual void ShowTime(BOOL bReset = TRUE);
 	virtual void Stop(BOOL bForce = TRUE);
 	virtual void UpFreq(double freq);
+	virtual void UpPitch(double pitch);
 	virtual void UpSpeed(double speed);
 
 	virtual LRESULT OnCreate();
@@ -88,6 +95,8 @@ protected: // メンバ変数
 	CSpeedSlider_MainWnd m_speedSlider;
 	CFreqLabel_MainWnd m_freqLabel;
 	CFreqSlider_MainWnd m_freqSlider;
+	CPitchLabel_MainWnd m_pitchLabel;
+	CPitchSlider_MainWnd m_pitchSlider;
 	CVolumeLabel_MainWnd m_volumeLabel;
 	CVolumeSlider_MainWnd m_volumeSlider;
 	CPanLabel_MainWnd m_panLabel;
@@ -116,6 +125,8 @@ public: // メンバ変数の取得・設定
 	CFreqSlider_MainWnd & GetFreqSlider() {
 		return m_freqSlider;
 	}
+	CPitchLabel_MainWnd & GetPitchLabel() { return m_pitchLabel; }
+	CPitchSlider_MainWnd & GetPitchSlider() { return m_pitchSlider; }
 	CVolumeLabel_MainWnd & GetVolumeLabel() { return m_volumeLabel; }
 	CVolumeSlider_MainWnd & GetVolumeSlider() { return m_volumeSlider; }
 	CPanLabel_MainWnd & GetPanLabel() { return m_panLabel; }
