@@ -53,3 +53,13 @@ void CFreqLabel_MainWnd::SetLimit(double dMinFreq,
 	m_rMainWnd.freqSpinBox->setRange(dMinFreq, dMaxFreq);
 }
 //----------------------------------------------------------------------------
+// コントロールの表示状態を設定
+//----------------------------------------------------------------------------
+void CFreqLabel_MainWnd::Show(int nCmdShow)
+{
+	bool visible = nCmdShow != SW_HIDE;
+	m_rMainWnd.freqLabel->setVisible(visible);
+	m_rMainWnd.freqLabel2->setVisible(visible);
+	m_rMainWnd.freqSpinBox->setVisible(visible);
+}
+//----------------------------------------------------------------------------

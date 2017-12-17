@@ -390,6 +390,54 @@ void CMainWnd::SetAllEffects()
 	SetPan(m_panSlider.GetThumbPos());
 }
 //----------------------------------------------------------------------------
+// 再生速度の表示状態を設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetSpeedVisible(bool bSpeedVisible)
+{
+	int nCmdShow = bSpeedVisible ? SW_SHOW : SW_HIDE;
+	UINT uCheck = bSpeedVisible ? MF_CHECKED : MF_UNCHECKED;
+	if(bSpeedVisible
+		|| m_menu.IsItemChecked(ID_FREQ)
+		|| m_menu.IsItemChecked(ID_PITCH))
+		speedGroupBox->show();
+	else speedGroupBox->hide();
+	m_speedLabel.Show(nCmdShow);
+	m_speedSlider.Show(nCmdShow);
+	m_menu.CheckItem(ID_SPEED, uCheck);
+}
+//----------------------------------------------------------------------------
+// 再生周波数の表示状態を設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetFreqVisible(bool bFreqVisible)
+{
+	int nCmdShow = bFreqVisible ? SW_SHOW : SW_HIDE;
+	UINT uCheck = bFreqVisible ? MF_CHECKED : MF_UNCHECKED;
+	if(m_menu.IsItemChecked(ID_SPEED)
+		|| bFreqVisible
+		|| m_menu.IsItemChecked(ID_PITCH))
+		speedGroupBox->show();
+	else speedGroupBox->hide();
+	m_freqLabel.Show(nCmdShow);
+	m_freqSlider.Show(nCmdShow);
+	m_menu.CheckItem(ID_FREQ, uCheck);
+}
+//----------------------------------------------------------------------------
+// 音程の表示状態を設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetPitchVisible(bool bPitchVisible)
+{
+	int nCmdShow = bPitchVisible ? SW_SHOW : SW_HIDE;
+	UINT uCheck = bPitchVisible ? MF_CHECKED : MF_UNCHECKED;
+	if(m_menu.IsItemChecked(ID_SPEED)
+		|| m_menu.IsItemChecked(ID_FREQ)
+		|| bPitchVisible)
+		speedGroupBox->show();
+	else speedGroupBox->hide();
+	m_pitchLabel.Show(nCmdShow);
+	m_pitchSlider.Show(nCmdShow);
+	m_menu.CheckItem(ID_PITCH, uCheck);
+}
+//----------------------------------------------------------------------------
 // 音量の表示状態を設定
 //----------------------------------------------------------------------------
 void CMainWnd::SetVolumeVisible(bool bVolumeVisible)
@@ -529,6 +577,9 @@ LRESULT CMainWnd::OnCreate()
 	if(!CreateControls())
 		return FALSE;
 
+	SetSpeedVisible(true);
+	SetFreqVisible(true);
+	SetPitchVisible(true);
 	SetVolumeVisible(true);
 	SetPanVisible(true);
 
@@ -587,8 +638,8 @@ void CMainWnd::SetContextMenus()
 		w->setContextMenuPolicy(Qt::CustomContextMenu);
 		connect(w, &QWidget::customContextMenuRequested,
 						std::bind(&CMainWnd::ShowContextMenu, this, w, menuSpeed,
-											nullptr, "",
-											nullptr, std::placeholders::_1));
+											actionSpeedVisible, tr("Show Speed Control(&S)"),
+											&CMainWnd::SetSpeedVisible, std::placeholders::_1));
 	}
 	// Frequency
 	QWidget * freqWidgets[] = { freqLabel, freqSlider };
@@ -596,8 +647,8 @@ void CMainWnd::SetContextMenus()
 		w->setContextMenuPolicy(Qt::CustomContextMenu);
 		connect(w, &QWidget::customContextMenuRequested,
 						std::bind(&CMainWnd::ShowContextMenu, this, w, menuFreq,
-											nullptr, "",
-											nullptr, std::placeholders::_1));
+											actionFreqVisible, tr("Show Frequency Control(&S)"),
+											&CMainWnd::SetFreqVisible, std::placeholders::_1));
 	}
 	// Pitch
 	QWidget * pitchWidgets[] = { pitchLabel, pitchSlider };
@@ -605,8 +656,8 @@ void CMainWnd::SetContextMenus()
 		w->setContextMenuPolicy(Qt::CustomContextMenu);
 		connect(w, &QWidget::customContextMenuRequested,
 						std::bind(&CMainWnd::ShowContextMenu, this, w, menuPitch,
-											nullptr, "",
-											nullptr, std::placeholders::_1));
+											actionPitchVisible, tr("Show Pitch Control(&S)"),
+											&CMainWnd::SetPitchVisible, std::placeholders::_1));
 	}
 	// Volume
 	QWidget * volumeWidgets[] = { volumeLabel, volumeSlider };

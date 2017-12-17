@@ -96,7 +96,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QGroupBox" name="groupBox">
+     <widget class="QGroupBox" name="speedGroupBox">
       <property name="title">
        <string/>
       </property>
@@ -473,6 +473,9 @@
     <property name="title">
      <string>View(&amp;V)</string>
     </property>
+    <addaction name="actionSpeedVisible"/>
+    <addaction name="actionFreqVisible"/>
+    <addaction name="actionPitchVisible"/>
     <addaction name="actionVolumeVisible"/>
     <addaction name="actionPanVisible"/>
    </widget>
@@ -1127,6 +1130,30 @@
   <action name="actionSetPitchSharp12">
    <property name="text">
     <string>#12(&amp;Y)</string>
+   </property>
+  </action>
+  <action name="actionSpeedVisible">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Speed(&amp;S)</string>
+   </property>
+  </action>
+  <action name="actionFreqVisible">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Frequency(&amp;F)</string>
+   </property>
+  </action>
+  <action name="actionPitchVisible">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Pitch(&amp;P)</string>
    </property>
   </action>
  </widget>

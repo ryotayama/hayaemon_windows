@@ -30,6 +30,8 @@ private: // メンバ変数
 public: // メンバ変数の取得・設定
 
 	int GetDecimalDigit() const { return m_nDecimalDigit; }
+	// Qtのラッパー
+	virtual void Show(int nCmdShow);
 };
 //----------------------------------------------------------------------------
 

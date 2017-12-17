@@ -54,3 +54,13 @@ void CSpeedLabel_MainWnd::SetLimit(double dMinSpeed, double dMaxSpeed)
 	m_rMainWnd.speedSpinBox->setRange(dMinSpeed, dMaxSpeed);
 }
 //----------------------------------------------------------------------------
+// コントロールの表示状態を設定
+//----------------------------------------------------------------------------
+void CSpeedLabel_MainWnd::Show(int nCmdShow)
+{
+	bool visible = nCmdShow != SW_HIDE;
+	m_rMainWnd.speedLabel->setVisible(visible);
+	m_rMainWnd.speedLabel2->setVisible(visible);
+	m_rMainWnd.speedSpinBox->setVisible(visible);
+}
+//----------------------------------------------------------------------------

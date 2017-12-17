@@ -56,3 +56,12 @@ void CPitchLabel_MainWnd::SetLimit(double dMinPitch, double dMaxPitch)
 	m_rMainWnd.pitchSpinBox->setRange(dMinPitch, dMaxPitch);
 }
 //----------------------------------------------------------------------------
+// コントロールの表示状態を設定
+//----------------------------------------------------------------------------
+void CPitchLabel_MainWnd::Show(int nCmdShow)
+{
+	bool visible = nCmdShow != SW_HIDE;
+	m_rMainWnd.pitchLabel->setVisible(visible);
+	m_rMainWnd.pitchSpinBox->setVisible(visible);
+}
+//----------------------------------------------------------------------------

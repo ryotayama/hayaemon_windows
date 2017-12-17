@@ -17,6 +17,27 @@ BOOL CMenu_MainWnd::Create()
 	return TRUE;
 }
 //----------------------------------------------------------------------------
+// 表示 → 再生速度メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSpeedMenuSelected(bool checked)
+{
+	m_rMainWnd.SetSpeedVisible(checked);
+}
+//----------------------------------------------------------------------------
+// 表示 → 再生周波数メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnFreqMenuSelected(bool checked)
+{
+	m_rMainWnd.SetFreqVisible(checked);
+}
+//----------------------------------------------------------------------------
+// 表示 → 音程メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnPitchMenuSelected(bool checked)
+{
+	m_rMainWnd.SetPitchVisible(checked);
+}
+//----------------------------------------------------------------------------
 // 表示 → 音量メニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnVolumeMenuSelected(bool checked)
@@ -934,6 +955,9 @@ BOOL CMenu_MainWnd::IsItemChecked(UINT uID)
 void CMenu_MainWnd::CreateActionMap()
 {
 	m_actionMap = std::unordered_map<UINT, QAction*>{
+		{ID_SPEED, m_rMainWnd.actionSpeedVisible},
+		{ID_FREQ, m_rMainWnd.actionFreqVisible},
+		{ID_PITCH, m_rMainWnd.actionPitchVisible},
 		{ID_VOLUME, m_rMainWnd.actionVolumeVisible},
 		{ID_PAN, m_rMainWnd.actionPanVisible},
 		{ID_SPEEDDEC_0, m_rMainWnd.actionSpeedDigit0},
@@ -980,6 +1004,12 @@ void CMenu_MainWnd::CreateActionGroups()
 void CMenu_MainWnd::CreateConnections()
 {
 	// View
+	connect(m_rMainWnd.actionSpeedVisible, &QAction::toggled,
+					this, &CMenu_MainWnd::OnSpeedMenuSelected);
+	connect(m_rMainWnd.actionFreqVisible, &QAction::toggled,
+					this, &CMenu_MainWnd::OnFreqMenuSelected);
+	connect(m_rMainWnd.actionPitchVisible, &QAction::toggled,
+					this, &CMenu_MainWnd::OnPitchMenuSelected);
 	connect(m_rMainWnd.actionVolumeVisible, &QAction::toggled,
 					this, &CMenu_MainWnd::OnVolumeMenuSelected);
 	connect(m_rMainWnd.actionPanVisible, &QAction::toggled,

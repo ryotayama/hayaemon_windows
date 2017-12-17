@@ -65,6 +65,9 @@ public: // 関数
 	virtual void ResetSpeed();
 	virtual void ResetVolume();
 	virtual void SetAllEffects();
+	virtual void SetSpeedVisible(bool bSpeedVisible);
+	virtual void SetFreqVisible(bool bFreqVisible);
+	virtual void SetPitchVisible(bool bPitchVisible);
 	virtual void SetVolumeVisible(bool bVolumeVisible);
 	virtual void SetPanVisible(bool bPanVisible);
 	virtual void SetSpeed(double dSpeed);

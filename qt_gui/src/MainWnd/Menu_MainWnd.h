@@ -20,6 +20,9 @@ public: // 関数
 		: m_rMainWnd(mainWnd) { }
 
 	virtual BOOL Create();
+	void OnSpeedMenuSelected(bool checked);
+	void OnFreqMenuSelected(bool checked);
+	void OnPitchMenuSelected(bool checked);
 	void OnVolumeMenuSelected(bool checked);
 	void OnPanMenuSelected(bool checked);
 	void OnPauseMenuSelected();
