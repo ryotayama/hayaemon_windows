@@ -93,6 +93,7 @@ set(CMAKE_CXX_STANDARD 11)
 add_definitions(-D_UNICODE -DUNICODE)
 if (WIN32)
 add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
 endif()
 
 qt5_add_resources(RESOURCES ${SRC_DIR}/Hayaemon.qrc)
