@@ -25,6 +25,7 @@ public: // 関数
 	void OnPitchMenuSelected(bool checked);
 	void OnVolumeMenuSelected(bool checked);
 	void OnPanMenuSelected(bool checked);
+	void OnEQMenuSelected(bool checked);
 	void OnPauseMenuSelected();
 	void OnStopMenuSelected();
 	void OnResetSpeedMenuSelected();
@@ -151,6 +152,8 @@ private: // メンバ変数
 
 	CMainWnd & m_rMainWnd;
 	std::unordered_map<UINT, QAction*> m_actionMap;
+
+	friend class CMainWnd;
 
 public:
 	// Qtのラッパー

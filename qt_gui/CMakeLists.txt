@@ -17,6 +17,10 @@ set(SRC_COMMON
   ${SRC_DIR}/Common/Tab.h
 )
 set(SRC_MAINWND
+  ${SRC_DIR}/MainWnd/EQLabel_MainWnd.cpp
+  ${SRC_DIR}/MainWnd/EQLabel_MainWnd.h
+  ${SRC_DIR}/MainWnd/EQSlider_MainWnd.cpp
+  ${SRC_DIR}/MainWnd/EQSlider_MainWnd.h
   ${SRC_DIR}/MainWnd/FreqLabel_MainWnd.cpp
   ${SRC_DIR}/MainWnd/FreqLabel_MainWnd.h
   ${SRC_DIR}/MainWnd/FreqSlider_MainWnd.cpp

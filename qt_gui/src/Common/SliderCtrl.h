@@ -54,7 +54,7 @@ public: // 関数
 		m_slider->setVisible(nCmdShow != SW_HIDE);
 	}
 
-private: // メンバ変数
+protected: // メンバ変数
 	CSliderCtrlCore * m_slider = nullptr;
 };
 //----------------------------------------------------------------------------

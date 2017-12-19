@@ -52,6 +52,13 @@ void CMenu_MainWnd::OnPanMenuSelected(bool checked)
 	m_rMainWnd.SetPanVisible(checked);
 }
 //----------------------------------------------------------------------------
+// 表示 → グラフィックイコライザメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQMenuSelected(bool checked)
+{
+	m_rMainWnd.SetEQVisible(checked);
+}
+//----------------------------------------------------------------------------
 // 再生 → 一時停止メニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnPauseMenuSelected()
@@ -960,6 +967,7 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_PITCH, m_rMainWnd.actionPitchVisible},
 		{ID_VOLUME, m_rMainWnd.actionVolumeVisible},
 		{ID_PAN, m_rMainWnd.actionPanVisible},
+		{ID_EQ, m_rMainWnd.actionEQVisible},
 		{ID_SPEEDDEC_0, m_rMainWnd.actionSpeedDigit0},
 		{ID_SPEEDDEC_1, m_rMainWnd.actionSpeedDigit1},
 		{ID_SPEEDDEC_2, m_rMainWnd.actionSpeedDigit2},
@@ -1014,6 +1022,8 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnVolumeMenuSelected);
 	connect(m_rMainWnd.actionPanVisible, &QAction::toggled,
 					this, &CMenu_MainWnd::OnPanMenuSelected);
+	connect(m_rMainWnd.actionEQVisible, &QAction::toggled,
+					this, &CMenu_MainWnd::OnEQMenuSelected);
 	// Play
 	connect(m_rMainWnd.actionPlayPlayPause, &QAction::triggered,
 					this, &CMenu_MainWnd::OnPauseMenuSelected);

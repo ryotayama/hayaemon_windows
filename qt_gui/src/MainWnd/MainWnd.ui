@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>547</height>
+    <height>1177</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -246,6 +246,17 @@
      </widget>
     </item>
     <item>
+     <widget class="QGroupBox" name="eqGroupBox">
+      <property name="title">
+       <string/>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <layout class="QGridLayout" name="eqLayout"/>
+     </widget>
+    </item>
+    <item>
      <widget class="CTab_MainWnd" name="m_tab"/>
     </item>
    </layout>
@@ -473,11 +484,19 @@
     <property name="title">
      <string>View(&amp;V)</string>
     </property>
+    <widget class="QMenu" name="menuViewEQ">
+     <property name="title">
+      <string>EQ(&amp;G)</string>
+     </property>
+     <addaction name="actionEQVisible"/>
+     <addaction name="separator"/>
+    </widget>
     <addaction name="actionSpeedVisible"/>
     <addaction name="actionFreqVisible"/>
     <addaction name="actionPitchVisible"/>
     <addaction name="actionVolumeVisible"/>
     <addaction name="actionPanVisible"/>
+    <addaction name="menuViewEQ"/>
    </widget>
    <addaction name="menuView_V"/>
    <addaction name="menuPlay_P"/>
@@ -1154,6 +1173,14 @@
    </property>
    <property name="text">
     <string>Pitch(&amp;P)</string>
+   </property>
+  </action>
+  <action name="actionEQVisible">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Visible(&amp;V)</string>
    </property>
   </action>
  </widget>

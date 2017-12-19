@@ -2,6 +2,7 @@
 // MainWnd.cpp : メインウィンドウの作成・管理を行う
 //----------------------------------------------------------------------------
 #include "MainWnd.h"
+#include <algorithm>
 #include <chrono>
 #include <cmath>
 #include <functional>
@@ -171,6 +172,97 @@ BOOL CMainWnd::CreateControls()
 	if(!m_panSlider.Create()) {
 		m_rApp.ShowError(tr("failed to create pan slider."));
 		return FALSE;
+	}
+
+	m_eqItems = std::vector<EQItem>{
+		{"20",    m_eq20Label,    m_eq20Slider,    ID_EQ20,    &CMainWnd::SetEQ20},
+		{"25",    m_eq25Label,    m_eq25Slider,    ID_EQ25,    &CMainWnd::SetEQ25},
+		{"31.5",  m_eq31_5Label,  m_eq31_5Slider,  ID_EQ31_5,  &CMainWnd::SetEQ31_5},
+		{"40",    m_eq40Label,    m_eq40Slider,    ID_EQ40,    &CMainWnd::SetEQ40},
+		{"50",    m_eq50Label,    m_eq50Slider,    ID_EQ50,    &CMainWnd::SetEQ50},
+		{"63",    m_eq63Label,    m_eq63Slider,    ID_EQ63,    &CMainWnd::SetEQ63},
+		{"80",    m_eq80Label,    m_eq80Slider,    ID_EQ80,    &CMainWnd::SetEQ80},
+		{"100",   m_eq100Label,   m_eq100Slider,   ID_EQ100,   &CMainWnd::SetEQ100},
+		{"125",   m_eq125Label,   m_eq125Slider,   ID_EQ125,   &CMainWnd::SetEQ125},
+		{"160",   m_eq160Label,   m_eq160Slider,   ID_EQ160,   &CMainWnd::SetEQ160},
+		{"200",   m_eq200Label,   m_eq200Slider,   ID_EQ200,   &CMainWnd::SetEQ200},
+		{"250",   m_eq250Label,   m_eq250Slider,   ID_EQ250,   &CMainWnd::SetEQ250},
+		{"315",   m_eq315Label,   m_eq315Slider,   ID_EQ315,   &CMainWnd::SetEQ315},
+		{"400",   m_eq400Label,   m_eq400Slider,   ID_EQ400,   &CMainWnd::SetEQ400},
+		{"500",   m_eq500Label,   m_eq500Slider,   ID_EQ500,   &CMainWnd::SetEQ500},
+		{"630",   m_eq630Label,   m_eq630Slider,   ID_EQ630,   &CMainWnd::SetEQ630},
+		{"800",   m_eq800Label,   m_eq800Slider,   ID_EQ800,   &CMainWnd::SetEQ800},
+		{"1K",    m_eq1kLabel,    m_eq1kSlider,    ID_EQ1K,    &CMainWnd::SetEQ1K},
+		{"1.25K", m_eq1_25kLabel, m_eq1_25kSlider, ID_EQ1_25K, &CMainWnd::SetEQ1_25K},
+		{"1.6K",  m_eq1_6kLabel,  m_eq1_6kSlider,  ID_EQ1_6K,  &CMainWnd::SetEQ1_6K},
+		{"2K",    m_eq2kLabel,    m_eq2kSlider,    ID_EQ2K,    &CMainWnd::SetEQ2K},
+		{"2.5K",  m_eq2_5kLabel,  m_eq2_5kSlider,  ID_EQ2_5K,  &CMainWnd::SetEQ2_5K},
+		{"3.15K", m_eq3_15kLabel, m_eq3_15kSlider, ID_EQ3_15K, &CMainWnd::SetEQ3_15K},
+		{"4K",    m_eq4kLabel,    m_eq4kSlider,    ID_EQ4K,    &CMainWnd::SetEQ4K},
+		{"5K",    m_eq5kLabel,    m_eq5kSlider,    ID_EQ5K,    &CMainWnd::SetEQ5K},
+		{"6.3K",  m_eq6_3kLabel,  m_eq6_3kSlider,  ID_EQ6_3K,  &CMainWnd::SetEQ6_3K},
+		{"8K",    m_eq8kLabel,    m_eq8kSlider,    ID_EQ8K,    &CMainWnd::SetEQ8K},
+		{"10K",   m_eq10kLabel,   m_eq10kSlider,   ID_EQ10K,   &CMainWnd::SetEQ10K},
+		{"12.5K", m_eq12_5kLabel, m_eq12_5kSlider, ID_EQ12_5K, &CMainWnd::SetEQ12_5K},
+		{"16K",   m_eq16kLabel,   m_eq16kSlider,   ID_EQ16K,   &CMainWnd::SetEQ16K},
+		{"20K",   m_eq20kLabel,   m_eq20kSlider,   ID_EQ20K,   &CMainWnd::SetEQ20K},
+	};
+
+	int row = 0;
+	for (auto &item : m_eqItems) {
+		auto label = new QLabel(eqGroupBox);
+		label->setObjectName("eq" + item.title + "Label");
+		label->setText(QString(item.title + "Hz : ").replace("K", " K"));
+
+		auto spinbox = new QSpinBox(eqGroupBox);
+		spinbox->setObjectName("eq" + item.title + "SpinBox");
+
+		auto slider = new CSliderCtrlCore(eqGroupBox);
+		slider->setObjectName("eq" + item.title + "Slider");
+		slider->setOrientation(Qt::Horizontal);
+
+		// イコライザ表示用ラベルの作成
+		item.label.Init(label, spinbox, &item.slider);
+		if(!item.label.Create()) {
+			m_rApp.ShowError(
+					QString(tr("failed to create EQ(%1Hz) label.")).arg(item.title));
+			return FALSE;
+		}
+
+		// イコライザ設定用スライダの作成
+		item.slider.Init(slider, &item.label,
+										 std::bind(item.setEQ, this, std::placeholders::_1));
+		if(!item.slider.Create()) {
+			m_rApp.ShowError(
+					QString(tr("failed to create EQ(%1Hz) slider.")).arg(item.title));
+			return FALSE;
+		}
+
+		const UINT visibles[] = {ID_EQ125, ID_EQ250, ID_EQ500, ID_EQ1K, ID_EQ2K,
+														 ID_EQ4K, ID_EQ8K, ID_EQ16K};
+		bool visible = std::find(std::begin(visibles), std::end(visibles),
+														 item.menuId) != std::end(visibles);
+		label->setVisible(visible);
+		spinbox->setVisible(visible);
+		slider->setVisible(visible);
+
+		eqLayout->addWidget(label, row, 0);
+		eqLayout->addWidget(spinbox, row, 1);
+		eqLayout->addWidget(slider, row, 2);
+		row++;
+
+		auto action =
+				new QAction(QString(item.title + "Hz").replace("K", " K"), this);
+		action->setCheckable(true);
+		action->setChecked(visible);
+		connect(action, &QAction::toggled,
+						[&] (bool checked) {
+							m_menu.CheckItem(item.menuId,
+															 checked ? MF_CHECKED : MF_UNCHECKED);
+							SetEQVisible(m_menu.IsItemChecked(ID_EQ));
+						});
+		menuViewEQ->addAction(action);
+		m_menu.m_actionMap.insert({item.menuId, action});
 	}
 
 	// タブの作成
@@ -388,6 +480,37 @@ void CMainWnd::SetAllEffects()
 		/ pow(10.0, m_pitchLabel.GetDecimalDigit())));
 	SetVolume((double)m_volumeSlider.GetThumbPos() / 10.0);
 	SetPan(m_panSlider.GetThumbPos());
+	SetEQ20(m_eq20Slider.GetThumbPos());
+	SetEQ25(m_eq25Slider.GetThumbPos());
+	SetEQ31_5(m_eq31_5Slider.GetThumbPos());
+	SetEQ40(m_eq40Slider.GetThumbPos());
+	SetEQ50(m_eq50Slider.GetThumbPos());
+	SetEQ63(m_eq63Slider.GetThumbPos());
+	SetEQ80(m_eq80Slider.GetThumbPos());
+	SetEQ100(m_eq100Slider.GetThumbPos());
+	SetEQ125(m_eq125Slider.GetThumbPos());
+	SetEQ160(m_eq160Slider.GetThumbPos());
+	SetEQ200(m_eq200Slider.GetThumbPos());
+	SetEQ250(m_eq250Slider.GetThumbPos());
+	SetEQ315(m_eq315Slider.GetThumbPos());
+	SetEQ400(m_eq400Slider.GetThumbPos());
+	SetEQ500(m_eq500Slider.GetThumbPos());
+	SetEQ630(m_eq630Slider.GetThumbPos());
+	SetEQ800(m_eq800Slider.GetThumbPos());
+	SetEQ1K(m_eq1kSlider.GetThumbPos());
+	SetEQ1_25K(m_eq1_25kSlider.GetThumbPos());
+	SetEQ1_6K(m_eq1_6kSlider.GetThumbPos());
+	SetEQ2K(m_eq2kSlider.GetThumbPos());
+	SetEQ2_5K(m_eq2_5kSlider.GetThumbPos());
+	SetEQ3_15K(m_eq3_15kSlider.GetThumbPos());
+	SetEQ4K(m_eq4kSlider.GetThumbPos());
+	SetEQ5K(m_eq5kSlider.GetThumbPos());
+	SetEQ6_3K(m_eq6_3kSlider.GetThumbPos());
+	SetEQ8K(m_eq8kSlider.GetThumbPos());
+	SetEQ10K(m_eq10kSlider.GetThumbPos());
+	SetEQ12_5K(m_eq12_5kSlider.GetThumbPos());
+	SetEQ16K(m_eq16kSlider.GetThumbPos());
+	SetEQ20K(m_eq20kSlider.GetThumbPos());
 }
 //----------------------------------------------------------------------------
 // 再生速度の表示状態を設定
@@ -463,6 +586,294 @@ void CMainWnd::SetPanVisible(bool bPanVisible)
 	m_panLabel.Show(nCmdShow);
 	m_panSlider.Show(nCmdShow);
 	m_menu.CheckItem(ID_PAN, uCheck);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 20Hz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ20(LONG lEQ20)
+{
+	m_sound.SetEQ20(20, 0.7f, (float)lEQ20);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 25Hz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ25(LONG lEQ25)
+{
+	m_sound.SetEQ25(25, 0.7f, (float)lEQ25);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 31.5Hz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ31_5(LONG lEQ31_5)
+{
+	m_sound.SetEQ31_5(31.5, 0.7f, (float)lEQ31_5);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 40Hz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ40(LONG lEQ40)
+{
+	m_sound.SetEQ40(40, 0.7f, (float)lEQ40);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 50Hz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ50(LONG lEQ50)
+{
+	m_sound.SetEQ50(50, 0.7f, (float)lEQ50);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 63Hz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ63(LONG lEQ63)
+{
+	m_sound.SetEQ63(63, 0.7f, (float)lEQ63);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 80Hz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ80(LONG lEQ80)
+{
+	m_sound.SetEQ80(80, 0.7f, (float)lEQ80);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 100Hz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ100(LONG lEQ100)
+{
+	m_sound.SetEQ100(100, 0.7f, (float)lEQ100);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 125Hz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ125(LONG lEQ125)
+{
+	m_sound.SetEQ125(125, 0.7f, (float)lEQ125);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 160Hz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ160(LONG lEQ160)
+{
+	m_sound.SetEQ160(160, 0.7f, (float)lEQ160);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 200Hz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ200(LONG lEQ200)
+{
+	m_sound.SetEQ200(200, 0.7f, (float)lEQ200);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 250Hz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ250(LONG lEQ250)
+{
+	m_sound.SetEQ250(250, 0.7f, (float)lEQ250);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 315Hz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ315(LONG lEQ315)
+{
+	m_sound.SetEQ315(315, 0.7f, (float)lEQ315);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 400Hz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ400(LONG lEQ400)
+{
+	m_sound.SetEQ400(400, 0.7f, (float)lEQ400);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 500Hz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ500(LONG lEQ500)
+{
+	m_sound.SetEQ500(500, 0.7f, (float)lEQ500);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 630Hz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ630(LONG lEQ630)
+{
+	m_sound.SetEQ630(630, 0.7f, (float)lEQ630);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 800Hz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ800(LONG lEQ800)
+{
+	m_sound.SetEQ800(800, 0.7f, (float)lEQ800);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 1KHz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ1K(LONG lEQ1K)
+{
+	m_sound.SetEQ1K(1000, 0.7f, (float)lEQ1K);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 1.25KHz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ1_25K(LONG lEQ1_25K)
+{
+	m_sound.SetEQ1_25K(1250, 0.7f, (float)lEQ1_25K);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 1.6KHz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ1_6K(LONG lEQ1_6K)
+{
+	m_sound.SetEQ1_6K(1600, 0.7f, (float)lEQ1_6K);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 2KHz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ2K(LONG lEQ2K)
+{
+	m_sound.SetEQ2K(2000, 0.7f, (float)lEQ2K);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 2.5KHz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ2_5K(LONG lEQ2_5K)
+{
+	m_sound.SetEQ2_5K(2500, 0.7f, (float)lEQ2_5K);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 3.15KHz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ3_15K(LONG lEQ3_15K)
+{
+	m_sound.SetEQ3_15K(3150, 0.7f, (float)lEQ3_15K);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 4KHz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ4K(LONG lEQ4K)
+{
+	m_sound.SetEQ4K(4000, 0.7f, (float)lEQ4K);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 5KHz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ5K(LONG lEQ5K)
+{
+	m_sound.SetEQ5K(5000, 0.7f, (float)lEQ5K);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 6.3KHz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ6_3K(LONG lEQ6_3K)
+{
+	m_sound.SetEQ6_3K(6300, 0.7f, (float)lEQ6_3K);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 8KHz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ8K(LONG lEQ8K)
+{
+	m_sound.SetEQ8K(8000, 0.7f, (float)lEQ8K);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 10KHz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ10K(LONG lEQ10K)
+{
+	m_sound.SetEQ10K(10000, 0.7f, (float)lEQ10K);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 12.5KHz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ12_5K(LONG lEQ12_5K)
+{
+	m_sound.SetEQ12_5K(12500, 0.7f, (float)lEQ12_5K);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 16KHz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ16K(LONG lEQ16K)
+{
+	m_sound.SetEQ16K(16000, 0.7f, (float)lEQ16K);
+}
+//----------------------------------------------------------------------------
+// イコライザ ( 20KHz ) の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ20K(LONG lEQ20K)
+{
+	m_sound.SetEQ20K(20000, 0.7f, (float)lEQ20K);
+}
+//----------------------------------------------------------------------------
+// グラフィックイコライザの表示状態を設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQVisible(bool bEQVisible)
+{
+	int nCmdShow = bEQVisible ? SW_SHOW : SW_HIDE;
+	UINT uCheck = bEQVisible ? MF_CHECKED : MF_UNCHECKED;
+	m_eq20Label.Show(m_menu.IsItemChecked(ID_EQ20) ? nCmdShow : SW_HIDE);
+	m_eq20Slider.Show(m_menu.IsItemChecked(ID_EQ20) ? nCmdShow : SW_HIDE);
+	m_eq25Label.Show(m_menu.IsItemChecked(ID_EQ25) ? nCmdShow : SW_HIDE);
+	m_eq25Slider.Show(m_menu.IsItemChecked(ID_EQ25) ? nCmdShow : SW_HIDE);
+	m_eq31_5Label.Show(m_menu.IsItemChecked(ID_EQ31_5) ? nCmdShow : SW_HIDE);
+	m_eq31_5Slider.Show(m_menu.IsItemChecked(ID_EQ31_5) ? nCmdShow : SW_HIDE);
+	m_eq40Label.Show(m_menu.IsItemChecked(ID_EQ40) ? nCmdShow : SW_HIDE);
+	m_eq40Slider.Show(m_menu.IsItemChecked(ID_EQ40) ? nCmdShow : SW_HIDE);
+	m_eq50Label.Show(m_menu.IsItemChecked(ID_EQ50) ? nCmdShow : SW_HIDE);
+	m_eq50Slider.Show(m_menu.IsItemChecked(ID_EQ50) ? nCmdShow : SW_HIDE);
+	m_eq63Label.Show(m_menu.IsItemChecked(ID_EQ63) ? nCmdShow : SW_HIDE);
+	m_eq63Slider.Show(m_menu.IsItemChecked(ID_EQ63) ? nCmdShow : SW_HIDE);
+	m_eq80Label.Show(m_menu.IsItemChecked(ID_EQ80) ? nCmdShow : SW_HIDE);
+	m_eq80Slider.Show(m_menu.IsItemChecked(ID_EQ80) ? nCmdShow : SW_HIDE);
+	m_eq100Label.Show(m_menu.IsItemChecked(ID_EQ100) ? nCmdShow : SW_HIDE);
+	m_eq100Slider.Show(m_menu.IsItemChecked(ID_EQ100) ? nCmdShow : SW_HIDE);
+	m_eq125Label.Show(m_menu.IsItemChecked(ID_EQ125) ? nCmdShow : SW_HIDE);
+	m_eq125Slider.Show(m_menu.IsItemChecked(ID_EQ125) ? nCmdShow : SW_HIDE);
+	m_eq160Label.Show(m_menu.IsItemChecked(ID_EQ160) ? nCmdShow : SW_HIDE);
+	m_eq160Slider.Show(m_menu.IsItemChecked(ID_EQ160) ? nCmdShow : SW_HIDE);
+	m_eq200Label.Show(m_menu.IsItemChecked(ID_EQ200) ? nCmdShow : SW_HIDE);
+	m_eq200Slider.Show(m_menu.IsItemChecked(ID_EQ200) ? nCmdShow : SW_HIDE);
+	m_eq250Label.Show(m_menu.IsItemChecked(ID_EQ250) ? nCmdShow : SW_HIDE);
+	m_eq250Slider.Show(m_menu.IsItemChecked(ID_EQ250) ? nCmdShow : SW_HIDE);
+	m_eq315Label.Show(m_menu.IsItemChecked(ID_EQ315) ? nCmdShow : SW_HIDE);
+	m_eq315Slider.Show(m_menu.IsItemChecked(ID_EQ315) ? nCmdShow : SW_HIDE);
+	m_eq400Label.Show(m_menu.IsItemChecked(ID_EQ400) ? nCmdShow : SW_HIDE);
+	m_eq400Slider.Show(m_menu.IsItemChecked(ID_EQ400) ? nCmdShow : SW_HIDE);
+	m_eq500Label.Show(m_menu.IsItemChecked(ID_EQ500) ? nCmdShow : SW_HIDE);
+	m_eq500Slider.Show(m_menu.IsItemChecked(ID_EQ500) ? nCmdShow : SW_HIDE);
+	m_eq630Label.Show(m_menu.IsItemChecked(ID_EQ630) ? nCmdShow : SW_HIDE);
+	m_eq630Slider.Show(m_menu.IsItemChecked(ID_EQ630) ? nCmdShow : SW_HIDE);
+	m_eq800Label.Show(m_menu.IsItemChecked(ID_EQ800) ? nCmdShow : SW_HIDE);
+	m_eq800Slider.Show(m_menu.IsItemChecked(ID_EQ800) ? nCmdShow : SW_HIDE);
+	m_eq1kLabel.Show(m_menu.IsItemChecked(ID_EQ1K) ? nCmdShow : SW_HIDE);
+	m_eq1kSlider.Show(m_menu.IsItemChecked(ID_EQ1K) ? nCmdShow : SW_HIDE);
+	m_eq1_25kLabel.Show(m_menu.IsItemChecked(ID_EQ1_25K) ? nCmdShow : SW_HIDE);
+	m_eq1_25kSlider.Show(m_menu.IsItemChecked(ID_EQ1_25K) ? nCmdShow : SW_HIDE);
+	m_eq1_6kLabel.Show(m_menu.IsItemChecked(ID_EQ1_6K) ? nCmdShow : SW_HIDE);
+	m_eq1_6kSlider.Show(m_menu.IsItemChecked(ID_EQ1_6K) ? nCmdShow : SW_HIDE);
+	m_eq2kLabel.Show(m_menu.IsItemChecked(ID_EQ2K) ? nCmdShow : SW_HIDE);
+	m_eq2kSlider.Show(m_menu.IsItemChecked(ID_EQ2K) ? nCmdShow : SW_HIDE);
+	m_eq2_5kLabel.Show(m_menu.IsItemChecked(ID_EQ2_5K) ? nCmdShow : SW_HIDE);
+	m_eq2_5kSlider.Show(m_menu.IsItemChecked(ID_EQ2_5K) ? nCmdShow : SW_HIDE);
+	m_eq3_15kLabel.Show(m_menu.IsItemChecked(ID_EQ3_15K) ? nCmdShow : SW_HIDE);
+	m_eq3_15kSlider.Show(m_menu.IsItemChecked(ID_EQ3_15K) ? nCmdShow : SW_HIDE);
+	m_eq4kLabel.Show(m_menu.IsItemChecked(ID_EQ4K) ? nCmdShow : SW_HIDE);
+	m_eq4kSlider.Show(m_menu.IsItemChecked(ID_EQ4K) ? nCmdShow : SW_HIDE);
+	m_eq5kLabel.Show(m_menu.IsItemChecked(ID_EQ5K) ? nCmdShow : SW_HIDE);
+	m_eq5kSlider.Show(m_menu.IsItemChecked(ID_EQ5K) ? nCmdShow : SW_HIDE);
+	m_eq6_3kLabel.Show(m_menu.IsItemChecked(ID_EQ6_3K) ? nCmdShow : SW_HIDE);
+	m_eq6_3kSlider.Show(m_menu.IsItemChecked(ID_EQ6_3K) ? nCmdShow : SW_HIDE);
+	m_eq8kLabel.Show(m_menu.IsItemChecked(ID_EQ8K) ? nCmdShow : SW_HIDE);
+	m_eq8kSlider.Show(m_menu.IsItemChecked(ID_EQ8K) ? nCmdShow : SW_HIDE);
+	m_eq10kLabel.Show(m_menu.IsItemChecked(ID_EQ10K) ? nCmdShow : SW_HIDE);
+	m_eq10kSlider.Show(m_menu.IsItemChecked(ID_EQ10K) ? nCmdShow : SW_HIDE);
+	m_eq12_5kLabel.Show(m_menu.IsItemChecked(ID_EQ12_5K) ? nCmdShow : SW_HIDE);
+	m_eq12_5kSlider.Show(m_menu.IsItemChecked(ID_EQ12_5K) ? nCmdShow : SW_HIDE);
+	m_eq16kLabel.Show(m_menu.IsItemChecked(ID_EQ16K) ? nCmdShow : SW_HIDE);
+	m_eq16kSlider.Show(m_menu.IsItemChecked(ID_EQ16K) ? nCmdShow : SW_HIDE);
+	m_eq20kLabel.Show(m_menu.IsItemChecked(ID_EQ20K) ? nCmdShow : SW_HIDE);
+	m_eq20kSlider.Show(m_menu.IsItemChecked(ID_EQ20K) ? nCmdShow : SW_HIDE);
+	m_menu.CheckItem(ID_EQ, uCheck);
 }
 //----------------------------------------------------------------------------
 // 再生速度の設定
@@ -582,6 +993,7 @@ LRESULT CMainWnd::OnCreate()
 	SetPitchVisible(true);
 	SetVolumeVisible(true);
 	SetPanVisible(true);
+	SetEQVisible(true);
 
 	m_timeLabel.SetTime(0, 0);
 
