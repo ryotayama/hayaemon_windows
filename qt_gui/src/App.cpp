@@ -3,6 +3,8 @@
 //----------------------------------------------------------------------------
 #include "App.h"
 #include <QApplication>
+#include <QDir>
+#include <QFileInfo>
 #include <QMessageBox>
 #include <QString>
 #include <QTranslator>
@@ -45,6 +47,11 @@ int CApp::Run(int argc, char *argv[])
 	}
 	
 	m_cstrName = QObject::tr("Hayaemon");
+
+	QString filePath = QCoreApplication::applicationFilePath();
+	QString fileName = QFileInfo(filePath).fileName();
+	m_strPath = filePath.left(filePath.length() - fileName.length());
+	m_strPath = QDir::toNativeSeparators(m_strPath);
 
 	m_wnd = new CMainWnd(*this);
 	if(!m_wnd->Create()) return 0;

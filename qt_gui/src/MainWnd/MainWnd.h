@@ -78,7 +78,7 @@ public: // 関数
 		m_eq12_5kLabel(*this), m_eq12_5kSlider(*this),
 		m_eq16kLabel(*this), m_eq16kSlider(*this),
 		m_eq20kLabel(*this), m_eq20kSlider(*this),
-		m_sound(*this), m_bFinish(FALSE), nCurPlayTab(0),
+		m_sound(*this), isInitFileRead(FALSE), m_bFinish(FALSE), nCurPlayTab(0),
 		m_timeThreadRunning(false) { }
 	virtual ~CMainWnd();
 
@@ -89,6 +89,8 @@ public: // 関数
 	virtual void DownPitch(double pitch);
 	virtual void DownSpeed(double speed);
 	virtual BOOL OpenFile(const QString & lpszFilePath, int nCount = 1);
+	virtual void OpenInitFile();
+	virtual void OpenInitFileAfterShow();
 	virtual BOOL OpenNext();
 	virtual void Pause();
 	virtual BOOL Play();
@@ -146,7 +148,10 @@ public: // 関数
 	virtual void UpFreq(double freq);
 	virtual void UpPitch(double pitch);
 	virtual void UpSpeed(double speed);
+	virtual void WriteInitFile();
 
+	// メッセージ
+	virtual void OnClose();
 	virtual LRESULT OnCreate();
 	virtual void OnTimer(UINT id);
 
@@ -235,6 +240,7 @@ protected: // メンバ変数
 
 	CSound m_sound;
 
+	BOOL isInitFileRead; // INI ファイルがすでに読み込まれたかどうか
 	BOOL m_bFinish; // 再生が完了したかどうか
 	int nCurPlayTab; // 現在再生中のファイルが存在しているタブ
 	std::unique_ptr<std::thread> m_timeThread;
@@ -282,6 +288,7 @@ private:
 											 QAction * visibilityAction, const QString &title,
 											 void (CMainWnd::*callback)(bool visible),
 											 const QPoint & pos);
+	void closeEvent(QCloseEvent *event) final;
 	void dragEnterEvent(QDragEnterEvent * e) final;
 	void dropEvent(QDropEvent * e) final;
 	// Qtのラッパー

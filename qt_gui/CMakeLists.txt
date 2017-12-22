@@ -38,6 +38,8 @@ set(SRC_MAINWND
   ${SRC_DIR}/MainWnd/PitchSlider_MainWnd.cpp
   ${SRC_DIR}/MainWnd/PitchSlider_MainWnd.h
   ${SRC_DIR}/MainWnd/PitchSpinBox.h
+  ${SRC_DIR}/MainWnd/Platform.h
+  ${SRC_DIR}/MainWnd/Platform_macOS.cpp
   ${SRC_DIR}/MainWnd/PlayListView_MainWnd.cpp
   ${SRC_DIR}/MainWnd/PlayListView_MainWnd.h
   ${SRC_DIR}/MainWnd/Sound.cpp

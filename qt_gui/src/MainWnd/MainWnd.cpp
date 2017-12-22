@@ -13,6 +13,7 @@
 #include "../App.h"
 #include "../Common/CommandList.h"
 #include "PlayListView_MainWnd.h"
+#include "Platform.h"
 #include "Utility.h"
 //----------------------------------------------------------------------------
 // ドロップされたファイルの追加
@@ -238,13 +239,9 @@ BOOL CMainWnd::CreateControls()
 			return FALSE;
 		}
 
-		const UINT visibles[] = {ID_EQ125, ID_EQ250, ID_EQ500, ID_EQ1K, ID_EQ2K,
-														 ID_EQ4K, ID_EQ8K, ID_EQ16K};
-		bool visible = std::find(std::begin(visibles), std::end(visibles),
-														 item.menuId) != std::end(visibles);
-		label->setVisible(visible);
-		spinbox->setVisible(visible);
-		slider->setVisible(visible);
+		label->setVisible(false);
+		spinbox->setVisible(false);
+		slider->setVisible(false);
 
 		eqLayout->addWidget(label, row, 0);
 		eqLayout->addWidget(spinbox, row, 1);
@@ -254,7 +251,7 @@ BOOL CMainWnd::CreateControls()
 		auto action =
 				new QAction(QString(item.title + "Hz").replace("K", " K"), this);
 		action->setCheckable(true);
-		action->setChecked(visible);
+		action->setChecked(false);
 		connect(action, &QAction::toggled,
 						[&] (bool checked) {
 							m_menu.CheckItem(item.menuId,
@@ -327,6 +324,85 @@ BOOL CMainWnd::OpenFile(const QString & lpszFilePath, int nCount)
 	m_timeSlider.SetTime(0, m_sound.ChannelGetLength());
 
 	return TRUE;
+}
+//----------------------------------------------------------------------------
+// INI ファイルを開く
+//----------------------------------------------------------------------------
+void CMainWnd::OpenInitFile()
+{
+	TCHAR chPath[255];
+	lstrcpy(chPath,
+					ToTstring(m_rApp.GetFilePath() + QString("Setting.ini")).c_str());
+
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq20"), 0, chPath))
+		m_menu.SwitchEQVisible(ID_EQ20);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq25"), 0, chPath))
+		m_menu.SwitchEQVisible(ID_EQ25);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq31_5"), 0, chPath))
+		m_menu.SwitchEQVisible(ID_EQ31_5);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq40"), 0, chPath))
+		m_menu.SwitchEQVisible(ID_EQ40);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq50"), 0, chPath))
+		m_menu.SwitchEQVisible(ID_EQ50);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq63"), 0, chPath))
+		m_menu.SwitchEQVisible(ID_EQ63);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq80"), 0, chPath))
+		m_menu.SwitchEQVisible(ID_EQ80);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq100"), 0, chPath))
+		m_menu.SwitchEQVisible(ID_EQ100);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq125"), 1, chPath))
+		m_menu.SwitchEQVisible(ID_EQ125);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq160"), 0, chPath))
+		m_menu.SwitchEQVisible(ID_EQ160);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq200"), 0, chPath))
+		m_menu.SwitchEQVisible(ID_EQ200);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq250"), 1, chPath))
+		m_menu.SwitchEQVisible(ID_EQ250);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq315"), 0, chPath))
+		m_menu.SwitchEQVisible(ID_EQ315);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq400"), 0, chPath))
+		m_menu.SwitchEQVisible(ID_EQ400);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq500"), 1, chPath))
+		m_menu.SwitchEQVisible(ID_EQ500);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq630"), 0, chPath))
+		m_menu.SwitchEQVisible(ID_EQ630);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq800"), 0, chPath))
+		m_menu.SwitchEQVisible(ID_EQ800);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq1k"), 1, chPath))
+		m_menu.SwitchEQVisible(ID_EQ1K);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq1_25k"), 0, chPath))
+		m_menu.SwitchEQVisible(ID_EQ1_25K);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq1_6k"), 0, chPath))
+		m_menu.SwitchEQVisible(ID_EQ1_6K);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq2k"), 1, chPath))
+		m_menu.SwitchEQVisible(ID_EQ2K);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq2_5k"), 0, chPath))
+		m_menu.SwitchEQVisible(ID_EQ2_5K);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq3_15k"), 0, chPath))
+		m_menu.SwitchEQVisible(ID_EQ3_15K);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq4k"), 1, chPath))
+		m_menu.SwitchEQVisible(ID_EQ4K);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq5k"), 0, chPath))
+		m_menu.SwitchEQVisible(ID_EQ5K);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq6_3k"), 0, chPath))
+		m_menu.SwitchEQVisible(ID_EQ6_3K);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq8k"), 1, chPath))
+		m_menu.SwitchEQVisible(ID_EQ8K);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq10k"), 0, chPath))
+		m_menu.SwitchEQVisible(ID_EQ10K);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq12_5k"), 0, chPath))
+		m_menu.SwitchEQVisible(ID_EQ12_5K);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq16k"), 1, chPath))
+		m_menu.SwitchEQVisible(ID_EQ16K);
+	if(GetPrivateProfileInt(_T("Visible"), _T("eq20k"), 0, chPath))
+		m_menu.SwitchEQVisible(ID_EQ20K);
+}
+//----------------------------------------------------------------------------
+// INI ファイルを開く
+//----------------------------------------------------------------------------
+void CMainWnd::OpenInitFileAfterShow()
+{
+	isInitFileRead = TRUE;
 }
 //----------------------------------------------------------------------------
 // 次のファイルを開く
@@ -972,6 +1048,120 @@ void CMainWnd::UpSpeed(double speed)
 	m_speedLabel.SetSpeed((double)(newSpeed / dCalc));
 }
 //----------------------------------------------------------------------------
+// INI ファイルの書き込み
+//----------------------------------------------------------------------------
+void CMainWnd::WriteInitFile()
+{
+	if(!isInitFileRead) return;
+
+	tstring initFilePath =
+			ToTstring(m_rApp.GetFilePath() + QString("Setting.ini"));
+
+	TCHAR buf[255];
+
+	// 表示・非表示の設定
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ20) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq20"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ25) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq25"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ31_5) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq31_5"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ40) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq40"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ50) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq50"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ63) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq63"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ80) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq80"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ100) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq100"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ125) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq125"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ160) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq160"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ200) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq200"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ250) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq250"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ315) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq315"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ400) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq400"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ500) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq500"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ630) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq630"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ800) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq800"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ1K) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq1k"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ1_25K) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq1_25k"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ1_6K) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq1_6k"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ2K) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq2k"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ2_5K) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq2_5k"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ3_15K) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq3_15k"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ4K) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq4k"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ5K) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq5k"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ6_3K) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq6_3k"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ8K) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq8k"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ10K) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq10k"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ12_5K) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq12_5k"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ16K) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq16k"), buf,
+		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ20K) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq20k"), buf,
+		 initFilePath.c_str());
+}
+//----------------------------------------------------------------------------
+// 閉じられようとしている
+//----------------------------------------------------------------------------
+void CMainWnd::OnClose()
+{
+	WriteInitFile();
+}
+//----------------------------------------------------------------------------
 // 作成された
 //----------------------------------------------------------------------------
 LRESULT CMainWnd::OnCreate()
@@ -997,11 +1187,15 @@ LRESULT CMainWnd::OnCreate()
 
 	m_timeLabel.SetTime(0, 0);
 
+	OpenInitFile();
+
 	// bass の初期化
 	if(!m_sound.Init()) {
 		m_rApp.ShowError(tr("failed to init BASS.DLL."));
 		return FALSE;
 	}
+
+	OpenInitFileAfterShow();
 
 	m_timeThreadRunning = true;
 	m_timeThread.reset(
@@ -1115,6 +1309,14 @@ void CMainWnd::ShowContextMenu(QWidget * widget, QMenu * menu,
 	}
 
 	contextMenu.exec(widget->mapToGlobal(pos));
+}
+//----------------------------------------------------------------------------
+// 終了イベント
+//----------------------------------------------------------------------------
+void CMainWnd::closeEvent(QCloseEvent * event)
+{
+	OnClose();
+	event->accept();
 }
 //----------------------------------------------------------------------------
 // Qt固有の実装

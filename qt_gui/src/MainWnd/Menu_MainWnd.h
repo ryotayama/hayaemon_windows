@@ -20,6 +20,7 @@ public: // 関数
 		: m_rMainWnd(mainWnd) { }
 
 	virtual BOOL Create();
+	void SwitchEQVisible(UINT uID);
 	void OnSpeedMenuSelected(bool checked);
 	void OnFreqMenuSelected(bool checked);
 	void OnPitchMenuSelected(bool checked);
