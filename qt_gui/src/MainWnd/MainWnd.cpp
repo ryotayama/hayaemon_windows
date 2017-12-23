@@ -1167,6 +1167,9 @@ void CMainWnd::OnClose()
 LRESULT CMainWnd::OnCreate()
 {
 	Ui::MainWnd::setupUi(this);
+#if __APPLE__
+	menuBar()->setNativeMenuBar(false);
+#endif
 	setAcceptDrops(true);
 
 	// メニューの作成
