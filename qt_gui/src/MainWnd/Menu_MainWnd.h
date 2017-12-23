@@ -21,6 +21,7 @@ public: // 関数
 
 	virtual BOOL Create();
 	void SwitchEQVisible(UINT uID);
+	void SwitchItemChecked(UINT uID);
 	void OnSpeedMenuSelected(bool checked);
 	void OnFreqMenuSelected(bool checked);
 	void OnPitchMenuSelected(bool checked);

@@ -24,6 +24,14 @@ void CMenu_MainWnd::SwitchEQVisible(UINT uID)
 	CheckItem(uID, IsItemChecked(uID) ? MF_UNCHECKED : MF_CHECKED);
 }
 //----------------------------------------------------------------------------
+// メニューのチェック状態を切り替える
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::SwitchItemChecked(UINT uID)
+{
+	BOOL bCheck = !IsItemChecked(uID);
+	CheckItem(uID, bCheck ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
 // 表示 → 再生速度メニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnSpeedMenuSelected(bool checked)
@@ -984,6 +992,12 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_PITCHDEC_0, m_rMainWnd.actionPitchDigit0},
 		{ID_PITCHDEC_1, m_rMainWnd.actionPitchDigit1},
 		{ID_PITCHDEC_2, m_rMainWnd.actionPitchDigit2},
+		{ID_RECOVERSPEEDVISIBLE, m_rMainWnd.actionRecoverSpeedVisible},
+		{ID_RECOVERFREQVISIBLE, m_rMainWnd.actionRecoverFreqVisible},
+		{ID_RECOVERPITCHVISIBLE, m_rMainWnd.actionRecoverPitchVisible},
+		{ID_RECOVERVOLUMEVISIBLE, m_rMainWnd.actionRecoverVolumeVisible},
+		{ID_RECOVERPANVISIBLE, m_rMainWnd.actionRecoverPanVisible},
+		{ID_RECOVEREQVISIBLE, m_rMainWnd.actionRecoverEQVisible},
 	};
 }
 //----------------------------------------------------------------------------

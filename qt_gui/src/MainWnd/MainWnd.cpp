@@ -1060,6 +1060,48 @@ void CMainWnd::WriteInitFile()
 	TCHAR buf[255];
 
 	// 表示・非表示の設定
+	_stprintf_s(buf, _T("%d"),
+		m_menu.IsItemChecked(ID_RECOVERSPEEDVISIBLE) ? 1 : 0 ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("RecoverSpeed"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_SPEED) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("Speed"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"),
+		m_menu.IsItemChecked(ID_RECOVERFREQVISIBLE) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("RecoverFrequency"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_FREQ) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("Frequency"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"),
+		m_menu.IsItemChecked(ID_RECOVERPITCHVISIBLE) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("RecoverPitch"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_PITCH) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("Pitch"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"),
+		m_menu.IsItemChecked(ID_RECOVERVOLUMEVISIBLE) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("RecoverVolume"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_VOLUME) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("Volume"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"),
+		m_menu.IsItemChecked(ID_RECOVERPANVISIBLE) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("RecoverPan"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_PAN) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("Pan"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"),
+		m_menu.IsItemChecked(ID_RECOVEREQVISIBLE) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("RecoverEQ"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("eq"), buf, 
+		initFilePath.c_str());
 	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ20) ? 1 : 0);
 	WritePrivateProfileString(_T("Visible"), _T("eq20"), buf,
 		 initFilePath.c_str());
@@ -1178,15 +1220,52 @@ LRESULT CMainWnd::OnCreate()
 		return FALSE;
 	}
 
+	TCHAR chPath[255];
+	lstrcpy(chPath,
+					ToTstring(m_rApp.GetFilePath() + QString("Setting.ini")).c_str());
+
+	BOOL bSpeedVisible = TRUE, bFreqVisible = TRUE, bPitchVisible = TRUE,
+		bVolumeVisible = TRUE, bPanVisible = TRUE, bEQVisible = TRUE;
+	if(GetPrivateProfileInt(_T("Visible"), _T("RecoverSpeed"), 1, chPath)) {
+		m_menu.SwitchItemChecked(ID_RECOVERSPEEDVISIBLE);
+		bSpeedVisible = GetPrivateProfileInt(_T("Visible"), _T("Speed"), 1,
+			chPath);
+	}
+	if(GetPrivateProfileInt(_T("Visible"), _T("RecoverFrequency"), 1, chPath)) {
+		m_menu.SwitchItemChecked(ID_RECOVERFREQVISIBLE);
+		bFreqVisible = GetPrivateProfileInt(_T("Visible"), _T("Frequency"), 1,
+			chPath);
+	}
+	if(GetPrivateProfileInt(_T("Visible"), _T("RecoverPitch"), 1, chPath)) {
+		m_menu.SwitchItemChecked(ID_RECOVERPITCHVISIBLE);
+		bPitchVisible = GetPrivateProfileInt(_T("Visible"), _T("Pitch"), 1,
+			chPath);
+	}
+	if(GetPrivateProfileInt(_T("Visible"), _T("RecoverVolume"), 1, chPath)) {
+		m_menu.SwitchItemChecked(ID_RECOVERVOLUMEVISIBLE);
+		bVolumeVisible = GetPrivateProfileInt(_T("Visible"), _T("Volume"), 1,
+			chPath);
+	}
+	if(GetPrivateProfileInt(_T("Visible"), _T("RecoverPan"), 1, chPath)) {
+		m_menu.SwitchItemChecked(ID_RECOVERPANVISIBLE);
+		bPanVisible = GetPrivateProfileInt(_T("Visible"), _T("Pan"), 1,
+			chPath);
+	}
+	if(GetPrivateProfileInt(_T("Visible"), _T("RecoverEQ"), 1, chPath)) {
+		m_menu.SwitchItemChecked(ID_RECOVEREQVISIBLE);
+		bEQVisible = GetPrivateProfileInt(_T("Visible"), _T("EQ"), 0,
+			chPath);
+	}
+
 	if(!CreateControls())
 		return FALSE;
 
-	SetSpeedVisible(true);
-	SetFreqVisible(true);
-	SetPitchVisible(true);
-	SetVolumeVisible(true);
-	SetPanVisible(true);
-	SetEQVisible(true);
+	if(bSpeedVisible) SetSpeedVisible(true);
+	if(bFreqVisible) SetFreqVisible(true);
+	if(bPitchVisible) SetPitchVisible(true);
+	if(bVolumeVisible) SetVolumeVisible(true);
+	if(bPanVisible) SetPanVisible(true);
+	if(bEQVisible) SetEQVisible(true);
 
 	m_timeLabel.SetTime(0, 0);
 

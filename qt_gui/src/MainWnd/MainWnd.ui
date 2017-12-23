@@ -498,9 +498,33 @@
     <addaction name="actionPanVisible"/>
     <addaction name="menuViewEQ"/>
    </widget>
+   <widget class="QMenu" name="menuSystem_S">
+    <property name="title">
+     <string>System(&amp;S)</string>
+    </property>
+    <widget class="QMenu" name="menuRecover_R">
+     <property name="title">
+      <string>Recover(&amp;R)</string>
+     </property>
+     <widget class="QMenu" name="menuVisible_V">
+      <property name="title">
+       <string>Visible(&amp;V)</string>
+      </property>
+      <addaction name="actionRecoverSpeedVisible"/>
+      <addaction name="actionRecoverFreqVisible"/>
+      <addaction name="actionRecoverPitchVisible"/>
+      <addaction name="actionRecoverVolumeVisible"/>
+      <addaction name="actionRecoverPanVisible"/>
+      <addaction name="actionRecoverEQVisible"/>
+     </widget>
+     <addaction name="menuVisible_V"/>
+    </widget>
+    <addaction name="menuRecover_R"/>
+   </widget>
    <addaction name="menuView_V"/>
    <addaction name="menuPlay_P"/>
    <addaction name="menuEffect"/>
+   <addaction name="menuSystem_S"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionPlayPlayPause">
@@ -1181,6 +1205,54 @@
    </property>
    <property name="text">
     <string>Visible(&amp;V)</string>
+   </property>
+  </action>
+  <action name="actionRecoverSpeedVisible">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Speed(&amp;S)</string>
+   </property>
+  </action>
+  <action name="actionRecoverFreqVisible">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Frequency(&amp;F)</string>
+   </property>
+  </action>
+  <action name="actionRecoverPitchVisible">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Pitch(&amp;P)</string>
+   </property>
+  </action>
+  <action name="actionRecoverVolumeVisible">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Volume(&amp;V)</string>
+   </property>
+  </action>
+  <action name="actionRecoverPanVisible">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>PAN(&amp;P)</string>
+   </property>
+  </action>
+  <action name="actionRecoverEQVisible">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Graphic Equalizer(&amp;G)</string>
    </property>
   </action>
  </widget>
