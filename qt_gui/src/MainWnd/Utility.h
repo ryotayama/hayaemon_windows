@@ -7,19 +7,23 @@
 #include <QString>
 #include "../Common/Define.h"
 
-class QString;
-
-tstring ToTstring(const QString & str)
+inline tstring ToTstring(const QString & str)
 {
 #ifdef UNICODE
-# if _WIN32
 	return str.toStdWString();
-# elif __APPLE__
-	return str.toStdU16String();
-#endif
 #else
 	return str.toStdString();
 #endif
+}
+
+inline QString ToQString(const std::string & str)
+{
+	return QString::fromStdString(str);
+}
+
+inline QString ToQString(const std::wstring & str)
+{
+	return QString::fromStdWString(str);
 }
 
 #endif

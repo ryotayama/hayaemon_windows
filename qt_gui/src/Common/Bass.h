@@ -4,6 +4,8 @@
 #ifndef BassH
 #define BassH
 
+#include <QString>
+
 #include "bass/bass.h"
 #include "bass/bass_ape.h"
 #if _WIN32
@@ -12,6 +14,7 @@
 #include "bass/basscd.h"
 #endif
 #include "bass/bassflac.h"
+
 #include "Define.h"
 
 #ifdef _UNICODE
@@ -99,6 +102,11 @@ public: // 関数
 	}
 	virtual BOOL StreamCreateFile(LPCTSTR lpFilePath) {
 		StreamFree();
+#ifdef UNICODE
+		std::wstring s = lpFilePath;
+		auto upath = QString::fromStdWString(s).toStdU16String();
+		lpFilePath = (LPCTSTR)upath.c_str();
+#endif
 		m_hStream = BASS_StreamCreateFile(FALSE, lpFilePath, 0, 0,
 			BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
 		if(!m_hStream) m_hStream = BASS_APE_StreamCreateFile(FALSE, lpFilePath,

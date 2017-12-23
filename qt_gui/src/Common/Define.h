@@ -12,11 +12,7 @@
 //--------------------------------------------------------------------------
 #ifndef _T
 # ifdef UNICODE
-#  if _WIN32
-#   define _T(x) L ## x
-#  elif __APPLE__
-#   define _T(x) u ## x
-#  endif
+#  define _T(x) L ## x
 # else
 #  define _T(x) x
 # endif
@@ -46,11 +42,7 @@ typedef uint64_t QWORD;
 typedef long long LRESULT;
 
 #ifdef UNICODE
-# if _WIN32
 typedef wchar_t TCHAR;
-# elif __APPLE__
-typedef char16_t TCHAR;
-# endif
 #else
 typedef char TCHAR;
 #endif
