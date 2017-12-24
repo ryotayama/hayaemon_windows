@@ -518,6 +518,15 @@
       <addaction name="actionRecoverEQVisible"/>
      </widget>
      <addaction name="menuVisible_V"/>
+     <addaction name="separator"/>
+     <addaction name="actionRecoverSpeed"/>
+     <addaction name="actionRecoverFreq"/>
+     <addaction name="actionRecoverPitch"/>
+     <addaction name="separator"/>
+     <addaction name="actionRecoverVolume"/>
+     <addaction name="actionRecoverPan"/>
+     <addaction name="separator"/>
+     <addaction name="actionRecoverEQ"/>
     </widget>
     <addaction name="menuRecover_R"/>
    </widget>
@@ -1248,6 +1257,54 @@
    </property>
   </action>
   <action name="actionRecoverEQVisible">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Graphic Equalizer(&amp;G)</string>
+   </property>
+  </action>
+  <action name="actionRecoverSpeed">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Speed(&amp;S)</string>
+   </property>
+  </action>
+  <action name="actionRecoverFreq">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Frequency(&amp;F)</string>
+   </property>
+  </action>
+  <action name="actionRecoverPitch">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Pitch(&amp;P)</string>
+   </property>
+  </action>
+  <action name="actionRecoverVolume">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Volume(&amp;V)</string>
+   </property>
+  </action>
+  <action name="actionRecoverPan">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Pan(&amp;P)</string>
+   </property>
+  </action>
+  <action name="actionRecoverEQ">
    <property name="checkable">
     <bool>true</bool>
    </property>

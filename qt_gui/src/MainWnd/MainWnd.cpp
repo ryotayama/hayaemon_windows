@@ -60,6 +60,10 @@ void CMainWnd::AddDropFiles(const QList<QUrl> & urls, BOOL bClear)
 //----------------------------------------------------------------------------
 BOOL CMainWnd::CreateControls()
 {
+	TCHAR chPath[255], buf[255];
+	lstrcpy(chPath,
+					ToTstring(m_rApp.GetFilePath() + QString("Setting.ini")).c_str());
+
 	// ツールバーの作成
 	if(!m_toolBar.Create()) {
 		m_rApp.ShowError(tr("failed to create toolbar."));
@@ -90,17 +94,36 @@ BOOL CMainWnd::CreateControls()
 		return FALSE;
 	}
 
-	double _dMinSpeed = 10.0;
-	double _dMaxSpeed = 1200.0;
-	int _nSpeedDecimalDigit = 1;
+	GetPrivateProfileString(_T("Options"), _T("MinimumSpeed"), _T("10.0"),
+		buf, 255, chPath);
+	double _dMinSpeed = (double)_tstof(buf);
+	GetPrivateProfileString(_T("Options"), _T("MaximumSpeed"), _T("1200.0"),
+		buf, 255, chPath);
+	double _dMaxSpeed = (double)_tstof(buf);
+	GetPrivateProfileString(_T("Options"), _T("SpeedDecimalDigit"), _T("1"),
+		buf, 255, chPath);
+	int _nSpeedDecimalDigit = (int)_ttoi(buf);
 	if(_nSpeedDecimalDigit == 0) m_menu.OnSetSpeedDecimal0MenuSelected();
 	else if(_nSpeedDecimalDigit == 1)
 		m_menu.OnSetSpeedDecimal1MenuSelected();
 	else if(_nSpeedDecimalDigit == 2)
 		m_menu.OnSetSpeedDecimal2MenuSelected();
+	if(_dMinSpeed < 1.0) _dMinSpeed = 1.0;
+	if(_dMaxSpeed > 5000.0) _dMaxSpeed = 5000.0;
 
 	m_speedSlider.SetLimit(_dMinSpeed, _dMaxSpeed);
 	m_speedLabel.SetLimit(_dMinSpeed, _dMaxSpeed);
+
+	if(GetPrivateProfileInt(_T("Options"), _T("RecoverSpeed"), 0, chPath)) {
+		m_menu.SwitchItemChecked(ID_RECOVERSPEED);
+		int speed = GetPrivateProfileInt(_T("Options"), _T("Speed"), 1000,
+			chPath);
+		m_speedLabel.SetSpeed((double)(speed
+			/ pow(10.0, m_speedLabel.GetDecimalDigit())));
+		m_speedSlider.SetThumbPos((LONG)speed, TRUE);
+		SetSpeed((double)(speed
+			/ pow(10.0, m_speedLabel.GetDecimalDigit())));
+	}
 
 	// 再生周波数表示用ラベルの作成
 	if(!m_freqLabel.Create()) {
@@ -114,15 +137,36 @@ BOOL CMainWnd::CreateControls()
 		return FALSE;
 	}
 
-	double _dMinFreq = 10.0;
-	double _dMaxFreq = 1200.0;
-	int _nFreqDecimalDigit = 1;
+	GetPrivateProfileString(_T("Options"), _T("MinimumFrequency"),
+		_T("10.0"), 
+		buf, 255, chPath);
+	double _dMinFreq = (double)_tstof(buf);
+	GetPrivateProfileString(_T("Options"), _T("MaximumFrequency"), 
+		_T("1200.0"), buf, 255, chPath);
+	double _dMaxFreq = (double)_tstof(buf);
+	GetPrivateProfileString(_T("Options"), _T("FrequencyDecimalDigit"),
+		_T("1"), buf, 255, chPath);
+	int _nFreqDecimalDigit = (int)_ttoi(buf);
 	if(_nFreqDecimalDigit == 0) m_menu.OnSetFreqDecimal0MenuSelected();
 	else if(_nFreqDecimalDigit == 1) m_menu.OnSetFreqDecimal1MenuSelected();
 	else if(_nFreqDecimalDigit == 2) m_menu.OnSetFreqDecimal2MenuSelected();
+	if(_dMinFreq < 1.0) _dMinFreq = 1.0;
+	if(_dMaxFreq > 5000.0) _dMaxFreq = 5000.0;
 
 	m_freqSlider.SetLimit(_dMinFreq, _dMaxFreq);
 	m_freqLabel.SetLimit(_dMinFreq, _dMaxFreq);
+
+	if(GetPrivateProfileInt(_T("Options"), _T("RecoverFrequency"), 0,
+			chPath)) {
+		m_menu.SwitchItemChecked(ID_RECOVERFREQ);
+		int freq = GetPrivateProfileInt(_T("Options"), _T("Frequency"),
+					1000, chPath);
+		m_freqLabel.SetFreq((double)(freq
+			/ pow(10.0, m_freqLabel.GetDecimalDigit())));
+		m_freqSlider.SetThumbPos((LONG)freq, TRUE);
+		SetFreq((double)(freq
+			/ pow(10.0, m_freqLabel.GetDecimalDigit())));
+	}
 
 	// 音程表示用ラベルの作成
 	if(!m_pitchLabel.Create()) {
@@ -136,9 +180,15 @@ BOOL CMainWnd::CreateControls()
 		return FALSE;
 	}
 
-	double _dMinPitch = -24.0;
-	double _dMaxPitch = 24.0;
-	int _nPitchDecimalDigit = 1;
+	GetPrivateProfileString(_T("Options"), _T("MinimumPitch"), _T("-24.0"), 
+		buf, 255, chPath);
+	double _dMinPitch = (double)_tstof(buf);
+	GetPrivateProfileString(_T("Options"), _T("MaximumPitch"), _T("24.0"),
+		buf, 255, chPath);
+	double _dMaxPitch = (double)_tstof(buf);
+	GetPrivateProfileString(_T("Options"), _T("PitchDecimalDigit"), _T("1"),
+		buf, 255, chPath);
+	int _nPitchDecimalDigit = (int)_ttoi(buf);
 	if(_nPitchDecimalDigit == 0) m_menu.OnSetPitchDecimal0MenuSelected();
 	else if(_nPitchDecimalDigit == 1)
 		m_menu.OnSetPitchDecimal1MenuSelected();
@@ -151,6 +201,17 @@ BOOL CMainWnd::CreateControls()
 	m_pitchSlider.SetLimit(_dMinPitch, _dMaxPitch);
 	m_pitchLabel.SetLimit(_dMinPitch, _dMaxPitch);
 
+	if(GetPrivateProfileInt(_T("Options"), _T("RecoverPitch"), 0, chPath)) {
+		m_menu.SwitchItemChecked(ID_RECOVERPITCH);
+		int pitch = GetPrivateProfileInt(_T("Options"), _T("Pitch"), 1000,
+			chPath);
+		m_pitchLabel.SetPitch((double)(pitch
+			/ pow(10.0, m_pitchLabel.GetDecimalDigit())));
+		m_pitchSlider.SetThumbPos((LONG)pitch, TRUE);
+		SetPitch((double)(pitch
+			/ pow(10.0, m_pitchLabel.GetDecimalDigit())));
+	}
+
 	// 音量表示用ラベルの作成
 	if(!m_volumeLabel.Create()) {
 		m_rApp.ShowError(tr("failed to create volume label."));
@@ -161,6 +222,15 @@ BOOL CMainWnd::CreateControls()
 	if(!m_volumeSlider.Create()) {
 		m_rApp.ShowError(tr("failed to create volume slider."));
 		return FALSE;
+	}
+	if(GetPrivateProfileInt(_T("Options"), _T("RecoverVolume"), 1, chPath))
+	{
+		m_menu.SwitchItemChecked(ID_RECOVERVOLUME);
+		int volume = GetPrivateProfileInt(_T("Options"), _T("Volume"), 1000,
+			chPath);
+		m_volumeLabel.SetVolume((double)(volume / 10.0));
+		m_volumeSlider.SetThumbPos(volume);
+		SetVolume((double)(volume / 10.0));
 	}
 
 	// パン表示用ラベルの作成
@@ -173,6 +243,14 @@ BOOL CMainWnd::CreateControls()
 	if(!m_panSlider.Create()) {
 		m_rApp.ShowError(tr("failed to create pan slider."));
 		return FALSE;
+	}
+	if(GetPrivateProfileInt(_T("Options"), _T("RecoverPan"), 0, chPath)) {
+		m_menu.SwitchItemChecked(ID_RECOVERPAN);
+		int pan = GetPrivateProfileInt(_T("Options"), _T("Pan"), 0,
+			chPath);
+		m_panLabel.SetPan(pan);
+		m_panSlider.SetThumbPos(pan);
+		SetPan(pan);
 	}
 
 	m_eqItems = std::vector<EQItem>{
@@ -260,6 +338,17 @@ BOOL CMainWnd::CreateControls()
 						});
 		menuViewEQ->addAction(action);
 		m_menu.m_actionMap.insert({item.menuId, action});
+	}
+	if(GetPrivateProfileInt(_T("Options"), _T("RecoverEQ"), 0, chPath)) {
+		m_menu.SwitchItemChecked(ID_RECOVEREQ);
+		for (auto &item : m_eqItems) {
+			tstring key = ToTstring("EQ" + item.title);
+			int eq = GetPrivateProfileInt(_T("Options"), key.c_str(), 0,
+				chPath);
+			item.label.SetEQ(eq);
+			item.slider.SetThumbPos(eq);
+			(this->*item.setEQ)((LONG)eq);
+		}
 	}
 
 	// タブの作成
@@ -1195,6 +1284,167 @@ void CMainWnd::WriteInitFile()
 	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ20K) ? 1 : 0);
 	WritePrivateProfileString(_T("Visible"), _T("eq20k"), buf,
 		 initFilePath.c_str());
+
+	// その他の設定
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_RECOVERSPEED) ? 1 : 0);
+	WritePrivateProfileString(_T("Options"), _T("RecoverSpeed"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_speedSlider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("Speed"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_RECOVERFREQ) ? 1 : 0);
+	WritePrivateProfileString(_T("Options"), _T("RecoverFrequency"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_freqSlider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("Frequency"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_RECOVERPITCH) ? 1 : 0);
+	WritePrivateProfileString(_T("Options"), _T("RecoverPitch"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_pitchSlider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("Pitch"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_RECOVERVOLUME) ? 1 : 0);
+	WritePrivateProfileString(_T("Options"), _T("RecoverVolume"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_volumeSlider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("Volume"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_RECOVERPAN) ? 1 : 0);
+	WritePrivateProfileString(_T("Options"), _T("RecoverPan"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_panSlider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("Pan"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_RECOVEREQ) ? 1 : 0);
+	WritePrivateProfileString(_T("Options"), _T("RecoverEQ"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq20Slider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ20"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq25Slider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ25"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq31_5Slider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ31.5"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq40Slider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ40"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq50Slider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ50"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq63Slider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ63"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq80Slider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ80"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq100Slider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ100"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq125Slider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ125"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq160Slider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ160"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq200Slider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ200"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq250Slider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ250"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq315Slider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ315"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq400Slider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ400"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq500Slider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ500"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq630Slider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ630"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq800Slider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ800"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq1kSlider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ1K"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq1_25kSlider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ1.25K"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq1_6kSlider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ1.6K"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq2kSlider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ2K"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq2_5kSlider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ2.5K"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq3_15kSlider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ3.15K"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq4kSlider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ4K"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq5kSlider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ5K"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq6_3kSlider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ6.3K"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq8kSlider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ8K"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq10kSlider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ10K"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq12_5kSlider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ12.5K"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq16kSlider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ16K"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_eq20kSlider.GetThumbPos());
+	WritePrivateProfileString(_T("Options"), _T("EQ20K"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%3.1f"), m_speedSlider.GetRangeMin()
+		/ pow(10.0, m_speedSlider.GetDecimalDigit()));
+	WritePrivateProfileString(_T("Options"), _T("MinimumSpeed"), buf,
+							  initFilePath.c_str());
+	_stprintf_s(buf, _T("%4.1f"), m_speedSlider.GetRangeMax()
+		/ pow(10.0, m_speedSlider.GetDecimalDigit()));
+	WritePrivateProfileString(_T("Options"), _T("MaximumSpeed"), buf,
+							  initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_speedSlider.GetDecimalDigit());
+	WritePrivateProfileString(_T("Options"), _T("SpeedDecimalDigit"), buf,
+							  initFilePath.c_str());
+	_stprintf_s(buf, _T("%3.1f"), m_freqSlider.GetRangeMin()
+		/ pow(10.0, m_freqSlider.GetDecimalDigit()));
+	WritePrivateProfileString(_T("Options"), _T("MinimumFrequency"), buf,
+							  initFilePath.c_str());
+	_stprintf_s(buf, _T("%4.1f"), m_freqSlider.GetRangeMax()
+		/ pow(10.0, m_freqSlider.GetDecimalDigit()));
+	WritePrivateProfileString(_T("Options"), _T("MaximumFrequency"), buf,
+							  initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_freqSlider.GetDecimalDigit());
+	WritePrivateProfileString(_T("Options"), _T("FrequencyDecimalDigit"), buf,
+							  initFilePath.c_str());
+	_stprintf_s(buf, _T("%3.1f"), m_pitchSlider.GetRangeMin()
+		/ pow(10.0, m_pitchSlider.GetDecimalDigit()));
+	WritePrivateProfileString(_T("Options"), _T("MinimumPitch"), buf,
+							  initFilePath.c_str());
+	_stprintf_s(buf, _T("%3.1f"), m_pitchSlider.GetRangeMax()
+		/ pow(10.0, m_pitchSlider.GetDecimalDigit()));
+	WritePrivateProfileString(_T("Options"), _T("MaximumPitch"), buf,
+							  initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_pitchSlider.GetDecimalDigit());
+	WritePrivateProfileString(_T("Options"), _T("PitchDecimalDigit"), buf,
+							  initFilePath.c_str());
 }
 //----------------------------------------------------------------------------
 // 閉じられようとしている

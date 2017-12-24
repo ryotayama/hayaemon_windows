@@ -998,6 +998,12 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_RECOVERVOLUMEVISIBLE, m_rMainWnd.actionRecoverVolumeVisible},
 		{ID_RECOVERPANVISIBLE, m_rMainWnd.actionRecoverPanVisible},
 		{ID_RECOVEREQVISIBLE, m_rMainWnd.actionRecoverEQVisible},
+		{ID_RECOVERSPEED, m_rMainWnd.actionRecoverSpeed},
+		{ID_RECOVERFREQ, m_rMainWnd.actionRecoverFreq},
+		{ID_RECOVERPITCH, m_rMainWnd.actionRecoverPitch},
+		{ID_RECOVERVOLUME, m_rMainWnd.actionRecoverVolume},
+		{ID_RECOVERPAN, m_rMainWnd.actionRecoverPan},
+		{ID_RECOVEREQ, m_rMainWnd.actionRecoverEQ},
 	};
 }
 //----------------------------------------------------------------------------
