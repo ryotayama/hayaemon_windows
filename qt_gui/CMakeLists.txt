@@ -17,6 +17,8 @@ set(SRC_COMMON
   ${SRC_DIR}/Common/Tab.h
 )
 set(SRC_MAINWND
+  ${SRC_DIR}/MainWnd/ABLoopPosWnd.cpp
+  ${SRC_DIR}/MainWnd/ABLoopPosWnd.h
   ${SRC_DIR}/MainWnd/EQLabel_MainWnd.cpp
   ${SRC_DIR}/MainWnd/EQLabel_MainWnd.h
   ${SRC_DIR}/MainWnd/EQSlider_MainWnd.cpp
@@ -103,7 +105,9 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
 endif()
 
 qt5_add_resources(RESOURCES ${SRC_DIR}/Hayaemon.qrc)
-qt5_wrap_ui(UI_MOC ${SRC_DIR}/MainWnd/MainWnd.ui)
+qt5_wrap_ui(UI_MOC
+  ${SRC_DIR}/MainWnd/ABLoopPosWnd.ui
+  ${SRC_DIR}/MainWnd/MainWnd.ui)
 
 include_directories(
   ${SRC_DIR}/Common

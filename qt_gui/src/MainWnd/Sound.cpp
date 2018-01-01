@@ -10,7 +10,8 @@
 // コンストラクタ
 //----------------------------------------------------------------------------
 CSound::CSound(CMainWnd & mainWnd, BOOL bMainStream)
-	: m_rMainWnd(mainWnd), m_bLoop(FALSE), m_nCurFile(0),
+	: m_rMainWnd(mainWnd), m_bLoop(FALSE), m_nLoopPosA(0), m_nLoopPosB(0),
+		m_bABLoopA(FALSE), m_bABLoopB(FALSE), m_nCurFile(0),
 		m_bMainStream(bMainStream), m_hFx20Hz(0), m_hFx25Hz(0), m_hFx31_5Hz(0),
 		m_hFx40Hz(0), m_hFx50Hz(0), m_hFx63Hz(0), m_hFx80Hz(0), m_hFx100Hz(0),
 		m_hFx125Hz(0), m_hFx160Hz(0), m_hFx200Hz(0), m_hFx250Hz(0), m_hFx315Hz(0),
@@ -138,7 +139,10 @@ BOOL CSound::StreamCreateFile(LPCTSTR lpFilePath, BOOL bDecode, int nCount)
 BOOL CSound::ChannelPlay()
 {
 	ChannelRemoveSync();
-	ChannelSetSync(BASS_SYNC_END, 0, LoopSyncProc, (DWORD *)this);
+	if(m_bABLoopB && m_nLoopPosB < ChannelGetLength())
+		ChannelSetSync(BASS_SYNC_POS, m_nLoopPosB, LoopSyncProc,
+						(DWORD *)this);
+	else ChannelSetSync(BASS_SYNC_END, 0, LoopSyncProc, (DWORD *)this);
 	return CBass::ChannelPlay();
 }
 //----------------------------------------------------------------------------
@@ -1058,6 +1062,44 @@ void CSound::SetLoop(BOOL bLoop)
 	m_bLoop = bLoop;
 }
 //----------------------------------------------------------------------------
+// ABループ ( A ) の設定
+//----------------------------------------------------------------------------
+void CSound::SetABLoopA(BOOL bLoop)
+{
+	m_bABLoopA = bLoop;
+	m_nLoopPosA = 0;
+}
+//----------------------------------------------------------------------------
+// ABループ ( B ) の設定
+//----------------------------------------------------------------------------
+void CSound::SetABLoopB(BOOL bLoop)
+{
+	m_bABLoopB = bLoop;
+	m_nLoopPosB = ChannelGetLength();
+	ChannelRemoveSync();
+	ChannelSetSync(BASS_SYNC_END, 0, LoopSyncProc, (DWORD *)this);
+}
+//----------------------------------------------------------------------------
+// ABループ ( A ) の設定
+//----------------------------------------------------------------------------
+void CSound::SetLoopPosA(QWORD nPos)
+{
+	m_nLoopPosA = nPos;
+}
+//----------------------------------------------------------------------------
+// ABループ ( B ) の設定
+//----------------------------------------------------------------------------
+void CSound::SetLoopPosB(QWORD nPos)
+{
+	m_bABLoopB = TRUE;
+	m_nLoopPosB = nPos;
+	ChannelRemoveSync();
+	if(nPos >= ChannelGetLength())
+		ChannelSetSync(BASS_SYNC_END, 0, LoopSyncProc, (DWORD *)this);
+	else
+		ChannelSetSync(BASS_SYNC_POS, m_nLoopPosB, LoopSyncProc, (DWORD *)this);
+}
+//----------------------------------------------------------------------------
 // テンポの設定
 //----------------------------------------------------------------------------
 BOOL CSound::SetTempo(float tempo)
@@ -1084,6 +1126,10 @@ BOOL CSound::ChannelSetVolume(float volume)
 //----------------------------------------------------------------------------
 UINT CSound::OnLoop()
 {
+	if(m_bABLoopA || m_bABLoopB || m_bLoop) {
+		if(!ChannelSetPosition(m_nLoopPosA)) return 0;
+		return 1;
+	}
 	return 0;
 }
 //----------------------------------------------------------------------------

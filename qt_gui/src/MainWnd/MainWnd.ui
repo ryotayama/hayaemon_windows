@@ -67,6 +67,40 @@
        </widget>
       </item>
       <item>
+       <widget class="QToolButton" name="abLoopAButton">
+        <property name="toolTip">
+         <string>AB loop(A)</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../Hayaemon.qrc">
+          <normaloff>:/icon/resource/abloop_a.png</normaloff>:/icon/resource/abloop_a.png</iconset>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="abLoopBButton">
+        <property name="toolTip">
+         <string>AB loop(B)</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../Hayaemon.qrc">
+          <normaloff>:/icon/resource/abloop_b.png</normaloff>:/icon/resource/abloop_b.png</iconset>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
        <spacer name="horizontalSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -276,6 +310,11 @@
     </property>
     <addaction name="actionPlayPlayPause"/>
     <addaction name="actionPlayStop"/>
+    <addaction name="separator"/>
+    <addaction name="actionSetABLoopA"/>
+    <addaction name="actionSetABLoopB"/>
+    <addaction name="actionABLoopAPosSetting"/>
+    <addaction name="actionABLoopBPosSetting"/>
    </widget>
    <widget class="QMenu" name="menuEffect">
     <property name="title">
@@ -1312,6 +1351,32 @@
     <string>Graphic Equalizer(&amp;G)</string>
    </property>
   </action>
+  <action name="actionSetABLoopA">
+   <property name="text">
+    <string>Set AB Loop(A) To Current Position(&amp;A)</string>
+   </property>
+  </action>
+  <action name="actionSetABLoopB">
+   <property name="text">
+    <string>Set AB Loop(B) To Current Position(&amp;B)</string>
+   </property>
+  </action>
+  <action name="actionABLoopAPosSetting">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>AB Loop(A) Pos Setting(&amp;C)...</string>
+   </property>
+  </action>
+  <action name="actionABLoopBPosSetting">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>AB Loop(B) Pos Setting(&amp;D)...</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -1340,6 +1405,8 @@
   <tabstop>playButton</tabstop>
   <tabstop>pauseButton</tabstop>
   <tabstop>stopButton</tabstop>
+  <tabstop>abLoopAButton</tabstop>
+  <tabstop>abLoopBButton</tabstop>
   <tabstop>timeSlider</tabstop>
   <tabstop>speedSpinBox</tabstop>
   <tabstop>speedSlider</tabstop>

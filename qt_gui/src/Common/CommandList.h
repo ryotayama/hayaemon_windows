@@ -46,6 +46,8 @@ typedef enum CMDID {
 		ID_EQ12_5K,
 		ID_EQ16K,
 		ID_EQ20K,
+		ID_ABLOOP_A_SETTING,
+		ID_ABLOOP_B_SETTING,
 	// エフェクトメニュー
 		ID_SPEEDDEC_0,
 		ID_SPEEDDEC_1,

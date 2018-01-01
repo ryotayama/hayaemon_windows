@@ -19,11 +19,14 @@ public: // 関数
 	explicit CToolBar_MainWnd(CMainWnd & mainWnd);
 
 	virtual BOOL Create();
+	virtual void SetABLoopState(BOOL bALoop, BOOL bBLoop);
 	virtual void SetPlayingState(BOOL bPlaying);
 	virtual void SetPausingState(BOOL bPlaying);
 	virtual void OnPlayButtonSelected();
 	virtual void OnPauseButtonSelected();
 	virtual void OnStopButtonSelected();
+	virtual void OnABLoopAButtonSelected();
+	virtual void OnABLoopBButtonSelected();
 
 private: // メンバ変数
 

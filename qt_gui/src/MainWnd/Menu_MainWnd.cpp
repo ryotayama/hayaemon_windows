@@ -5,6 +5,7 @@
 #include <cassert>
 #include <QActionGroup>
 #include "../Common/CommandList.h"
+#include "../Common/Define.h"
 #include "MainWnd.h"
 //----------------------------------------------------------------------------
 // 作成
@@ -15,6 +16,14 @@ BOOL CMenu_MainWnd::Create()
 	CreateActionMap();
 	CreateActionGroups();
 	return TRUE;
+}
+//----------------------------------------------------------------------------
+// ＡＢループの状態を設定
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::SetABLoopState(BOOL bALoop, BOOL bBLoop)
+{
+	EnableItem(ID_ABLOOP_A_SETTING, bALoop ? MFS_ENABLED : MFS_DISABLED);
+	EnableItem(ID_ABLOOP_B_SETTING, bBLoop ? MFS_ENABLED : MFS_DISABLED);
 }
 //----------------------------------------------------------------------------
 // EQ の表示状態を切り替える
@@ -86,6 +95,34 @@ void CMenu_MainWnd::OnPauseMenuSelected()
 void CMenu_MainWnd::OnStopMenuSelected()
 {
 	m_rMainWnd.Stop(FALSE);
+}
+//----------------------------------------------------------------------------
+// 再生 → ＡＢループ（Ａ）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnABLoopAMenuSelected()
+{
+	m_rMainWnd.SetABLoopA();
+}
+//----------------------------------------------------------------------------
+// 再生 → ＡＢループ（Ｂ）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnABLoopBMenuSelected()
+{
+	m_rMainWnd.SetABLoopB();
+}
+//----------------------------------------------------------------------------
+// 再生 → ＡＢループ（Ａ）の位置設定メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnABLoopASettingMenuSelected()
+{
+	m_rMainWnd.SetABLoopASetting();
+}
+//----------------------------------------------------------------------------
+// 再生 → ＡＢループ（Ｂ）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnABLoopBSettingMenuSelected()
+{
+	m_rMainWnd.SetABLoopBSetting();
 }
 //----------------------------------------------------------------------------
 // 再生 → 再生速度 → デフォルトに戻すメニューが選択された
@@ -972,6 +1009,18 @@ BOOL CMenu_MainWnd::IsItemChecked(UINT uID)
 	return it->second->isChecked() ? TRUE : FALSE;
 }
 //----------------------------------------------------------------------------
+// メニューの項目の有効/無効を設定
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::EnableItem(UINT uIDEnableItem, UINT uEnable)
+{
+	auto it = m_actionMap.find(uIDEnableItem);
+	assert(it != m_actionMap.end());
+	if(it == m_actionMap.end()) {
+		return;
+	}
+	it->second->setEnabled(uEnable == MFS_ENABLED);
+}
+//----------------------------------------------------------------------------
 // メニューの項目IDとQActionの対応付け
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::CreateActionMap()
@@ -983,6 +1032,8 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_VOLUME, m_rMainWnd.actionVolumeVisible},
 		{ID_PAN, m_rMainWnd.actionPanVisible},
 		{ID_EQ, m_rMainWnd.actionEQVisible},
+		{ID_ABLOOP_A_SETTING, m_rMainWnd.actionABLoopAPosSetting},
+		{ID_ABLOOP_B_SETTING, m_rMainWnd.actionABLoopBPosSetting},
 		{ID_SPEEDDEC_0, m_rMainWnd.actionSpeedDigit0},
 		{ID_SPEEDDEC_1, m_rMainWnd.actionSpeedDigit1},
 		{ID_SPEEDDEC_2, m_rMainWnd.actionSpeedDigit2},
@@ -1056,6 +1107,14 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnPauseMenuSelected);
 	connect(m_rMainWnd.actionPlayStop, &QAction::triggered,
 					this, &CMenu_MainWnd::OnStopMenuSelected);
+	connect(m_rMainWnd.actionSetABLoopA, &QAction::triggered,
+					this, &CMenu_MainWnd::OnABLoopAMenuSelected);
+	connect(m_rMainWnd.actionSetABLoopB, &QAction::triggered,
+					this, &CMenu_MainWnd::OnABLoopBMenuSelected);
+	connect(m_rMainWnd.actionABLoopAPosSetting, &QAction::triggered,
+					this, &CMenu_MainWnd::OnABLoopASettingMenuSelected);
+	connect(m_rMainWnd.actionABLoopBPosSetting, &QAction::triggered,
+					this, &CMenu_MainWnd::OnABLoopBSettingMenuSelected);
 	// Effect - Speed
 	connect(m_rMainWnd.actionResetSpeed, &QAction::triggered,
 					this, &CMenu_MainWnd::OnResetSpeedMenuSelected);

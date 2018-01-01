@@ -2,6 +2,19 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ja_JP">
 <context>
+    <name>CABLoopPosWnd</name>
+    <message>
+        <location filename="MainWnd/ABLoopPosWnd.cpp" line="15"/>
+        <source>AB Loop(A) Pos Setting</source>
+        <translation>ABループ(A)位置の設定</translation>
+    </message>
+    <message>
+        <location filename="MainWnd/ABLoopPosWnd.cpp" line="17"/>
+        <source>AB Loop(B) Pos Setting</source>
+        <translation>ABループ(B)位置の設定</translation>
+    </message>
+</context>
+<context>
     <name>CApp</name>
     <message>
         <source>Hayaemon</source>
@@ -11,122 +24,122 @@
 <context>
     <name>CMainWnd</name>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="63"/>
+        <location filename="MainWnd/MainWnd.cpp" line="70"/>
         <source>failed to create toolbar.</source>
         <translation>ツールバーの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="69"/>
+        <location filename="MainWnd/MainWnd.cpp" line="76"/>
         <source>failed to create time label.</source>
         <translation>再生時間表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="75"/>
+        <location filename="MainWnd/MainWnd.cpp" line="82"/>
         <source>failed to create time slider.</source>
         <translation>再生時間設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="81"/>
+        <location filename="MainWnd/MainWnd.cpp" line="88"/>
         <source>failed to create speed label.</source>
         <translation>再生速度表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="87"/>
+        <location filename="MainWnd/MainWnd.cpp" line="94"/>
         <source>failed to create speed slider.</source>
         <translation>再生速度設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="105"/>
+        <location filename="MainWnd/MainWnd.cpp" line="131"/>
         <source>failed to create frequency label.</source>
         <translation>再生周波数表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="111"/>
+        <location filename="MainWnd/MainWnd.cpp" line="137"/>
         <source>failed to create frequency slider.</source>
         <translation>再生周波数設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="127"/>
+        <location filename="MainWnd/MainWnd.cpp" line="174"/>
         <source>failed to create pitch label.</source>
         <translation>音程表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="133"/>
+        <location filename="MainWnd/MainWnd.cpp" line="180"/>
         <source>failed to create pitch slider.</source>
         <translation>音程設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="154"/>
+        <location filename="MainWnd/MainWnd.cpp" line="218"/>
         <source>failed to create volume label.</source>
         <translation>音量表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="160"/>
+        <location filename="MainWnd/MainWnd.cpp" line="224"/>
         <source>failed to create volume slider.</source>
         <translation>音量設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="166"/>
+        <location filename="MainWnd/MainWnd.cpp" line="239"/>
         <source>failed to create pan label.</source>
         <translation>パン表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="172"/>
+        <location filename="MainWnd/MainWnd.cpp" line="245"/>
         <source>failed to create pan slider.</source>
         <translation>パン設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="233"/>
+        <location filename="MainWnd/MainWnd.cpp" line="308"/>
         <source>failed to create EQ(%1Hz) label.</source>
         <translation>イコライザ ( %1Hz ) 表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="247"/>
+        <location filename="MainWnd/MainWnd.cpp" line="317"/>
         <source>failed to create EQ(%1Hz) slider.</source>
         <translation>イコライザ ( %1Hz ) 設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="262"/>
+        <location filename="MainWnd/MainWnd.cpp" line="357"/>
         <source>No Title</source>
         <translation>無題</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="265"/>
+        <location filename="MainWnd/MainWnd.cpp" line="360"/>
         <source>failed to create playlist.</source>
         <translation>プレイリスト用リストビューの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="874"/>
+        <location filename="MainWnd/MainWnd.cpp" line="1620"/>
         <source>failed to create menu.</source>
         <translation>メニューの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="891"/>
+        <location filename="MainWnd/MainWnd.cpp" line="1677"/>
         <source>failed to init BASS.DLL.</source>
         <translation>BASS の初期化に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="942"/>
+        <location filename="MainWnd/MainWnd.cpp" line="1730"/>
         <source>Show Speed Control(&amp;S)</source>
         <translation>再生速度コントロールの表示(&amp;V)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="951"/>
+        <location filename="MainWnd/MainWnd.cpp" line="1739"/>
         <source>Show Frequency Control(&amp;S)</source>
         <translation>再生周波数コントロールの表示(&amp;V)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="960"/>
+        <location filename="MainWnd/MainWnd.cpp" line="1748"/>
         <source>Show Pitch Control(&amp;S)</source>
         <translation>音程コントロールの表示(&amp;V)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="969"/>
+        <location filename="MainWnd/MainWnd.cpp" line="1757"/>
         <source>Show Volume Control(&amp;S)</source>
         <translation>音量コントロールの表示(&amp;V)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="978"/>
+        <location filename="MainWnd/MainWnd.cpp" line="1766"/>
         <source>Show Pan Control(&amp;S)</source>
         <translation>パンの表示(&amp;V)</translation>
     </message>
@@ -172,19 +185,19 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="App.cpp" line="47"/>
+        <location filename="App.cpp" line="49"/>
         <source>Hayaemon</source>
         <translation>聞々ハヤえもん</translation>
     </message>
     <message>
-        <location filename="App.cpp" line="61"/>
+        <location filename="App.cpp" line="68"/>
         <source>%1
 Application exit.</source>
         <translation>%1
 アプリケーションを終了します。</translation>
     </message>
     <message>
-        <location filename="App.cpp" line="62"/>
+        <location filename="App.cpp" line="69"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>

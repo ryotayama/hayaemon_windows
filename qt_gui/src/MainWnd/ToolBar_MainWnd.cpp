@@ -9,6 +9,8 @@ enum {
 	ID_PLAY,
 	ID_PAUSE,
 	ID_STOP,
+	ID_ABLOOP_A,
+	ID_ABLOOP_B,
 };
 //----------------------------------------------------------------------------
 // コンストラクタ
@@ -17,7 +19,9 @@ CToolBar_MainWnd::CToolBar_MainWnd(CMainWnd & mainWnd)
 	: m_rMainWnd(mainWnd),
 		m_buttonMap({{ID_PLAY, m_rMainWnd.playButton},
 								 {ID_PAUSE, m_rMainWnd.pauseButton},
-								 {ID_STOP, m_rMainWnd.stopButton}})
+								 {ID_STOP, m_rMainWnd.stopButton},
+								 {ID_ABLOOP_A, m_rMainWnd.abLoopAButton},
+								 {ID_ABLOOP_B, m_rMainWnd.abLoopBButton}})
 {
 }
 //----------------------------------------------------------------------------
@@ -30,6 +34,14 @@ BOOL CToolBar_MainWnd::Create()
 	CreateConnections();
 
 	return TRUE;
+}
+//----------------------------------------------------------------------------
+// ＡＢループの状態を設定
+//----------------------------------------------------------------------------
+void CToolBar_MainWnd::SetABLoopState(BOOL bALoop, BOOL bBLoop)
+{
+	CheckButton(ID_ABLOOP_A, bALoop);
+	CheckButton(ID_ABLOOP_B, bBLoop);
 }
 //----------------------------------------------------------------------------
 // 再生状態を設定
@@ -69,6 +81,20 @@ void CToolBar_MainWnd::OnStopButtonSelected()
 	m_rMainWnd.Stop(FALSE);
 }
 //----------------------------------------------------------------------------
+// ＡＢループ（Ａ）ボタンが選択された
+//----------------------------------------------------------------------------
+void CToolBar_MainWnd::OnABLoopAButtonSelected()
+{
+	m_rMainWnd.SetABLoopA();
+}
+//----------------------------------------------------------------------------
+// ＡＢループ（Ｂ）ボタンが選択された
+//----------------------------------------------------------------------------
+void CToolBar_MainWnd::OnABLoopBButtonSelected()
+{
+	m_rMainWnd.SetABLoopB();
+}
+//----------------------------------------------------------------------------
 // チェック状態の設定
 //----------------------------------------------------------------------------
 void CToolBar_MainWnd::CheckButton(int nID, BOOL fCheck)
@@ -106,5 +132,9 @@ void CToolBar_MainWnd::CreateConnections()
 					this, &CToolBar_MainWnd::OnPauseButtonSelected);
 	connect(m_rMainWnd.stopButton, &QToolButton::clicked,
 					this, &CToolBar_MainWnd::OnStopButtonSelected);
+	connect(m_rMainWnd.abLoopAButton, &QToolButton::clicked,
+					this, &CToolBar_MainWnd::OnABLoopAButtonSelected);
+	connect(m_rMainWnd.abLoopBButton, &QToolButton::clicked,
+					this, &CToolBar_MainWnd::OnABLoopBButtonSelected);
 }
 //----------------------------------------------------------------------------

@@ -99,6 +99,12 @@ public: // 関数
 	virtual void ResetPitch();
 	virtual void ResetSpeed();
 	virtual void ResetVolume();
+	virtual void SetABLoopA();
+	virtual void SetABLoopA_Sec(double dTime);
+	virtual void SetABLoopB();
+	virtual void SetABLoopB_Sec(double dTime);
+	virtual void SetABLoopASetting();
+	virtual void SetABLoopBSetting();
 	virtual void SetAllEffects();
 	virtual void SetSpeedVisible(bool bSpeedVisible);
 	virtual void SetFreqVisible(bool bFreqVisible);

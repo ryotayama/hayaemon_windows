@@ -38,6 +38,9 @@ public: // 関数
 	virtual double ChannelBytes2Seconds(QWORD pos) const {
 		return BASS_ChannelBytes2Seconds(m_hStream, pos);
 	}
+	virtual QWORD ChannelSeconds2Bytes(double pos) const {
+		return BASS_ChannelSeconds2Bytes(m_hStream, pos);
+	}
 	virtual float ChannelGetFreq() const {
 		float freq;
 		BASS_ChannelGetAttribute(m_hStream, BASS_ATTRIB_FREQ, &freq);

@@ -63,5 +63,17 @@ typedef std::basic_string<TCHAR> tstring;
 #ifndef MF_CHECKED
 # define MF_CHECKED          0x00000008L
 #endif
+#ifndef MF_ENABLED
+# define MF_ENABLED          0x00000008L
+#endif
+#ifndef MFS_GRAYED
+# define MFS_GRAYED          0x00000003L
+#endif
+#ifndef MFS_ENABLED
+# define MFS_ENABLED         MF_ENABLED
+#endif
+#ifndef MFS_DISABLED
+# define MFS_DISABLED        MF_GRAYED
+#endif
 
 #endif // DefineH

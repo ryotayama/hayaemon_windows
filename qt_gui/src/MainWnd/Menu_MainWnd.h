@@ -20,6 +20,7 @@ public: // 関数
 		: m_rMainWnd(mainWnd) { }
 
 	virtual BOOL Create();
+	void SetABLoopState(BOOL bALoop, BOOL bBLoop);
 	void SwitchEQVisible(UINT uID);
 	void SwitchItemChecked(UINT uID);
 	void OnSpeedMenuSelected(bool checked);
@@ -149,6 +150,10 @@ public: // 関数
 	void OnSetVolume80MenuSelected();
 	void OnSetVolume90MenuSelected();
 	void OnSetVolume100MenuSelected();
+	void OnABLoopAMenuSelected();
+	void OnABLoopASettingMenuSelected();
+	void OnABLoopBMenuSelected();
+	void OnABLoopBSettingMenuSelected();
 
 private: // メンバ変数
 
@@ -161,6 +166,7 @@ public:
 	// Qtのラッパー
 	void CheckItem(UINT uIDCheckItem, UINT uCheck);
 	BOOL IsItemChecked(UINT uID);
+	void EnableItem(UINT uIDEnableItem, UINT uEnable);
 
 private:
 	// Qtのラッパー

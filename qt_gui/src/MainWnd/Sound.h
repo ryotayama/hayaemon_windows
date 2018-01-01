@@ -4,6 +4,7 @@
 #ifndef SoundH
 #define SoundH
 
+#include <vector>
 #include "../Common/BassFx.h"
 #include "../Common/Define.h"
 class CMainWnd;
@@ -21,6 +22,7 @@ public: // 関数
 	virtual BOOL ChannelPlay();
 	static void CALLBACK LoopSyncProc(HSYNC handle, DWORD channel, DWORD data,
 									  void *user);
+	virtual void ClearMarker();
 	virtual void SetEQ20(float fCenter, float fBandwidth, float fGain);
 	virtual void SetEQ25(float fCenter, float fBandwidth, float fGain);
 	virtual void SetEQ31_5(float fCenter, float fBandwidth, float fGain);
@@ -53,6 +55,10 @@ public: // 関数
 	virtual void SetEQ16K(float fCenter, float fBandwidth, float fGain);
 	virtual void SetEQ20K(float fCenter, float fBandwidth, float fGain);
 	virtual void SetLoop(BOOL bLoop);
+	virtual void SetABLoopA(BOOL bLoop);
+	virtual void SetABLoopB(BOOL bLoop);
+	virtual void SetLoopPosA(QWORD nPos);
+	virtual void SetLoopPosB(QWORD nPos);
 	virtual BOOL SetTempo(float tempo);
 	virtual BOOL SetSampleRate(float samplerate);
 	virtual BOOL ChannelSetVolume(float volume);
@@ -63,9 +69,14 @@ private: // メンバ変数
 	CMainWnd & m_rMainWnd;
 
 	BOOL m_bLoop; // １曲ループがオンかどうか
+	QWORD m_nLoopPosA; // AB ループ A の位置
+	QWORD m_nLoopPosB; // AB ループ B の位置
+	BOOL m_bABLoopA; // AB ループ A がオンかどうか
+	BOOL m_bABLoopB; // AB ループ B がオンかどうか
 
 	tstring m_strCurFile;
 	int m_nCurFile;
+	std::vector<QWORD> m_arrayMarker;
 	BOOL m_bMainStream;
 
 	HFX m_hFx20Hz, m_hFx25Hz, m_hFx31_5Hz, m_hFx40Hz, m_hFx50Hz, m_hFx63Hz,
@@ -87,6 +98,12 @@ private: // メンバ変数
 public: // メンバ変数の取得・設定
 
 	virtual BOOL IsLoop() const { return m_bLoop; }
+	virtual BOOL IsABLoopA() const { return m_bABLoopA; }
+	virtual BOOL IsABLoopB() const { return m_bABLoopB; }
+	virtual QWORD GetLoopPosA() const { return m_nLoopPosA; }
+	virtual QWORD GetLoopPosB() const { return m_nLoopPosB; }
+	virtual double GetLoopPosA_sec() const { return ChannelBytes2Seconds(m_nLoopPosA); }
+	virtual double GetLoopPosB_sec() const { return ChannelBytes2Seconds(m_nLoopPosB); }
 	virtual int GetCurFileNum() const { return m_nCurFile; }
 	virtual void SetCurFileNum(int n) { m_nCurFile = n; }
 	CMainWnd & GetMainWnd() { return m_rMainWnd; }

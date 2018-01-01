@@ -12,6 +12,7 @@
 #include <QTimer>
 #include "../App.h"
 #include "../Common/CommandList.h"
+#include "ABLoopPosWnd.h"
 #include "PlayListView_MainWnd.h"
 #include "Platform.h"
 #include "Utility.h"
@@ -397,6 +398,8 @@ void CMainWnd::DownSpeed(double speed)
 //----------------------------------------------------------------------------
 BOOL CMainWnd::OpenFile(const QString & lpszFilePath, int nCount)
 {
+	if(m_sound.IsABLoopA()) SetABLoopA();
+	if(m_sound.IsABLoopB()) SetABLoopB();
 	BOOL bRet = FALSE;
 	bRet = m_sound.StreamCreateFile(ToTstring(lpszFilePath).c_str(), FALSE,
 																	nCount);
@@ -407,6 +410,7 @@ BOOL CMainWnd::OpenFile(const QString & lpszFilePath, int nCount)
 		m_toolBar.SetPlayingState(FALSE);
 		return FALSE;
 	}
+	m_sound.ClearMarker();
 	SetAllEffects();
 	m_toolBar.SetPlayingState(FALSE);
 	m_timeLabel.SetTime(0, m_sound.ChannelGetSecondsLength());
@@ -633,6 +637,230 @@ void CMainWnd::ResetVolume()
 	m_volumeLabel.SetVolume(100.0);
 }
 //----------------------------------------------------------------------------
+// AB ループ A の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetABLoopA()
+{
+	m_sound.ClearMarker();
+	BOOL bLoop = !m_sound.IsABLoopA();
+	m_sound.SetABLoopA(bLoop);
+	m_toolBar.SetABLoopState(bLoop, m_sound.IsABLoopB());
+	m_menu.SetABLoopState(bLoop, m_sound.IsABLoopB());
+
+	if(bLoop && m_sound.IsABLoopB()) {
+		// Ａループ：オン
+		// Ｂループ：オン
+
+		// 現在の再生位置にＡＢループのＡを設定
+		QWORD time = m_sound.ChannelGetPosition();
+		m_timeSlider.SetSelStart((LONG)(time / 100000));
+		m_sound.SetLoopPosA(time);
+	}
+	else if(bLoop && !m_sound.IsABLoopB()) {
+		// Ａループ：オン
+		// Ｂループ：オフ
+
+		m_timeSlider.SetSelRangeEnabled(true);
+
+		// 現在の再生位置にＡＢループのＡを設定
+		QWORD time = m_sound.ChannelGetPosition();
+		m_timeSlider.SetSelStart((LONG)time / 100000);
+		m_sound.SetLoopPosA(time);
+
+		m_timeSlider.SetSelEnd(
+			(LONG)(m_sound.ChannelGetLength() / 100000));
+	}
+	else if(!bLoop && m_sound.IsABLoopB()) {
+		// Ａループ：オフ
+		// Ｂループ：オン
+
+		m_timeSlider.SetSelStart(0L);
+	}
+	else if(!bLoop && !m_sound.IsABLoopB()) {
+		// Ａループ：オフ
+		// Ｂループ：オフ
+
+		m_timeSlider.SetSelStart(0L);
+		m_timeSlider.SetSelEnd(0L);
+		m_timeSlider.SetSelRangeEnabled(false);
+	}
+	m_timeSlider.Update();
+}
+//----------------------------------------------------------------------------
+// AB ループ A の設定（秒）
+//----------------------------------------------------------------------------
+void CMainWnd::SetABLoopA_Sec(double dTime)
+{
+	if(dTime == m_sound.GetLoopPosB_sec()) return;
+	if(m_sound.GetLoopPosB_sec() < dTime) return;
+	QWORD time = m_sound.ChannelSeconds2Bytes(dTime);
+	m_sound.ClearMarker();
+	BOOL bLoop = m_sound.IsABLoopA();
+	m_sound.SetABLoopA(bLoop);
+	m_toolBar.SetABLoopState(bLoop, m_sound.IsABLoopB());
+	m_menu.SetABLoopState(bLoop, m_sound.IsABLoopB());
+
+	if(bLoop && m_sound.IsABLoopB()) {
+		// Ａループ：オン
+		// Ｂループ：オン
+
+		m_timeSlider.SetSelStart((LONG)(time / 100000));
+		m_sound.SetLoopPosA(time);
+		if(m_sound.ChannelGetPosition() < time)
+			m_sound.ChannelSetPosition(time);
+	}
+	else if(bLoop && !m_sound.IsABLoopB()) {
+		// Ａループ：オン
+		// Ｂループ：オフ
+
+		m_timeSlider.SetSelRangeEnabled(true);
+
+		m_timeSlider.SetSelStart((LONG)(time / 100000));
+		m_sound.SetLoopPosA(time);
+
+		m_timeSlider.SetSelEnd((LONG)(m_sound.ChannelGetLength() / 100000));
+
+		if(m_sound.ChannelGetPosition() < time)
+			m_sound.ChannelSetPosition(time);
+	}
+	else if(!bLoop && m_sound.IsABLoopB()) {
+		// Ａループ：オフ
+		// Ｂループ：オン
+
+		m_timeSlider.SetSelStart(0L);
+	}
+	else if(!bLoop && !m_sound.IsABLoopB()) {
+		// Ａループ：オフ
+		// Ｂループ：オフ
+
+		m_timeSlider.SetSelStart(0L);
+		m_timeSlider.SetSelEnd(0L);
+		m_timeSlider.SetSelRangeEnabled(false);
+	}
+	m_timeSlider.Update();
+}
+//----------------------------------------------------------------------------
+// AB ループ B の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetABLoopB()
+{
+	m_sound.ClearMarker();
+	BOOL bLoop = !m_sound.IsABLoopB();
+	m_sound.SetABLoopB(bLoop);
+	m_toolBar.SetABLoopState(m_sound.IsABLoopA(), bLoop);
+	m_menu.SetABLoopState(m_sound.IsABLoopA(), bLoop);
+
+	if(m_sound.IsABLoopA() && bLoop) {
+		// Ａループ：オン
+		// Ｂループ：オン
+
+		// 現在の再生位置にＡＢループのＢを設定
+		QWORD time = m_sound.ChannelGetPosition();
+		m_timeSlider.SetSelEnd((LONG)(time / 100000));
+		m_sound.SetLoopPosB(time);
+
+		// Ａの位置に再生位置を移す
+		SetTime(m_sound.GetLoopPosA());
+	}
+	else if(m_sound.IsABLoopA() && !bLoop) {
+		// Ａループ：オン
+		// Ｂループ：オフ
+
+		m_timeSlider.SetSelEnd((LONG)(m_sound.ChannelGetLength() / 100000));		
+	}
+	else if(!m_sound.IsABLoopA() && bLoop) {
+		// Ａループ：オフ
+		// Ｂループ：オン
+
+		m_timeSlider.SetSelRangeEnabled(true);
+		m_timeSlider.SetSelStart(0L);
+
+		// 現在の再生位置にＡＢループのＢを設定
+		QWORD time = m_sound.ChannelGetPosition();
+		m_timeSlider.SetSelEnd((LONG)(time / 100000));
+		m_sound.SetLoopPosB(time);
+
+		SetTime(0);
+	}
+	else if(!m_sound.IsABLoopA() && !bLoop) {
+		// Ａループ：オフ
+		// Ｂループ：オフ
+
+		m_timeSlider.SetSelStart(0L);
+		m_timeSlider.SetSelEnd(0L);
+		m_timeSlider.SetSelRangeEnabled(false);
+	}
+	m_timeSlider.Update();
+}
+//----------------------------------------------------------------------------
+// AB ループ B の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetABLoopB_Sec(double dTime)
+{
+	if(dTime == m_sound.GetLoopPosA_sec()) return;
+	if(dTime < m_sound.GetLoopPosA_sec()) return;
+	QWORD time = m_sound.ChannelSeconds2Bytes(dTime);
+	m_sound.ClearMarker();
+	BOOL bLoop = m_sound.IsABLoopB();
+	m_sound.SetABLoopB(bLoop);
+	m_toolBar.SetABLoopState(m_sound.IsABLoopA(), bLoop);
+	m_menu.SetABLoopState(m_sound.IsABLoopA(), bLoop);
+
+	if(m_sound.IsABLoopA() && bLoop) {
+		// Ａループ：オン
+		// Ｂループ：オン
+
+		m_timeSlider.SetSelEnd((LONG)(time / 100000));
+		m_sound.SetLoopPosB(time);
+
+		// Ａの位置に再生位置を移す
+		SetTime(m_sound.GetLoopPosA());
+	}
+	else if(m_sound.IsABLoopA() && !bLoop) {
+		// Ａループ：オン
+		// Ｂループ：オフ
+
+		m_timeSlider.SetSelEnd((LONG)(m_sound.ChannelGetLength() / 100000));		
+	}
+	else if(!m_sound.IsABLoopA() && bLoop) {
+		// Ａループ：オフ
+		// Ｂループ：オン
+
+		m_timeSlider.SetSelRangeEnabled(true);
+		m_timeSlider.SetSelStart(0L);
+
+		m_timeSlider.SetSelEnd((LONG)(time / 100000));
+		m_sound.SetLoopPosB(time);
+
+		SetTime(0);
+	}
+	else if(!m_sound.IsABLoopA() && !bLoop) {
+		// Ａループ：オフ
+		// Ｂループ：オフ
+
+		m_timeSlider.SetSelStart(0L);
+		m_timeSlider.SetSelEnd(0L);
+		m_timeSlider.SetSelRangeEnabled(false);
+	}
+	m_timeSlider.Update();
+}
+//----------------------------------------------------------------------------
+// AB ループ A の位置設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetABLoopASetting()
+{
+	CABLoopPosWnd dlg(*this, TRUE);
+	dlg.exec();
+}
+//----------------------------------------------------------------------------
+// AB ループ B の位置設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetABLoopBSetting()
+{
+	CABLoopPosWnd dlg(*this, FALSE);
+	dlg.exec();
+}
+//----------------------------------------------------------------------------
 // 全てのエフェクトを設定
 //----------------------------------------------------------------------------
 void CMainWnd::SetAllEffects()
@@ -751,6 +979,13 @@ void CMainWnd::SetPanVisible(bool bPanVisible)
 	m_panLabel.Show(nCmdShow);
 	m_panSlider.Show(nCmdShow);
 	m_menu.CheckItem(ID_PAN, uCheck);
+}
+//----------------------------------------------------------------------------
+// マーカーのクリア
+//----------------------------------------------------------------------------
+void CSound::ClearMarker()
+{
+	m_arrayMarker.clear();
 }
 //----------------------------------------------------------------------------
 // イコライザ ( 20Hz ) の設定
@@ -1073,6 +1308,11 @@ void CMainWnd::SetVolume(double nVolume)
 //----------------------------------------------------------------------------
 void CMainWnd::SetTime(QWORD qwTime, BOOL bReset)
 {
+	if(m_sound.IsABLoopA() && qwTime < m_sound.GetLoopPosA())
+		qwTime = m_sound.GetLoopPosA();
+	if(m_sound.IsABLoopB()
+	   && qwTime > m_sound.GetLoopPosB() - m_sound.ChannelGetFreq())
+		qwTime = m_sound.GetLoopPosB() - (QWORD)m_sound.ChannelGetFreq();
 	if(qwTime < 0) qwTime = 0;
 	else if(qwTime > m_sound.ChannelGetLength() - m_sound.ChannelGetFreq())
 		qwTime = m_sound.ChannelGetLength() - (QWORD)m_sound.ChannelGetFreq();
