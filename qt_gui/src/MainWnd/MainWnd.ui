@@ -67,6 +67,60 @@
        </widget>
       </item>
       <item>
+       <widget class="QToolButton" name="singleLoopButton">
+        <property name="toolTip">
+         <string>Single loop</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../Hayaemon.qrc">
+          <normaloff>:/icon/resource/single_loop.png</normaloff>:/icon/resource/single_loop.png</iconset>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="allLoopButton">
+        <property name="toolTip">
+         <string>All loop</string>
+        </property>
+        <property name="statusTip">
+         <string>All loop</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../Hayaemon.qrc">
+          <normaloff>:/icon/resource/all_loop.png</normaloff>:/icon/resource/all_loop.png</iconset>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="randomPlayButton">
+        <property name="toolTip">
+         <string>Random play</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../Hayaemon.qrc">
+          <normaloff>:/icon/resource/random_play.png</normaloff>:/icon/resource/random_play.png</iconset>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QToolButton" name="abLoopAButton">
         <property name="toolTip">
          <string>AB loop(A)</string>
@@ -310,6 +364,11 @@
     </property>
     <addaction name="actionPlayPlayPause"/>
     <addaction name="actionPlayStop"/>
+    <addaction name="separator"/>
+    <addaction name="actionSingleLoop"/>
+    <addaction name="actionAllLoop"/>
+    <addaction name="actionRandomPlay"/>
+    <addaction name="actionContinuousPlay"/>
     <addaction name="separator"/>
     <addaction name="actionSetABLoopA"/>
     <addaction name="actionSetABLoopB"/>
@@ -556,7 +615,17 @@
       <addaction name="actionRecoverPanVisible"/>
       <addaction name="actionRecoverEQVisible"/>
      </widget>
+     <widget class="QMenu" name="menuPlay_mode_P">
+      <property name="title">
+       <string>Play mode(&amp;P)</string>
+      </property>
+      <addaction name="actionRecoverPlayModeSingleLoop"/>
+      <addaction name="actionRecoverPlayModeAllLoop"/>
+      <addaction name="actionRecoverPlayModeRandom"/>
+      <addaction name="actionRecoverPlayModeContinuous"/>
+     </widget>
      <addaction name="menuVisible_V"/>
+     <addaction name="menuPlay_mode_P"/>
      <addaction name="separator"/>
      <addaction name="actionRecoverSpeed"/>
      <addaction name="actionRecoverFreq"/>
@@ -1377,6 +1446,78 @@
     <string>AB Loop(B) Pos Setting(&amp;D)...</string>
    </property>
   </action>
+  <action name="actionSingleLoop">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Single loop(&amp;1)</string>
+   </property>
+  </action>
+  <action name="actionAllLoop">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>All loop(&amp;T)</string>
+   </property>
+  </action>
+  <action name="actionRandomPlay">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Random play(&amp;H)</string>
+   </property>
+  </action>
+  <action name="actionContinuousPlay">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Continuous play(&amp;C)</string>
+   </property>
+  </action>
+  <action name="actionRecoverPlayModeSingleLoop">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Single loop(&amp;1)</string>
+   </property>
+  </action>
+  <action name="actionRecoverPlayModeAllLoop">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>All loop(&amp;T)</string>
+   </property>
+  </action>
+  <action name="actionRecoverPlayModeRandom">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Random(&amp;H)</string>
+   </property>
+  </action>
+  <action name="actionRecoverPlayModeContinuous">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Continue(&amp;C)</string>
+   </property>
+  </action>
+  <action name="actionSameArtist">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Same Artist(&amp;S)</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -1405,6 +1546,9 @@
   <tabstop>playButton</tabstop>
   <tabstop>pauseButton</tabstop>
   <tabstop>stopButton</tabstop>
+  <tabstop>singleLoopButton</tabstop>
+  <tabstop>allLoopButton</tabstop>
+  <tabstop>randomPlayButton</tabstop>
   <tabstop>abLoopAButton</tabstop>
   <tabstop>abLoopBButton</tabstop>
   <tabstop>timeSlider</tabstop>

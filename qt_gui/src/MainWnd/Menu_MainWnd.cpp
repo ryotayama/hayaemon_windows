@@ -26,6 +26,15 @@ void CMenu_MainWnd::SetABLoopState(BOOL bALoop, BOOL bBLoop)
 	EnableItem(ID_ABLOOP_B_SETTING, bBLoop ? MFS_ENABLED : MFS_DISABLED);
 }
 //----------------------------------------------------------------------------
+// １曲ループの状態を設定
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::SetSingleLoopState(BOOL bSLoop)
+{
+	CheckItem(ID_SLOOP, bSLoop ? MF_CHECKED : MF_UNCHECKED);
+	EnableItem(ID_ALOOP, bSLoop ? MFS_DISABLED : MFS_ENABLED);
+	EnableItem(ID_RANDOM, bSLoop ? MFS_DISABLED : MFS_ENABLED);
+}
+//----------------------------------------------------------------------------
 // EQ の表示状態を切り替える
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::SwitchEQVisible(UINT uID)
@@ -95,6 +104,34 @@ void CMenu_MainWnd::OnPauseMenuSelected()
 void CMenu_MainWnd::OnStopMenuSelected()
 {
 	m_rMainWnd.Stop(FALSE);
+}
+//----------------------------------------------------------------------------
+// 再生 → １曲ループメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSingleLoopMenuSelected()
+{
+	m_rMainWnd.SetSingleLoop();
+}
+//----------------------------------------------------------------------------
+// 再生 → 全曲ループメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnAllLoopMenuSelected(bool checked)
+{
+	m_rMainWnd.SetAllLoop(checked);
+}
+//----------------------------------------------------------------------------
+// 再生 → ランダム再生メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnRandomMenuSelected(bool checked)
+{
+	m_rMainWnd.SetRandom(checked);
+}
+//----------------------------------------------------------------------------
+// 再生 → 連続再生メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnContinueMenuSelected(bool checked)
+{
+	m_rMainWnd.SetContinue(checked);
 }
 //----------------------------------------------------------------------------
 // 再生 → ＡＢループ（Ａ）メニューが選択された
@@ -1032,6 +1069,10 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_VOLUME, m_rMainWnd.actionVolumeVisible},
 		{ID_PAN, m_rMainWnd.actionPanVisible},
 		{ID_EQ, m_rMainWnd.actionEQVisible},
+		{ID_SLOOP, m_rMainWnd.actionSingleLoop},
+		{ID_ALOOP, m_rMainWnd.actionAllLoop},
+		{ID_RANDOM, m_rMainWnd.actionRandomPlay},
+		{ID_CONTINUE, m_rMainWnd.actionContinuousPlay},
 		{ID_ABLOOP_A_SETTING, m_rMainWnd.actionABLoopAPosSetting},
 		{ID_ABLOOP_B_SETTING, m_rMainWnd.actionABLoopBPosSetting},
 		{ID_SPEEDDEC_0, m_rMainWnd.actionSpeedDigit0},
@@ -1055,6 +1096,10 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_RECOVERVOLUME, m_rMainWnd.actionRecoverVolume},
 		{ID_RECOVERPAN, m_rMainWnd.actionRecoverPan},
 		{ID_RECOVEREQ, m_rMainWnd.actionRecoverEQ},
+		{ID_RECOVERSLOOP, m_rMainWnd.actionRecoverPlayModeSingleLoop},
+		{ID_RECOVERALOOP, m_rMainWnd.actionRecoverPlayModeAllLoop},
+		{ID_RECOVERRANDOM, m_rMainWnd.actionRecoverPlayModeRandom},
+		{ID_RECOVERCONTINUE, m_rMainWnd.actionRecoverPlayModeContinuous},
 	};
 }
 //----------------------------------------------------------------------------
@@ -1107,6 +1152,14 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnPauseMenuSelected);
 	connect(m_rMainWnd.actionPlayStop, &QAction::triggered,
 					this, &CMenu_MainWnd::OnStopMenuSelected);
+	connect(m_rMainWnd.actionSingleLoop, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSingleLoopMenuSelected);
+	connect(m_rMainWnd.actionAllLoop, &QAction::toggled,
+					this, &CMenu_MainWnd::OnAllLoopMenuSelected);
+	connect(m_rMainWnd.actionRandomPlay, &QAction::toggled,
+					this, &CMenu_MainWnd::OnRandomMenuSelected);
+	connect(m_rMainWnd.actionContinuousPlay, &QAction::toggled,
+					this, &CMenu_MainWnd::OnContinueMenuSelected);
 	connect(m_rMainWnd.actionSetABLoopA, &QAction::triggered,
 					this, &CMenu_MainWnd::OnABLoopAMenuSelected);
 	connect(m_rMainWnd.actionSetABLoopB, &QAction::triggered,

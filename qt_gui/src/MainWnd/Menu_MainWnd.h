@@ -21,6 +21,7 @@ public: // 関数
 
 	virtual BOOL Create();
 	void SetABLoopState(BOOL bALoop, BOOL bBLoop);
+	void SetSingleLoopState(BOOL bSLoop);
 	void SwitchEQVisible(UINT uID);
 	void SwitchItemChecked(UINT uID);
 	void OnSpeedMenuSelected(bool checked);
@@ -150,6 +151,10 @@ public: // 関数
 	void OnSetVolume80MenuSelected();
 	void OnSetVolume90MenuSelected();
 	void OnSetVolume100MenuSelected();
+	void OnSingleLoopMenuSelected();
+	void OnAllLoopMenuSelected(bool checked);
+	void OnRandomMenuSelected(bool checked);
+	void OnContinueMenuSelected(bool checked);
 	void OnABLoopAMenuSelected();
 	void OnABLoopASettingMenuSelected();
 	void OnABLoopBMenuSelected();

@@ -22,6 +22,10 @@ public: // 関数
 	virtual void SetABLoopState(BOOL bALoop, BOOL bBLoop);
 	virtual void SetPlayingState(BOOL bPlaying);
 	virtual void SetPausingState(BOOL bPlaying);
+	virtual void SetSingleLoopState(BOOL bSLoop);
+	virtual void OnSingleLoopButtonSelected();
+	virtual void OnAllLoopButtonSelected(bool checked);
+	virtual void OnRandomButtonSelected(bool checked);
 	virtual void OnPlayButtonSelected();
 	virtual void OnPauseButtonSelected();
 	virtual void OnStopButtonSelected();
@@ -32,9 +36,13 @@ private: // メンバ変数
 
 	CMainWnd & m_rMainWnd;
 
-private: // Qtのラッパー
+public: // Qtのラッパー
 
 	virtual void CheckButton(int nID, BOOL fCheck);
+
+private:
+
+	virtual void EnableButton(int nID, BOOL fEnable);
 	virtual void HideButton(int nID, BOOL fHide);
 	void CreateConnections();
 

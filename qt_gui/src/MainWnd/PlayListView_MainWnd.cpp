@@ -71,6 +71,8 @@ void CPlayListView_MainWnd::AddFile(const QString & filePath,
 
 	// ファイルパス
 	SetItem(n, 7, filePath);
+
+	orders.push_back(-1);
 }
 //----------------------------------------------------------------------------
 // 作成
@@ -97,9 +99,20 @@ BOOL CPlayListView_MainWnd::Create()
 //----------------------------------------------------------------------------
 BOOL CPlayListView_MainWnd::DeleteAllItems()
 {
+	orders.clear();
 	clearContents();
 	setRowCount(0);
 	return TRUE;
+}
+//----------------------------------------------------------------------------
+// 再生順の最大値を得る
+//----------------------------------------------------------------------------
+int CPlayListView_MainWnd::GetMaxPlayOrder() const
+{
+	int nMax = -1;
+	for(int i = 0; i < (int)orders.size(); i++)
+		if(orders[i] > nMax) nMax = orders[i];
+	return nMax;
 }
 //----------------------------------------------------------------------------
 // 再生中の設定
@@ -120,6 +133,21 @@ void CPlayListView_MainWnd::SetPausing(int iItem)
 		SetItem(i, 0, _T(""), -1);
 	if(this == &m_rMainWnd.GetCurPlayList() && iItem >= 0)
 		SetItem(iItem, 0, _T(""), 1);
+}
+//----------------------------------------------------------------------------
+// 再生順の設定
+//----------------------------------------------------------------------------
+void CPlayListView_MainWnd::SetPlayOrder(int iItem)
+{
+	if(iItem < 0) return;
+	orders[iItem] = GetMaxPlayOrder() + 1;
+}
+//----------------------------------------------------------------------------
+// 再生順をクリア
+//----------------------------------------------------------------------------
+void CPlayListView_MainWnd::ClearPlayOrder()
+{
+	for(int i = 0; i < (int)orders.size(); i++) orders[i] = -1;
 }
 //----------------------------------------------------------------------------
 // 「No.」のリセット

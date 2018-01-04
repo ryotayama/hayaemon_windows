@@ -92,6 +92,7 @@ public: // 関数
 	virtual void OpenInitFile();
 	virtual void OpenInitFileAfterShow();
 	virtual BOOL OpenNext();
+	virtual BOOL OpenRandom();
 	virtual void Pause();
 	virtual BOOL Play();
 	virtual void PlayNext(BOOL bPlay, BOOL bFadeoutCancel);
@@ -105,7 +106,9 @@ public: // 関数
 	virtual void SetABLoopB_Sec(double dTime);
 	virtual void SetABLoopASetting();
 	virtual void SetABLoopBSetting();
+	virtual void SetAllLoop(bool bAllLoop);
 	virtual void SetAllEffects();
+	virtual void SetContinue(bool bContinue);
 	virtual void SetSpeedVisible(bool bSpeedVisible);
 	virtual void SetFreqVisible(bool bFreqVisible);
 	virtual void SetPitchVisible(bool bPitchVisible);
@@ -143,6 +146,8 @@ public: // 関数
 	virtual void SetEQ16K(LONG lEQ16K);
 	virtual void SetEQ20K(LONG lEQ20K);
 	virtual void SetEQVisible(bool bEQVisible);
+	virtual void SetRandom(bool bRandom);
+	virtual void SetSingleLoop();
 	virtual void SetSpeed(double dSpeed);
 	virtual void SetFreq(double dFreq);
 	virtual void SetPitch(double dPitch);

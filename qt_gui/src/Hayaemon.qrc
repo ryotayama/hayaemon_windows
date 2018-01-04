@@ -1,5 +1,8 @@
 <RCC>
   <qresource prefix="icon">
+    <file>../resource/all_loop.png</file>
+    <file>../resource/random_play.png</file>
+    <file>../resource/single_loop.png</file>
     <file>../resource/abloop_a.png</file>
     <file>../resource/abloop_b.png</file>
     <file>../resource/pause.png</file>

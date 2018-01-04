@@ -2,6 +2,8 @@
 // MainWnd.cpp : メインウィンドウの作成・管理を行う
 //----------------------------------------------------------------------------
 #include "MainWnd.h"
+#include <stdlib.h>
+#include <time.h>
 #include <algorithm>
 #include <chrono>
 #include <cmath>
@@ -489,12 +491,52 @@ void CMainWnd::OpenInitFile()
 		m_menu.SwitchEQVisible(ID_EQ16K);
 	if(GetPrivateProfileInt(_T("Visible"), _T("eq20k"), 0, chPath))
 		m_menu.SwitchEQVisible(ID_EQ20K);
+
+	// 再生モードの設定
+	if(GetPrivateProfileInt(_T("PlayMode"), _T("RecoverSingleLoop"), 1,
+			chPath)) {
+		m_menu.SwitchItemChecked(ID_RECOVERSLOOP);
+		if(GetPrivateProfileInt(_T("PlayMode"), _T("SingleLoop"), 0,
+				chPath))
+			SetSingleLoop();
+	}
+	if(GetPrivateProfileInt(_T("PlayMode"), _T("RecoverAllLoop"), 1,
+			chPath)) {
+		m_menu.SwitchItemChecked(ID_RECOVERALOOP);
+		if(GetPrivateProfileInt(_T("PlayMode"), _T("AllLoop"), 0, chPath))
+			SetAllLoop(true);
+	}
+	if(GetPrivateProfileInt(_T("PlayMode"), _T("RecoverRandom"), 1,
+			chPath)) {
+		m_menu.SwitchItemChecked(ID_RECOVERRANDOM);
+		if(GetPrivateProfileInt(_T("PlayMode"), _T("Random"), 0, chPath))
+			SetRandom(true);
+	}
 }
 //----------------------------------------------------------------------------
 // INI ファイルを開く
 //----------------------------------------------------------------------------
 void CMainWnd::OpenInitFileAfterShow()
 {
+	tstring initFilePath =
+			ToTstring(m_rApp.GetFilePath() + QString("Setting.ini"));
+
+	TCHAR buf[255];
+
+	// 再生モードの設定
+	GetPrivateProfileString(_T("PlayMode"), _T("RecoverContinue"), _T("1"), 
+		buf, 255, initFilePath.c_str());
+	int _bRecoverContinue = _ttoi(buf);
+	GetPrivateProfileString(_T("PlayMode"), _T("Continue"), _T("1"), buf, 255, 
+		initFilePath.c_str());
+	int _bContinue = _ttoi(buf);
+
+	// 再生モードの復元
+	if(_bRecoverContinue) {
+		m_menu.SwitchItemChecked(ID_RECOVERCONTINUE);
+		SetContinue(_bContinue);
+	}
+
 	isInitFileRead = TRUE;
 }
 //----------------------------------------------------------------------------
@@ -502,6 +544,8 @@ void CMainWnd::OpenInitFileAfterShow()
 //----------------------------------------------------------------------------
 BOOL CMainWnd::OpenNext()
 {
+	if(m_menu.IsItemChecked(ID_RANDOM)) return OpenRandom();
+
 	// 開くべきファイルを探す
 
 	int i = m_sound.GetCurFileNum();
@@ -529,6 +573,55 @@ BOOL CMainWnd::OpenNext()
 
 	// 次に開くべきファイルが見つからなかった場合
 	if(i >= m_arrayList[nCurPlayTab]->GetItemCount()) return FALSE;
+
+	return TRUE;
+}
+//----------------------------------------------------------------------------
+// ランダムにファイルを開く
+//----------------------------------------------------------------------------
+BOOL CMainWnd::OpenRandom()
+{
+	// すでにすべてのファイルを再生済みの場合
+	if(m_arrayList[nCurPlayTab]->GetMaxPlayOrder()
+			== m_arrayList[nCurPlayTab]->GetItemCount() - 1)
+		m_arrayList[nCurPlayTab]->ClearPlayOrder();
+
+	int i = m_sound.GetCurFileNum();
+
+	// 未再生のファイルを探す
+	std::vector<int> list;
+	std::vector<int> order = m_arrayList[nCurPlayTab]->GetOrders();
+	for(int i = 0; i < m_arrayList[nCurPlayTab]->GetItemCount(); i++) {
+		if(order[i] < 0) list.push_back(i);
+	}
+	BOOL bRet = FALSE;
+	for(int i = 0; i < (int)list.size(); i++) {
+		srand(time(nullptr));
+		QString szFilePath;
+		int n = rand() % list.size();
+		int nItem = list[n];
+		m_arrayList[nCurPlayTab]->GetItemText(nItem, 7, &szFilePath);
+		m_sound.SetCurFileNum(nItem+1);
+		bRet = OpenFile(szFilePath);
+		if(bRet) {
+			QString chTitle;
+			m_arrayList[nCurPlayTab]->GetItemText(nItem, 2, &chTitle);
+			chTitle += " - ";
+			chTitle += m_rApp.GetName();
+			SetCaption(chTitle);
+			m_arrayList[nCurPlayTab]->SetPlayOrder(nItem);
+			m_arrayList[nCurPlayTab]->ScrollToItem(nItem);
+			break;
+		}
+		else {
+			m_arrayList[nCurPlayTab]->DeleteItem(nItem);
+			m_arrayList[nCurPlayTab]->ResetNumber();
+			list.erase(list.begin() + n);
+		}
+	}
+
+	// 次に開くべきファイルが見つからなかった場合
+	if(!bRet) return FALSE;
 
 	return TRUE;
 }
@@ -588,11 +681,13 @@ void CMainWnd::PlayNext(BOOL bPlay, BOOL bFadeoutCancel)
 			Stop();
 			if(!m_sound.IsLoop()
 					&& m_arrayList[nCurPlayTab]->GetItemCount() > 0
-					&& m_sound.GetCurFileNum() > 1) {
+					&& (m_menu.IsItemChecked(ID_RANDOM)
+					|| m_sound.GetCurFileNum() > 1)) {
 				m_sound.SetCurFileNum(0);
 				OpenNext();
 			}
 			m_sound.SetLoop(isLoop);
+			if(m_menu.IsItemChecked(ID_ALOOP)) Play();
 			break;
 		}
 	}
@@ -600,7 +695,7 @@ void CMainWnd::PlayNext(BOOL bPlay, BOOL bFadeoutCancel)
 	m_sound.ChannelSetAttribute(BASS_ATTRIB_VOL, 1.0f);
 	if(m_sound.ChannelIsActive()) {
 		if(bPausing) Pause();
-		else if(bStopped) {
+		else if(bStopped || !m_menu.IsItemChecked(ID_CONTINUE)) {
 			BOOL isLoop = m_sound.IsLoop();
 			m_sound.SetLoop(TRUE);
 			Stop();
@@ -861,6 +956,14 @@ void CMainWnd::SetABLoopBSetting()
 	dlg.exec();
 }
 //----------------------------------------------------------------------------
+// 全曲ループ
+//----------------------------------------------------------------------------
+void CMainWnd::SetAllLoop(bool bAllLoop)
+{
+	m_menu.CheckItem(ID_ALOOP, bAllLoop ? MF_CHECKED : MF_UNCHECKED);
+	m_toolBar.CheckButton(ID_ALOOP, bAllLoop);
+}
+//----------------------------------------------------------------------------
 // 全てのエフェクトを設定
 //----------------------------------------------------------------------------
 void CMainWnd::SetAllEffects()
@@ -904,6 +1007,13 @@ void CMainWnd::SetAllEffects()
 	SetEQ12_5K(m_eq12_5kSlider.GetThumbPos());
 	SetEQ16K(m_eq16kSlider.GetThumbPos());
 	SetEQ20K(m_eq20kSlider.GetThumbPos());
+}
+//----------------------------------------------------------------------------
+// 連続再生
+//----------------------------------------------------------------------------
+void CMainWnd::SetContinue(bool bContinue)
+{
+	m_menu.CheckItem(ID_CONTINUE, bContinue ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
 // 再生速度の表示状態を設定
@@ -1276,6 +1386,27 @@ void CMainWnd::SetEQVisible(bool bEQVisible)
 	m_menu.CheckItem(ID_EQ, uCheck);
 }
 //----------------------------------------------------------------------------
+// ランダム再生の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetRandom(bool bRandom)
+{
+	m_menu.CheckItem(ID_RANDOM, bRandom ? MF_CHECKED : MF_UNCHECKED);
+	m_toolBar.CheckButton(ID_RANDOM, bRandom);
+
+	m_arrayList[nCurPlayTab]->ClearPlayOrder();
+	if(bRandom)
+		m_arrayList[nCurPlayTab]->SetPlayOrder(m_sound.GetCurFileNum()-1);
+}
+//----------------------------------------------------------------------------
+// １曲ループの設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetSingleLoop()
+{
+	m_sound.SetLoop(!m_sound.IsLoop());
+	m_menu.SetSingleLoopState(m_sound.IsLoop());
+	m_toolBar.SetSingleLoopState(m_sound.IsLoop());
+}
+//----------------------------------------------------------------------------
 // 再生速度の設定
 //----------------------------------------------------------------------------
 void CMainWnd::SetSpeed(double dSpeed)
@@ -1524,6 +1655,33 @@ void CMainWnd::WriteInitFile()
 	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ20K) ? 1 : 0);
 	WritePrivateProfileString(_T("Visible"), _T("eq20k"), buf,
 		 initFilePath.c_str());
+
+	// 再生モードの設定
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_RECOVERSLOOP) ? 1 : 0);
+	WritePrivateProfileString(_T("PlayMode"), _T("RecoverSingleLoop"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_sound.IsLoop() ? 1 : 0);
+	WritePrivateProfileString(_T("PlayMode"), _T("SingleLoop"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_RECOVERALOOP) ? 1 : 0);
+	WritePrivateProfileString(_T("PlayMode"), _T("RecoverAllLoop"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_ALOOP) ? 1 : 0);
+	WritePrivateProfileString(_T("PlayMode"), _T("AllLoop"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_RECOVERRANDOM) ? 1 : 0);
+	WritePrivateProfileString(_T("PlayMode"), _T("RecoverRandom"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_RANDOM) ? 1 : 0);
+	WritePrivateProfileString(_T("PlayMode"), _T("Random"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"),
+		m_menu.IsItemChecked(ID_RECOVERCONTINUE) ? 1 : 0);
+	WritePrivateProfileString(_T("PlayMode"), _T("RecoverContinue"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_CONTINUE) ? 1 : 0);
+	WritePrivateProfileString(_T("PlayMode"), _T("Continue"), buf, 
+		initFilePath.c_str());
 
 	// その他の設定
 	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_RECOVERSPEED) ? 1 : 0);
@@ -1786,7 +1944,9 @@ void CMainWnd::OnTimer(UINT id)
 		if(m_bFinish) {
 			m_bFinish = FALSE;
 			KillTimer(IDT_TIME);
-			PlayNext(FALSE, TRUE);
+			if(m_menu.IsItemChecked(ID_CONTINUE))
+				PlayNext(TRUE, TRUE);
+			else PlayNext(FALSE, TRUE);
 		}
 		break;
 	}

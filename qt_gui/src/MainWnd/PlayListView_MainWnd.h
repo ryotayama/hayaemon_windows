@@ -6,6 +6,7 @@
 
 class CMainWnd;
 #include <stdint.h>
+#include <vector>
 #include <QIcon>
 #include <QTableWidget>
 #include "../Common/Define.h"
@@ -22,10 +23,20 @@ public: // 関数
 	virtual void AddFile(const QString & filePath, int nPos = -1);
 	virtual BOOL Create();
 	virtual BOOL DeleteAllItems();
+	virtual int GetMaxPlayOrder() const;
 	virtual void SetPlaying(int iItem);
 	virtual void SetPausing(int iItem);
+	virtual void SetPlayOrder(int iItem);
+	virtual void ClearPlayOrder();
 	virtual void ResetNumber();
 	virtual void ScrollToItem(int nItem);
+
+public: // メンバ変数の取得・設定
+
+	virtual std::vector<int> GetOrders() const
+	{
+		return orders;
+	}
 
 public:
 	// Qtのラッパー
@@ -78,6 +89,7 @@ private: // メンバ変数
 
 	CMainWnd & m_rMainWnd;
 
+	std::vector<int> orders; // 再生順
 	QIcon m_icons[2];
 };
 //----------------------------------------------------------------------------

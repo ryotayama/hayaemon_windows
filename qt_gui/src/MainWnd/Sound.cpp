@@ -1128,6 +1128,9 @@ UINT CSound::OnLoop()
 {
 	if(m_bABLoopA || m_bABLoopB || m_bLoop) {
 		if(!ChannelSetPosition(m_nLoopPosA)) return 0;
+		if(ChannelIsStopped()) {
+			return ChannelPlay();
+		}
 		return 1;
 	}
 	return 0;
