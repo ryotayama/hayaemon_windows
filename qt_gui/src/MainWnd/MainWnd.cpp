@@ -57,6 +57,8 @@ void CMainWnd::AddDropFiles(const QList<QUrl> & urls, BOOL bClear)
 		m_sound.SetCurFileNum(0);
 		PlayNext(bClear, TRUE);
 	}
+
+	SetPreviousNextMenuState();
 }
 //----------------------------------------------------------------------------
 // 各コントロールを作成
@@ -396,6 +398,25 @@ void CMainWnd::DownSpeed(double speed)
 	m_speedLabel.SetSpeed((double)(newSpeed / dCalc));
 }
 //----------------------------------------------------------------------------
+// 早送り
+//----------------------------------------------------------------------------
+void CMainWnd::Forward()
+{
+	double dPos = m_sound.ChannelGetSecondsPosition();
+	double dDifference = 1.0;
+	dDifference *= m_sound.GetTempo() / 100.0;
+	dDifference *= m_sound.GetSampleRate() / 100.0;
+	if(dDifference < 1.0) dDifference = 1.0;
+	SetTime(m_sound.ChannelSeconds2Bytes(dPos + dDifference));
+}
+//----------------------------------------------------------------------------
+// 頭出し
+//----------------------------------------------------------------------------
+void CMainWnd::Head()
+{
+	SetTime(0);
+}
+//----------------------------------------------------------------------------
 // ファイルを開く
 //----------------------------------------------------------------------------
 BOOL CMainWnd::OpenFile(const QString & lpszFilePath, int nCount)
@@ -571,8 +592,81 @@ BOOL CMainWnd::OpenNext()
 		}
 	}
 
+	SetPreviousNextMenuState();
+
 	// 次に開くべきファイルが見つからなかった場合
 	if(i >= m_arrayList[nCurPlayTab]->GetItemCount()) return FALSE;
+
+	return TRUE;
+}
+//----------------------------------------------------------------------------
+// 前のファイルを開く
+//----------------------------------------------------------------------------
+BOOL CMainWnd::OpenPrevious()
+{
+	int i = m_sound.GetCurFileNum();
+
+	if(m_menu.IsItemChecked(ID_RANDOM)) {
+		m_arrayList[nCurPlayTab]->SetPlayOrder(m_sound.GetCurFileNum()-1, -1);
+		int nMax = m_arrayList[nCurPlayTab]->GetMaxPlayOrder();
+		i = 0;
+		std::vector<int> orders = m_arrayList[nCurPlayTab]->GetOrders();
+		for(; i < m_arrayList[nCurPlayTab]->GetItemCount(); i++)
+			if(nMax == orders[i]) break;
+
+		m_arrayList[nCurPlayTab]->SetPlayOrder(i, -1);
+		QString szFilePath;
+		m_arrayList[nCurPlayTab]->GetItemText(i, 7, &szFilePath);
+		m_sound.SetCurFileNum(i+1);
+		BOOL bRet = OpenFile(szFilePath);
+		if(bRet) {
+			QString chTitle;
+			m_arrayList[nCurPlayTab]->GetItemText(i, 2, &chTitle);
+			chTitle += " - ";
+			chTitle += m_rApp.GetName();
+			SetCaption(chTitle);
+			m_arrayList[nCurPlayTab]->SetPlayOrder(i);
+			m_arrayList[nCurPlayTab]->ScrollToItem(i);
+		}
+		else {
+			m_arrayList[nCurPlayTab]->DeleteItem(i);
+			m_arrayList[nCurPlayTab]->ResetNumber();
+		}
+
+		SetPreviousNextMenuState();
+
+		// 次に開くべきファイルが見つからなかった場合
+		if(!bRet) return FALSE;
+
+		return TRUE;
+	}
+
+	// 開くべきファイルを探す
+	i = m_sound.GetCurFileNum() - 2;
+	for(; i >= 0; i--) {
+		QString filePath;
+		m_arrayList[nCurPlayTab]->GetItemText(i, 7, &filePath);
+		m_sound.SetCurFileNum(i+1);
+		if(OpenFile(filePath)) {
+			QString chTitle;
+			m_arrayList[nCurPlayTab]->GetItemText(i, 2, &chTitle);
+			chTitle += " - ";
+			chTitle += m_rApp.GetName();
+			SetCaption(chTitle);
+			m_arrayList[nCurPlayTab]->ScrollToItem(i);
+			break;
+		}
+		else {
+			// 開けなかったファイルを削除
+			m_arrayList[nCurPlayTab]->DeleteItem(i);
+			m_arrayList[nCurPlayTab]->ResetNumber();
+		}
+	}
+
+	SetPreviousNextMenuState();
+
+	// 開くべきファイルが見つからなかった場合
+	if(i < 0) return FALSE;
 
 	return TRUE;
 }
@@ -619,6 +713,8 @@ BOOL CMainWnd::OpenRandom()
 			list.erase(list.begin() + n);
 		}
 	}
+
+	SetPreviousNextMenuState();
 
 	// 次に開くべきファイルが見つからなかった場合
 	if(!bRet) return FALSE;
@@ -704,6 +800,44 @@ void CMainWnd::PlayNext(BOOL bPlay, BOOL bFadeoutCancel)
 	}
 }
 //----------------------------------------------------------------------------
+// 前のファイルを再生
+//----------------------------------------------------------------------------
+void CMainWnd::PlayPrevious()
+{
+	BOOL bStopped = m_sound.ChannelIsStopped();
+	BOOL bPausing = m_sound.ChannelIsPausing();
+
+	// 再生すべきファイルを探す
+	BOOL bEnd = FALSE; // 後ろから検索しなおしたかどうか
+	while(1) {
+		if(OpenPrevious()) {
+			if(Play()) break;
+			else continue;
+		}
+		else {
+			if(m_menu.IsItemChecked(ID_ALOOP) && !bEnd) {
+				bEnd = TRUE;
+				m_sound.SetCurFileNum(
+					m_arrayList[nCurPlayTab]->GetItemCount()+1);
+				continue;
+			}
+			Stop();
+			Play();
+			break;
+		}
+	}
+
+	if(m_sound.ChannelIsActive()) {
+		if(bPausing) Pause();
+		else if(bStopped) {
+			BOOL isLoop = m_sound.IsLoop();
+			m_sound.SetLoop(TRUE);
+			Stop();
+			m_sound.SetLoop(isLoop);
+		}
+	}
+}
+//----------------------------------------------------------------------------
 // 再生周波数をデフォルトに戻す
 //----------------------------------------------------------------------------
 void CMainWnd::ResetFreq()
@@ -730,6 +864,17 @@ void CMainWnd::ResetSpeed()
 void CMainWnd::ResetVolume()
 {
 	m_volumeLabel.SetVolume(100.0);
+}
+//----------------------------------------------------------------------------
+// 巻き戻し
+//----------------------------------------------------------------------------
+void CMainWnd::Rewind()
+{
+	double dPos = m_sound.ChannelGetSecondsPosition(), dDifference = 1.0;
+	dDifference *= m_sound.GetTempo() / 100.0;
+	dDifference *= m_sound.GetSampleRate() / 100.0;
+	if(dDifference < 1.0) dDifference = 1.0;
+	SetTime(m_sound.ChannelSeconds2Bytes(dPos - dDifference));
 }
 //----------------------------------------------------------------------------
 // AB ループ A の設定
@@ -962,6 +1107,8 @@ void CMainWnd::SetAllLoop(bool bAllLoop)
 {
 	m_menu.CheckItem(ID_ALOOP, bAllLoop ? MF_CHECKED : MF_UNCHECKED);
 	m_toolBar.CheckButton(ID_ALOOP, bAllLoop);
+
+	SetPreviousNextMenuState();
 }
 //----------------------------------------------------------------------------
 // 全てのエフェクトを設定
@@ -1386,6 +1533,43 @@ void CMainWnd::SetEQVisible(bool bEQVisible)
 	m_menu.CheckItem(ID_EQ, uCheck);
 }
 //----------------------------------------------------------------------------
+// 前へ・次へメニューの表示状態を設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetPreviousNextMenuState()
+{
+	if(m_sound.GetCurFileNum() <= 0) return;
+
+	// 前へメニューの使用可・不可を設定
+	if(m_menu.IsItemChecked(ID_RANDOM)) {
+		if(!m_menu.IsItemChecked(ID_ALOOP)
+			&& m_arrayList[nCurPlayTab]->GetMaxPlayOrder() == 1)
+			m_menu.EnableItem(ID_PREV, MFS_DISABLED);
+		else m_menu.EnableItem(ID_PREV, MFS_ENABLED);
+	}
+	else {
+		if(!m_menu.IsItemChecked(ID_ALOOP)
+			&& m_sound.GetCurFileNum() == 1)
+			m_menu.EnableItem(ID_PREV, MFS_DISABLED);
+		else m_menu.EnableItem(ID_PREV, MFS_ENABLED);
+	}
+
+	// 次へメニューの使用可・不可を設定
+	if(m_menu.IsItemChecked(ID_RANDOM)) {
+		if(!m_menu.IsItemChecked(ID_ALOOP)
+			&& m_arrayList[nCurPlayTab]->GetMaxPlayOrder()
+			== m_arrayList[nCurPlayTab]->GetItemCount())
+			m_menu.EnableItem(ID_NEXT, MFS_DISABLED);
+		else m_menu.EnableItem(ID_NEXT, MFS_ENABLED);
+	}
+	else {
+		if(!m_menu.IsItemChecked(ID_ALOOP)
+			&& m_sound.GetCurFileNum()
+			== m_arrayList[nCurPlayTab]->GetItemCount())
+			m_menu.EnableItem(ID_NEXT, MFS_DISABLED);
+		else m_menu.EnableItem(ID_NEXT, MFS_ENABLED);
+	}
+}
+//----------------------------------------------------------------------------
 // ランダム再生の設定
 //----------------------------------------------------------------------------
 void CMainWnd::SetRandom(bool bRandom)
@@ -1396,6 +1580,8 @@ void CMainWnd::SetRandom(bool bRandom)
 	m_arrayList[nCurPlayTab]->ClearPlayOrder();
 	if(bRandom)
 		m_arrayList[nCurPlayTab]->SetPlayOrder(m_sound.GetCurFileNum()-1);
+
+	SetPreviousNextMenuState();
 }
 //----------------------------------------------------------------------------
 // １曲ループの設定
@@ -1465,6 +1651,54 @@ void CMainWnd::ShowTime(BOOL bReset)
 	m_timeLabel.SetTime(m_sound.ChannelGetSecondsPosition(),
 						m_sound.ChannelGetSecondsLength(), bReset);
 	m_timeSlider.SetThumbPos((LONG)(m_sound.ChannelGetPosition() / 100000));
+}
+//----------------------------------------------------------------------------
+// 巻き戻しの開始
+//----------------------------------------------------------------------------
+void CMainWnd::StartRewind()
+{
+	StopForward();
+	m_menu.CheckItem(ID_REWIND, MF_CHECKED);
+	m_toolBar.SetState(ID_HEAD, TBSTATE_CHECKED | TBSTATE_ENABLED);
+	SetTimer(IDT_REWIND, 100);
+	m_bRewinding = true;
+}
+//----------------------------------------------------------------------------
+// 巻き戻しの停止
+//----------------------------------------------------------------------------
+void CMainWnd::StopRewind()
+{
+	if(!m_bRewinding) {
+		return;
+	}
+	m_menu.CheckItem(ID_REWIND, MF_UNCHECKED);
+	m_toolBar.SetState(ID_HEAD, TBSTATE_ENABLED);
+	KillTimer(IDT_REWIND);
+	m_bRewinding = false;
+}
+//----------------------------------------------------------------------------
+// 早送りの開始
+//----------------------------------------------------------------------------
+void CMainWnd::StartForward()
+{
+	StopRewind();
+	m_menu.CheckItem(ID_FORWARD, MF_CHECKED);
+	m_toolBar.SetState(ID_NEXT, TBSTATE_CHECKED | TBSTATE_ENABLED);
+	SetTimer(IDT_FORWARD, 100);
+	m_bForwarding = true;
+}
+//----------------------------------------------------------------------------
+// 早送りの停止
+//----------------------------------------------------------------------------
+void CMainWnd::StopForward()
+{
+	if(!m_bForwarding) {
+		return;
+	}
+	m_menu.CheckItem(ID_FORWARD, MF_UNCHECKED);
+	m_toolBar.SetState(ID_NEXT, TBSTATE_ENABLED);
+	KillTimer(IDT_FORWARD);
+	m_bForwarding = false;
 }
 //----------------------------------------------------------------------------
 // 停止
@@ -1927,6 +2161,8 @@ LRESULT CMainWnd::OnCreate()
 
 	OpenInitFileAfterShow();
 
+	SetPreviousNextMenuState();
+
 	m_timeThreadRunning = true;
 	m_timeThread.reset(
 			new std::thread(std::bind(&CMainWnd::UpdateTimeThreadProc, this)));
@@ -1948,6 +2184,12 @@ void CMainWnd::OnTimer(UINT id)
 				PlayNext(TRUE, TRUE);
 			else PlayNext(FALSE, TRUE);
 		}
+		break;
+	case IDT_REWIND:
+		Rewind();
+		break;
+	case IDT_FORWARD:
+		Forward();
 		break;
 	}
 }

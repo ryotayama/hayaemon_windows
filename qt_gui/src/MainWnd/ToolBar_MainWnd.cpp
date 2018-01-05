@@ -5,6 +5,7 @@
 #include <cassert>
 #include "../Common/CommandList.h"
 #include "MainWnd.h"
+#include "PlayListView_MainWnd.h"
 
 enum {
 	ID_PLAY,
@@ -17,10 +18,12 @@ enum {
 // コンストラクタ
 //----------------------------------------------------------------------------
 CToolBar_MainWnd::CToolBar_MainWnd(CMainWnd & mainWnd)
-	: m_rMainWnd(mainWnd),
+	: m_rMainWnd(mainWnd), m_bRewinding(false),
 		m_buttonMap({{ID_PLAY, m_rMainWnd.playButton},
 								 {ID_PAUSE, m_rMainWnd.pauseButton},
 								 {ID_STOP, m_rMainWnd.stopButton},
+								 {ID_HEAD, m_rMainWnd.prevButton},
+								 {ID_NEXT, m_rMainWnd.nextButton},
 								 {ID_SLOOP, m_rMainWnd.singleLoopButton},
 								 {ID_ALOOP, m_rMainWnd.allLoopButton},
 								 {ID_RANDOM, m_rMainWnd.randomPlayButton},
@@ -73,25 +76,37 @@ void CToolBar_MainWnd::SetSingleLoopState(BOOL bSLoop)
 	EnableButton(ID_RANDOM, !bSLoop);
 }
 //----------------------------------------------------------------------------
-// １曲ループボタンが選択された
+// 頭出しボタンが選択された
 //----------------------------------------------------------------------------
-void CToolBar_MainWnd::OnSingleLoopButtonSelected()
+void CToolBar_MainWnd::OnHeadButtonSelected()
 {
-	m_rMainWnd.SetSingleLoop();
-}
-//----------------------------------------------------------------------------
-// 全曲ループボタンが選択された
-//----------------------------------------------------------------------------
-void CToolBar_MainWnd::OnAllLoopButtonSelected(bool checked)
-{
-	m_rMainWnd.SetAllLoop(checked);
-}
-//----------------------------------------------------------------------------
-// ランダム再生ボタンが選択された
-//----------------------------------------------------------------------------
-void CToolBar_MainWnd::OnRandomButtonSelected(bool checked)
-{
-	m_rMainWnd.SetRandom(checked);
+	bool pressed = m_rMainWnd.prevButton->isDown();
+
+	if(!pressed && !m_bRewinding) {
+		if(m_rMainWnd.GetSound().ChannelGetSecondsPosition() < 1.0f) {
+			if(m_rMainWnd.GetMenu().IsItemChecked(ID_RANDOM)) {
+				if(!(!m_rMainWnd.GetMenu().IsItemChecked(ID_ALOOP)
+				   && m_rMainWnd.GetPlayList().GetMaxPlayOrder() == 1))
+					m_rMainWnd.PlayPrevious();
+			}
+			else {
+				if(!(!m_rMainWnd.GetMenu().IsItemChecked(ID_ALOOP)
+				   && m_rMainWnd.GetSound().GetCurFileNum() == 1))
+					m_rMainWnd.PlayPrevious();
+			}
+		}
+		else m_rMainWnd.Head();
+	}
+	else {
+		if(!m_bRewinding) {
+			m_bRewinding = true;
+			m_rMainWnd.StartRewind();
+		}
+		if(!pressed) {
+			m_rMainWnd.StopRewind();
+			m_bRewinding = false;
+		}
+	}
 }
 //----------------------------------------------------------------------------
 // 再生ボタンが選択された
@@ -113,6 +128,59 @@ void CToolBar_MainWnd::OnPauseButtonSelected()
 void CToolBar_MainWnd::OnStopButtonSelected()
 {
 	m_rMainWnd.Stop(FALSE);
+}
+//----------------------------------------------------------------------------
+// 次へボタンが選択された
+//----------------------------------------------------------------------------
+void CToolBar_MainWnd::OnNextButtonSelected()
+{
+	bool pressed = m_rMainWnd.nextButton->isDown();
+
+	if(!pressed && !m_bRewinding) {
+		if(m_rMainWnd.GetMenu().IsItemChecked(ID_RANDOM)) {
+			if(!(!m_rMainWnd.GetMenu().IsItemChecked(ID_ALOOP)
+			   && m_rMainWnd.GetPlayList().GetMaxPlayOrder()
+			   == m_rMainWnd.GetPlayList().GetItemCount()))
+				m_rMainWnd.PlayNext(FALSE, FALSE);
+		}
+		else {
+			if(!(!m_rMainWnd.GetMenu().IsItemChecked(ID_ALOOP)
+			   && m_rMainWnd.GetSound().GetCurFileNum()
+			   == m_rMainWnd.GetPlayList().GetItemCount()))
+				m_rMainWnd.PlayNext(FALSE, FALSE);
+		}
+	}
+	else {
+		if(!m_bRewinding) {
+			m_bRewinding = true;
+			m_rMainWnd.StartForward();
+		}
+		if(!pressed) {
+			m_rMainWnd.StopForward();
+			m_bRewinding = false;
+		}
+	}
+}
+//----------------------------------------------------------------------------
+// １曲ループボタンが選択された
+//----------------------------------------------------------------------------
+void CToolBar_MainWnd::OnSingleLoopButtonSelected()
+{
+	m_rMainWnd.SetSingleLoop();
+}
+//----------------------------------------------------------------------------
+// 全曲ループボタンが選択された
+//----------------------------------------------------------------------------
+void CToolBar_MainWnd::OnAllLoopButtonSelected(bool checked)
+{
+	m_rMainWnd.SetAllLoop(checked);
+}
+//----------------------------------------------------------------------------
+// ランダム再生ボタンが選択された
+//----------------------------------------------------------------------------
+void CToolBar_MainWnd::OnRandomButtonSelected(bool checked)
+{
+	m_rMainWnd.SetRandom(checked);
 }
 //----------------------------------------------------------------------------
 // ＡＢループ（Ａ）ボタンが選択された
@@ -141,6 +209,20 @@ void CToolBar_MainWnd::CheckButton(int nID, BOOL fCheck)
 	auto button = it->second;
 	assert(button->isCheckable());
 	button->setChecked(fCheck ? true : false);
+}
+//----------------------------------------------------------------------------
+// ボタンの状態を設定
+//----------------------------------------------------------------------------
+void CToolBar_MainWnd::SetState(int nID, UINT nState)
+{
+	auto it = m_buttonMap.find(nID);
+	assert(it != m_buttonMap.end());
+	if (it == m_buttonMap.end()) {
+		return;
+	}
+	auto button = it->second;
+	button->setDown((nState & TBSTATE_CHECKED) ? true : false);
+	button->setEnabled((nState & TBSTATE_ENABLED) ? true : false);
 }
 //----------------------------------------------------------------------------
 // 有効状態の設定
@@ -179,6 +261,10 @@ void CToolBar_MainWnd::CreateConnections()
 					this, &CToolBar_MainWnd::OnPauseButtonSelected);
 	connect(m_rMainWnd.stopButton, &QToolButton::clicked,
 					this, &CToolBar_MainWnd::OnStopButtonSelected);
+	connect(m_rMainWnd.prevButton, &QToolButton::clicked,
+					this, &CToolBar_MainWnd::OnHeadButtonSelected);
+	connect(m_rMainWnd.nextButton, &QToolButton::clicked,
+					this, &CToolBar_MainWnd::OnNextButtonSelected);
 	connect(m_rMainWnd.singleLoopButton, &QToolButton::clicked,
 					this, &CToolBar_MainWnd::OnSingleLoopButtonSelected);
 	connect(m_rMainWnd.allLoopButton, &QToolButton::clicked,

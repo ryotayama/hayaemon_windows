@@ -47,6 +47,11 @@ typedef enum CMDID {
 		ID_EQ16K,
 		ID_EQ20K,
 	// 再生メニュー
+		ID_HEAD,
+		ID_PREV,
+		ID_NEXT,
+		ID_REWIND,
+		ID_FORWARD,
 		ID_SLOOP,
 		ID_ALOOP,
 		ID_RANDOM,

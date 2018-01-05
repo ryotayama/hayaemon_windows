@@ -27,6 +27,7 @@ public: // 関数
 	virtual void SetPlaying(int iItem);
 	virtual void SetPausing(int iItem);
 	virtual void SetPlayOrder(int iItem);
+	virtual void SetPlayOrder(int iItem, int nOrder);
 	virtual void ClearPlayOrder();
 	virtual void ResetNumber();
 	virtual void ScrollToItem(int nItem);

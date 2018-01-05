@@ -30,8 +30,13 @@ public: // 関数
 	void OnVolumeMenuSelected(bool checked);
 	void OnPanMenuSelected(bool checked);
 	void OnEQMenuSelected(bool checked);
+	void OnHeadMenuSelected();
 	void OnPauseMenuSelected();
+	void OnPreviousMenuSelected();
+	void OnNextMenuSelected();
 	void OnStopMenuSelected();
+	void OnRewindMenuSelected(bool checked);
+	void OnForwardMenuSelected(bool checked);
 	void OnResetSpeedMenuSelected();
 	void OnSetSpeed50MenuSelected();
 	void OnSetSpeed60MenuSelected();

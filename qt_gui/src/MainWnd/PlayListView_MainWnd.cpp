@@ -143,6 +143,13 @@ void CPlayListView_MainWnd::SetPlayOrder(int iItem)
 	orders[iItem] = GetMaxPlayOrder() + 1;
 }
 //----------------------------------------------------------------------------
+// 再生順の設定
+//----------------------------------------------------------------------------
+void CPlayListView_MainWnd::SetPlayOrder(int iItem, int nOrder)
+{
+	orders[iItem] = nOrder;
+}
+//----------------------------------------------------------------------------
 // 再生順をクリア
 //----------------------------------------------------------------------------
 void CPlayListView_MainWnd::ClearPlayOrder()

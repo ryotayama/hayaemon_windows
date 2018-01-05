@@ -22,6 +22,26 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
+       <widget class="QToolButton" name="prevButton">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click: Head/Previous&lt;br&gt;Long press: Rewind&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../Hayaemon.qrc">
+          <normaloff>:/icon/resource/prev.png</normaloff>:/icon/resource/prev.png</iconset>
+        </property>
+        <property name="autoRepeat">
+         <bool>true</bool>
+        </property>
+        <property name="autoRepeatDelay">
+         <number>500</number>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QToolButton" name="playButton">
         <property name="toolTip">
          <string>Play</string>
@@ -67,6 +87,26 @@
        </widget>
       </item>
       <item>
+       <widget class="QToolButton" name="nextButton">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click: Next&lt;br&gt;Long press: Forward&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../Hayaemon.qrc">
+          <normaloff>:/icon/resource/next.png</normaloff>:/icon/resource/next.png</iconset>
+        </property>
+        <property name="autoRepeat">
+         <bool>true</bool>
+        </property>
+        <property name="autoRepeatDelay">
+         <number>500</number>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QToolButton" name="singleLoopButton">
         <property name="toolTip">
          <string>Single loop</string>
@@ -85,9 +125,6 @@
       </item>
       <item>
        <widget class="QToolButton" name="allLoopButton">
-        <property name="toolTip">
-         <string>All loop</string>
-        </property>
         <property name="statusTip">
          <string>All loop</string>
         </property>
@@ -364,6 +401,12 @@
     </property>
     <addaction name="actionPlayPlayPause"/>
     <addaction name="actionPlayStop"/>
+    <addaction name="separator"/>
+    <addaction name="actionHead"/>
+    <addaction name="actionPrevious"/>
+    <addaction name="actionNext"/>
+    <addaction name="actionRewind"/>
+    <addaction name="actionForward"/>
     <addaction name="separator"/>
     <addaction name="actionSingleLoop"/>
     <addaction name="actionAllLoop"/>
@@ -1518,6 +1561,37 @@
     <string>Same Artist(&amp;S)</string>
    </property>
   </action>
+  <action name="actionPrevious">
+   <property name="text">
+    <string>Previous(&amp;V)</string>
+   </property>
+  </action>
+  <action name="actionNext">
+   <property name="text">
+    <string>Next(&amp;N)</string>
+   </property>
+  </action>
+  <action name="actionHead">
+   <property name="text">
+    <string>Head(&amp;T)</string>
+   </property>
+  </action>
+  <action name="actionRewind">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Rewind(&amp;R)</string>
+   </property>
+  </action>
+  <action name="actionForward">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Forward(&amp;A)</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -1543,9 +1617,11 @@
   </customwidget>
  </customwidgets>
  <tabstops>
+  <tabstop>prevButton</tabstop>
   <tabstop>playButton</tabstop>
   <tabstop>pauseButton</tabstop>
   <tabstop>stopButton</tabstop>
+  <tabstop>nextButton</tabstop>
   <tabstop>singleLoopButton</tabstop>
   <tabstop>allLoopButton</tabstop>
   <tabstop>randomPlayButton</tabstop>

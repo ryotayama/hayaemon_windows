@@ -59,7 +59,9 @@ public: // 関数
 	virtual void SetABLoopB(BOOL bLoop);
 	virtual void SetLoopPosA(QWORD nPos);
 	virtual void SetLoopPosB(QWORD nPos);
+	virtual float GetTempo();
 	virtual BOOL SetTempo(float tempo);
+	virtual float GetSampleRate();
 	virtual BOOL SetSampleRate(float samplerate);
 	virtual BOOL ChannelSetVolume(float volume);
 	virtual UINT OnLoop();

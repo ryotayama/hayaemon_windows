@@ -76,4 +76,11 @@ typedef std::basic_string<TCHAR> tstring;
 # define MFS_DISABLED        MF_GRAYED
 #endif
 
+#ifndef TBSTATE_CHECKED
+# define TBSTATE_CHECKED         0x01
+#endif
+#ifndef TBSTATE_ENABLED
+# define TBSTATE_ENABLED         0x04
+#endif
+
 #endif // DefineH

@@ -79,7 +79,7 @@ public: // 関数
 		m_eq16kLabel(*this), m_eq16kSlider(*this),
 		m_eq20kLabel(*this), m_eq20kSlider(*this),
 		m_sound(*this), isInitFileRead(FALSE), m_bFinish(FALSE), nCurPlayTab(0),
-		m_timeThreadRunning(false) { }
+		m_timeThreadRunning(false), m_bForwarding(false), m_bRewinding(false) { }
 	virtual ~CMainWnd();
 
 	virtual void AddDropFiles(const QList<QUrl> & urls, BOOL bClear);
@@ -88,18 +88,23 @@ public: // 関数
 	virtual void DownFreq(double freq);
 	virtual void DownPitch(double pitch);
 	virtual void DownSpeed(double speed);
+	virtual void Forward();
+	virtual void Head();
 	virtual BOOL OpenFile(const QString & lpszFilePath, int nCount = 1);
 	virtual void OpenInitFile();
 	virtual void OpenInitFileAfterShow();
 	virtual BOOL OpenNext();
+	virtual BOOL OpenPrevious();
 	virtual BOOL OpenRandom();
 	virtual void Pause();
 	virtual BOOL Play();
 	virtual void PlayNext(BOOL bPlay, BOOL bFadeoutCancel);
+	virtual void PlayPrevious();
 	virtual void ResetFreq();
 	virtual void ResetPitch();
 	virtual void ResetSpeed();
 	virtual void ResetVolume();
+	virtual void Rewind();
 	virtual void SetABLoopA();
 	virtual void SetABLoopA_Sec(double dTime);
 	virtual void SetABLoopB();
@@ -146,6 +151,7 @@ public: // 関数
 	virtual void SetEQ16K(LONG lEQ16K);
 	virtual void SetEQ20K(LONG lEQ20K);
 	virtual void SetEQVisible(bool bEQVisible);
+	virtual void SetPreviousNextMenuState();
 	virtual void SetRandom(bool bRandom);
 	virtual void SetSingleLoop();
 	virtual void SetSpeed(double dSpeed);
@@ -155,6 +161,10 @@ public: // 関数
 	virtual void SetTime(QWORD qwTime, BOOL bReset = TRUE);
 	virtual void SetPan(int nPan);
 	virtual void ShowTime(BOOL bReset = TRUE);
+	virtual void StartRewind();
+	virtual void StartForward();
+	virtual void StopRewind();
+	virtual void StopForward();
 	virtual void Stop(BOOL bForce = TRUE);
 	virtual void UpFreq(double freq);
 	virtual void UpPitch(double pitch);
@@ -256,16 +266,21 @@ protected: // メンバ変数
 	int nCurPlayTab; // 現在再生中のファイルが存在しているタブ
 	std::unique_ptr<std::thread> m_timeThread;
 	bool m_timeThreadRunning;
+	bool m_bForwarding;
+	bool m_bRewinding;
 
 public: // 定数
 
 	// タイマー ID
 	enum {
 		IDT_TIME = 11,
+		IDT_REWIND,
+		IDT_FORWARD,
 	};
 
 public: // メンバ変数の取得・設定
 
+	CMenu_MainWnd & GetMenu() { return m_menu; }
 	CSpeedLabel_MainWnd & GetSpeedLabel() { return m_speedLabel; }
 	CSpeedSlider_MainWnd & GetSpeedSlider() { return m_speedSlider; }
 	CFreqLabel_MainWnd & GetFreqLabel() { return m_freqLabel; }
@@ -278,6 +293,10 @@ public: // メンバ変数の取得・設定
 	CVolumeSlider_MainWnd & GetVolumeSlider() { return m_volumeSlider; }
 	CPanLabel_MainWnd & GetPanLabel() { return m_panLabel; }
 	CPanSlider_MainWnd & GetPanSlider() { return m_panSlider; }
+	CPlayListView_MainWnd & GetPlayList() {
+		int nSelect = m_tab->GetCurrentFocus();
+		return *m_arrayList[nSelect];
+	}
 	CPlayListView_MainWnd & GetCurPlayList() {
 		return *m_arrayList[nCurPlayTab];
 	}

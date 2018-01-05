@@ -23,12 +23,14 @@ public: // 関数
 	virtual void SetPlayingState(BOOL bPlaying);
 	virtual void SetPausingState(BOOL bPlaying);
 	virtual void SetSingleLoopState(BOOL bSLoop);
-	virtual void OnSingleLoopButtonSelected();
-	virtual void OnAllLoopButtonSelected(bool checked);
-	virtual void OnRandomButtonSelected(bool checked);
+	virtual void OnHeadButtonSelected();
 	virtual void OnPlayButtonSelected();
 	virtual void OnPauseButtonSelected();
 	virtual void OnStopButtonSelected();
+	virtual void OnNextButtonSelected();
+	virtual void OnSingleLoopButtonSelected();
+	virtual void OnAllLoopButtonSelected(bool checked);
+	virtual void OnRandomButtonSelected(bool checked);
 	virtual void OnABLoopAButtonSelected();
 	virtual void OnABLoopBButtonSelected();
 
@@ -36,9 +38,12 @@ private: // メンバ変数
 
 	CMainWnd & m_rMainWnd;
 
+	bool m_bRewinding;
+
 public: // Qtのラッパー
 
 	virtual void CheckButton(int nID, BOOL fCheck);
+	virtual void SetState(int nID, UINT nState);
 
 private:
 

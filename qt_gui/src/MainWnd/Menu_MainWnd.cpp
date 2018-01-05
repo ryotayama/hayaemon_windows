@@ -92,11 +92,48 @@ void CMenu_MainWnd::OnEQMenuSelected(bool checked)
 	m_rMainWnd.SetEQVisible(checked);
 }
 //----------------------------------------------------------------------------
+// 再生 → 頭出しメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnHeadMenuSelected()
+{
+	m_rMainWnd.Head();
+}
+//----------------------------------------------------------------------------
+// 再生 → 前へメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnPreviousMenuSelected()
+{
+	m_rMainWnd.PlayPrevious();
+}
+//----------------------------------------------------------------------------
+// 再生 → 次へメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnNextMenuSelected()
+{
+	m_rMainWnd.PlayNext(FALSE, FALSE);
+}
+//----------------------------------------------------------------------------
 // 再生 → 一時停止メニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnPauseMenuSelected()
 {
 	m_rMainWnd.Pause();
+}
+//----------------------------------------------------------------------------
+// 再生 → 巻き戻しメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnRewindMenuSelected(bool checked)
+{
+	if(!checked) m_rMainWnd.StopRewind();
+	else m_rMainWnd.StartRewind();
+}
+//----------------------------------------------------------------------------
+// 再生 → 早送りメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnForwardMenuSelected(bool checked)
+{
+	if(!checked) m_rMainWnd.StopForward();
+	else m_rMainWnd.StartForward();
 }
 //----------------------------------------------------------------------------
 // 再生 → 停止メニューが選択された
@@ -1069,6 +1106,11 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_VOLUME, m_rMainWnd.actionVolumeVisible},
 		{ID_PAN, m_rMainWnd.actionPanVisible},
 		{ID_EQ, m_rMainWnd.actionEQVisible},
+		{ID_HEAD, m_rMainWnd.actionHead},
+		{ID_PREV, m_rMainWnd.actionPrevious},
+		{ID_NEXT, m_rMainWnd.actionNext},
+		{ID_REWIND, m_rMainWnd.actionRewind},
+		{ID_FORWARD, m_rMainWnd.actionForward},
 		{ID_SLOOP, m_rMainWnd.actionSingleLoop},
 		{ID_ALOOP, m_rMainWnd.actionAllLoop},
 		{ID_RANDOM, m_rMainWnd.actionRandomPlay},
@@ -1152,6 +1194,16 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnPauseMenuSelected);
 	connect(m_rMainWnd.actionPlayStop, &QAction::triggered,
 					this, &CMenu_MainWnd::OnStopMenuSelected);
+	connect(m_rMainWnd.actionHead, &QAction::triggered,
+					this, &CMenu_MainWnd::OnHeadMenuSelected);
+	connect(m_rMainWnd.actionPrevious, &QAction::triggered,
+					this, &CMenu_MainWnd::OnPreviousMenuSelected);
+	connect(m_rMainWnd.actionNext, &QAction::triggered,
+					this, &CMenu_MainWnd::OnNextMenuSelected);
+	connect(m_rMainWnd.actionRewind, &QAction::triggered,
+					this, &CMenu_MainWnd::OnRewindMenuSelected);
+	connect(m_rMainWnd.actionForward, &QAction::triggered,
+					this, &CMenu_MainWnd::OnForwardMenuSelected);
 	connect(m_rMainWnd.actionSingleLoop, &QAction::triggered,
 					this, &CMenu_MainWnd::OnSingleLoopMenuSelected);
 	connect(m_rMainWnd.actionAllLoop, &QAction::toggled,
