@@ -142,6 +142,76 @@ void CMenu_MainWnd::OnForwardMenuSelected(bool checked)
 	else m_rMainWnd.StartForward();
 }
 //----------------------------------------------------------------------------
+// 再生 → 1秒戻るメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnReturn1SecMenuSelected()
+{
+	m_rMainWnd.ReturnSeconds(1);
+}
+//----------------------------------------------------------------------------
+// 再生 → 2秒戻るメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnReturn2SecMenuSelected()
+{
+	m_rMainWnd.ReturnSeconds(2);
+}
+//----------------------------------------------------------------------------
+// 再生 → 3秒戻るメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnReturn3SecMenuSelected()
+{
+	m_rMainWnd.ReturnSeconds(3);
+}
+//----------------------------------------------------------------------------
+// 再生 → 5秒戻るメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnReturn5SecMenuSelected()
+{
+	m_rMainWnd.ReturnSeconds(5);
+}
+//----------------------------------------------------------------------------
+// 再生 → 10秒戻るメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnReturn10SecMenuSelected()
+{
+	m_rMainWnd.ReturnSeconds(10);
+}
+//----------------------------------------------------------------------------
+// 再生 → 1秒進むメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnForward1SecMenuSelected()
+{
+	m_rMainWnd.ForwardSeconds(1);
+}
+//----------------------------------------------------------------------------
+// 再生 → 2秒進むメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnForward2SecMenuSelected()
+{
+	m_rMainWnd.ForwardSeconds(2);
+}
+//----------------------------------------------------------------------------
+// 再生 → 3秒進むメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnForward3SecMenuSelected()
+{
+	m_rMainWnd.ForwardSeconds(3);
+}
+//----------------------------------------------------------------------------
+// 再生 → 5秒進むメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnForward5SecMenuSelected()
+{
+	m_rMainWnd.ForwardSeconds(5);
+}
+//----------------------------------------------------------------------------
+// 再生 → 10秒進むメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnForward10SecMenuSelected()
+{
+	m_rMainWnd.ForwardSeconds(10);
+}
+//----------------------------------------------------------------------------
 // 再生 → 停止メニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnStopMenuSelected()
@@ -1261,6 +1331,26 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnRewindMenuSelected);
 	connect(m_rMainWnd.actionForward, &QAction::triggered,
 					this, &CMenu_MainWnd::OnForwardMenuSelected);
+	connect(m_rMainWnd.actionRewind1, &QAction::triggered,
+					this, &CMenu_MainWnd::OnReturn1SecMenuSelected);
+	connect(m_rMainWnd.actionRewind2, &QAction::triggered,
+					this, &CMenu_MainWnd::OnReturn2SecMenuSelected);
+	connect(m_rMainWnd.actionRewind3, &QAction::triggered,
+					this, &CMenu_MainWnd::OnReturn3SecMenuSelected);
+	connect(m_rMainWnd.actionRewind5, &QAction::triggered,
+					this, &CMenu_MainWnd::OnReturn5SecMenuSelected);
+	connect(m_rMainWnd.actionRewind10, &QAction::triggered,
+					this, &CMenu_MainWnd::OnReturn10SecMenuSelected);
+	connect(m_rMainWnd.actionForward1, &QAction::triggered,
+					this, &CMenu_MainWnd::OnForward1SecMenuSelected);
+	connect(m_rMainWnd.actionForward2, &QAction::triggered,
+					this, &CMenu_MainWnd::OnForward2SecMenuSelected);
+	connect(m_rMainWnd.actionForward3, &QAction::triggered,
+					this, &CMenu_MainWnd::OnForward3SecMenuSelected);
+	connect(m_rMainWnd.actionForward5, &QAction::triggered,
+					this, &CMenu_MainWnd::OnForward5SecMenuSelected);
+	connect(m_rMainWnd.actionForward10, &QAction::triggered,
+					this, &CMenu_MainWnd::OnForward10SecMenuSelected);
 	connect(m_rMainWnd.actionSingleLoop, &QAction::triggered,
 					this, &CMenu_MainWnd::OnSingleLoopMenuSelected);
 	connect(m_rMainWnd.actionAllLoop, &QAction::toggled,

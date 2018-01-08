@@ -94,6 +94,7 @@ public: // 関数
 	virtual void DownPitch(double pitch);
 	virtual void DownSpeed(double speed);
 	virtual void Forward();
+	virtual void ForwardSeconds(int seconds);
 	virtual void Head();
 	virtual BOOL OpenFile(const QString & lpszFilePath, int nCount = 1);
 	virtual void OpenInitFile();
@@ -110,6 +111,7 @@ public: // 関数
 	virtual void ResetSpeed();
 	virtual void ResetVolume();
 	virtual void Rewind();
+	virtual void ReturnSeconds(int seconds);
 	virtual void SetABLoopA(QWORD pos);
 	virtual void SetABLoopA();
 	virtual void SetABLoopA_Sec(double dTime);
@@ -167,6 +169,7 @@ public: // 関数
 	virtual void SetPreviousNextMenuState();
 	virtual void SetPrevMarker();
 	virtual void SetRandom(bool bRandom);
+	virtual void SetSeconds(double fSeconds);
 	virtual void SetSingleLoop();
 	virtual void SetSpeed(double dSpeed);
 	virtual void SetFreq(double dFreq);

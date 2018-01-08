@@ -487,6 +487,26 @@
     <property name="title">
      <string>Play(&amp;P)</string>
     </property>
+    <widget class="QMenu" name="menuRewind_R">
+     <property name="title">
+      <string>Rewind(&amp;R)</string>
+     </property>
+     <addaction name="actionRewind1"/>
+     <addaction name="actionRewind2"/>
+     <addaction name="actionRewind3"/>
+     <addaction name="actionRewind5"/>
+     <addaction name="actionRewind10"/>
+    </widget>
+    <widget class="QMenu" name="menuForward_F">
+     <property name="title">
+      <string>Forward(&amp;F)</string>
+     </property>
+     <addaction name="actionForward1"/>
+     <addaction name="actionForward2"/>
+     <addaction name="actionForward3"/>
+     <addaction name="actionForward5"/>
+     <addaction name="actionForward10"/>
+    </widget>
     <addaction name="actionPlayPlayPause"/>
     <addaction name="actionPlayStop"/>
     <addaction name="separator"/>
@@ -495,6 +515,9 @@
     <addaction name="actionNext"/>
     <addaction name="actionRewind"/>
     <addaction name="actionForward"/>
+    <addaction name="separator"/>
+    <addaction name="menuRewind_R"/>
+    <addaction name="menuForward_F"/>
     <addaction name="separator"/>
     <addaction name="actionSingleLoop"/>
     <addaction name="actionAllLoop"/>
@@ -1746,6 +1769,56 @@
    </property>
    <property name="text">
     <string>Count loop(&amp;C)</string>
+   </property>
+  </action>
+  <action name="actionRewind1">
+   <property name="text">
+    <string>Rewind 1 sec.(&amp;1)</string>
+   </property>
+  </action>
+  <action name="actionRewind2">
+   <property name="text">
+    <string>Rewind 2 sec.(&amp;2)</string>
+   </property>
+  </action>
+  <action name="actionRewind3">
+   <property name="text">
+    <string>Rewind 3 sec.(&amp;3)</string>
+   </property>
+  </action>
+  <action name="actionRewind5">
+   <property name="text">
+    <string>Rewind 5 sec.(&amp;5)</string>
+   </property>
+  </action>
+  <action name="actionRewind10">
+   <property name="text">
+    <string>Rewind 10 sec.(&amp;T)</string>
+   </property>
+  </action>
+  <action name="actionForward1">
+   <property name="text">
+    <string>Forward 1 sec.(&amp;1)</string>
+   </property>
+  </action>
+  <action name="actionForward2">
+   <property name="text">
+    <string>Forward 2 sec.(&amp;2)</string>
+   </property>
+  </action>
+  <action name="actionForward3">
+   <property name="text">
+    <string>Forward 3 sec.(&amp;3)</string>
+   </property>
+  </action>
+  <action name="actionForward5">
+   <property name="text">
+    <string>Forward 5 sec.(&amp;5)</string>
+   </property>
+  </action>
+  <action name="actionForward10">
+   <property name="text">
+    <string>Forward 10 sec.(&amp;T)</string>
    </property>
   </action>
  </widget>

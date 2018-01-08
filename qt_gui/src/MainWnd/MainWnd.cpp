@@ -518,6 +518,15 @@ void CMainWnd::Forward()
 	SetTime(m_sound.ChannelSeconds2Bytes(dPos + dDifference));
 }
 //----------------------------------------------------------------------------
+// 指定した秒数進む
+//----------------------------------------------------------------------------
+void CMainWnd::ForwardSeconds(int seconds)
+{
+	double pos = m_sound.ChannelGetSecondsPosition();
+	pos += seconds;
+	SetSeconds(pos);
+}
+//----------------------------------------------------------------------------
 // 頭出し
 //----------------------------------------------------------------------------
 void CMainWnd::Head()
@@ -1005,6 +1014,15 @@ void CMainWnd::Rewind()
 	dDifference *= m_sound.GetSampleRate() / 100.0;
 	if(dDifference < 1.0) dDifference = 1.0;
 	SetTime(m_sound.ChannelSeconds2Bytes(dPos - dDifference));
+}
+//----------------------------------------------------------------------------
+// 指定した秒数戻る
+//----------------------------------------------------------------------------
+void CMainWnd::ReturnSeconds(int seconds)
+{
+	double pos = m_sound.ChannelGetSecondsPosition();
+	pos -= seconds;
+	SetSeconds(pos);
 }
 //----------------------------------------------------------------------------
 // AB ループ A の設定
@@ -1960,6 +1978,13 @@ void CMainWnd::SetPitch(double dPitch)
 void CMainWnd::SetVolume(double nVolume)
 {
 	m_sound.ChannelSetVolume((float)nVolume);
+}
+//----------------------------------------------------------------------------
+// 時間の設定（秒数）
+//----------------------------------------------------------------------------
+void CMainWnd::SetSeconds(double fSeconds)
+{
+	SetTime(m_sound.ChannelSeconds2Bytes(fSeconds));
 }
 //----------------------------------------------------------------------------
 // 時間の設定

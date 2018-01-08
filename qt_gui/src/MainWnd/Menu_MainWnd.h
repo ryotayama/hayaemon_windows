@@ -37,6 +37,16 @@ public: // 関数
 	void OnStopMenuSelected();
 	void OnRewindMenuSelected(bool checked);
 	void OnForwardMenuSelected(bool checked);
+	void OnReturn1SecMenuSelected();
+	void OnReturn2SecMenuSelected();
+	void OnReturn3SecMenuSelected();
+	void OnReturn5SecMenuSelected();
+	void OnReturn10SecMenuSelected();
+	void OnForward1SecMenuSelected();
+	void OnForward2SecMenuSelected();
+	void OnForward3SecMenuSelected();
+	void OnForward5SecMenuSelected();
+	void OnForward10SecMenuSelected();
 	void OnResetSpeedMenuSelected();
 	void OnSetSpeed50MenuSelected();
 	void OnSetSpeed60MenuSelected();
