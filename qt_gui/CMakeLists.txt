@@ -16,6 +16,10 @@ set(SRC_COMMON
   ${SRC_DIR}/Common/StaticCore.h
   ${SRC_DIR}/Common/Tab.h
 )
+set(SRC_COUNTLOOPWND
+  ${SRC_DIR}/CountLoopWnd/CountLoopWnd_MainWnd.cpp
+  ${SRC_DIR}/CountLoopWnd/CountLoopWnd_MainWnd.h
+)
 set(SRC_MAINWND
   ${SRC_DIR}/MainWnd/ABLoopPosWnd.cpp
   ${SRC_DIR}/MainWnd/ABLoopPosWnd.h
@@ -91,6 +95,7 @@ endif()
 
 source_group(Bass FILES ${SRC_BASS})
 source_group(Common FILES ${SRC_COMMON})
+source_group(CountLoopWnd FILES ${SRC_COUNTLOOPWND})
 source_group(MainWnd FILES ${SRC_MAINWND})
 source_group("" FILES
   ${SRC_DIR}/App.cpp
@@ -106,6 +111,7 @@ endif()
 
 qt5_add_resources(RESOURCES ${SRC_DIR}/Hayaemon.qrc)
 qt5_wrap_ui(UI_MOC
+  ${SRC_DIR}/CountLoopWnd/CountLoopWnd.ui
   ${SRC_DIR}/MainWnd/ABLoopPosWnd.ui
   ${SRC_DIR}/MainWnd/MainWnd.ui)
 
@@ -124,6 +130,7 @@ add_executable(Hayaemon
   ${SRC_DIR}/App.h
   ${SRC_BASS}
   ${SRC_COMMON}
+  ${SRC_COUNTLOOPWND}
   ${SRC_MAINWND}
   ${RESOURCES}
   ${UI_MOC}

@@ -1168,6 +1168,7 @@ BOOL CSound::ChannelSetVolume(float volume)
 UINT CSound::OnLoop()
 {
 	if(m_bABLoopA || m_bABLoopB || m_bLoop) {
+		if(!m_rMainWnd.CheckLoop()) return 1;
 		if(!ChannelSetPosition(m_nLoopPosA)) return 0;
 		if(ChannelIsStopped()) {
 			return ChannelPlay();

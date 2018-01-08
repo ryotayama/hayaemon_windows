@@ -509,6 +509,7 @@
     <addaction name="actionMarkerPlay"/>
     <addaction name="actionAddMarker"/>
     <addaction name="actionDeleteMarker"/>
+    <addaction name="actionCountLoop"/>
     <addaction name="actionInstantLoop"/>
     <addaction name="actionSetMarkerPositionAuto"/>
    </widget>
@@ -1737,6 +1738,14 @@
    </property>
    <property name="text">
     <string>Set position automatic when adjusting marker position(&amp;S)</string>
+   </property>
+  </action>
+  <action name="actionCountLoop">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Count loop(&amp;C)</string>
    </property>
   </action>
  </widget>

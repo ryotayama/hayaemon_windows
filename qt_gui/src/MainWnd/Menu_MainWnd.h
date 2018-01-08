@@ -167,6 +167,7 @@ public: // 関数
 	void OnMarkerPlayMenuSelected();
 	void OnAddMarkerMenuSelected();
 	void OnDeleteMarkerMenuSelected();
+	void OnCountLoopMenuSelected();
 	void OnInstantLoopMenuSelected();
 	void OnSetPositionAutoMenuSelected();
 

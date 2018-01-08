@@ -79,13 +79,14 @@ public: // 関数
 		m_eq16kLabel(*this), m_eq16kSlider(*this),
 		m_eq20kLabel(*this), m_eq20kSlider(*this),
 		m_sound(*this), isInitFileRead(FALSE), bMarkerPlay(FALSE),
-		bInstantLoop(FALSE), bSetPositionAuto(FALSE), m_bFinish(FALSE),
-		nCurPlayTab(0), m_timeThreadRunning(false), m_bForwarding(false),
-		m_bRewinding(false) { }
+		bCountLoop(FALSE), bInstantLoop(FALSE), bSetPositionAuto(FALSE),
+		m_bFinish(FALSE), nLoopCount(0), nCurrentLoopCount(0), nCurPlayTab(0),
+		m_timeThreadRunning(false), m_bForwarding(false), m_bRewinding(false) { }
 	virtual ~CMainWnd();
 
 	virtual void AddDropFiles(const QList<QUrl> & urls, BOOL bClear);
 	virtual void AddMarker();
+	virtual BOOL CheckLoop();
 	virtual BOOL Create() { return OnCreate(); }
 	virtual BOOL CreateControls();
 	virtual void DeleteMarker();
@@ -124,6 +125,9 @@ public: // 関数
 	virtual void SetPitchVisible(bool bPitchVisible);
 	virtual void SetVolumeVisible(bool bVolumeVisible);
 	virtual void SetPanVisible(bool bPanVisible);
+	virtual void SetCountLoop();
+	virtual void SetCountLoop(int nCount);
+	virtual void SetCountLoop(BOOL nCountLoop, int nCount);
 	virtual void SetEQ20(LONG lEQ20);
 	virtual void SetEQ25(LONG lEQ25);
 	virtual void SetEQ31_5(LONG lEQ31_5);
@@ -273,9 +277,12 @@ protected: // メンバ変数
 
 	BOOL isInitFileRead; // INI ファイルがすでに読み込まれたかどうか
 	BOOL bMarkerPlay; // マーカー再生をするかどうか
+	BOOL bCountLoop; // 回数ループをするかどうか
 	BOOL bInstantLoop; // マーカー追加時にループするかどうか
 	BOOL bSetPositionAuto; // マーカー位置変更時に再生位置を変更するかどうか
 	BOOL m_bFinish; // 再生が完了したかどうか
+	int nLoopCount; // 回数ループ時のループ回数
+	int nCurrentLoopCount; // 現時点でループした回数
 	int nCurPlayTab; // 現在再生中のファイルが存在しているタブ
 	std::unique_ptr<std::thread> m_timeThread;
 	bool m_timeThreadRunning;

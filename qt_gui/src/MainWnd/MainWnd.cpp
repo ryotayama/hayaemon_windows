@@ -14,6 +14,7 @@
 #include <QTimer>
 #include "../App.h"
 #include "../Common/CommandList.h"
+#include "../CountLoopWnd/CountLoopWnd_MainWnd.h"
 #include "ABLoopPosWnd.h"
 #include "PlayListView_MainWnd.h"
 #include "Platform.h"
@@ -71,6 +72,85 @@ void CMainWnd::AddMarker()
 	if(!bMarkerPlay) SetMarkerPlay();
 
 	if(bInstantLoop) SetPrevMarker();
+}
+//----------------------------------------------------------------------------
+// 回数ループのチェック
+//----------------------------------------------------------------------------
+BOOL CMainWnd::CheckLoop()
+{
+	if(bCountLoop) {
+		nCurrentLoopCount++;
+		if(nCurrentLoopCount >= nLoopCount) {
+			nCurrentLoopCount = 0;
+			QWORD qwTime = m_sound.GetLoopPosA();
+			std::vector<QWORD> arrayMarker = m_sound.GetArrayMarker();
+			QWORD length = m_sound.ChannelGetLength();
+			int max = (int)arrayMarker.size();
+			if(max > 0 && qwTime == 0)
+				qwTime = arrayMarker[0];
+			else {
+				if(qwTime == arrayMarker[max - 1]) {
+					SetTime(0);
+					return FALSE;
+				}
+				else {
+					for(int i = 0; i < max - 1; i++) {
+						if(qwTime == arrayMarker[i]) {
+							qwTime = arrayMarker[i + 1];
+							break;
+						}
+					}
+				}
+			}
+
+			BOOL bDone = FALSE; // 範囲を設定したかどうか
+			if(max > 0) {
+				if(0 <= qwTime && qwTime < arrayMarker[0]) {
+						bDone = TRUE;
+						m_timeSlider.SetSelStart(0);
+						m_timeSlider.SetSelEnd(arrayMarker[0] / 100000);
+						m_sound.SetLoopPosA(0);
+						m_sound.SetLoopPosB(arrayMarker[0]);
+				}
+			}
+			else {
+				bDone = TRUE;
+				m_timeSlider.SetSelStart(0);
+				m_timeSlider.SetSelEnd(length / 100000);
+				m_sound.SetLoopPosA(0);
+				m_sound.SetLoopPosB(length);
+			}
+
+			if(!bDone) {
+				for(int i = 0; i < max; i++) {
+					if(i + 1 < max) {
+						if(arrayMarker[i] <= qwTime
+							&& qwTime < arrayMarker[i + 1]) {
+							bDone = TRUE;
+							m_timeSlider.SetSelStart(arrayMarker[i] / 100000);
+							m_timeSlider.SetSelEnd(arrayMarker[i + 1] / 100000);
+							m_sound.SetLoopPosA(arrayMarker[i]);
+							m_sound.SetLoopPosB(arrayMarker[i + 1]);
+							break;
+						}
+					}
+				}
+			}
+
+			if(!bDone) {
+				if(arrayMarker[max - 1] <= qwTime && qwTime <= length) {
+					bDone = TRUE;
+					m_timeSlider.SetSelStart(arrayMarker[max - 1] / 100000);
+					m_timeSlider.SetSelEnd(length / 100000);
+					m_sound.SetLoopPosA(arrayMarker[max - 1]);
+					m_sound.SetLoopPosB(length);
+				}
+			}
+			return FALSE;
+		}
+		else return TRUE;
+	}
+	else return TRUE;
 }
 //----------------------------------------------------------------------------
 // 各コントロールを作成
@@ -1320,6 +1400,40 @@ void CMainWnd::SetPanVisible(bool bPanVisible)
 	m_menu.CheckItem(ID_PAN, uCheck);
 }
 //----------------------------------------------------------------------------
+// 回数ループの設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetCountLoop()
+{
+	if(bMarkerPlay) {
+		CCountLoopWnd_MainWnd dlg(*this);
+		dlg.exec();
+	}
+}
+//----------------------------------------------------------------------------
+// 回数ループの設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetCountLoop(int nCount)
+{
+	nCurrentLoopCount = 0;
+	if(nCount == 0) {
+		nLoopCount = 0;
+		SetCountLoop(FALSE, 0);
+	}
+	else {
+		nLoopCount = nCount;
+		SetCountLoop(TRUE, nLoopCount);
+	}
+}
+//----------------------------------------------------------------------------
+// 回数ループの設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetCountLoop(BOOL bCountLoop, int nCount)
+{
+	this->bCountLoop = bCountLoop;
+	m_menu.CheckItem(ID_COUNTLOOP, bCountLoop ? MF_CHECKED : MF_UNCHECKED);
+	if(bCountLoop) Head();
+}
+//----------------------------------------------------------------------------
 // マーカーのクリア
 //----------------------------------------------------------------------------
 void CSound::ClearMarker()
@@ -1640,6 +1754,8 @@ void CMainWnd::SetMarkerPlay()
 	m_sound.SetABLoopA(bMarkerPlay);
 	m_sound.SetABLoopB(bMarkerPlay);
 	m_toolBar.SetMarkerPlayState(bMarkerPlay);
+	SetCountLoop(FALSE, 0);
+	m_menu.EnableItem(ID_COUNTLOOP, bMarkerPlay ? MFS_ENABLED : MFS_DISABLED);
 	m_menu.EnableItem(ID_SLOOP, bMarkerPlay ? MFS_DISABLED : MFS_ENABLED);
 	m_menu.EnableItem(ID_ALOOP, bMarkerPlay ? MFS_DISABLED : MFS_ENABLED);
 	m_menu.EnableItem(ID_RANDOM, bMarkerPlay ? MFS_DISABLED : MFS_ENABLED);
@@ -1985,6 +2101,7 @@ void CMainWnd::StopForward()
 void CMainWnd::Stop(BOOL bForce)
 {
 	KillTimer(IDT_TIME);
+	SetCountLoop(FALSE, 0);
 	m_sound.ChannelStop();
 	SetTime(0);
 	m_toolBar.SetPlayingState(FALSE);

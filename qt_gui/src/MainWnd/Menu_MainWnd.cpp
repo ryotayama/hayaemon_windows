@@ -226,6 +226,13 @@ void CMenu_MainWnd::OnDeleteMarkerMenuSelected()
 	m_rMainWnd.DeleteMarker();
 }
 //----------------------------------------------------------------------------
+// 再生 → 回数ループメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnCountLoopMenuSelected()
+{
+	m_rMainWnd.SetCountLoop();
+}
+//----------------------------------------------------------------------------
 // 再生 → マーカー追加時にループメニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnInstantLoopMenuSelected()
@@ -1161,6 +1168,7 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_MARKERPLAY, m_rMainWnd.actionMarkerPlay},
 		{ID_ADDMARKER, m_rMainWnd.actionAddMarker},
 		{ID_DELETEMARKER, m_rMainWnd.actionDeleteMarker},
+		{ID_COUNTLOOP, m_rMainWnd.actionCountLoop},
 		{ID_INSTANTLOOP, m_rMainWnd.actionInstantLoop},
 		{ID_SETPOSITIONAUTO, m_rMainWnd.actionSetMarkerPositionAuto},
 		{ID_SPEEDDEC_0, m_rMainWnd.actionSpeedDigit0},
@@ -1275,6 +1283,8 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnAddMarkerMenuSelected);
 	connect(m_rMainWnd.actionDeleteMarker, &QAction::triggered,
 					this, &CMenu_MainWnd::OnDeleteMarkerMenuSelected);
+	connect(m_rMainWnd.actionCountLoop, &QAction::triggered,
+					this, &CMenu_MainWnd::OnCountLoopMenuSelected);
 	connect(m_rMainWnd.actionInstantLoop, &QAction::triggered,
 					this, &CMenu_MainWnd::OnInstantLoopMenuSelected);
 	connect(m_rMainWnd.actionSetMarkerPositionAuto, &QAction::triggered,
