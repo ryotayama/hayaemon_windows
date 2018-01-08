@@ -22,6 +22,14 @@ BOOL CMenu_MainWnd::Create()
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::SetABLoopState(BOOL bALoop, BOOL bBLoop)
 {
+	EnableItem(ID_SLOOP, !(bALoop || bBLoop) ? MFS_ENABLED : MFS_DISABLED);
+	EnableItem(ID_ALOOP, !(bALoop || bBLoop) ? MFS_ENABLED : MFS_DISABLED);
+	EnableItem(ID_RANDOM, !(bALoop || bBLoop) ? MFS_ENABLED : MFS_DISABLED);
+	EnableItem(ID_MARKERPLAY, !(bALoop || bBLoop) ? MFS_ENABLED : 
+		MFS_DISABLED);
+	EnableItem(ID_ADDMARKER, !(bALoop || bBLoop) ? MFS_ENABLED : MFS_DISABLED);
+	EnableItem(ID_DELETEMARKER, !(bALoop || bBLoop)
+		? MFS_ENABLED : MFS_DISABLED);
 	EnableItem(ID_ABLOOP_A_SETTING, bALoop ? MFS_ENABLED : MFS_DISABLED);
 	EnableItem(ID_ABLOOP_B_SETTING, bBLoop ? MFS_ENABLED : MFS_DISABLED);
 }
