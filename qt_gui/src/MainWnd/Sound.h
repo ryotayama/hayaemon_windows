@@ -17,8 +17,11 @@ public: // 関数
 
 	CSound(CMainWnd & mainWnd, BOOL bMainStream = TRUE);
 
+	virtual void AddMarker(QWORD nPos);
+	virtual int ChangeMarkerPos(int nMarker, QWORD nPos);
 	virtual BOOL StreamCreateFile(LPCTSTR lpFilePath, BOOL bDecode = FALSE,
 		int nCount = 1);
+	virtual void EraseMarker(int nMarker);
 	virtual BOOL ChannelPlay();
 	static void CALLBACK LoopSyncProc(HSYNC handle, DWORD channel, DWORD data,
 									  void *user);
@@ -108,6 +111,7 @@ public: // メンバ変数の取得・設定
 	virtual double GetLoopPosB_sec() const { return ChannelBytes2Seconds(m_nLoopPosB); }
 	virtual int GetCurFileNum() const { return m_nCurFile; }
 	virtual void SetCurFileNum(int n) { m_nCurFile = n; }
+	virtual std::vector<QWORD> GetArrayMarker() const { return m_arrayMarker; }
 	CMainWnd & GetMainWnd() { return m_rMainWnd; }
 };
 //----------------------------------------------------------------------------

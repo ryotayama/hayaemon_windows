@@ -78,13 +78,17 @@ public: // 関数
 		m_eq12_5kLabel(*this), m_eq12_5kSlider(*this),
 		m_eq16kLabel(*this), m_eq16kSlider(*this),
 		m_eq20kLabel(*this), m_eq20kSlider(*this),
-		m_sound(*this), isInitFileRead(FALSE), m_bFinish(FALSE), nCurPlayTab(0),
-		m_timeThreadRunning(false), m_bForwarding(false), m_bRewinding(false) { }
+		m_sound(*this), isInitFileRead(FALSE), bMarkerPlay(FALSE),
+		bInstantLoop(FALSE), bSetPositionAuto(FALSE), m_bFinish(FALSE),
+		nCurPlayTab(0), m_timeThreadRunning(false), m_bForwarding(false),
+		m_bRewinding(false) { }
 	virtual ~CMainWnd();
 
 	virtual void AddDropFiles(const QList<QUrl> & urls, BOOL bClear);
+	virtual void AddMarker();
 	virtual BOOL Create() { return OnCreate(); }
 	virtual BOOL CreateControls();
+	virtual void DeleteMarker();
 	virtual void DownFreq(double freq);
 	virtual void DownPitch(double pitch);
 	virtual void DownSpeed(double speed);
@@ -105,6 +109,7 @@ public: // 関数
 	virtual void ResetSpeed();
 	virtual void ResetVolume();
 	virtual void Rewind();
+	virtual void SetABLoopA(QWORD pos);
 	virtual void SetABLoopA();
 	virtual void SetABLoopA_Sec(double dTime);
 	virtual void SetABLoopB();
@@ -151,7 +156,12 @@ public: // 関数
 	virtual void SetEQ16K(LONG lEQ16K);
 	virtual void SetEQ20K(LONG lEQ20K);
 	virtual void SetEQVisible(bool bEQVisible);
+	virtual void SetInstantLoop();
+	virtual void SetPositionAuto();
+	virtual void SetMarkerPlay();
+	virtual void SetNextMarker();
 	virtual void SetPreviousNextMenuState();
+	virtual void SetPrevMarker();
 	virtual void SetRandom(bool bRandom);
 	virtual void SetSingleLoop();
 	virtual void SetSpeed(double dSpeed);
@@ -262,6 +272,9 @@ protected: // メンバ変数
 	CSound m_sound;
 
 	BOOL isInitFileRead; // INI ファイルがすでに読み込まれたかどうか
+	BOOL bMarkerPlay; // マーカー再生をするかどうか
+	BOOL bInstantLoop; // マーカー追加時にループするかどうか
+	BOOL bSetPositionAuto; // マーカー位置変更時に再生位置を変更するかどうか
 	BOOL m_bFinish; // 再生が完了したかどうか
 	int nCurPlayTab; // 現在再生中のファイルが存在しているタブ
 	std::unique_ptr<std::thread> m_timeThread;
@@ -301,7 +314,9 @@ public: // メンバ変数の取得・設定
 		return *m_arrayList[nCurPlayTab];
 	}
 	CSound & GetSound() { return m_sound; }
- 	void SetFinish(BOOL bFinish) { m_bFinish = bFinish; }
+	BOOL IsMarkerPlay() const { return bMarkerPlay; }
+	BOOL IsSetPositionAuto() const { return bSetPositionAuto; }
+	void SetFinish(BOOL bFinish) { m_bFinish = bFinish; }
 
 private:
 

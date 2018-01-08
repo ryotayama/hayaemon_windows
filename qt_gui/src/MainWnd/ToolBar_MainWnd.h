@@ -20,19 +20,25 @@ public: // 関数
 
 	virtual BOOL Create();
 	virtual void SetABLoopState(BOOL bALoop, BOOL bBLoop);
+	virtual void SetMarkerPlayState(BOOL bMarkerPlay);
 	virtual void SetPlayingState(BOOL bPlaying);
 	virtual void SetPausingState(BOOL bPlaying);
 	virtual void SetSingleLoopState(BOOL bSLoop);
 	virtual void OnHeadButtonSelected();
+	virtual void OnPrevMarkerButtonSelected();
 	virtual void OnPlayButtonSelected();
 	virtual void OnPauseButtonSelected();
 	virtual void OnStopButtonSelected();
+	virtual void OnNextMarkerButtonSelected();
 	virtual void OnNextButtonSelected();
 	virtual void OnSingleLoopButtonSelected();
 	virtual void OnAllLoopButtonSelected(bool checked);
 	virtual void OnRandomButtonSelected(bool checked);
 	virtual void OnABLoopAButtonSelected();
 	virtual void OnABLoopBButtonSelected();
+	virtual void OnMarkerPlayButtonSelected();
+	virtual void OnAddMarkerButtonSelected();
+	virtual void OnDeleteMarkerButtonSelected();
 
 private: // メンバ変数
 

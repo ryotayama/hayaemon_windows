@@ -23,12 +23,17 @@ CToolBar_MainWnd::CToolBar_MainWnd(CMainWnd & mainWnd)
 								 {ID_PAUSE, m_rMainWnd.pauseButton},
 								 {ID_STOP, m_rMainWnd.stopButton},
 								 {ID_HEAD, m_rMainWnd.prevButton},
+								 {ID_PREVMARKER, m_rMainWnd.prevMarkerButton},
+								 {ID_NEXTMARKER, m_rMainWnd.nextMarkerButton},
 								 {ID_NEXT, m_rMainWnd.nextButton},
 								 {ID_SLOOP, m_rMainWnd.singleLoopButton},
 								 {ID_ALOOP, m_rMainWnd.allLoopButton},
 								 {ID_RANDOM, m_rMainWnd.randomPlayButton},
 								 {ID_ABLOOP_A, m_rMainWnd.abLoopAButton},
-								 {ID_ABLOOP_B, m_rMainWnd.abLoopBButton}})
+								 {ID_ABLOOP_B, m_rMainWnd.abLoopBButton},
+								 {ID_MARKERPLAY, m_rMainWnd.markerPlayButton},
+								 {ID_ADDMARKER, m_rMainWnd.addMarkerButton},
+								 {ID_DELETEMARKER, m_rMainWnd.deleteMarkerButton}})
 {
 }
 //----------------------------------------------------------------------------
@@ -36,6 +41,8 @@ CToolBar_MainWnd::CToolBar_MainWnd(CMainWnd & mainWnd)
 //----------------------------------------------------------------------------
 BOOL CToolBar_MainWnd::Create()
 {
+	HideButton(ID_PREVMARKER, TRUE);
+	HideButton(ID_NEXTMARKER, TRUE);
 	HideButton(ID_PAUSE, TRUE);
 
 	CreateConnections();
@@ -49,6 +56,23 @@ void CToolBar_MainWnd::SetABLoopState(BOOL bALoop, BOOL bBLoop)
 {
 	CheckButton(ID_ABLOOP_A, bALoop);
 	CheckButton(ID_ABLOOP_B, bBLoop);
+}
+//----------------------------------------------------------------------------
+// マーカー再生の状態を設定
+//----------------------------------------------------------------------------
+void CToolBar_MainWnd::SetMarkerPlayState(BOOL bMarkerPlay)
+{
+	CheckButton(ID_MARKERPLAY, bMarkerPlay);
+	EnableButton(ID_SLOOP, !bMarkerPlay);
+	EnableButton(ID_ALOOP, !bMarkerPlay);
+	EnableButton(ID_RANDOM, !bMarkerPlay);
+	EnableButton(ID_ABLOOP_A, !bMarkerPlay);
+	EnableButton(ID_ABLOOP_B, !bMarkerPlay);
+
+	HideButton(ID_HEAD, bMarkerPlay);
+	HideButton(ID_PREVMARKER, !bMarkerPlay);
+	HideButton(ID_NEXT, bMarkerPlay);
+	HideButton(ID_NEXTMARKER, !bMarkerPlay);
 }
 //----------------------------------------------------------------------------
 // 再生状態を設定
@@ -109,6 +133,31 @@ void CToolBar_MainWnd::OnHeadButtonSelected()
 	}
 }
 //----------------------------------------------------------------------------
+// 前のマーカーへボタンが選択された
+//----------------------------------------------------------------------------
+void CToolBar_MainWnd::OnPrevMarkerButtonSelected()
+{
+	bool pressed = m_rMainWnd.prevMarkerButton->isDown();
+
+	if(!pressed && !m_bRewinding) {
+		if(m_rMainWnd.GetSound().ChannelGetSecondsPosition()
+		   < m_rMainWnd.GetSound().GetLoopPosA_sec() + 1.0f) {
+			m_rMainWnd.SetPrevMarker();
+		}
+		else m_rMainWnd.Head();
+	}
+	else {
+		if(!m_bRewinding) {
+			m_bRewinding = true;
+			m_rMainWnd.StartRewind();
+		}
+		if(!pressed) {
+			m_rMainWnd.StopRewind();
+			m_bRewinding = false;
+		}
+	}
+}
+//----------------------------------------------------------------------------
 // 再生ボタンが選択された
 //----------------------------------------------------------------------------
 void CToolBar_MainWnd::OnPlayButtonSelected()
@@ -128,6 +177,27 @@ void CToolBar_MainWnd::OnPauseButtonSelected()
 void CToolBar_MainWnd::OnStopButtonSelected()
 {
 	m_rMainWnd.Stop(FALSE);
+}
+//----------------------------------------------------------------------------
+// 次のマーカーへボタンが選択された
+//----------------------------------------------------------------------------
+void CToolBar_MainWnd::OnNextMarkerButtonSelected()
+{
+	bool pressed = m_rMainWnd.nextMarkerButton->isDown();
+
+	if(!pressed && !m_bRewinding) {
+		m_rMainWnd.SetNextMarker();
+	}
+	else {
+		if(!m_bRewinding) {
+			m_bRewinding = true;
+			m_rMainWnd.StartForward();
+		}
+		if(!pressed) {
+			m_rMainWnd.StopForward();
+			m_bRewinding = false;
+		}
+	}
 }
 //----------------------------------------------------------------------------
 // 次へボタンが選択された
@@ -197,6 +267,27 @@ void CToolBar_MainWnd::OnABLoopBButtonSelected()
 	m_rMainWnd.SetABLoopB();
 }
 //----------------------------------------------------------------------------
+// マーカー再生ボタンが選択された
+//----------------------------------------------------------------------------
+void CToolBar_MainWnd::OnMarkerPlayButtonSelected()
+{
+	m_rMainWnd.SetMarkerPlay();
+}
+//----------------------------------------------------------------------------
+// マーカー追加ボタンが選択された
+//----------------------------------------------------------------------------
+void CToolBar_MainWnd::OnAddMarkerButtonSelected()
+{
+	m_rMainWnd.AddMarker();
+}
+//----------------------------------------------------------------------------
+// マーカー削除ボタンが選択された
+//----------------------------------------------------------------------------
+void CToolBar_MainWnd::OnDeleteMarkerButtonSelected()
+{
+	m_rMainWnd.DeleteMarker();
+}
+//----------------------------------------------------------------------------
 // チェック状態の設定
 //----------------------------------------------------------------------------
 void CToolBar_MainWnd::CheckButton(int nID, BOOL fCheck)
@@ -261,8 +352,12 @@ void CToolBar_MainWnd::CreateConnections()
 					this, &CToolBar_MainWnd::OnPauseButtonSelected);
 	connect(m_rMainWnd.stopButton, &QToolButton::clicked,
 					this, &CToolBar_MainWnd::OnStopButtonSelected);
+	connect(m_rMainWnd.prevMarkerButton, &QToolButton::clicked,
+					this, &CToolBar_MainWnd::OnPrevMarkerButtonSelected);
 	connect(m_rMainWnd.prevButton, &QToolButton::clicked,
 					this, &CToolBar_MainWnd::OnHeadButtonSelected);
+	connect(m_rMainWnd.nextMarkerButton, &QToolButton::clicked,
+					this, &CToolBar_MainWnd::OnNextMarkerButtonSelected);
 	connect(m_rMainWnd.nextButton, &QToolButton::clicked,
 					this, &CToolBar_MainWnd::OnNextButtonSelected);
 	connect(m_rMainWnd.singleLoopButton, &QToolButton::clicked,
@@ -275,5 +370,11 @@ void CToolBar_MainWnd::CreateConnections()
 					this, &CToolBar_MainWnd::OnABLoopAButtonSelected);
 	connect(m_rMainWnd.abLoopBButton, &QToolButton::clicked,
 					this, &CToolBar_MainWnd::OnABLoopBButtonSelected);
+	connect(m_rMainWnd.markerPlayButton, &QToolButton::clicked,
+					this, &CToolBar_MainWnd::OnMarkerPlayButtonSelected);
+	connect(m_rMainWnd.addMarkerButton, &QToolButton::clicked,
+					this, &CToolBar_MainWnd::OnAddMarkerButtonSelected);
+	connect(m_rMainWnd.deleteMarkerButton, &QToolButton::clicked,
+					this, &CToolBar_MainWnd::OnDeleteMarkerButtonSelected);
 }
 //----------------------------------------------------------------------------

@@ -61,6 +61,18 @@ void CMainWnd::AddDropFiles(const QList<QUrl> & urls, BOOL bClear)
 	SetPreviousNextMenuState();
 }
 //----------------------------------------------------------------------------
+// マーカーの追加
+//----------------------------------------------------------------------------
+void CMainWnd::AddMarker()
+{
+	QWORD time = m_sound.ChannelGetPosition();
+	SetABLoopA(time);
+
+	if(!bMarkerPlay) SetMarkerPlay();
+
+	if(bInstantLoop) SetPrevMarker();
+}
+//----------------------------------------------------------------------------
 // 各コントロールを作成
 //----------------------------------------------------------------------------
 BOOL CMainWnd::CreateControls()
@@ -370,6 +382,22 @@ BOOL CMainWnd::CreateControls()
 	return TRUE;
 }
 //----------------------------------------------------------------------------
+// マーカーの削除
+//----------------------------------------------------------------------------
+void CMainWnd::DeleteMarker()
+{
+	std::vector<QWORD> arrayMarker = m_sound.GetArrayMarker();
+	QWORD length = m_sound.ChannelGetLength();
+	int max = (int)arrayMarker.size();
+	for(int i = 0; i < max; i++) {
+		if(arrayMarker[i] == m_sound.GetLoopPosB()) {
+			m_sound.EraseMarker(i);
+			SetTime(m_sound.ChannelGetPosition());
+			break;
+		}
+	}
+}
+//----------------------------------------------------------------------------
 // 指定した%再生周波数を下げる
 //----------------------------------------------------------------------------
 void CMainWnd::DownFreq(double freq)
@@ -414,7 +442,8 @@ void CMainWnd::Forward()
 //----------------------------------------------------------------------------
 void CMainWnd::Head()
 {
-	SetTime(0);
+	if(bMarkerPlay) SetTime(m_sound.GetLoopPosA());
+	else SetTime(0);
 }
 //----------------------------------------------------------------------------
 // ファイルを開く
@@ -423,6 +452,7 @@ BOOL CMainWnd::OpenFile(const QString & lpszFilePath, int nCount)
 {
 	if(m_sound.IsABLoopA()) SetABLoopA();
 	if(m_sound.IsABLoopB()) SetABLoopB();
+	if(bMarkerPlay) SetMarkerPlay();
 	BOOL bRet = FALSE;
 	bRet = m_sound.StreamCreateFile(ToTstring(lpszFilePath).c_str(), FALSE,
 																	nCount);
@@ -551,11 +581,31 @@ void CMainWnd::OpenInitFileAfterShow()
 	GetPrivateProfileString(_T("PlayMode"), _T("Continue"), _T("1"), buf, 255, 
 		initFilePath.c_str());
 	int _bContinue = _ttoi(buf);
+	GetPrivateProfileString(_T("PlayMode"), _T("RecoverInstantLoop"), _T("1"), 
+		buf, 255, initFilePath.c_str());
+	int _bRecoverInstantLoop = _ttoi(buf);
+	GetPrivateProfileString(_T("PlayMode"), _T("RecoverSetPositionAuto"), 
+		_T("1"), buf, 255, initFilePath.c_str());
+	int _bRecoverSetPositionAuto = _ttoi(buf);
+	GetPrivateProfileString(_T("PlayMode"), _T("InstantLoop"), _T("1"), buf,
+		255, initFilePath.c_str());
+	int _bInstantLoop = _ttoi(buf);
+	GetPrivateProfileString(_T("PlayMode"), _T("SetPositionAuto"), _T("0"),
+		buf, 255, initFilePath.c_str());
+	int _bSetPositionAuto = _ttoi(buf);
 
 	// 再生モードの復元
 	if(_bRecoverContinue) {
 		m_menu.SwitchItemChecked(ID_RECOVERCONTINUE);
 		SetContinue(_bContinue);
+	}
+	if(_bRecoverInstantLoop) {
+		m_menu.SwitchItemChecked(ID_RECOVERINSTANTLOOP);
+		if(_bInstantLoop) SetInstantLoop();
+	}
+	if(_bRecoverSetPositionAuto) {
+		m_menu.SwitchItemChecked(ID_RECOVERSETPOSITIONAUTO);
+		if(_bSetPositionAuto) SetPositionAuto();
 	}
 
 	isInitFileRead = TRUE;
@@ -879,6 +929,42 @@ void CMainWnd::Rewind()
 //----------------------------------------------------------------------------
 // AB ループ A の設定
 //----------------------------------------------------------------------------
+void CMainWnd::SetABLoopA(QWORD pos)
+{
+	m_sound.SetLoopPosA(pos);
+	m_sound.AddMarker(pos);
+
+	BOOL bDone = FALSE; // 範囲を設定したかどうか
+	std::vector<QWORD> arrayMarker = m_sound.GetArrayMarker();
+	QWORD length = m_sound.ChannelGetLength();
+	int max = (int)arrayMarker.size();
+	for(int i = 0; i < max; i++) {
+		if(i + 1 < max) {
+			if(arrayMarker[i] <= pos && pos < arrayMarker[i + 1]) {
+				bDone = TRUE;
+				m_timeSlider.SetSelRangeEnabled(true);
+				m_timeSlider.SetSelStart(arrayMarker[i] / 100000);
+				m_timeSlider.SetSelEnd(arrayMarker[i + 1] / 100000);
+				m_sound.SetLoopPosB(arrayMarker[i + 1]);
+				break;
+			}
+		}
+	}
+
+	if(!bDone) {
+		// 追加したマーカーの位置が一番最後の場合
+		if(arrayMarker[max - 1] <= pos && pos <= length) {
+			bDone = TRUE;
+			m_timeSlider.SetSelRangeEnabled(true);
+			m_timeSlider.SetSelStart(arrayMarker[max - 1] / 100000);
+			m_timeSlider.SetSelEnd(length / 100000);
+			m_sound.SetLoopPosB(length);
+		}
+	}
+}
+//----------------------------------------------------------------------------
+// AB ループ A の設定
+//----------------------------------------------------------------------------
 void CMainWnd::SetABLoopA()
 {
 	m_sound.ClearMarker();
@@ -924,7 +1010,6 @@ void CMainWnd::SetABLoopA()
 		m_timeSlider.SetSelEnd(0L);
 		m_timeSlider.SetSelRangeEnabled(false);
 	}
-	m_timeSlider.Update();
 }
 //----------------------------------------------------------------------------
 // AB ループ A の設定（秒）
@@ -977,7 +1062,6 @@ void CMainWnd::SetABLoopA_Sec(double dTime)
 		m_timeSlider.SetSelEnd(0L);
 		m_timeSlider.SetSelRangeEnabled(false);
 	}
-	m_timeSlider.Update();
 }
 //----------------------------------------------------------------------------
 // AB ループ B の設定
@@ -1030,7 +1114,6 @@ void CMainWnd::SetABLoopB()
 		m_timeSlider.SetSelEnd(0L);
 		m_timeSlider.SetSelRangeEnabled(false);
 	}
-	m_timeSlider.Update();
 }
 //----------------------------------------------------------------------------
 // AB ループ B の設定
@@ -1082,7 +1165,6 @@ void CMainWnd::SetABLoopB_Sec(double dTime)
 		m_timeSlider.SetSelEnd(0L);
 		m_timeSlider.SetSelRangeEnabled(false);
 	}
-	m_timeSlider.Update();
 }
 //----------------------------------------------------------------------------
 // AB ループ A の位置設定
@@ -1533,6 +1615,119 @@ void CMainWnd::SetEQVisible(bool bEQVisible)
 	m_menu.CheckItem(ID_EQ, uCheck);
 }
 //----------------------------------------------------------------------------
+// マーカー追加時にループの設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetInstantLoop()
+{
+	bInstantLoop = !bInstantLoop;
+	m_menu.CheckItem(ID_INSTANTLOOP, bInstantLoop ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
+// マーカー位置変更時に再生位置変更の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetPositionAuto()
+{
+	bSetPositionAuto = !bSetPositionAuto;
+	m_menu.CheckItem(ID_SETPOSITIONAUTO, bSetPositionAuto
+		? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
+// マーカーの設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetMarkerPlay()
+{
+	bMarkerPlay = !bMarkerPlay;
+	m_sound.SetABLoopA(bMarkerPlay);
+	m_sound.SetABLoopB(bMarkerPlay);
+	m_toolBar.SetMarkerPlayState(bMarkerPlay);
+	m_menu.EnableItem(ID_SLOOP, bMarkerPlay ? MFS_DISABLED : MFS_ENABLED);
+	m_menu.EnableItem(ID_ALOOP, bMarkerPlay ? MFS_DISABLED : MFS_ENABLED);
+	m_menu.EnableItem(ID_RANDOM, bMarkerPlay ? MFS_DISABLED : MFS_ENABLED);
+	m_menu.CheckItem(ID_MARKERPLAY, bMarkerPlay ? MF_CHECKED : MF_UNCHECKED);
+	SetPreviousNextMenuState();
+
+	if(!bMarkerPlay) {
+		m_timeSlider.SetSelStart(0);
+		m_timeSlider.SetSelEnd(0);
+	}
+	m_timeSlider.SetSelRangeEnabled(bMarkerPlay ? true : false);
+	if(bMarkerPlay) {
+		QWORD qwTime = m_sound.ChannelGetPosition();
+		BOOL bDone = FALSE; // 範囲を設定したかどうか
+		std::vector<QWORD> arrayMarker = m_sound.GetArrayMarker();
+		QWORD length = m_sound.ChannelGetLength();
+		int max = (int)arrayMarker.size();
+		if(max > 0) {
+			if(0 <= qwTime && qwTime < arrayMarker[0]) {
+					bDone = TRUE;
+					m_timeSlider.SetSelStart(0);
+					m_timeSlider.SetSelEnd(arrayMarker[0] / 100000);
+					m_sound.SetLoopPosA(0);
+					m_sound.SetLoopPosB(arrayMarker[0]);
+			}
+		}
+		else {
+			bDone = TRUE;
+			m_timeSlider.SetSelStart(0);
+			m_timeSlider.SetSelEnd(length / 100000);
+			m_sound.SetLoopPosA(0);
+			m_sound.SetLoopPosB(length);
+		}
+
+		if(!bDone) {
+			for(int i = 0; i < max; i++) {
+				if(i + 1 < max) {
+					if(arrayMarker[i] <= qwTime && qwTime < arrayMarker[i + 1])
+					{
+						bDone = TRUE;
+						m_timeSlider.SetSelStart(arrayMarker[i] / 100000);
+						m_timeSlider.SetSelEnd(arrayMarker[i + 1] / 100000);
+						m_sound.SetLoopPosA(arrayMarker[i]);
+						m_sound.SetLoopPosB(arrayMarker[i + 1]);
+						break;
+					}
+				}
+			}
+		}
+
+		if(!bDone) {
+			if(arrayMarker[max - 1] <= qwTime && qwTime <= length) {
+				bDone = TRUE;
+				m_timeSlider.SetSelStart(arrayMarker[max - 1] / 100000);
+				m_timeSlider.SetSelEnd(length / 100000);
+				m_sound.SetLoopPosA(arrayMarker[max - 1]);
+				m_sound.SetLoopPosB(length);
+			}
+		}
+	}
+}
+//----------------------------------------------------------------------------
+// 次のマーカーへ
+//----------------------------------------------------------------------------
+void CMainWnd::SetNextMarker()
+{
+	if(bMarkerPlay) {
+		QWORD qwTime = m_sound.GetLoopPosA();
+		BOOL bDone = FALSE; // 範囲を設定したかどうか
+		std::vector<QWORD> arrayMarker = m_sound.GetArrayMarker();
+		QWORD length = m_sound.ChannelGetLength();
+		int max = (int)arrayMarker.size();
+		if(max > 0 && qwTime == 0) {
+			bDone = TRUE;
+			SetTime(arrayMarker[0]);
+			return;
+		}
+
+		for(int i = 0; i < max - 1; i++) {
+			if(qwTime == arrayMarker[i]) {
+				bDone = TRUE;
+				SetTime(arrayMarker[i + 1]);
+				return;
+			}
+		}
+	}
+}
+//----------------------------------------------------------------------------
 // 前へ・次へメニューの表示状態を設定
 //----------------------------------------------------------------------------
 void CMainWnd::SetPreviousNextMenuState()
@@ -1547,7 +1742,7 @@ void CMainWnd::SetPreviousNextMenuState()
 		else m_menu.EnableItem(ID_PREV, MFS_ENABLED);
 	}
 	else {
-		if(!m_menu.IsItemChecked(ID_ALOOP)
+		if(!bMarkerPlay && !m_menu.IsItemChecked(ID_ALOOP)
 			&& m_sound.GetCurFileNum() == 1)
 			m_menu.EnableItem(ID_PREV, MFS_DISABLED);
 		else m_menu.EnableItem(ID_PREV, MFS_ENABLED);
@@ -1562,11 +1757,41 @@ void CMainWnd::SetPreviousNextMenuState()
 		else m_menu.EnableItem(ID_NEXT, MFS_ENABLED);
 	}
 	else {
-		if(!m_menu.IsItemChecked(ID_ALOOP)
+		if(!bMarkerPlay && !m_menu.IsItemChecked(ID_ALOOP)
 			&& m_sound.GetCurFileNum()
 			== m_arrayList[nCurPlayTab]->GetItemCount())
 			m_menu.EnableItem(ID_NEXT, MFS_DISABLED);
 		else m_menu.EnableItem(ID_NEXT, MFS_ENABLED);
+	}
+}
+//----------------------------------------------------------------------------
+// 前のマーカーへ
+//----------------------------------------------------------------------------
+void CMainWnd::SetPrevMarker()
+{
+	if(bMarkerPlay) {
+		QWORD qwTime = m_sound.GetLoopPosA();
+		BOOL bDone = FALSE; // 範囲を設定したかどうか
+		std::vector<QWORD> arrayMarker = m_sound.GetArrayMarker();
+		QWORD length = m_sound.ChannelGetLength();
+		int max = (int)arrayMarker.size();
+		if(max > 0 && qwTime == arrayMarker[0]) {
+			bDone = TRUE;
+			m_timeSlider.SetSelStart(0);
+			m_timeSlider.SetSelEnd(arrayMarker[0] / 100000);
+			SetTime(0);
+			return;
+		}
+
+		for(int i = 1; i < max; i++) {
+			if(qwTime == arrayMarker[i]) {
+				bDone = TRUE;
+				m_timeSlider.SetSelStart(arrayMarker[i - 1] / 100000);
+				m_timeSlider.SetSelEnd(arrayMarker[i] / 100000);
+				SetTime(arrayMarker[i - 1]);
+				return;
+			}
+		}
 	}
 }
 //----------------------------------------------------------------------------
@@ -1625,6 +1850,54 @@ void CMainWnd::SetVolume(double nVolume)
 //----------------------------------------------------------------------------
 void CMainWnd::SetTime(QWORD qwTime, BOOL bReset)
 {
+	if(bMarkerPlay) {
+		BOOL bDone = FALSE; // 範囲を設定したかどうか
+		std::vector<QWORD> arrayMarker = m_sound.GetArrayMarker();
+		QWORD length = m_sound.ChannelGetLength();
+		int max = (int)arrayMarker.size();
+		if(max > 0) {
+			if(0 <= qwTime && qwTime < arrayMarker[0]) {
+					bDone = TRUE;
+					m_timeSlider.SetSelStart(0);
+					m_timeSlider.SetSelEnd(arrayMarker[0] / 100000);
+					m_sound.SetLoopPosA(0);
+					m_sound.SetLoopPosB(arrayMarker[0]);
+			}
+		}
+		else {
+			bDone = TRUE;
+			m_timeSlider.SetSelStart(0);
+			m_timeSlider.SetSelEnd(length / 100000);
+			m_sound.SetLoopPosA(0);
+			m_sound.SetLoopPosB(length);
+		}
+
+		if(!bDone) {
+			for(int i = 0; i < max; i++) {
+				if(i + 1 < max) {
+					if(arrayMarker[i] <= qwTime && qwTime < arrayMarker[i + 1])
+					{
+						bDone = TRUE;
+						m_timeSlider.SetSelStart(arrayMarker[i] / 100000);
+						m_timeSlider.SetSelEnd(arrayMarker[i + 1] / 100000);
+						m_sound.SetLoopPosA(arrayMarker[i]);
+						m_sound.SetLoopPosB(arrayMarker[i + 1]);
+						break;
+					}
+				}
+			}
+		}
+
+		if(!bDone) {
+			if(arrayMarker[max - 1] <= qwTime && qwTime <= length) {
+				bDone = TRUE;
+				m_timeSlider.SetSelStart(arrayMarker[max - 1] / 100000);
+				m_timeSlider.SetSelEnd(length / 100000);
+				m_sound.SetLoopPosA(arrayMarker[max - 1]);
+				m_sound.SetLoopPosB(length);
+			}
+		}
+	}
 	if(m_sound.IsABLoopA() && qwTime < m_sound.GetLoopPosA())
 		qwTime = m_sound.GetLoopPosA();
 	if(m_sound.IsABLoopB()
@@ -1659,7 +1932,9 @@ void CMainWnd::StartRewind()
 {
 	StopForward();
 	m_menu.CheckItem(ID_REWIND, MF_CHECKED);
-	m_toolBar.SetState(ID_HEAD, TBSTATE_CHECKED | TBSTATE_ENABLED);
+	if(bMarkerPlay)
+		m_toolBar.SetState(ID_PREVMARKER, TBSTATE_CHECKED | TBSTATE_ENABLED);
+	else m_toolBar.SetState(ID_HEAD, TBSTATE_CHECKED | TBSTATE_ENABLED);
 	SetTimer(IDT_REWIND, 100);
 	m_bRewinding = true;
 }
@@ -1672,7 +1947,8 @@ void CMainWnd::StopRewind()
 		return;
 	}
 	m_menu.CheckItem(ID_REWIND, MF_UNCHECKED);
-	m_toolBar.SetState(ID_HEAD, TBSTATE_ENABLED);
+	if(bMarkerPlay) m_toolBar.SetState(ID_PREVMARKER, TBSTATE_ENABLED);
+	else m_toolBar.SetState(ID_HEAD, TBSTATE_ENABLED);
 	KillTimer(IDT_REWIND);
 	m_bRewinding = false;
 }
@@ -1683,7 +1959,9 @@ void CMainWnd::StartForward()
 {
 	StopRewind();
 	m_menu.CheckItem(ID_FORWARD, MF_CHECKED);
-	m_toolBar.SetState(ID_NEXT, TBSTATE_CHECKED | TBSTATE_ENABLED);
+	if(bMarkerPlay)
+		m_toolBar.SetState(ID_NEXTMARKER, TBSTATE_CHECKED | TBSTATE_ENABLED);
+	else m_toolBar.SetState(ID_NEXT, TBSTATE_CHECKED | TBSTATE_ENABLED);
 	SetTimer(IDT_FORWARD, 100);
 	m_bForwarding = true;
 }
@@ -1696,7 +1974,8 @@ void CMainWnd::StopForward()
 		return;
 	}
 	m_menu.CheckItem(ID_FORWARD, MF_UNCHECKED);
-	m_toolBar.SetState(ID_NEXT, TBSTATE_ENABLED);
+	if(bMarkerPlay) m_toolBar.SetState(ID_NEXTMARKER, TBSTATE_ENABLED);
+	else m_toolBar.SetState(ID_NEXT, TBSTATE_ENABLED);
 	KillTimer(IDT_FORWARD);
 	m_bForwarding = false;
 }
@@ -1915,6 +2194,20 @@ void CMainWnd::WriteInitFile()
 		initFilePath.c_str());
 	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_CONTINUE) ? 1 : 0);
 	WritePrivateProfileString(_T("PlayMode"), _T("Continue"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"),
+		m_menu.IsItemChecked(ID_RECOVERINSTANTLOOP) ? 1 : 0);
+	WritePrivateProfileString(_T("PlayMode"), _T("RecoverInstantLoop"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), bInstantLoop ? 1 : 0);
+	WritePrivateProfileString(_T("PlayMode"), _T("InstantLoop"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"),
+		m_menu.IsItemChecked(ID_RECOVERSETPOSITIONAUTO) ? 1 : 0);
+	WritePrivateProfileString(_T("PlayMode"), _T("RecoverSetPositionAuto"), 
+		buf, initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), bSetPositionAuto ? 1 : 0);
+	WritePrivateProfileString(_T("PlayMode"), _T("SetPositionAuto"), buf, 
 		initFilePath.c_str());
 
 	// その他の設定

@@ -4,6 +4,7 @@
 #ifndef SliderCtrlCoreH
 #define SliderCtrlCoreH
 
+#include <functional>
 #include <QMouseEvent>
 #include <QPainter>
 #include <QRect>
@@ -25,14 +26,17 @@ public: // 関数
 
 	void SetSelRangeEnabled(bool enabled) {
 		m_selRangeEnabled = enabled;
+		this->update();
 	}
 	LONG GetSelStart() const { return m_selStart; }
 	void SetSelStart(LONG pos) {
 		m_selStart = pos;
+		this->update();
 	}
 	LONG GetSelEnd() const { return m_selEnd; }
 	void SetSelEnd(LONG pos) {
 		m_selEnd = pos;
+		this->update();
 	}
 	void GetThumbRect(QRect * lpRc) const {
 		QStyleOptionSlider opt;
@@ -55,34 +59,8 @@ public: // 関数
 		rc.setRight(rc.right() - diff / 2);
 		return rc;
 	}
-	void mousePressEvent(QMouseEvent * event) override {
-		QSlider::mousePressEvent(event);
-		auto p = event->pos();
-		emit OnLButtonDown(p.x(), p.y());
-	}
-	void mouseMoveEvent(QMouseEvent * event) override {
-		QSlider::mouseMoveEvent(event);
-		auto p = event->pos();
-		emit OnMouseMove(p.x(), p.y());
-	}
-	void mouseReleaseEvent(QMouseEvent * event) override {
-		QSlider::mouseReleaseEvent(event);
-		auto p = event->pos();
-		emit OnLButtonUp(p.x(), p.y());
-	}
-
-signals:
-	void OnLButtonDown(int x, int y);
-	void OnLButtonUp(int x, int y);
-	void OnMouseMove(int x, int y);
-
-protected:
-
-	void paintEvent(QPaintEvent * e) final {
-		if (!m_selRangeEnabled) {
-			QSlider::paintEvent(e);
-			return;
-		}
+	void RenderTrackBarBackground(QPaintEvent * e) {
+		Q_UNUSED(e);
 
 		auto rc = this->rect();
 		QPainter p(this);
@@ -102,6 +80,52 @@ protected:
 		QBrush brush2(QColor(51, 153, 255));
 		p.setBrush(brush2);
 		p.drawRect(rc2);
+	}
+	void SetRenderTrackBarBackground(std::function<void(QPaintEvent *)> f) {
+		m_renderTrackBarBackground = f;
+	}
+	void mousePressEvent(QMouseEvent * event) override {
+		QSlider::mousePressEvent(event);
+		auto p = event->pos();
+		emit OnLButtonDown(p.x(), p.y());
+	}
+	void mouseMoveEvent(QMouseEvent * event) override {
+		QSlider::mouseMoveEvent(event);
+		auto p = event->pos();
+		emit OnMouseMove(p.x(), p.y());
+	}
+	void mouseReleaseEvent(QMouseEvent * event) override {
+		QSlider::mouseReleaseEvent(event);
+		auto p = event->pos();
+		emit OnLButtonUp(p.x(), p.y());
+	}
+
+signals:
+	void OnKeyDown(int vk);
+	void OnKeyUp(int vk);
+	void OnLButtonDown(int x, int y);
+	void OnLButtonUp(int x, int y);
+	void OnMouseMove(int x, int y);
+
+protected:
+
+	void keyPressEvent(QKeyEvent * e) final {
+		emit OnKeyDown(e->key());
+	}
+	void keyReleaseEvent(QKeyEvent * e) final {
+		emit OnKeyUp(e->key());
+	}
+	void paintEvent(QPaintEvent * e) final {
+		if (!m_selRangeEnabled) {
+			QSlider::paintEvent(e);
+			return;
+		}
+
+		if (m_renderTrackBarBackground) {
+			m_renderTrackBarBackground(e);
+		} else {
+			RenderTrackBarBackground(e);
+		}
 
 		QStyleOptionSlider opt;
 		this->initStyleOption(&opt);
@@ -116,6 +140,7 @@ private:
 	bool m_selRangeEnabled;
 	LONG m_selStart;
 	LONG m_selEnd;
+	std::function<void(QPaintEvent *)> m_renderTrackBarBackground;
 };
 //----------------------------------------------------------------------------
 

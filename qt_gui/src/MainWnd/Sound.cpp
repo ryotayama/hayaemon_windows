@@ -33,6 +33,33 @@ CSound::CSound(CMainWnd & mainWnd, BOOL bMainStream)
 	auto v = BASS_FX_GetVersion();
 }
 //----------------------------------------------------------------------------
+// マーカーの追加
+//----------------------------------------------------------------------------
+void CSound::AddMarker(QWORD nPos)
+{
+	m_arrayMarker.push_back(nPos);
+	std::sort(m_arrayMarker.begin(), m_arrayMarker.end());
+}
+//----------------------------------------------------------------------------
+// マーカーの位置を変更
+//----------------------------------------------------------------------------
+int CSound::ChangeMarkerPos(int nMarker, QWORD nPos)
+{
+	m_arrayMarker[nMarker] = nPos;
+	std::sort(m_arrayMarker.begin(), m_arrayMarker.end());
+	for(int i = 0; i < (int)m_arrayMarker.size(); i++) {
+		if(m_arrayMarker[i] == nPos) return i;
+	}
+	return 0;
+}
+//----------------------------------------------------------------------------
+// マーカーの削除
+//----------------------------------------------------------------------------
+void CSound::EraseMarker(int nMarker)
+{
+	m_arrayMarker.erase(m_arrayMarker.begin() + nMarker);
+}
+//----------------------------------------------------------------------------
 // ファイルの読み込み
 //----------------------------------------------------------------------------
 BOOL CSound::StreamCreateFile(LPCTSTR lpFilePath, BOOL bDecode, int nCount)

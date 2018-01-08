@@ -164,6 +164,11 @@ public: // 関数
 	void OnABLoopASettingMenuSelected();
 	void OnABLoopBMenuSelected();
 	void OnABLoopBSettingMenuSelected();
+	void OnMarkerPlayMenuSelected();
+	void OnAddMarkerMenuSelected();
+	void OnDeleteMarkerMenuSelected();
+	void OnInstantLoopMenuSelected();
+	void OnSetPositionAutoMenuSelected();
 
 private: // メンバ変数
 

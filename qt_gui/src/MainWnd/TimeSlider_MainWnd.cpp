@@ -3,6 +3,7 @@
 //----------------------------------------------------------------------------
 #include "TimeSlider_MainWnd.h"
 #include <stdint.h>
+#include <QPainter>
 #include "MainWnd.h"
 //----------------------------------------------------------------------------
 // 作成
@@ -14,10 +15,16 @@ BOOL CTimeSlider_MainWnd::Create()
 	SetLineSize(1);
 	SetPageSize(1);
 
+	m_slider->SetRenderTrackBarBackground(
+			[this] (QPaintEvent * e) { this->RenderTrackBarBackground(e); });
 	// シグナルQSlider::valueChanedでは、CMainWnd::SetTimeがSetThumbPosを実行し
 	// 正しく動作しない
 	connect(m_rMainWnd.timeSlider, &QSlider::sliderMoved,
 					this, &CTimeSlider_MainWnd::OnHScroll);
+	connect(m_rMainWnd.timeSlider, &CSliderCtrlCore::OnKeyDown,
+					this, &CTimeSlider_MainWnd::OnKeyDown);
+	connect(m_rMainWnd.timeSlider, &CSliderCtrlCore::OnKeyUp,
+					this, &CTimeSlider_MainWnd::OnKeyUp);
 	connect(m_rMainWnd.timeSlider, &CSliderCtrlCore::OnLButtonDown,
 					this, &CTimeSlider_MainWnd::OnLButtonDown);
 	connect(m_rMainWnd.timeSlider, &CSliderCtrlCore::OnLButtonUp,
@@ -44,6 +51,30 @@ void CTimeSlider_MainWnd::OnHScroll(int pos)
 {
 	QWORD trackpos = (QWORD)pos;
 	m_rMainWnd.SetTime(trackpos * 100000);
+}
+//----------------------------------------------------------------------------
+// キーボードが押された
+//----------------------------------------------------------------------------
+void CTimeSlider_MainWnd::OnKeyDown(int vk)
+{
+	switch(vk)
+	{
+	case Qt::Key_Control:
+		bControl = TRUE;
+		break;
+	}
+}
+//----------------------------------------------------------------------------
+// キーボードが離された
+//----------------------------------------------------------------------------
+void CTimeSlider_MainWnd::OnKeyUp(int vk)
+{
+	switch(vk)
+	{
+	case Qt::Key_Control:
+		bControl = FALSE;
+		break;
+	}
 }
 //----------------------------------------------------------------------------
 // クリックされた
@@ -90,6 +121,36 @@ void CTimeSlider_MainWnd::OnLButtonDown(int x, int y)
 		}
 	}
 
+	if(m_rMainWnd.IsMarkerPlay()) {
+		// 選択範囲の位置を得る
+		QRect rc;
+		GetSelRect(&rc);
+		int width = rc.width();
+		int height = rc.height();
+
+		QWORD length = m_rMainWnd.GetSound().ChannelGetLength();
+		std::vector<QWORD> arrayMarker
+			= m_rMainWnd.GetSound().GetArrayMarker();
+		for(int i = 0; i < (int)arrayMarker.size(); i++) {
+			double rate = (double)(int)(arrayMarker[i] / 100000)
+							/ (double)(int)(length / 100000);
+			int nLeft = LONG(rc.left() + width * rate + 0.5);
+			int nTop = rc.top() + 3;
+			int nRight = nLeft + 1;
+			int nBottom = rc.bottom() - 3;
+			QRect rcThumb;
+			m_slider->GetThumbRect(&rcThumb);
+			int nDrag = rcThumb.width() / 2;
+			if(nTop <= y && y <= nBottom
+				 && nLeft - nDrag < x && x < nRight + nDrag) {
+				bDrag = TRUE;
+				nDraggingMarker = i;
+				qwFirstPos = arrayMarker[nDraggingMarker];
+				return;
+			}
+		}
+	}
+
 	// 選択範囲の位置を得る
 	QRect rc;
 	GetSelRect(&rc);
@@ -112,7 +173,7 @@ void CTimeSlider_MainWnd::OnLButtonDown(int x, int y)
 //----------------------------------------------------------------------------
 void CTimeSlider_MainWnd::OnLButtonUp(int x, int y)
 {
-	bABLoopADrag = bABLoopBDrag = FALSE;
+	bABLoopADrag = bABLoopBDrag = bDrag = FALSE;
 }
 //----------------------------------------------------------------------------
 // マウスが移動された
@@ -187,6 +248,50 @@ void CTimeSlider_MainWnd::OnMouseMove(int x, int y)
 		m_slider->SetSelEnd((LONG)qwSelEnd);
 		m_slider->update();
 	}
+
+	if(m_rMainWnd.IsMarkerPlay() && bDrag) {
+		// 変更後の位置を算出
+
+		// スライダの可動領域の位置を得る
+		QRect rc;
+		GetSelRect(&rc);
+		int width = rc.width(); // 可動領域の幅
+		int height = rc.height(); // 可動領域の高さ
+
+		QWORD length = m_rMainWnd.GetSound().ChannelGetLength();
+		int csrLeft = x - rc.left();
+		if(!bControl && csrLeft < 0) csrLeft = 0;
+		else if(!bControl && csrLeft > width) csrLeft = width;
+		double rate = (double)csrLeft / (double)width;
+		QWORD qwDstPos = (QWORD)(length * rate);
+
+		// 変更前の値を保存しておく
+		std::vector<QWORD> arrayMarker
+			= m_rMainWnd.GetSound().GetArrayMarker();
+		QWORD qwSrcPos = arrayMarker[nDraggingMarker];
+
+		if(bControl) {
+			QWORD difference = qwDstPos > qwFirstPos ?
+								 qwDstPos - qwFirstPos
+								 : qwFirstPos - qwDstPos;
+			difference /= 10;
+			qwDstPos = qwDstPos > qwFirstPos ?
+						 qwFirstPos + difference
+						 : qwFirstPos - difference;
+			if(qwDstPos < 0) qwDstPos = 0;
+			else if(qwDstPos > length) qwDstPos = length;
+		}
+
+		// 変更
+		nDraggingMarker
+			= m_rMainWnd.GetSound().ChangeMarkerPos(nDraggingMarker,
+													 qwDstPos);
+
+		// 変更後の位置に現在の再生位置を設定
+		if(m_rMainWnd.IsSetPositionAuto()) m_rMainWnd.SetTime(qwDstPos);
+		else m_rMainWnd.SetTime(m_rMainWnd.GetSound().ChannelGetPosition(),
+								FALSE);
+	}
 }
 //----------------------------------------------------------------------------
 // トラックバーを有効化
@@ -210,10 +315,26 @@ void CTimeSlider_MainWnd::SetSelEnd(LONG pos)
 	m_slider->SetSelEnd(pos);
 }
 //----------------------------------------------------------------------------
-// 再描画
+// 背景を描画
 //----------------------------------------------------------------------------
-void CTimeSlider_MainWnd::Update()
+void CTimeSlider_MainWnd::RenderTrackBarBackground(QPaintEvent * e)
 {
-	m_slider->update();
+	m_slider->RenderTrackBarBackground(e);
+
+	int min = m_slider->minimum();
+	int max = m_slider->maximum();
+	if (min >= max) {
+		return;
+	}
+
+	auto rc = m_slider->GetSpaceAvailabel();
+	QPainter p(m_slider);
+	QPen pen(QColor(51, 153, 255), 1, Qt::SolidLine);
+	p.setPen(pen);
+	for (auto marker : m_rMainWnd.GetSound().GetArrayMarker()) {
+		double t = (marker / 100000 - min) / static_cast<double>(max - min);
+		int pos = rc.width() * t + rc.left();
+		p.drawLine(pos, rc.top(), pos, rc.bottom());
+	}
 }
 //----------------------------------------------------------------------------

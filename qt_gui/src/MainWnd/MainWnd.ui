@@ -42,6 +42,26 @@
        </widget>
       </item>
       <item>
+       <widget class="QToolButton" name="prevMarkerButton">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click: Head/Previous marker&lt;br&gt;Long press: Rewind&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../Hayaemon.qrc">
+          <normaloff>:/icon/resource/prev_marker.png</normaloff>:/icon/resource/prev_marker.png</iconset>
+        </property>
+        <property name="autoRepeat">
+         <bool>true</bool>
+        </property>
+        <property name="autoRepeatDelay">
+         <number>500</number>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QToolButton" name="playButton">
         <property name="toolTip">
          <string>Play</string>
@@ -83,6 +103,26 @@
         <property name="icon">
          <iconset resource="../Hayaemon.qrc">
           <normaloff>:/icon/resource/stop.png</normaloff>:/icon/resource/stop.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="nextMarkerButton">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click: Next marker&lt;br&gt;Long press: Forward&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../Hayaemon.qrc">
+          <normaloff>:/icon/resource/next_marker.png</normaloff>:/icon/resource/next_marker.png</iconset>
+        </property>
+        <property name="autoRepeat">
+         <bool>true</bool>
+        </property>
+        <property name="autoRepeatDelay">
+         <number>500</number>
         </property>
        </widget>
       </item>
@@ -188,6 +228,54 @@
         </property>
         <property name="checkable">
          <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="markerPlayButton">
+        <property name="toolTip">
+         <string>Marker play</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../Hayaemon.qrc">
+          <normaloff>:/icon/resource/marker_play.png</normaloff>:/icon/resource/marker_play.png</iconset>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="addMarkerButton">
+        <property name="toolTip">
+         <string>Add a marker</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../Hayaemon.qrc">
+          <normaloff>:/icon/resource/add_marker.png</normaloff>:/icon/resource/add_marker.png</iconset>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="deleteMarkerButton">
+        <property name="toolTip">
+         <string>Delete a marker</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../Hayaemon.qrc">
+          <normaloff>:/icon/resource/delete_marker.png</normaloff>:/icon/resource/delete_marker.png</iconset>
         </property>
        </widget>
       </item>
@@ -417,6 +505,12 @@
     <addaction name="actionSetABLoopB"/>
     <addaction name="actionABLoopAPosSetting"/>
     <addaction name="actionABLoopBPosSetting"/>
+    <addaction name="separator"/>
+    <addaction name="actionMarkerPlay"/>
+    <addaction name="actionAddMarker"/>
+    <addaction name="actionDeleteMarker"/>
+    <addaction name="actionInstantLoop"/>
+    <addaction name="actionSetMarkerPositionAuto"/>
    </widget>
    <widget class="QMenu" name="menuEffect">
     <property name="title">
@@ -666,6 +760,9 @@
       <addaction name="actionRecoverPlayModeAllLoop"/>
       <addaction name="actionRecoverPlayModeRandom"/>
       <addaction name="actionRecoverPlayModeContinuous"/>
+      <addaction name="separator"/>
+      <addaction name="actionRecoverPlayModeInstantLoop"/>
+      <addaction name="actionRecoverPlayModeSetMarkerPositionAuto"/>
      </widget>
      <addaction name="menuVisible_V"/>
      <addaction name="menuPlay_mode_P"/>
@@ -1592,6 +1689,56 @@
     <string>Forward(&amp;A)</string>
    </property>
   </action>
+  <action name="actionMarkerPlay">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Marker play(&amp;M)</string>
+   </property>
+  </action>
+  <action name="actionAddMarker">
+   <property name="text">
+    <string>Add a marker(&amp;A)</string>
+   </property>
+  </action>
+  <action name="actionDeleteMarker">
+   <property name="text">
+    <string>Delete a marker(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionInstantLoop">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Loop when adding a marker(&amp;I)</string>
+   </property>
+  </action>
+  <action name="actionSetMarkerPositionAuto">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Set position automatic when adjusting marker position(&amp;S)</string>
+   </property>
+  </action>
+  <action name="actionRecoverPlayModeInstantLoop">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Loop when adding a marker(I)</string>
+   </property>
+  </action>
+  <action name="actionRecoverPlayModeSetMarkerPositionAuto">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Set position automatic when adjusting marker position(&amp;S)</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -1618,15 +1765,20 @@
  </customwidgets>
  <tabstops>
   <tabstop>prevButton</tabstop>
+  <tabstop>prevMarkerButton</tabstop>
   <tabstop>playButton</tabstop>
   <tabstop>pauseButton</tabstop>
   <tabstop>stopButton</tabstop>
+  <tabstop>nextMarkerButton</tabstop>
   <tabstop>nextButton</tabstop>
   <tabstop>singleLoopButton</tabstop>
   <tabstop>allLoopButton</tabstop>
   <tabstop>randomPlayButton</tabstop>
   <tabstop>abLoopAButton</tabstop>
   <tabstop>abLoopBButton</tabstop>
+  <tabstop>markerPlayButton</tabstop>
+  <tabstop>addMarkerButton</tabstop>
+  <tabstop>deleteMarkerButton</tabstop>
   <tabstop>timeSlider</tabstop>
   <tabstop>speedSpinBox</tabstop>
   <tabstop>speedSlider</tabstop>

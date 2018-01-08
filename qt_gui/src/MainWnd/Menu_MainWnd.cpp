@@ -103,14 +103,20 @@ void CMenu_MainWnd::OnHeadMenuSelected()
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnPreviousMenuSelected()
 {
-	m_rMainWnd.PlayPrevious();
+	if(!m_rMainWnd.IsMarkerPlay())
+		m_rMainWnd.PlayPrevious();
+	else
+		m_rMainWnd.SetPrevMarker();
 }
 //----------------------------------------------------------------------------
 // 再生 → 次へメニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnNextMenuSelected()
 {
-	m_rMainWnd.PlayNext(FALSE, FALSE);
+	if(!m_rMainWnd.IsMarkerPlay())
+		m_rMainWnd.PlayNext(FALSE, FALSE);
+	else
+		m_rMainWnd.SetNextMarker();
 }
 //----------------------------------------------------------------------------
 // 再生 → 一時停止メニューが選択された
@@ -197,6 +203,41 @@ void CMenu_MainWnd::OnABLoopASettingMenuSelected()
 void CMenu_MainWnd::OnABLoopBSettingMenuSelected()
 {
 	m_rMainWnd.SetABLoopBSetting();
+}
+//----------------------------------------------------------------------------
+// 再生 → マーカー再生メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnMarkerPlayMenuSelected()
+{
+	m_rMainWnd.SetMarkerPlay();
+}
+//----------------------------------------------------------------------------
+// 再生 → マーカー追加メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnAddMarkerMenuSelected()
+{
+	m_rMainWnd.AddMarker();
+}
+//----------------------------------------------------------------------------
+// 再生 → マーカー削除メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDeleteMarkerMenuSelected()
+{
+	m_rMainWnd.DeleteMarker();
+}
+//----------------------------------------------------------------------------
+// 再生 → マーカー追加時にループメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnInstantLoopMenuSelected()
+{
+	m_rMainWnd.SetInstantLoop();
+}
+//----------------------------------------------------------------------------
+// 再生 → マーカー位置変更時に再生位置変更メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPositionAutoMenuSelected()
+{
+	m_rMainWnd.SetPositionAuto();
 }
 //----------------------------------------------------------------------------
 // 再生 → 再生速度 → デフォルトに戻すメニューが選択された
@@ -1117,6 +1158,11 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_CONTINUE, m_rMainWnd.actionContinuousPlay},
 		{ID_ABLOOP_A_SETTING, m_rMainWnd.actionABLoopAPosSetting},
 		{ID_ABLOOP_B_SETTING, m_rMainWnd.actionABLoopBPosSetting},
+		{ID_MARKERPLAY, m_rMainWnd.actionMarkerPlay},
+		{ID_ADDMARKER, m_rMainWnd.actionAddMarker},
+		{ID_DELETEMARKER, m_rMainWnd.actionDeleteMarker},
+		{ID_INSTANTLOOP, m_rMainWnd.actionInstantLoop},
+		{ID_SETPOSITIONAUTO, m_rMainWnd.actionSetMarkerPositionAuto},
 		{ID_SPEEDDEC_0, m_rMainWnd.actionSpeedDigit0},
 		{ID_SPEEDDEC_1, m_rMainWnd.actionSpeedDigit1},
 		{ID_SPEEDDEC_2, m_rMainWnd.actionSpeedDigit2},
@@ -1142,6 +1188,9 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_RECOVERALOOP, m_rMainWnd.actionRecoverPlayModeAllLoop},
 		{ID_RECOVERRANDOM, m_rMainWnd.actionRecoverPlayModeRandom},
 		{ID_RECOVERCONTINUE, m_rMainWnd.actionRecoverPlayModeContinuous},
+		{ID_RECOVERINSTANTLOOP, m_rMainWnd.actionRecoverPlayModeInstantLoop},
+		{ID_RECOVERSETPOSITIONAUTO,
+		 m_rMainWnd.actionRecoverPlayModeSetMarkerPositionAuto},
 	};
 }
 //----------------------------------------------------------------------------
@@ -1220,6 +1269,16 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnABLoopASettingMenuSelected);
 	connect(m_rMainWnd.actionABLoopBPosSetting, &QAction::triggered,
 					this, &CMenu_MainWnd::OnABLoopBSettingMenuSelected);
+	connect(m_rMainWnd.actionMarkerPlay, &QAction::triggered,
+					this, &CMenu_MainWnd::OnMarkerPlayMenuSelected);
+	connect(m_rMainWnd.actionAddMarker, &QAction::triggered,
+					this, &CMenu_MainWnd::OnAddMarkerMenuSelected);
+	connect(m_rMainWnd.actionDeleteMarker, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDeleteMarkerMenuSelected);
+	connect(m_rMainWnd.actionInstantLoop, &QAction::triggered,
+					this, &CMenu_MainWnd::OnInstantLoopMenuSelected);
+	connect(m_rMainWnd.actionSetMarkerPositionAuto, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSetPositionAutoMenuSelected);
 	// Effect - Speed
 	connect(m_rMainWnd.actionResetSpeed, &QAction::triggered,
 					this, &CMenu_MainWnd::OnResetSpeedMenuSelected);
