@@ -1295,6 +1295,11 @@ void CMainWnd::SetAllLoop(bool bAllLoop)
 //----------------------------------------------------------------------------
 void CMainWnd::SetAllEffects()
 {
+	SetOnlyLeft(m_menu.IsItemChecked(ID_ONLYLEFT));
+	SetOnlyRight(m_menu.IsItemChecked(ID_ONLYRIGHT));
+	SetChangeLR(m_menu.IsItemChecked(ID_CHANGELR));
+	SetMonoral(m_menu.IsItemChecked(ID_MONORAL));
+	SetVocalCancel(m_menu.IsItemChecked(ID_VOCALCANCEL));
 	SetSpeed((double)(m_speedSlider.GetThumbPos()
 		/ pow(10.0, m_speedLabel.GetDecimalDigit())));
 	SetFreq((double)(m_freqSlider.GetThumbPos()
@@ -1836,6 +1841,35 @@ void CMainWnd::SetMarkerPlay()
 	}
 }
 //----------------------------------------------------------------------------
+// 左右入れ替え
+//----------------------------------------------------------------------------
+void CMainWnd::SetChangeLR()
+{
+	BOOL bChangeLR = !m_menu.IsItemChecked(ID_CHANGELR);
+	if(bChangeLR) {
+		SetMonoral(false);
+		SetVocalCancel(false);
+		SetOnlyRight(false);
+		SetOnlyLeft(false);
+	}
+	m_sound.SetChangeLR(bChangeLR);
+	m_menu.CheckItem(ID_CHANGELR, bChangeLR ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
+// 左右入れ替え
+//----------------------------------------------------------------------------
+void CMainWnd::SetChangeLR(BOOL bChangeLR)
+{
+	if(bChangeLR) {
+		SetMonoral(false);
+		SetVocalCancel(false);
+		SetOnlyRight(false);
+		SetOnlyLeft(false);
+	}
+	m_sound.SetChangeLR(bChangeLR);
+	m_menu.CheckItem(ID_CHANGELR, bChangeLR ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
 // 次のマーカーへ
 //----------------------------------------------------------------------------
 void CMainWnd::SetNextMarker()
@@ -1860,6 +1894,64 @@ void CMainWnd::SetNextMarker()
 			}
 		}
 	}
+}
+//----------------------------------------------------------------------------
+// 左のみ再生
+//----------------------------------------------------------------------------
+void CMainWnd::SetOnlyLeft()
+{
+	BOOL bOnlyLeft = !m_menu.IsItemChecked(ID_ONLYLEFT);
+	if(bOnlyLeft) {
+		SetMonoral(false);
+		SetVocalCancel(false);
+		SetOnlyRight(false);
+		SetChangeLR(false);
+	}
+	m_sound.SetOnlyLeft(bOnlyLeft);
+	m_menu.CheckItem(ID_ONLYLEFT, bOnlyLeft ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
+// 左のみ再生
+//----------------------------------------------------------------------------
+void CMainWnd::SetOnlyLeft(BOOL bOnlyLeft)
+{
+	if(bOnlyLeft) {
+		SetMonoral(false);
+		SetVocalCancel(false);
+		SetChangeLR(false);
+		SetOnlyRight(false);
+	}
+	m_sound.SetOnlyLeft(bOnlyLeft);
+	m_menu.CheckItem(ID_ONLYLEFT, bOnlyLeft ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
+// 右のみ再生
+//----------------------------------------------------------------------------
+void CMainWnd::SetOnlyRight()
+{
+	BOOL bOnlyRight = !m_menu.IsItemChecked(ID_ONLYRIGHT);
+	if(bOnlyRight) {
+		SetMonoral(false);
+		SetVocalCancel(false);
+		SetOnlyLeft(false);
+		SetChangeLR(false);
+	}
+	m_sound.SetOnlyRight(bOnlyRight);
+	m_menu.CheckItem(ID_ONLYRIGHT, bOnlyRight ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
+// 右のみ再生
+//----------------------------------------------------------------------------
+void CMainWnd::SetOnlyRight(BOOL bOnlyRight)
+{
+	if(bOnlyRight) {
+		SetMonoral(false);
+		SetVocalCancel(false);
+		SetOnlyLeft(false);
+		SetChangeLR(false);
+	}
+	m_sound.SetOnlyRight(bOnlyRight);
+	m_menu.CheckItem(ID_ONLYRIGHT, bOnlyRight ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
 // 前へ・次へメニューの表示状態を設定
@@ -1971,6 +2063,64 @@ void CMainWnd::SetFreq(double dFreq)
 void CMainWnd::SetPitch(double dPitch)
 {
 	m_sound.SetPitch((float)dPitch);
+}
+//----------------------------------------------------------------------------
+// モノラル化
+//----------------------------------------------------------------------------
+void CMainWnd::SetMonoral()
+{
+	BOOL bMonoral = !m_menu.IsItemChecked(ID_MONORAL);
+	if(bMonoral) {
+		SetVocalCancel(false);
+		SetOnlyLeft(false);
+		SetOnlyRight(false);
+		SetChangeLR(false);
+	}
+	m_sound.SetMonoral(bMonoral);
+	m_menu.CheckItem(ID_MONORAL, bMonoral ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
+// モノラル化
+//----------------------------------------------------------------------------
+void CMainWnd::SetMonoral(BOOL bMonoral)
+{
+	if(bMonoral) {
+		SetVocalCancel(false);
+		SetOnlyLeft(false);
+		SetOnlyRight(false);
+		SetChangeLR(false);
+	}
+	m_sound.SetMonoral(bMonoral);
+	m_menu.CheckItem(ID_MONORAL, bMonoral ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
+// ボーカルキャンセル
+//----------------------------------------------------------------------------
+void CMainWnd::SetVocalCancel()
+{
+	BOOL bVocalCancel = !m_menu.IsItemChecked(ID_VOCALCANCEL);
+	if(bVocalCancel) {
+		SetMonoral(false);
+		SetOnlyLeft(false);
+		SetOnlyRight(false);
+		SetChangeLR(false);
+	}
+	m_sound.SetVocalCancel(bVocalCancel);
+	m_menu.CheckItem(ID_VOCALCANCEL, bVocalCancel ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
+// ボーカルキャンセル
+//----------------------------------------------------------------------------
+void CMainWnd::SetVocalCancel(BOOL bVocalCancel)
+{
+	if(bVocalCancel) {
+		SetMonoral(false);
+		SetOnlyLeft(false);
+		SetOnlyRight(false);
+		SetChangeLR(false);
+	}
+	m_sound.SetVocalCancel(bVocalCancel);
+	m_menu.CheckItem(ID_VOCALCANCEL, bVocalCancel ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
 // 音量の設定

@@ -26,7 +26,9 @@ CSound::CSound(CMainWnd & mainWnd, BOOL bMainStream)
 		m_hFx630Hz_2(0), m_hFx800Hz_2(0), m_hFx1KHz_2(0), m_hFx1_25KHz_2(0),
 		m_hFx1_6KHz_2(0), m_hFx2KHz_2(0), m_hFx2_5KHz_2(0), m_hFx3_15KHz_2(0),
 		m_hFx4KHz_2(0), m_hFx5KHz_2(0), m_hFx6_3KHz_2(0), m_hFx8KHz_2(0),
-		m_hFx10KHz_2(0), m_hFx12_5KHz_2(0), m_hFx16KHz_2(0), m_hFx20KHz_2(0)
+		m_hFx10KHz_2(0), m_hFx12_5KHz_2(0), m_hFx16KHz_2(0), m_hFx20KHz_2(0),
+		m_hMonoralDsp(0), m_hVocalCancelDsp(0), m_hOnlyLeftDsp(0),
+		m_hOnlyRightDsp(0), m_hChangeLRDsp(0)
 {
 	// BASS_FXSetParametersでボリュームを変更しようとするだけでは、bass_fxが
 	// ロードされないので、明示的にbass_fxの関数を実行する。
@@ -159,6 +161,108 @@ BOOL CSound::StreamCreateFile(LPCTSTR lpFilePath, BOOL bDecode, int nCount)
 		m_hFxVolume = ChannelSetFX(BASS_FX_BFX_VOLUME, 1);
 	}
 	return bRet;
+}
+//----------------------------------------------------------------------------
+// モノラル化の設定
+//----------------------------------------------------------------------------
+void CSound::SetMonoral(BOOL bMonoral)
+{
+	if(bMonoral)
+		m_hMonoralDsp = BASS_ChannelSetDSP(m_hStream, &Monoral, 0, 1);
+	else BASS_ChannelRemoveDSP(m_hStream, m_hMonoralDsp);
+}
+//----------------------------------------------------------------------------
+// モノラル化用コールバック関数
+//----------------------------------------------------------------------------
+void CALLBACK CSound::Monoral(HDSP handle, DWORD channel,
+	void *buffer, DWORD length, void *user)
+{
+	float *data = (float*)buffer;
+	int max = length / 4;
+	for(int a = 0; a < max; a += 2)
+		data[a] = data[a + 1] = ((data[a]) + data[a + 1]) * 0.5f;
+}
+//----------------------------------------------------------------------------
+// ボーカルキャンセルの設定
+//----------------------------------------------------------------------------
+void CSound::SetVocalCancel(BOOL bVocalCancel)
+{
+	if(bVocalCancel)
+		m_hVocalCancelDsp = BASS_ChannelSetDSP(m_hStream, &VocalCancel, 0, 1);
+	else BASS_ChannelRemoveDSP(m_hStream, m_hVocalCancelDsp);
+}
+//----------------------------------------------------------------------------
+// ボーカルキャンセル用コールバック関数
+//----------------------------------------------------------------------------
+void CALLBACK CSound::VocalCancel(HDSP handle, DWORD channel,
+	void *buffer, DWORD length, void *user)
+{
+	float *data = (float*)buffer;
+	int max = length / 4;
+	for(int a = 0; a < max; a += 2)
+		data[a] = data[a + 1] = ((-data[a]) + data[a + 1]) * 0.5f;
+}
+//----------------------------------------------------------------------------
+// 左右入れ替えの設定
+//----------------------------------------------------------------------------
+void CSound::SetChangeLR(BOOL bChangeLR)
+{
+	if(bChangeLR)
+		m_hChangeLRDsp = BASS_ChannelSetDSP(m_hStream, &ChangeLR, 0, 2);
+	else BASS_ChannelRemoveDSP(m_hStream, m_hChangeLRDsp);
+}
+//----------------------------------------------------------------------------
+// 左右入れ替え用コールバック関数
+//----------------------------------------------------------------------------
+void CALLBACK CSound::ChangeLR(HDSP handle, DWORD channel,
+	void *buffer, DWORD length, void *user)
+{
+	float *data = (float*)buffer;
+	int max = length / 4;
+	float f;
+	for(int a = 0; a < max; a += 2) {
+		f = data[a];
+		data[a] = data[a + 1];
+		data[a + 1] = f;
+	}
+}
+//----------------------------------------------------------------------------
+// 左のみ再生の設定
+//----------------------------------------------------------------------------
+void CSound::SetOnlyLeft(BOOL bOnlyLeft)
+{
+	if(bOnlyLeft)
+		m_hOnlyLeftDsp = BASS_ChannelSetDSP(m_hStream, &OnlyLeft, 0, 2);
+	else BASS_ChannelRemoveDSP(m_hStream, m_hOnlyLeftDsp);
+}
+//----------------------------------------------------------------------------
+// 左のみ再生用コールバック関数
+//----------------------------------------------------------------------------
+void CALLBACK CSound::OnlyLeft(HDSP handle, DWORD channel,
+	void *buffer, DWORD length, void *user)
+{
+	float *data = (float*)buffer;
+	int max = length / 4;
+	for(int a = 0; a < max; a += 2) data[a + 1] = data[a];
+}
+//----------------------------------------------------------------------------
+// 右のみ再生の設定
+//----------------------------------------------------------------------------
+void CSound::SetOnlyRight(BOOL bOnlyRight)
+{
+	if(bOnlyRight)
+		m_hOnlyRightDsp = BASS_ChannelSetDSP(m_hStream, &OnlyRight, 0, 2);
+	else BASS_ChannelRemoveDSP(m_hStream, m_hOnlyRightDsp);
+}
+//----------------------------------------------------------------------------
+// 右のみ再生用コールバック関数
+//----------------------------------------------------------------------------
+void CALLBACK CSound::OnlyRight(HDSP handle, DWORD channel,
+	void *buffer, DWORD length, void *user)
+{
+	float *data = (float*)buffer;
+	int max = length / 4;
+	for(int a = 0; a < max; a += 2) data[a] = data[a + 1];
 }
 //----------------------------------------------------------------------------
 // 再生

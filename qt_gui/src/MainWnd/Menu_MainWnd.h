@@ -180,6 +180,11 @@ public: // 関数
 	void OnCountLoopMenuSelected();
 	void OnInstantLoopMenuSelected();
 	void OnSetPositionAutoMenuSelected();
+	void OnVocalCancelMenuSelected(bool checked);
+	void OnMonoralMenuSelected(bool checked);
+	void OnOnlyLeftMenuSelected(bool checked);
+	void OnOnlyRightMenuSelected(bool checked);
+	void OnChangeLRMenuSelected(bool checked);
 
 private: // メンバ変数
 

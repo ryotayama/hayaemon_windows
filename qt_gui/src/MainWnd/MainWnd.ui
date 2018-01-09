@@ -738,6 +738,13 @@
     <addaction name="menuFreq"/>
     <addaction name="menuPitch"/>
     <addaction name="menuVolume"/>
+    <addaction name="separator"/>
+    <addaction name="actionVocalCancel"/>
+    <addaction name="separator"/>
+    <addaction name="actionMonoral"/>
+    <addaction name="actionOnlyLeft"/>
+    <addaction name="actionOnlyRight"/>
+    <addaction name="actionChangeLR"/>
    </widget>
    <widget class="QMenu" name="menuView_V">
     <property name="title">
@@ -1819,6 +1826,46 @@
   <action name="actionForward10">
    <property name="text">
     <string>Forward 10 sec.(&amp;T)</string>
+   </property>
+  </action>
+  <action name="actionVocalCancel">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Vocal cancel(&amp;V)</string>
+   </property>
+  </action>
+  <action name="actionMonoral">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Monoral(&amp;M)</string>
+   </property>
+  </action>
+  <action name="actionOnlyLeft">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Only left(&amp;L)</string>
+   </property>
+  </action>
+  <action name="actionOnlyRight">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Only right(&amp;R)</string>
+   </property>
+  </action>
+  <action name="actionChangeLR">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Change LR(&amp;C)</string>
    </property>
   </action>
  </widget>

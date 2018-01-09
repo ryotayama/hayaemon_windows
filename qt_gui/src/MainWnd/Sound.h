@@ -68,6 +68,21 @@ public: // 関数
 	virtual BOOL SetSampleRate(float samplerate);
 	virtual BOOL ChannelSetVolume(float volume);
 	virtual UINT OnLoop();
+	virtual void SetMonoral(BOOL bMonoral = TRUE);
+	static void CALLBACK Monoral(HDSP handle, DWORD channel, void *buffer,
+								 DWORD length, void *user);
+	virtual void SetVocalCancel(BOOL bVocalCancel = TRUE);
+	static void CALLBACK VocalCancel(HDSP handle, DWORD channel, void *buffer,
+									 DWORD length, void *user);
+	virtual void SetChangeLR(BOOL bChangeLR = TRUE);
+	static void CALLBACK ChangeLR(HDSP handle, DWORD channel, void *buffer,
+								  DWORD length, void *user);
+	virtual void SetOnlyLeft(BOOL bOnlyLeft = TRUE);
+	static void CALLBACK OnlyLeft(HDSP handle, DWORD channel, void *buffer,
+								  DWORD length, void *user);
+	virtual void SetOnlyRight(BOOL bOnlyRight = TRUE);
+	static void CALLBACK OnlyRight(HDSP handle, DWORD channel, void *buffer,
+								   DWORD length, void *user);
 
 private: // メンバ変数
 
@@ -99,6 +114,9 @@ private: // メンバ変数
 		m_hFx2KHz_2, m_hFx2_5KHz_2, m_hFx3_15KHz_2, m_hFx4KHz_2, m_hFx5KHz_2,
 		m_hFx6_3KHz_2, m_hFx8KHz_2, m_hFx10KHz_2, m_hFx12_5KHz_2, m_hFx16KHz_2,
 		m_hFx20KHz_2;
+
+	HDSP m_hMonoralDsp, m_hVocalCancelDsp, m_hOnlyLeftDsp, m_hOnlyRightDsp,
+		 m_hChangeLRDsp;
 
 public: // メンバ変数の取得・設定
 

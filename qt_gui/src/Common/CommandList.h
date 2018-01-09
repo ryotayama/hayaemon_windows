@@ -76,6 +76,11 @@ typedef enum CMDID {
 		ID_PITCHDEC_0,
 		ID_PITCHDEC_1,
 		ID_PITCHDEC_2,
+		ID_VOCALCANCEL,
+		ID_MONORAL,
+		ID_ONLYLEFT,
+		ID_ONLYRIGHT,
+		ID_CHANGELR,
 	// システムメニュー
 		// 復元メニュー
 			// 表示状態メニュー

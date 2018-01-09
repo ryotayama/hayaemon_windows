@@ -1185,6 +1185,41 @@ void CMenu_MainWnd::OnUp1OctavePitchMenuSelected()
 	m_rMainWnd.UpPitch(12);
 }
 //----------------------------------------------------------------------------
+// 再生 → ボーカルキャンセルメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnVocalCancelMenuSelected(bool checked)
+{
+	m_rMainWnd.SetVocalCancel(checked);
+}
+//----------------------------------------------------------------------------
+// 再生 → モノラルメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnMonoralMenuSelected(bool checked)
+{
+	m_rMainWnd.SetMonoral(checked);
+}
+//----------------------------------------------------------------------------
+// 再生 → 左のみ再生メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnOnlyLeftMenuSelected(bool checked)
+{
+	m_rMainWnd.SetOnlyLeft(checked);
+}
+//----------------------------------------------------------------------------
+// 再生 → 右のみ再生メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnOnlyRightMenuSelected(bool checked)
+{
+	m_rMainWnd.SetOnlyRight(checked);
+}
+//----------------------------------------------------------------------------
+// 再生 → 左右入れ替えメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnChangeLRMenuSelected(bool checked)
+{
+	m_rMainWnd.SetChangeLR(checked);
+}
+//----------------------------------------------------------------------------
 // メニューの項目のチェック状態を設定
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::CheckItem(UINT uIDCheckItem, UINT uCheck)
@@ -1258,6 +1293,11 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_PITCHDEC_0, m_rMainWnd.actionPitchDigit0},
 		{ID_PITCHDEC_1, m_rMainWnd.actionPitchDigit1},
 		{ID_PITCHDEC_2, m_rMainWnd.actionPitchDigit2},
+		{ID_VOCALCANCEL, m_rMainWnd.actionVocalCancel},
+		{ID_MONORAL, m_rMainWnd.actionMonoral},
+		{ID_ONLYLEFT, m_rMainWnd.actionOnlyLeft},
+		{ID_ONLYRIGHT, m_rMainWnd.actionOnlyRight},
+		{ID_CHANGELR, m_rMainWnd.actionChangeLR},
 		{ID_RECOVERSPEEDVISIBLE, m_rMainWnd.actionRecoverSpeedVisible},
 		{ID_RECOVERFREQVISIBLE, m_rMainWnd.actionRecoverFreqVisible},
 		{ID_RECOVERPITCHVISIBLE, m_rMainWnd.actionRecoverPitchVisible},
@@ -1387,6 +1427,17 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnInstantLoopMenuSelected);
 	connect(m_rMainWnd.actionSetMarkerPositionAuto, &QAction::triggered,
 					this, &CMenu_MainWnd::OnSetPositionAutoMenuSelected);
+	// Effect
+	connect(m_rMainWnd.actionVocalCancel, &QAction::triggered,
+					this, &CMenu_MainWnd::OnVocalCancelMenuSelected);
+	connect(m_rMainWnd.actionMonoral, &QAction::triggered,
+					this, &CMenu_MainWnd::OnMonoralMenuSelected);
+	connect(m_rMainWnd.actionOnlyLeft, &QAction::triggered,
+					this, &CMenu_MainWnd::OnOnlyLeftMenuSelected);
+	connect(m_rMainWnd.actionOnlyRight, &QAction::triggered,
+					this, &CMenu_MainWnd::OnOnlyRightMenuSelected);
+	connect(m_rMainWnd.actionChangeLR, &QAction::triggered,
+					this, &CMenu_MainWnd::OnChangeLRMenuSelected);
 	// Effect - Speed
 	connect(m_rMainWnd.actionResetSpeed, &QAction::triggered,
 					this, &CMenu_MainWnd::OnResetSpeedMenuSelected);

@@ -165,7 +165,13 @@ public: // 関数
 	virtual void SetInstantLoop();
 	virtual void SetPositionAuto();
 	virtual void SetMarkerPlay();
+	virtual void SetChangeLR();
+	virtual void SetChangeLR(BOOL bChangeLR);
 	virtual void SetNextMarker();
+	virtual void SetOnlyLeft();
+	virtual void SetOnlyLeft(BOOL bOnlyLeft);
+	virtual void SetOnlyRight();
+	virtual void SetOnlyRight(BOOL bOnlyRight);
 	virtual void SetPreviousNextMenuState();
 	virtual void SetPrevMarker();
 	virtual void SetRandom(bool bRandom);
@@ -174,6 +180,10 @@ public: // 関数
 	virtual void SetSpeed(double dSpeed);
 	virtual void SetFreq(double dFreq);
 	virtual void SetPitch(double dPitch);
+	virtual void SetMonoral();
+	virtual void SetMonoral(BOOL bMonoral);
+	virtual void SetVocalCancel();
+	virtual void SetVocalCancel(BOOL bVocalCancel);
 	virtual void SetVolume(double nVolume);
 	virtual void SetTime(QWORD qwTime, BOOL bReset = TRUE);
 	virtual void SetPan(int nPan);
