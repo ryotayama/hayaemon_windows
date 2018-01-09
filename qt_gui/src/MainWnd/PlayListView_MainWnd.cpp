@@ -3,6 +3,7 @@
 //----------------------------------------------------------------------------
 #include "PlayListView_MainWnd.h"
 #include <QFileInfo>
+#include <QMimeData>
 #include <QTableWidgetItem>
 #include <QUrl>
 #include "MainWnd.h"
@@ -79,6 +80,8 @@ void CPlayListView_MainWnd::AddFile(const QString & filePath,
 //----------------------------------------------------------------------------
 BOOL CPlayListView_MainWnd::Create()
 {
+	setAcceptDrops(true);
+
 	setColumnCount(8);
 	InsertColumn(0, "", LVCFMT_LEFT, 17, 0);
 	InsertColumn(1, tr("No."), LVCFMT_RIGHT, 30, 1);
@@ -173,6 +176,13 @@ void CPlayListView_MainWnd::ScrollToItem(int nItem)
 	EnsureVisible(nItem, TRUE);
 }
 //----------------------------------------------------------------------------
+// ファイルがドロップされた
+//----------------------------------------------------------------------------
+void CPlayListView_MainWnd::OnDropFiles(const QList<QUrl> & urls)
+{
+	m_rMainWnd.AddDropFiles(urls, FALSE);
+}
+//----------------------------------------------------------------------------
 // Qtのラッパー
 //----------------------------------------------------------------------------
 int CPlayListView_MainWnd::InsertColumn(
@@ -186,5 +196,13 @@ int CPlayListView_MainWnd::InsertColumn(
 	this->setHorizontalHeaderItem(nCol, item);
 	this->setColumnWidth(nCol, nWidth);
 	return nCol;
+}
+void CPlayListView_MainWnd::dragEnterEvent(QDragEnterEvent * e)
+{
+	e->acceptProposedAction();
+}
+void CPlayListView_MainWnd::dropEvent(QDropEvent * e)
+{
+	OnDropFiles(e->mimeData()->urls());
 }
 //----------------------------------------------------------------------------

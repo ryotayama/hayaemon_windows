@@ -8,8 +8,10 @@ class CMainWnd;
 #include <stdint.h>
 #include <vector>
 #include <QIcon>
+#include <QList>
 #include <QTableWidget>
 #include "../Common/Define.h"
+class QUrl;
 //----------------------------------------------------------------------------
 // プレイリスト用リストビューの管理を行うクラス
 //----------------------------------------------------------------------------
@@ -31,6 +33,8 @@ public: // 関数
 	virtual void ClearPlayOrder();
 	virtual void ResetNumber();
 	virtual void ScrollToItem(int nItem);
+
+	virtual void OnDropFiles(const QList<QUrl> & urls);
 
 public: // メンバ変数の取得・設定
 
@@ -84,6 +88,13 @@ public:
 	virtual int InsertItem(int nItem) {
 		insertRow(nItem);
 		return nItem;
+	}
+
+protected:
+  void dragEnterEvent(QDragEnterEvent * e) override;
+  void dropEvent(QDropEvent * e) override;
+	QStringList mimeTypes() const override {
+		return QTableWidget::mimeTypes() << QStringLiteral("text/uri-list");
 	}
 
 private: // メンバ変数
