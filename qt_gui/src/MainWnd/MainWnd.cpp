@@ -1681,6 +1681,50 @@ void CMainWnd::SetEQ20K(LONG lEQ20K)
 	m_sound.SetEQ20K(20000, 0.7f, (float)lEQ20K);
 }
 //----------------------------------------------------------------------------
+// イコライザの設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetEQ(LONG lEQ20, LONG lEQ25, LONG lEQ31_5, LONG lEQ40,
+					 LONG lEQ50, LONG lEQ63, LONG lEQ80, LONG lEQ100,
+					 LONG lEQ125, LONG lEQ160, LONG lEQ200, LONG lEQ250,
+					 LONG lEQ315, LONG lEQ400, LONG lEQ500, LONG lEQ630,
+					 LONG lEQ800, LONG lEQ1K, LONG lEQ1_25K, LONG lEQ1_6K,
+					 LONG lEQ2K, LONG lEQ2_5K, LONG lEQ3_15K, LONG lEQ4K,
+					 LONG lEQ5K, LONG lEQ6_3K, LONG lEQ8K, LONG lEQ10K,
+					 LONG lEQ12_5K, LONG lEQ16K, LONG lEQ20K)
+{
+	m_eq20Label.SetEQ(lEQ20);
+	m_eq25Label.SetEQ(lEQ25);
+	m_eq31_5Label.SetEQ(lEQ31_5);
+	m_eq40Label.SetEQ(lEQ40);
+	m_eq50Label.SetEQ(lEQ50);
+	m_eq63Label.SetEQ(lEQ63);
+	m_eq80Label.SetEQ(lEQ80);
+	m_eq100Label.SetEQ(lEQ100);
+	m_eq125Label.SetEQ(lEQ125);
+	m_eq160Label.SetEQ(lEQ160);
+	m_eq200Label.SetEQ(lEQ200);
+	m_eq250Label.SetEQ(lEQ250);
+	m_eq315Label.SetEQ(lEQ315);
+	m_eq400Label.SetEQ(lEQ400);
+	m_eq500Label.SetEQ(lEQ500);
+	m_eq630Label.SetEQ(lEQ630);
+	m_eq800Label.SetEQ(lEQ800);
+	m_eq1kLabel.SetEQ(lEQ1K);
+	m_eq1_25kLabel.SetEQ(lEQ1_25K);
+	m_eq1_6kLabel.SetEQ(lEQ1_6K);
+	m_eq2kLabel.SetEQ(lEQ2K);
+	m_eq2_5kLabel.SetEQ(lEQ2_5K);
+	m_eq3_15kLabel.SetEQ(lEQ3_15K);
+	m_eq4kLabel.SetEQ(lEQ4K);
+	m_eq5kLabel.SetEQ(lEQ5K);
+	m_eq6_3kLabel.SetEQ(lEQ6_3K);
+	m_eq8kLabel.SetEQ(lEQ8K);
+	m_eq10kLabel.SetEQ(lEQ10K);
+	m_eq12_5kLabel.SetEQ(lEQ12_5K);
+	m_eq16kLabel.SetEQ(lEQ16K);
+	m_eq20kLabel.SetEQ(lEQ20K);
+}
+//----------------------------------------------------------------------------
 // グラフィックイコライザの表示状態を設定
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQVisible(bool bEQVisible)

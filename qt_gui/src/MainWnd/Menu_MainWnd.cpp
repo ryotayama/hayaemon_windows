@@ -1220,6 +1220,317 @@ void CMenu_MainWnd::OnChangeLRMenuSelected(bool checked)
 	m_rMainWnd.SetChangeLR(checked);
 }
 //----------------------------------------------------------------------------
+// システム → EQプリセット → FLATメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQFlatMenuSelected()
+{
+	m_rMainWnd.SetEQ(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+					 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 低音強調（超最強）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQLowSuperMenuSelected()
+{
+	m_rMainWnd.SetEQ(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -30, -30, -30, -30,
+					 -30, -30, -30, -30, -30, -30, -30, -30, -30, -30, -30,
+					 -30, -30, -30, -30);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 低音強調（最強）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQLowHighestMenuSelected()
+{
+	m_rMainWnd.SetEQ(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -15, -15, -15, -15,
+					 -15, -15, -15, -15, -15, -15, -15, -15, -15, -15, -15,
+					 -15, -15, -15, -15);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 低音強調（強）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQLowHighMenuSelected()
+{
+	m_rMainWnd.SetEQ(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -12, -12, -12, -12,
+					 -12, -12, -12, -12, -12, -12, -12, -12, -12, -12, -12,
+					 -12, -12, -12, -12);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 低音強調（中）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQLowMiddleMenuSelected()
+{
+	m_rMainWnd.SetEQ(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -9, -9, -9, -9, -9,
+					 -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 低音強調（弱）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQLowLowMenuSelected()
+{
+	m_rMainWnd.SetEQ(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -6, -6, -6, -6, -6,
+					 -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 低音強調（最弱）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQLowLowestMenuSelected()
+{
+	m_rMainWnd.SetEQ(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -3, -3, -3, -3, -3,
+					 -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 中音強調（超最強）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQMiddleSuperMenuSelected()
+{
+	m_rMainWnd.SetEQ(-30, -30, -30, -30, -30, -30, -30, -30, -30, -30, -30,
+					 -30, 0, 0, 0, 0, 0, 0, 0, 0, 0, -30, -30, -30, -30, -30,
+					 -30, -30, -30, -30, -30);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 中音強調（最強）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQMiddleHighestMenuSelected()
+{
+	m_rMainWnd.SetEQ(-15, -15, -15, -15, -15, -15, -15, -15, -15, -15, -15,
+					 -15, 0, 0, 0, 0, 0, 0, 0, 0, 0, -15, -15, -15, -15, -15,
+					 -15, -15, -15, -15, -15);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 中音強調（強）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQMiddleHighMenuSelected()
+{
+	m_rMainWnd.SetEQ(-12, -12, -12, -12, -12, -12, -12, -12, -12, -12, -12,
+					 -12, 0, 0, 0, 0, 0, 0, 0, 0, 0, -12, -12, -12, -12, -12,
+					 -12, -12, -12, -12, -12);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 中音強調（中）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQMiddleMiddleMenuSelected()
+{
+	m_rMainWnd.SetEQ(-9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, 0, 0, 0,
+					 0, 0, 0, 0, 0, 0, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 中音強調（弱）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQMiddleLowMenuSelected()
+{
+	m_rMainWnd.SetEQ(-6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, 0, 0, 0,
+					 0, 0, 0, 0, 0, 0, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 中音強調（最弱）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQMiddleLowestMenuSelected()
+{
+	m_rMainWnd.SetEQ(-3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, 0, 0, 0,
+					 0, 0, 0, 0, 0, 0, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 高音強調（超最強）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQHighSuperMenuSelected()
+{
+	m_rMainWnd.SetEQ(-30, -30, -30, -30, -30, -30, -30, -30, -30, -30, -30,
+					 -30, -30, -30, -30, -30, -30, -30, -30, -30, -30, 0, 0,
+					 0, 0, 0, 0, 0, 0, 0, 0);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 高音強調（最強）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQHighHighestMenuSelected()
+{
+	m_rMainWnd.SetEQ(-15, -15, -15, -15, -15, -15, -15, -15, -15, -15, -15,
+					 -15, -15, -15, -15, -15, -15, -15, -15, -15, -15, 0, 0,
+					 0, 0, 0, 0, 0, 0, 0, 0);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 高音強調（強）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQHighHighMenuSelected()
+{
+	m_rMainWnd.SetEQ(-12, -12, -12, -12, -12, -12, -12, -12, -12, -12, -12,
+					 -12, -12, -12, -12, -12, -12, -12, -12, -12, -12, 0, 0,
+					 0, 0, 0, 0, 0, 0, 0, 0);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 高音強調（中）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQHighMiddleMenuSelected()
+{
+	m_rMainWnd.SetEQ(-9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,
+					 -9, -9, -9, -9, -9, -9, -9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 高音強調（弱）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQHighLowMenuSelected()
+{
+	m_rMainWnd.SetEQ(-6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6,
+					 -6, -6, -6, -6, -6, -6, -6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 高音強調（最弱）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQHighLowestMenuSelected()
+{
+	m_rMainWnd.SetEQ(-3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3,
+					 -3, -3, -3, -3, -3, -3, -3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 低音カット（超最強）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQLowCutSuperMenuSelected()
+{
+	m_rMainWnd.SetEQ(-30, -30, -30, -30, -30, -30, -30, -30, -30, -30, -30,
+					 -30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+					 0, 0);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 低音カット（最強）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQLowCutHighestMenuSelected()
+{
+	m_rMainWnd.SetEQ(-15, -15, -15, -15, -15, -15, -15, -15, -15, -15, -15,
+					 -15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+					 0, 0);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 低音カット（強）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQLowCutHighMenuSelected()
+{
+	m_rMainWnd.SetEQ(-12, -12, -12, -12, -12, -12, -12, -12, -12, -12, -12,
+					 -12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+					 0, 0);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 低音カット（中）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQLowCutMiddleMenuSelected()
+{
+	m_rMainWnd.SetEQ(-9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,
+					 -9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+					 0, 0);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 低音カット（弱）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQLowCutLowMenuSelected()
+{
+	m_rMainWnd.SetEQ(-6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6,
+					 -6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+					 0, 0);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 低音カット（最弱）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQLowCutLowestMenuSelected()
+{
+	m_rMainWnd.SetEQ(-3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3,
+					 -3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+					 0, 0);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 中音カット（超最強）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQMiddleCutSuperMenuSelected()
+{
+	m_rMainWnd.SetEQ(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -30, -30, -30, -30,
+					 -30, -30, -30, -30, -30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 中音カット（最強）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQMiddleCutHighestMenuSelected()
+{
+	m_rMainWnd.SetEQ(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -15, -15, -15, -15,
+					 -15, -15, -15, -15, -15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 中音カット（強）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQMiddleCutHighMenuSelected()
+{
+	m_rMainWnd.SetEQ(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -12, -12, -12, -12,
+					 -12, -12, -12, -12, -12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 中音カット（中）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQMiddleCutMiddleMenuSelected()
+{
+	m_rMainWnd.SetEQ(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -9, -9, -9, -9, -9,
+					 -9, -9, -9, -9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 中音カット（弱）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQMiddleCutLowMenuSelected()
+{
+	m_rMainWnd.SetEQ(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -6, -6, -6, -6, -6,
+					 -6, -6, -6, -6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 中音カット（最弱）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQMiddleCutLowestMenuSelected()
+{
+	m_rMainWnd.SetEQ(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -3, -3, -3, -3, -3,
+					 -3, -3, -3, -3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 高音カット（超最強）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQHighCutSuperMenuSelected()
+{
+	m_rMainWnd.SetEQ(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+					 0, 0, -30, -30, -30, -30, -30, -30, -30, -30, -30, -30);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 高音カット（最強）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQHighCutHighestMenuSelected()
+{
+	m_rMainWnd.SetEQ(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+					 0, 0, -15, -15, -15, -15, -15, -15, -15, -15, -15, -15);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 高音カット（強）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQHighCutHighMenuSelected()
+{
+	m_rMainWnd.SetEQ(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+					 0, 0, -12, -12, -12, -12, -12, -12, -12, -12, -12, -12);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 高音カット（中）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQHighCutMiddleMenuSelected()
+{
+	m_rMainWnd.SetEQ(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+					 0, 0, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 高音カット（弱）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQHighCutLowMenuSelected()
+{
+	m_rMainWnd.SetEQ(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+					 0, 0, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6);
+}
+//----------------------------------------------------------------------------
+// システム → EQプリセット → 高音カット（最弱）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEQHighCutLowestMenuSelected()
+{
+	m_rMainWnd.SetEQ(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+					 0, 0, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3);
+}
+//----------------------------------------------------------------------------
 // メニューの項目のチェック状態を設定
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::CheckItem(UINT uIDCheckItem, UINT uCheck)
@@ -1438,6 +1749,81 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnOnlyRightMenuSelected);
 	connect(m_rMainWnd.actionChangeLR, &QAction::triggered,
 					this, &CMenu_MainWnd::OnChangeLRMenuSelected);
+	// Effect - EQ preset
+	connect(m_rMainWnd.actionEQPresetFlat, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQFlatMenuSelected);
+	connect(m_rMainWnd.actionEQPresetBoostLowUltraStrong, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQLowSuperMenuSelected);
+	connect(m_rMainWnd.actionEQPresetBoostLowStrongest, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQLowHighestMenuSelected);
+	connect(m_rMainWnd.actionEQPresetBoostLowStrong, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQLowHighMenuSelected);
+	connect(m_rMainWnd.actionEQPresetBoostLowMiddle, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQLowMiddleMenuSelected);
+	connect(m_rMainWnd.actionEQPresetBoostLowWeak, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQLowLowMenuSelected);
+	connect(m_rMainWnd.actionEQPresetBoostLowWeakest, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQLowLowestMenuSelected);
+	connect(m_rMainWnd.actionEQPresetBoostMiddleUltraStrong, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQMiddleSuperMenuSelected);
+	connect(m_rMainWnd.actionEQPresetBoostMiddleStrongest, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQMiddleHighestMenuSelected);
+	connect(m_rMainWnd.actionEQPresetBoostMiddleStrong, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQMiddleHighMenuSelected);
+	connect(m_rMainWnd.actionEQPresetBoostMiddleMiddle, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQMiddleMiddleMenuSelected);
+	connect(m_rMainWnd.actionEQPresetBoostMiddleWeak, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQMiddleLowMenuSelected);
+	connect(m_rMainWnd.actionEQPresetBoostMiddleWeakest, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQMiddleLowestMenuSelected);
+	connect(m_rMainWnd.actionEQPresetBoostHighUltraStrong, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQHighSuperMenuSelected);
+	connect(m_rMainWnd.actionEQPresetBoostHighStrongest, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQHighHighestMenuSelected);
+	connect(m_rMainWnd.actionEQPresetBoostHighStrong, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQHighHighMenuSelected);
+	connect(m_rMainWnd.actionEQPresetBoostHighMiddle, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQHighMiddleMenuSelected);
+	connect(m_rMainWnd.actionEQPresetBoostHighWeak, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQHighLowMenuSelected);
+	connect(m_rMainWnd.actionEQPresetBoostHighWeakest, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQHighLowestMenuSelected);
+	connect(m_rMainWnd.actionEQPresetCutLowUltraStrong, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQLowCutSuperMenuSelected);
+	connect(m_rMainWnd.actionEQPresetCutLowStrongest, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQLowCutHighestMenuSelected);
+	connect(m_rMainWnd.actionEQPresetCutLowStrong, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQLowCutHighMenuSelected);
+	connect(m_rMainWnd.actionEQPresetCutLowMiddle, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQLowCutMiddleMenuSelected);
+	connect(m_rMainWnd.actionEQPresetCutLowWeak, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQLowCutLowMenuSelected);
+	connect(m_rMainWnd.actionEQPresetCutLowWeakest, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQLowCutLowestMenuSelected);
+	connect(m_rMainWnd.actionEQPresetCutMiddleUltraStrong, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQMiddleCutSuperMenuSelected);
+	connect(m_rMainWnd.actionEQPresetCutMiddleStrongest, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQMiddleCutHighestMenuSelected);
+	connect(m_rMainWnd.actionEQPresetCutMiddleStrong, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQMiddleCutHighMenuSelected);
+	connect(m_rMainWnd.actionEQPresetCutMiddleMiddle, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQMiddleCutMiddleMenuSelected);
+	connect(m_rMainWnd.actionEQPresetCutMiddleWeak, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQMiddleCutLowMenuSelected);
+	connect(m_rMainWnd.actionEQPresetCutMiddleWeakest, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQMiddleCutLowestMenuSelected);
+	connect(m_rMainWnd.actionEQPresetCutHighUltraStrong, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQHighCutSuperMenuSelected);
+	connect(m_rMainWnd.actionEQPresetCutHighStrongest, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQHighCutHighestMenuSelected);
+	connect(m_rMainWnd.actionEQPresetCutHighStrong, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQHighCutHighMenuSelected);
+	connect(m_rMainWnd.actionEQPresetCutHighMiddle, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQHighCutMiddleMenuSelected);
+	connect(m_rMainWnd.actionEQPresetCutHighWeak, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQHighCutLowMenuSelected);
+	connect(m_rMainWnd.actionEQPresetCutHighWeakest, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEQHighCutLowestMenuSelected);
 	// Effect - Speed
 	connect(m_rMainWnd.actionResetSpeed, &QAction::triggered,
 					this, &CMenu_MainWnd::OnResetSpeedMenuSelected);

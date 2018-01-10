@@ -161,6 +161,14 @@ public: // 関数
 	virtual void SetEQ12_5K(LONG lEQ12_5K);
 	virtual void SetEQ16K(LONG lEQ16K);
 	virtual void SetEQ20K(LONG lEQ20K);
+	virtual void SetEQ(LONG lEQ20, LONG lEQ25, LONG lEQ31_5, LONG lEQ40,
+					   LONG lEQ50, LONG lEQ63, LONG lEQ80, LONG lEQ100,
+					   LONG lEQ125, LONG lEQ160, LONG lEQ200, LONG lEQ250,
+					   LONG lEQ315, LONG lEQ400, LONG lEQ500, LONG lEQ630,
+					   LONG lEQ800, LONG lEQ1K, LONG lEQ1_25K, LONG lEQ1_6K,
+					   LONG lEQ2K, LONG lEQ2_5K, LONG lEQ3_15K, LONG lEQ4K,
+					   LONG lEQ5K, LONG lEQ6_3K, LONG lEQ8K, LONG lEQ10K,
+					   LONG lEQ12_5K, LONG lEQ16K, LONG lEQ20K);
 	virtual void SetEQVisible(bool bEQVisible);
 	virtual void SetInstantLoop();
 	virtual void SetPositionAuto();

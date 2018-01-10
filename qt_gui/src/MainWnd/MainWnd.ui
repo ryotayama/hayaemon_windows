@@ -734,10 +734,59 @@
      <addaction name="separator"/>
      <addaction name="menuDecimal_digit_3"/>
     </widget>
+    <widget class="QMenu" name="menuEQ_preset_E">
+     <property name="title">
+      <string>EQ preset(&amp;E)</string>
+     </property>
+     <addaction name="actionEQPresetFlat"/>
+     <addaction name="separator"/>
+     <addaction name="actionEQPresetBoostLowUltraStrong"/>
+     <addaction name="actionEQPresetBoostLowStrongest"/>
+     <addaction name="actionEQPresetBoostLowStrong"/>
+     <addaction name="actionEQPresetBoostLowMiddle"/>
+     <addaction name="actionEQPresetBoostLowWeak"/>
+     <addaction name="actionEQPresetBoostLowWeakest"/>
+     <addaction name="separator"/>
+     <addaction name="actionEQPresetBoostMiddleUltraStrong"/>
+     <addaction name="actionEQPresetBoostMiddleStrongest"/>
+     <addaction name="actionEQPresetBoostMiddleStrong"/>
+     <addaction name="actionEQPresetBoostMiddleMiddle"/>
+     <addaction name="actionEQPresetBoostMiddleWeak"/>
+     <addaction name="actionEQPresetBoostMiddleWeakest"/>
+     <addaction name="separator"/>
+     <addaction name="actionEQPresetBoostHighUltraStrong"/>
+     <addaction name="actionEQPresetBoostHighStrongest"/>
+     <addaction name="actionEQPresetBoostHighStrong"/>
+     <addaction name="actionEQPresetBoostHighMiddle"/>
+     <addaction name="actionEQPresetBoostHighWeak"/>
+     <addaction name="actionEQPresetBoostHighWeakest"/>
+     <addaction name="separator"/>
+     <addaction name="actionEQPresetCutLowUltraStrong"/>
+     <addaction name="actionEQPresetCutLowStrongest"/>
+     <addaction name="actionEQPresetCutLowStrong"/>
+     <addaction name="actionEQPresetCutLowMiddle"/>
+     <addaction name="actionEQPresetCutLowWeak"/>
+     <addaction name="actionEQPresetCutLowWeakest"/>
+     <addaction name="separator"/>
+     <addaction name="actionEQPresetCutMiddleUltraStrong"/>
+     <addaction name="actionEQPresetCutMiddleStrongest"/>
+     <addaction name="actionEQPresetCutMiddleStrong"/>
+     <addaction name="actionEQPresetCutMiddleMiddle"/>
+     <addaction name="actionEQPresetCutMiddleWeak"/>
+     <addaction name="actionEQPresetCutMiddleWeakest"/>
+     <addaction name="separator"/>
+     <addaction name="actionEQPresetCutHighUltraStrong"/>
+     <addaction name="actionEQPresetCutHighStrongest"/>
+     <addaction name="actionEQPresetCutHighStrong"/>
+     <addaction name="actionEQPresetCutHighMiddle"/>
+     <addaction name="actionEQPresetCutHighWeak"/>
+     <addaction name="actionEQPresetCutHighWeakest"/>
+    </widget>
     <addaction name="menuSpeed"/>
     <addaction name="menuFreq"/>
     <addaction name="menuPitch"/>
     <addaction name="menuVolume"/>
+    <addaction name="menuEQ_preset_E"/>
     <addaction name="separator"/>
     <addaction name="actionVocalCancel"/>
     <addaction name="separator"/>
@@ -1866,6 +1915,191 @@
    </property>
    <property name="text">
     <string>Change LR(&amp;C)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetFlat">
+   <property name="text">
+    <string>FLAT(&amp;F)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetBoostLowUltraStrong">
+   <property name="text">
+    <string>Boost low(ultra-strong)(&amp;A)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetBoostLowStrongest">
+   <property name="text">
+    <string>Boost low(strongest)(&amp;B)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetBoostLowStrong">
+   <property name="text">
+    <string>Boost low(strong)(&amp;C)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetBoostLowMiddle">
+   <property name="text">
+    <string>Boost low(middle)(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetBoostLowWeak">
+   <property name="text">
+    <string>Boost low(weak)(&amp;E)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetBoostLowWeakest">
+   <property name="text">
+    <string>Boost low(weakest)(&amp;G)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetBoostMiddleUltraStrong">
+   <property name="text">
+    <string>Boost middle(ultra-strong)(&amp;H)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetBoostMiddleStrongest">
+   <property name="text">
+    <string>Boost middle(strongest)(&amp;I)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetBoostMiddleStrong">
+   <property name="text">
+    <string>Boost middle(strong)(&amp;J)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetBoostMiddleMiddle">
+   <property name="text">
+    <string>Boost middle(middle)(&amp;K)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetBoostMiddleWeak">
+   <property name="text">
+    <string>Boost middle(weak)(&amp;L)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetBoostMiddleWeakest">
+   <property name="text">
+    <string>Boost middle(weakest)(&amp;M)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetBoostHighUltraStrong">
+   <property name="text">
+    <string>Boost high(ultra-strong)(&amp;N)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetBoostHighStrongest">
+   <property name="text">
+    <string>Boost high(strongest)(&amp;O)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetBoostHighStrong">
+   <property name="text">
+    <string>Boost high(strong)(&amp;P)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetBoostHighMiddle">
+   <property name="text">
+    <string>Boost high(middle)(&amp;Q)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetBoostHighWeak">
+   <property name="text">
+    <string>Boost high(weak)(&amp;R)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetBoostHighWeakest">
+   <property name="text">
+    <string>Boost high(weakest)(&amp;S)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetCutLowUltraStrong">
+   <property name="text">
+    <string>Low cut(ultra-strong)(&amp;T)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetCutLowStrongest">
+   <property name="text">
+    <string>Low cut(strongest)(&amp;U)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetCutLowStrong">
+   <property name="text">
+    <string>Low cut(strong)(&amp;V)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetCutLowMiddle">
+   <property name="text">
+    <string>Low cut(middle)(&amp;W)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetCutLowWeak">
+   <property name="text">
+    <string>Low cut(weak)(&amp;X)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetCutLowWeakest">
+   <property name="text">
+    <string>Low cut(weakest)(&amp;Y)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetCutMiddleUltraStrong">
+   <property name="text">
+    <string>Middle cut(ultra-strong)(&amp;Z)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetCutMiddleStrongest">
+   <property name="text">
+    <string>Middle cut(strongest)(&amp;0)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetCutMiddleStrong">
+   <property name="text">
+    <string>Middle cut(strong)(&amp;1)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetCutMiddleMiddle">
+   <property name="text">
+    <string>Middle cut(middle)(&amp;2)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetCutMiddleWeak">
+   <property name="text">
+    <string>Middle cut(weak)(&amp;3)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetCutMiddleWeakest">
+   <property name="text">
+    <string>Middle cut(weakest)(&amp;4)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetCutHighUltraStrong">
+   <property name="text">
+    <string>High cut(ultra-strong)(&amp;5)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetCutHighStrongest">
+   <property name="text">
+    <string>High cut(strongest)(&amp;6)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetCutHighStrong">
+   <property name="text">
+    <string>High cut(strong)(&amp;7)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetCutHighMiddle">
+   <property name="text">
+    <string>High cut(middle)(&amp;8)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetCutHighWeak">
+   <property name="text">
+    <string>High cut(weak)(&amp;9)</string>
+   </property>
+  </action>
+  <action name="actionEQPresetCutHighWeakest">
+   <property name="text">
+    <string>High cut(weakest)(&amp;0)</string>
    </property>
   </action>
  </widget>
