@@ -789,6 +789,7 @@
     <addaction name="menuEQ_preset_E"/>
     <addaction name="separator"/>
     <addaction name="actionVocalCancel"/>
+    <addaction name="actionReversePlay"/>
     <addaction name="separator"/>
     <addaction name="actionMonoral"/>
     <addaction name="actionOnlyLeft"/>
@@ -843,6 +844,8 @@
       <addaction name="separator"/>
       <addaction name="actionRecoverPlayModeInstantLoop"/>
       <addaction name="actionRecoverPlayModeSetMarkerPositionAuto"/>
+      <addaction name="separator"/>
+      <addaction name="actionRecoverPlayModeReverse"/>
      </widget>
      <addaction name="menuVisible_V"/>
      <addaction name="menuPlay_mode_P"/>
@@ -2100,6 +2103,22 @@
   <action name="actionEQPresetCutHighWeakest">
    <property name="text">
     <string>High cut(weakest)(&amp;0)</string>
+   </property>
+  </action>
+  <action name="actionReversePlay">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Reverse play(&amp;R)</string>
+   </property>
+  </action>
+  <action name="actionRecoverPlayModeReverse">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Reverse(&amp;R)</string>
    </property>
   </action>
  </widget>

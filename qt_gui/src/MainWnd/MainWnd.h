@@ -183,6 +183,8 @@ public: // 関数
 	virtual void SetPreviousNextMenuState();
 	virtual void SetPrevMarker();
 	virtual void SetRandom(bool bRandom);
+	virtual void SetReverse();
+	virtual void SetReverse(BOOL bReverse);
 	virtual void SetSeconds(double fSeconds);
 	virtual void SetSingleLoop();
 	virtual void SetSpeed(double dSpeed);

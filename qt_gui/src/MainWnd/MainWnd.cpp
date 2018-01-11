@@ -555,8 +555,16 @@ BOOL CMainWnd::OpenFile(const QString & lpszFilePath, int nCount)
 	m_sound.ClearMarker();
 	SetAllEffects();
 	m_toolBar.SetPlayingState(FALSE);
-	m_timeLabel.SetTime(0, m_sound.ChannelGetSecondsLength());
-	m_timeSlider.SetTime(0, m_sound.ChannelGetLength());
+	if(m_menu.IsItemChecked(ID_REVERSE)) {
+		m_timeLabel.SetTime(m_sound.ChannelGetSecondsLength(),
+							m_sound.ChannelGetSecondsLength());
+		m_timeSlider.SetTime(m_sound.ChannelGetLength(),
+							 m_sound.ChannelGetLength());
+	}
+	else {
+		m_timeLabel.SetTime(0, m_sound.ChannelGetSecondsLength());
+		m_timeSlider.SetTime(0, m_sound.ChannelGetLength());
+	}
 
 	return TRUE;
 }
@@ -676,12 +684,18 @@ void CMainWnd::OpenInitFileAfterShow()
 	GetPrivateProfileString(_T("PlayMode"), _T("RecoverSetPositionAuto"), 
 		_T("1"), buf, 255, initFilePath.c_str());
 	int _bRecoverSetPositionAuto = _ttoi(buf);
+	GetPrivateProfileString(_T("PlayMode"), _T("RecoverReverse"), _T("1"), buf,
+		255, initFilePath.c_str());
+	int _bRecoverReverse = _ttoi(buf);
 	GetPrivateProfileString(_T("PlayMode"), _T("InstantLoop"), _T("1"), buf,
 		255, initFilePath.c_str());
 	int _bInstantLoop = _ttoi(buf);
 	GetPrivateProfileString(_T("PlayMode"), _T("SetPositionAuto"), _T("0"),
 		buf, 255, initFilePath.c_str());
 	int _bSetPositionAuto = _ttoi(buf);
+	GetPrivateProfileString(_T("PlayMode"), _T("Reverse"), _T("0"), buf, 255,
+		initFilePath.c_str());
+	int _bReverse = _ttoi(buf);
 
 	// 再生モードの復元
 	if(_bRecoverContinue) {
@@ -695,6 +709,10 @@ void CMainWnd::OpenInitFileAfterShow()
 	if(_bRecoverSetPositionAuto) {
 		m_menu.SwitchItemChecked(ID_RECOVERSETPOSITIONAUTO);
 		if(_bSetPositionAuto) SetPositionAuto();
+	}
+	if(_bRecoverReverse) {
+		m_menu.SwitchItemChecked(ID_RECOVERREVERSE);
+		if(_bReverse) SetReverse();
 	}
 
 	isInitFileRead = TRUE;
@@ -1300,6 +1318,7 @@ void CMainWnd::SetAllEffects()
 	SetChangeLR(m_menu.IsItemChecked(ID_CHANGELR));
 	SetMonoral(m_menu.IsItemChecked(ID_MONORAL));
 	SetVocalCancel(m_menu.IsItemChecked(ID_VOCALCANCEL));
+	SetReverse(m_menu.IsItemChecked(ID_REVERSE));
 	SetSpeed((double)(m_speedSlider.GetThumbPos()
 		/ pow(10.0, m_speedLabel.GetDecimalDigit())));
 	SetFreq((double)(m_freqSlider.GetThumbPos()
@@ -2079,6 +2098,31 @@ void CMainWnd::SetRandom(bool bRandom)
 	SetPreviousNextMenuState();
 }
 //----------------------------------------------------------------------------
+// 逆回転再生
+//----------------------------------------------------------------------------
+void CMainWnd::SetReverse()
+{
+	BOOL bReverse = !m_menu.IsItemChecked(ID_REVERSE);
+	if(bReverse) {
+		if(m_sound.IsABLoopA()) SetABLoopA();
+		if(m_sound.IsABLoopB()) SetABLoopB();
+	}
+	m_sound.SetReverse(bReverse);
+	m_menu.CheckItem(ID_REVERSE, bReverse ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
+// 逆回転再生
+//----------------------------------------------------------------------------
+void CMainWnd::SetReverse(BOOL bReverse)
+{
+	if(bReverse) {
+		if(m_sound.IsABLoopA()) SetABLoopA();
+		if(m_sound.IsABLoopB()) SetABLoopB();
+	}
+	m_sound.SetReverse(bReverse);
+	m_menu.CheckItem(ID_REVERSE, bReverse ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
 // １曲ループの設定
 //----------------------------------------------------------------------------
 void CMainWnd::SetSingleLoop()
@@ -2544,6 +2588,12 @@ void CMainWnd::WriteInitFile()
 		buf, initFilePath.c_str());
 	_stprintf_s(buf, _T("%d"), bSetPositionAuto ? 1 : 0);
 	WritePrivateProfileString(_T("PlayMode"), _T("SetPositionAuto"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_RECOVERREVERSE) ? 1 : 0);
+	WritePrivateProfileString(_T("PlayMode"), _T("RecoverReverse"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_REVERSE) ? 1 : 0);
+	WritePrivateProfileString(_T("PlayMode"), _T("Reverse"), buf, 
 		initFilePath.c_str());
 
 	// その他の設定

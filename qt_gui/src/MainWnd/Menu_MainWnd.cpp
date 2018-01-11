@@ -1192,6 +1192,13 @@ void CMenu_MainWnd::OnVocalCancelMenuSelected(bool checked)
 	m_rMainWnd.SetVocalCancel(checked);
 }
 //----------------------------------------------------------------------------
+// 再生 → 逆回転再生メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnReverseMenuSelected(bool checked)
+{
+	m_rMainWnd.SetReverse(checked);
+}
+//----------------------------------------------------------------------------
 // 再生 → モノラルメニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnMonoralMenuSelected(bool checked)
@@ -1605,6 +1612,7 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_PITCHDEC_1, m_rMainWnd.actionPitchDigit1},
 		{ID_PITCHDEC_2, m_rMainWnd.actionPitchDigit2},
 		{ID_VOCALCANCEL, m_rMainWnd.actionVocalCancel},
+		{ID_REVERSE, m_rMainWnd.actionReversePlay},
 		{ID_MONORAL, m_rMainWnd.actionMonoral},
 		{ID_ONLYLEFT, m_rMainWnd.actionOnlyLeft},
 		{ID_ONLYRIGHT, m_rMainWnd.actionOnlyRight},
@@ -1628,6 +1636,7 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_RECOVERINSTANTLOOP, m_rMainWnd.actionRecoverPlayModeInstantLoop},
 		{ID_RECOVERSETPOSITIONAUTO,
 		 m_rMainWnd.actionRecoverPlayModeSetMarkerPositionAuto},
+		{ID_RECOVERREVERSE, m_rMainWnd.actionRecoverPlayModeReverse},
 	};
 }
 //----------------------------------------------------------------------------
@@ -1741,6 +1750,8 @@ void CMenu_MainWnd::CreateConnections()
 	// Effect
 	connect(m_rMainWnd.actionVocalCancel, &QAction::triggered,
 					this, &CMenu_MainWnd::OnVocalCancelMenuSelected);
+	connect(m_rMainWnd.actionReversePlay, &QAction::triggered,
+					this, &CMenu_MainWnd::OnReverseMenuSelected);
 	connect(m_rMainWnd.actionMonoral, &QAction::triggered,
 					this, &CMenu_MainWnd::OnMonoralMenuSelected);
 	connect(m_rMainWnd.actionOnlyLeft, &QAction::triggered,

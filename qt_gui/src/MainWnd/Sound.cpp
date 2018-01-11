@@ -94,6 +94,7 @@ BOOL CSound::StreamCreateFile(LPCTSTR lpFilePath, BOOL bDecode, int nCount)
 
 	if(!bRet) {
 		bRet = CBassFx::StreamCreateFile(lpFilePath);
+		ReverseCreate();
 		TempoCreate(bDecode);
 		m_strCurFile = lpFilePath;
 		m_hFx20Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);

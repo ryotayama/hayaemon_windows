@@ -181,6 +181,7 @@ public: // 関数
 	void OnInstantLoopMenuSelected();
 	void OnSetPositionAutoMenuSelected();
 	void OnVocalCancelMenuSelected(bool checked);
+	void OnReverseMenuSelected(bool checked);
 	void OnMonoralMenuSelected(bool checked);
 	void OnOnlyLeftMenuSelected(bool checked);
 	void OnOnlyRightMenuSelected(bool checked);

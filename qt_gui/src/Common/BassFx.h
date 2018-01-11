@@ -41,6 +41,15 @@ public: // 関数
 	virtual BOOL SetPitch(float pitch) {
 		return BASS_ChannelSetAttribute(m_hStream, BASS_ATTRIB_TEMPO_PITCH, pitch);
 	}
+	virtual void ReverseCreate()
+	{
+		m_hStream = BASS_FX_ReverseCreate(m_hStream, 2, BASS_FX_FREESOURCE | BASS_STREAM_DECODE);
+	}
+	virtual BOOL SetReverse(BOOL bReverse = TRUE)
+	{
+		DWORD chan = BASS_FX_TempoGetSource(m_hStream);
+		return BASS_ChannelSetAttribute(chan, BASS_ATTRIB_REVERSE_DIR, (float)(bReverse ? BASS_FX_RVS_REVERSE : BASS_FX_RVS_FORWARD));
+	}
 };
 //----------------------------------------------------------------------------
 
