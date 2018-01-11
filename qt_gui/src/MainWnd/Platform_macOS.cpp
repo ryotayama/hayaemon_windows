@@ -10,6 +10,20 @@
 
 #include "Utility.h"
 
+#ifdef UNICODE
+int _ttoi(const TCHAR *str) {
+	return ToQString(str).toInt();
+}
+
+double _ttof(const TCHAR *str) {
+	return ToQString(str).toDouble();
+}
+
+double _tstof(const TCHAR *str) {
+	return _ttof(str);
+}
+#endif
+
 namespace {
 
 class IniFiles {
@@ -59,6 +73,23 @@ UINT GetPrivateProfileInt(LPCTSTR lpAppName, LPCTSTR lpKeyName, int nDefault,
 	}
 	settings->endGroup();
 	return value > 0 ? value : 0;
+}
+
+DWORD GetPrivateProfileString(LPCTSTR lpAppName, LPCTSTR lpKeyName, 
+                              LPCTSTR lpDefault, LPTSTR lpReturnedString,
+                              DWORD nSize, LPCTSTR lpFileName)
+{
+	std::wstring value = ToQString(lpDefault).toStdWString();
+
+	auto settings = ini_files().GetFile(ToQString(lpFileName));
+	settings->beginGroup(ToQString(lpAppName));
+	auto v = settings->value(ToQString(lpKeyName));
+	if (v.isValid()) {
+		value = v.toString().toStdWString();
+	}
+	std::copy(value.begin(), value.end(), lpReturnedString);
+	settings->endGroup();
+	return value.length();
 }
 
 BOOL WritePrivateProfileString(LPCTSTR lpAppName, LPCTSTR lpKeyName,

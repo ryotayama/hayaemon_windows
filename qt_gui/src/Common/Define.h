@@ -38,6 +38,7 @@ typedef int BOOL;
 typedef long LONG;
 typedef unsigned int UINT;
 typedef unsigned long long UINT_PTR;
+typedef unsigned long DWORD;
 typedef uint64_t QWORD;
 typedef long long LRESULT;
 
@@ -46,6 +47,7 @@ typedef wchar_t TCHAR;
 #else
 typedef char TCHAR;
 #endif
+typedef TCHAR *LPTSTR;
 typedef const TCHAR *LPCTSTR;
 
 typedef std::basic_string<TCHAR> tstring;
@@ -66,8 +68,8 @@ typedef std::basic_string<TCHAR> tstring;
 #ifndef MF_ENABLED
 # define MF_ENABLED          0x00000008L
 #endif
-#ifndef MFS_GRAYED
-# define MFS_GRAYED          0x00000003L
+#ifndef MF_GRAYED
+# define MF_GRAYED           0x00000003L
 #endif
 #ifndef MFS_ENABLED
 # define MFS_ENABLED         MF_ENABLED

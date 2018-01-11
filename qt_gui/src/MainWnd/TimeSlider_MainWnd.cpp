@@ -212,7 +212,7 @@ void CTimeSlider_MainWnd::OnMouseMove(int x, int y)
 								 - m_rMainWnd.GetSound().ChannelGetFreq()
 								 / 2));
 
-		m_slider->SetSelStart((LPARAM)qwSelStart);
+		m_slider->SetSelStart(qwSelStart);
 		m_slider->update();
 	}
 
