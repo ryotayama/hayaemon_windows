@@ -921,6 +921,8 @@ void CMainWnd::PlayNext(BOOL bPlay, BOOL bFadeoutCancel)
 
 	BOOL bStopped = m_sound.ChannelIsStopped() && !bPlay;
 	BOOL bPausing = m_sound.ChannelIsPausing() && !bPlay;
+	BOOL bBassCopy = m_menu.IsItemChecked(ID_BASSCOPY);
+	BOOL bDrumsCopy = m_menu.IsItemChecked(ID_CYMBALCOPY);
 
 	// 次に再生すべきファイルを探す
 	while(1) {
@@ -947,6 +949,10 @@ void CMainWnd::PlayNext(BOOL bPlay, BOOL bFadeoutCancel)
 
 	m_sound.ChannelSetAttribute(BASS_ATTRIB_VOL, 1.0f);
 	if(m_sound.ChannelIsActive()) {
+		m_menu.CheckItem(ID_BASSCOPY, bBassCopy ?
+										MF_CHECKED : MF_UNCHECKED);
+		m_menu.CheckItem(ID_CYMBALCOPY, bDrumsCopy ?
+										MF_CHECKED : MF_UNCHECKED);
 		if(bPausing) Pause();
 		else if(bStopped || !m_menu.IsItemChecked(ID_CONTINUE)) {
 			BOOL isLoop = m_sound.IsLoop();
@@ -1487,6 +1493,8 @@ void CSound::ClearMarker()
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ20(LONG lEQ20)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ20(20, 0.7f, (float)lEQ20);
 }
 //----------------------------------------------------------------------------
@@ -1494,6 +1502,8 @@ void CMainWnd::SetEQ20(LONG lEQ20)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ25(LONG lEQ25)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ25(25, 0.7f, (float)lEQ25);
 }
 //----------------------------------------------------------------------------
@@ -1501,6 +1511,8 @@ void CMainWnd::SetEQ25(LONG lEQ25)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ31_5(LONG lEQ31_5)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ31_5(31.5, 0.7f, (float)lEQ31_5);
 }
 //----------------------------------------------------------------------------
@@ -1508,6 +1520,8 @@ void CMainWnd::SetEQ31_5(LONG lEQ31_5)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ40(LONG lEQ40)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ40(40, 0.7f, (float)lEQ40);
 }
 //----------------------------------------------------------------------------
@@ -1515,6 +1529,8 @@ void CMainWnd::SetEQ40(LONG lEQ40)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ50(LONG lEQ50)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ50(50, 0.7f, (float)lEQ50);
 }
 //----------------------------------------------------------------------------
@@ -1522,6 +1538,8 @@ void CMainWnd::SetEQ50(LONG lEQ50)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ63(LONG lEQ63)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ63(63, 0.7f, (float)lEQ63);
 }
 //----------------------------------------------------------------------------
@@ -1529,6 +1547,8 @@ void CMainWnd::SetEQ63(LONG lEQ63)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ80(LONG lEQ80)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ80(80, 0.7f, (float)lEQ80);
 }
 //----------------------------------------------------------------------------
@@ -1536,6 +1556,8 @@ void CMainWnd::SetEQ80(LONG lEQ80)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ100(LONG lEQ100)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ100(100, 0.7f, (float)lEQ100);
 }
 //----------------------------------------------------------------------------
@@ -1543,6 +1565,8 @@ void CMainWnd::SetEQ100(LONG lEQ100)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ125(LONG lEQ125)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ125(125, 0.7f, (float)lEQ125);
 }
 //----------------------------------------------------------------------------
@@ -1550,6 +1574,8 @@ void CMainWnd::SetEQ125(LONG lEQ125)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ160(LONG lEQ160)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ160(160, 0.7f, (float)lEQ160);
 }
 //----------------------------------------------------------------------------
@@ -1557,6 +1583,8 @@ void CMainWnd::SetEQ160(LONG lEQ160)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ200(LONG lEQ200)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ200(200, 0.7f, (float)lEQ200);
 }
 //----------------------------------------------------------------------------
@@ -1564,6 +1592,8 @@ void CMainWnd::SetEQ200(LONG lEQ200)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ250(LONG lEQ250)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ250(250, 0.7f, (float)lEQ250);
 }
 //----------------------------------------------------------------------------
@@ -1571,6 +1601,8 @@ void CMainWnd::SetEQ250(LONG lEQ250)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ315(LONG lEQ315)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ315(315, 0.7f, (float)lEQ315);
 }
 //----------------------------------------------------------------------------
@@ -1578,6 +1610,8 @@ void CMainWnd::SetEQ315(LONG lEQ315)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ400(LONG lEQ400)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ400(400, 0.7f, (float)lEQ400);
 }
 //----------------------------------------------------------------------------
@@ -1585,6 +1619,8 @@ void CMainWnd::SetEQ400(LONG lEQ400)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ500(LONG lEQ500)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ500(500, 0.7f, (float)lEQ500);
 }
 //----------------------------------------------------------------------------
@@ -1592,6 +1628,8 @@ void CMainWnd::SetEQ500(LONG lEQ500)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ630(LONG lEQ630)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ630(630, 0.7f, (float)lEQ630);
 }
 //----------------------------------------------------------------------------
@@ -1599,6 +1637,8 @@ void CMainWnd::SetEQ630(LONG lEQ630)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ800(LONG lEQ800)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ800(800, 0.7f, (float)lEQ800);
 }
 //----------------------------------------------------------------------------
@@ -1606,6 +1646,8 @@ void CMainWnd::SetEQ800(LONG lEQ800)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ1K(LONG lEQ1K)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ1K(1000, 0.7f, (float)lEQ1K);
 }
 //----------------------------------------------------------------------------
@@ -1613,6 +1655,8 @@ void CMainWnd::SetEQ1K(LONG lEQ1K)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ1_25K(LONG lEQ1_25K)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ1_25K(1250, 0.7f, (float)lEQ1_25K);
 }
 //----------------------------------------------------------------------------
@@ -1620,6 +1664,8 @@ void CMainWnd::SetEQ1_25K(LONG lEQ1_25K)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ1_6K(LONG lEQ1_6K)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ1_6K(1600, 0.7f, (float)lEQ1_6K);
 }
 //----------------------------------------------------------------------------
@@ -1627,6 +1673,8 @@ void CMainWnd::SetEQ1_6K(LONG lEQ1_6K)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ2K(LONG lEQ2K)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ2K(2000, 0.7f, (float)lEQ2K);
 }
 //----------------------------------------------------------------------------
@@ -1634,6 +1682,8 @@ void CMainWnd::SetEQ2K(LONG lEQ2K)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ2_5K(LONG lEQ2_5K)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ2_5K(2500, 0.7f, (float)lEQ2_5K);
 }
 //----------------------------------------------------------------------------
@@ -1641,6 +1691,8 @@ void CMainWnd::SetEQ2_5K(LONG lEQ2_5K)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ3_15K(LONG lEQ3_15K)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ3_15K(3150, 0.7f, (float)lEQ3_15K);
 }
 //----------------------------------------------------------------------------
@@ -1648,6 +1700,8 @@ void CMainWnd::SetEQ3_15K(LONG lEQ3_15K)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ4K(LONG lEQ4K)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ4K(4000, 0.7f, (float)lEQ4K);
 }
 //----------------------------------------------------------------------------
@@ -1655,6 +1709,8 @@ void CMainWnd::SetEQ4K(LONG lEQ4K)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ5K(LONG lEQ5K)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ5K(5000, 0.7f, (float)lEQ5K);
 }
 //----------------------------------------------------------------------------
@@ -1662,6 +1718,8 @@ void CMainWnd::SetEQ5K(LONG lEQ5K)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ6_3K(LONG lEQ6_3K)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ6_3K(6300, 0.7f, (float)lEQ6_3K);
 }
 //----------------------------------------------------------------------------
@@ -1669,6 +1727,8 @@ void CMainWnd::SetEQ6_3K(LONG lEQ6_3K)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ8K(LONG lEQ8K)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ8K(8000, 0.7f, (float)lEQ8K);
 }
 //----------------------------------------------------------------------------
@@ -1676,6 +1736,8 @@ void CMainWnd::SetEQ8K(LONG lEQ8K)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ10K(LONG lEQ10K)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ10K(10000, 0.7f, (float)lEQ10K);
 }
 //----------------------------------------------------------------------------
@@ -1683,6 +1745,8 @@ void CMainWnd::SetEQ10K(LONG lEQ10K)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ12_5K(LONG lEQ12_5K)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ12_5K(12500, 0.7f, (float)lEQ12_5K);
 }
 //----------------------------------------------------------------------------
@@ -1690,6 +1754,8 @@ void CMainWnd::SetEQ12_5K(LONG lEQ12_5K)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ16K(LONG lEQ16K)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ16K(16000, 0.7f, (float)lEQ16K);
 }
 //----------------------------------------------------------------------------
@@ -1697,6 +1763,8 @@ void CMainWnd::SetEQ16K(LONG lEQ16K)
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ20K(LONG lEQ20K)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetEQ20K(20000, 0.7f, (float)lEQ20K);
 }
 //----------------------------------------------------------------------------
@@ -2143,6 +2211,8 @@ void CMainWnd::SetSpeed(double dSpeed)
 //----------------------------------------------------------------------------
 void CMainWnd::SetFreq(double dFreq)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetSampleRate((float)dFreq);
 }
 //----------------------------------------------------------------------------
@@ -2150,6 +2220,8 @@ void CMainWnd::SetFreq(double dFreq)
 //----------------------------------------------------------------------------
 void CMainWnd::SetPitch(double dPitch)
 {
+	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
+	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetPitch((float)dPitch);
 }
 //----------------------------------------------------------------------------

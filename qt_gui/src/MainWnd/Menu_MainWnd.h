@@ -182,6 +182,10 @@ public: // 関数
 	void OnSetPositionAutoMenuSelected();
 	void OnVocalCancelMenuSelected(bool checked);
 	void OnReverseMenuSelected(bool checked);
+	void OnBassCopyMenuSelected();
+	void OnBassCopyMenuSelected(bool bChecked);
+	void OnDrumsCopyMenuSelected();
+	void OnDrumsCopyMenuSelected(bool bChecked);
 	void OnMonoralMenuSelected(bool checked);
 	void OnOnlyLeftMenuSelected(bool checked);
 	void OnOnlyRightMenuSelected(bool checked);

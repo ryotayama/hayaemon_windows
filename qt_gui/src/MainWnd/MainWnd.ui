@@ -790,6 +790,8 @@
     <addaction name="separator"/>
     <addaction name="actionVocalCancel"/>
     <addaction name="actionReversePlay"/>
+    <addaction name="actionBassCopy"/>
+    <addaction name="actionCymbalCopy"/>
     <addaction name="separator"/>
     <addaction name="actionMonoral"/>
     <addaction name="actionOnlyLeft"/>
@@ -2119,6 +2121,22 @@
    </property>
    <property name="text">
     <string>Reverse(&amp;R)</string>
+   </property>
+  </action>
+  <action name="actionBassCopy">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Transcribe Bass(&amp;T)</string>
+   </property>
+  </action>
+  <action name="actionCymbalCopy">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Transcribe Drums (Hi-Hat, Cymbals)(&amp;H)</string>
    </property>
   </action>
  </widget>

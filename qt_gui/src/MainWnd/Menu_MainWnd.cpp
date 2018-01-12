@@ -1199,6 +1199,63 @@ void CMenu_MainWnd::OnReverseMenuSelected(bool checked)
 	m_rMainWnd.SetReverse(checked);
 }
 //----------------------------------------------------------------------------
+// エフェクト → ベースの耳コピメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnBassCopyMenuSelected()
+{
+	BOOL bChecked = !IsItemChecked(ID_BASSCOPY);
+	OnBassCopyMenuSelected(bChecked);
+}
+void CMenu_MainWnd::OnBassCopyMenuSelected(bool bChecked)
+{
+	if(bChecked) {
+		m_rMainWnd.SetFreq(100.0);
+		m_rMainWnd.GetPitchLabel().SetPitch(12.0);
+		m_rMainWnd.GetPitchSlider().SetThumbPos((LONG)(12 * pow(10.0,
+			m_rMainWnd.GetPitchSlider().GetDecimalDigit())), TRUE);
+		m_rMainWnd.SetPitch(12.0);
+		m_rMainWnd.SetEQ(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -30,
+						 -30, -30, -30, -30, -30, -30, -30, -30, -30, -30, -30,
+						 -30, -30, -30, -30);
+	}
+	else {
+		m_rMainWnd.SetFreq(100.0);
+		m_rMainWnd.GetPitchLabel().SetPitch(0.0);
+		m_rMainWnd.GetPitchSlider().SetThumbPos(0L, TRUE);
+		m_rMainWnd.SetPitch(0.0);
+		OnEQFlatMenuSelected();
+	}
+	CheckItem(ID_BASSCOPY, bChecked ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
+// エフェクト → ドラム（ハイハット、シンバル）の耳コピメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDrumsCopyMenuSelected()
+{
+	BOOL bChecked = !IsItemChecked(ID_CYMBALCOPY);
+	OnDrumsCopyMenuSelected(bChecked);
+}
+void CMenu_MainWnd::OnDrumsCopyMenuSelected(bool bChecked)
+{
+	if(bChecked) {
+		m_rMainWnd.SetFreq(100.0);
+		m_rMainWnd.GetPitchLabel().SetPitch(0.0);
+		m_rMainWnd.GetPitchSlider().SetThumbPos(0L, TRUE);
+		m_rMainWnd.SetPitch(0.0);
+		m_rMainWnd.SetEQ(-30, -30, -30, -30, -30, -30, -30, -30, -30, -30, -30,
+						 -30, -30, -30, -30, -30, -30, -30, -30, -30, -30, -30,
+						 -30, -30, 0, 0, 0, 0, 0, 0, 0);
+	}
+	else {
+		m_rMainWnd.SetFreq(100.0);
+		m_rMainWnd.GetPitchLabel().SetPitch(0.0);
+		m_rMainWnd.GetPitchSlider().SetThumbPos(0L, TRUE);
+		m_rMainWnd.SetPitch(0.0);
+		OnEQFlatMenuSelected();
+	}
+	CheckItem(ID_CYMBALCOPY, bChecked ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
 // 再生 → モノラルメニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnMonoralMenuSelected(bool checked)
@@ -1613,6 +1670,8 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_PITCHDEC_2, m_rMainWnd.actionPitchDigit2},
 		{ID_VOCALCANCEL, m_rMainWnd.actionVocalCancel},
 		{ID_REVERSE, m_rMainWnd.actionReversePlay},
+		{ID_BASSCOPY, m_rMainWnd.actionBassCopy},
+		{ID_CYMBALCOPY, m_rMainWnd.actionCymbalCopy},
 		{ID_MONORAL, m_rMainWnd.actionMonoral},
 		{ID_ONLYLEFT, m_rMainWnd.actionOnlyLeft},
 		{ID_ONLYRIGHT, m_rMainWnd.actionOnlyRight},
@@ -1752,6 +1811,14 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnVocalCancelMenuSelected);
 	connect(m_rMainWnd.actionReversePlay, &QAction::triggered,
 					this, &CMenu_MainWnd::OnReverseMenuSelected);
+	connect(m_rMainWnd.actionBassCopy, &QAction::triggered,
+					this,
+					static_cast<void (CMenu_MainWnd::*)(bool)>(
+							&CMenu_MainWnd::OnBassCopyMenuSelected));
+	connect(m_rMainWnd.actionCymbalCopy, &QAction::triggered,
+					this,
+					static_cast<void (CMenu_MainWnd::*)(bool)>(
+							&CMenu_MainWnd::OnDrumsCopyMenuSelected));
 	connect(m_rMainWnd.actionMonoral, &QAction::triggered,
 					this, &CMenu_MainWnd::OnMonoralMenuSelected);
 	connect(m_rMainWnd.actionOnlyLeft, &QAction::triggered,
