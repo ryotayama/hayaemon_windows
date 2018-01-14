@@ -861,6 +861,7 @@
       <addaction name="actionRecoverPlayModeSetMarkerPositionAuto"/>
       <addaction name="separator"/>
       <addaction name="actionRecoverPlayModeReverse"/>
+      <addaction name="actionRecoverPlayModeRecord"/>
      </widget>
      <addaction name="menuVisible_V"/>
      <addaction name="menuPlay_mode_P"/>
@@ -2198,6 +2199,14 @@
    </property>
    <property name="text">
     <string>Normalize(&amp;N)</string>
+   </property>
+  </action>
+  <action name="actionRecoverPlayModeRecord">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Record(&amp;F)</string>
    </property>
   </action>
  </widget>

@@ -688,6 +688,9 @@ void CMainWnd::OpenInitFileAfterShow()
 	GetPrivateProfileString(_T("PlayMode"), _T("RecoverReverse"), _T("1"), buf,
 		255, initFilePath.c_str());
 	int _bRecoverReverse = _ttoi(buf);
+	GetPrivateProfileString(_T("PlayMode"), _T("RecoverRecord"), _T("1"), buf,
+		255, initFilePath.c_str());
+	int _bRecoverRecord = _ttoi(buf);
 	GetPrivateProfileString(_T("PlayMode"), _T("InstantLoop"), _T("1"), buf,
 		255, initFilePath.c_str());
 	int _bInstantLoop = _ttoi(buf);
@@ -697,6 +700,9 @@ void CMainWnd::OpenInitFileAfterShow()
 	GetPrivateProfileString(_T("PlayMode"), _T("Reverse"), _T("0"), buf, 255,
 		initFilePath.c_str());
 	int _bReverse = _ttoi(buf);
+	GetPrivateProfileString(_T("PlayMode"), _T("Record"), _T("0"), buf, 255,
+		initFilePath.c_str());
+	int _bRecord = _ttoi(buf);
 	GetPrivateProfileString(_T("PlayMode"), _T("Normalize"), _T("0"), buf, 255,
 		initFilePath.c_str());
 	int _bNormalize = _ttoi(buf);
@@ -717,6 +723,10 @@ void CMainWnd::OpenInitFileAfterShow()
 	if(_bRecoverReverse) {
 		m_menu.SwitchItemChecked(ID_RECOVERREVERSE);
 		if(_bReverse) SetReverse();
+	}
+	if(_bRecoverRecord) {
+		m_menu.SwitchItemChecked(ID_RECOVERRECORD);
+		if(_bRecord) SetRecord();
 	}
 	if(_bNormalize) SetNormalize();
 
@@ -2927,6 +2937,12 @@ void CMainWnd::WriteInitFile()
 		initFilePath.c_str());
 	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_REVERSE) ? 1 : 0);
 	WritePrivateProfileString(_T("PlayMode"), _T("Reverse"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_RECOVERRECORD) ? 1 : 0);
+	WritePrivateProfileString(_T("PlayMode"), _T("RecoverRecord"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_RECORD) ? 1 : 0);
+	WritePrivateProfileString(_T("PlayMode"), _T("Record"), buf, 
 		initFilePath.c_str());
 	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_NORMALIZE) ? 1 : 0);
 	WritePrivateProfileString(_T("PlayMode"), _T("Normalize"), buf, 

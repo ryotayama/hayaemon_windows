@@ -1754,6 +1754,7 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_RECOVERSETPOSITIONAUTO,
 		 m_rMainWnd.actionRecoverPlayModeSetMarkerPositionAuto},
 		{ID_RECOVERREVERSE, m_rMainWnd.actionRecoverPlayModeReverse},
+		{ID_RECOVERRECORD, m_rMainWnd.actionRecoverPlayModeRecord},
 	};
 }
 //----------------------------------------------------------------------------
