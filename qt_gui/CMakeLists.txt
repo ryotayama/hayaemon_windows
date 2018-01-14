@@ -15,6 +15,8 @@ set(SRC_COMMON
   ${SRC_DIR}/Common/SliderCtrlCore.h
   ${SRC_DIR}/Common/StaticCore.h
   ${SRC_DIR}/Common/Tab.h
+  ${SRC_DIR}/Common/Utils.cpp
+  ${SRC_DIR}/Common/Utils.h
 )
 set(SRC_COUNTLOOPWND
   ${SRC_DIR}/CountLoopWnd/CountLoopWnd_MainWnd.cpp

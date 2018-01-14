@@ -58,6 +58,13 @@ void CMenu_MainWnd::SwitchItemChecked(UINT uID)
 	CheckItem(uID, bCheck ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
+// 効果音メニューのチェックを外す
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::UncheckSoundEffectMenu()
+{
+	CheckItem(ID_RECORDNOISE, MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
 // 表示 → 再生速度メニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnSpeedMenuSelected(bool checked)
@@ -323,6 +330,14 @@ void CMenu_MainWnd::OnInstantLoopMenuSelected()
 void CMenu_MainWnd::OnSetPositionAutoMenuSelected()
 {
 	m_rMainWnd.SetPositionAuto();
+}
+//----------------------------------------------------------------------------
+// 再生 → レコードノイズメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnRecordNoiseMenuSelected()
+{
+	BOOL bRecordNoise = IsItemChecked(ID_RECORDNOISE);
+	m_rMainWnd.SetRecordNoise(bRecordNoise);
 }
 //----------------------------------------------------------------------------
 // 再生 → 再生速度 → デフォルトに戻すメニューが選択された
@@ -1199,6 +1214,28 @@ void CMenu_MainWnd::OnReverseMenuSelected(bool checked)
 	m_rMainWnd.SetReverse(checked);
 }
 //----------------------------------------------------------------------------
+// 再生 → 古びたレコード再生メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnRecordMenuSelected(bool checked)
+{
+	CheckItem(ID_RECORD, !checked ? MF_CHECKED : MF_UNCHECKED);
+	m_rMainWnd.SetRecord();
+}
+//----------------------------------------------------------------------------
+// 再生 → エフェクト → 電池切れメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnLowBatteryMenuSelected(bool checked)
+{
+	m_rMainWnd.SetLowBattery(checked);
+}
+//----------------------------------------------------------------------------
+// 再生 → エフェクト → 歌へたモードメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnNoSenseMenuSelected(bool checked)
+{
+	m_rMainWnd.SetNoSense(checked);
+}
+//----------------------------------------------------------------------------
 // エフェクト → ベースの耳コピメニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnBassCopyMenuSelected()
@@ -1254,6 +1291,14 @@ void CMenu_MainWnd::OnDrumsCopyMenuSelected(bool bChecked)
 		OnEQFlatMenuSelected();
 	}
 	CheckItem(ID_CYMBALCOPY, bChecked ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
+// 再生 → エフェクト → 聴覚トレーニングメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnEarTrainingMenuSelected(bool checked)
+{
+	CheckItem(ID_EARTRAINING, !checked ? MF_CHECKED : MF_UNCHECKED);
+	m_rMainWnd.SetEarTraining();
 }
 //----------------------------------------------------------------------------
 // 再生 → モノラルメニューが選択された
@@ -1668,10 +1713,15 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_PITCHDEC_0, m_rMainWnd.actionPitchDigit0},
 		{ID_PITCHDEC_1, m_rMainWnd.actionPitchDigit1},
 		{ID_PITCHDEC_2, m_rMainWnd.actionPitchDigit2},
+		{ID_RECORDNOISE, m_rMainWnd.actionRecordNoise},
 		{ID_VOCALCANCEL, m_rMainWnd.actionVocalCancel},
 		{ID_REVERSE, m_rMainWnd.actionReversePlay},
+		{ID_RECORD, m_rMainWnd.actionOldRecordPlay},
+		{ID_LOWBATTERY, m_rMainWnd.actionLowBattery},
+		{ID_NOSENSE, m_rMainWnd.actionNoSense},
 		{ID_BASSCOPY, m_rMainWnd.actionBassCopy},
 		{ID_CYMBALCOPY, m_rMainWnd.actionCymbalCopy},
+		{ID_EARTRAINING, m_rMainWnd.actionEarTraining},
 		{ID_MONORAL, m_rMainWnd.actionMonoral},
 		{ID_ONLYLEFT, m_rMainWnd.actionOnlyLeft},
 		{ID_ONLYRIGHT, m_rMainWnd.actionOnlyRight},
@@ -1807,10 +1857,18 @@ void CMenu_MainWnd::CreateConnections()
 	connect(m_rMainWnd.actionSetMarkerPositionAuto, &QAction::triggered,
 					this, &CMenu_MainWnd::OnSetPositionAutoMenuSelected);
 	// Effect
+	connect(m_rMainWnd.actionRecordNoise, &QAction::triggered,
+					this, &CMenu_MainWnd::OnRecordNoiseMenuSelected);
 	connect(m_rMainWnd.actionVocalCancel, &QAction::triggered,
 					this, &CMenu_MainWnd::OnVocalCancelMenuSelected);
 	connect(m_rMainWnd.actionReversePlay, &QAction::triggered,
 					this, &CMenu_MainWnd::OnReverseMenuSelected);
+	connect(m_rMainWnd.actionOldRecordPlay, &QAction::triggered,
+					this, &CMenu_MainWnd::OnRecordMenuSelected);
+	connect(m_rMainWnd.actionLowBattery, &QAction::triggered,
+					this, &CMenu_MainWnd::OnLowBatteryMenuSelected);
+	connect(m_rMainWnd.actionNoSense, &QAction::triggered,
+					this, &CMenu_MainWnd::OnNoSenseMenuSelected);
 	connect(m_rMainWnd.actionBassCopy, &QAction::triggered,
 					this,
 					static_cast<void (CMenu_MainWnd::*)(bool)>(
@@ -1819,6 +1877,8 @@ void CMenu_MainWnd::CreateConnections()
 					this,
 					static_cast<void (CMenu_MainWnd::*)(bool)>(
 							&CMenu_MainWnd::OnDrumsCopyMenuSelected));
+	connect(m_rMainWnd.actionEarTraining, &QAction::triggered,
+					this, &CMenu_MainWnd::OnEarTrainingMenuSelected);
 	connect(m_rMainWnd.actionMonoral, &QAction::triggered,
 					this, &CMenu_MainWnd::OnMonoralMenuSelected);
 	connect(m_rMainWnd.actionOnlyLeft, &QAction::triggered,

@@ -24,6 +24,7 @@ public: // 関数
 	void SetSingleLoopState(BOOL bSLoop);
 	void SwitchEQVisible(UINT uID);
 	void SwitchItemChecked(UINT uID);
+	void UncheckSoundEffectMenu();
 	void OnSpeedMenuSelected(bool checked);
 	void OnFreqMenuSelected(bool checked);
 	void OnPitchMenuSelected(bool checked);
@@ -180,12 +181,17 @@ public: // 関数
 	void OnCountLoopMenuSelected();
 	void OnInstantLoopMenuSelected();
 	void OnSetPositionAutoMenuSelected();
+	void OnRecordNoiseMenuSelected();
 	void OnVocalCancelMenuSelected(bool checked);
 	void OnReverseMenuSelected(bool checked);
+	void OnRecordMenuSelected(bool checked);
+	void OnLowBatteryMenuSelected(bool checked);
+	void OnNoSenseMenuSelected(bool checked);
 	void OnBassCopyMenuSelected();
 	void OnBassCopyMenuSelected(bool bChecked);
 	void OnDrumsCopyMenuSelected();
 	void OnDrumsCopyMenuSelected(bool bChecked);
+	void OnEarTrainingMenuSelected(bool checked);
 	void OnMonoralMenuSelected(bool checked);
 	void OnOnlyLeftMenuSelected(bool checked);
 	void OnOnlyRightMenuSelected(bool checked);

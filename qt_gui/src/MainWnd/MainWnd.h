@@ -78,10 +78,13 @@ public: // 関数
 		m_eq12_5kLabel(*this), m_eq12_5kSlider(*this),
 		m_eq16kLabel(*this), m_eq16kSlider(*this),
 		m_eq20kLabel(*this), m_eq20kSlider(*this),
-		m_sound(*this), isInitFileRead(FALSE), bMarkerPlay(FALSE),
-		bCountLoop(FALSE), bInstantLoop(FALSE), bSetPositionAuto(FALSE),
-		m_bFinish(FALSE), nLoopCount(0), nCurrentLoopCount(0), nCurPlayTab(0),
-		m_timeThreadRunning(false), m_bForwarding(false), m_bRewinding(false) { }
+		m_sound(*this), m_soundEffect(*this, FALSE), isInitFileRead(FALSE),
+		bMarkerPlay(FALSE), bCountLoop(FALSE), bInstantLoop(FALSE),
+		bSetPositionAuto(FALSE), m_bFinish(FALSE), nFreqVelo(0), nFreqAccel(0),
+		nLoopCount(0), nCurrentLoopCount(0), nCurPlayTab(0),
+		m_nLastDecimalDigit_pitch(0), m_nLastDecimalDigit_freq(0),
+		m_nLastDecimalDigit_speed(0), m_timeThreadRunning(false),
+		m_bForwarding(false), m_bRewinding(false) { }
 	virtual ~CMainWnd();
 
 	virtual void AddDropFiles(const QList<QUrl> & urls, BOOL bClear);
@@ -170,12 +173,18 @@ public: // 関数
 					   LONG lEQ5K, LONG lEQ6_3K, LONG lEQ8K, LONG lEQ10K,
 					   LONG lEQ12_5K, LONG lEQ16K, LONG lEQ20K);
 	virtual void SetEQVisible(bool bEQVisible);
+	virtual void SetEarTraining();
+	virtual void SetEarTraining(BOOL bEarTraining);
 	virtual void SetInstantLoop();
 	virtual void SetPositionAuto();
 	virtual void SetMarkerPlay();
 	virtual void SetChangeLR();
 	virtual void SetChangeLR(BOOL bChangeLR);
 	virtual void SetNextMarker();
+	virtual void SetLowBattery();
+	virtual void SetLowBattery(BOOL bLowBattery);
+	virtual void SetNoSense();
+	virtual void SetNoSense(BOOL bNoSense);
 	virtual void SetOnlyLeft();
 	virtual void SetOnlyLeft(BOOL bOnlyLeft);
 	virtual void SetOnlyRight();
@@ -185,6 +194,9 @@ public: // 関数
 	virtual void SetRandom(bool bRandom);
 	virtual void SetReverse();
 	virtual void SetReverse(BOOL bReverse);
+	virtual void SetRecord();
+	virtual void SetRecord(BOOL bRecord);
+	virtual void SetRecordNoise(BOOL bRecordNoise);
 	virtual void SetSeconds(double fSeconds);
 	virtual void SetSingleLoop();
 	virtual void SetSpeed(double dSpeed);
@@ -297,6 +309,7 @@ protected: // メンバ変数
 	std::vector<CPlayListView_MainWnd*> m_arrayList;
 
 	CSound m_sound;
+	CSound m_soundEffect; // 効果音
 
 	BOOL isInitFileRead; // INI ファイルがすでに読み込まれたかどうか
 	BOOL bMarkerPlay; // マーカー再生をするかどうか
@@ -304,9 +317,14 @@ protected: // メンバ変数
 	BOOL bInstantLoop; // マーカー追加時にループするかどうか
 	BOOL bSetPositionAuto; // マーカー位置変更時に再生位置を変更するかどうか
 	BOOL m_bFinish; // 再生が完了したかどうか
+	double nFreqVelo; // 周波数の差分（古びたレコード再生用）
+	double nFreqAccel; // 周波数の差分の加速度（古びたレコード再生用）
 	int nLoopCount; // 回数ループ時のループ回数
 	int nCurrentLoopCount; // 現時点でループした回数
 	int nCurPlayTab; // 現在再生中のファイルが存在しているタブ
+	int m_nLastDecimalDigit_pitch; // 前回の小数点桁数（音程）
+	int m_nLastDecimalDigit_freq; // 前回の小数点桁数（再生周波数）
+	int m_nLastDecimalDigit_speed; // 前回の小数点桁数（再生速度）
 	std::unique_ptr<std::thread> m_timeThread;
 	bool m_timeThreadRunning;
 	bool m_bForwarding;
@@ -319,6 +337,10 @@ public: // 定数
 		IDT_TIME = 11,
 		IDT_REWIND,
 		IDT_FORWARD,
+		IDT_RECORD,
+		IDT_LOWBATTERY,
+		IDT_NOSENSE,
+		IDT_EARTRAINING,
 	};
 
 public: // メンバ変数の取得・設定

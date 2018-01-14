@@ -782,16 +782,28 @@
      <addaction name="actionEQPresetCutHighWeak"/>
      <addaction name="actionEQPresetCutHighWeakest"/>
     </widget>
+    <widget class="QMenu" name="menuSound_Effects_S">
+     <property name="title">
+      <string>Sound Effects(&amp;S)</string>
+     </property>
+     <addaction name="actionRecordNoise"/>
+    </widget>
     <addaction name="menuSpeed"/>
     <addaction name="menuFreq"/>
     <addaction name="menuPitch"/>
     <addaction name="menuVolume"/>
     <addaction name="menuEQ_preset_E"/>
     <addaction name="separator"/>
+    <addaction name="menuSound_Effects_S"/>
+    <addaction name="separator"/>
     <addaction name="actionVocalCancel"/>
     <addaction name="actionReversePlay"/>
+    <addaction name="actionOldRecordPlay"/>
+    <addaction name="actionLowBattery"/>
+    <addaction name="actionNoSense"/>
     <addaction name="actionBassCopy"/>
     <addaction name="actionCymbalCopy"/>
+    <addaction name="actionEarTraining"/>
     <addaction name="separator"/>
     <addaction name="actionMonoral"/>
     <addaction name="actionOnlyLeft"/>
@@ -2137,6 +2149,46 @@
    </property>
    <property name="text">
     <string>Transcribe Drums (Hi-Hat, Cymbals)(&amp;H)</string>
+   </property>
+  </action>
+  <action name="actionOldRecordPlay">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Old Record Play(&amp;F)</string>
+   </property>
+  </action>
+  <action name="actionRecordNoise">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Record Noise(&amp;R)</string>
+   </property>
+  </action>
+  <action name="actionLowBattery">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Low battery(&amp;L)</string>
+   </property>
+  </action>
+  <action name="actionNoSense">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>No sense(&amp;N)</string>
+   </property>
+  </action>
+  <action name="actionEarTraining">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Ear Training(&amp;E)</string>
    </property>
   </action>
  </widget>

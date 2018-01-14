@@ -14,6 +14,7 @@
 #include <QTimer>
 #include "../App.h"
 #include "../Common/CommandList.h"
+#include "../Common/Utils.h"
 #include "../CountLoopWnd/CountLoopWnd_MainWnd.h"
 #include "ABLoopPosWnd.h"
 #include "PlayListView_MainWnd.h"
@@ -2001,6 +2002,125 @@ void CMainWnd::SetChangeLR(BOOL bChangeLR)
 	m_menu.CheckItem(ID_CHANGELR, bChangeLR ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
+// 聴覚トレーニング
+//----------------------------------------------------------------------------
+void CMainWnd::SetEarTraining()
+{
+	BOOL bEarTraining = !m_menu.IsItemChecked(ID_EARTRAINING);
+	m_menu.CheckItem(ID_EARTRAINING, bEarTraining ? MF_CHECKED : MF_UNCHECKED);
+	if(bEarTraining) {
+		if(m_menu.IsItemChecked(ID_RECORD)) SetRecord(FALSE);
+		if(m_menu.IsItemChecked(ID_LOWBATTERY)) SetLowBattery(FALSE);
+		if(m_menu.IsItemChecked(ID_NOSENSE)) SetNoSense(FALSE);
+		OnTimer(IDT_EARTRAINING);
+		SetTimer(IDT_EARTRAINING, 3000);
+	}
+	else {
+		KillTimer(IDT_EARTRAINING);
+		m_menu.OnEQFlatMenuSelected();
+		m_panLabel.SetPan(0);
+	}
+}
+//----------------------------------------------------------------------------
+// 聴覚トレーニング
+//----------------------------------------------------------------------------
+void CMainWnd::SetEarTraining(BOOL bEarTraining)
+{
+	m_menu.CheckItem(ID_EARTRAINING, bEarTraining ? MF_CHECKED : MF_UNCHECKED);
+	if(bEarTraining) {
+		if(m_menu.IsItemChecked(ID_RECORD)) SetRecord(FALSE);
+		if(m_menu.IsItemChecked(ID_LOWBATTERY)) SetLowBattery(FALSE);
+		if(m_menu.IsItemChecked(ID_NOSENSE)) SetNoSense(FALSE);
+		OnTimer(IDT_EARTRAINING);
+		SetTimer(IDT_EARTRAINING, 3000);
+	}
+	else {
+		KillTimer(IDT_EARTRAINING);
+		m_menu.OnEQFlatMenuSelected();
+	}
+}
+//----------------------------------------------------------------------------
+// 歌へたモード
+//----------------------------------------------------------------------------
+void CMainWnd::SetNoSense()
+{
+	BOOL bNoSense = !m_menu.IsItemChecked(ID_NOSENSE);
+	m_menu.CheckItem(ID_NOSENSE, bNoSense ? MF_CHECKED : MF_UNCHECKED);
+	if(bNoSense) {
+		if(m_menu.IsItemChecked(ID_RECORD)) SetRecord(FALSE);
+		if(m_menu.IsItemChecked(ID_LOWBATTERY)) SetLowBattery(FALSE);
+		if(m_menu.IsItemChecked(ID_BASSCOPY)) m_menu.OnBassCopyMenuSelected();
+		if(m_menu.IsItemChecked(ID_CYMBALCOPY))
+			m_menu.OnDrumsCopyMenuSelected();
+		m_nLastDecimalDigit_pitch = m_pitchSlider.GetDecimalDigit();
+		m_nLastDecimalDigit_speed = m_speedSlider.GetDecimalDigit();
+		m_menu.OnSetPitchDecimal2MenuSelected();
+		m_menu.OnSetSpeedDecimal2MenuSelected();
+		m_pitchLabel.SetPitch(0.0);
+		m_speedLabel.SetSpeed(100.0);
+		SetTimer(IDT_NOSENSE, 80);
+	}
+	else {
+		KillTimer(IDT_NOSENSE);
+		nFreqVelo = 0.0;
+		nFreqAccel = 0.0;
+		if(m_nLastDecimalDigit_pitch == 0)
+			m_menu.OnSetPitchDecimal0MenuSelected();
+		else if(m_nLastDecimalDigit_pitch == 1)
+			m_menu.OnSetPitchDecimal1MenuSelected();
+		else if(m_nLastDecimalDigit_pitch == 2)
+			m_menu.OnSetPitchDecimal2MenuSelected();
+		if(m_nLastDecimalDigit_speed == 0)
+			m_menu.OnSetSpeedDecimal0MenuSelected();
+		else if(m_nLastDecimalDigit_speed == 1)
+			m_menu.OnSetSpeedDecimal1MenuSelected();
+		else if(m_nLastDecimalDigit_speed == 2)
+			m_menu.OnSetSpeedDecimal2MenuSelected();
+		m_pitchLabel.SetPitch(0.0);
+		m_speedLabel.SetSpeed(100.0);
+	}
+}
+//----------------------------------------------------------------------------
+// 歌へたモード
+//----------------------------------------------------------------------------
+void CMainWnd::SetNoSense(BOOL bNoSense)
+{
+	m_menu.CheckItem(ID_NOSENSE, bNoSense ? MF_CHECKED : MF_UNCHECKED);
+	if(bNoSense) {
+		if(m_menu.IsItemChecked(ID_RECORD)) SetRecord(FALSE);
+		if(m_menu.IsItemChecked(ID_LOWBATTERY)) SetLowBattery(FALSE);
+		if(m_menu.IsItemChecked(ID_BASSCOPY)) m_menu.OnBassCopyMenuSelected();
+		if(m_menu.IsItemChecked(ID_CYMBALCOPY))
+			m_menu.OnDrumsCopyMenuSelected();
+		m_nLastDecimalDigit_pitch = m_pitchSlider.GetDecimalDigit();
+		m_nLastDecimalDigit_speed = m_speedSlider.GetDecimalDigit();
+		m_menu.OnSetPitchDecimal2MenuSelected();
+		m_menu.OnSetSpeedDecimal2MenuSelected();
+		m_pitchLabel.SetPitch(0.0);
+		m_speedLabel.SetSpeed(100.0);
+		SetTimer(IDT_NOSENSE, 80);
+	}
+	else {
+		KillTimer(IDT_NOSENSE);
+		nFreqVelo = 0.0;
+		nFreqAccel = 0.0;
+		if(m_nLastDecimalDigit_pitch == 0)
+			m_menu.OnSetPitchDecimal0MenuSelected();
+		else if(m_nLastDecimalDigit_pitch == 1)
+			m_menu.OnSetPitchDecimal1MenuSelected();
+		else if(m_nLastDecimalDigit_pitch == 2)
+			m_menu.OnSetPitchDecimal2MenuSelected();
+		if(m_nLastDecimalDigit_speed == 0)
+			m_menu.OnSetSpeedDecimal0MenuSelected();
+		else if(m_nLastDecimalDigit_speed == 1)
+			m_menu.OnSetSpeedDecimal1MenuSelected();
+		else if(m_nLastDecimalDigit_speed == 2)
+			m_menu.OnSetSpeedDecimal2MenuSelected();
+		m_pitchLabel.SetPitch(0.0);
+		m_speedLabel.SetSpeed(100.0);
+	}
+}
+//----------------------------------------------------------------------------
 // 次のマーカーへ
 //----------------------------------------------------------------------------
 void CMainWnd::SetNextMarker()
@@ -2166,6 +2286,63 @@ void CMainWnd::SetRandom(bool bRandom)
 	SetPreviousNextMenuState();
 }
 //----------------------------------------------------------------------------
+// 電池切れ
+//----------------------------------------------------------------------------
+void CMainWnd::SetLowBattery()
+{
+	BOOL bLowBattery = !m_menu.IsItemChecked(ID_LOWBATTERY);
+	m_menu.CheckItem(ID_LOWBATTERY, bLowBattery ? MF_CHECKED : MF_UNCHECKED);
+	if(bLowBattery) {
+		if(m_menu.IsItemChecked(ID_RECORD)) SetRecord(FALSE);
+		if(m_menu.IsItemChecked(ID_NOSENSE)) SetNoSense(FALSE);
+		m_nLastDecimalDigit_freq = m_freqSlider.GetDecimalDigit();
+		m_menu.OnSetFreqDecimal2MenuSelected();
+		m_menu.OnEQMiddleHighestMenuSelected();
+		SetTimer(IDT_LOWBATTERY, 20);
+	}
+	else {
+		KillTimer(IDT_LOWBATTERY);
+		nFreqVelo = 0.0;
+		nFreqAccel = 0.0;
+		m_menu.OnEQFlatMenuSelected();
+		if(m_nLastDecimalDigit_freq == 0)
+			m_menu.OnSetFreqDecimal0MenuSelected();
+		else if(m_nLastDecimalDigit_freq == 1)
+			m_menu.OnSetFreqDecimal1MenuSelected();
+		else if(m_nLastDecimalDigit_freq == 2)
+			m_menu.OnSetFreqDecimal2MenuSelected();
+		m_freqLabel.SetFreq(100.0);
+	}
+}
+//----------------------------------------------------------------------------
+// 電池切れ
+//----------------------------------------------------------------------------
+void CMainWnd::SetLowBattery(BOOL bLowBattery)
+{
+	m_menu.CheckItem(ID_LOWBATTERY, bLowBattery ? MF_CHECKED : MF_UNCHECKED);
+	if(bLowBattery) {
+		if(m_menu.IsItemChecked(ID_RECORD)) SetRecord(FALSE);
+		if(m_menu.IsItemChecked(ID_NOSENSE)) SetNoSense(FALSE);
+		m_nLastDecimalDigit_freq = m_freqSlider.GetDecimalDigit();
+		m_menu.OnSetFreqDecimal2MenuSelected();
+		m_menu.OnEQMiddleHighestMenuSelected();
+		SetTimer(IDT_LOWBATTERY, 20);
+	}
+	else {
+		KillTimer(IDT_LOWBATTERY);
+		nFreqVelo = 0.0;
+		nFreqAccel = 0.0;
+		m_menu.OnEQFlatMenuSelected();
+		if(m_nLastDecimalDigit_freq == 0)
+			m_menu.OnSetFreqDecimal0MenuSelected();
+		else if(m_nLastDecimalDigit_freq == 1)
+			m_menu.OnSetFreqDecimal1MenuSelected();
+		else if(m_nLastDecimalDigit_freq == 2)
+			m_menu.OnSetFreqDecimal2MenuSelected();
+		m_freqLabel.SetFreq(100.0);
+	}
+}
+//----------------------------------------------------------------------------
 // 逆回転再生
 //----------------------------------------------------------------------------
 void CMainWnd::SetReverse()
@@ -2189,6 +2366,68 @@ void CMainWnd::SetReverse(BOOL bReverse)
 	}
 	m_sound.SetReverse(bReverse);
 	m_menu.CheckItem(ID_REVERSE, bReverse ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
+// 古びたレコード再生
+//----------------------------------------------------------------------------
+void CMainWnd::SetRecord()
+{
+	BOOL bRecord = !m_menu.IsItemChecked(ID_RECORD);
+	SetRecordNoise(bRecord);
+	m_menu.CheckItem(ID_RECORD, bRecord ? MF_CHECKED : MF_UNCHECKED);
+	if(bRecord) {
+		if(m_menu.IsItemChecked(ID_LOWBATTERY)) SetLowBattery(FALSE);
+		if(m_menu.IsItemChecked(ID_NOSENSE)) SetNoSense(FALSE);
+		m_menu.OnEQMiddleHighestMenuSelected();
+		SetTimer(IDT_RECORD, 750);
+	}
+	else {
+		KillTimer(IDT_RECORD);
+		nFreqVelo = 0.0;
+		nFreqAccel = 0.0;
+		m_menu.OnEQFlatMenuSelected();
+		m_freqLabel.SetFreq(100.0);
+	}
+}
+//----------------------------------------------------------------------------
+// 古びたレコード再生
+//----------------------------------------------------------------------------
+void CMainWnd::SetRecord(BOOL bRecord)
+{
+	SetRecordNoise(bRecord);
+	m_menu.CheckItem(ID_RECORD, bRecord ? MF_CHECKED : MF_UNCHECKED);
+	if(bRecord) {
+		if(m_menu.IsItemChecked(ID_LOWBATTERY)) SetLowBattery(FALSE);
+		if(m_menu.IsItemChecked(ID_NOSENSE)) SetNoSense(FALSE);
+		m_menu.OnEQMiddleHighestMenuSelected();
+		SetTimer(IDT_RECORD, 750);
+	}
+	else {
+		KillTimer(IDT_RECORD);
+		nFreqVelo = 0.0;
+		nFreqAccel = 0.0;
+		m_freqLabel.SetFreq(100.0);
+	}
+}
+//----------------------------------------------------------------------------
+// レコードノイズの設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetRecordNoise(BOOL bRecordNoise)
+{
+	m_menu.UncheckSoundEffectMenu();
+	m_menu.CheckItem(ID_RECORDNOISE, bRecordNoise ? MF_CHECKED : MF_UNCHECKED);
+	if(bRecordNoise) {
+		m_soundEffect.StreamCreateFile((ToTstring(m_rApp.GetFilePath())
+									+ _T("sound\\RecordNoise.wav")).c_str());
+		m_soundEffect.ChannelPlay();
+		m_soundEffect.SetABLoopA(TRUE);
+		m_soundEffect.SetABLoopB(TRUE);
+		QWORD qwPosA = m_soundEffect.ChannelSeconds2Bytes(1.417);
+		QWORD qwPosB = m_soundEffect.ChannelSeconds2Bytes(7.653);
+		m_soundEffect.SetLoopPosA(qwPosA);
+		m_soundEffect.SetLoopPosB(qwPosB);
+	}
+	else m_soundEffect.ChannelStop();
 }
 //----------------------------------------------------------------------------
 // １曲ループの設定
@@ -2941,6 +3180,157 @@ void CMainWnd::OnTimer(UINT id)
 		break;
 	case IDT_FORWARD:
 		Forward();
+		break;
+	case IDT_RECORD:
+		if(!m_sound.ChannelIsStopped() && !m_sound.ChannelIsPausing()) {
+			double freq_org = (double)(m_freqSlider.GetThumbPos()
+				/ pow(10.0, m_freqSlider.GetDecimalDigit()));
+					// 現在の周波数
+
+			// 加速度の設定
+			// 周波数が98以上の場合 : -0.1
+			// 　　　　98未満の場合 : +0.1
+			nFreqAccel = freq_org >= 98 ? -0.1 : 0.1;
+
+			// 周波数の差分に加速度を加える
+			nFreqVelo += nFreqAccel;
+
+			// 周波数に差分を加える
+			if(nFreqVelo != 0.0) {
+				double freq = freq_org + nFreqVelo;
+
+				// 90 〜 100 の間で動くようにする
+				if(freq <= 90.0) freq = 90.0;
+				if(freq >= 100.0) freq = 100.0;
+
+				m_freqLabel.SetFreq(freq);
+			}
+		}
+		break;
+	case IDT_LOWBATTERY:
+		if(!m_sound.ChannelIsStopped() && !m_sound.ChannelIsPausing()) {
+			double freq_org = (double)(m_freqSlider.GetThumbPos()
+				/ pow(10.0, m_freqSlider.GetDecimalDigit()));
+					// 現在の周波数
+
+			// 加速度の設定
+			// 周波数が68以上の場合 : -0.02
+			// 　　　　68未満の場合 : +0.01
+			nFreqAccel = freq_org >= 68 ? -0.02 : 0.01;
+
+			// 周波数の差分に加速度を加える
+			nFreqVelo += nFreqAccel;
+
+			// 周波数に差分を加える
+			if(nFreqVelo != 0.0) {
+				double freq = freq_org + nFreqVelo;
+
+				// 65 〜 70 の間で動くようにする
+				if(freq <= 65.0) freq = 65.0;
+				if(freq >= 70.0) freq = 70.0;
+
+				m_freqLabel.SetFreq(freq);
+			}
+		}
+		break;
+	case IDT_NOSENSE:
+		if(m_sound.ChannelGetSecondsPosition() <= 10.0) {
+			m_pitchLabel.SetPitch(0.0);
+			m_speedLabel.SetSpeed(100.0);
+		}
+		else if(!m_sound.ChannelIsStopped() && !m_sound.ChannelIsPausing()) {
+			double pitch_org = (double)(m_pitchSlider.GetThumbPos()
+				/ pow(10.0, m_pitchSlider.GetDecimalDigit()));
+					// 現在の音程
+
+			if(m_sound.ChannelGetSecondsPosition() > 30.0)
+				nFreqVelo = CUtils::GetRandom(-100, 100) / 1000.0;
+			else if(m_sound.ChannelGetSecondsPosition() > 20.0)
+				nFreqVelo = CUtils::GetRandom(-100, 100) / 2000.0;
+			else nFreqVelo = CUtils::GetRandom(-100, 100) / 5000.0;
+			if(pitch_org <= -2.0 && nFreqVelo < 0.0) nFreqVelo *= -1.0;
+			if(pitch_org >= 2.0 && nFreqVelo > 0.0) nFreqVelo *= -1.0;
+
+			// 音程に差分を加える
+			if(nFreqVelo != 0.0) {
+				double pitch = pitch_org + nFreqVelo;
+
+				// ♭2 〜 ♯2 の間で動くようにする
+				// if(pitch < -2.0) pitch = -2.0;
+				// if(pitch > 2.0) pitch = 2.0;
+
+				m_pitchLabel.SetPitch(pitch);
+			}
+
+			double speed_org = (double)(m_speedSlider.GetThumbPos()
+				/ pow(10.0, m_speedSlider.GetDecimalDigit()));
+					// 現在の速度
+
+			if(m_sound.ChannelGetSecondsPosition() > 30.0)
+				nFreqVelo = CUtils::GetRandom(-100, 100) / 1000.0;
+			else if(m_sound.ChannelGetSecondsPosition() > 20.0)
+				nFreqVelo = CUtils::GetRandom(-100, 100) / 2000.0;
+			else nFreqVelo = CUtils::GetRandom(-100, 100) / 5000.0;
+			if(speed_org <= -90.0 && nFreqVelo < 0.0) nFreqVelo *= -1.0;
+			if(speed_org >= 110.0 && nFreqVelo > 0.0) nFreqVelo *= -1.0;
+
+			// 速度に差分を加える
+			if(nFreqVelo != 0.0) {
+				double speed = speed_org + nFreqVelo;
+
+				// -90 〜 ♯2 の間で動くようにする
+				// if(speed < -90.0) speed = -90.0;
+				// if(speed > 110.0) speed = 110.0;
+
+				m_speedLabel.SetSpeed(speed);
+			}
+		}
+		break;
+	case IDT_EARTRAINING:
+		{
+			srand(time(nullptr));
+			int nEQ20 = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ25 = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ31_5 = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ40 = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ50 = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ63 = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ80 = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ100 = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ125 = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ160 = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ200 = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ250 = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ315 = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ400 = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ500 = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ630 = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ800 = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ1K = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ1_25K = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ1_6K = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ2K = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ2_5K = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ3_15K = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ4K = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ5K = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ6_3K = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ8K = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ10K = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ12_5K = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ16K = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nEQ20K = -15 + (int)(rand() * (15 - -15 + 1.0) / (1.0 + RAND_MAX));
+			int nPan = -100 + (int)(rand() * (100 - -100 + 1.0) / (1.0 + RAND_MAX));
+			SetEQ(nEQ20, nEQ25, nEQ31_5, nEQ40,
+				  nEQ50, nEQ63, nEQ80, nEQ100,
+				  nEQ125, nEQ160, nEQ200, nEQ250,
+				  nEQ315, nEQ400, nEQ500, nEQ630,
+				  nEQ800, nEQ1K, nEQ1_25K, nEQ1_6K,
+				  nEQ2K, nEQ2_5K, nEQ3_15K, nEQ4K,
+				  nEQ5K, nEQ6_3K, nEQ8K, nEQ10K,
+				  nEQ12_5K, nEQ16K, nEQ20K);
+			m_panLabel.SetPan(nPan);
+		}
 		break;
 	}
 }
