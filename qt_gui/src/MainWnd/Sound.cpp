@@ -11,7 +11,7 @@
 //----------------------------------------------------------------------------
 CSound::CSound(CMainWnd & mainWnd, BOOL bMainStream)
 	: m_rMainWnd(mainWnd), m_bLoop(FALSE), m_nLoopPosA(0), m_nLoopPosB(0),
-		m_bABLoopA(FALSE), m_bABLoopB(FALSE), m_nCurFile(0),
+		m_bABLoopA(FALSE), m_bABLoopB(FALSE), m_nCurFile(0), m_peak(0),
 		m_bMainStream(bMainStream), m_hFx20Hz(0), m_hFx25Hz(0), m_hFx31_5Hz(0),
 		m_hFx40Hz(0), m_hFx50Hz(0), m_hFx63Hz(0), m_hFx80Hz(0), m_hFx100Hz(0),
 		m_hFx125Hz(0), m_hFx160Hz(0), m_hFx200Hz(0), m_hFx250Hz(0), m_hFx315Hz(0),
@@ -28,7 +28,7 @@ CSound::CSound(CMainWnd & mainWnd, BOOL bMainStream)
 		m_hFx4KHz_2(0), m_hFx5KHz_2(0), m_hFx6_3KHz_2(0), m_hFx8KHz_2(0),
 		m_hFx10KHz_2(0), m_hFx12_5KHz_2(0), m_hFx16KHz_2(0), m_hFx20KHz_2(0),
 		m_hMonoralDsp(0), m_hVocalCancelDsp(0), m_hOnlyLeftDsp(0),
-		m_hOnlyRightDsp(0), m_hChangeLRDsp(0)
+		m_hOnlyRightDsp(0), m_hChangeLRDsp(0), m_hNormalizeDsp(0)
 {
 	// BASS_FXSetParametersでボリュームを変更しようとするだけでは、bass_fxが
 	// ロードされないので、明示的にbass_fxの関数を実行する。
@@ -264,6 +264,57 @@ void CALLBACK CSound::OnlyRight(HDSP handle, DWORD channel,
 	float *data = (float*)buffer;
 	int max = length / 4;
 	for(int a = 0; a < max; a += 2) data[a] = data[a + 1];
+}
+//----------------------------------------------------------------------------
+// ノーマライズの設定
+//----------------------------------------------------------------------------
+void CSound::SetNormalize(BOOL bNormalize)
+{
+	if(bNormalize) {
+		HSTREAM decoder = BASS_StreamCreateFile(FALSE, m_strCurFile.c_str(), 0,
+			0, BASS_SAMPLE_FLOAT | BASS_STREAM_DECODE | BASS_IF_UNICODE);
+		if(!decoder) decoder = BASS_APE_StreamCreateFile(FALSE,
+			m_strCurFile.c_str(), 0, 0,
+			BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
+		if(!decoder) decoder = BASS_CD_StreamCreateFile(
+			(char*)m_strCurFile.c_str(),
+			BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
+		if(!decoder) decoder = BASS_FLAC_StreamCreateFile(FALSE,
+			m_strCurFile.c_str(), 0, 0,
+			BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
+		if(!decoder) decoder = BASS_AAC_StreamCreateFile(FALSE,
+			m_strCurFile.c_str(), 0, 0,
+			BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
+		if(!decoder) decoder = BASS_MP4_StreamCreateFile(FALSE,
+			m_strCurFile.c_str(), 0, 0,
+			BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
+		BASS_ChannelSetPosition(decoder, 0, BASS_POS_DECODETO);
+		m_peak = 0;
+		while(BASS_ChannelIsActive(decoder)) {
+			DWORD level = BASS_ChannelGetLevel(decoder);
+			int left = LOWORD(level);
+			int right = HIWORD(level);
+			if(m_peak < left) m_peak = left;
+			if(m_peak < right) m_peak = right;
+		}
+		BASS_StreamFree(decoder);
+		if(m_peak > 32767) m_peak = 32767;
+
+		m_hNormalizeDsp = BASS_ChannelSetDSP(m_hStream, &Normalize, &m_peak,
+											 3);
+	}
+	else BASS_ChannelRemoveDSP(m_hStream, m_hNormalizeDsp);
+}
+//----------------------------------------------------------------------------
+// ノーマライズ用コールバック関数
+//----------------------------------------------------------------------------
+void CALLBACK CSound::Normalize(HDSP handle, DWORD channel,
+									   void *buffer, DWORD length, void *user)
+{
+	int *peak = (int*)user;
+	float *data = (float*)buffer;
+	int max = length / 4;
+	for(int a = 0; a < max; a++) data[a] = data[a] * 32767 / *peak;
 }
 //----------------------------------------------------------------------------
 // 再生

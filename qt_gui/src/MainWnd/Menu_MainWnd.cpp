@@ -1200,6 +1200,13 @@ void CMenu_MainWnd::OnUp1OctavePitchMenuSelected()
 	m_rMainWnd.UpPitch(12);
 }
 //----------------------------------------------------------------------------
+// 再生 → ノーマライズメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnNormalizeMenuSelected(bool checked)
+{
+	m_rMainWnd.SetNormalize(checked);
+}
+//----------------------------------------------------------------------------
 // 再生 → ボーカルキャンセルメニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnVocalCancelMenuSelected(bool checked)
@@ -1714,6 +1721,7 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_PITCHDEC_1, m_rMainWnd.actionPitchDigit1},
 		{ID_PITCHDEC_2, m_rMainWnd.actionPitchDigit2},
 		{ID_RECORDNOISE, m_rMainWnd.actionRecordNoise},
+		{ID_NORMALIZE, m_rMainWnd.actionNormalize},
 		{ID_VOCALCANCEL, m_rMainWnd.actionVocalCancel},
 		{ID_REVERSE, m_rMainWnd.actionReversePlay},
 		{ID_RECORD, m_rMainWnd.actionOldRecordPlay},
@@ -1859,6 +1867,8 @@ void CMenu_MainWnd::CreateConnections()
 	// Effect
 	connect(m_rMainWnd.actionRecordNoise, &QAction::triggered,
 					this, &CMenu_MainWnd::OnRecordNoiseMenuSelected);
+	connect(m_rMainWnd.actionNormalize, &QAction::triggered,
+					this, &CMenu_MainWnd::OnNormalizeMenuSelected);
 	connect(m_rMainWnd.actionVocalCancel, &QAction::triggered,
 					this, &CMenu_MainWnd::OnVocalCancelMenuSelected);
 	connect(m_rMainWnd.actionReversePlay, &QAction::triggered,

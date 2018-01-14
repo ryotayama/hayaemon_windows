@@ -83,6 +83,9 @@ public: // 関数
 	virtual void SetOnlyRight(BOOL bOnlyRight = TRUE);
 	static void CALLBACK OnlyRight(HDSP handle, DWORD channel, void *buffer,
 								   DWORD length, void *user);
+	virtual void SetNormalize(BOOL bNormalize = TRUE);
+	static void CALLBACK Normalize(HDSP handle, DWORD channel,
+								   void *buffer, DWORD length, void *user);
 
 private: // メンバ変数
 
@@ -97,6 +100,7 @@ private: // メンバ変数
 	tstring m_strCurFile;
 	int m_nCurFile;
 	std::vector<QWORD> m_arrayMarker;
+	int m_peak;
 	BOOL m_bMainStream;
 
 	HFX m_hFx20Hz, m_hFx25Hz, m_hFx31_5Hz, m_hFx40Hz, m_hFx50Hz, m_hFx63Hz,
@@ -116,7 +120,7 @@ private: // メンバ変数
 		m_hFx20KHz_2;
 
 	HDSP m_hMonoralDsp, m_hVocalCancelDsp, m_hOnlyLeftDsp, m_hOnlyRightDsp,
-		 m_hChangeLRDsp;
+		 m_hChangeLRDsp , m_hNormalizeDsp;
 
 public: // メンバ変数の取得・設定
 

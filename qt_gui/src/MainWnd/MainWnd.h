@@ -183,6 +183,8 @@ public: // 関数
 	virtual void SetNextMarker();
 	virtual void SetLowBattery();
 	virtual void SetLowBattery(BOOL bLowBattery);
+	virtual void SetNormalize();
+	virtual void SetNormalize(BOOL bNormalize);
 	virtual void SetNoSense();
 	virtual void SetNoSense(BOOL bNoSense);
 	virtual void SetOnlyLeft();

@@ -796,6 +796,7 @@
     <addaction name="separator"/>
     <addaction name="menuSound_Effects_S"/>
     <addaction name="separator"/>
+    <addaction name="actionNormalize"/>
     <addaction name="actionVocalCancel"/>
     <addaction name="actionReversePlay"/>
     <addaction name="actionOldRecordPlay"/>
@@ -2189,6 +2190,14 @@
    </property>
    <property name="text">
     <string>Ear Training(&amp;E)</string>
+   </property>
+  </action>
+  <action name="actionNormalize">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Normalize(&amp;N)</string>
    </property>
   </action>
  </widget>

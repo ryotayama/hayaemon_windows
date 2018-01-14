@@ -697,6 +697,9 @@ void CMainWnd::OpenInitFileAfterShow()
 	GetPrivateProfileString(_T("PlayMode"), _T("Reverse"), _T("0"), buf, 255,
 		initFilePath.c_str());
 	int _bReverse = _ttoi(buf);
+	GetPrivateProfileString(_T("PlayMode"), _T("Normalize"), _T("0"), buf, 255,
+		initFilePath.c_str());
+	int _bNormalize = _ttoi(buf);
 
 	// 再生モードの復元
 	if(_bRecoverContinue) {
@@ -715,6 +718,7 @@ void CMainWnd::OpenInitFileAfterShow()
 		m_menu.SwitchItemChecked(ID_RECOVERREVERSE);
 		if(_bReverse) SetReverse();
 	}
+	if(_bNormalize) SetNormalize();
 
 	isInitFileRead = TRUE;
 }
@@ -1324,6 +1328,7 @@ void CMainWnd::SetAllEffects()
 	SetOnlyRight(m_menu.IsItemChecked(ID_ONLYRIGHT));
 	SetChangeLR(m_menu.IsItemChecked(ID_CHANGELR));
 	SetMonoral(m_menu.IsItemChecked(ID_MONORAL));
+	SetNormalize(m_menu.IsItemChecked(ID_NORMALIZE));
 	SetVocalCancel(m_menu.IsItemChecked(ID_VOCALCANCEL));
 	SetReverse(m_menu.IsItemChecked(ID_REVERSE));
 	SetSpeed((double)(m_speedSlider.GetThumbPos()
@@ -2038,6 +2043,23 @@ void CMainWnd::SetEarTraining(BOOL bEarTraining)
 		KillTimer(IDT_EARTRAINING);
 		m_menu.OnEQFlatMenuSelected();
 	}
+}
+//----------------------------------------------------------------------------
+// ノーマライズ
+//----------------------------------------------------------------------------
+void CMainWnd::SetNormalize()
+{
+	BOOL bNormalize = !m_menu.IsItemChecked(ID_NORMALIZE);
+	m_sound.SetNormalize(bNormalize);
+	m_menu.CheckItem(ID_NORMALIZE, bNormalize ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
+// ノーマライズ
+//----------------------------------------------------------------------------
+void CMainWnd::SetNormalize(BOOL bNormalize)
+{
+	m_sound.SetNormalize(bNormalize);
+	m_menu.CheckItem(ID_NORMALIZE, bNormalize ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
 // 歌へたモード
@@ -2905,6 +2927,9 @@ void CMainWnd::WriteInitFile()
 		initFilePath.c_str());
 	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_REVERSE) ? 1 : 0);
 	WritePrivateProfileString(_T("PlayMode"), _T("Reverse"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_NORMALIZE) ? 1 : 0);
+	WritePrivateProfileString(_T("PlayMode"), _T("Normalize"), buf, 
 		initFilePath.c_str());
 
 	// その他の設定

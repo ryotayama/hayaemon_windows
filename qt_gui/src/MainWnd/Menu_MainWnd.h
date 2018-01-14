@@ -182,6 +182,7 @@ public: // 関数
 	void OnInstantLoopMenuSelected();
 	void OnSetPositionAutoMenuSelected();
 	void OnRecordNoiseMenuSelected();
+	void OnNormalizeMenuSelected(bool checked);
 	void OnVocalCancelMenuSelected(bool checked);
 	void OnReverseMenuSelected(bool checked);
 	void OnRecordMenuSelected(bool checked);
