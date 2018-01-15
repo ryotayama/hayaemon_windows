@@ -787,6 +787,7 @@
       <string>Sound Effects(&amp;S)</string>
      </property>
      <addaction name="actionRecordNoise"/>
+     <addaction name="actionWave"/>
     </widget>
     <addaction name="menuSpeed"/>
     <addaction name="menuFreq"/>
@@ -2207,6 +2208,14 @@
    </property>
    <property name="text">
     <string>Record(&amp;F)</string>
+   </property>
+  </action>
+  <action name="actionWave">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Wave(&amp;W)</string>
    </property>
   </action>
  </widget>

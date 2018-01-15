@@ -63,6 +63,7 @@ void CMenu_MainWnd::SwitchItemChecked(UINT uID)
 void CMenu_MainWnd::UncheckSoundEffectMenu()
 {
 	CheckItem(ID_RECORDNOISE, MF_UNCHECKED);
+	CheckItem(ID_WAVE, MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
 // 表示 → 再生速度メニューが選択された
@@ -338,6 +339,14 @@ void CMenu_MainWnd::OnRecordNoiseMenuSelected()
 {
 	BOOL bRecordNoise = IsItemChecked(ID_RECORDNOISE);
 	m_rMainWnd.SetRecordNoise(bRecordNoise);
+}
+//----------------------------------------------------------------------------
+// 再生 → 波音メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnWaveMenuSelected()
+{
+	BOOL bWave = IsItemChecked(ID_WAVE);
+	m_rMainWnd.SetWave(bWave);
 }
 //----------------------------------------------------------------------------
 // 再生 → 再生速度 → デフォルトに戻すメニューが選択された
@@ -1721,6 +1730,7 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_PITCHDEC_1, m_rMainWnd.actionPitchDigit1},
 		{ID_PITCHDEC_2, m_rMainWnd.actionPitchDigit2},
 		{ID_RECORDNOISE, m_rMainWnd.actionRecordNoise},
+		{ID_WAVE, m_rMainWnd.actionWave},
 		{ID_NORMALIZE, m_rMainWnd.actionNormalize},
 		{ID_VOCALCANCEL, m_rMainWnd.actionVocalCancel},
 		{ID_REVERSE, m_rMainWnd.actionReversePlay},
@@ -1868,6 +1878,8 @@ void CMenu_MainWnd::CreateConnections()
 	// Effect
 	connect(m_rMainWnd.actionRecordNoise, &QAction::triggered,
 					this, &CMenu_MainWnd::OnRecordNoiseMenuSelected);
+	connect(m_rMainWnd.actionWave, &QAction::triggered,
+					this, &CMenu_MainWnd::OnWaveMenuSelected);
 	connect(m_rMainWnd.actionNormalize, &QAction::triggered,
 					this, &CMenu_MainWnd::OnNormalizeMenuSelected);
 	connect(m_rMainWnd.actionVocalCancel, &QAction::triggered,

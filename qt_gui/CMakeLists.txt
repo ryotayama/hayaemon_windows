@@ -157,3 +157,10 @@ target_link_libraries(Hayaemon
 endif()
 
 qt5_use_modules(Hayaemon Widgets)
+
+add_custom_command(TARGET Hayaemon
+  POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_SOURCE_DIR}/sound
+    $<TARGET_FILE_DIR:Hayaemon>/sound)
+

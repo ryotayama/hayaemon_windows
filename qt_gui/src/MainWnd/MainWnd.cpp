@@ -2561,6 +2561,26 @@ void CMainWnd::SetVolume(double nVolume)
 	m_sound.ChannelSetVolume((float)nVolume);
 }
 //----------------------------------------------------------------------------
+// 波音の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetWave(BOOL bWave)
+{
+	m_menu.UncheckSoundEffectMenu();
+	m_menu.CheckItem(ID_WAVE, bWave ? MF_CHECKED : MF_UNCHECKED);
+	if(bWave) {
+		m_soundEffect.StreamCreateFile((ToTstring(m_rApp.GetFilePath())
+									+ _T("sound\\Wave.mp3")).c_str());
+		m_soundEffect.ChannelPlay();
+		m_soundEffect.SetABLoopA(TRUE);
+		m_soundEffect.SetABLoopB(TRUE);
+		QWORD qwPosA = m_soundEffect.ChannelSeconds2Bytes(0.283);
+		QWORD qwPosB = m_soundEffect.ChannelSeconds2Bytes(39.399);
+		m_soundEffect.SetLoopPosA(qwPosA);
+		m_soundEffect.SetLoopPosB(qwPosB);
+	}
+	else m_soundEffect.ChannelStop();
+}
+//----------------------------------------------------------------------------
 // 時間の設定（秒数）
 //----------------------------------------------------------------------------
 void CMainWnd::SetSeconds(double fSeconds)

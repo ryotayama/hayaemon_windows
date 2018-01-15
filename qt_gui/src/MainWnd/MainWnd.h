@@ -209,6 +209,7 @@ public: // 関数
 	virtual void SetVocalCancel();
 	virtual void SetVocalCancel(BOOL bVocalCancel);
 	virtual void SetVolume(double nVolume);
+	virtual void SetWave(BOOL bWave);
 	virtual void SetTime(QWORD qwTime, BOOL bReset = TRUE);
 	virtual void SetPan(int nPan);
 	virtual void ShowTime(BOOL bReset = TRUE);
