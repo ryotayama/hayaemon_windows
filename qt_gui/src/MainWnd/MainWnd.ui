@@ -789,11 +789,21 @@
      <addaction name="actionRecordNoise"/>
      <addaction name="actionWave"/>
     </widget>
+    <widget class="QMenu" name="menuReverb_R">
+     <property name="title">
+      <string>Reverb(&amp;R)</string>
+     </property>
+     <addaction name="actionReverbDefault"/>
+     <addaction name="separator"/>
+     <addaction name="actionReverbCustomize"/>
+    </widget>
     <addaction name="menuSpeed"/>
     <addaction name="menuFreq"/>
     <addaction name="menuPitch"/>
     <addaction name="menuVolume"/>
     <addaction name="menuEQ_preset_E"/>
+    <addaction name="separator"/>
+    <addaction name="menuReverb_R"/>
     <addaction name="separator"/>
     <addaction name="menuSound_Effects_S"/>
     <addaction name="separator"/>
@@ -2216,6 +2226,22 @@
    </property>
    <property name="text">
     <string>Wave(&amp;W)</string>
+   </property>
+  </action>
+  <action name="actionReverbDefault">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Default(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionReverbCustomize">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Customize(&amp;C)</string>
    </property>
   </action>
  </widget>

@@ -57,6 +57,11 @@ public: // 関数
 	virtual void SetEQ12_5K(float fCenter, float fBandwidth, float fGain);
 	virtual void SetEQ16K(float fCenter, float fBandwidth, float fGain);
 	virtual void SetEQ20K(float fCenter, float fBandwidth, float fGain);
+	virtual BOOL GetReverb(BASS_DX8_REVERB * bdr);
+	virtual void SetReverb(BOOL bReverb);
+	virtual void SetReverb();
+	virtual void SetReverb(float fInGain, float fReverbMix, float fReverbTime,
+		float fHighFreqRTRatio, BOOL bReverb);
 	virtual void SetLoop(BOOL bLoop);
 	virtual void SetABLoopA(BOOL bLoop);
 	virtual void SetABLoopB(BOOL bLoop);
@@ -109,7 +114,7 @@ private: // メンバ変数
 		m_hFx1KHz, m_hFx1_25KHz, m_hFx1_6KHz, m_hFx2KHz, m_hFx2_5KHz,
 		m_hFx3_15KHz, m_hFx4KHz, m_hFx5KHz, m_hFx6_3KHz, m_hFx8KHz,
 		m_hFx10KHz, m_hFx12_5KHz, m_hFx16KHz, m_hFx20KHz,
-		m_hFxVolume;
+		m_hFxReverb, m_hFxVolume;
 
 	HFX m_hFx20Hz_2, m_hFx25Hz_2, m_hFx31_5Hz_2, m_hFx40Hz_2, m_hFx50Hz_2,
 		m_hFx63Hz_2, m_hFx80Hz_2, m_hFx100Hz_2, m_hFx125Hz_2, m_hFx160Hz_2,
@@ -121,6 +126,8 @@ private: // メンバ変数
 
 	HDSP m_hMonoralDsp, m_hVocalCancelDsp, m_hOnlyLeftDsp, m_hOnlyRightDsp,
 		 m_hChangeLRDsp , m_hNormalizeDsp;
+
+	BASS_DX8_REVERB m_bdr;
 
 public: // メンバ変数の取得・設定
 

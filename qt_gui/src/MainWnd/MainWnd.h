@@ -79,7 +79,7 @@ public: // 関数
 		m_eq16kLabel(*this), m_eq16kSlider(*this),
 		m_eq20kLabel(*this), m_eq20kSlider(*this),
 		m_sound(*this), m_soundEffect(*this, FALSE), isInitFileRead(FALSE),
-		bMarkerPlay(FALSE), bCountLoop(FALSE), bInstantLoop(FALSE),
+		bReverb(FALSE), bMarkerPlay(FALSE), bCountLoop(FALSE), bInstantLoop(FALSE),
 		bSetPositionAuto(FALSE), m_bFinish(FALSE), nFreqVelo(0), nFreqAccel(0),
 		nLoopCount(0), nCurrentLoopCount(0), nCurPlayTab(0),
 		m_nLastDecimalDigit_pitch(0), m_nLastDecimalDigit_freq(0),
@@ -212,6 +212,8 @@ public: // 関数
 	virtual void SetWave(BOOL bWave);
 	virtual void SetTime(QWORD qwTime, BOOL bReset = TRUE);
 	virtual void SetPan(int nPan);
+	virtual void SetReverb(BOOL bReverb);
+	virtual void ShowReverbCustomizeWnd();
 	virtual void ShowTime(BOOL bReset = TRUE);
 	virtual void StartRewind();
 	virtual void StartForward();
@@ -315,6 +317,7 @@ protected: // メンバ変数
 	CSound m_soundEffect; // 効果音
 
 	BOOL isInitFileRead; // INI ファイルがすでに読み込まれたかどうか
+	BOOL bReverb; // リバーブが有効かどうか
 	BOOL bMarkerPlay; // マーカー再生をするかどうか
 	BOOL bCountLoop; // 回数ループをするかどうか
 	BOOL bInstantLoop; // マーカー追加時にループするかどうか

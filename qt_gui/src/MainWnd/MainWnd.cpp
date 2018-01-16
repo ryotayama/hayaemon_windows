@@ -19,6 +19,7 @@
 #include "ABLoopPosWnd.h"
 #include "PlayListView_MainWnd.h"
 #include "Platform.h"
+#include "ReverbCustomizeWnd.h"
 #include "Utility.h"
 //----------------------------------------------------------------------------
 // ドロップされたファイルの追加
@@ -1380,6 +1381,7 @@ void CMainWnd::SetAllEffects()
 	SetEQ12_5K(m_eq12_5kSlider.GetThumbPos());
 	SetEQ16K(m_eq16kSlider.GetThumbPos());
 	SetEQ20K(m_eq20kSlider.GetThumbPos());
+	SetReverb(bReverb);
 }
 //----------------------------------------------------------------------------
 // 連続再生
@@ -2318,6 +2320,14 @@ void CMainWnd::SetRandom(bool bRandom)
 	SetPreviousNextMenuState();
 }
 //----------------------------------------------------------------------------
+// リバーブをかける
+//----------------------------------------------------------------------------
+void CMainWnd::SetReverb(BOOL bReverb)
+{
+	this->bReverb = bReverb;
+	m_sound.SetReverb(bReverb);
+}
+//----------------------------------------------------------------------------
 // 電池切れ
 //----------------------------------------------------------------------------
 void CMainWnd::SetLowBattery()
@@ -2657,6 +2667,14 @@ void CMainWnd::SetTime(QWORD qwTime, BOOL bReset)
 void CMainWnd::SetPan(int nPan)
 {
 	m_sound.ChannelSetPan(nPan);
+}
+//----------------------------------------------------------------------------
+// リバーブのカスタマイズ用ウィンドウの表示
+//----------------------------------------------------------------------------
+void CMainWnd::ShowReverbCustomizeWnd()
+{
+	CReverbCustomizeWnd dlg(*this);
+	dlg.exec();
 }
 //----------------------------------------------------------------------------
 // 再生時間の表示

@@ -34,6 +34,19 @@ void CMenu_MainWnd::SetABLoopState(BOOL bALoop, BOOL bBLoop)
 	EnableItem(ID_ABLOOP_B_SETTING, bBLoop ? MFS_ENABLED : MFS_DISABLED);
 }
 //----------------------------------------------------------------------------
+// リバーブの設定
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::SetReverb(float fInGain, float fReverbMix,
+	float fReverbTime, float fHighFreqRTRatio, UINT uID)
+{
+	BOOL bReverb = !IsItemChecked(uID);
+	m_rMainWnd.GetSound().SetReverb(fInGain, fReverbMix, fReverbTime,
+									fHighFreqRTRatio, bReverb);
+	m_rMainWnd.SetReverb(bReverb);
+	UncheckReverbMenu();
+	CheckItem(uID, bReverb ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
 // １曲ループの状態を設定
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::SetSingleLoopState(BOOL bSLoop)
@@ -56,6 +69,14 @@ void CMenu_MainWnd::SwitchItemChecked(UINT uID)
 {
 	BOOL bCheck = !IsItemChecked(uID);
 	CheckItem(uID, bCheck ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
+// リバーブメニューのチェックを外す
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::UncheckReverbMenu()
+{
+	CheckItem(ID_REVERB_DEFAULT, MF_UNCHECKED);
+	CheckItem(ID_REVERB_CUSTOMIZE, MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
 // 効果音メニューのチェックを外す
@@ -1345,6 +1366,25 @@ void CMenu_MainWnd::OnChangeLRMenuSelected(bool checked)
 	m_rMainWnd.SetChangeLR(checked);
 }
 //----------------------------------------------------------------------------
+// システム → エフェクト → リバーブ → デフォルトメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnReverbDefaultMenuSelected(bool checked)
+{
+	CheckItem(ID_REVERB_DEFAULT, checked ? MF_UNCHECKED : MF_CHECKED);
+	SetReverb(0.0f, 0.0f, 1000.0f, 0.001f, ID_REVERB_DEFAULT);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → リバーブ → カスタマイズメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnReverbCustomizeMenuSelected(bool checked)
+{
+	CheckItem(ID_REVERB_CUSTOMIZE, checked ? MF_UNCHECKED : MF_CHECKED);
+	if(!checked)
+		SetReverb(0.0f, 0.0f, 1000.0f, 0.001f, ID_REVERB_CUSTOMIZE);
+	else m_rMainWnd.ShowReverbCustomizeWnd();
+}
+
+//----------------------------------------------------------------------------
 // システム → EQプリセット → FLATメニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnEQFlatMenuSelected()
@@ -1729,6 +1769,8 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_PITCHDEC_0, m_rMainWnd.actionPitchDigit0},
 		{ID_PITCHDEC_1, m_rMainWnd.actionPitchDigit1},
 		{ID_PITCHDEC_2, m_rMainWnd.actionPitchDigit2},
+		{ID_REVERB_DEFAULT, m_rMainWnd.actionReverbDefault},
+		{ID_REVERB_CUSTOMIZE, m_rMainWnd.actionReverbCustomize},
 		{ID_RECORDNOISE, m_rMainWnd.actionRecordNoise},
 		{ID_WAVE, m_rMainWnd.actionWave},
 		{ID_NORMALIZE, m_rMainWnd.actionNormalize},
@@ -1876,6 +1918,10 @@ void CMenu_MainWnd::CreateConnections()
 	connect(m_rMainWnd.actionSetMarkerPositionAuto, &QAction::triggered,
 					this, &CMenu_MainWnd::OnSetPositionAutoMenuSelected);
 	// Effect
+	connect(m_rMainWnd.actionReverbDefault, &QAction::triggered,
+					this, &CMenu_MainWnd::OnReverbDefaultMenuSelected);
+	connect(m_rMainWnd.actionReverbCustomize, &QAction::triggered,
+					this, &CMenu_MainWnd::OnReverbCustomizeMenuSelected);
 	connect(m_rMainWnd.actionRecordNoise, &QAction::triggered,
 					this, &CMenu_MainWnd::OnRecordNoiseMenuSelected);
 	connect(m_rMainWnd.actionWave, &QAction::triggered,

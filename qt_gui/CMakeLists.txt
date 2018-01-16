@@ -50,6 +50,8 @@ set(SRC_MAINWND
   ${SRC_DIR}/MainWnd/Platform_macOS.cpp
   ${SRC_DIR}/MainWnd/PlayListView_MainWnd.cpp
   ${SRC_DIR}/MainWnd/PlayListView_MainWnd.h
+  ${SRC_DIR}/MainWnd/ReverbCustomizeWnd.cpp
+  ${SRC_DIR}/MainWnd/ReverbCustomizeWnd.h
   ${SRC_DIR}/MainWnd/Sound.cpp
   ${SRC_DIR}/MainWnd/Sound.h
   ${SRC_DIR}/MainWnd/SpeedLabel_MainWnd.cpp
@@ -115,7 +117,8 @@ qt5_add_resources(RESOURCES ${SRC_DIR}/Hayaemon.qrc)
 qt5_wrap_ui(UI_MOC
   ${SRC_DIR}/CountLoopWnd/CountLoopWnd.ui
   ${SRC_DIR}/MainWnd/ABLoopPosWnd.ui
-  ${SRC_DIR}/MainWnd/MainWnd.ui)
+  ${SRC_DIR}/MainWnd/MainWnd.ui
+  ${SRC_DIR}/MainWnd/ReverbCustomizeWnd.ui)
 
 include_directories(
   ${SRC_DIR}/Common

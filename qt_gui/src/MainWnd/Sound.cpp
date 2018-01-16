@@ -19,15 +19,15 @@ CSound::CSound(CMainWnd & mainWnd, BOOL bMainStream)
 		m_hFx1_25KHz(0), m_hFx1_6KHz(0), m_hFx2KHz(0), m_hFx2_5KHz(0),
 		m_hFx3_15KHz(0), m_hFx4KHz(0), m_hFx5KHz(0), m_hFx6_3KHz(0), m_hFx8KHz(0),
 		m_hFx10KHz(0), m_hFx12_5KHz(0), m_hFx16KHz(0), m_hFx20KHz(0),
-		m_hFxVolume(0), m_hFx20Hz_2(0), m_hFx25Hz_2(0), m_hFx31_5Hz_2(0),
-		m_hFx40Hz_2(0), m_hFx50Hz_2(0), m_hFx63Hz_2(0), m_hFx80Hz_2(0),
-		m_hFx100Hz_2(0), m_hFx125Hz_2(0), m_hFx160Hz_2(0), m_hFx200Hz_2(0),
-		m_hFx250Hz_2(0), m_hFx315Hz_2(0), m_hFx400Hz_2(0), m_hFx500Hz_2(0),
-		m_hFx630Hz_2(0), m_hFx800Hz_2(0), m_hFx1KHz_2(0), m_hFx1_25KHz_2(0),
-		m_hFx1_6KHz_2(0), m_hFx2KHz_2(0), m_hFx2_5KHz_2(0), m_hFx3_15KHz_2(0),
-		m_hFx4KHz_2(0), m_hFx5KHz_2(0), m_hFx6_3KHz_2(0), m_hFx8KHz_2(0),
-		m_hFx10KHz_2(0), m_hFx12_5KHz_2(0), m_hFx16KHz_2(0), m_hFx20KHz_2(0),
-		m_hMonoralDsp(0), m_hVocalCancelDsp(0), m_hOnlyLeftDsp(0),
+		m_hFxReverb(0), m_hFxVolume(0), m_hFx20Hz_2(0), m_hFx25Hz_2(0),
+		m_hFx31_5Hz_2(0), m_hFx40Hz_2(0), m_hFx50Hz_2(0), m_hFx63Hz_2(0),
+		m_hFx80Hz_2(0), m_hFx100Hz_2(0), m_hFx125Hz_2(0), m_hFx160Hz_2(0),
+		m_hFx200Hz_2(0), m_hFx250Hz_2(0), m_hFx315Hz_2(0), m_hFx400Hz_2(0),
+		m_hFx500Hz_2(0), m_hFx630Hz_2(0), m_hFx800Hz_2(0), m_hFx1KHz_2(0),
+		m_hFx1_25KHz_2(0), m_hFx1_6KHz_2(0), m_hFx2KHz_2(0), m_hFx2_5KHz_2(0),
+		m_hFx3_15KHz_2(0), m_hFx4KHz_2(0), m_hFx5KHz_2(0), m_hFx6_3KHz_2(0),
+		m_hFx8KHz_2(0), m_hFx10KHz_2(0), m_hFx12_5KHz_2(0), m_hFx16KHz_2(0),
+		m_hFx20KHz_2(0), m_hMonoralDsp(0), m_hVocalCancelDsp(0), m_hOnlyLeftDsp(0),
 		m_hOnlyRightDsp(0), m_hChangeLRDsp(0), m_hNormalizeDsp(0)
 {
 	// BASS_FXSetParametersでボリュームを変更しようとするだけでは、bass_fxが
@@ -1226,6 +1226,44 @@ void CSound::SetEQ20K(float fCenter, float fBandwidth, float fGain)
 			BASS_FXSetParameters(m_hFx20KHz_2, &p2);
 		}
 	}
+}
+//----------------------------------------------------------------------------
+// リバーブのパラメータを得る
+//----------------------------------------------------------------------------
+BOOL CSound::GetReverb(BASS_DX8_REVERB * bdr)
+{
+	if(!m_hFxReverb) return FALSE;
+	return BASS_FXGetParameters(m_hFxReverb, bdr);
+}
+//----------------------------------------------------------------------------
+// リバーブの設定
+//----------------------------------------------------------------------------
+void CSound::SetReverb(BOOL bReverb)
+{
+	if(bReverb) {
+		if(m_hFxReverb) ChannelRemoveFX(m_hFxReverb);
+		m_hFxReverb = ChannelSetFX(BASS_FX_DX8_REVERB, 0);
+		SetReverb();
+	}
+	else ChannelRemoveFX(m_hFxReverb), m_hFxReverb = 0;
+}
+//----------------------------------------------------------------------------
+// リバーブの設定
+//----------------------------------------------------------------------------
+void CSound::SetReverb()
+{
+	BASS_FXSetParameters(m_hFxReverb, &m_bdr);
+}
+//----------------------------------------------------------------------------
+// リバーブの設定
+//----------------------------------------------------------------------------
+void CSound::SetReverb(float fInGain, float fReverbMix, float fReverbTime,
+					   float fHighFreqRTRatio, BOOL bReverb)
+{
+	BASS_DX8_REVERB _bdr = {fInGain, fReverbMix, fReverbTime,
+							fHighFreqRTRatio};
+	m_bdr = _bdr;
+	BASS_FXSetParameters(m_hFxReverb, &m_bdr);
 }
 //----------------------------------------------------------------------------
 // ループ用コールバック関数

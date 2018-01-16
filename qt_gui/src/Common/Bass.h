@@ -83,6 +83,9 @@ public: // 関数
 	virtual HFX ChannelSetFX(DWORD type, int priority) {
 		return BASS_ChannelSetFX(m_hStream, type, priority);
 	}
+	virtual BOOL ChannelRemoveFX(HFX hFx) {
+		return BASS_ChannelRemoveFX(m_hStream, hFx);
+	}
 	virtual BOOL ChannelSetAttribute(DWORD attrib, float value) {
 		return BASS_ChannelSetAttribute(m_hStream, attrib, value);
 	}

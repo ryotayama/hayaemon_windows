@@ -21,9 +21,12 @@ public: // 関数
 
 	virtual BOOL Create();
 	void SetABLoopState(BOOL bALoop, BOOL bBLoop);
+	void SetReverb(float fInGain, float fReverbMix, float fReverbTime,
+		float fHighFreqRTRatio, UINT uID);
 	void SetSingleLoopState(BOOL bSLoop);
 	void SwitchEQVisible(UINT uID);
 	void SwitchItemChecked(UINT uID);
+	void UncheckReverbMenu();
 	void UncheckSoundEffectMenu();
 	void OnSpeedMenuSelected(bool checked);
 	void OnFreqMenuSelected(bool checked);
@@ -198,6 +201,8 @@ public: // 関数
 	void OnOnlyLeftMenuSelected(bool checked);
 	void OnOnlyRightMenuSelected(bool checked);
 	void OnChangeLRMenuSelected(bool checked);
+	void OnReverbDefaultMenuSelected(bool checked);
+	void OnReverbCustomizeMenuSelected(bool checked);
 	void OnEQFlatMenuSelected();
 	void OnEQLowSuperMenuSelected();
 	void OnEQLowHighestMenuSelected();
