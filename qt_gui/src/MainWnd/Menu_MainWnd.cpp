@@ -47,6 +47,25 @@ void CMenu_MainWnd::SetReverb(float fInGain, float fReverbMix,
 	CheckItem(uID, bReverb ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
+// ３Ｄリバーブの設定
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::Set3DReverb(int lRoom, int lRoomHF,
+	float flRoomRolloffFactor, float flDecayTime, float flDecayHFRatio,
+	int lReflections, float flReflectionsDelay, int lReverb,
+	float flReverbDelay, float flDiffusion, float flDensity,
+	float flHFReference, UINT uID)
+{
+	BOOL bReverb = !IsItemChecked(uID);
+	m_rMainWnd.GetSound().Set3DReverb(lRoom, lRoomHF, flRoomRolloffFactor, 
+									  flDecayTime, flDecayHFRatio,
+									  lReflections, flReflectionsDelay,
+									  lReverb, flReverbDelay,  flDiffusion,
+									  flDensity, flHFReference, bReverb);
+	m_rMainWnd.Set3DReverb(bReverb);
+	Uncheck3DReverbMenu();
+	CheckItem(uID, bReverb ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
 // １曲ループの状態を設定
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::SetSingleLoopState(BOOL bSLoop)
@@ -77,6 +96,42 @@ void CMenu_MainWnd::UncheckReverbMenu()
 {
 	CheckItem(ID_REVERB_DEFAULT, MF_UNCHECKED);
 	CheckItem(ID_REVERB_CUSTOMIZE, MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
+// 3Dリバーブメニューのチェックを外す
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::Uncheck3DReverbMenu()
+{
+	CheckItem(ID_3DREVERB_DEFAULT, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_PADDEDCELL, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_ROOM, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_BATHROOM, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_LIVINGROOM, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_STONEROOM, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_AUDITORIUM, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_CONCERTHALL, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_CAVE, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_ARENA, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_HANGAR, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_CARPETEDHALLWAY, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_HALLWAY, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_STONECORRIDOR, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_ALLEY, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_FOREST, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_CITY, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_MOUNTAINS, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_QUARRY, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_PLAIN, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_PARKINGLOT, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_SEWERPIPE, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_UNDERWATER, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_SMALLROOM, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_MEDIUMROOM, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_LARGEROOM, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_MEDIUMHALL, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_LARGEHALL, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_PLATE, MF_UNCHECKED);
+	CheckItem(ID_3DREVERB_CUSTOMIZE, MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
 // 効果音メニューのチェックを外す
@@ -1383,7 +1438,278 @@ void CMenu_MainWnd::OnReverbCustomizeMenuSelected(bool checked)
 		SetReverb(0.0f, 0.0f, 1000.0f, 0.001f, ID_REVERB_CUSTOMIZE);
 	else m_rMainWnd.ShowReverbCustomizeWnd();
 }
-
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → デフォルトメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbDefaultMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_DEFAULT, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -100, 0.0f, 1.49f, 0.83f, -2602, 0.007f, 200, 0.011f, 
+			  100.0f, 100.0f, 5000.0f, ID_3DREVERB_DEFAULT);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → Padded Cellメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbPaddedCellMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_PADDEDCELL, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -6000, 0.0f, 0.17f, 0.10f, -1204, 0.001f, 207, 0.002f,
+			  100.0f, 100.0f, 5000.0f, ID_3DREVERB_PADDEDCELL);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → Roomメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbRoomMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_ROOM, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -454, 0.0f, 0.4f, 0.83f, -1646, 0.002f, 53, 0.003f,
+			  100.0f, 100.0f, 5000.0f, ID_3DREVERB_ROOM);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → Bathroomメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbBathroomMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_BATHROOM, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -1200, 0.0f, 1.49f, 0.54f, -370, 0.007f, 1030, 0.011f,
+			  100.0f, 60.0f, 5000.0f, ID_3DREVERB_BATHROOM);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → LivingRoomメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbLivingRoomMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_LIVINGROOM, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -6000, 0.0f, 0.50f, 0.10f, -1376, 0.003f, -1104, 0.004f,
+			  100.0f, 100.0f, 5000.0f, ID_3DREVERB_LIVINGROOM);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → StoneRoomメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbStoneRoomMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_STONEROOM, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -300, 0.0f, 2.31f, 0.64f, -711, 0.012f, 83, 0.017f,
+			  100.0f, 100.0f, 5000.0f, ID_3DREVERB_STONEROOM);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → Auditoriumメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbAuditoriumMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_AUDITORIUM, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -476, 0.0f, 4.32f, 0.59f, -789, 0.020f, -289, 0.030f,
+			  100.0f, 100.0f, 5000.0f, ID_3DREVERB_AUDITORIUM);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → ConcertHallメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbConcertHallMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_CONCERTHALL, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -500, 0.0f, 3.92f, 0.70f, -1230, 0.020f, -2, 0.029f,
+			  100.0f, 100.0f, 5000.0f, ID_3DREVERB_CONCERTHALL);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → Caveメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbCaveMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_CAVE, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, 0, 0.0f, 2.91f, 1.30f, -602, 0.015f, -302, 0.022f,
+			  100.0f, 100.0f, 5000.0f, ID_3DREVERB_CAVE);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → Arenaメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbArenaMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_ARENA, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -698, 0.0f, 7.24f, 0.33f, -1166, 0.020f, 16, 0.030f,
+			  100.0f, 100.0f, 5000.0f, ID_3DREVERB_ARENA);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → Hangarメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbHangarMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_HANGAR, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -1000, 0.0f,10.05f, 0.23f, -602, 0.020f, 198, 0.030f,
+			  100.0f, 100.0f, 5000.0f, ID_3DREVERB_HANGAR);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → CarpetedHallwayメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbCarpetedHallwayMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_CARPETEDHALLWAY, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -4000, 0.0f, 0.30f, 0.10f, -1831, 0.002f, -1630, 0.030f,
+			  100.0f, 100.0f, 5000.0f, ID_3DREVERB_CARPETEDHALLWAY);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → Hallwayメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbHallwayMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_HALLWAY, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -300, 0.0f, 1.49f, 0.59f, -1219, 0.007f, 441, 0.011f,
+			  100.0f, 100.0f, 5000.0f, ID_3DREVERB_HALLWAY);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → StoneCorridorメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbStoneCorridorMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_STONECORRIDOR, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -237, 0.0f, 2.70f, 0.79f, -1214, 0.013f, 395, 0.020f,
+			  100.0f, 100.0f, 5000.0f, ID_3DREVERB_STONECORRIDOR);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → Alleyメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbAlleyMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_ALLEY, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -270, 0.0f, 1.49f, 0.86f, -1204, 0.007f, -4, 0.011f,
+			  100.0f, 100.0f, 5000.0f, ID_3DREVERB_ALLEY);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → Forestメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbForestMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_FOREST, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -3300, 0.0f, 1.49f, 0.54f, -2560, 0.162f, -613, 0.088f,
+			  79.0f, 100.0f, 5000.0f, ID_3DREVERB_FOREST);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → Cityメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbCityMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_CITY, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -800, 0.0f, 1.49f, 0.67f, -2273, 0.007f, -2217, 0.011f,
+			  50.0f, 100.0f, 5000.0f, ID_3DREVERB_CITY);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → Mountainsメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbMountainsMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_MOUNTAINS, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -2500, 0.0f, 1.49f, 0.21f, -2780, 0.300f, -2014, 0.100f,
+			  27.0f, 100.0f, 5000.0f, ID_3DREVERB_MOUNTAINS);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → Quarryメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbQuarryMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_QUARRY, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -1000, 0.0f, 1.49f, 0.83f,-10000, 0.061f, 500, 0.025f,
+			  100.0f, 100.0f, 5000.0f, ID_3DREVERB_QUARRY);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → Plainメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbPlainMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_PLAIN, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -2000, 0.0f, 1.49f, 0.50f, -2466, 0.179f, -2514, 0.100f,
+			  21.0f, 100.0f, 5000.0f, ID_3DREVERB_PLAIN);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → ParkingLotメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbParkingLotMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_PARKINGLOT, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, 0, 0.0f, 1.65f, 1.50f, -1363, 0.008f, -1153, 0.012f,
+			  100.0f, 100.0f, 5000.0f, ID_3DREVERB_PARKINGLOT);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → SewerPipeメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbSewerPipeMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_SEWERPIPE, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -1000, 0.0f, 2.81f, 0.14f, 429, 0.014f, 648, 0.021f,
+			  80.0f, 60.0f, 5000.0f, ID_3DREVERB_SEWERPIPE);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → Underwaterメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbUnderwaterMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_UNDERWATER, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -4000, 0.0f, 1.49f, 0.10f, -449, 0.007f, 1700, 0.011f,
+			  100.0f, 100.0f, 5000.0f, ID_3DREVERB_UNDERWATER);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → Small Roomメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbSmallRoomMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_SMALLROOM, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -600, 0.0f, 1.10f, 0.83f, -400, 0.005f, 500, 0.010f,
+			  100.0f, 100.0f, 5000.0f, ID_3DREVERB_SMALLROOM);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → Medium Roomメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbMediumRoomMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_MEDIUMROOM, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -600, 0.0f, 1.30f, 0.83f, -1000, 0.010f, -200, 0.020f,
+			  100.0f, 100.0f, 5000.0f, ID_3DREVERB_MEDIUMROOM);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → Large Roomメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbLargeRoomMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_LARGEROOM, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -600, 0.0f, 1.50f, 0.83f, -1600, 0.020f, -1000, 0.040f, 
+			  100.0f, 100.0f, 5000.0f, ID_3DREVERB_LARGEROOM);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → Medium Hallメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbMediumHallMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_MEDIUMHALL, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -600, 0.0f, 1.80f, 0.70f, -1300, 0.015f, -800, 0.030f, 
+			  100.0f, 100.0f, 5000.0f, ID_3DREVERB_MEDIUMHALL);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → Large Hallメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbLargeHallMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_LARGEHALL, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -600, 0.0f, 1.80f, 0.70f, -2000, 0.030f, -1400, 0.060f, 
+			  100.0f, 100.0f, 5000.0f, ID_3DREVERB_LARGEHALL);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → Plateメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbPlateMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_PLATE, checked ? MF_UNCHECKED : MF_CHECKED);
+	Set3DReverb(-1000, -200, 0.0f, 1.30f, 0.90f, 0, 0.002f, 0, 0.010f, 100.0f, 
+			  75.0f, 5000.0f, ID_3DREVERB_PLATE);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → ３Ｄリバーブ → カスタマイズメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::On3DReverbCustomizeMenuSelected(bool checked)
+{
+	CheckItem(ID_3DREVERB_CUSTOMIZE, checked ? MF_UNCHECKED : MF_CHECKED);
+	if(!checked)
+		Set3DReverb(-1000, -100, 0.0f, 1.49f, 0.83f, -2602, 0.007f, 200, 0.011f,
+					100.0f, 100.0f, 5000.0f, ID_3DREVERB_CUSTOMIZE);
+	else m_rMainWnd.Show3DReverbCustomizeWnd();
+}
 //----------------------------------------------------------------------------
 // システム → EQプリセット → FLATメニューが選択された
 //----------------------------------------------------------------------------
@@ -1771,6 +2097,36 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_PITCHDEC_2, m_rMainWnd.actionPitchDigit2},
 		{ID_REVERB_DEFAULT, m_rMainWnd.actionReverbDefault},
 		{ID_REVERB_CUSTOMIZE, m_rMainWnd.actionReverbCustomize},
+		{ID_3DREVERB_DEFAULT, m_rMainWnd.action3DReverbDefault},
+		{ID_3DREVERB_PADDEDCELL, m_rMainWnd.action3DReverbPaddedCell},
+		{ID_3DREVERB_ROOM, m_rMainWnd.action3DReverbRoom},
+		{ID_3DREVERB_BATHROOM, m_rMainWnd.action3DReverbBathroom},
+		{ID_3DREVERB_LIVINGROOM, m_rMainWnd.action3DReverbLivingRoom},
+		{ID_3DREVERB_STONEROOM, m_rMainWnd.action3DReverbStoneRoom},
+		{ID_3DREVERB_AUDITORIUM, m_rMainWnd.action3DReverbAuditorium},
+		{ID_3DREVERB_CONCERTHALL, m_rMainWnd.action3DReverbConcertHall},
+		{ID_3DREVERB_CAVE, m_rMainWnd.action3DReverbCave},
+		{ID_3DREVERB_ARENA, m_rMainWnd.action3DReverbArena},
+		{ID_3DREVERB_HANGAR, m_rMainWnd.action3DReverbHangar},
+		{ID_3DREVERB_CARPETEDHALLWAY, m_rMainWnd.action3DReverbCarpetedHallway},
+		{ID_3DREVERB_HALLWAY, m_rMainWnd.action3DReverbHallway},
+		{ID_3DREVERB_STONECORRIDOR, m_rMainWnd.action3DReverbStoneCorridor},
+		{ID_3DREVERB_ALLEY, m_rMainWnd.action3DReverbAlley},
+		{ID_3DREVERB_FOREST, m_rMainWnd.action3DReverbForest},
+		{ID_3DREVERB_CITY, m_rMainWnd.action3DReverbCity},
+		{ID_3DREVERB_MOUNTAINS, m_rMainWnd.action3DReverbMountains},
+		{ID_3DREVERB_QUARRY, m_rMainWnd.action3DReverbQuarry},
+		{ID_3DREVERB_PLAIN, m_rMainWnd.action3DReverbPlain},
+		{ID_3DREVERB_PARKINGLOT, m_rMainWnd.action3DReverbParkingLot},
+		{ID_3DREVERB_SEWERPIPE, m_rMainWnd.action3DReverbSewerPipe},
+		{ID_3DREVERB_UNDERWATER, m_rMainWnd.action3DReverbUnderwater},
+		{ID_3DREVERB_SMALLROOM, m_rMainWnd.action3DReverbSmallRoom},
+		{ID_3DREVERB_MEDIUMROOM, m_rMainWnd.action3DReverbMediumRoom},
+		{ID_3DREVERB_LARGEROOM, m_rMainWnd.action3DReverbLargeRoom},
+		{ID_3DREVERB_MEDIUMHALL, m_rMainWnd.action3DReverbMediumHall},
+		{ID_3DREVERB_LARGEHALL, m_rMainWnd.action3DReverbLargeHall},
+		{ID_3DREVERB_PLATE, m_rMainWnd.action3DReverbPlate},
+		{ID_3DREVERB_CUSTOMIZE, m_rMainWnd.action3DReverbCustomize},
 		{ID_RECORDNOISE, m_rMainWnd.actionRecordNoise},
 		{ID_WAVE, m_rMainWnd.actionWave},
 		{ID_NORMALIZE, m_rMainWnd.actionNormalize},
@@ -1922,6 +2278,67 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnReverbDefaultMenuSelected);
 	connect(m_rMainWnd.actionReverbCustomize, &QAction::triggered,
 					this, &CMenu_MainWnd::OnReverbCustomizeMenuSelected);
+	// Effect - 3D Reverb
+	connect(m_rMainWnd.action3DReverbDefault, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbDefaultMenuSelected);
+	connect(m_rMainWnd.action3DReverbPaddedCell, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbPaddedCellMenuSelected);
+	connect(m_rMainWnd.action3DReverbRoom, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbRoomMenuSelected);
+	connect(m_rMainWnd.action3DReverbBathroom, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbBathroomMenuSelected);
+	connect(m_rMainWnd.action3DReverbLivingRoom, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbLivingRoomMenuSelected);
+	connect(m_rMainWnd.action3DReverbStoneRoom, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbStoneRoomMenuSelected);
+	connect(m_rMainWnd.action3DReverbAuditorium, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbAuditoriumMenuSelected);
+	connect(m_rMainWnd.action3DReverbConcertHall, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbConcertHallMenuSelected);
+	connect(m_rMainWnd.action3DReverbCave, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbCaveMenuSelected);
+	connect(m_rMainWnd.action3DReverbArena, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbArenaMenuSelected);
+	connect(m_rMainWnd.action3DReverbHangar, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbHangarMenuSelected);
+	connect(m_rMainWnd.action3DReverbCarpetedHallway, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbCarpetedHallwayMenuSelected);
+	connect(m_rMainWnd.action3DReverbHallway, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbHallwayMenuSelected);
+	connect(m_rMainWnd.action3DReverbStoneCorridor, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbStoneCorridorMenuSelected);
+	connect(m_rMainWnd.action3DReverbAlley, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbAlleyMenuSelected);
+	connect(m_rMainWnd.action3DReverbForest, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbForestMenuSelected);
+	connect(m_rMainWnd.action3DReverbCity, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbCityMenuSelected);
+	connect(m_rMainWnd.action3DReverbMountains, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbMountainsMenuSelected);
+	connect(m_rMainWnd.action3DReverbQuarry, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbQuarryMenuSelected);
+	connect(m_rMainWnd.action3DReverbPlain, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbPlainMenuSelected);
+	connect(m_rMainWnd.action3DReverbParkingLot, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbParkingLotMenuSelected);
+	connect(m_rMainWnd.action3DReverbSewerPipe, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbSewerPipeMenuSelected);
+	connect(m_rMainWnd.action3DReverbUnderwater, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbUnderwaterMenuSelected);
+	connect(m_rMainWnd.action3DReverbSmallRoom, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbSmallRoomMenuSelected);
+	connect(m_rMainWnd.action3DReverbMediumRoom, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbMediumRoomMenuSelected);
+	connect(m_rMainWnd.action3DReverbLargeRoom, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbLargeRoomMenuSelected);
+	connect(m_rMainWnd.action3DReverbMediumHall, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbMediumHallMenuSelected);
+	connect(m_rMainWnd.action3DReverbLargeHall, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbLargeHallMenuSelected);
+	connect(m_rMainWnd.action3DReverbPlate, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbPlateMenuSelected);
+	connect(m_rMainWnd.action3DReverbCustomize, &QAction::triggered,
+					this, &CMenu_MainWnd::On3DReverbCustomizeMenuSelected);
 	connect(m_rMainWnd.actionRecordNoise, &QAction::triggered,
 					this, &CMenu_MainWnd::OnRecordNoiseMenuSelected);
 	connect(m_rMainWnd.actionWave, &QAction::triggered,

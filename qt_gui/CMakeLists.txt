@@ -23,6 +23,8 @@ set(SRC_COUNTLOOPWND
   ${SRC_DIR}/CountLoopWnd/CountLoopWnd_MainWnd.h
 )
 set(SRC_MAINWND
+  ${SRC_DIR}/MainWnd/3DReverbCustomizeWnd.cpp
+  ${SRC_DIR}/MainWnd/3DReverbCustomizeWnd.h
   ${SRC_DIR}/MainWnd/ABLoopPosWnd.cpp
   ${SRC_DIR}/MainWnd/ABLoopPosWnd.h
   ${SRC_DIR}/MainWnd/EQLabel_MainWnd.cpp
@@ -118,6 +120,7 @@ qt5_wrap_ui(UI_MOC
   ${SRC_DIR}/CountLoopWnd/CountLoopWnd.ui
   ${SRC_DIR}/MainWnd/ABLoopPosWnd.ui
   ${SRC_DIR}/MainWnd/MainWnd.ui
+  ${SRC_DIR}/MainWnd/Reverb3DCustomizeWnd.ui
   ${SRC_DIR}/MainWnd/ReverbCustomizeWnd.ui)
 
 include_directories(

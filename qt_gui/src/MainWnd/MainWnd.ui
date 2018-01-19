@@ -797,6 +797,43 @@
      <addaction name="separator"/>
      <addaction name="actionReverbCustomize"/>
     </widget>
+    <widget class="QMenu" name="menu3D_Reverb_R">
+     <property name="title">
+      <string>3D Reverb(&amp;R)</string>
+     </property>
+     <addaction name="action3DReverbDefault"/>
+     <addaction name="separator"/>
+     <addaction name="action3DReverbPaddedCell"/>
+     <addaction name="action3DReverbRoom"/>
+     <addaction name="action3DReverbBathroom"/>
+     <addaction name="action3DReverbLivingRoom"/>
+     <addaction name="action3DReverbStoneRoom"/>
+     <addaction name="action3DReverbAuditorium"/>
+     <addaction name="action3DReverbConcertHall"/>
+     <addaction name="action3DReverbCave"/>
+     <addaction name="action3DReverbArena"/>
+     <addaction name="action3DReverbHangar"/>
+     <addaction name="action3DReverbCarpetedHallway"/>
+     <addaction name="action3DReverbHallway"/>
+     <addaction name="action3DReverbStoneCorridor"/>
+     <addaction name="action3DReverbAlley"/>
+     <addaction name="action3DReverbForest"/>
+     <addaction name="action3DReverbCity"/>
+     <addaction name="action3DReverbMountains"/>
+     <addaction name="action3DReverbQuarry"/>
+     <addaction name="action3DReverbPlain"/>
+     <addaction name="action3DReverbParkingLot"/>
+     <addaction name="action3DReverbSewerPipe"/>
+     <addaction name="action3DReverbUnderwater"/>
+     <addaction name="action3DReverbSmallRoom"/>
+     <addaction name="action3DReverbMediumRoom"/>
+     <addaction name="action3DReverbLargeRoom"/>
+     <addaction name="action3DReverbMediumHall"/>
+     <addaction name="action3DReverbLargeHall"/>
+     <addaction name="action3DReverbPlate"/>
+     <addaction name="separator"/>
+     <addaction name="action3DReverbCustomize"/>
+    </widget>
     <addaction name="menuSpeed"/>
     <addaction name="menuFreq"/>
     <addaction name="menuPitch"/>
@@ -804,6 +841,7 @@
     <addaction name="menuEQ_preset_E"/>
     <addaction name="separator"/>
     <addaction name="menuReverb_R"/>
+    <addaction name="menu3D_Reverb_R"/>
     <addaction name="separator"/>
     <addaction name="menuSound_Effects_S"/>
     <addaction name="separator"/>
@@ -2242,6 +2280,246 @@
    </property>
    <property name="text">
     <string>Customize(&amp;C)</string>
+   </property>
+  </action>
+  <action name="action3DReverbDefault">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Default(&amp;D)</string>
+   </property>
+  </action>
+  <action name="action3DReverbCustomize">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Customize(&amp;C)</string>
+   </property>
+  </action>
+  <action name="action3DReverbPaddedCell">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Padded Cell(&amp;P)</string>
+   </property>
+  </action>
+  <action name="action3DReverbRoom">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Room(&amp;R)</string>
+   </property>
+  </action>
+  <action name="action3DReverbBathroom">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Bathroom(&amp;B)</string>
+   </property>
+  </action>
+  <action name="action3DReverbLivingRoom">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Living Room(&amp;R)</string>
+   </property>
+  </action>
+  <action name="action3DReverbStoneRoom">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Stone Room(&amp;R)</string>
+   </property>
+  </action>
+  <action name="action3DReverbAuditorium">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Auditorium(&amp;R)</string>
+   </property>
+  </action>
+  <action name="action3DReverbConcertHall">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Concert Hall(&amp;R)</string>
+   </property>
+  </action>
+  <action name="action3DReverbCave">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Cave(&amp;R)</string>
+   </property>
+  </action>
+  <action name="action3DReverbArena">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Arena(&amp;R)</string>
+   </property>
+  </action>
+  <action name="action3DReverbHangar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Hangar(&amp;R)</string>
+   </property>
+  </action>
+  <action name="action3DReverbCarpetedHallway">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Carpeted Hallway(&amp;R)</string>
+   </property>
+  </action>
+  <action name="action3DReverbHallway">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Hallway(&amp;R)</string>
+   </property>
+  </action>
+  <action name="action3DReverbStoneCorridor">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Stone Corridor(&amp;R)</string>
+   </property>
+  </action>
+  <action name="action3DReverbAlley">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Alley(&amp;R)</string>
+   </property>
+  </action>
+  <action name="action3DReverbForest">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Forest(&amp;R)</string>
+   </property>
+  </action>
+  <action name="action3DReverbCity">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>City(&amp;R)</string>
+   </property>
+  </action>
+  <action name="action3DReverbMountains">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Mountains(&amp;R)</string>
+   </property>
+  </action>
+  <action name="action3DReverbQuarry">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Quarry(&amp;R)</string>
+   </property>
+  </action>
+  <action name="action3DReverbPlain">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Plain(&amp;R)</string>
+   </property>
+  </action>
+  <action name="action3DReverbParkingLot">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Parking Lot(&amp;R)</string>
+   </property>
+  </action>
+  <action name="action3DReverbSewerPipe">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Sewer Pipe(&amp;R)</string>
+   </property>
+  </action>
+  <action name="action3DReverbUnderwater">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Underwater(&amp;R)</string>
+   </property>
+  </action>
+  <action name="action3DReverbSmallRoom">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Small Room(&amp;S)</string>
+   </property>
+  </action>
+  <action name="action3DReverbMediumRoom">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Medium Room(&amp;M)</string>
+   </property>
+  </action>
+  <action name="action3DReverbLargeRoom">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Large Room(&amp;L)</string>
+   </property>
+  </action>
+  <action name="action3DReverbMediumHall">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Medium Hall(&amp;M)</string>
+   </property>
+  </action>
+  <action name="action3DReverbLargeHall">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Large Hall(&amp;L)</string>
+   </property>
+  </action>
+  <action name="action3DReverbPlate">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Plate(&amp;P)</string>
    </property>
   </action>
  </widget>

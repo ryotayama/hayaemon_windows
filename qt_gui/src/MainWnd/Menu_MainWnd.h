@@ -23,10 +23,15 @@ public: // 関数
 	void SetABLoopState(BOOL bALoop, BOOL bBLoop);
 	void SetReverb(float fInGain, float fReverbMix, float fReverbTime,
 		float fHighFreqRTRatio, UINT uID);
+	void Set3DReverb(int lRoom, int lRoomHF, float flRoomRolloffFactor,
+		float flDecayTime, float flDecayHFRatio, int lReflections,
+		float flReflectionsDelay, int lReverb, float flReverbDelay,
+		float flDiffusion, float flDensity, float flHFReference, UINT uID);
 	void SetSingleLoopState(BOOL bSLoop);
 	void SwitchEQVisible(UINT uID);
 	void SwitchItemChecked(UINT uID);
 	void UncheckReverbMenu();
+	void Uncheck3DReverbMenu();
 	void UncheckSoundEffectMenu();
 	void OnSpeedMenuSelected(bool checked);
 	void OnFreqMenuSelected(bool checked);
@@ -203,6 +208,36 @@ public: // 関数
 	void OnChangeLRMenuSelected(bool checked);
 	void OnReverbDefaultMenuSelected(bool checked);
 	void OnReverbCustomizeMenuSelected(bool checked);
+	void On3DReverbDefaultMenuSelected(bool checked);
+	void On3DReverbPaddedCellMenuSelected(bool checked);
+	void On3DReverbRoomMenuSelected(bool checked);
+	void On3DReverbBathroomMenuSelected(bool checked);
+	void On3DReverbLivingRoomMenuSelected(bool checked);
+	void On3DReverbStoneRoomMenuSelected(bool checked);
+	void On3DReverbAuditoriumMenuSelected(bool checked);
+	void On3DReverbConcertHallMenuSelected(bool checked);
+	void On3DReverbCaveMenuSelected(bool checked);
+	void On3DReverbArenaMenuSelected(bool checked);
+	void On3DReverbHangarMenuSelected(bool checked);
+	void On3DReverbCarpetedHallwayMenuSelected(bool checked);
+	void On3DReverbHallwayMenuSelected(bool checked);
+	void On3DReverbStoneCorridorMenuSelected(bool checked);
+	void On3DReverbAlleyMenuSelected(bool checked);
+	void On3DReverbForestMenuSelected(bool checked);
+	void On3DReverbCityMenuSelected(bool checked);
+	void On3DReverbMountainsMenuSelected(bool checked);
+	void On3DReverbQuarryMenuSelected(bool checked);
+	void On3DReverbPlainMenuSelected(bool checked);
+	void On3DReverbParkingLotMenuSelected(bool checked);
+	void On3DReverbSewerPipeMenuSelected(bool checked);
+	void On3DReverbUnderwaterMenuSelected(bool checked);
+	void On3DReverbSmallRoomMenuSelected(bool checked);
+	void On3DReverbMediumRoomMenuSelected(bool checked);
+	void On3DReverbLargeRoomMenuSelected(bool checked);
+	void On3DReverbMediumHallMenuSelected(bool checked);
+	void On3DReverbLargeHallMenuSelected(bool checked);
+	void On3DReverbPlateMenuSelected(bool checked);
+	void On3DReverbCustomizeMenuSelected(bool checked);
 	void OnEQFlatMenuSelected();
 	void OnEQLowSuperMenuSelected();
 	void OnEQLowHighestMenuSelected();

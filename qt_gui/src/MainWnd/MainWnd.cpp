@@ -16,6 +16,7 @@
 #include "../Common/CommandList.h"
 #include "../Common/Utils.h"
 #include "../CountLoopWnd/CountLoopWnd_MainWnd.h"
+#include "3DReverbCustomizeWnd.h"
 #include "ABLoopPosWnd.h"
 #include "PlayListView_MainWnd.h"
 #include "Platform.h"
@@ -1382,6 +1383,7 @@ void CMainWnd::SetAllEffects()
 	SetEQ16K(m_eq16kSlider.GetThumbPos());
 	SetEQ20K(m_eq20kSlider.GetThumbPos());
 	SetReverb(bReverb);
+	Set3DReverb(b3DReverb);
 }
 //----------------------------------------------------------------------------
 // 連続再生
@@ -2328,6 +2330,14 @@ void CMainWnd::SetReverb(BOOL bReverb)
 	m_sound.SetReverb(bReverb);
 }
 //----------------------------------------------------------------------------
+// ３Ｄリバーブをかける
+//----------------------------------------------------------------------------
+void CMainWnd::Set3DReverb(BOOL b3DReverb)
+{
+	this->b3DReverb = b3DReverb;
+	m_sound.Set3DReverb(b3DReverb);
+}
+//----------------------------------------------------------------------------
 // 電池切れ
 //----------------------------------------------------------------------------
 void CMainWnd::SetLowBattery()
@@ -2660,6 +2670,14 @@ void CMainWnd::SetTime(QWORD qwTime, BOOL bReset)
 		qwTime = m_sound.ChannelGetLength() - (QWORD)m_sound.ChannelGetFreq();
 	if(bReset) m_sound.ChannelSetPosition(qwTime);
 	ShowTime();
+}
+//----------------------------------------------------------------------------
+// ３Ｄリバーブのカスタマイズ用ウィンドウの表示
+//----------------------------------------------------------------------------
+void CMainWnd::Show3DReverbCustomizeWnd()
+{
+	C3DReverbCustomizeWnd dlg(*this);
+	dlg.exec();
 }
 //----------------------------------------------------------------------------
 // パンの設定
