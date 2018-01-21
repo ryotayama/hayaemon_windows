@@ -61,6 +61,20 @@ void CMenu_MainWnd::SetChorus(float fWetDryMix, float fDepth, float fFeedback,
 	CheckItem(uID, bChorus ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
+// コンプレッサーの設定
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::SetCompressor(float fGain, float fAttack, float fRelease,
+								  float fThreshold, float fRatio,
+								  float fPredelay, UINT uID)
+{
+	BOOL bCompressor = !IsItemChecked(uID);
+	m_rMainWnd.GetSound().SetCompressor(fGain, fAttack, fRelease, fThreshold,
+									   fRatio, fPredelay, bCompressor);
+	m_rMainWnd.SetCompressor(bCompressor);
+	UncheckCompressorMenu();
+	CheckItem(uID, bCompressor ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
 // リバーブの設定
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::SetReverb(float fInGain, float fReverbMix,
@@ -123,6 +137,14 @@ void CMenu_MainWnd::UncheckChorusMenu()
 {
 	CheckItem(ID_CHORUS_DEFAULT, MF_UNCHECKED);
 	CheckItem(ID_CHORUS_CUSTOMIZE, MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
+// コンプレッサーメニューのチェックを外す
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::UncheckCompressorMenu()
+{
+	CheckItem(ID_COMPRESSOR_DEFAULT, MF_UNCHECKED);
+	CheckItem(ID_COMPRESSOR_CUSTOMIZE, MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
 // エコーメニューのチェックを外す
@@ -1891,6 +1913,26 @@ void CMenu_MainWnd::OnChorusCustomizeMenuSelected(bool checked)
 	else m_rMainWnd.ShowChorusCustomizeWnd();
 }
 //----------------------------------------------------------------------------
+// システム → エフェクト → Compressor → Defaultメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnCompressorDefaultMenuSelected(bool checked)
+{
+	CheckItem(ID_COMPRESSOR_DEFAULT, checked ? MF_UNCHECKED : MF_CHECKED);
+	SetCompressor(0.0f, 10.0f, 200.0f, -20.0f, 3.0f, 4.0f,
+				  ID_COMPRESSOR_DEFAULT);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → Compressor → カスタマイズメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnCompressorCustomizeMenuSelected(bool checked)
+{
+	CheckItem(ID_COMPRESSOR_CUSTOMIZE, checked ? MF_UNCHECKED : MF_CHECKED);
+	if(!checked)
+		SetCompressor(0.0f, 10.0f, 200.0f, -20.0f, 3.0f, 4.0f,
+					  ID_COMPRESSOR_CUSTOMIZE);
+	else m_rMainWnd.ShowCompressorCustomizeWnd();
+}
+//----------------------------------------------------------------------------
 // システム → EQプリセット → FLATメニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnEQFlatMenuSelected()
@@ -2322,6 +2364,8 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_DELAY_CUSTOMIZE, m_rMainWnd.actionDelayCustomize},
 		{ID_CHORUS_DEFAULT, m_rMainWnd.actionChorusDefault},
 		{ID_CHORUS_CUSTOMIZE, m_rMainWnd.actionChorusCustomize},
+		{ID_COMPRESSOR_DEFAULT, m_rMainWnd.actionCompressorDefault},
+		{ID_COMPRESSOR_CUSTOMIZE, m_rMainWnd.actionCompressorCustomize},
 		{ID_RECORDNOISE, m_rMainWnd.actionRecordNoise},
 		{ID_WAVE, m_rMainWnd.actionWave},
 		{ID_NORMALIZE, m_rMainWnd.actionNormalize},
@@ -2566,6 +2610,11 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnChorusDefaultMenuSelected);
 	connect(m_rMainWnd.actionChorusCustomize, &QAction::triggered,
 					this, &CMenu_MainWnd::OnChorusCustomizeMenuSelected);
+	// Effect - Compressor
+	connect(m_rMainWnd.actionCompressorDefault, &QAction::triggered,
+					this, &CMenu_MainWnd::OnCompressorDefaultMenuSelected);
+	connect(m_rMainWnd.actionCompressorCustomize, &QAction::triggered,
+					this, &CMenu_MainWnd::OnCompressorCustomizeMenuSelected);
 	// Effect - Sound Effects
 	connect(m_rMainWnd.actionRecordNoise, &QAction::triggered,
 					this, &CMenu_MainWnd::OnRecordNoiseMenuSelected);

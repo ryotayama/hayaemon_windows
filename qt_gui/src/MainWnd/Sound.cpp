@@ -20,7 +20,7 @@ CSound::CSound(CMainWnd & mainWnd, BOOL bMainStream)
 		m_hFx3_15KHz(0), m_hFx4KHz(0), m_hFx5KHz(0), m_hFx6_3KHz(0), m_hFx8KHz(0),
 		m_hFx10KHz(0), m_hFx12_5KHz(0), m_hFx16KHz(0), m_hFx20KHz(0),
 		m_hFxReverb(0), m_hFx3DReverb(0), m_hFxDelay(0), m_hFxChorus(0),
-		m_hFxVolume(0),
+		m_hFxCompressor(0), m_hFxVolume(0),
 		m_hFx20Hz_2(0), m_hFx25Hz_2(0), m_hFx31_5Hz_2(0), m_hFx40Hz_2(0),
 		m_hFx50Hz_2(0), m_hFx63Hz_2(0), m_hFx80Hz_2(0), m_hFx100Hz_2(0),
 		m_hFx125Hz_2(0), m_hFx160Hz_2(0), m_hFx200Hz_2(0), m_hFx250Hz_2(0),
@@ -1388,6 +1388,46 @@ void CSound::SetChorus(float fWetDryMix, float fDepth, float fFeedback,
 							lWaveform, fDelay, lPhase};
 	m_bdc = _bdc;
 	BASS_FXSetParameters(m_hFxChorus, &m_bdc);
+}
+//----------------------------------------------------------------------------
+// コンプレッサーのパラメータを得る
+//----------------------------------------------------------------------------
+BOOL CSound::GetCompressor(BASS_DX8_COMPRESSOR * bdcmp)
+{
+	if(!m_hFxCompressor) return FALSE;
+	return BASS_FXGetParameters(m_hFxCompressor, bdcmp);
+}
+//----------------------------------------------------------------------------
+// コンプレッサーの設定
+//----------------------------------------------------------------------------
+void CSound::SetCompressor(BOOL bCompressor)
+{
+	if(bCompressor) {
+		if(m_hFxCompressor) ChannelRemoveFX(m_hFxCompressor);
+		m_hFxCompressor = ChannelSetFX(BASS_FX_DX8_COMPRESSOR, 0);
+		SetCompressor();
+	}
+	else
+		ChannelRemoveFX(m_hFxCompressor), m_hFxCompressor = 0;
+}
+//----------------------------------------------------------------------------
+// コンプレッサーの設定
+//----------------------------------------------------------------------------
+void CSound::SetCompressor()
+{
+	BASS_FXSetParameters(m_hFxCompressor, &m_bdcmp);
+}
+//----------------------------------------------------------------------------
+// コンプレッサーの設定
+//----------------------------------------------------------------------------
+void CSound::SetCompressor(float fGain, float fAttack, float fRelease,
+						   float fThreshold, float fRatio, float fPredelay,
+						   BOOL bCompressor)
+{
+	BASS_DX8_COMPRESSOR _bdcmp = {fGain, fAttack, fRelease, fThreshold,
+								  fRatio, fPredelay};
+	m_bdcmp = _bdcmp;
+	BASS_FXSetParameters(m_hFxCompressor, &m_bdcmp);
 }
 //----------------------------------------------------------------------------
 // ループ用コールバック関数

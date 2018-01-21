@@ -19,6 +19,7 @@
 #include "3DReverbCustomizeWnd.h"
 #include "ABLoopPosWnd.h"
 #include "ChorusCustomizeWnd.h"
+#include "CompressorCustomizeWnd.h"
 #include "DelayCustomizeWnd.h"
 #include "PlayListView_MainWnd.h"
 #include "Platform.h"
@@ -1388,6 +1389,7 @@ void CMainWnd::SetAllEffects()
 	Set3DReverb(b3DReverb);
 	SetDelay(bDelay);
 	SetChorus(bChorus);
+	SetCompressor(bCompressor);
 }
 //----------------------------------------------------------------------------
 // 連続再生
@@ -2358,6 +2360,14 @@ void CMainWnd::SetChorus(BOOL bChorus)
 	m_sound.SetChorus(bChorus);
 }
 //----------------------------------------------------------------------------
+// コンプレッサーをかける
+//----------------------------------------------------------------------------
+void CMainWnd::SetCompressor(BOOL bCompressor)
+{
+	this->bCompressor = bCompressor;
+	m_sound.SetCompressor(bCompressor);
+}
+//----------------------------------------------------------------------------
 // 電池切れ
 //----------------------------------------------------------------------------
 void CMainWnd::SetLowBattery()
@@ -2705,6 +2715,14 @@ void CMainWnd::Show3DReverbCustomizeWnd()
 void CMainWnd::ShowChorusCustomizeWnd()
 {
 	CChorusCustomizeWnd dlg(*this);
+	dlg.exec();
+}
+//----------------------------------------------------------------------------
+// コンプレッサーのカスタマイズ用ウィンドウの表示
+//----------------------------------------------------------------------------
+void CMainWnd::ShowCompressorCustomizeWnd()
+{
+	CCompressorCustomizeWnd dlg(*this);
 	dlg.exec();
 }
 //----------------------------------------------------------------------------

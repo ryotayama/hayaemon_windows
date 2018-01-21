@@ -862,6 +862,14 @@
      <addaction name="separator"/>
      <addaction name="actionChorusCustomize"/>
     </widget>
+    <widget class="QMenu" name="menuCompressor_C">
+     <property name="title">
+      <string>Compressor(&amp;C)</string>
+     </property>
+     <addaction name="actionCompressorDefault"/>
+     <addaction name="separator"/>
+     <addaction name="actionCompressorCustomize"/>
+    </widget>
     <addaction name="menuSpeed"/>
     <addaction name="menuFreq"/>
     <addaction name="menuPitch"/>
@@ -872,6 +880,7 @@
     <addaction name="menu3D_Reverb_R"/>
     <addaction name="menuDelay_D"/>
     <addaction name="menuChorus_C"/>
+    <addaction name="menuCompressor_C"/>
     <addaction name="separator"/>
     <addaction name="menuSound_Effects_S"/>
     <addaction name="separator"/>
@@ -2665,6 +2674,22 @@
    </property>
   </action>
   <action name="actionChorusCustomize">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Customize(&amp;C)</string>
+   </property>
+  </action>
+  <action name="actionCompressorDefault">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Default(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionCompressorCustomize">
    <property name="checkable">
     <bool>true</bool>
    </property>

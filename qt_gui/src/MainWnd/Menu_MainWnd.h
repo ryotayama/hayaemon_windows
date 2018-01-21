@@ -26,6 +26,9 @@ public: // 関数
 	void SetChorus(float fWetDryMix, float fDepth, float fFeedback,
 				   float fFreq, DWORD lWaveform, float fDelay, DWORD lPhase,
 				   UINT uID);
+	void SetCompressor(float fGain, float fAttack, float fRelease,
+					   float fThreshold, float fRatio, float fPredelay,
+					   UINT uID);
 	void SetReverb(float fInGain, float fReverbMix, float fReverbTime,
 		float fHighFreqRTRatio, UINT uID);
 	void Set3DReverb(int lRoom, int lRoomHF, float flRoomRolloffFactor,
@@ -36,6 +39,7 @@ public: // 関数
 	void SwitchEQVisible(UINT uID);
 	void SwitchItemChecked(UINT uID);
 	void UncheckChorusMenu();
+	void UncheckCompressorMenu();
 	void UncheckDelayMenu();
 	void UncheckReverbMenu();
 	void Uncheck3DReverbMenu();
@@ -260,6 +264,8 @@ public: // 関数
 	void OnDelayCustomizeMenuSelected(bool checked);
 	void OnChorusDefaultMenuSelected(bool checked);
 	void OnChorusCustomizeMenuSelected(bool checked);
+	void OnCompressorDefaultMenuSelected(bool checked);
+	void OnCompressorCustomizeMenuSelected(bool checked);
 	void OnEQFlatMenuSelected();
 	void OnEQLowSuperMenuSelected();
 	void OnEQLowHighestMenuSelected();
