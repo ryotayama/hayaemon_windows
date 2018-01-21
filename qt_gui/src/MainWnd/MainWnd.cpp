@@ -18,6 +18,7 @@
 #include "../CountLoopWnd/CountLoopWnd_MainWnd.h"
 #include "3DReverbCustomizeWnd.h"
 #include "ABLoopPosWnd.h"
+#include "DelayCustomizeWnd.h"
 #include "PlayListView_MainWnd.h"
 #include "Platform.h"
 #include "ReverbCustomizeWnd.h"
@@ -1384,6 +1385,7 @@ void CMainWnd::SetAllEffects()
 	SetEQ20K(m_eq20kSlider.GetThumbPos());
 	SetReverb(bReverb);
 	Set3DReverb(b3DReverb);
+	SetDelay(bDelay);
 }
 //----------------------------------------------------------------------------
 // 連続再生
@@ -2338,6 +2340,14 @@ void CMainWnd::Set3DReverb(BOOL b3DReverb)
 	m_sound.Set3DReverb(b3DReverb);
 }
 //----------------------------------------------------------------------------
+// ディレイをかける
+//----------------------------------------------------------------------------
+void CMainWnd::SetDelay(BOOL bDelay)
+{
+	this->bDelay = bDelay;
+	m_sound.SetDelay(bDelay);
+}
+//----------------------------------------------------------------------------
 // 電池切れ
 //----------------------------------------------------------------------------
 void CMainWnd::SetLowBattery()
@@ -2677,6 +2687,14 @@ void CMainWnd::SetTime(QWORD qwTime, BOOL bReset)
 void CMainWnd::Show3DReverbCustomizeWnd()
 {
 	C3DReverbCustomizeWnd dlg(*this);
+	dlg.exec();
+}
+//----------------------------------------------------------------------------
+// ディレイのカスタマイズ用ウィンドウの表示
+//----------------------------------------------------------------------------
+void CMainWnd::ShowDelayCustomizeWnd()
+{
+	CDelayCustomizeWnd dlg(*this);
 	dlg.exec();
 }
 //----------------------------------------------------------------------------

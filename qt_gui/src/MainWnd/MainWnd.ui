@@ -834,6 +834,26 @@
      <addaction name="separator"/>
      <addaction name="action3DReverbCustomize"/>
     </widget>
+    <widget class="QMenu" name="menuDelay_D">
+     <property name="title">
+      <string>Delay(&amp;D)</string>
+     </property>
+     <addaction name="separator"/>
+     <addaction name="actionDelayDefault"/>
+     <addaction name="actionDelayShort"/>
+     <addaction name="actionDelayMedium"/>
+     <addaction name="actionDelayLong"/>
+     <addaction name="actionDelayStereoShort"/>
+     <addaction name="actionDelayStereoMedium"/>
+     <addaction name="actionDelayStereoLong"/>
+     <addaction name="actionDelayMountain"/>
+     <addaction name="actionDelayBig"/>
+     <addaction name="actionDelayStereoBig"/>
+     <addaction name="actionDelayDoubling"/>
+     <addaction name="actionDelayDoubleKick"/>
+     <addaction name="separator"/>
+     <addaction name="actionDelayCustomize"/>
+    </widget>
     <addaction name="menuSpeed"/>
     <addaction name="menuFreq"/>
     <addaction name="menuPitch"/>
@@ -842,6 +862,7 @@
     <addaction name="separator"/>
     <addaction name="menuReverb_R"/>
     <addaction name="menu3D_Reverb_R"/>
+    <addaction name="menuDelay_D"/>
     <addaction name="separator"/>
     <addaction name="menuSound_Effects_S"/>
     <addaction name="separator"/>
@@ -2520,6 +2541,110 @@
    </property>
    <property name="text">
     <string>Plate(&amp;P)</string>
+   </property>
+  </action>
+  <action name="actionDelayDefault">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Default(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionDelayCustomize">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Customize(&amp;C)</string>
+   </property>
+  </action>
+  <action name="actionDelayShort">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Short Echo(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionDelayMedium">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Medium Echo(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionDelayLong">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Long Echo(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionDelayStereoShort">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Stereo Short Echo(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionDelayStereoMedium">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Stereo Medium Echo(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionDelayStereoLong">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Stereo Long Echo(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionDelayMountain">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Mountain Echo(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionDelayBig">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Big Echo(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionDelayStereoBig">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Stereo Big Echo(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionDelayDoubling">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Doubling(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionDelayDoubleKick">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Double Kick(&amp;D)</string>
    </property>
   </action>
  </widget>

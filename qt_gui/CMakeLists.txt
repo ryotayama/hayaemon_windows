@@ -27,6 +27,8 @@ set(SRC_MAINWND
   ${SRC_DIR}/MainWnd/3DReverbCustomizeWnd.h
   ${SRC_DIR}/MainWnd/ABLoopPosWnd.cpp
   ${SRC_DIR}/MainWnd/ABLoopPosWnd.h
+  ${SRC_DIR}/MainWnd/DelayCustomizeWnd.cpp
+  ${SRC_DIR}/MainWnd/DelayCustomizeWnd.h
   ${SRC_DIR}/MainWnd/EQLabel_MainWnd.cpp
   ${SRC_DIR}/MainWnd/EQLabel_MainWnd.h
   ${SRC_DIR}/MainWnd/EQSlider_MainWnd.cpp
@@ -119,6 +121,7 @@ qt5_add_resources(RESOURCES ${SRC_DIR}/Hayaemon.qrc)
 qt5_wrap_ui(UI_MOC
   ${SRC_DIR}/CountLoopWnd/CountLoopWnd.ui
   ${SRC_DIR}/MainWnd/ABLoopPosWnd.ui
+  ${SRC_DIR}/MainWnd/DelayCustomizeWnd.ui
   ${SRC_DIR}/MainWnd/MainWnd.ui
   ${SRC_DIR}/MainWnd/Reverb3DCustomizeWnd.ui
   ${SRC_DIR}/MainWnd/ReverbCustomizeWnd.ui)

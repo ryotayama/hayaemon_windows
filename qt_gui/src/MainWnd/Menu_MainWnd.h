@@ -21,6 +21,8 @@ public: // 関数
 
 	virtual BOOL Create();
 	void SetABLoopState(BOOL bALoop, BOOL bBLoop);
+	void SetDelay(float fWetDryMix, float fFeedback, float fLeftDelay,
+		float fRightDelay, BOOL lPanDelay, UINT uID);
 	void SetReverb(float fInGain, float fReverbMix, float fReverbTime,
 		float fHighFreqRTRatio, UINT uID);
 	void Set3DReverb(int lRoom, int lRoomHF, float flRoomRolloffFactor,
@@ -30,6 +32,7 @@ public: // 関数
 	void SetSingleLoopState(BOOL bSLoop);
 	void SwitchEQVisible(UINT uID);
 	void SwitchItemChecked(UINT uID);
+	void UncheckDelayMenu();
 	void UncheckReverbMenu();
 	void Uncheck3DReverbMenu();
 	void UncheckSoundEffectMenu();
@@ -238,6 +241,19 @@ public: // 関数
 	void On3DReverbLargeHallMenuSelected(bool checked);
 	void On3DReverbPlateMenuSelected(bool checked);
 	void On3DReverbCustomizeMenuSelected(bool checked);
+	void OnDelayDefaultMenuSelected(bool checked);
+	void OnDelayShortMenuSelected(bool checked);
+	void OnDelayMediumMenuSelected(bool checked);
+	void OnDelayLongMenuSelected(bool checked);
+	void OnDelayStereoShortMenuSelected(bool checked);
+	void OnDelayStereoMediumMenuSelected(bool checked);
+	void OnDelayStereoLongMenuSelected(bool checked);
+	void OnDelayMountainMenuSelected(bool checked);
+	void OnDelayBigMenuSelected(bool checked);
+	void OnDelayStereoBigMenuSelected(bool checked);
+	void OnDelayDoublingMenuSelected(bool checked);
+	void OnDelayDoubleKickMenuSelected(bool checked);
+	void OnDelayCustomizeMenuSelected(bool checked);
 	void OnEQFlatMenuSelected();
 	void OnEQLowSuperMenuSelected();
 	void OnEQLowHighestMenuSelected();

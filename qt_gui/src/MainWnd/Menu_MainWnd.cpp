@@ -34,6 +34,19 @@ void CMenu_MainWnd::SetABLoopState(BOOL bALoop, BOOL bBLoop)
 	EnableItem(ID_ABLOOP_B_SETTING, bBLoop ? MFS_ENABLED : MFS_DISABLED);
 }
 //----------------------------------------------------------------------------
+// ディレイの設定
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::SetDelay(float fWetDryMix, float fFeedback,
+		float fLeftDelay, float fRightDelay, BOOL lPanDelay, UINT uID)
+{
+	BOOL bDelay = !IsItemChecked(uID);
+	m_rMainWnd.GetSound().SetDelay(fWetDryMix, fFeedback, fLeftDelay,
+								  fRightDelay, lPanDelay, bDelay);
+	m_rMainWnd.SetDelay(bDelay);
+	UncheckDelayMenu();
+	CheckItem(uID, bDelay ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
 // リバーブの設定
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::SetReverb(float fInGain, float fReverbMix,
@@ -88,6 +101,25 @@ void CMenu_MainWnd::SwitchItemChecked(UINT uID)
 {
 	BOOL bCheck = !IsItemChecked(uID);
 	CheckItem(uID, bCheck ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
+// エコーメニューのチェックを外す
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::UncheckDelayMenu()
+{
+	CheckItem(ID_DELAY_DEFAULT, MF_UNCHECKED);
+	CheckItem(ID_DELAY_SHORT, MF_UNCHECKED);
+	CheckItem(ID_DELAY_MEDIUM, MF_UNCHECKED);
+	CheckItem(ID_DELAY_LONG, MF_UNCHECKED);
+	CheckItem(ID_DELAY_STEREOSHORT, MF_UNCHECKED);
+	CheckItem(ID_DELAY_STEREOMEDIUM, MF_UNCHECKED);
+	CheckItem(ID_DELAY_STEREOLONG, MF_UNCHECKED);
+	CheckItem(ID_DELAY_MOUNTAIN, MF_UNCHECKED);
+	CheckItem(ID_DELAY_BIG, MF_UNCHECKED);
+	CheckItem(ID_DELAY_STEREOBIG, MF_UNCHECKED);
+	CheckItem(ID_DELAY_DOUBLING, MF_UNCHECKED);
+	CheckItem(ID_DELAY_DOUBLEKICK, MF_UNCHECKED);
+	CheckItem(ID_DELAY_CUSTOMIZE, MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
 // リバーブメニューのチェックを外す
@@ -1711,6 +1743,112 @@ void CMenu_MainWnd::On3DReverbCustomizeMenuSelected(bool checked)
 	else m_rMainWnd.Show3DReverbCustomizeWnd();
 }
 //----------------------------------------------------------------------------
+// システム → エフェクト → Delay → Defaultメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDelayDefaultMenuSelected(bool checked)
+{
+	CheckItem(ID_DELAY_DEFAULT, checked ? MF_UNCHECKED : MF_CHECKED);
+	SetDelay(8, 50, 600, 300, TRUE, ID_DELAY_DEFAULT);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → Delay → Short Echoメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDelayShortMenuSelected(bool checked)
+{
+	CheckItem(ID_DELAY_SHORT, checked ? MF_UNCHECKED : MF_CHECKED);
+	SetDelay(15, 50, 150, 150, FALSE, ID_DELAY_SHORT);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → Delay → Medium Echoメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDelayMediumMenuSelected(bool checked)
+{
+	CheckItem(ID_DELAY_MEDIUM, checked ? MF_UNCHECKED : MF_CHECKED);
+	SetDelay(15, 50, 300, 300, FALSE, ID_DELAY_MEDIUM);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → Delay → Long Echoメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDelayLongMenuSelected(bool checked)
+{
+	CheckItem(ID_DELAY_LONG, checked ? MF_UNCHECKED : MF_CHECKED);
+	SetDelay(15, 50, 600, 600, FALSE, ID_DELAY_LONG);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → Delay → Stereo Short Echoメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDelayStereoShortMenuSelected(bool checked)
+{
+	CheckItem(ID_DELAY_STEREOSHORT, checked ? MF_UNCHECKED : MF_CHECKED);
+	SetDelay(15, 50, 300, 150, TRUE, ID_DELAY_STEREOSHORT);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → Delay → Stetreo Medium Echoメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDelayStereoMediumMenuSelected(bool checked)
+{
+	CheckItem(ID_DELAY_STEREOMEDIUM, checked ? MF_UNCHECKED : MF_CHECKED);
+	SetDelay(8, 50, 600, 300, TRUE, ID_DELAY_STEREOMEDIUM);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → Delay → Stereo Long Echoメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDelayStereoLongMenuSelected(bool checked)
+{
+	CheckItem(ID_DELAY_STEREOLONG, checked ? MF_UNCHECKED : MF_CHECKED);
+	SetDelay(15, 50, 1200, 600, TRUE, ID_DELAY_STEREOLONG);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → Delay → Mountain Echoメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDelayMountainMenuSelected(bool checked)
+{
+	CheckItem(ID_DELAY_MOUNTAIN, checked ? MF_UNCHECKED : MF_CHECKED);
+	SetDelay(20, 0, 1500, 1500, FALSE, ID_DELAY_MOUNTAIN);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → Delay → Big Echoメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDelayBigMenuSelected(bool checked)
+{
+	CheckItem(ID_DELAY_BIG, checked ? MF_UNCHECKED : MF_CHECKED);
+	SetDelay(40, 50, 300, 300, FALSE, ID_DELAY_BIG);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → Delay → Stereo Big Echoメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDelayStereoBigMenuSelected(bool checked)
+{
+	CheckItem(ID_DELAY_STEREOBIG, checked ? MF_UNCHECKED : MF_CHECKED);
+	SetDelay(40, 50, 600, 300, TRUE, ID_DELAY_STEREOBIG);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → Delay → Doublingメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDelayDoublingMenuSelected(bool checked)
+{
+	CheckItem(ID_DELAY_DOUBLING, checked ? MF_UNCHECKED : MF_CHECKED);
+	SetDelay(100, 0, 31, 1, TRUE, ID_DELAY_DOUBLING);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → Delay → Double Kickメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDelayDoubleKickMenuSelected(bool checked)
+{
+	CheckItem(ID_DELAY_DOUBLEKICK, checked ? MF_UNCHECKED : MF_CHECKED);
+	SetDelay(50, 0, 100, 100, FALSE, ID_DELAY_DOUBLEKICK);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → Delay → カスタマイズメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDelayCustomizeMenuSelected(bool checked)
+{
+	CheckItem(ID_DELAY_CUSTOMIZE, checked ? MF_UNCHECKED : MF_CHECKED);
+	if(!checked)
+		SetDelay(8, 50, 600, 300, TRUE, ID_DELAY_CUSTOMIZE);
+	else m_rMainWnd.ShowDelayCustomizeWnd();
+}
+//----------------------------------------------------------------------------
 // システム → EQプリセット → FLATメニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnEQFlatMenuSelected()
@@ -2127,6 +2265,19 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_3DREVERB_LARGEHALL, m_rMainWnd.action3DReverbLargeHall},
 		{ID_3DREVERB_PLATE, m_rMainWnd.action3DReverbPlate},
 		{ID_3DREVERB_CUSTOMIZE, m_rMainWnd.action3DReverbCustomize},
+		{ID_DELAY_DEFAULT, m_rMainWnd.actionDelayDefault},
+		{ID_DELAY_SHORT, m_rMainWnd.actionDelayShort},
+		{ID_DELAY_MEDIUM, m_rMainWnd.actionDelayMedium},
+		{ID_DELAY_LONG, m_rMainWnd.actionDelayLong},
+		{ID_DELAY_STEREOSHORT, m_rMainWnd.actionDelayStereoShort},
+		{ID_DELAY_STEREOMEDIUM, m_rMainWnd.actionDelayStereoMedium},
+		{ID_DELAY_STEREOLONG, m_rMainWnd.actionDelayStereoLong},
+		{ID_DELAY_MOUNTAIN, m_rMainWnd.actionDelayMountain},
+		{ID_DELAY_BIG, m_rMainWnd.actionDelayBig},
+		{ID_DELAY_STEREOBIG, m_rMainWnd.actionDelayStereoBig},
+		{ID_DELAY_DOUBLING, m_rMainWnd.actionDelayDoubling},
+		{ID_DELAY_DOUBLEKICK, m_rMainWnd.actionDelayDoubleKick},
+		{ID_DELAY_CUSTOMIZE, m_rMainWnd.actionDelayCustomize},
 		{ID_RECORDNOISE, m_rMainWnd.actionRecordNoise},
 		{ID_WAVE, m_rMainWnd.actionWave},
 		{ID_NORMALIZE, m_rMainWnd.actionNormalize},
@@ -2339,6 +2490,34 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::On3DReverbPlateMenuSelected);
 	connect(m_rMainWnd.action3DReverbCustomize, &QAction::triggered,
 					this, &CMenu_MainWnd::On3DReverbCustomizeMenuSelected);
+	// Effect - Delay
+	connect(m_rMainWnd.actionDelayDefault, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDelayDefaultMenuSelected);
+	connect(m_rMainWnd.actionDelayShort, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDelayShortMenuSelected);
+	connect(m_rMainWnd.actionDelayMedium, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDelayMediumMenuSelected);
+	connect(m_rMainWnd.actionDelayLong, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDelayLongMenuSelected);
+	connect(m_rMainWnd.actionDelayStereoShort, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDelayStereoShortMenuSelected);
+	connect(m_rMainWnd.actionDelayStereoMedium, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDelayStereoMediumMenuSelected);
+	connect(m_rMainWnd.actionDelayStereoLong, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDelayStereoLongMenuSelected);
+	connect(m_rMainWnd.actionDelayMountain, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDelayMountainMenuSelected);
+	connect(m_rMainWnd.actionDelayBig, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDelayBigMenuSelected);
+	connect(m_rMainWnd.actionDelayStereoBig, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDelayStereoBigMenuSelected);
+	connect(m_rMainWnd.actionDelayDoubling, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDelayDoublingMenuSelected);
+	connect(m_rMainWnd.actionDelayDoubleKick, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDelayDoubleKickMenuSelected);
+	connect(m_rMainWnd.actionDelayCustomize, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDelayCustomizeMenuSelected);
+	// Effect - Sound Effects
 	connect(m_rMainWnd.actionRecordNoise, &QAction::triggered,
 					this, &CMenu_MainWnd::OnRecordNoiseMenuSelected);
 	connect(m_rMainWnd.actionWave, &QAction::triggered,
