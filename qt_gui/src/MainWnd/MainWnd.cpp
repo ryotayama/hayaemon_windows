@@ -18,6 +18,7 @@
 #include "../CountLoopWnd/CountLoopWnd_MainWnd.h"
 #include "3DReverbCustomizeWnd.h"
 #include "ABLoopPosWnd.h"
+#include "ChorusCustomizeWnd.h"
 #include "DelayCustomizeWnd.h"
 #include "PlayListView_MainWnd.h"
 #include "Platform.h"
@@ -1386,6 +1387,7 @@ void CMainWnd::SetAllEffects()
 	SetReverb(bReverb);
 	Set3DReverb(b3DReverb);
 	SetDelay(bDelay);
+	SetChorus(bChorus);
 }
 //----------------------------------------------------------------------------
 // 連続再生
@@ -2348,6 +2350,14 @@ void CMainWnd::SetDelay(BOOL bDelay)
 	m_sound.SetDelay(bDelay);
 }
 //----------------------------------------------------------------------------
+// コーラスをかける
+//----------------------------------------------------------------------------
+void CMainWnd::SetChorus(BOOL bChorus)
+{
+	this->bChorus = bChorus;
+	m_sound.SetChorus(bChorus);
+}
+//----------------------------------------------------------------------------
 // 電池切れ
 //----------------------------------------------------------------------------
 void CMainWnd::SetLowBattery()
@@ -2687,6 +2697,14 @@ void CMainWnd::SetTime(QWORD qwTime, BOOL bReset)
 void CMainWnd::Show3DReverbCustomizeWnd()
 {
 	C3DReverbCustomizeWnd dlg(*this);
+	dlg.exec();
+}
+//----------------------------------------------------------------------------
+// コーラスのカスタマイズ用ウィンドウの表示
+//----------------------------------------------------------------------------
+void CMainWnd::ShowChorusCustomizeWnd()
+{
+	CChorusCustomizeWnd dlg(*this);
 	dlg.exec();
 }
 //----------------------------------------------------------------------------

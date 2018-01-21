@@ -75,6 +75,12 @@ public: // 関数
 	virtual void SetDelay();
 	virtual void SetDelay(float fWetDryMix, float fFeedback, float fLeftDelay,
 						  float fRightDelay, BOOL lPanDelay, BOOL bDelay);
+	virtual BOOL GetChorus(BASS_DX8_CHORUS * bdc);
+	virtual void SetChorus(BOOL bChorus);
+	virtual void SetChorus();
+	virtual void SetChorus(float fWetDryMix, float fDepth, float fFeedback,
+						   float fFreq, DWORD lWaveform, float fDelay,
+						   DWORD lPhase, BOOL bChorus);
 	virtual void SetLoop(BOOL bLoop);
 	virtual void SetABLoopA(BOOL bLoop);
 	virtual void SetABLoopB(BOOL bLoop);
@@ -127,7 +133,7 @@ private: // メンバ変数
 		m_hFx1KHz, m_hFx1_25KHz, m_hFx1_6KHz, m_hFx2KHz, m_hFx2_5KHz,
 		m_hFx3_15KHz, m_hFx4KHz, m_hFx5KHz, m_hFx6_3KHz, m_hFx8KHz,
 		m_hFx10KHz, m_hFx12_5KHz, m_hFx16KHz, m_hFx20KHz,
-		m_hFxReverb, m_hFx3DReverb, m_hFxDelay, m_hFxVolume;
+		m_hFxReverb, m_hFx3DReverb, m_hFxDelay, m_hFxChorus, m_hFxVolume;
 
 	HFX m_hFx20Hz_2, m_hFx25Hz_2, m_hFx31_5Hz_2, m_hFx40Hz_2, m_hFx50Hz_2,
 		m_hFx63Hz_2, m_hFx80Hz_2, m_hFx100Hz_2, m_hFx125Hz_2, m_hFx160Hz_2,
@@ -143,6 +149,7 @@ private: // メンバ変数
 	BASS_DX8_REVERB m_bdr;
 	BASS_DX8_I3DL2REVERB m_bdir;
 	BASS_DX8_ECHO m_bde;
+	BASS_DX8_CHORUS m_bdc;
 
 public: // メンバ変数の取得・設定
 

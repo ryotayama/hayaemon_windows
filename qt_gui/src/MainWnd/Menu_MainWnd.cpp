@@ -47,6 +47,20 @@ void CMenu_MainWnd::SetDelay(float fWetDryMix, float fFeedback,
 	CheckItem(uID, bDelay ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
+// コーラスの設定
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::SetChorus(float fWetDryMix, float fDepth, float fFeedback,
+							  float fFreq, DWORD lWaveform, float fDelay,
+							  DWORD lPhase, UINT uID)
+{
+	BOOL bChorus = !IsItemChecked(uID);
+	m_rMainWnd.GetSound().SetChorus(fWetDryMix, fDepth, fFeedback, fFreq,
+								   lWaveform, fDelay, lPhase, bChorus);
+	m_rMainWnd.SetChorus(bChorus);
+	UncheckChorusMenu();
+	CheckItem(uID, bChorus ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
 // リバーブの設定
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::SetReverb(float fInGain, float fReverbMix,
@@ -101,6 +115,14 @@ void CMenu_MainWnd::SwitchItemChecked(UINT uID)
 {
 	BOOL bCheck = !IsItemChecked(uID);
 	CheckItem(uID, bCheck ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
+// コーラスメニューのチェックを外す
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::UncheckChorusMenu()
+{
+	CheckItem(ID_CHORUS_DEFAULT, MF_UNCHECKED);
+	CheckItem(ID_CHORUS_CUSTOMIZE, MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
 // エコーメニューのチェックを外す
@@ -1849,6 +1871,26 @@ void CMenu_MainWnd::OnDelayCustomizeMenuSelected(bool checked)
 	else m_rMainWnd.ShowDelayCustomizeWnd();
 }
 //----------------------------------------------------------------------------
+// システム → エフェクト → Chorus → Defaultメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnChorusDefaultMenuSelected(bool checked)
+{
+	CheckItem(ID_CHORUS_DEFAULT, checked ? MF_UNCHECKED : MF_CHECKED);
+	SetChorus(50.0f, 10.0f, 25.0f, 1.1f, 1, 16.0f, BASS_DX8_PHASE_90,
+			  ID_CHORUS_DEFAULT);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → Chorus → カスタマイズメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnChorusCustomizeMenuSelected(bool checked)
+{
+	CheckItem(ID_CHORUS_CUSTOMIZE, checked ? MF_UNCHECKED : MF_CHECKED);
+	if(!checked)
+		SetChorus(50.0f, 10.0f, 25.0f, 1.1f, 1, 16.0f, BASS_DX8_PHASE_90,
+				  ID_CHORUS_CUSTOMIZE);
+	else m_rMainWnd.ShowChorusCustomizeWnd();
+}
+//----------------------------------------------------------------------------
 // システム → EQプリセット → FLATメニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnEQFlatMenuSelected()
@@ -2278,6 +2320,8 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_DELAY_DOUBLING, m_rMainWnd.actionDelayDoubling},
 		{ID_DELAY_DOUBLEKICK, m_rMainWnd.actionDelayDoubleKick},
 		{ID_DELAY_CUSTOMIZE, m_rMainWnd.actionDelayCustomize},
+		{ID_CHORUS_DEFAULT, m_rMainWnd.actionChorusDefault},
+		{ID_CHORUS_CUSTOMIZE, m_rMainWnd.actionChorusCustomize},
 		{ID_RECORDNOISE, m_rMainWnd.actionRecordNoise},
 		{ID_WAVE, m_rMainWnd.actionWave},
 		{ID_NORMALIZE, m_rMainWnd.actionNormalize},
@@ -2517,6 +2561,11 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnDelayDoubleKickMenuSelected);
 	connect(m_rMainWnd.actionDelayCustomize, &QAction::triggered,
 					this, &CMenu_MainWnd::OnDelayCustomizeMenuSelected);
+	// Effect - Chorus
+	connect(m_rMainWnd.actionChorusDefault, &QAction::triggered,
+					this, &CMenu_MainWnd::OnChorusDefaultMenuSelected);
+	connect(m_rMainWnd.actionChorusCustomize, &QAction::triggered,
+					this, &CMenu_MainWnd::OnChorusCustomizeMenuSelected);
 	// Effect - Sound Effects
 	connect(m_rMainWnd.actionRecordNoise, &QAction::triggered,
 					this, &CMenu_MainWnd::OnRecordNoiseMenuSelected);
