@@ -319,6 +319,7 @@ public: // 関数
 	void OnEQHighCutMiddleMenuSelected();
 	void OnEQHighCutLowMenuSelected();
 	void OnEQHighCutLowestMenuSelected();
+	void OnResetAllMenuSelected();
 
 private: // メンバ変数
 

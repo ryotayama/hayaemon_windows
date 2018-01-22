@@ -146,6 +146,7 @@ typedef enum CMDID {
 		ID_ONLYLEFT,
 		ID_ONLYRIGHT,
 		ID_CHANGELR,
+		ID_RESETALL,
 	// システムメニュー
 		// 復元メニュー
 			// 表示状態メニュー

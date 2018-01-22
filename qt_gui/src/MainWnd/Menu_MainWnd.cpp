@@ -1562,6 +1562,53 @@ void CMenu_MainWnd::OnChangeLRMenuSelected(bool checked)
 	m_rMainWnd.SetChangeLR(checked);
 }
 //----------------------------------------------------------------------------
+// エフェクト → 全てデフォルトに戻すメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnResetAllMenuSelected()
+{
+	m_rMainWnd.SetRecordNoise(FALSE);
+	m_rMainWnd.SetWave(FALSE);
+	m_rMainWnd.ResetSpeed();
+	m_rMainWnd.ResetFreq();
+	m_rMainWnd.ResetPitch();
+	OnEQFlatMenuSelected();
+	m_rMainWnd.GetPanLabel().SetPan(0);
+	m_rMainWnd.GetPanSlider().SetThumbPos(0);
+	m_rMainWnd.SetPan(0);
+	CheckItem(ID_REVERB_DEFAULT, MF_CHECKED);
+	SetReverb(0.0f, 0.0f, 1000.0f, 0.001f, ID_REVERB_DEFAULT);
+	CheckItem(ID_3DREVERB_DEFAULT, MF_CHECKED);
+	Set3DReverb(-1000, -100, 0.0f, 1.49f, 0.83f, -2602, 0.007f, 200, 0.011f, 
+			  100.0f, 100.0f, 5000.0f, ID_3DREVERB_DEFAULT);
+	CheckItem(ID_DELAY_DEFAULT, MF_CHECKED);
+	SetDelay(8, 50, 600, 300, TRUE, ID_DELAY_DEFAULT);
+	CheckItem(ID_CHORUS_DEFAULT, MF_CHECKED);
+	SetChorus(50.0f, 10.0f, 25.0f, 1.1f, 1, 16.0f, BASS_DX8_PHASE_90,
+				ID_CHORUS_DEFAULT);
+	CheckItem(ID_COMPRESSOR_DEFAULT, MF_CHECKED);
+	SetCompressor(0.0f, 10.0f, 200.0f, -20.0f, 3.0f, 4.0f,
+					ID_COMPRESSOR_DEFAULT);
+	CheckItem(ID_FLANGER_DEFAULT, MF_CHECKED);
+	SetFlanger(50.0f, 100.0f, -50.0f, 0.25f, 1, 2.0f, BASS_DX8_PHASE_ZERO,
+				ID_FLANGER_DEFAULT);
+	CheckItem(ID_GARGLE_DEFAULT, MF_CHECKED);
+	SetGargle(20, 0, ID_GARGLE_DEFAULT);
+	CheckItem(ID_DISTORTION_DEFAULT, MF_CHECKED);
+	SetDistortion(-18.0f, 15.0f, 2400.0f, 2400.0f, 8000.0f,
+					ID_DISTORTION_DEFAULT);
+	if(IsItemChecked(ID_NORMALIZE)) m_rMainWnd.SetNormalize();
+	if(IsItemChecked(ID_VOCALCANCEL)) m_rMainWnd.SetVocalCancel();
+	if(IsItemChecked(ID_REVERSE)) m_rMainWnd.SetReverse();
+	if(IsItemChecked(ID_RECORD)) m_rMainWnd.SetRecord();
+	if(IsItemChecked(ID_LOWBATTERY)) m_rMainWnd.SetLowBattery();
+	if(IsItemChecked(ID_NOSENSE)) m_rMainWnd.SetNoSense();
+	if(IsItemChecked(ID_EARTRAINING)) m_rMainWnd.SetEarTraining();
+	if(IsItemChecked(ID_MONORAL)) m_rMainWnd.SetMonoral();
+	if(IsItemChecked(ID_ONLYLEFT)) m_rMainWnd.SetOnlyLeft();
+	if(IsItemChecked(ID_ONLYRIGHT)) m_rMainWnd.SetOnlyRight();
+	if(IsItemChecked(ID_CHANGELR)) m_rMainWnd.SetChangeLR();
+}
+//----------------------------------------------------------------------------
 // システム → エフェクト → リバーブ → デフォルトメニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnReverbDefaultMenuSelected(bool checked)
@@ -2794,6 +2841,8 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnOnlyRightMenuSelected);
 	connect(m_rMainWnd.actionChangeLR, &QAction::triggered,
 					this, &CMenu_MainWnd::OnChangeLRMenuSelected);
+	connect(m_rMainWnd.actionEffectResetAll, &QAction::triggered,
+					this, &CMenu_MainWnd::OnResetAllMenuSelected);
 	// Effect - EQ preset
 	connect(m_rMainWnd.actionEQPresetFlat, &QAction::triggered,
 					this, &CMenu_MainWnd::OnEQFlatMenuSelected);

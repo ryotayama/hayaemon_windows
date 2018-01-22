@@ -925,6 +925,8 @@
     <addaction name="actionOnlyLeft"/>
     <addaction name="actionOnlyRight"/>
     <addaction name="actionChangeLR"/>
+    <addaction name="separator"/>
+    <addaction name="actionEffectResetAll"/>
    </widget>
    <widget class="QMenu" name="menuView_V">
     <property name="title">
@@ -2770,6 +2772,11 @@
    </property>
    <property name="text">
     <string>Customize(&amp;C)</string>
+   </property>
+  </action>
+  <action name="actionEffectResetAll">
+   <property name="text">
+    <string>Reset all(&amp;R)</string>
    </property>
   </action>
  </widget>
