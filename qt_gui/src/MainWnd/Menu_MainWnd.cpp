@@ -445,127 +445,6 @@ void CMenu_MainWnd::OnForward10SecMenuSelected()
 	m_rMainWnd.ForwardSeconds(10);
 }
 //----------------------------------------------------------------------------
-// 再生 → 停止メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnStopMenuSelected()
-{
-	m_rMainWnd.Stop(FALSE);
-}
-//----------------------------------------------------------------------------
-// 再生 → １曲ループメニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnSingleLoopMenuSelected()
-{
-	m_rMainWnd.SetSingleLoop();
-}
-//----------------------------------------------------------------------------
-// 再生 → 全曲ループメニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnAllLoopMenuSelected(bool checked)
-{
-	m_rMainWnd.SetAllLoop(checked);
-}
-//----------------------------------------------------------------------------
-// 再生 → ランダム再生メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnRandomMenuSelected(bool checked)
-{
-	m_rMainWnd.SetRandom(checked);
-}
-//----------------------------------------------------------------------------
-// 再生 → 連続再生メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnContinueMenuSelected(bool checked)
-{
-	m_rMainWnd.SetContinue(checked);
-}
-//----------------------------------------------------------------------------
-// 再生 → ＡＢループ（Ａ）メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnABLoopAMenuSelected()
-{
-	m_rMainWnd.SetABLoopA();
-}
-//----------------------------------------------------------------------------
-// 再生 → ＡＢループ（Ｂ）メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnABLoopBMenuSelected()
-{
-	m_rMainWnd.SetABLoopB();
-}
-//----------------------------------------------------------------------------
-// 再生 → ＡＢループ（Ａ）の位置設定メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnABLoopASettingMenuSelected()
-{
-	m_rMainWnd.SetABLoopASetting();
-}
-//----------------------------------------------------------------------------
-// 再生 → ＡＢループ（Ｂ）メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnABLoopBSettingMenuSelected()
-{
-	m_rMainWnd.SetABLoopBSetting();
-}
-//----------------------------------------------------------------------------
-// 再生 → マーカー再生メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnMarkerPlayMenuSelected()
-{
-	m_rMainWnd.SetMarkerPlay();
-}
-//----------------------------------------------------------------------------
-// 再生 → マーカー追加メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnAddMarkerMenuSelected()
-{
-	m_rMainWnd.AddMarker();
-}
-//----------------------------------------------------------------------------
-// 再生 → マーカー削除メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnDeleteMarkerMenuSelected()
-{
-	m_rMainWnd.DeleteMarker();
-}
-//----------------------------------------------------------------------------
-// 再生 → 回数ループメニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnCountLoopMenuSelected()
-{
-	m_rMainWnd.SetCountLoop();
-}
-//----------------------------------------------------------------------------
-// 再生 → マーカー追加時にループメニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnInstantLoopMenuSelected()
-{
-	m_rMainWnd.SetInstantLoop();
-}
-//----------------------------------------------------------------------------
-// 再生 → マーカー位置変更時に再生位置変更メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnSetPositionAutoMenuSelected()
-{
-	m_rMainWnd.SetPositionAuto();
-}
-//----------------------------------------------------------------------------
-// 再生 → レコードノイズメニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnRecordNoiseMenuSelected()
-{
-	BOOL bRecordNoise = IsItemChecked(ID_RECORDNOISE);
-	m_rMainWnd.SetRecordNoise(bRecordNoise);
-}
-//----------------------------------------------------------------------------
-// 再生 → 波音メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnWaveMenuSelected()
-{
-	BOOL bWave = IsItemChecked(ID_WAVE);
-	m_rMainWnd.SetWave(bWave);
-}
-//----------------------------------------------------------------------------
 // 再生 → 再生速度 → デフォルトに戻すメニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnResetSpeedMenuSelected()
@@ -795,180 +674,6 @@ void CMenu_MainWnd::OnUp5SpeedMenuSelected()
 void CMenu_MainWnd::OnUp10SpeedMenuSelected()
 {
 	m_rMainWnd.UpSpeed(10);
-}
-//----------------------------------------------------------------------------
-// システム → 再生速度 → 小数点桁数 → 0桁メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnSetSpeedDecimal0MenuSelected()
-{
-	CheckItem(ID_SPEEDDEC_0, MF_CHECKED);
-	CheckItem(ID_SPEEDDEC_1, MF_UNCHECKED);
-	CheckItem(ID_SPEEDDEC_2, MF_UNCHECKED);
-	m_rMainWnd.GetSpeedLabel().SetDecimalDigit(0);
-	m_rMainWnd.GetSpeedSlider().SetDecimalDigit(0);
-}
-//----------------------------------------------------------------------------
-// システム → 再生速度 → 小数点桁数 → 1桁メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnSetSpeedDecimal1MenuSelected()
-{
-	CheckItem(ID_SPEEDDEC_0, MF_UNCHECKED);
-	CheckItem(ID_SPEEDDEC_1, MF_CHECKED);
-	CheckItem(ID_SPEEDDEC_2, MF_UNCHECKED);
-	m_rMainWnd.GetSpeedLabel().SetDecimalDigit(1);
-	m_rMainWnd.GetSpeedSlider().SetDecimalDigit(1);
-}
-//----------------------------------------------------------------------------
-// システム → 再生速度 → 小数点桁数 → 2桁メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnSetSpeedDecimal2MenuSelected()
-{
-	CheckItem(ID_SPEEDDEC_0, MF_UNCHECKED);
-	CheckItem(ID_SPEEDDEC_1, MF_UNCHECKED);
-	CheckItem(ID_SPEEDDEC_2, MF_CHECKED);
-	m_rMainWnd.GetSpeedLabel().SetDecimalDigit(2);
-	m_rMainWnd.GetSpeedSlider().SetDecimalDigit(2);
-}
-//----------------------------------------------------------------------------
-// システム → 再生周波数 → 小数点桁数 → 0桁メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnSetFreqDecimal0MenuSelected()
-{
-	CheckItem(ID_FREQDEC_0, MF_CHECKED);
-	CheckItem(ID_FREQDEC_1, MF_UNCHECKED);
-	CheckItem(ID_FREQDEC_2, MF_UNCHECKED);
-	m_rMainWnd.GetFreqLabel().SetDecimalDigit(0);
-	m_rMainWnd.GetFreqSlider().SetDecimalDigit(0);
-}
-//----------------------------------------------------------------------------
-// システム → 再生周波数 → 小数点桁数 → 1桁メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnSetFreqDecimal1MenuSelected()
-{
-	CheckItem(ID_FREQDEC_0, MF_UNCHECKED);
-	CheckItem(ID_FREQDEC_1, MF_CHECKED);
-	CheckItem(ID_FREQDEC_2, MF_UNCHECKED);
-	m_rMainWnd.GetFreqLabel().SetDecimalDigit(1);
-	m_rMainWnd.GetFreqSlider().SetDecimalDigit(1);
-}
-//----------------------------------------------------------------------------
-// システム → 再生周波数 → 小数点桁数 → 2桁メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnSetFreqDecimal2MenuSelected()
-{
-	CheckItem(ID_FREQDEC_0, MF_UNCHECKED);
-	CheckItem(ID_FREQDEC_1, MF_UNCHECKED);
-	CheckItem(ID_FREQDEC_2, MF_CHECKED);
-	m_rMainWnd.GetFreqLabel().SetDecimalDigit(2);
-	m_rMainWnd.GetFreqSlider().SetDecimalDigit(2);
-}
-//----------------------------------------------------------------------------
-// システム → 音程 → 小数点桁数 → 0桁メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnSetPitchDecimal0MenuSelected()
-{
-	CheckItem(ID_PITCHDEC_0, MF_CHECKED);
-	m_rMainWnd.GetPitchLabel().SetDecimalDigit(0);
-}
-//----------------------------------------------------------------------------
-// システム → 音程 → 小数点桁数 → 1桁メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnSetPitchDecimal1MenuSelected()
-{
-	CheckItem(ID_PITCHDEC_1, MF_CHECKED);
-	m_rMainWnd.GetPitchLabel().SetDecimalDigit(1);
-}
-//----------------------------------------------------------------------------
-// システム → 音程 → 小数点桁数 → 2桁メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnSetPitchDecimal2MenuSelected()
-{
-	CheckItem(ID_PITCHDEC_2, MF_CHECKED);
-	m_rMainWnd.GetPitchLabel().SetDecimalDigit(2);
-}
-//----------------------------------------------------------------------------
-// エフェクト → 音量 → デフォルトに戻すメニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnResetVolumeMenuSelected()
-{
-	m_rMainWnd.ResetVolume();
-}
-//----------------------------------------------------------------------------
-// エフェクト → 音量 → 0%メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnSetVolume0MenuSelected()
-{
-	m_rMainWnd.GetVolumeLabel().SetVolume(0.0);
-}
-//----------------------------------------------------------------------------
-// エフェクト → 音量 → 10%メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnSetVolume10MenuSelected()
-{
-	m_rMainWnd.GetVolumeLabel().SetVolume(10.0);
-}
-//----------------------------------------------------------------------------
-// エフェクト → 音量 → 20%メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnSetVolume20MenuSelected()
-{
-	m_rMainWnd.GetVolumeLabel().SetVolume(20.0);
-}
-//----------------------------------------------------------------------------
-// エフェクト → 音量 → 30%メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnSetVolume30MenuSelected()
-{
-	m_rMainWnd.GetVolumeLabel().SetVolume(30.0);
-}
-//----------------------------------------------------------------------------
-// エフェクト → 音量 → 40%メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnSetVolume40MenuSelected()
-{
-	m_rMainWnd.GetVolumeLabel().SetVolume(40.0);
-}
-//----------------------------------------------------------------------------
-// エフェクト → 音量 → 50%メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnSetVolume50MenuSelected()
-{
-	m_rMainWnd.GetVolumeLabel().SetVolume(50.0);
-}
-//----------------------------------------------------------------------------
-// エフェクト → 音量 → 60%メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnSetVolume60MenuSelected()
-{
-	m_rMainWnd.GetVolumeLabel().SetVolume(60.0);
-}
-//----------------------------------------------------------------------------
-// エフェクト → 音量 → 70%メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnSetVolume70MenuSelected()
-{
-	m_rMainWnd.GetVolumeLabel().SetVolume(70.0);
-}
-//----------------------------------------------------------------------------
-// エフェクト → 音量 → 80%メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnSetVolume80MenuSelected()
-{
-	m_rMainWnd.GetVolumeLabel().SetVolume(80.0);
-}
-//----------------------------------------------------------------------------
-// エフェクト → 音量 → 90%メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnSetVolume90MenuSelected()
-{
-	m_rMainWnd.GetVolumeLabel().SetVolume(90.0);
-}
-//----------------------------------------------------------------------------
-// エフェクト → 音量 → 100%メニューが選択された
-//----------------------------------------------------------------------------
-void CMenu_MainWnd::OnSetVolume100MenuSelected()
-{
-	m_rMainWnd.GetVolumeLabel().SetVolume(100.0);
 }
 //----------------------------------------------------------------------------
 // 再生 → 再生周波数 → デフォルトに戻すメニューが選択された
@@ -1426,6 +1131,127 @@ void CMenu_MainWnd::OnUp1OctavePitchMenuSelected()
 	m_rMainWnd.UpPitch(12);
 }
 //----------------------------------------------------------------------------
+// 再生 → 停止メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnStopMenuSelected()
+{
+	m_rMainWnd.Stop(FALSE);
+}
+//----------------------------------------------------------------------------
+// 再生 → １曲ループメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSingleLoopMenuSelected()
+{
+	m_rMainWnd.SetSingleLoop();
+}
+//----------------------------------------------------------------------------
+// 再生 → 全曲ループメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnAllLoopMenuSelected(bool checked)
+{
+	m_rMainWnd.SetAllLoop(checked);
+}
+//----------------------------------------------------------------------------
+// 再生 → ランダム再生メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnRandomMenuSelected(bool checked)
+{
+	m_rMainWnd.SetRandom(checked);
+}
+//----------------------------------------------------------------------------
+// 再生 → 連続再生メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnContinueMenuSelected(bool checked)
+{
+	m_rMainWnd.SetContinue(checked);
+}
+//----------------------------------------------------------------------------
+// 再生 → ＡＢループ（Ａ）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnABLoopAMenuSelected()
+{
+	m_rMainWnd.SetABLoopA();
+}
+//----------------------------------------------------------------------------
+// 再生 → ＡＢループ（Ｂ）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnABLoopBMenuSelected()
+{
+	m_rMainWnd.SetABLoopB();
+}
+//----------------------------------------------------------------------------
+// 再生 → ＡＢループ（Ａ）の位置設定メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnABLoopASettingMenuSelected()
+{
+	m_rMainWnd.SetABLoopASetting();
+}
+//----------------------------------------------------------------------------
+// 再生 → ＡＢループ（Ｂ）メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnABLoopBSettingMenuSelected()
+{
+	m_rMainWnd.SetABLoopBSetting();
+}
+//----------------------------------------------------------------------------
+// 再生 → マーカー再生メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnMarkerPlayMenuSelected()
+{
+	m_rMainWnd.SetMarkerPlay();
+}
+//----------------------------------------------------------------------------
+// 再生 → マーカー追加メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnAddMarkerMenuSelected()
+{
+	m_rMainWnd.AddMarker();
+}
+//----------------------------------------------------------------------------
+// 再生 → マーカー削除メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDeleteMarkerMenuSelected()
+{
+	m_rMainWnd.DeleteMarker();
+}
+//----------------------------------------------------------------------------
+// 再生 → 回数ループメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnCountLoopMenuSelected()
+{
+	m_rMainWnd.SetCountLoop();
+}
+//----------------------------------------------------------------------------
+// 再生 → マーカー追加時にループメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnInstantLoopMenuSelected()
+{
+	m_rMainWnd.SetInstantLoop();
+}
+//----------------------------------------------------------------------------
+// 再生 → マーカー位置変更時に再生位置変更メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPositionAutoMenuSelected()
+{
+	m_rMainWnd.SetPositionAuto();
+}
+//----------------------------------------------------------------------------
+// 再生 → レコードノイズメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnRecordNoiseMenuSelected()
+{
+	BOOL bRecordNoise = IsItemChecked(ID_RECORDNOISE);
+	m_rMainWnd.SetRecordNoise(bRecordNoise);
+}
+//----------------------------------------------------------------------------
+// 再生 → 波音メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnWaveMenuSelected()
+{
+	BOOL bWave = IsItemChecked(ID_WAVE);
+	m_rMainWnd.SetWave(bWave);
+}
+//----------------------------------------------------------------------------
 // 再生 → ノーマライズメニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnNormalizeMenuSelected(bool checked)
@@ -1607,6 +1433,180 @@ void CMenu_MainWnd::OnResetAllMenuSelected()
 	if(IsItemChecked(ID_ONLYLEFT)) m_rMainWnd.SetOnlyLeft();
 	if(IsItemChecked(ID_ONLYRIGHT)) m_rMainWnd.SetOnlyRight();
 	if(IsItemChecked(ID_CHANGELR)) m_rMainWnd.SetChangeLR();
+}
+//----------------------------------------------------------------------------
+// システム → 再生速度 → 小数点桁数 → 0桁メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetSpeedDecimal0MenuSelected()
+{
+	CheckItem(ID_SPEEDDEC_0, MF_CHECKED);
+	CheckItem(ID_SPEEDDEC_1, MF_UNCHECKED);
+	CheckItem(ID_SPEEDDEC_2, MF_UNCHECKED);
+	m_rMainWnd.GetSpeedLabel().SetDecimalDigit(0);
+	m_rMainWnd.GetSpeedSlider().SetDecimalDigit(0);
+}
+//----------------------------------------------------------------------------
+// システム → 再生速度 → 小数点桁数 → 1桁メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetSpeedDecimal1MenuSelected()
+{
+	CheckItem(ID_SPEEDDEC_0, MF_UNCHECKED);
+	CheckItem(ID_SPEEDDEC_1, MF_CHECKED);
+	CheckItem(ID_SPEEDDEC_2, MF_UNCHECKED);
+	m_rMainWnd.GetSpeedLabel().SetDecimalDigit(1);
+	m_rMainWnd.GetSpeedSlider().SetDecimalDigit(1);
+}
+//----------------------------------------------------------------------------
+// システム → 再生速度 → 小数点桁数 → 2桁メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetSpeedDecimal2MenuSelected()
+{
+	CheckItem(ID_SPEEDDEC_0, MF_UNCHECKED);
+	CheckItem(ID_SPEEDDEC_1, MF_UNCHECKED);
+	CheckItem(ID_SPEEDDEC_2, MF_CHECKED);
+	m_rMainWnd.GetSpeedLabel().SetDecimalDigit(2);
+	m_rMainWnd.GetSpeedSlider().SetDecimalDigit(2);
+}
+//----------------------------------------------------------------------------
+// システム → 再生周波数 → 小数点桁数 → 0桁メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetFreqDecimal0MenuSelected()
+{
+	CheckItem(ID_FREQDEC_0, MF_CHECKED);
+	CheckItem(ID_FREQDEC_1, MF_UNCHECKED);
+	CheckItem(ID_FREQDEC_2, MF_UNCHECKED);
+	m_rMainWnd.GetFreqLabel().SetDecimalDigit(0);
+	m_rMainWnd.GetFreqSlider().SetDecimalDigit(0);
+}
+//----------------------------------------------------------------------------
+// システム → 再生周波数 → 小数点桁数 → 1桁メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetFreqDecimal1MenuSelected()
+{
+	CheckItem(ID_FREQDEC_0, MF_UNCHECKED);
+	CheckItem(ID_FREQDEC_1, MF_CHECKED);
+	CheckItem(ID_FREQDEC_2, MF_UNCHECKED);
+	m_rMainWnd.GetFreqLabel().SetDecimalDigit(1);
+	m_rMainWnd.GetFreqSlider().SetDecimalDigit(1);
+}
+//----------------------------------------------------------------------------
+// システム → 再生周波数 → 小数点桁数 → 2桁メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetFreqDecimal2MenuSelected()
+{
+	CheckItem(ID_FREQDEC_0, MF_UNCHECKED);
+	CheckItem(ID_FREQDEC_1, MF_UNCHECKED);
+	CheckItem(ID_FREQDEC_2, MF_CHECKED);
+	m_rMainWnd.GetFreqLabel().SetDecimalDigit(2);
+	m_rMainWnd.GetFreqSlider().SetDecimalDigit(2);
+}
+//----------------------------------------------------------------------------
+// システム → 音程 → 小数点桁数 → 0桁メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchDecimal0MenuSelected()
+{
+	CheckItem(ID_PITCHDEC_0, MF_CHECKED);
+	m_rMainWnd.GetPitchLabel().SetDecimalDigit(0);
+}
+//----------------------------------------------------------------------------
+// システム → 音程 → 小数点桁数 → 1桁メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchDecimal1MenuSelected()
+{
+	CheckItem(ID_PITCHDEC_1, MF_CHECKED);
+	m_rMainWnd.GetPitchLabel().SetDecimalDigit(1);
+}
+//----------------------------------------------------------------------------
+// システム → 音程 → 小数点桁数 → 2桁メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetPitchDecimal2MenuSelected()
+{
+	CheckItem(ID_PITCHDEC_2, MF_CHECKED);
+	m_rMainWnd.GetPitchLabel().SetDecimalDigit(2);
+}
+//----------------------------------------------------------------------------
+// エフェクト → 音量 → デフォルトに戻すメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnResetVolumeMenuSelected()
+{
+	m_rMainWnd.ResetVolume();
+}
+//----------------------------------------------------------------------------
+// エフェクト → 音量 → 0%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetVolume0MenuSelected()
+{
+	m_rMainWnd.GetVolumeLabel().SetVolume(0.0);
+}
+//----------------------------------------------------------------------------
+// エフェクト → 音量 → 10%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetVolume10MenuSelected()
+{
+	m_rMainWnd.GetVolumeLabel().SetVolume(10.0);
+}
+//----------------------------------------------------------------------------
+// エフェクト → 音量 → 20%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetVolume20MenuSelected()
+{
+	m_rMainWnd.GetVolumeLabel().SetVolume(20.0);
+}
+//----------------------------------------------------------------------------
+// エフェクト → 音量 → 30%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetVolume30MenuSelected()
+{
+	m_rMainWnd.GetVolumeLabel().SetVolume(30.0);
+}
+//----------------------------------------------------------------------------
+// エフェクト → 音量 → 40%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetVolume40MenuSelected()
+{
+	m_rMainWnd.GetVolumeLabel().SetVolume(40.0);
+}
+//----------------------------------------------------------------------------
+// エフェクト → 音量 → 50%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetVolume50MenuSelected()
+{
+	m_rMainWnd.GetVolumeLabel().SetVolume(50.0);
+}
+//----------------------------------------------------------------------------
+// エフェクト → 音量 → 60%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetVolume60MenuSelected()
+{
+	m_rMainWnd.GetVolumeLabel().SetVolume(60.0);
+}
+//----------------------------------------------------------------------------
+// エフェクト → 音量 → 70%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetVolume70MenuSelected()
+{
+	m_rMainWnd.GetVolumeLabel().SetVolume(70.0);
+}
+//----------------------------------------------------------------------------
+// エフェクト → 音量 → 80%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetVolume80MenuSelected()
+{
+	m_rMainWnd.GetVolumeLabel().SetVolume(80.0);
+}
+//----------------------------------------------------------------------------
+// エフェクト → 音量 → 90%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetVolume90MenuSelected()
+{
+	m_rMainWnd.GetVolumeLabel().SetVolume(90.0);
+}
+//----------------------------------------------------------------------------
+// エフェクト → 音量 → 100%メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSetVolume100MenuSelected()
+{
+	m_rMainWnd.GetVolumeLabel().SetVolume(100.0);
 }
 //----------------------------------------------------------------------------
 // システム → エフェクト → リバーブ → デフォルトメニューが選択された
