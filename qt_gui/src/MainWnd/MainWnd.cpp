@@ -21,6 +21,7 @@
 #include "ChorusCustomizeWnd.h"
 #include "CompressorCustomizeWnd.h"
 #include "DelayCustomizeWnd.h"
+#include "DistortionCustomizeWnd.h"
 #include "FlangerCustomizeWnd.h"
 #include "GargleCustomizeWnd.h"
 #include "PlayListView_MainWnd.h"
@@ -1394,6 +1395,7 @@ void CMainWnd::SetAllEffects()
 	SetCompressor(bCompressor);
 	SetFlanger(bFlanger);
 	SetGargle(bGargle);
+	SetDistortion(bDistortion);
 }
 //----------------------------------------------------------------------------
 // 連続再生
@@ -2388,6 +2390,14 @@ void CMainWnd::SetGargle(BOOL bGargle)
 	m_sound.SetGargle(bGargle);
 }
 //----------------------------------------------------------------------------
+// ディストーションをかける
+//----------------------------------------------------------------------------
+void CMainWnd::SetDistortion(BOOL bDistortion)
+{
+	this->bDistortion = bDistortion;
+	m_sound.SetDistortion(bDistortion);
+}
+//----------------------------------------------------------------------------
 // 電池切れ
 //----------------------------------------------------------------------------
 void CMainWnd::SetLowBattery()
@@ -2751,6 +2761,14 @@ void CMainWnd::ShowCompressorCustomizeWnd()
 void CMainWnd::ShowDelayCustomizeWnd()
 {
 	CDelayCustomizeWnd dlg(*this);
+	dlg.exec();
+}
+//----------------------------------------------------------------------------
+// ディストーションのカスタマイズ用ウィンドウの表示
+//----------------------------------------------------------------------------
+void CMainWnd::ShowDistortionCustomizeWnd()
+{
+	CDistortionCustomizeWnd dlg(*this);
 	dlg.exec();
 }
 //----------------------------------------------------------------------------

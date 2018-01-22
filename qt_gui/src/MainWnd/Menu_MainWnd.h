@@ -33,6 +33,9 @@ public: // 関数
 					float fFreq, DWORD lWaveform, float fDelay,
 					DWORD lPhase, UINT uID);
 	void SetGargle(DWORD dwRateHz, DWORD dwWaveShape, UINT uID);
+	void SetDistortion(float fGain, float fEdge, float fPostEQCenterFreq,
+					   float fPostEQBandwidth, float fPreLowpassCutoff,
+					   UINT uID);
 	void SetReverb(float fInGain, float fReverbMix, float fReverbTime,
 		float fHighFreqRTRatio, UINT uID);
 	void Set3DReverb(int lRoom, int lRoomHF, float flRoomRolloffFactor,
@@ -45,6 +48,7 @@ public: // 関数
 	void UncheckChorusMenu();
 	void UncheckCompressorMenu();
 	void UncheckDelayMenu();
+	void UncheckDistortionMenu();
 	void UncheckFlangerMenu();
 	void UncheckGargleMenu();
 	void UncheckReverbMenu();
@@ -276,6 +280,8 @@ public: // 関数
 	void OnFlangerCustomizeMenuSelected(bool checked);
 	void OnGargleDefaultMenuSelected(bool checked);
 	void OnGargleCustomizeMenuSelected(bool checked);
+	void OnDistortionDefaultMenuSelected(bool checked);
+	void OnDistortionCustomizeMenuSelected(bool checked);
 	void OnEQFlatMenuSelected();
 	void OnEQLowSuperMenuSelected();
 	void OnEQLowHighestMenuSelected();

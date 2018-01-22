@@ -886,6 +886,14 @@
      <addaction name="separator"/>
      <addaction name="actionGargleCustomize"/>
     </widget>
+    <widget class="QMenu" name="menuDistortion_D">
+     <property name="title">
+      <string>Distortion(&amp;D)</string>
+     </property>
+     <addaction name="actionDistortionDefault"/>
+     <addaction name="separator"/>
+     <addaction name="actionDistortionCustomize"/>
+    </widget>
     <addaction name="menuSpeed"/>
     <addaction name="menuFreq"/>
     <addaction name="menuPitch"/>
@@ -899,6 +907,7 @@
     <addaction name="menuCompressor_C"/>
     <addaction name="menuFlanger_F"/>
     <addaction name="menuGargle_F"/>
+    <addaction name="menuDistortion_D"/>
     <addaction name="separator"/>
     <addaction name="menuSound_Effects_S"/>
     <addaction name="separator"/>
@@ -2740,6 +2749,22 @@
    </property>
   </action>
   <action name="actionGargleCustomize">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Customize(&amp;C)</string>
+   </property>
+  </action>
+  <action name="actionDistortionDefault">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Default(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionDistortionCustomize">
    <property name="checkable">
     <bool>true</bool>
    </property>

@@ -100,6 +100,22 @@ void CMenu_MainWnd::SetGargle(DWORD dwRateHz, DWORD dwWaveShape, UINT uID)
 	CheckItem(uID, bGargle ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
+// ディストーションの設定
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::SetDistortion(float fGain, float fEdge,
+								  float fPostEQCenterFreq,
+								  float fPostEQBandwidth,
+								  float fPreLowpassCutoff, UINT uID)
+{
+	BOOL bDistortion = !IsItemChecked(uID);
+	m_rMainWnd.GetSound().SetDistortion(fGain, fEdge, fPostEQCenterFreq,
+									   fPostEQBandwidth, fPreLowpassCutoff,
+									   bDistortion);
+	m_rMainWnd.SetDistortion(bDistortion);
+	UncheckDistortionMenu();
+	CheckItem(uID, bDistortion ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
 // リバーブの設定
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::SetReverb(float fInGain, float fReverbMix,
@@ -189,6 +205,14 @@ void CMenu_MainWnd::UncheckDelayMenu()
 	CheckItem(ID_DELAY_DOUBLING, MF_UNCHECKED);
 	CheckItem(ID_DELAY_DOUBLEKICK, MF_UNCHECKED);
 	CheckItem(ID_DELAY_CUSTOMIZE, MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
+// ディストーションメニューのチェックを外す
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::UncheckDistortionMenu()
+{
+	CheckItem(ID_DISTORTION_DEFAULT, MF_UNCHECKED);
+	CheckItem(ID_DISTORTION_CUSTOMIZE, MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
 // フランジャーメニューのチェックを外す
@@ -2012,6 +2036,26 @@ void CMenu_MainWnd::OnGargleCustomizeMenuSelected(bool checked)
 	else m_rMainWnd.ShowGargleCustomizeWnd();
 }
 //----------------------------------------------------------------------------
+// システム → エフェクト → Distortion → Defaultメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDistortionDefaultMenuSelected(bool checked)
+{
+	CheckItem(ID_DISTORTION_DEFAULT, checked ? MF_UNCHECKED : MF_CHECKED);
+	SetDistortion(-18.0f, 15.0f, 2400.0f, 2400.0f, 8000.0f,
+				  ID_DISTORTION_DEFAULT);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → Distortion → カスタマイズメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDistortionCustomizeMenuSelected(bool checked)
+{
+	CheckItem(ID_DISTORTION_CUSTOMIZE, checked ? MF_UNCHECKED : MF_CHECKED);
+	if(!checked)
+		SetDistortion(-18.0f, 15.0f, 2400.0f, 2400.0f, 8000.0f,
+					  ID_DISTORTION_CUSTOMIZE);
+	else m_rMainWnd.ShowDistortionCustomizeWnd();
+}
+//----------------------------------------------------------------------------
 // システム → EQプリセット → FLATメニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnEQFlatMenuSelected()
@@ -2449,6 +2493,8 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_FLANGER_CUSTOMIZE, m_rMainWnd.actionFlangerCustomize},
 		{ID_GARGLE_DEFAULT, m_rMainWnd.actionGargleDefault},
 		{ID_GARGLE_CUSTOMIZE, m_rMainWnd.actionGargleCustomize},
+		{ID_DISTORTION_DEFAULT, m_rMainWnd.actionDistortionDefault},
+		{ID_DISTORTION_CUSTOMIZE, m_rMainWnd.actionDistortionCustomize},
 		{ID_RECORDNOISE, m_rMainWnd.actionRecordNoise},
 		{ID_WAVE, m_rMainWnd.actionWave},
 		{ID_NORMALIZE, m_rMainWnd.actionNormalize},
@@ -2708,6 +2754,11 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnGargleDefaultMenuSelected);
 	connect(m_rMainWnd.actionGargleCustomize, &QAction::triggered,
 					this, &CMenu_MainWnd::OnGargleCustomizeMenuSelected);
+	// Effect - Distortion
+	connect(m_rMainWnd.actionDistortionDefault, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDistortionDefaultMenuSelected);
+	connect(m_rMainWnd.actionDistortionCustomize, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDistortionCustomizeMenuSelected);
 	// Effect - Sound Effects
 	connect(m_rMainWnd.actionRecordNoise, &QAction::triggered,
 					this, &CMenu_MainWnd::OnRecordNoiseMenuSelected);
