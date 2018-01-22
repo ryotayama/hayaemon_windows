@@ -35,6 +35,8 @@ set(SRC_MAINWND
   ${SRC_DIR}/MainWnd/DelayCustomizeWnd.h
   ${SRC_DIR}/MainWnd/FlangerCustomizeWnd.cpp
   ${SRC_DIR}/MainWnd/FlangerCustomizeWnd.h
+  ${SRC_DIR}/MainWnd/GargleCustomizeWnd.cpp
+  ${SRC_DIR}/MainWnd/GargleCustomizeWnd.h
   ${SRC_DIR}/MainWnd/EQLabel_MainWnd.cpp
   ${SRC_DIR}/MainWnd/EQLabel_MainWnd.h
   ${SRC_DIR}/MainWnd/EQSlider_MainWnd.cpp
@@ -131,6 +133,7 @@ qt5_wrap_ui(UI_MOC
   ${SRC_DIR}/MainWnd/CompressorCustomizeWnd.ui
   ${SRC_DIR}/MainWnd/DelayCustomizeWnd.ui
   ${SRC_DIR}/MainWnd/FlangerCustomizeWnd.ui
+  ${SRC_DIR}/MainWnd/GargleCustomizeWnd.ui
   ${SRC_DIR}/MainWnd/MainWnd.ui
   ${SRC_DIR}/MainWnd/Reverb3DCustomizeWnd.ui
   ${SRC_DIR}/MainWnd/ReverbCustomizeWnd.ui)

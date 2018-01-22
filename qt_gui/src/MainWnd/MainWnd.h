@@ -80,12 +80,12 @@ public: // 関数
 		m_eq20kLabel(*this), m_eq20kSlider(*this),
 		m_sound(*this), m_soundEffect(*this, FALSE), isInitFileRead(FALSE),
 		bReverb(FALSE), b3DReverb(FALSE), bDelay(FALSE), bChorus(FALSE),
-		bCompressor(FALSE), bFlanger(FALSE), bMarkerPlay(FALSE), bCountLoop(FALSE),
-		bInstantLoop(FALSE), bSetPositionAuto(FALSE), m_bFinish(FALSE),
-		nFreqVelo(0), nFreqAccel(0), nLoopCount(0), nCurrentLoopCount(0),
-		nCurPlayTab(0), m_nLastDecimalDigit_pitch(0), m_nLastDecimalDigit_freq(0),
-		m_nLastDecimalDigit_speed(0), m_timeThreadRunning(false),
-		m_bForwarding(false), m_bRewinding(false) { }
+		bCompressor(FALSE), bFlanger(FALSE), bGargle(FALSE), bMarkerPlay(FALSE),
+		bCountLoop(FALSE), bInstantLoop(FALSE), bSetPositionAuto(FALSE),
+		m_bFinish(FALSE), nFreqVelo(0), nFreqAccel(0), nLoopCount(0),
+		nCurrentLoopCount(0), nCurPlayTab(0), m_nLastDecimalDigit_pitch(0),
+		m_nLastDecimalDigit_freq(0), m_nLastDecimalDigit_speed(0),
+		m_timeThreadRunning(false), m_bForwarding(false), m_bRewinding(false) { }
 	virtual ~CMainWnd();
 
 	virtual void AddDropFiles(const QList<QUrl> & urls, BOOL bClear);
@@ -216,6 +216,7 @@ public: // 関数
 	virtual void ShowCompressorCustomizeWnd();
 	virtual void ShowDelayCustomizeWnd();
 	virtual void ShowFlangerCustomizeWnd();
+	virtual void ShowGargleCustomizeWnd();
 	virtual void SetTime(QWORD qwTime, BOOL bReset = TRUE);
 	virtual void SetPan(int nPan);
 	virtual void SetReverb(BOOL bReverb);
@@ -224,6 +225,7 @@ public: // 関数
 	virtual void SetChorus(BOOL bChorus);
 	virtual void SetCompressor(BOOL bCompressor);
 	virtual void SetFlanger(BOOL bFlanger);
+	virtual void SetGargle(BOOL bGargle);
 	virtual void ShowReverbCustomizeWnd();
 	virtual void ShowTime(BOOL bReset = TRUE);
 	virtual void StartRewind();
@@ -334,6 +336,7 @@ protected: // メンバ変数
 	BOOL bChorus; // コーラスが有効かどうか
 	BOOL bCompressor; // コンプレッサーが有効かどうか
 	BOOL bFlanger; // フランジャーが有効かどうか
+	BOOL bGargle; // ガーグルが有効かどうか
 	BOOL bMarkerPlay; // マーカー再生をするかどうか
 	BOOL bCountLoop; // 回数ループをするかどうか
 	BOOL bInstantLoop; // マーカー追加時にループするかどうか

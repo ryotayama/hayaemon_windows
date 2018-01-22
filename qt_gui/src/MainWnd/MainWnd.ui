@@ -878,6 +878,14 @@
      <addaction name="separator"/>
      <addaction name="actionFlangerCustomize"/>
     </widget>
+    <widget class="QMenu" name="menuGargle_F">
+     <property name="title">
+      <string>Gargle(&amp;F)</string>
+     </property>
+     <addaction name="actionGargleDefault"/>
+     <addaction name="separator"/>
+     <addaction name="actionGargleCustomize"/>
+    </widget>
     <addaction name="menuSpeed"/>
     <addaction name="menuFreq"/>
     <addaction name="menuPitch"/>
@@ -890,6 +898,7 @@
     <addaction name="menuChorus_C"/>
     <addaction name="menuCompressor_C"/>
     <addaction name="menuFlanger_F"/>
+    <addaction name="menuGargle_F"/>
     <addaction name="separator"/>
     <addaction name="menuSound_Effects_S"/>
     <addaction name="separator"/>
@@ -2715,6 +2724,22 @@
    </property>
   </action>
   <action name="actionFlangerCustomize">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Customize(&amp;C)</string>
+   </property>
+  </action>
+  <action name="actionGargleDefault">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Default(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionGargleCustomize">
    <property name="checkable">
     <bool>true</bool>
    </property>

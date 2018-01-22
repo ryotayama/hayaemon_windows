@@ -22,6 +22,7 @@
 #include "CompressorCustomizeWnd.h"
 #include "DelayCustomizeWnd.h"
 #include "FlangerCustomizeWnd.h"
+#include "GargleCustomizeWnd.h"
 #include "PlayListView_MainWnd.h"
 #include "Platform.h"
 #include "ReverbCustomizeWnd.h"
@@ -1392,6 +1393,7 @@ void CMainWnd::SetAllEffects()
 	SetChorus(bChorus);
 	SetCompressor(bCompressor);
 	SetFlanger(bFlanger);
+	SetGargle(bGargle);
 }
 //----------------------------------------------------------------------------
 // 連続再生
@@ -2378,6 +2380,14 @@ void CMainWnd::SetFlanger(BOOL bFlanger)
 	m_sound.SetFlanger(bFlanger);
 }
 //----------------------------------------------------------------------------
+// ガーグルをかける
+//----------------------------------------------------------------------------
+void CMainWnd::SetGargle(BOOL bGargle)
+{
+	this->bGargle = bGargle;
+	m_sound.SetGargle(bGargle);
+}
+//----------------------------------------------------------------------------
 // 電池切れ
 //----------------------------------------------------------------------------
 void CMainWnd::SetLowBattery()
@@ -2749,6 +2759,14 @@ void CMainWnd::ShowDelayCustomizeWnd()
 void CMainWnd::ShowFlangerCustomizeWnd()
 {
 	CFlangerCustomizeWnd dlg(*this);
+	dlg.exec();
+}
+//----------------------------------------------------------------------------
+// ガーグルのカスタマイズ用ウィンドウの表示
+//----------------------------------------------------------------------------
+void CMainWnd::ShowGargleCustomizeWnd()
+{
+	CGargleCustomizeWnd dlg(*this);
 	dlg.exec();
 }
 //----------------------------------------------------------------------------

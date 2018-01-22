@@ -89,6 +89,17 @@ void CMenu_MainWnd::SetFlanger(float fWetDryMix, float fDepth, float fFeedback,
 	CheckItem(uID, bFlanger ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
+// ガーグルの設定
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::SetGargle(DWORD dwRateHz, DWORD dwWaveShape, UINT uID)
+{
+	BOOL bGargle = !IsItemChecked(uID);
+	m_rMainWnd.GetSound().SetGargle(dwRateHz, dwWaveShape, bGargle);
+	m_rMainWnd.SetGargle(bGargle);
+	UncheckGargleMenu();
+	CheckItem(uID, bGargle ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
 // リバーブの設定
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::SetReverb(float fInGain, float fReverbMix,
@@ -186,6 +197,14 @@ void CMenu_MainWnd::UncheckFlangerMenu()
 {
 	CheckItem(ID_FLANGER_DEFAULT, MF_UNCHECKED);
 	CheckItem(ID_FLANGER_CUSTOMIZE, MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
+// ガーグルメニューのチェックを外す
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::UncheckGargleMenu()
+{
+	CheckItem(ID_GARGLE_DEFAULT, MF_UNCHECKED);
+	CheckItem(ID_GARGLE_CUSTOMIZE, MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
 // リバーブメニューのチェックを外す
@@ -1975,6 +1994,24 @@ void CMenu_MainWnd::OnFlangerCustomizeMenuSelected(bool checked)
 	else m_rMainWnd.ShowFlangerCustomizeWnd();
 }
 //----------------------------------------------------------------------------
+// システム → エフェクト → Gargle → Defaultメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnGargleDefaultMenuSelected(bool checked)
+{
+	CheckItem(ID_GARGLE_DEFAULT, checked ? MF_UNCHECKED : MF_CHECKED);
+	SetGargle(20, 0, ID_GARGLE_DEFAULT);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → Gargle → カスタマイズメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnGargleCustomizeMenuSelected(bool checked)
+{
+	CheckItem(ID_GARGLE_CUSTOMIZE, checked ? MF_UNCHECKED : MF_CHECKED);
+	if(!checked)
+		SetGargle(20, 0, ID_GARGLE_CUSTOMIZE);
+	else m_rMainWnd.ShowGargleCustomizeWnd();
+}
+//----------------------------------------------------------------------------
 // システム → EQプリセット → FLATメニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnEQFlatMenuSelected()
@@ -2410,6 +2447,8 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_COMPRESSOR_CUSTOMIZE, m_rMainWnd.actionCompressorCustomize},
 		{ID_FLANGER_DEFAULT, m_rMainWnd.actionFlangerDefault},
 		{ID_FLANGER_CUSTOMIZE, m_rMainWnd.actionFlangerCustomize},
+		{ID_GARGLE_DEFAULT, m_rMainWnd.actionGargleDefault},
+		{ID_GARGLE_CUSTOMIZE, m_rMainWnd.actionGargleCustomize},
 		{ID_RECORDNOISE, m_rMainWnd.actionRecordNoise},
 		{ID_WAVE, m_rMainWnd.actionWave},
 		{ID_NORMALIZE, m_rMainWnd.actionNormalize},
@@ -2664,6 +2703,11 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnFlangerDefaultMenuSelected);
 	connect(m_rMainWnd.actionFlangerCustomize, &QAction::triggered,
 					this, &CMenu_MainWnd::OnFlangerCustomizeMenuSelected);
+	// Effect - Gargle
+	connect(m_rMainWnd.actionGargleDefault, &QAction::triggered,
+					this, &CMenu_MainWnd::OnGargleDefaultMenuSelected);
+	connect(m_rMainWnd.actionGargleCustomize, &QAction::triggered,
+					this, &CMenu_MainWnd::OnGargleCustomizeMenuSelected);
 	// Effect - Sound Effects
 	connect(m_rMainWnd.actionRecordNoise, &QAction::triggered,
 					this, &CMenu_MainWnd::OnRecordNoiseMenuSelected);
