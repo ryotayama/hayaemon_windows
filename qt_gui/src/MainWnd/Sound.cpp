@@ -20,7 +20,7 @@ CSound::CSound(CMainWnd & mainWnd, BOOL bMainStream)
 		m_hFx3_15KHz(0), m_hFx4KHz(0), m_hFx5KHz(0), m_hFx6_3KHz(0), m_hFx8KHz(0),
 		m_hFx10KHz(0), m_hFx12_5KHz(0), m_hFx16KHz(0), m_hFx20KHz(0),
 		m_hFxReverb(0), m_hFx3DReverb(0), m_hFxDelay(0), m_hFxChorus(0),
-		m_hFxCompressor(0), m_hFxVolume(0),
+		m_hFxCompressor(0), m_hFxFlanger(0), m_hFxVolume(0),
 		m_hFx20Hz_2(0), m_hFx25Hz_2(0), m_hFx31_5Hz_2(0), m_hFx40Hz_2(0),
 		m_hFx50Hz_2(0), m_hFx63Hz_2(0), m_hFx80Hz_2(0), m_hFx100Hz_2(0),
 		m_hFx125Hz_2(0), m_hFx160Hz_2(0), m_hFx200Hz_2(0), m_hFx250Hz_2(0),
@@ -1428,6 +1428,46 @@ void CSound::SetCompressor(float fGain, float fAttack, float fRelease,
 								  fRatio, fPredelay};
 	m_bdcmp = _bdcmp;
 	BASS_FXSetParameters(m_hFxCompressor, &m_bdcmp);
+}
+//----------------------------------------------------------------------------
+// フランジャーのパラメータを得る
+//----------------------------------------------------------------------------
+BOOL CSound::GetFlanger(BASS_DX8_FLANGER * bdf)
+{
+	if(!m_hFxFlanger) return FALSE;
+	return BASS_FXGetParameters(m_hFxFlanger, bdf);
+}
+//----------------------------------------------------------------------------
+// フランジャーの設定
+//----------------------------------------------------------------------------
+void CSound::SetFlanger(BOOL bFlanger)
+{
+	if(bFlanger) {
+		if(m_hFxFlanger) ChannelRemoveFX(m_hFxFlanger);
+		m_hFxFlanger = ChannelSetFX(BASS_FX_DX8_FLANGER, 0);
+		SetFlanger();
+	}
+	else
+		ChannelRemoveFX(m_hFxFlanger), m_hFxFlanger = 0;
+}
+//----------------------------------------------------------------------------
+// フランジャーの設定
+//----------------------------------------------------------------------------
+void CSound::SetFlanger()
+{
+	BASS_FXSetParameters(m_hFxFlanger, &m_bdf);
+}
+//----------------------------------------------------------------------------
+// フランジャーの設定
+//----------------------------------------------------------------------------
+void CSound::SetFlanger(float fWetDryMix, float fDepth, float fFeedback,
+						float fFreq, DWORD lWaveform, float fDelay,
+						DWORD lPhase, BOOL bFlanger)
+{
+	BASS_DX8_FLANGER _bdf = {fWetDryMix, fDepth, fFeedback, fFreq,
+							 lWaveform, fDelay, lPhase};
+	m_bdf = _bdf;
+	BASS_FXSetParameters(m_hFxFlanger, &m_bdf);
 }
 //----------------------------------------------------------------------------
 // ループ用コールバック関数

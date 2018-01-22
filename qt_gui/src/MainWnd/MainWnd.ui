@@ -870,6 +870,14 @@
      <addaction name="separator"/>
      <addaction name="actionCompressorCustomize"/>
     </widget>
+    <widget class="QMenu" name="menuFlanger_F">
+     <property name="title">
+      <string>Flanger(&amp;F)</string>
+     </property>
+     <addaction name="actionFlangerDefault"/>
+     <addaction name="separator"/>
+     <addaction name="actionFlangerCustomize"/>
+    </widget>
     <addaction name="menuSpeed"/>
     <addaction name="menuFreq"/>
     <addaction name="menuPitch"/>
@@ -881,6 +889,7 @@
     <addaction name="menuDelay_D"/>
     <addaction name="menuChorus_C"/>
     <addaction name="menuCompressor_C"/>
+    <addaction name="menuFlanger_F"/>
     <addaction name="separator"/>
     <addaction name="menuSound_Effects_S"/>
     <addaction name="separator"/>
@@ -2690,6 +2699,22 @@
    </property>
   </action>
   <action name="actionCompressorCustomize">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Customize(&amp;C)</string>
+   </property>
+  </action>
+  <action name="actionFlangerDefault">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Default(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionFlangerCustomize">
    <property name="checkable">
     <bool>true</bool>
    </property>

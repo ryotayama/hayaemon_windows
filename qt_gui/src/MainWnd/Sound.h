@@ -87,6 +87,12 @@ public: // 関数
 	virtual void SetCompressor(float fGain, float fAttack, float fRelease,
 							   float fThreshold, float fRatio, float fPredelay,
 							   BOOL bCompressor);
+	virtual BOOL GetFlanger(BASS_DX8_FLANGER * bdf);
+	virtual void SetFlanger(BOOL bFlanger);
+	virtual void SetFlanger();
+	virtual void SetFlanger(float fWetDryMix, float fDepth, float fFeedback,
+							float fFreq, DWORD lWaveform, float fDelay,
+							DWORD lPhase, BOOL bFlanger);
 	virtual void SetLoop(BOOL bLoop);
 	virtual void SetABLoopA(BOOL bLoop);
 	virtual void SetABLoopB(BOOL bLoop);
@@ -140,7 +146,7 @@ private: // メンバ変数
 		m_hFx3_15KHz, m_hFx4KHz, m_hFx5KHz, m_hFx6_3KHz, m_hFx8KHz,
 		m_hFx10KHz, m_hFx12_5KHz, m_hFx16KHz, m_hFx20KHz,
 		m_hFxReverb, m_hFx3DReverb, m_hFxDelay, m_hFxChorus, m_hFxCompressor,
-		m_hFxVolume;
+		m_hFxFlanger, m_hFxVolume;
 
 	HFX m_hFx20Hz_2, m_hFx25Hz_2, m_hFx31_5Hz_2, m_hFx40Hz_2, m_hFx50Hz_2,
 		m_hFx63Hz_2, m_hFx80Hz_2, m_hFx100Hz_2, m_hFx125Hz_2, m_hFx160Hz_2,
@@ -158,6 +164,7 @@ private: // メンバ変数
 	BASS_DX8_ECHO m_bde;
 	BASS_DX8_CHORUS m_bdc;
 	BASS_DX8_COMPRESSOR m_bdcmp;
+	BASS_DX8_FLANGER m_bdf;
 
 public: // メンバ変数の取得・設定
 

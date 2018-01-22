@@ -21,6 +21,7 @@
 #include "ChorusCustomizeWnd.h"
 #include "CompressorCustomizeWnd.h"
 #include "DelayCustomizeWnd.h"
+#include "FlangerCustomizeWnd.h"
 #include "PlayListView_MainWnd.h"
 #include "Platform.h"
 #include "ReverbCustomizeWnd.h"
@@ -1390,6 +1391,7 @@ void CMainWnd::SetAllEffects()
 	SetDelay(bDelay);
 	SetChorus(bChorus);
 	SetCompressor(bCompressor);
+	SetFlanger(bFlanger);
 }
 //----------------------------------------------------------------------------
 // 連続再生
@@ -2368,6 +2370,14 @@ void CMainWnd::SetCompressor(BOOL bCompressor)
 	m_sound.SetCompressor(bCompressor);
 }
 //----------------------------------------------------------------------------
+// フランジャーをかける
+//----------------------------------------------------------------------------
+void CMainWnd::SetFlanger(BOOL bFlanger)
+{
+	this->bFlanger = bFlanger;
+	m_sound.SetFlanger(bFlanger);
+}
+//----------------------------------------------------------------------------
 // 電池切れ
 //----------------------------------------------------------------------------
 void CMainWnd::SetLowBattery()
@@ -2731,6 +2741,14 @@ void CMainWnd::ShowCompressorCustomizeWnd()
 void CMainWnd::ShowDelayCustomizeWnd()
 {
 	CDelayCustomizeWnd dlg(*this);
+	dlg.exec();
+}
+//----------------------------------------------------------------------------
+// フランジャーのカスタマイズ用ウィンドウの表示
+//----------------------------------------------------------------------------
+void CMainWnd::ShowFlangerCustomizeWnd()
+{
+	CFlangerCustomizeWnd dlg(*this);
 	dlg.exec();
 }
 //----------------------------------------------------------------------------

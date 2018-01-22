@@ -75,6 +75,20 @@ void CMenu_MainWnd::SetCompressor(float fGain, float fAttack, float fRelease,
 	CheckItem(uID, bCompressor ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
+// フランジャーの設定
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::SetFlanger(float fWetDryMix, float fDepth, float fFeedback,
+							   float fFreq, DWORD lWaveform, float fDelay,
+							   DWORD lPhase, UINT uID)
+{
+	BOOL bFlanger = !IsItemChecked(uID);
+	m_rMainWnd.GetSound().SetFlanger(fWetDryMix, fDepth, fFeedback, fFreq,
+									lWaveform, fDelay, lPhase, bFlanger);
+	m_rMainWnd.SetFlanger(bFlanger);
+	UncheckFlangerMenu();
+	CheckItem(uID, bFlanger ? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
 // リバーブの設定
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::SetReverb(float fInGain, float fReverbMix,
@@ -164,6 +178,14 @@ void CMenu_MainWnd::UncheckDelayMenu()
 	CheckItem(ID_DELAY_DOUBLING, MF_UNCHECKED);
 	CheckItem(ID_DELAY_DOUBLEKICK, MF_UNCHECKED);
 	CheckItem(ID_DELAY_CUSTOMIZE, MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
+// フランジャーメニューのチェックを外す
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::UncheckFlangerMenu()
+{
+	CheckItem(ID_FLANGER_DEFAULT, MF_UNCHECKED);
+	CheckItem(ID_FLANGER_CUSTOMIZE, MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
 // リバーブメニューのチェックを外す
@@ -1933,6 +1955,26 @@ void CMenu_MainWnd::OnCompressorCustomizeMenuSelected(bool checked)
 	else m_rMainWnd.ShowCompressorCustomizeWnd();
 }
 //----------------------------------------------------------------------------
+// システム → エフェクト → Flanger → Defaultメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnFlangerDefaultMenuSelected(bool checked)
+{
+	CheckItem(ID_FLANGER_DEFAULT, checked ? MF_UNCHECKED : MF_CHECKED);
+	SetFlanger(50.0f, 100.0f, -50.0f, 0.25f, 1, 2.0f, BASS_DX8_PHASE_ZERO,
+			   ID_FLANGER_DEFAULT);
+}
+//----------------------------------------------------------------------------
+// システム → エフェクト → Flanger → カスタマイズメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnFlangerCustomizeMenuSelected(bool checked)
+{
+	CheckItem(ID_FLANGER_CUSTOMIZE, checked ? MF_UNCHECKED : MF_CHECKED);
+	if(!checked)
+		SetFlanger(50.0f, 100.0f, -50.0f, 0.25f, 1, 2.0f, BASS_DX8_PHASE_ZERO,
+				   ID_FLANGER_CUSTOMIZE);
+	else m_rMainWnd.ShowFlangerCustomizeWnd();
+}
+//----------------------------------------------------------------------------
 // システム → EQプリセット → FLATメニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnEQFlatMenuSelected()
@@ -2366,6 +2408,8 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_CHORUS_CUSTOMIZE, m_rMainWnd.actionChorusCustomize},
 		{ID_COMPRESSOR_DEFAULT, m_rMainWnd.actionCompressorDefault},
 		{ID_COMPRESSOR_CUSTOMIZE, m_rMainWnd.actionCompressorCustomize},
+		{ID_FLANGER_DEFAULT, m_rMainWnd.actionFlangerDefault},
+		{ID_FLANGER_CUSTOMIZE, m_rMainWnd.actionFlangerCustomize},
 		{ID_RECORDNOISE, m_rMainWnd.actionRecordNoise},
 		{ID_WAVE, m_rMainWnd.actionWave},
 		{ID_NORMALIZE, m_rMainWnd.actionNormalize},
@@ -2615,6 +2659,11 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnCompressorDefaultMenuSelected);
 	connect(m_rMainWnd.actionCompressorCustomize, &QAction::triggered,
 					this, &CMenu_MainWnd::OnCompressorCustomizeMenuSelected);
+	// Effect - Flanger
+	connect(m_rMainWnd.actionFlangerDefault, &QAction::triggered,
+					this, &CMenu_MainWnd::OnFlangerDefaultMenuSelected);
+	connect(m_rMainWnd.actionFlangerCustomize, &QAction::triggered,
+					this, &CMenu_MainWnd::OnFlangerCustomizeMenuSelected);
 	// Effect - Sound Effects
 	connect(m_rMainWnd.actionRecordNoise, &QAction::triggered,
 					this, &CMenu_MainWnd::OnRecordNoiseMenuSelected);
