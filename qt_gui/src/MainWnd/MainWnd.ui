@@ -992,7 +992,42 @@
      <addaction name="separator"/>
      <addaction name="actionRecoverEQ"/>
     </widget>
+    <widget class="QMenu" name="menuFade_out_stop_time_G">
+     <property name="title">
+      <string>Fade out stop time(&amp;G)</string>
+     </property>
+     <addaction name="actionFadeOutStop1Sec"/>
+     <addaction name="actionFadeOutStop2Sec"/>
+     <addaction name="actionFadeOutStop3Sec"/>
+     <addaction name="actionFadeOutStop4Sec"/>
+     <addaction name="actionFadeOutStop5Sec"/>
+     <addaction name="actionFadeOutStop6Sec"/>
+     <addaction name="actionFadeOutStop7Sec"/>
+     <addaction name="actionFadeOutStop8Sec"/>
+     <addaction name="actionFadeOutStop9Sec"/>
+     <addaction name="actionFadeOutStop10Sec"/>
+    </widget>
+    <widget class="QMenu" name="menuFade_out_next_time_H">
+     <property name="title">
+      <string>Fade out next time(&amp;H)</string>
+     </property>
+     <addaction name="actionFadeOutNext1Sec"/>
+     <addaction name="actionFadeOutNext2Sec"/>
+     <addaction name="actionFadeOutNext3Sec"/>
+     <addaction name="actionFadeOutNext4Sec"/>
+     <addaction name="actionFadeOutNext5Sec"/>
+     <addaction name="actionFadeOutNext6Sec"/>
+     <addaction name="actionFadeOutNext7Sec"/>
+     <addaction name="actionFadeOutNext8Sec"/>
+     <addaction name="actionFadeOutNext9Sec"/>
+     <addaction name="actionFadeOutNext10Sec"/>
+    </widget>
     <addaction name="menuRecover_R"/>
+    <addaction name="separator"/>
+    <addaction name="actionFadeOutStop"/>
+    <addaction name="menuFade_out_stop_time_G"/>
+    <addaction name="actionFadeOutNext"/>
+    <addaction name="menuFade_out_next_time_H"/>
    </widget>
    <addaction name="menuView_V"/>
    <addaction name="menuPlay_P"/>
@@ -2777,6 +2812,182 @@
   <action name="actionEffectResetAll">
    <property name="text">
     <string>Reset all(&amp;R)</string>
+   </property>
+  </action>
+  <action name="actionFadeOutStop">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Fade out stop(&amp;F)</string>
+   </property>
+  </action>
+  <action name="actionFadeOutStop1Sec">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>1 sec(&amp;1)</string>
+   </property>
+  </action>
+  <action name="actionFadeOutStop2Sec">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>2 sec(&amp;2)</string>
+   </property>
+  </action>
+  <action name="actionFadeOutStop3Sec">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>3 sec(&amp;3)</string>
+   </property>
+  </action>
+  <action name="actionFadeOutStop4Sec">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>4 sec(&amp;4)</string>
+   </property>
+  </action>
+  <action name="actionFadeOutStop5Sec">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>5 sec(&amp;5)</string>
+   </property>
+  </action>
+  <action name="actionFadeOutStop6Sec">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>6 sec(&amp;6)</string>
+   </property>
+  </action>
+  <action name="actionFadeOutStop7Sec">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>7 sec(&amp;7)</string>
+   </property>
+  </action>
+  <action name="actionFadeOutStop8Sec">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>8 sec(&amp;8)</string>
+   </property>
+  </action>
+  <action name="actionFadeOutStop9Sec">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>9 sec(&amp;9)</string>
+   </property>
+  </action>
+  <action name="actionFadeOutStop10Sec">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>10 sec(&amp;A)</string>
+   </property>
+  </action>
+  <action name="actionFadeOutNext">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Fade out next(&amp;F)</string>
+   </property>
+  </action>
+  <action name="actionFadeOutNext1Sec">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>1 sec(&amp;1)</string>
+   </property>
+  </action>
+  <action name="actionFadeOutNext2Sec">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>2 sec(&amp;2)</string>
+   </property>
+  </action>
+  <action name="actionFadeOutNext3Sec">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>3 sec(&amp;3)</string>
+   </property>
+  </action>
+  <action name="actionFadeOutNext4Sec">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>4 sec(&amp;4)</string>
+   </property>
+  </action>
+  <action name="actionFadeOutNext5Sec">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>5 sec(&amp;5)</string>
+   </property>
+  </action>
+  <action name="actionFadeOutNext6Sec">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>6 sec(&amp;6)</string>
+   </property>
+  </action>
+  <action name="actionFadeOutNext7Sec">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>7 sec(&amp;7)</string>
+   </property>
+  </action>
+  <action name="actionFadeOutNext8Sec">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>8 sec(&amp;8)</string>
+   </property>
+  </action>
+  <action name="actionFadeOutNext9Sec">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>9 sec(&amp;9)</string>
+   </property>
+  </action>
+  <action name="actionFadeOutNext10Sec">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>10 sec(&amp;A)</string>
    </property>
   </action>
  </widget>

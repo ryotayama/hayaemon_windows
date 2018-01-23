@@ -170,6 +170,7 @@ target_link_libraries(Hayaemon
   bassalac
   basscd
   bassflac
+  winmm
 )
 elseif (APPLE)
 target_link_libraries(Hayaemon

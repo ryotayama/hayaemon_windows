@@ -1609,6 +1609,146 @@ void CMenu_MainWnd::OnSetVolume100MenuSelected()
 	m_rMainWnd.GetVolumeLabel().SetVolume(100.0);
 }
 //----------------------------------------------------------------------------
+// システム → 停止時フェードアウト時間 → 1秒メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnFadeout1SecMenuSelected()
+{
+	CheckItem(ID_FADEOUTSTOP1SEC, MF_CHECKED);
+}
+//----------------------------------------------------------------------------
+// システム → 停止時フェードアウト時間 → 2秒メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnFadeout2SecMenuSelected()
+{
+	CheckItem(ID_FADEOUTSTOP2SEC, MF_CHECKED);
+}
+//----------------------------------------------------------------------------
+// システム → 停止時フェードアウト時間 → 3秒メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnFadeout3SecMenuSelected()
+{
+	CheckItem(ID_FADEOUTSTOP3SEC, MF_CHECKED);
+}
+//----------------------------------------------------------------------------
+// システム → 停止時フェードアウト時間 → 4秒メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnFadeout4SecMenuSelected()
+{
+	CheckItem(ID_FADEOUTSTOP4SEC, MF_CHECKED);
+}
+//----------------------------------------------------------------------------
+// システム → 停止時フェードアウト時間 → 5秒メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnFadeout5SecMenuSelected()
+{
+	CheckItem(ID_FADEOUTSTOP5SEC, MF_CHECKED);
+}
+//----------------------------------------------------------------------------
+// システム → 停止時フェードアウト時間 → 6秒メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnFadeout6SecMenuSelected()
+{
+	CheckItem(ID_FADEOUTSTOP6SEC, MF_CHECKED);
+}
+//----------------------------------------------------------------------------
+// システム → 停止時フェードアウト時間 → 7秒メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnFadeout7SecMenuSelected()
+{
+	CheckItem(ID_FADEOUTSTOP7SEC, MF_CHECKED);
+}
+//----------------------------------------------------------------------------
+// システム → 停止時フェードアウト時間 → 8秒メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnFadeout8SecMenuSelected()
+{
+	CheckItem(ID_FADEOUTSTOP8SEC, MF_CHECKED);
+}
+//----------------------------------------------------------------------------
+// システム → 停止時フェードアウト時間 → 9秒メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnFadeout9SecMenuSelected()
+{
+	CheckItem(ID_FADEOUTSTOP9SEC, MF_CHECKED);
+}
+//----------------------------------------------------------------------------
+// システム → 停止時フェードアウト時間 → 10秒メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnFadeout10SecMenuSelected()
+{
+	CheckItem(ID_FADEOUTSTOP10SEC, MF_CHECKED);
+}
+//----------------------------------------------------------------------------
+// システム → 切替時フェードアウト時間 → 1秒メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnFadeoutNext1SecMenuSelected()
+{
+	CheckItem(ID_FADEOUTNEXT1SEC, MF_CHECKED);
+}
+//----------------------------------------------------------------------------
+// システム → 切替時フェードアウト時間 → 2秒メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnFadeoutNext2SecMenuSelected()
+{
+	CheckItem(ID_FADEOUTNEXT2SEC, MF_CHECKED);
+}
+//----------------------------------------------------------------------------
+// システム → 切替時フェードアウト時間 → 3秒メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnFadeoutNext3SecMenuSelected()
+{
+	CheckItem(ID_FADEOUTNEXT3SEC, MF_CHECKED);
+}
+//----------------------------------------------------------------------------
+// システム → 切替時フェードアウト時間 → 4秒メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnFadeoutNext4SecMenuSelected()
+{
+	CheckItem(ID_FADEOUTNEXT4SEC, MF_CHECKED);
+}
+//----------------------------------------------------------------------------
+// システム → 切替時フェードアウト時間 → 5秒メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnFadeoutNext5SecMenuSelected()
+{
+	CheckItem(ID_FADEOUTNEXT5SEC, MF_CHECKED);
+}
+//----------------------------------------------------------------------------
+// システム → 切替時フェードアウト時間 → 6秒メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnFadeoutNext6SecMenuSelected()
+{
+	CheckItem(ID_FADEOUTNEXT6SEC, MF_CHECKED);
+}
+//----------------------------------------------------------------------------
+// システム → 切替時フェードアウト時間 → 7秒メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnFadeoutNext7SecMenuSelected()
+{
+	CheckItem(ID_FADEOUTNEXT7SEC, MF_CHECKED);
+}
+//----------------------------------------------------------------------------
+// システム → 切替時フェードアウト時間 → 8秒メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnFadeoutNext8SecMenuSelected()
+{
+	CheckItem(ID_FADEOUTNEXT8SEC, MF_CHECKED);
+}
+//----------------------------------------------------------------------------
+// システム → 切替時フェードアウト時間 → 9秒メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnFadeoutNext9SecMenuSelected()
+{
+	CheckItem(ID_FADEOUTNEXT9SEC, MF_CHECKED);
+}
+//----------------------------------------------------------------------------
+// システム → 切替時フェードアウト時間 → 10秒メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnFadeoutNext10SecMenuSelected()
+{
+	CheckItem(ID_FADEOUTNEXT10SEC, MF_CHECKED);
+}
+//----------------------------------------------------------------------------
 // システム → エフェクト → リバーブ → デフォルトメニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnReverbDefaultMenuSelected(bool checked)
@@ -2578,6 +2718,28 @@ void CMenu_MainWnd::CreateActionMap()
 		 m_rMainWnd.actionRecoverPlayModeSetMarkerPositionAuto},
 		{ID_RECOVERREVERSE, m_rMainWnd.actionRecoverPlayModeReverse},
 		{ID_RECOVERRECORD, m_rMainWnd.actionRecoverPlayModeRecord},
+		{ID_FADEOUTSTOP, m_rMainWnd.actionFadeOutStop},
+		{ID_FADEOUTSTOP1SEC, m_rMainWnd.actionFadeOutStop1Sec},
+		{ID_FADEOUTSTOP2SEC, m_rMainWnd.actionFadeOutStop2Sec},
+		{ID_FADEOUTSTOP3SEC, m_rMainWnd.actionFadeOutStop3Sec},
+		{ID_FADEOUTSTOP4SEC, m_rMainWnd.actionFadeOutStop4Sec},
+		{ID_FADEOUTSTOP5SEC, m_rMainWnd.actionFadeOutStop5Sec},
+		{ID_FADEOUTSTOP6SEC, m_rMainWnd.actionFadeOutStop6Sec},
+		{ID_FADEOUTSTOP7SEC, m_rMainWnd.actionFadeOutStop7Sec},
+		{ID_FADEOUTSTOP8SEC, m_rMainWnd.actionFadeOutStop8Sec},
+		{ID_FADEOUTSTOP9SEC, m_rMainWnd.actionFadeOutStop9Sec},
+		{ID_FADEOUTSTOP10SEC, m_rMainWnd.actionFadeOutStop10Sec},
+		{ID_FADEOUTNEXT, m_rMainWnd.actionFadeOutNext},
+		{ID_FADEOUTNEXT1SEC, m_rMainWnd.actionFadeOutNext1Sec},
+		{ID_FADEOUTNEXT2SEC, m_rMainWnd.actionFadeOutNext2Sec},
+		{ID_FADEOUTNEXT3SEC, m_rMainWnd.actionFadeOutNext3Sec},
+		{ID_FADEOUTNEXT4SEC, m_rMainWnd.actionFadeOutNext4Sec},
+		{ID_FADEOUTNEXT5SEC, m_rMainWnd.actionFadeOutNext5Sec},
+		{ID_FADEOUTNEXT6SEC, m_rMainWnd.actionFadeOutNext6Sec},
+		{ID_FADEOUTNEXT7SEC, m_rMainWnd.actionFadeOutNext7Sec},
+		{ID_FADEOUTNEXT8SEC, m_rMainWnd.actionFadeOutNext8Sec},
+		{ID_FADEOUTNEXT9SEC, m_rMainWnd.actionFadeOutNext9Sec},
+		{ID_FADEOUTNEXT10SEC, m_rMainWnd.actionFadeOutNext10Sec},
 	};
 }
 //----------------------------------------------------------------------------
@@ -2585,26 +2747,54 @@ void CMenu_MainWnd::CreateActionMap()
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::CreateActionGroups()
 {
-	// Speed - Decimal digit
+	// Effect - Speed - Decimal digit
 	auto speed_digit_group = new QActionGroup(&m_rMainWnd);
 	for (auto action : {m_rMainWnd.actionSpeedDigit0,
 											m_rMainWnd.actionSpeedDigit1,
 											m_rMainWnd.actionSpeedDigit2}) {
 		speed_digit_group->addAction(action);
 	}
-	// Frequency - Decimal digit
+	// Effect - Frequency - Decimal digit
 	auto freq_digit_group = new QActionGroup(&m_rMainWnd);
 	for (auto action : {m_rMainWnd.actionFreqDigit0,
 											m_rMainWnd.actionFreqDigit1,
 											m_rMainWnd.actionFreqDigit2}) {
 		freq_digit_group->addAction(action);
 	}
-	// Pitch - Decimal digit
+	// Effect - Pitch - Decimal digit
 	auto pitch_digit_group = new QActionGroup(&m_rMainWnd);
 	for (auto action : {m_rMainWnd.actionPitchDigit0,
 											m_rMainWnd.actionPitchDigit1,
 											m_rMainWnd.actionPitchDigit2}) {
 		pitch_digit_group->addAction(action);
+	}
+	// System - Fade out stop time
+	auto fadeout_stop_group = new QActionGroup(&m_rMainWnd);
+	for (auto action : {m_rMainWnd.actionFadeOutStop1Sec,
+											m_rMainWnd.actionFadeOutStop2Sec,
+											m_rMainWnd.actionFadeOutStop3Sec,
+											m_rMainWnd.actionFadeOutStop4Sec,
+											m_rMainWnd.actionFadeOutStop5Sec,
+											m_rMainWnd.actionFadeOutStop6Sec,
+											m_rMainWnd.actionFadeOutStop7Sec,
+											m_rMainWnd.actionFadeOutStop8Sec,
+											m_rMainWnd.actionFadeOutStop9Sec,
+											m_rMainWnd.actionFadeOutStop10Sec}) {
+		fadeout_stop_group->addAction(action);
+	}
+	// System - Fade out next time
+	auto fadeout_next_group = new QActionGroup(&m_rMainWnd);
+	for (auto action : {m_rMainWnd.actionFadeOutNext1Sec,
+											m_rMainWnd.actionFadeOutNext2Sec,
+											m_rMainWnd.actionFadeOutNext3Sec,
+											m_rMainWnd.actionFadeOutNext4Sec,
+											m_rMainWnd.actionFadeOutNext5Sec,
+											m_rMainWnd.actionFadeOutNext6Sec,
+											m_rMainWnd.actionFadeOutNext7Sec,
+											m_rMainWnd.actionFadeOutNext8Sec,
+											m_rMainWnd.actionFadeOutNext9Sec,
+											m_rMainWnd.actionFadeOutNext10Sec}) {
+		fadeout_next_group->addAction(action);
 	}
 }
 //----------------------------------------------------------------------------

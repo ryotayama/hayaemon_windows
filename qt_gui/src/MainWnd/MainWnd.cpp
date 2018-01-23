@@ -715,6 +715,39 @@ void CMainWnd::OpenInitFileAfterShow()
 		initFilePath.c_str());
 	int _bNormalize = _ttoi(buf);
 
+	// その他の設定
+	GetPrivateProfileString(_T("Options"), _T("FadeoutStop"), _T("0"), buf, 
+		255, initFilePath.c_str());
+	if(_ttoi(buf)) m_menu.CheckItem(ID_FADEOUTSTOP, MF_CHECKED);
+	GetPrivateProfileString(_T("Options"), _T("FadeoutStopTime"), _T("3000"),
+		buf, 255, initFilePath.c_str());
+	if(_ttoi(buf) == 1000) m_menu.OnFadeout1SecMenuSelected();
+	else if(_ttoi(buf) == 2000) m_menu.OnFadeout2SecMenuSelected();
+	else if(_ttoi(buf) == 4000) m_menu.OnFadeout4SecMenuSelected();
+	else if(_ttoi(buf) == 5000) m_menu.OnFadeout5SecMenuSelected();
+	else if(_ttoi(buf) == 6000) m_menu.OnFadeout6SecMenuSelected();
+	else if(_ttoi(buf) == 7000) m_menu.OnFadeout7SecMenuSelected();
+	else if(_ttoi(buf) == 8000) m_menu.OnFadeout8SecMenuSelected();
+	else if(_ttoi(buf) == 9000) m_menu.OnFadeout9SecMenuSelected();
+	else if(_ttoi(buf) == 10000) m_menu.OnFadeout10SecMenuSelected();
+	else m_menu.OnFadeout3SecMenuSelected();
+
+	GetPrivateProfileString(_T("Options"), _T("FadeoutNext"), _T("0"), buf, 
+		255, initFilePath.c_str());
+	if(_ttoi(buf)) m_menu.CheckItem(ID_FADEOUTNEXT, MF_CHECKED);
+	GetPrivateProfileString(_T("Options"), _T("FadeoutNextTime"), _T("3000"),
+		buf, 255, initFilePath.c_str());
+	if(_ttoi(buf) == 1000) m_menu.OnFadeoutNext1SecMenuSelected();
+	else if(_ttoi(buf) == 2000) m_menu.OnFadeoutNext2SecMenuSelected();
+	else if(_ttoi(buf) == 4000) m_menu.OnFadeoutNext4SecMenuSelected();
+	else if(_ttoi(buf) == 5000) m_menu.OnFadeoutNext5SecMenuSelected();
+	else if(_ttoi(buf) == 6000) m_menu.OnFadeoutNext6SecMenuSelected();
+	else if(_ttoi(buf) == 7000) m_menu.OnFadeoutNext7SecMenuSelected();
+	else if(_ttoi(buf) == 8000) m_menu.OnFadeoutNext8SecMenuSelected();
+	else if(_ttoi(buf) == 9000) m_menu.OnFadeoutNext9SecMenuSelected();
+	else if(_ttoi(buf) == 10000) m_menu.OnFadeoutNext10SecMenuSelected();
+	else m_menu.OnFadeoutNext3SecMenuSelected();
+
 	// 再生モードの復元
 	if(_bRecoverContinue) {
 		m_menu.SwitchItemChecked(ID_RECOVERCONTINUE);
@@ -921,6 +954,9 @@ void CMainWnd::Pause()
 //----------------------------------------------------------------------------
 BOOL CMainWnd::Play()
 {
+	KillTimer(IDT_FADEOUT);
+	KillTimer(IDT_FADEOUTNEXT);
+	dwFadeoutStartTime = 0;
 	m_sound.ChannelSetAttribute(BASS_ATTRIB_VOL, 1.0f);
 	if(!m_sound.ChannelPlay()) {
 		// 再生に失敗
@@ -942,46 +978,58 @@ void CMainWnd::PlayNext(BOOL bPlay, BOOL bFadeoutCancel)
 {
 	// bPlay : かならず再生するかどうか
 
-	BOOL bStopped = m_sound.ChannelIsStopped() && !bPlay;
-	BOOL bPausing = m_sound.ChannelIsPausing() && !bPlay;
-	BOOL bBassCopy = m_menu.IsItemChecked(ID_BASSCOPY);
-	BOOL bDrumsCopy = m_menu.IsItemChecked(ID_CYMBALCOPY);
-
-	// 次に再生すべきファイルを探す
-	while(1) {
-		if(OpenNext()) {
-			if(Play()) break;
-			else continue;
-		}
-		else {
-			BOOL isLoop = m_sound.IsLoop();
-			m_sound.SetLoop(FALSE);
-			Stop();
-			if(!m_sound.IsLoop()
-					&& m_arrayList[nCurPlayTab]->GetItemCount() > 0
-					&& (m_menu.IsItemChecked(ID_RANDOM)
-					|| m_sound.GetCurFileNum() > 1)) {
-				m_sound.SetCurFileNum(0);
-				OpenNext();
-			}
-			m_sound.SetLoop(isLoop);
-			if(m_menu.IsItemChecked(ID_ALOOP)) Play();
-			break;
-		}
+	if(!bPlay && !bFadeoutCancel && !m_sound.ChannelIsStopped() &&
+		 !m_sound.ChannelIsPausing() && dwFadeoutStartTime == 0 &&
+		 m_menu.IsItemChecked(ID_FADEOUTNEXT)) {
+		dwFadeoutStartTime = timeGetTime();
+		SetTimer(IDT_FADEOUTNEXT, 1);
 	}
+	else {
+		KillTimer(IDT_FADEOUT);
+		KillTimer(IDT_FADEOUTNEXT);
+		dwFadeoutStartTime = 0;
+		BOOL bStopped = m_sound.ChannelIsStopped() && !bPlay;
+		BOOL bPausing = m_sound.ChannelIsPausing() && !bPlay;
+		BOOL bBassCopy = m_menu.IsItemChecked(ID_BASSCOPY);
+		BOOL bDrumsCopy = m_menu.IsItemChecked(ID_CYMBALCOPY);
 
-	m_sound.ChannelSetAttribute(BASS_ATTRIB_VOL, 1.0f);
-	if(m_sound.ChannelIsActive()) {
-		m_menu.CheckItem(ID_BASSCOPY, bBassCopy ?
-										MF_CHECKED : MF_UNCHECKED);
-		m_menu.CheckItem(ID_CYMBALCOPY, bDrumsCopy ?
-										MF_CHECKED : MF_UNCHECKED);
-		if(bPausing) Pause();
-		else if(bStopped || !m_menu.IsItemChecked(ID_CONTINUE)) {
-			BOOL isLoop = m_sound.IsLoop();
-			m_sound.SetLoop(TRUE);
-			Stop();
-			m_sound.SetLoop(isLoop);
+		// 次に再生すべきファイルを探す
+		while(1) {
+			if(OpenNext()) {
+				if(Play()) break;
+				else continue;
+			}
+			else {
+				BOOL isLoop = m_sound.IsLoop();
+				m_sound.SetLoop(FALSE);
+				Stop();
+				if(!m_sound.IsLoop()
+						&& m_arrayList[nCurPlayTab]->GetItemCount() > 0
+						&& (m_menu.IsItemChecked(ID_RANDOM)
+						|| m_sound.GetCurFileNum() > 1)) {
+					m_sound.SetCurFileNum(0);
+					m_arrayList[nCurPlayTab]->ClearPlayOrder();
+					OpenNext();
+				}
+				m_sound.SetLoop(isLoop);
+				if(m_menu.IsItemChecked(ID_ALOOP)) Play();
+				break;
+			}
+		}
+
+		m_sound.ChannelSetAttribute(BASS_ATTRIB_VOL, 1.0f);
+		if(m_sound.ChannelIsActive()) {
+			m_menu.CheckItem(ID_BASSCOPY, bBassCopy ?
+											MF_CHECKED : MF_UNCHECKED);
+			m_menu.CheckItem(ID_CYMBALCOPY, bDrumsCopy ?
+											MF_CHECKED : MF_UNCHECKED);
+			if(bPausing) Pause();
+			else if(bStopped || !m_menu.IsItemChecked(ID_CONTINUE)) {
+				BOOL isLoop = m_sound.IsLoop();
+				m_sound.SetLoop(TRUE);
+				Stop();
+				m_sound.SetLoop(isLoop);
+			}
 		}
 	}
 }
@@ -2870,15 +2918,31 @@ void CMainWnd::StopForward()
 //----------------------------------------------------------------------------
 void CMainWnd::Stop(BOOL bForce)
 {
-	KillTimer(IDT_TIME);
-	SetCountLoop(FALSE, 0);
-	m_sound.ChannelStop();
-	SetTime(0);
-	m_toolBar.SetPlayingState(FALSE);
-	m_arrayList[nCurPlayTab]->SetPlaying(-1);
-	m_sound.ChannelSetAttribute(BASS_ATTRIB_VOL, 1.0f);
-	if(m_arrayList[nCurPlayTab]->GetItemCount() == 0)
-		SetCaption(m_rApp.GetName());
+	if(!bForce && dwFadeoutStartTime == 0 &&
+		 m_menu.IsItemChecked(ID_FADEOUTSTOP)) {
+		dwFadeoutStartTime = timeGetTime();
+		SetTimer(IDT_FADEOUT, 1);
+	}
+	else {
+		KillTimer(IDT_FADEOUT);
+		KillTimer(IDT_FADEOUTNEXT);
+		dwFadeoutStartTime = 0;
+		KillTimer(IDT_TIME);
+		SetCountLoop(FALSE, 0);
+		m_sound.ChannelStop();
+		SetTime(0);
+		ShowTime();
+		m_toolBar.SetPlayingState(FALSE);
+		m_arrayList[nCurPlayTab]->SetPlaying(-1);
+		if(m_menu.IsItemChecked(ID_RECORD)) {
+			nFreqVelo = 0.0;
+			nFreqAccel = 0.0;
+			m_freqLabel.SetFreq(100.0);
+		}
+		m_sound.ChannelSetAttribute(BASS_ATTRIB_VOL, 1.0f);
+		if(m_arrayList[nCurPlayTab]->GetItemCount() == 0)
+			SetCaption(m_rApp.GetName());
+	}
 }
 //----------------------------------------------------------------------------
 // 指定した%再生周波数を上げる
@@ -3272,6 +3336,73 @@ void CMainWnd::WriteInitFile()
 	_stprintf_s(buf, _T("%d"), m_pitchSlider.GetDecimalDigit());
 	WritePrivateProfileString(_T("Options"), _T("PitchDecimalDigit"), buf,
 							  initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_FADEOUTSTOP) ? 1 : 0);
+	WritePrivateProfileString(_T("Options"), _T("FadeoutStop"), buf,
+		initFilePath.c_str());
+	if(m_menu.IsItemChecked(ID_FADEOUTSTOP1SEC))
+		WritePrivateProfileString(_T("Options"), _T("FadeoutStopTime"),
+		_T("1000"), initFilePath.c_str());
+	else if(m_menu.IsItemChecked(ID_FADEOUTSTOP2SEC))
+		WritePrivateProfileString(_T("Options"), _T("FadeoutStopTime"),
+		_T("2000"), initFilePath.c_str());
+	else if(m_menu.IsItemChecked(ID_FADEOUTSTOP4SEC))
+		WritePrivateProfileString(_T("Options"), _T("FadeoutStopTime"),
+		_T("4000"), initFilePath.c_str());
+	else if(m_menu.IsItemChecked(ID_FADEOUTSTOP5SEC))
+		WritePrivateProfileString(_T("Options"), _T("FadeoutStopTime"),
+		_T("5000"), initFilePath.c_str());
+	else if(m_menu.IsItemChecked(ID_FADEOUTSTOP6SEC))
+		WritePrivateProfileString(_T("Options"), _T("FadeoutStopTime"),
+		_T("6000"), initFilePath.c_str());
+	else if(m_menu.IsItemChecked(ID_FADEOUTSTOP7SEC))
+		WritePrivateProfileString(_T("Options"), _T("FadeoutStopTime"),
+		_T("7000"), initFilePath.c_str());
+	else if(m_menu.IsItemChecked(ID_FADEOUTSTOP8SEC))
+		WritePrivateProfileString(_T("Options"), _T("FadeoutStopTime"),
+		_T("8000"), initFilePath.c_str());
+	else if(m_menu.IsItemChecked(ID_FADEOUTSTOP9SEC))
+		WritePrivateProfileString(_T("Options"), _T("FadeoutStopTime"),
+		_T("9000"), initFilePath.c_str());
+	else if(m_menu.IsItemChecked(ID_FADEOUTSTOP10SEC))
+		WritePrivateProfileString(_T("Options"), _T("FadeoutStopTime"),
+		_T("10000"), initFilePath.c_str());
+	else
+		WritePrivateProfileString(_T("Options"), _T("FadeoutStopTime"),
+		_T("3000"), initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_FADEOUTNEXT) ? 1 : 0);
+	WritePrivateProfileString(_T("Options"), _T("FadeoutNext"), buf,
+		initFilePath.c_str());
+	if(m_menu.IsItemChecked(ID_FADEOUTNEXT1SEC))
+		WritePrivateProfileString(_T("Options"), _T("FadeoutNextTime"),
+		_T("1000"), initFilePath.c_str());
+	else if(m_menu.IsItemChecked(ID_FADEOUTNEXT2SEC))
+		WritePrivateProfileString(_T("Options"), _T("FadeoutNextTime"),
+		_T("2000"), initFilePath.c_str());
+	else if(m_menu.IsItemChecked(ID_FADEOUTNEXT4SEC))
+		WritePrivateProfileString(_T("Options"), _T("FadeoutNextTime"),
+		_T("4000"), initFilePath.c_str());
+	else if(m_menu.IsItemChecked(ID_FADEOUTNEXT5SEC))
+		WritePrivateProfileString(_T("Options"), _T("FadeoutNextTime"),
+		_T("5000"), initFilePath.c_str());
+	else if(m_menu.IsItemChecked(ID_FADEOUTNEXT6SEC))
+		WritePrivateProfileString(_T("Options"), _T("FadeoutNextTime"),
+		_T("6000"), initFilePath.c_str());
+	else if(m_menu.IsItemChecked(ID_FADEOUTNEXT7SEC))
+		WritePrivateProfileString(_T("Options"), _T("FadeoutNextTime"),
+		_T("7000"), initFilePath.c_str());
+	else if(m_menu.IsItemChecked(ID_FADEOUTNEXT8SEC))
+		WritePrivateProfileString(_T("Options"), _T("FadeoutNextTime"),
+		_T("8000"), initFilePath.c_str());
+	else if(m_menu.IsItemChecked(ID_FADEOUTNEXT9SEC))
+		WritePrivateProfileString(_T("Options"), _T("FadeoutNextTime"),
+		_T("9000"), initFilePath.c_str());
+	else if(m_menu.IsItemChecked(ID_FADEOUTNEXT10SEC))
+		WritePrivateProfileString(_T("Options"), _T("FadeoutNextTime"),
+		_T("10000"), initFilePath.c_str());
+	else
+		WritePrivateProfileString(_T("Options"), _T("FadeoutNextTime"),
+		_T("3000"), initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), nCurPlayTab);
 }
 //----------------------------------------------------------------------------
 // 閉じられようとしている
@@ -3371,11 +3502,57 @@ void CMainWnd::OnTimer(UINT id)
 {
 	switch(id)
 	{
+	case IDT_FADEOUT:
+	{
+		DWORD dwCurTime = timeGetTime();
+		DWORD dwInterval = dwCurTime - dwFadeoutStartTime;
+		DWORD dwFadeTime;
+		if(m_menu.IsItemChecked(ID_FADEOUTSTOP1SEC)) dwFadeTime = 1000;
+		else if(m_menu.IsItemChecked(ID_FADEOUTSTOP2SEC)) dwFadeTime = 2000;
+		else if(m_menu.IsItemChecked(ID_FADEOUTSTOP4SEC)) dwFadeTime = 4000;
+		else if(m_menu.IsItemChecked(ID_FADEOUTSTOP5SEC)) dwFadeTime = 5000;
+		else if(m_menu.IsItemChecked(ID_FADEOUTSTOP6SEC)) dwFadeTime = 6000;
+		else if(m_menu.IsItemChecked(ID_FADEOUTSTOP7SEC)) dwFadeTime = 7000;
+		else if(m_menu.IsItemChecked(ID_FADEOUTSTOP8SEC)) dwFadeTime = 8000;
+		else if(m_menu.IsItemChecked(ID_FADEOUTSTOP9SEC)) dwFadeTime = 9000;
+		else if(m_menu.IsItemChecked(ID_FADEOUTSTOP10SEC)) dwFadeTime = 10000;
+		else dwFadeTime = 3000;
+		if(dwInterval >= dwFadeTime) Stop();
+		else {
+			double dVolume = pow(((double)dwFadeTime - (double)dwInterval)
+								/ (double)dwFadeTime, 2.0);
+			m_sound.ChannelSetAttribute(BASS_ATTRIB_VOL, (float)dVolume);
+		}
+		break;
+	}
+	case IDT_FADEOUTNEXT:
+	{
+		DWORD dwCurTime = timeGetTime();
+		DWORD dwInterval = dwCurTime - dwFadeoutStartTime;
+		DWORD dwFadeTime;
+		if(m_menu.IsItemChecked(ID_FADEOUTNEXT1SEC)) dwFadeTime = 1000;
+		else if(m_menu.IsItemChecked(ID_FADEOUTNEXT2SEC)) dwFadeTime = 2000;
+		else if(m_menu.IsItemChecked(ID_FADEOUTNEXT4SEC)) dwFadeTime = 4000;
+		else if(m_menu.IsItemChecked(ID_FADEOUTNEXT5SEC)) dwFadeTime = 5000;
+		else if(m_menu.IsItemChecked(ID_FADEOUTNEXT6SEC)) dwFadeTime = 6000;
+		else if(m_menu.IsItemChecked(ID_FADEOUTNEXT7SEC)) dwFadeTime = 7000;
+		else if(m_menu.IsItemChecked(ID_FADEOUTNEXT8SEC)) dwFadeTime = 8000;
+		else if(m_menu.IsItemChecked(ID_FADEOUTNEXT9SEC)) dwFadeTime = 9000;
+		else if(m_menu.IsItemChecked(ID_FADEOUTNEXT10SEC)) dwFadeTime = 10000;
+		else dwFadeTime = 3000;
+		if(dwInterval >= dwFadeTime) PlayNext(FALSE, TRUE);
+		else {
+			double dVolume = pow(((double)dwFadeTime - (double)dwInterval)
+								/ (double)dwFadeTime, 2.0);
+			m_sound.ChannelSetAttribute(BASS_ATTRIB_VOL, (float)dVolume);
+		}
+		break;
+	}
 	case IDT_TIME:
 		if(m_bFinish) {
 			m_bFinish = FALSE;
 			KillTimer(IDT_TIME);
-			if(m_menu.IsItemChecked(ID_CONTINUE))
+			if(dwFadeoutStartTime == 0 && m_menu.IsItemChecked(ID_CONTINUE))
 				PlayNext(TRUE, TRUE);
 			else PlayNext(FALSE, TRUE);
 		}

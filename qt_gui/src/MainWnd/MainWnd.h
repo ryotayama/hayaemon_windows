@@ -83,7 +83,7 @@ public: // 関数
 		bCompressor(FALSE), bFlanger(FALSE), bGargle(FALSE), bDistortion(FALSE),
 		bMarkerPlay(FALSE), bCountLoop(FALSE), bInstantLoop(FALSE),
 		bSetPositionAuto(FALSE), m_bFinish(FALSE), nFreqVelo(0), nFreqAccel(0),
-		nLoopCount(0), nCurrentLoopCount(0), nCurPlayTab(0),
+		nLoopCount(0), nCurrentLoopCount(0), nCurPlayTab(0), dwFadeoutStartTime(0),
 		m_nLastDecimalDigit_pitch(0), m_nLastDecimalDigit_freq(0),
 		m_nLastDecimalDigit_speed(0), m_timeThreadRunning(false),
 		m_bForwarding(false), m_bRewinding(false) { }
@@ -351,6 +351,7 @@ protected: // メンバ変数
 	int nLoopCount; // 回数ループ時のループ回数
 	int nCurrentLoopCount; // 現時点でループした回数
 	int nCurPlayTab; // 現在再生中のファイルが存在しているタブ
+	DWORD dwFadeoutStartTime; // フェードアウト開始時間
 	int m_nLastDecimalDigit_pitch; // 前回の小数点桁数（音程）
 	int m_nLastDecimalDigit_freq; // 前回の小数点桁数（再生周波数）
 	int m_nLastDecimalDigit_speed; // 前回の小数点桁数（再生速度）
@@ -370,6 +371,8 @@ public: // 定数
 		IDT_LOWBATTERY,
 		IDT_NOSENSE,
 		IDT_EARTRAINING,
+		IDT_FADEOUT,
+		IDT_FADEOUTNEXT,
 	};
 
 public: // メンバ変数の取得・設定
