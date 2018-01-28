@@ -4565,6 +4565,8 @@ void CMainWnd::SetLowBattery()
 		if(m_menu.IsItemChecked(ID_NOSENSE)) SetNoSense(FALSE);
 		m_nLastDecimalDigit_freq = m_freqSlider.GetDecimalDigit();
 		m_menu.OnSetFreqDecimal2MenuSelected();
+		if(!m_menu.IsItemChecked(ID_DISTORTION_DEFAULT))
+			m_menu.OnDistortionDefaultMenuSelected(true);
 		m_menu.OnEQMiddleHighestMenuSelected();
 		SetTimer(IDT_LOWBATTERY, 20);
 	}
@@ -4573,6 +4575,8 @@ void CMainWnd::SetLowBattery()
 		nFreqVelo = 0.0;
 		nFreqAccel = 0.0;
 		m_menu.OnEQFlatMenuSelected();
+		if(m_menu.IsItemChecked(ID_DISTORTION_DEFAULT))
+			m_menu.OnDistortionDefaultMenuSelected(true);
 		if(m_nLastDecimalDigit_freq == 0)
 			m_menu.OnSetFreqDecimal0MenuSelected();
 		else if(m_nLastDecimalDigit_freq == 1)
@@ -4594,6 +4598,8 @@ void CMainWnd::SetLowBattery(BOOL bLowBattery)
 		if(m_menu.IsItemChecked(ID_NOSENSE)) SetNoSense(FALSE);
 		m_nLastDecimalDigit_freq = m_freqSlider.GetDecimalDigit();
 		m_menu.OnSetFreqDecimal2MenuSelected();
+		if(!m_menu.IsItemChecked(ID_DISTORTION_DEFAULT))
+			m_menu.OnDistortionDefaultMenuSelected(true);
 		m_menu.OnEQMiddleHighestMenuSelected();
 		SetTimer(IDT_LOWBATTERY, 20);
 	}
@@ -4602,6 +4608,8 @@ void CMainWnd::SetLowBattery(BOOL bLowBattery)
 		nFreqVelo = 0.0;
 		nFreqAccel = 0.0;
 		m_menu.OnEQFlatMenuSelected();
+		if(m_menu.IsItemChecked(ID_DISTORTION_DEFAULT))
+			m_menu.OnDistortionDefaultMenuSelected(true);
 		if(m_nLastDecimalDigit_freq == 0)
 			m_menu.OnSetFreqDecimal0MenuSelected();
 		else if(m_nLastDecimalDigit_freq == 1)
