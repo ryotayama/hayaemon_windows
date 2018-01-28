@@ -91,10 +91,13 @@ public: // 関数
 
 	virtual void AddDropFiles(const QList<QUrl> & urls, BOOL bClear);
 	virtual void AddMarker();
+	virtual void AddPreset();
+	virtual void AddPreset(tstring strPreset);
 	virtual BOOL CheckLoop();
 	virtual BOOL Create() { return OnCreate(); }
 	virtual BOOL CreateControls();
 	virtual void DeleteMarker();
+	virtual void DeletePreset();
 	virtual void DownFreq(double freq);
 	virtual void DownPitch(double pitch);
 	virtual void DownSpeed(double speed);
@@ -117,6 +120,7 @@ public: // 関数
 	virtual void ResetVolume();
 	virtual void Rewind();
 	virtual void ReturnSeconds(int seconds);
+	virtual void SavePreset(PCTSTR pFilePath);
 	virtual void SetABLoopA(QWORD pos);
 	virtual void SetABLoopA();
 	virtual void SetABLoopA_Sec(double dTime);
@@ -193,6 +197,7 @@ public: // 関数
 	virtual void SetOnlyLeft(BOOL bOnlyLeft);
 	virtual void SetOnlyRight();
 	virtual void SetOnlyRight(BOOL bOnlyRight);
+	virtual void SetPreset(int n);
 	virtual void SetPreviousNextMenuState();
 	virtual void SetPrevMarker();
 	virtual void SetRandom(bool bRandom);

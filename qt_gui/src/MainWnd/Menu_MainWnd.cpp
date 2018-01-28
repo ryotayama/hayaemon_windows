@@ -7,6 +7,14 @@
 #include "../Common/CommandList.h"
 #include "../Common/Define.h"
 #include "MainWnd.h"
+#include "Utility.h"
+//----------------------------------------------------------------------------
+// コンストラクタ
+//----------------------------------------------------------------------------
+CMenu_MainWnd::CMenu_MainWnd(CMainWnd & mainWnd)
+	: m_rMainWnd(mainWnd), m_presetMenu(mainWnd, m_actionMap)
+{
+}
 //----------------------------------------------------------------------------
 // 作成
 //----------------------------------------------------------------------------
@@ -231,6 +239,19 @@ void CMenu_MainWnd::UncheckGargleMenu()
 	CheckItem(ID_GARGLE_CUSTOMIZE, MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
+// プリセットメニューのチェックを外す
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::UncheckPresetMenu()
+{
+	if(IsItemChecked(ID_RECORD)) return;
+	if(IsItemChecked(ID_LOWBATTERY)) return;
+	if(IsItemChecked(ID_NOSENSE)) return;
+	if(IsItemChecked(ID_EARTRAINING)) return;
+	int nCount = GetMenuItemCount(m_presetMenu);
+	for(int i = 1; i <= nCount - 3; i++) CheckItem(ID_PRESET + i, MF_UNCHECKED);
+	EnableItem(ID_DELETEPRESET, MFS_DISABLED);
+}
+//----------------------------------------------------------------------------
 // リバーブメニューのチェックを外す
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::UncheckReverbMenu()
@@ -443,6 +464,39 @@ void CMenu_MainWnd::OnForward5SecMenuSelected()
 void CMenu_MainWnd::OnForward10SecMenuSelected()
 {
 	m_rMainWnd.ForwardSeconds(10);
+}
+//----------------------------------------------------------------------------
+// エフェクト → プリセット → 現在の設定を追加メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnAddPresetMenuSelected()
+{
+	m_rMainWnd.AddPreset();
+}
+//----------------------------------------------------------------------------
+// エフェクト → プリセット → 選択中のプリセットを削除メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDeletePresetMenuSelected()
+{
+	m_rMainWnd.DeletePreset();
+	UncheckPresetMenu();
+	OnResetAllMenuSelected();
+}
+//----------------------------------------------------------------------------
+// エフェクト → プリセットメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnPresetMenuSelected(int id)
+{
+	if(!IsItemChecked(id)) {
+		OnResetAllMenuSelected();
+		UncheckPresetMenu();
+	}
+	else {
+		OnResetAllMenuSelected();
+		m_rMainWnd.SetPreset(id - ID_PRESET);
+		UncheckPresetMenu();
+		CheckItem(id, MF_CHECKED);
+		EnableItem(ID_DELETEPRESET, MFS_ENABLED);
+	}
 }
 //----------------------------------------------------------------------------
 // 再生 → 再生速度 → デフォルトに戻すメニューが選択された
@@ -2627,6 +2681,7 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_PITCHDEC_0, m_rMainWnd.actionPitchDigit0},
 		{ID_PITCHDEC_1, m_rMainWnd.actionPitchDigit1},
 		{ID_PITCHDEC_2, m_rMainWnd.actionPitchDigit2},
+		{ID_DELETEPRESET, m_rMainWnd.actionPresetDelete},
 		{ID_REVERB_DEFAULT, m_rMainWnd.actionReverbDefault},
 		{ID_REVERB_CUSTOMIZE, m_rMainWnd.actionReverbCustomize},
 		{ID_3DREVERB_DEFAULT, m_rMainWnd.action3DReverbDefault},
@@ -2878,7 +2933,12 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnInstantLoopMenuSelected);
 	connect(m_rMainWnd.actionSetMarkerPositionAuto, &QAction::triggered,
 					this, &CMenu_MainWnd::OnSetPositionAutoMenuSelected);
-	// Effect
+	// Effect - Preset
+	connect(m_rMainWnd.actionPresetAddCurrentSettings, &QAction::triggered,
+					this, &CMenu_MainWnd::OnAddPresetMenuSelected);
+	connect(m_rMainWnd.actionPresetDelete, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDeletePresetMenuSelected);
+	// Effect - Reverb
 	connect(m_rMainWnd.actionReverbDefault, &QAction::triggered,
 					this, &CMenu_MainWnd::OnReverbDefaultMenuSelected);
 	connect(m_rMainWnd.actionReverbCustomize, &QAction::triggered,

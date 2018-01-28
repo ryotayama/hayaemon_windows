@@ -894,6 +894,15 @@
      <addaction name="separator"/>
      <addaction name="actionDistortionCustomize"/>
     </widget>
+    <widget class="QMenu" name="menuPreset">
+     <property name="title">
+      <string>Preset(&amp;P)</string>
+     </property>
+     <addaction name="actionPresetAddCurrentSettings"/>
+     <addaction name="actionPresetDelete"/>
+    </widget>
+    <addaction name="menuPreset"/>
+    <addaction name="separator"/>
     <addaction name="menuSpeed"/>
     <addaction name="menuFreq"/>
     <addaction name="menuPitch"/>
@@ -2988,6 +2997,22 @@
    </property>
    <property name="text">
     <string>10 sec(&amp;A)</string>
+   </property>
+  </action>
+  <action name="actionPresetAddCurrentSettings">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Add current settings(&amp;A)</string>
+   </property>
+  </action>
+  <action name="actionPresetDelete">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Delete selected preset(&amp;D)</string>
    </property>
   </action>
  </widget>

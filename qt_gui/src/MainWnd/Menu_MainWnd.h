@@ -7,6 +7,7 @@
 #include <unordered_map>
 #include <QObject>
 #include "../Common/Define.h"
+#include "PresetMenu.h"
 class CMainWnd;
 class QAction;
 //----------------------------------------------------------------------------
@@ -16,8 +17,7 @@ class CMenu_MainWnd : public QObject
 {
 public: // 関数
 
-	CMenu_MainWnd(CMainWnd & mainWnd)
-		: m_rMainWnd(mainWnd) { }
+	explicit CMenu_MainWnd(CMainWnd & mainWnd);
 
 	virtual BOOL Create();
 	void SetABLoopState(BOOL bALoop, BOOL bBLoop);
@@ -51,6 +51,7 @@ public: // 関数
 	void UncheckDistortionMenu();
 	void UncheckFlangerMenu();
 	void UncheckGargleMenu();
+	void UncheckPresetMenu();
 	void UncheckReverbMenu();
 	void Uncheck3DReverbMenu();
 	void UncheckSoundEffectMenu();
@@ -77,6 +78,9 @@ public: // 関数
 	void OnForward3SecMenuSelected();
 	void OnForward5SecMenuSelected();
 	void OnForward10SecMenuSelected();
+	void OnAddPresetMenuSelected();
+	void OnDeletePresetMenuSelected();
+	void OnPresetMenuSelected(int id);
 	void OnResetSpeedMenuSelected();
 	void OnSetSpeed50MenuSelected();
 	void OnSetSpeed60MenuSelected();
@@ -341,12 +345,19 @@ public: // 関数
 	void OnEQHighCutLowestMenuSelected();
 	void OnResetAllMenuSelected();
 
+	CPresetMenu & GetPresetMenu() {
+		return m_presetMenu;
+	}
+
 private: // メンバ変数
 
 	CMainWnd & m_rMainWnd;
+
+	CPresetMenu m_presetMenu;
 	std::unordered_map<UINT, QAction*> m_actionMap;
 
 	friend class CMainWnd;
+	friend class CPresetMenu;
 
 public:
 	// Qtのラッパー

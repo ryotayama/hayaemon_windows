@@ -193,6 +193,10 @@ typedef enum CMDID {
 		ID_FADEOUTNEXT8SEC,
 		ID_FADEOUTNEXT9SEC,
 		ID_FADEOUTNEXT10SEC,
+	// プリセット
+		ID_ADDPRESET,
+		ID_DELETEPRESET,
+		ID_PRESET,
 };
 
 #endif // CommandListH

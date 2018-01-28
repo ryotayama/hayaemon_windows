@@ -59,6 +59,13 @@ typedef std::basic_string<TCHAR> tstring;
 # define SW_SHOW 5
 #endif
 
+#ifndef MF_BYCOMMAND
+# define MF_BYCOMMAND        0x00000000L
+#endif
+#ifndef MF_BYPOSITION
+# define MF_BYPOSITION       0x00000400L
+#endif
+
 #ifndef MF_UNCHECKED
 # define MF_UNCHECKED        0x00000000L
 #endif
