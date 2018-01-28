@@ -48,6 +48,9 @@ void CMainWnd::AddDropFiles(const QList<QUrl> & urls, BOOL bClear)
 
 	QString ext = QFileInfo(urls.front().toLocalFile()).suffix();
 	if(ext.compare("ini", Qt::CaseInsensitive) == 0) {
+		auto &url = urls[i];
+		QString path = url.isLocalFile() ? url.toLocalFile() : url.url();
+		LoadSettings(ToTstring(path).c_str());
 		return;
 	}
 	if(bClear) {
@@ -1250,6 +1253,674 @@ void CMainWnd::ForwardSeconds(int seconds)
 	double pos = m_sound.ChannelGetSecondsPosition();
 	pos += seconds;
 	SetSeconds(pos);
+}
+//----------------------------------------------------------------------------
+// 設定状態の読み込み
+//----------------------------------------------------------------------------
+void CMainWnd::LoadSettings(const PCTSTR & pFilePath)
+{
+	TCHAR buf[255];
+
+	GetPrivateProfileString(_T("Options"), _T("Speed"), _T(""), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		double speed = _ttof(buf);
+		double dCalc = pow(10.0, m_speedSlider.GetDecimalDigit());
+		m_speedLabel.SetSpeed(speed);
+		m_speedSlider.SetThumbPos((LONG)(speed * dCalc), TRUE);
+		SetSpeed(speed);
+	}
+	GetPrivateProfileString(_T("Options"), _T("Frequency"), _T(""), buf, 
+		255, pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		double freq = _ttof(buf);
+		double dCalc = pow(10.0, m_freqSlider.GetDecimalDigit());
+		m_freqLabel.SetFreq(freq);
+		m_freqSlider.SetThumbPos((LONG)(freq * dCalc), TRUE);
+		SetFreq(freq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("Pitch"), _T(""), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		double pitch = _ttof(buf);
+		double dCalc = pow(10.0, m_pitchSlider.GetDecimalDigit());
+		m_pitchLabel.SetPitch(pitch);
+		m_pitchSlider.SetThumbPos((LONG)(pitch * dCalc), TRUE);
+		SetPitch(pitch);
+	}
+	GetPrivateProfileString(_T("Options"), _T("Volume"), _T(""), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int volume = _ttoi(buf);
+		m_volumeLabel.SetVolume((double)(volume / 10.0));
+		m_volumeSlider.SetThumbPos((LONG)volume, TRUE);
+		SetVolume((double)(volume / 10.0));
+	}
+	GetPrivateProfileString(_T("Options"), _T("Pan"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int pan = _ttoi(buf);
+		m_panLabel.SetPan(pan);
+		m_panSlider.SetThumbPos((LONG)pan, TRUE);
+		SetPan(pan);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ20"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq20Label.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ25"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq25Label.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ31.5"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq31_5Label.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ40"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq40Label.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ50"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq50Label.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ63"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq63Label.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ80"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq80Label.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ100"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq100Label.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ125"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq125Label.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ160"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq160Label.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ200"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq200Label.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ250"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq250Label.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ315"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq315Label.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ400"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq400Label.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ500"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq500Label.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ630"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq630Label.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ800"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq800Label.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ1K"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq1kLabel.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ1.25K"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq1_25kLabel.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ1.6K"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq1_6kLabel.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ2K"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq2kLabel.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ2.5K"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq2_5kLabel.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ3.15K"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq3_15kLabel.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ4K"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq4kLabel.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ5K"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq5kLabel.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ6.3K"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq6_3kLabel.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ8K"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq8kLabel.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ10K"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq10kLabel.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ12.5K"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq12_5kLabel.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ16K"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq16kLabel.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("Options"), _T("EQ20K"), _T("0"), buf, 255, 
+		pFilePath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		int eq = _ttoi(buf);
+		m_eq20kLabel.SetEQ(eq);
+	}
+	GetPrivateProfileString(_T("PlayMode"), _T("ReverbDefault"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_REVERB_DEFAULT))
+		m_menu.OnReverbDefaultMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("ReverbCustomize"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_REVERB_CUSTOMIZE)) {
+		TCHAR chGain[255], chRevMix[255], chRevTime[255], chHigh[255];
+		GetPrivateProfileString(_T("PlayMode"), _T("ReverbCustomize_Gain"),
+			_T("0"), chGain, 255, pFilePath);
+		GetPrivateProfileString(_T("PlayMode"), _T("ReverbCustomize_RevMix"),
+			_T("0"), chRevMix, 255, pFilePath);
+		GetPrivateProfileString(_T("PlayMode"), _T("ReverbCustomize_RevTime"),
+			_T("0"), chRevTime, 255, pFilePath);
+		GetPrivateProfileString(_T("PlayMode"), _T("ReverbCustomize_High"),
+			_T("0"), chHigh, 255, pFilePath);
+		m_menu.SetReverb((float)_ttof(chGain), (float)_ttof(chRevMix),
+						 (float)_ttof(chRevTime), (float)_ttof(chHigh),
+						 ID_REVERB_CUSTOMIZE);
+	}
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbDefault"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_DEFAULT))
+		m_menu.On3DReverbDefaultMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbPaddedCell"), _T("0"),
+		buf, 255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_PADDEDCELL))
+		m_menu.On3DReverbPaddedCellMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbRoom"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_ROOM))
+		m_menu.On3DReverbRoomMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbBathRoom"), _T("0"),
+		buf, 255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_BATHROOM))
+		m_menu.On3DReverbBathroomMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbLivingRoom"), _T("0"),
+		buf,255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_LIVINGROOM))
+		m_menu.On3DReverbLivingRoomMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbStoneRoom"), _T("0"),
+		buf, 255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_STONEROOM))
+		m_menu.On3DReverbStoneRoomMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbAuditorium"), _T("0"),
+		buf, 255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_AUDITORIUM))
+		m_menu.On3DReverbAuditoriumMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbConcertHall"), _T("0"),
+		buf, 255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_CONCERTHALL))
+		m_menu.On3DReverbConcertHallMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbCave"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_CAVE))
+		m_menu.On3DReverbCaveMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbArena"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_ARENA))
+		m_menu.On3DReverbArenaMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbHangar"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_HANGAR))
+		m_menu.On3DReverbHangarMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbCarpetedHallway"),
+		_T("0"), buf, 255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_CARPETEDHALLWAY))
+		m_menu.On3DReverbCarpetedHallwayMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbHallway"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_HALLWAY))
+		m_menu.On3DReverbHallwayMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbStoneCorridor"),
+		_T("0"), buf, 255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_STONECORRIDOR))
+		m_menu.On3DReverbStoneCorridorMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbAlley"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_ALLEY))
+		m_menu.On3DReverbAlleyMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbForest"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_FOREST))
+		m_menu.On3DReverbForestMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbCity"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_CITY))
+		m_menu.On3DReverbCityMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbMountains"), _T("0"),
+		buf, 255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_MOUNTAINS))
+		m_menu.On3DReverbMountainsMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbQuarry"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_QUARRY))
+		m_menu.On3DReverbQuarryMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbPlain"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_PLAIN))
+		m_menu.On3DReverbPlainMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbParkingLot"), _T("0"),
+		buf, 255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_PARKINGLOT))
+		m_menu.On3DReverbParkingLotMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbSewerPipe"), _T("0"),
+		buf, 255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_SEWERPIPE))
+		m_menu.On3DReverbSewerPipeMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbUnderWater"), _T("0"),
+		buf, 255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_UNDERWATER))
+		m_menu.On3DReverbUnderwaterMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbSmallRoom"), _T("0"),
+		buf, 255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_SMALLROOM))
+		m_menu.On3DReverbSmallRoomMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbMediumRoom"), _T("0"),
+		buf, 255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_MEDIUMROOM))
+		m_menu.On3DReverbMediumRoomMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbLargeRoom"), _T("0"),
+		buf, 255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_LARGEROOM))
+		m_menu.On3DReverbLargeRoomMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbMediumHall"), _T("0"),
+		buf, 255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_MEDIUMHALL))
+		m_menu.On3DReverbMediumHallMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbLargeHall"), _T("0"),
+		buf, 255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_LARGEHALL))
+		m_menu.On3DReverbLargeHallMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbPlate"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_PLATE))
+		m_menu.On3DReverbPlateMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbCustomize"), _T("0"),
+		buf, 255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_CUSTOMIZE)) {
+		TCHAR chRoom[255], chRoomHF[255], chRoomRolloffFactor[255],
+			  chDecayTime[255], chDecayHFRatio[255], chReflections[255],
+			  chReflectionsDelay[255], chReverb[255], chReverbDelay[255],
+			  chDiffusion[255], chDensity[255], chHFReference[255];
+		GetPrivateProfileString(_T("PlayMode"), _T("3DReverbCustomize_Room"),
+			_T("0"), chRoom, 255, pFilePath);
+		GetPrivateProfileString(_T("PlayMode"), _T("3DReverbCustomize_RoomHF"),
+			_T("0"), chRoomHF, 255, pFilePath);
+		GetPrivateProfileString(_T("PlayMode"),
+			_T("3DReverbCustomize_RoomRolloffFactor"), _T("0"),
+			chRoomRolloffFactor, 255, pFilePath);
+		GetPrivateProfileString(_T("PlayMode"),
+			_T("3DReverbCustomize_DecayTime"), _T("0"), chDecayTime, 255,
+			pFilePath);
+		GetPrivateProfileString(_T("PlayMode"),
+			_T("3DReverbCustomize_DecayHFRatio"), _T("0"), chDecayHFRatio, 255,
+			pFilePath);
+		GetPrivateProfileString(_T("PlayMode"),
+			_T("3DReverbCustomize_Reflections"), _T("0"), chReflections, 255,
+			pFilePath);
+		GetPrivateProfileString(_T("PlayMode"),
+			_T("3DReverbCustomize_ReflectionsDelay"), _T("0"),
+			chReflectionsDelay, 255, pFilePath);
+		GetPrivateProfileString(_T("PlayMode"), _T("3DReverbCustomize_Reverb"),
+			_T("0"), chReverb, 255, pFilePath);
+		GetPrivateProfileString(_T("PlayMode"),
+			_T("3DReverbCustomize_ReverbDelay"), _T("0"), chReverbDelay, 255,
+			pFilePath);
+		GetPrivateProfileString(_T("PlayMode"),
+			_T("3DReverbCustomize_Diffusion"), _T("0"), chDiffusion, 255,
+			pFilePath);
+		GetPrivateProfileString(_T("PlayMode"), _T("3DReverbCustomize_Density"),
+			_T("0"), chDensity, 255, pFilePath);
+		GetPrivateProfileString(_T("PlayMode"),
+			_T("3DReverbCustomize_HFReference"), _T("0"), chHFReference, 255,
+			pFilePath);
+		m_menu.Set3DReverb(_ttoi(chRoom), _ttoi(chRoomHF),
+			(float)_ttof(chRoomRolloffFactor), (float)_ttof(chDecayTime),
+			(float)_ttof(chDecayHFRatio), _ttoi(chReflections),
+			(float)_ttof(chReflectionsDelay), _ttoi(chReverb),
+			(float)_ttof(chReverbDelay), (float)_ttof(chDiffusion),
+			(float)_ttof(chDensity), (float)_ttof(chHFReference),
+			ID_3DREVERB_CUSTOMIZE);
+	}
+	GetPrivateProfileString(_T("PlayMode"), _T("DelayDefault"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_DEFAULT))
+		m_menu.OnDelayDefaultMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("DelayShort"), _T("0"), buf, 255,
+		pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_SHORT))
+		m_menu.OnDelayShortMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("DelayMedium"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_MEDIUM))
+		m_menu.OnDelayMediumMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("DelayLong"), _T("0"), buf, 255, 
+		pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_LONG))
+		m_menu.OnDelayLongMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("DelayStereoShort"), _T("0"),
+		buf, 255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_STEREOSHORT))
+		m_menu.OnDelayStereoShortMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("DelayStereoMedium"), _T("0"),
+		buf, 255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_STEREOMEDIUM))
+		m_menu.OnDelayStereoMediumMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("DelayStereoLong"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_STEREOLONG))
+		m_menu.OnDelayStereoLongMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("DelayMountain"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_MOUNTAIN))
+		m_menu.OnDelayMountainMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("DelayBig"), _T("0"), buf, 255, 
+		pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_BIG))
+		m_menu.OnDelayBigMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("DelayStereoBig"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_STEREOBIG))
+		m_menu.OnDelayStereoBigMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("DelayDoubling"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_DOUBLING))
+		m_menu.OnDelayDoublingMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("DelayDoubleKick"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_DOUBLEKICK))
+		m_menu.OnDelayDoubleKickMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("DelayCustomize"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_CUSTOMIZE)) {
+		TCHAR chWetDryMix[255], chFeedback[255], chLeftDelay[255],
+			  chRightDelay[255], chPanDelay[255];
+		GetPrivateProfileString(_T("PlayMode"), _T("DelayCustomize_WetDryMix"),
+			_T("0"), chWetDryMix, 255, pFilePath);
+		GetPrivateProfileString(_T("PlayMode"), _T("DelayCustomize_Feedback"),
+			_T("0"), chFeedback, 255, pFilePath);
+		GetPrivateProfileString(_T("PlayMode"), _T("DelayCustomize_LeftDelay"),
+			_T("0"), chLeftDelay, 255, pFilePath);
+		GetPrivateProfileString(_T("PlayMode"),
+			_T("DelayCustomize_RightDelay"), _T("0"), chRightDelay, 255,
+			pFilePath);
+		GetPrivateProfileString(_T("PlayMode"), _T("DelayCustomize_PanDelay"),
+			_T("0"), chPanDelay, 255, pFilePath);
+		m_menu.SetDelay((float)_ttof(chWetDryMix), (float)_ttof(chFeedback),
+			(float)_ttof(chLeftDelay), (float)_ttof(chRightDelay),
+			(BOOL)_ttoi(chPanDelay), ID_DELAY_CUSTOMIZE);
+	}
+	GetPrivateProfileString(_T("PlayMode"), _T("ChorusDefault"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_CHORUS_DEFAULT))
+		m_menu.OnChorusDefaultMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("ChorusCustomize"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_CHORUS_CUSTOMIZE)) {
+		TCHAR chWetDryMix[255], chDepth[255], chFeedback[255], chFrequency[255],
+			  chWaveForm[255], chDelay[255];
+		GetPrivateProfileString(_T("PlayMode"), _T("ChorusCustomize_WetDryMix"),
+			_T("0"), chWetDryMix, 255, pFilePath);
+		GetPrivateProfileString(_T("PlayMode"), _T("ChorusCustomize_Depth"),
+			_T("0"), chDepth, 255, pFilePath);
+		GetPrivateProfileString(_T("PlayMode"), _T("ChorusCustomize_Feedback"),
+			_T("0"), chFeedback, 255, pFilePath);
+		GetPrivateProfileString(_T("PlayMode"), _T("ChorusCustomize_Frequency"),
+			_T("0"), chFrequency, 255, pFilePath);
+		GetPrivateProfileString(_T("PlayMode"), _T("ChorusCustomize_Waveform"),
+			_T("0"), chWaveForm, 255, pFilePath);
+		GetPrivateProfileString(_T("PlayMode"), _T("ChorusCustomize_Delay"),
+			_T("0"), chDelay, 255, pFilePath);
+		m_menu.SetChorus((float)_ttof(chWetDryMix), (float)_ttof(chDepth),
+			(float)_ttof(chFeedback), (float)_ttof(chFrequency),
+			(DWORD)_ttoi(chWaveForm), (float)_ttof(chDelay),
+			BASS_DX8_PHASE_90, ID_CHORUS_CUSTOMIZE);
+	}
+	GetPrivateProfileString(_T("PlayMode"), _T("CompressorDefault"), _T("0"),
+		buf, 255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_COMPRESSOR_DEFAULT))
+		m_menu.OnCompressorDefaultMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("CompressorCustomize"), _T("0"),
+		buf, 255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_COMPRESSOR_CUSTOMIZE)) {
+		TCHAR chGain[255], chAttack[255], chRelease[255], chThreshold[255],
+			  chRatio[255], chPredelay[255];
+		GetPrivateProfileString(_T("PlayMode"), _T("CompressorCustomize_Gain"),
+			_T("0"), chGain, 255, pFilePath);
+		GetPrivateProfileString(_T("PlayMode"),
+			_T("CompressorCustomize_Attack"), _T("0"), chAttack, 255,
+			pFilePath);
+		GetPrivateProfileString(_T("PlayMode"),
+			_T("CompressorCustomize_Release"), _T("0"), chRelease, 255,
+			pFilePath);
+		GetPrivateProfileString(_T("PlayMode"),
+			_T("CompressorCustomize_Threshold"), _T("0"), chThreshold, 255,
+			pFilePath);
+		GetPrivateProfileString(_T("PlayMode"), _T("CompressorCustomize_Ratio"),
+			_T("0"), chRatio, 255, pFilePath);
+		GetPrivateProfileString(_T("PlayMode"),
+			_T("CompressorCustomize_Predelay"), _T("0"), chPredelay, 255,
+			pFilePath);
+		m_menu.SetCompressor((float)_ttof(chGain), (float)_ttof(chAttack),
+			(float)_ttof(chRelease), (float)_ttof(chThreshold),
+			(float)_ttof(chRatio), (float)_ttof(chPredelay),
+			ID_COMPRESSOR_CUSTOMIZE);
+	}
+	GetPrivateProfileString(_T("PlayMode"), _T("FlangerDefault"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_FLANGER_DEFAULT))
+		m_menu.OnFlangerDefaultMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("FlangerCustomize"), _T("0"),
+		buf, 255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_FLANGER_CUSTOMIZE)) {
+		TCHAR chWetDryMix[255], chDepth[255], chFeedback[255], chFrequency[255],
+			  chWaveform[255], chDelay[255];
+		GetPrivateProfileString(_T("PlayMode"),
+			_T("FlangerCustomize_WetDryMix"), _T("0"), chWetDryMix, 255,
+			pFilePath);
+		GetPrivateProfileString(_T("PlayMode"), _T("FlangerCustomize_Depth"),
+			_T("0"), chDepth, 255, pFilePath);
+		GetPrivateProfileString(_T("PlayMode"), _T("FlangerCustomize_Feedback"),
+			_T("0"), chFeedback, 255, pFilePath);
+		GetPrivateProfileString(_T("PlayMode"),
+			_T("FlangerCustomize_Frequency"), _T("0"), chFrequency, 255,
+			pFilePath);
+		GetPrivateProfileString(_T("PlayMode"), _T("FlangerCustomize_Waveform"),
+			_T("0"), chWaveform, 255, pFilePath);
+		GetPrivateProfileString(_T("PlayMode"), _T("FlangerCustomize_Delay"),
+			_T("0"), chDelay, 255, pFilePath);
+		m_menu.SetFlanger((float)_ttof(chWetDryMix), (float)_ttof(chDepth),
+			(float)_ttof(chFeedback), (float)_ttof(chFrequency),
+			(DWORD)_ttoi(chWaveform), (float)_ttof(chDelay),
+			BASS_DX8_PHASE_90, ID_FLANGER_CUSTOMIZE);
+	}
+	GetPrivateProfileString(_T("PlayMode"), _T("GargleDefault"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_GARGLE_DEFAULT))
+		m_menu.OnGargleDefaultMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("GargleCustomize"), _T("0"),
+		buf, 255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_GARGLE_CUSTOMIZE)) {
+		TCHAR chRateHz[255], chWaveShape[255];
+		GetPrivateProfileString(_T("PlayMode"),
+			_T("GargleCustomize_RateHz"), _T("0"), chRateHz, 255,
+			pFilePath);
+		GetPrivateProfileString(_T("PlayMode"), _T("GargleCustomize_WaveShape"),
+			_T("0"), chWaveShape, 255, pFilePath);
+		m_menu.SetGargle((DWORD)_ttoi(chRateHz), (DWORD)_ttoi(chWaveShape),
+			ID_GARGLE_CUSTOMIZE);
+	}
+	GetPrivateProfileString(_T("PlayMode"), _T("DistortionDefault"), _T("0"),
+		buf, 255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DISTORTION_DEFAULT))
+		m_menu.OnDistortionDefaultMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("DistortionCustomize"), _T("0"),
+		buf, 255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DISTORTION_CUSTOMIZE)) {
+		TCHAR chGain[255], chEdge[255], chPostEQCenterFrequency[255],
+			  chPostEQBandwidth[255], chPreLowpassCutoff[255];
+		GetPrivateProfileString(_T("PlayMode"),
+			_T("DistortionCustomize_Gain"), _T("0"), chGain, 255, pFilePath);
+		GetPrivateProfileString(_T("PlayMode"), _T("DistortionCustomize_Edge"),
+			_T("0"), chEdge, 255, pFilePath);
+		GetPrivateProfileString(_T("PlayMode"),
+			_T("DistortionCustomize_PostEQCenterFrequency"), _T("0"),
+			chPostEQCenterFrequency, 255, pFilePath);
+		GetPrivateProfileString(_T("PlayMode"),
+			_T("DistortionCustomize_PostEQBandwidth"), _T("0"),
+			chPostEQBandwidth, 255, pFilePath);
+		GetPrivateProfileString(_T("PlayMode"),
+			_T("DistortionCustomize_PreLowpassCutoff"), _T("0"),
+			chPreLowpassCutoff, 255, pFilePath);
+		m_menu.SetDistortion((float)_ttof(chGain), (float)_ttof(chEdge),
+			(float)_ttof(chPostEQCenterFrequency),
+			(float)_ttof(chPostEQBandwidth),
+			(float)_ttof(chPreLowpassCutoff),
+			ID_DISTORTION_CUSTOMIZE);
+	}
+	GetPrivateProfileString(_T("PlayMode"), _T("Normalize"), _T("0"), buf, 255, 
+		pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_NORMALIZE))
+		SetNormalize();
+	GetPrivateProfileString(_T("PlayMode"), _T("VocalCancel"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_VOCALCANCEL))
+		SetVocalCancel();
+	GetPrivateProfileString(_T("PlayMode"), _T("Reverse"), _T("0"), buf, 255, 
+		pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_REVERSE))
+		SetReverse();
+	GetPrivateProfileString(_T("PlayMode"), _T("Record"), _T("0"), buf, 255, 
+		pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_RECORD))
+		SetRecord();
+	GetPrivateProfileString(_T("PlayMode"), _T("LowBattery"), _T("0"), buf, 255,
+		pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_LOWBATTERY))
+		SetLowBattery();
+	GetPrivateProfileString(_T("PlayMode"), _T("NoSense"), _T("0"), buf, 255, 
+		pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_NOSENSE))
+		SetNoSense();
+	GetPrivateProfileString(_T("PlayMode"), _T("BassCopy"), _T("0"), buf, 255, 
+		pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_BASSCOPY))
+		m_menu.OnBassCopyMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("DrumsCopy"), _T("0"), buf, 255, 
+		pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_CYMBALCOPY))
+		m_menu.OnDrumsCopyMenuSelected(true);
+	GetPrivateProfileString(_T("PlayMode"), _T("EarTraining"), _T("0"), buf,
+		255, pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_EARTRAINING))
+		SetEarTraining();
+	GetPrivateProfileString(_T("PlayMode"), _T("Monoral"), _T("0"), buf, 255, 
+		pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_MONORAL))
+		SetMonoral();
+	GetPrivateProfileString(_T("PlayMode"), _T("OnlyLeft"), _T("0"), buf, 255, 
+		pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_ONLYLEFT))
+		SetOnlyLeft();
+	GetPrivateProfileString(_T("PlayMode"), _T("OnlyRight"), _T("0"), buf, 255, 
+		pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_ONLYRIGHT))
+		SetOnlyRight();
+	GetPrivateProfileString(_T("PlayMode"), _T("ChangeLR"), _T("0"), buf, 255, 
+		pFilePath);
+	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_CHANGELR))
+		SetChangeLR();
 }
 //----------------------------------------------------------------------------
 // 頭出し

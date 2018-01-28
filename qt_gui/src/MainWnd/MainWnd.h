@@ -104,6 +104,7 @@ public: // 関数
 	virtual void Forward();
 	virtual void ForwardSeconds(int seconds);
 	virtual void Head();
+	virtual void LoadSettings(const PCTSTR & pFilePath);
 	virtual BOOL OpenFile(const QString & lpszFilePath, int nCount = 1);
 	virtual void OpenInitFile();
 	virtual void OpenInitFileAfterShow();
