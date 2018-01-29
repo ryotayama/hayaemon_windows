@@ -55,6 +55,7 @@ public: // 関数
 	void UncheckReverbMenu();
 	void Uncheck3DReverbMenu();
 	void UncheckSoundEffectMenu();
+	void OnOpenFileMenuSelected();
 	void OnSpeedMenuSelected(bool checked);
 	void OnFreqMenuSelected(bool checked);
 	void OnPitchMenuSelected(bool checked);

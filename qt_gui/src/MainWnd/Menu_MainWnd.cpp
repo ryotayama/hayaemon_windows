@@ -304,6 +304,13 @@ void CMenu_MainWnd::UncheckSoundEffectMenu()
 	CheckItem(ID_WAVE, MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
+// ファイル → 開くメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnOpenFileMenuSelected()
+{
+	m_rMainWnd.ShowOpenFileDialog(TRUE);
+}
+//----------------------------------------------------------------------------
 // 表示 → 再生速度メニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnSpeedMenuSelected(bool checked)
@@ -2857,6 +2864,9 @@ void CMenu_MainWnd::CreateActionGroups()
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::CreateConnections()
 {
+	// File
+	connect(m_rMainWnd.actionFileOpen, &QAction::triggered,
+					this, &CMenu_MainWnd::OnOpenFileMenuSelected);
 	// View
 	connect(m_rMainWnd.actionSpeedVisible, &QAction::toggled,
 					this, &CMenu_MainWnd::OnSpeedMenuSelected);

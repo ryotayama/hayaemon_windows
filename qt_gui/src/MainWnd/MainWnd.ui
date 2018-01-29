@@ -1038,6 +1038,13 @@
     <addaction name="actionFadeOutNext"/>
     <addaction name="menuFade_out_next_time_H"/>
    </widget>
+   <widget class="QMenu" name="menuFile_F">
+    <property name="title">
+     <string>File(&amp;F)</string>
+    </property>
+    <addaction name="actionFileOpen"/>
+   </widget>
+   <addaction name="menuFile_F"/>
    <addaction name="menuView_V"/>
    <addaction name="menuPlay_P"/>
    <addaction name="menuEffect"/>
@@ -3013,6 +3020,11 @@
    </property>
    <property name="text">
     <string>Delete selected preset(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionFileOpen">
+   <property name="text">
+    <string>Open(&amp;O)...</string>
    </property>
   </action>
  </widget>

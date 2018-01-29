@@ -9,6 +9,7 @@
 #include <cmath>
 #include <functional>
 #include <QDragEnterEvent>
+#include <QFileDialog>
 #include <QFileInfo>
 #include <QMimeData>
 #include <QTimer>
@@ -5640,6 +5641,66 @@ void CMainWnd::ShowGargleCustomizeWnd()
 {
 	CGargleCustomizeWnd dlg(*this);
 	dlg.exec();
+}
+//----------------------------------------------------------------------------
+// ファイルを開くダイアログの表示
+//----------------------------------------------------------------------------
+void CMainWnd::ShowOpenFileDialog(BOOL bClear)
+{
+	QString filter = tr("Readable file(*.wav *.cda *.mp* *.ogg *.wma "
+					  "*.aiff *.aif *.ape *.flac *.m4a *.m4b *.mp4 *.aac "
+					  "*.nsf "
+					  "*.avi *.wmv *.mkv *.flv *.ini *.m3u *.m3u8);;"
+					  "Playable file(*.wav *.cda *.mp* *.ogg *.wma "
+					  "*.aiff *.aif *.ape *.flac *.m4a *.m4b *.mp4 *.aac "
+					  "*.nsf "
+					  "*.avi *.wmv *.mkv *.flv);;"
+					  "WAVE file(*.wav);;"
+					  "CDA file(*.cda);;"
+					  "MP3 file(*.mp3);;"
+					  "MP2 file(*.mp2);;"
+					  "MP1 file(*.mp1);;"
+					  "Ogg Vorbis file(*.ogg);;"
+					  "AIFF file(*.aiff;*.aif);;"
+					  "APE file(*.ape);;"
+					  "FLAC file(*.flac);;"
+					  "AAC file(*.m4a;*.m4b;*.mp4;*.aac);;"
+					  "NSF file(*.nsf);;"
+					  "AVI file(*.avi);;"
+					  "WMV file(*.wmv);;"
+					  "MKV file(*.mkv);;"
+					  "FLV file(*.flv);;"
+					  "Settings file(*.ini);;"
+					  "Playlist file(*.m3u;*.m3u8);;"
+					  "All file (*.*)");
+
+	QStringList fileNames = QFileDialog::getOpenFileNames(
+			this, QString(), QString(), filter, nullptr,
+			QFileDialog::DontUseCustomDirectoryIcons);
+	if(!fileNames.empty()) {
+		if(fileNames.size() == 1 && fileNames.front().endsWith(".ini")) {
+			LoadSettings(ToTstring(fileNames.front()).c_str());
+			return;
+		}
+		int nSelect = m_tab->GetCurrentFocus();
+		if(bClear) {
+			m_arrayList[nSelect]->DeleteAllItems();
+		}
+		for (QString &fileName : fileNames)  {
+			m_arrayList[nSelect]->AddFile(fileName);
+		}
+
+		if(m_arrayList[nSelect]->GetItemCount() <= 0) {
+			m_sound.StreamFree();
+			Stop();
+		}
+		else if(!(!bClear && m_sound.GetCurFileNum() > 0)) {
+			m_sound.SetCurFileNum(0);
+			PlayNext(bClear, TRUE);
+		}
+
+		SetPreviousNextMenuState();
+	}
 }
 //----------------------------------------------------------------------------
 // リバーブのカスタマイズ用ウィンドウの表示
