@@ -1043,6 +1043,8 @@
      <string>File(&amp;F)</string>
     </property>
     <addaction name="actionFileOpen"/>
+    <addaction name="separator"/>
+    <addaction name="actionFileSave"/>
    </widget>
    <addaction name="menuFile_F"/>
    <addaction name="menuView_V"/>
@@ -3025,6 +3027,11 @@
   <action name="actionFileOpen">
    <property name="text">
     <string>Open(&amp;O)...</string>
+   </property>
+  </action>
+  <action name="actionFileSave">
+   <property name="text">
+    <string>Save(&amp;S)...</string>
    </property>
   </action>
  </widget>

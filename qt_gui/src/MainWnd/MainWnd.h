@@ -122,6 +122,7 @@ public: // 関数
 	virtual void Rewind();
 	virtual void ReturnSeconds(int seconds);
 	virtual void SavePreset(PCTSTR pFilePath);
+	virtual void SaveSettings(const PCTSTR & pFilePath);
 	virtual void SetABLoopA(QWORD pos);
 	virtual void SetABLoopA();
 	virtual void SetABLoopA_Sec(double dTime);
@@ -236,6 +237,7 @@ public: // 関数
 	virtual void ShowFlangerCustomizeWnd();
 	virtual void ShowGargleCustomizeWnd();
 	virtual void ShowOpenFileDialog(BOOL bClear);
+	virtual void ShowSaveFileDialog();
 	virtual void ShowReverbCustomizeWnd();
 	virtual void ShowTime(BOOL bReset = TRUE);
 	virtual void StartRewind();
@@ -355,6 +357,7 @@ protected: // メンバ変数
 	BOOL m_bFinish; // 再生が完了したかどうか
 	double nFreqVelo; // 周波数の差分（古びたレコード再生用）
 	double nFreqAccel; // 周波数の差分の加速度（古びたレコード再生用）
+	QString strSaveFormat; // 前回保存したファイル形式
 	int nLoopCount; // 回数ループ時のループ回数
 	int nCurrentLoopCount; // 現時点でループした回数
 	int nCurPlayTab; // 現在再生中のファイルが存在しているタブ

@@ -311,6 +311,13 @@ void CMenu_MainWnd::OnOpenFileMenuSelected()
 	m_rMainWnd.ShowOpenFileDialog(TRUE);
 }
 //----------------------------------------------------------------------------
+// ファイル → 保存メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSaveFileMenuSelected()
+{
+	m_rMainWnd.ShowSaveFileDialog();
+}
+//----------------------------------------------------------------------------
 // 表示 → 再生速度メニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnSpeedMenuSelected(bool checked)
@@ -2867,6 +2874,8 @@ void CMenu_MainWnd::CreateConnections()
 	// File
 	connect(m_rMainWnd.actionFileOpen, &QAction::triggered,
 					this, &CMenu_MainWnd::OnOpenFileMenuSelected);
+	connect(m_rMainWnd.actionFileSave, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSaveFileMenuSelected);
 	// View
 	connect(m_rMainWnd.actionSpeedVisible, &QAction::toggled,
 					this, &CMenu_MainWnd::OnSpeedMenuSelected);
