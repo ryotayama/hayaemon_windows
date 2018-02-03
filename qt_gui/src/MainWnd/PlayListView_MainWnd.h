@@ -89,6 +89,9 @@ public:
 		insertRow(nItem);
 		return nItem;
 	}
+	virtual void Show(int nCmdShow) {
+		this->setVisible(nCmdShow != SW_HIDE);
+	}
 
 protected:
   void dragEnterEvent(QDragEnterEvent * e) override;

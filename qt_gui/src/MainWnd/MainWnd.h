@@ -93,9 +93,12 @@ public: // 関数
 	virtual void AddMarker();
 	virtual void AddPreset();
 	virtual void AddPreset(tstring strPreset);
+	virtual void ChangeCurPlayTab();
 	virtual BOOL CheckLoop();
 	virtual BOOL Create() { return OnCreate(); }
+	virtual void CreateNewList(BOOL bChangeFocus = TRUE);
 	virtual BOOL CreateControls();
+	virtual void DeleteArrayList(int nList);
 	virtual void DeleteMarker();
 	virtual void DeletePreset();
 	virtual void DownFreq(double freq);
@@ -211,6 +214,7 @@ public: // 関数
 	virtual void SetSeconds(double fSeconds);
 	virtual void SetSingleLoop();
 	virtual void SetSpeed(double dSpeed);
+	virtual void SetTabVisible(bool bTabVisible);
 	virtual void SetTime(QWORD qwTime, BOOL bReset = TRUE);
 	virtual void SetFreq(double dFreq);
 	virtual void SetPan(int nPan);

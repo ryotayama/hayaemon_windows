@@ -954,6 +954,7 @@
     <addaction name="actionVolumeVisible"/>
     <addaction name="actionPanVisible"/>
     <addaction name="menuViewEQ"/>
+    <addaction name="actionTabVisible"/>
    </widget>
    <widget class="QMenu" name="menuSystem_S">
     <property name="title">
@@ -3038,6 +3039,14 @@
   <action name="actionFileAdd">
    <property name="text">
     <string>Add(&amp;P)...</string>
+   </property>
+  </action>
+  <action name="actionTabVisible">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Tab(&amp;T)</string>
    </property>
   </action>
  </widget>

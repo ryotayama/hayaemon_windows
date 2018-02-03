@@ -367,6 +367,13 @@ void CMenu_MainWnd::OnEQMenuSelected(bool checked)
 	m_rMainWnd.SetEQVisible(checked);
 }
 //----------------------------------------------------------------------------
+// 表示 → タブメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnTabMenuSelected(bool checked)
+{
+	m_rMainWnd.SetTabVisible(checked);
+}
+//----------------------------------------------------------------------------
 // 再生 → 頭出しメニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnHeadMenuSelected()
@@ -2676,6 +2683,7 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_VOLUME, m_rMainWnd.actionVolumeVisible},
 		{ID_PAN, m_rMainWnd.actionPanVisible},
 		{ID_EQ, m_rMainWnd.actionEQVisible},
+		{ID_TAB, m_rMainWnd.actionTabVisible},
 		{ID_HEAD, m_rMainWnd.actionHead},
 		{ID_PREV, m_rMainWnd.actionPrevious},
 		{ID_NEXT, m_rMainWnd.actionNext},
@@ -2898,6 +2906,8 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnPanMenuSelected);
 	connect(m_rMainWnd.actionEQVisible, &QAction::toggled,
 					this, &CMenu_MainWnd::OnEQMenuSelected);
+	connect(m_rMainWnd.actionTabVisible, &QAction::triggered,
+					this, &CMenu_MainWnd::OnTabMenuSelected);
 	// Play
 	connect(m_rMainWnd.actionPlayPlayPause, &QAction::triggered,
 					this, &CMenu_MainWnd::OnPauseMenuSelected);

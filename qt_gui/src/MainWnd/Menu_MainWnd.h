@@ -64,6 +64,7 @@ public: // 関数
 	void OnVolumeMenuSelected(bool checked);
 	void OnPanMenuSelected(bool checked);
 	void OnEQMenuSelected(bool checked);
+	void OnTabMenuSelected(bool checked);
 	void OnHeadMenuSelected();
 	void OnPauseMenuSelected();
 	void OnPreviousMenuSelected();

@@ -82,6 +82,7 @@ set(SRC_MAINWND
   ${SRC_DIR}/MainWnd/TimeSlider_MainWnd.h
   ${SRC_DIR}/MainWnd/ToolBar_MainWnd.cpp
   ${SRC_DIR}/MainWnd/ToolBar_MainWnd.h
+  ${SRC_DIR}/MainWnd/Tab_MainWnd.cpp
   ${SRC_DIR}/MainWnd/Tab_MainWnd.h
   ${SRC_DIR}/MainWnd/Utility.h
   ${SRC_DIR}/MainWnd/VolumeLabel_MainWnd.cpp

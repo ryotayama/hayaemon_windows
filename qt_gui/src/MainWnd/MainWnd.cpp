@@ -56,6 +56,7 @@ void CMainWnd::AddDropFiles(const QList<QUrl> & urls, BOOL bClear)
 		return;
 	}
 	if(bClear) {
+		ChangeCurPlayTab();
 		m_arrayList[nSelect]->DeleteAllItems();
 	}
 	for(; i < count; i++) {
@@ -102,6 +103,15 @@ void CMainWnd::AddPreset()
 void CMainWnd::AddPreset(tstring str)
 {
 	SavePreset(str.c_str());
+}
+//----------------------------------------------------------------------------
+// 現在再生中のタブを変更
+//----------------------------------------------------------------------------
+void CMainWnd::ChangeCurPlayTab()
+{
+	for(int i = 0; i < (int)m_arrayList.size(); i++)
+		m_arrayList[i]->SetPlaying(-1);
+	nCurPlayTab = m_tab->GetCurrentFocus();
 }
 //----------------------------------------------------------------------------
 // 回数ループのチェック
@@ -181,6 +191,23 @@ BOOL CMainWnd::CheckLoop()
 		else return TRUE;
 	}
 	else return TRUE;
+}
+//----------------------------------------------------------------------------
+// 新しい再生リストを作成
+//----------------------------------------------------------------------------
+void CMainWnd::CreateNewList(BOOL bChangeFocus)
+{
+	int nSelect = !bChangeFocus ? m_tab->GetItemCount() : 
+								 m_tab->GetCurrentFocus() + 1;
+	m_arrayList.insert(m_arrayList.begin() + nSelect,
+		new CPlayListView_MainWnd(*this, m_tab));
+	m_arrayList[nSelect]->Create();
+	if(bChangeFocus) {
+		for(int i = 0; i < (int)m_arrayList.size(); i++)
+			m_arrayList[i]->Show(SW_HIDE);
+		m_arrayList[nSelect]->Show(SW_SHOW);
+	}
+	m_tab->AddNewTab(m_arrayList[nSelect], bChangeFocus);
 }
 //----------------------------------------------------------------------------
 // 各コントロールを作成
@@ -479,6 +506,10 @@ BOOL CMainWnd::CreateControls()
 	}
 
 	// タブの作成
+	if(!m_tab->Create(this)) {
+		m_rApp.ShowError(tr("failed to create tab."));
+		return FALSE;
+	}
 	m_arrayList.push_back(new CPlayListView_MainWnd(*this, m_tab));
 	m_tab->addTab(m_arrayList[0], tr("No Title"));
 	// プレイリスト用リストビューの作成
@@ -490,6 +521,35 @@ BOOL CMainWnd::CreateControls()
 	SetContextMenus();
 	
 	return TRUE;
+}
+//----------------------------------------------------------------------------
+// 再生リストの削除
+//----------------------------------------------------------------------------
+void CMainWnd::DeleteArrayList(int nList)
+{
+	int nArrayCount = (int)m_arrayList.size();
+	if(nArrayCount == 1) {
+		m_arrayList[0]->DeleteAllItems();
+		m_sound.StreamFree();
+		Stop();
+	}
+	else {
+		if(nCurPlayTab == nList) {
+			m_sound.StreamFree();
+			Stop();
+		}
+		for(int i = 0; i < nArrayCount; i++) m_arrayList[i]->Show(SW_HIDE);
+		CPlayListView_MainWnd* pList = m_arrayList[nList];
+		m_arrayList.erase(m_arrayList.begin() + nList);
+		delete pList;
+		int nShow = nList > 0 ? nList - 1 : nList;
+		m_arrayList[nShow]->Show(SW_SHOW);
+		if(nCurPlayTab == nList) {
+			nCurPlayTab = nShow;
+			m_sound.SetCurFileNum(0);
+			OpenNext();
+		}
+	}
 }
 //----------------------------------------------------------------------------
 // マーカーの削除
@@ -6084,6 +6144,16 @@ void CMainWnd::SetSeconds(double fSeconds)
 	SetTime(m_sound.ChannelSeconds2Bytes(fSeconds));
 }
 //----------------------------------------------------------------------------
+// タブの表示状態を設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetTabVisible(bool bTabVisible)
+{
+	int nCmdShow = bTabVisible ? SW_SHOW : SW_HIDE;
+	UINT uCheck = bTabVisible ? MF_CHECKED : MF_UNCHECKED;
+	m_tab->Show(nCmdShow);
+	m_menu.CheckItem(ID_TAB, uCheck);
+}
+//----------------------------------------------------------------------------
 // 時間の設定
 //----------------------------------------------------------------------------
 void CMainWnd::SetTime(QWORD qwTime, BOOL bReset)
@@ -6245,6 +6315,7 @@ void CMainWnd::ShowOpenFileDialog(BOOL bClear)
 		}
 		int nSelect = m_tab->GetCurrentFocus();
 		if(bClear) {
+			ChangeCurPlayTab();
 			m_arrayList[nSelect]->DeleteAllItems();
 		}
 		for (QString &fileName : fileNames)  {
@@ -6556,6 +6627,9 @@ void CMainWnd::WriteInitFile()
 	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EQ20K) ? 1 : 0);
 	WritePrivateProfileString(_T("Visible"), _T("eq20k"), buf,
 		 initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_TAB) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("Tab"), buf, 
+		initFilePath.c_str());
 
 	// 再生モードの設定
 	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_RECOVERSLOOP) ? 1 : 0);
@@ -6901,6 +6975,8 @@ LRESULT CMainWnd::OnCreate()
 		bEQVisible = GetPrivateProfileInt(_T("Visible"), _T("EQ"), 0,
 			chPath);
 	}
+	BOOL bTabVisible = GetPrivateProfileInt(_T("Visible"), _T("Tab"), 1,
+						chPath);
 
 	if(!CreateControls())
 		return FALSE;
@@ -6911,6 +6987,7 @@ LRESULT CMainWnd::OnCreate()
 	if(bVolumeVisible) SetVolumeVisible(true);
 	if(bPanVisible) SetPanVisible(true);
 	if(bEQVisible) SetEQVisible(true);
+	SetTabVisible(bTabVisible);
 
 	m_timeLabel.SetTime(0, 0);
 
