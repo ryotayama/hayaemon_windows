@@ -235,6 +235,7 @@ public: // 関数
 	void OnOnlyLeftMenuSelected(bool checked);
 	void OnOnlyRightMenuSelected(bool checked);
 	void OnChangeLRMenuSelected(bool checked);
+	void OnPlayRangeMenuSelected();
 	void OnFadeout1SecMenuSelected();
 	void OnFadeout2SecMenuSelected();
 	void OnFadeout3SecMenuSelected();

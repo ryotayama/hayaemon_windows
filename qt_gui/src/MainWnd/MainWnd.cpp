@@ -27,6 +27,7 @@
 #include "FlangerCustomizeWnd.h"
 #include "GargleCustomizeWnd.h"
 #include "PlayListView_MainWnd.h"
+#include "PlayRangeWnd.h"
 #include "Platform.h"
 #include "presetNameInputWnd.h"
 #include "ReverbCustomizeWnd.h"
@@ -130,7 +131,9 @@ BOOL CMainWnd::CheckLoop()
 				qwTime = arrayMarker[0];
 			else {
 				if(qwTime == arrayMarker[max - 1]) {
-					SetTime(0);
+					if(m_menu.IsItemChecked(ID_PLAYRANGE))
+						SetSeconds(m_dStartSeconds);
+					else SetTime(0);
 					return FALSE;
 				}
 				else {
@@ -1990,6 +1993,7 @@ void CMainWnd::LoadSettings(const PCTSTR & pFilePath)
 void CMainWnd::Head()
 {
 	if(bMarkerPlay) SetTime(m_sound.GetLoopPosA());
+	else if(m_menu.IsItemChecked(ID_PLAYRANGE)) SetSeconds(m_dStartSeconds);
 	else SetTime(0);
 }
 //----------------------------------------------------------------------------
@@ -2014,14 +2018,20 @@ BOOL CMainWnd::OpenFile(const QString & lpszFilePath, int nCount)
 	SetAllEffects();
 	m_toolBar.SetPlayingState(FALSE);
 	if(m_menu.IsItemChecked(ID_REVERSE)) {
-		m_timeLabel.SetTime(m_sound.ChannelGetSecondsLength(),
-							m_sound.ChannelGetSecondsLength());
-		m_timeSlider.SetTime(m_sound.ChannelGetLength(),
-							 m_sound.ChannelGetLength());
+		if(m_menu.IsItemChecked(ID_PLAYRANGE)) SetSeconds(m_dEndSeconds);
+		else {
+			m_timeLabel.SetTime(m_sound.ChannelGetSecondsLength(),
+								m_sound.ChannelGetSecondsLength());
+			m_timeSlider.SetTime(m_sound.ChannelGetLength(),
+								 m_sound.ChannelGetLength());
+		}
 	}
 	else {
-		m_timeLabel.SetTime(0, m_sound.ChannelGetSecondsLength());
-		m_timeSlider.SetTime(0, m_sound.ChannelGetLength());
+		if(m_menu.IsItemChecked(ID_PLAYRANGE)) SetSeconds(m_dStartSeconds);
+		else {
+			m_timeLabel.SetTime(0, m_sound.ChannelGetSecondsLength());
+			m_timeSlider.SetTime(0, m_sound.ChannelGetLength());
+		}
 	}
 
 	return TRUE;
@@ -6048,6 +6058,27 @@ void CMainWnd::SetPitch(double dPitch)
 	m_sound.SetPitch((float)dPitch);
 }
 //----------------------------------------------------------------------------
+// 再生範囲の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetPlayRange()
+{
+	m_menu.CheckItem(ID_PLAYRANGE, MF_UNCHECKED);
+	CPlayRangeWnd dlg(*this);
+	dlg.exec();
+}
+//----------------------------------------------------------------------------
+// 再生範囲の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetPlayRange(double dStartSeconds, double dEndSeconds)
+{
+	m_dStartSeconds = dStartSeconds;
+	m_dEndSeconds = dEndSeconds;
+	m_menu.CheckItem(ID_PLAYRANGE, MF_CHECKED);
+	double dCurPos = m_sound.ChannelGetSecondsPosition();
+	if(dCurPos < m_dStartSeconds || m_dEndSeconds <= dCurPos)
+		m_sound.ChannelSetSecondsPosition(m_dStartSeconds);
+}
+//----------------------------------------------------------------------------
 // モノラル化
 //----------------------------------------------------------------------------
 void CMainWnd::SetMonoral()
@@ -6438,7 +6469,8 @@ void CMainWnd::Stop(BOOL bForce)
 		KillTimer(IDT_TIME);
 		SetCountLoop(FALSE, 0);
 		m_sound.ChannelStop();
-		SetTime(0);
+		if(m_menu.IsItemChecked(ID_PLAYRANGE)) SetSeconds(m_dStartSeconds);
+		else SetTime(0);
 		ShowTime();
 		m_toolBar.SetPlayingState(FALSE);
 		m_arrayList[nCurPlayTab]->SetPlaying(-1);
@@ -7069,6 +7101,14 @@ void CMainWnd::OnTimer(UINT id)
 			if(dwFadeoutStartTime == 0 && m_menu.IsItemChecked(ID_CONTINUE))
 				PlayNext(TRUE, TRUE);
 			else PlayNext(FALSE, TRUE);
+		}
+		else if(m_menu.IsItemChecked(ID_PLAYRANGE)) {
+			if(m_sound.ChannelGetSecondsPosition() >= m_dEndSeconds) {
+				KillTimer(IDT_TIME);
+				if(dwFadeoutStartTime == 0 && m_menu.IsItemChecked(ID_CONTINUE))
+					PlayNext(FALSE, FALSE);
+				else PlayNext(FALSE, FALSE);
+			}
 		}
 		break;
 	case IDT_REWIND:

@@ -85,8 +85,8 @@ public: // 関数
 		bSetPositionAuto(FALSE), m_bFinish(FALSE), nFreqVelo(0), nFreqAccel(0),
 		nLoopCount(0), nCurrentLoopCount(0), nCurPlayTab(0), dwFadeoutStartTime(0),
 		m_nLastDecimalDigit_pitch(0), m_nLastDecimalDigit_freq(0),
-		m_nLastDecimalDigit_speed(0), m_timeThreadRunning(false),
-		m_bForwarding(false), m_bRewinding(false) { }
+		m_nLastDecimalDigit_speed(0), m_dStartSeconds(0.0), m_dEndSeconds(0.0),
+		m_timeThreadRunning(false), m_bForwarding(false), m_bRewinding(false) { }
 	virtual ~CMainWnd();
 
 	virtual void AddDropFiles(const QList<QUrl> & urls, BOOL bClear);
@@ -219,6 +219,8 @@ public: // 関数
 	virtual void SetFreq(double dFreq);
 	virtual void SetPan(int nPan);
 	virtual void SetPitch(double dPitch);
+	virtual void SetPlayRange();
+	virtual void SetPlayRange(double dStartSeconds, double dEndSeconds);
 	virtual void SetReverb(BOOL bReverb);
 	virtual void Set3DReverb(BOOL b3DReverb);
 	virtual void SetDelay(BOOL bDelay);
@@ -369,6 +371,8 @@ protected: // メンバ変数
 	int m_nLastDecimalDigit_pitch; // 前回の小数点桁数（音程）
 	int m_nLastDecimalDigit_freq; // 前回の小数点桁数（再生周波数）
 	int m_nLastDecimalDigit_speed; // 前回の小数点桁数（再生速度）
+	double m_dStartSeconds; // 再生範囲の開始位置
+	double m_dEndSeconds; // 再生範囲の停止位置
 	std::unique_ptr<std::thread> m_timeThread;
 	bool m_timeThreadRunning;
 	bool m_bForwarding;

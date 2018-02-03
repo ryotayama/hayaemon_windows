@@ -96,6 +96,9 @@ public: // 関数
 	virtual BOOL ChannelSetPosition(QWORD pos) {
 		return BASS_ChannelSetPosition(m_hStream, pos, 0);
 	}
+	virtual BOOL ChannelSetSecondsPosition(double pos) {
+		return ChannelSetPosition(BASS_ChannelSeconds2Bytes(m_hStream, pos));
+	}
 	virtual BOOL ChannelStop() {
 		return BASS_ChannelStop(m_hStream);
 	}
