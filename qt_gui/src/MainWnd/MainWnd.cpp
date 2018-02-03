@@ -27,6 +27,7 @@
 #include "FlangerCustomizeWnd.h"
 #include "GargleCustomizeWnd.h"
 #include "PlayListView_MainWnd.h"
+#include "PlayPositionWnd.h"
 #include "PlayRangeWnd.h"
 #include "Platform.h"
 #include "presetNameInputWnd.h"
@@ -6056,6 +6057,14 @@ void CMainWnd::SetPitch(double dPitch)
 	m_menu.CheckItem(ID_BASSCOPY, MF_UNCHECKED);
 	m_menu.CheckItem(ID_CYMBALCOPY, MF_UNCHECKED);
 	m_sound.SetPitch((float)dPitch);
+}
+//----------------------------------------------------------------------------
+// 再生位置の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetPlayPosition()
+{
+	CPlayPositionWnd dlg(*this);
+	dlg.exec();
 }
 //----------------------------------------------------------------------------
 // 再生範囲の設定

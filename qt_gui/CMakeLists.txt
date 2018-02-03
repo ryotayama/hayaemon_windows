@@ -64,6 +64,8 @@ set(SRC_MAINWND
   ${SRC_DIR}/MainWnd/Platform_macOS.cpp
   ${SRC_DIR}/MainWnd/PlayListView_MainWnd.cpp
   ${SRC_DIR}/MainWnd/PlayListView_MainWnd.h
+  ${SRC_DIR}/MainWnd/PlayPositionWnd.cpp
+  ${SRC_DIR}/MainWnd/PlayPositionWnd.h
   ${SRC_DIR}/MainWnd/PlayRangeWnd.cpp
   ${SRC_DIR}/MainWnd/PlayRangeWnd.h
   ${SRC_DIR}/MainWnd/PresetMenu.cpp
@@ -145,6 +147,7 @@ qt5_wrap_ui(UI_MOC
   ${SRC_DIR}/MainWnd/FlangerCustomizeWnd.ui
   ${SRC_DIR}/MainWnd/GargleCustomizeWnd.ui
   ${SRC_DIR}/MainWnd/MainWnd.ui
+  ${SRC_DIR}/MainWnd/PlayPositionWnd.ui
   ${SRC_DIR}/MainWnd/PlayRangeWnd.ui
   ${SRC_DIR}/MainWnd/PresetNameInputWnd.ui
   ${SRC_DIR}/MainWnd/Reverb3DCustomizeWnd.ui

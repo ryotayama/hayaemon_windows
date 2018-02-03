@@ -219,6 +219,7 @@ public: // 関数
 	virtual void SetFreq(double dFreq);
 	virtual void SetPan(int nPan);
 	virtual void SetPitch(double dPitch);
+	virtual void SetPlayPosition();
 	virtual void SetPlayRange();
 	virtual void SetPlayRange(double dStartSeconds, double dEndSeconds);
 	virtual void SetReverb(BOOL bReverb);

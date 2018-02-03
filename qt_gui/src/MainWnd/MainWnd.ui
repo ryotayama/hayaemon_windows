@@ -1035,6 +1035,7 @@
     <addaction name="menuRecover_R"/>
     <addaction name="separator"/>
     <addaction name="actionPlayRange"/>
+    <addaction name="actionPlayPosition"/>
     <addaction name="actionFadeOutStop"/>
     <addaction name="menuFade_out_stop_time_G"/>
     <addaction name="actionFadeOutNext"/>
@@ -3056,6 +3057,11 @@
    </property>
    <property name="text">
     <string>Play Range(&amp;R)...</string>
+   </property>
+  </action>
+  <action name="actionPlayPosition">
+   <property name="text">
+    <string>Play position(&amp;P)...</string>
    </property>
   </action>
  </widget>

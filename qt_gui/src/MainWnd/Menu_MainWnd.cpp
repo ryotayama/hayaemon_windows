@@ -1524,6 +1524,13 @@ void CMenu_MainWnd::OnPlayRangeMenuSelected()
 	m_rMainWnd.SetPlayRange();
 }
 //----------------------------------------------------------------------------
+// システム → 再生位置メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnPlayPositionMenuSelected()
+{
+	m_rMainWnd.SetPlayPosition();
+}
+//----------------------------------------------------------------------------
 // システム → 再生速度 → 小数点桁数 → 0桁メニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnSetSpeedDecimal0MenuSelected()
@@ -2810,6 +2817,7 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_RECOVERREVERSE, m_rMainWnd.actionRecoverPlayModeReverse},
 		{ID_RECOVERRECORD, m_rMainWnd.actionRecoverPlayModeRecord},
 		{ID_PLAYRANGE, m_rMainWnd.actionPlayRange},
+		{ID_PLAYPOSITION, m_rMainWnd.actionPlayPosition},
 		{ID_FADEOUTSTOP, m_rMainWnd.actionFadeOutStop},
 		{ID_FADEOUTSTOP1SEC, m_rMainWnd.actionFadeOutStop1Sec},
 		{ID_FADEOUTSTOP2SEC, m_rMainWnd.actionFadeOutStop2Sec},
@@ -3480,5 +3488,7 @@ void CMenu_MainWnd::CreateConnections()
 	// System
 	connect(m_rMainWnd.actionPlayRange, &QAction::triggered,
 					this, &CMenu_MainWnd::OnPlayRangeMenuSelected);
+	connect(m_rMainWnd.actionPlayPosition, &QAction::triggered,
+					this, &CMenu_MainWnd::OnPlayPositionMenuSelected);
 }
 //----------------------------------------------------------------------------
