@@ -238,7 +238,9 @@ public: // 関数
 	void OnPlayRangeMenuSelected();
 	void OnPlayPositionMenuSelected();
 	void OnIncSpeedMenuSelected();
+	void OnIncFreqMenuSelected();
 	void OnDecSpeedMenuSelected();
+	void OnDecFreqMenuSelected();
 	void OnFadeout1SecMenuSelected();
 	void OnFadeout2SecMenuSelected();
 	void OnFadeout3SecMenuSelected();

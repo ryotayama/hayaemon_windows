@@ -679,6 +679,9 @@
      <addaction name="actionFreqUp5"/>
      <addaction name="actionFreqUp10"/>
      <addaction name="separator"/>
+     <addaction name="actionFreqDecrease"/>
+     <addaction name="actionFreqIncrease"/>
+     <addaction name="separator"/>
      <addaction name="menuDecimal_digit_2"/>
     </widget>
     <widget class="QMenu" name="menuPitch">
@@ -3081,6 +3084,22 @@
    </property>
    <property name="text">
     <string>Increase(&amp;D)...</string>
+   </property>
+  </action>
+  <action name="actionFreqDecrease">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Decrease(&amp;F)...</string>
+   </property>
+  </action>
+  <action name="actionFreqIncrease">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Increase(&amp;F)...</string>
    </property>
   </action>
  </widget>

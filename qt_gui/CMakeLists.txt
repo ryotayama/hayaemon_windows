@@ -22,9 +22,15 @@ set(SRC_COUNTLOOPWND
   ${SRC_DIR}/CountLoopWnd/CountLoopWnd_MainWnd.cpp
   ${SRC_DIR}/CountLoopWnd/CountLoopWnd_MainWnd.h
 )
+set(SRC_DECFREQWND
+  ${SRC_DIR}/DecFreqWnd/DecFreqWnd_MainWnd.cpp
+  ${SRC_DIR}/DecFreqWnd/DecFreqWnd_MainWnd.h)
 set(SRC_DECSPEEDWND
   ${SRC_DIR}/DecSpeedWnd/DecSpeedWnd_MainWnd.cpp
   ${SRC_DIR}/DecSpeedWnd/DecSpeedWnd_MainWnd.h)
+set(SRC_INCFREQWND
+  ${SRC_DIR}/IncFreqWnd/IncFreqWnd_MainWnd.cpp
+  ${SRC_DIR}/IncFreqWnd/IncFreqWnd_MainWnd.h)
 set(SRC_INCSPEEDWND
   ${SRC_DIR}/IncSpeedWnd/IncSpeedWnd_MainWnd.cpp
   ${SRC_DIR}/IncSpeedWnd/IncSpeedWnd_MainWnd.h)
@@ -131,6 +137,8 @@ source_group(Common FILES ${SRC_COMMON})
 source_group(CountLoopWnd FILES ${SRC_COUNTLOOPWND})
 source_group(DecSpeedWnd FILES ${SRC_DECSPEEDWND})
 source_group(IncSpeedWnd FILES ${SRC_INCSPEEDWND})
+source_group(DecFreqWnd FILES ${SRC_DECFREQWND})
+source_group(IncFreqWnd FILES ${SRC_INCFREQWND})
 source_group(MainWnd FILES ${SRC_MAINWND})
 source_group("" FILES
   ${SRC_DIR}/App.cpp
@@ -180,6 +188,8 @@ add_executable(Hayaemon
   ${SRC_COUNTLOOPWND}
   ${SRC_DECSPEEDWND}
   ${SRC_INCSPEEDWND}
+  ${SRC_DECFREQWND}
+  ${SRC_INCFREQWND}
   ${SRC_MAINWND}
   ${RESOURCES}
   ${UI_MOC}

@@ -1578,6 +1578,20 @@ void CMenu_MainWnd::OnSetSpeedDecimal2MenuSelected()
 	m_rMainWnd.GetSpeedSlider().SetDecimalDigit(2);
 }
 //----------------------------------------------------------------------------
+// システム → 再生周波数をだんだん遅くするメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDecFreqMenuSelected()
+{
+	m_rMainWnd.SetDecFreq();
+}
+//----------------------------------------------------------------------------
+// システム → 再生周波数をだんだん速くするメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnIncFreqMenuSelected()
+{
+	m_rMainWnd.SetIncFreq();
+}
+//----------------------------------------------------------------------------
 // システム → 再生周波数 → 小数点桁数 → 0桁メニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnSetFreqDecimal0MenuSelected()
@@ -2731,6 +2745,8 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_SETPOSITIONAUTO, m_rMainWnd.actionSetMarkerPositionAuto},
 		{ID_DECSPEED, m_rMainWnd.actionSpeedDecrease},
 		{ID_INCSPEED, m_rMainWnd.actionSpeedIncrease},
+		{ID_DECFREQ, m_rMainWnd.actionFreqDecrease},
+		{ID_INCFREQ, m_rMainWnd.actionFreqIncrease},
 		{ID_SPEEDDEC_0, m_rMainWnd.actionSpeedDigit0},
 		{ID_SPEEDDEC_1, m_rMainWnd.actionSpeedDigit1},
 		{ID_SPEEDDEC_2, m_rMainWnd.actionSpeedDigit2},
@@ -3389,6 +3405,10 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnUp5FreqMenuSelected);
 	connect(m_rMainWnd.actionFreqUp10, &QAction::triggered,
 					this, &CMenu_MainWnd::OnUp10FreqMenuSelected);
+	connect(m_rMainWnd.actionFreqDecrease, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDecFreqMenuSelected);
+	connect(m_rMainWnd.actionFreqIncrease, &QAction::triggered,
+					this, &CMenu_MainWnd::OnIncFreqMenuSelected);
 	// Effecgt - Frequency - Decimal digit
 	connect(m_rMainWnd.actionFreqDigit0, &QAction::toggled,
 					[&] (bool checked) {

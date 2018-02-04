@@ -82,9 +82,10 @@ public: // 関数
 		bReverb(FALSE), b3DReverb(FALSE), bDelay(FALSE), bChorus(FALSE),
 		bCompressor(FALSE), bFlanger(FALSE), bGargle(FALSE), bDistortion(FALSE),
 		bMarkerPlay(FALSE), bCountLoop(FALSE), bInstantLoop(FALSE),
-		bSetPositionAuto(FALSE), m_bFinish(FALSE), nIncSpeed(0), nDecSpeed(0),
-		nFreqVelo(0), nFreqAccel(0), nLoopCount(0), nCurrentLoopCount(0),
-		nIncSpeedMode(0), nDecSpeedMode(0), nCurPlayTab(0), dwFadeoutStartTime(0),
+		bSetPositionAuto(FALSE), m_bFinish(FALSE), nIncSpeed(0), nIncFreq(0),
+		nDecSpeed(0), nDecFreq(0), nFreqVelo(0), nFreqAccel(0), nLoopCount(0),
+		nCurrentLoopCount(0), nIncSpeedMode(0), nIncFreqMode(0), nDecSpeedMode(0),
+		nDecFreqMode(0), nCurPlayTab(0), dwFadeoutStartTime(0),
 		m_nLastDecimalDigit_pitch(0), m_nLastDecimalDigit_freq(0),
 		m_nLastDecimalDigit_speed(0), m_dStartSeconds(0.0), m_dEndSeconds(0.0),
 		m_timeThreadRunning(false), m_bForwarding(false), m_bRewinding(false) { }
@@ -185,10 +186,18 @@ public: // 関数
 					   LONG lEQ5K, LONG lEQ6_3K, LONG lEQ8K, LONG lEQ10K,
 					   LONG lEQ12_5K, LONG lEQ16K, LONG lEQ20K);
 	virtual void SetEQVisible(bool bEQVisible);
+	virtual void SetIncFreq();
+	virtual void SetIncFreq(double nSecond, double nIncFreq);
+	virtual void SetIncFreq(double nIncFreq);
+	virtual void SetIncFreq(BOOL bIncFreq, double nSecond);
 	virtual void SetIncSpeed();
 	virtual void SetIncSpeed(double nSecond, double nIncSpeed);
 	virtual void SetIncSpeed(double nIncSpeed);
 	virtual void SetIncSpeed(BOOL bIncSpeed, double nSecond);
+	virtual void SetDecFreq();
+	virtual void SetDecFreq(double nSecond, double nDecFreq);
+	virtual void SetDecFreq(double nDecFreq);
+	virtual void SetDecFreq(BOOL bDecFreq, double nSecond);
 	virtual void SetDecSpeed();
 	virtual void SetDecSpeed(double nSecond, double nIncSpeed);
 	virtual void SetDecSpeed(double nIncSpeed);
@@ -372,7 +381,9 @@ protected: // メンバ変数
 	BOOL bSetPositionAuto; // マーカー位置変更時に再生位置を変更するかどうか
 	BOOL m_bFinish; // 再生が完了したかどうか
 	double nIncSpeed; // 再生速度をだんだん速くするパーセント
+	double nIncFreq; // 再生周波数をだんだん速くするパーセント
 	double nDecSpeed; // 再生速度をだんだん遅くするパーセント
+	double nDecFreq; // 再生周波数をだんだん遅くするパーセント
 	double nFreqVelo; // 周波数の差分（古びたレコード再生用）
 	double nFreqAccel; // 周波数の差分の加速度（古びたレコード再生用）
 	QString strSaveFormat; // 前回保存したファイル形式
@@ -380,8 +391,12 @@ protected: // メンバ変数
 	int nCurrentLoopCount; // 現時点でループした回数
 	int nIncSpeedMode; // 再生速度をだんだん速くするモード
 					   // 1 : 時間ごと, 2 : ループごと
+	int nIncFreqMode; // 再生周波数をだんだん速くするモード
+						   // 1 : 時間ごと, 2 : ループごと
 	int nDecSpeedMode; // 再生速度をだんだん遅くするモード
 					   // 1 : 時間ごと, 2 : ループごと
+	int nDecFreqMode; // 再生周波数をだんだん遅くするモード
+						   // 1 : 時間ごと, 2 : ループごと
 	int nCurPlayTab; // 現在再生中のファイルが存在しているタブ
 	DWORD dwFadeoutStartTime; // フェードアウト開始時間
 	int m_nLastDecimalDigit_pitch; // 前回の小数点桁数（音程）
@@ -406,7 +421,9 @@ public: // 定数
 		IDT_NOSENSE,
 		IDT_EARTRAINING,
 		IDT_INCSPEED,
+		IDT_INCFREQ,
 		IDT_DECSPEED,
+		IDT_DECFREQ,
 		IDT_FADEOUT,
 		IDT_FADEOUTNEXT,
 	};

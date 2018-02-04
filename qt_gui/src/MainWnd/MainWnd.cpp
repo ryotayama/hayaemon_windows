@@ -18,7 +18,9 @@
 #include "../Common/CommandList.h"
 #include "../Common/Utils.h"
 #include "../CountLoopWnd/CountLoopWnd_MainWnd.h"
+#include "../DecFreqWnd/DecFreqWnd_MainWnd.h"
 #include "../DecSpeedWnd/DecSpeedWnd_MainWnd.h"
+#include "../IncFreqWnd/IncFreqWnd_MainWnd.h"
 #include "../IncSpeedWnd/IncSpeedWnd_MainWnd.h"
 #include "3DReverbCustomizeWnd.h"
 #include "ABLoopPosWnd.h"
@@ -125,8 +127,12 @@ BOOL CMainWnd::CheckLoop()
 	if(!m_sound.ChannelIsStopped() && !m_sound.ChannelIsPausing()) {
 		if(m_menu.IsItemChecked(ID_INCSPEED) && nIncSpeedMode == 2)
 			UpSpeed(nIncSpeed);
+		if(m_menu.IsItemChecked(ID_INCFREQ) && nIncFreqMode == 2)
+			UpFreq(nIncFreq);
 		if(m_menu.IsItemChecked(ID_DECSPEED) && nDecSpeedMode == 2)
 			DownSpeed(nDecSpeed);
+		if(m_menu.IsItemChecked(ID_DECFREQ) && nDecFreqMode == 2)
+			DownFreq(nDecFreq);
 	}
 
 	if(bCountLoop) {
@@ -4625,6 +4631,60 @@ void CMainWnd::SetEQVisible(bool bEQVisible)
 	m_menu.CheckItem(ID_EQ, uCheck);
 }
 //----------------------------------------------------------------------------
+// 再生周波数をだんだん速くする設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetIncFreq()
+{
+	CIncFreqWnd_MainWnd dlg(*this);
+	dlg.exec();
+}
+//----------------------------------------------------------------------------
+// 再生周波数をだんだん速くする設定（時間ごと）
+//----------------------------------------------------------------------------
+void CMainWnd::SetIncFreq(double nSecond, double nIncFreq)
+{
+	if(nSecond == 0.0 || nIncFreq == 0.0) {
+		this->nIncFreq = 0.0;
+		SetIncFreq(FALSE, 0);
+		nIncFreqMode = 0;
+	}
+	else {
+		this->nIncFreq = nIncFreq;
+		SetIncFreq(TRUE, nSecond);
+		nIncFreqMode = 1;
+	}
+}
+//----------------------------------------------------------------------------
+// 再生周波数をだんだん速くする設定（ループごと）
+//----------------------------------------------------------------------------
+void CMainWnd::SetIncFreq(double nIncFreq)
+{
+	BOOL bIncFreq;
+	if(nIncFreq == 0.0) {
+		this->nIncFreq = 0.0;
+		bIncFreq = FALSE;
+		nIncFreqMode = 0;
+	}
+	else {
+		this->nIncFreq = nIncFreq;
+		bIncFreq = TRUE;
+		nIncFreqMode = 2;
+	}
+	m_menu.CheckItem(ID_INCFREQ,
+		bIncFreq ? MF_CHECKED : MF_UNCHECKED);
+	KillTimer(IDT_INCFREQ);
+}
+//----------------------------------------------------------------------------
+// 再生周波数をだんだん速くする設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetIncFreq(BOOL bIncFreq, double nSecond)
+{
+	m_menu.CheckItem(ID_INCFREQ,
+		bIncFreq ? MF_CHECKED : MF_UNCHECKED);
+	if(bIncFreq) SetTimer(IDT_INCFREQ, (int)(nSecond * 1000));
+	else KillTimer(IDT_INCFREQ);
+}
+//----------------------------------------------------------------------------
 // だんだん速くする設定
 //----------------------------------------------------------------------------
 void CMainWnd::SetIncSpeed()
@@ -4675,6 +4735,60 @@ void CMainWnd::SetIncSpeed(BOOL bIncSpeed, double nSecond)
 	m_menu.CheckItem(ID_INCSPEED, bIncSpeed ? MF_CHECKED : MF_UNCHECKED);
 	if(bIncSpeed) SetTimer(IDT_INCSPEED, (int)(nSecond * 1000));
 	else KillTimer(IDT_INCSPEED);
+}
+//----------------------------------------------------------------------------
+// 再生周波数をだんだん遅くする設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetDecFreq()
+{
+	CDecFreqWnd_MainWnd dlg(*this);
+	dlg.exec();
+}
+//----------------------------------------------------------------------------
+// 再生周波数をだんだん遅くする設定（時間ごと）
+//----------------------------------------------------------------------------
+void CMainWnd::SetDecFreq(double nSecond, double nDecFreq)
+{
+	if(nSecond == 0.0 || nDecFreq == 0.0) {
+		this->nDecFreq = 0.0;
+		SetDecFreq(FALSE, 0);
+		nDecFreqMode = 0;
+	}
+	else {
+		this->nDecFreq = nDecFreq;
+		SetDecFreq(TRUE, nSecond);
+		nDecFreqMode = 1;
+	}
+}
+//----------------------------------------------------------------------------
+// 再生周波数をだんだん遅くする設定（ループごと）
+//----------------------------------------------------------------------------
+void CMainWnd::SetDecFreq(double nDecFreq)
+{
+	BOOL bDecFreq;
+	if(nDecFreq == 0.0) {
+		this->nDecFreq = 0.0;
+		bDecFreq = FALSE;
+		nDecFreqMode = 0;
+	}
+	else {
+		this->nDecFreq = nDecFreq;
+		bDecFreq = TRUE;
+		nDecFreqMode = 2;
+	}
+	m_menu.CheckItem(ID_DECFREQ,
+		bDecFreq ? MF_CHECKED : MF_UNCHECKED);
+	KillTimer(IDT_DECFREQ);
+}
+//----------------------------------------------------------------------------
+// 再生周波数をだんだん遅くする設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetDecFreq(BOOL bDecFreq, double nSecond)
+{
+	m_menu.CheckItem(ID_DECFREQ,
+		bDecFreq ? MF_CHECKED : MF_UNCHECKED);
+	if(bDecFreq) SetTimer(IDT_DECFREQ, (int)(nSecond * 1000));
+	else KillTimer(IDT_DECFREQ);
 }
 //----------------------------------------------------------------------------
 // だんだん遅くする設定
@@ -7216,9 +7330,19 @@ void CMainWnd::OnTimer(UINT id)
 		}
 		break;
 	}
+	case IDT_INCFREQ:
+		if(!m_sound.ChannelIsStopped() && !m_sound.ChannelIsPausing()) {
+			UpFreq(nIncFreq);
+		}
+		break;
 	case IDT_INCSPEED:
 		if(!m_sound.ChannelIsStopped() && !m_sound.ChannelIsPausing()) {
 			UpSpeed(nIncSpeed);
+		}
+		break;
+	case IDT_DECFREQ:
+		if(!m_sound.ChannelIsStopped() && !m_sound.ChannelIsPausing()) {
+			DownFreq(nDecFreq);
 		}
 		break;
 	case IDT_DECSPEED:
