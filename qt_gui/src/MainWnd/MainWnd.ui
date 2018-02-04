@@ -619,6 +619,9 @@
      <addaction name="actionSpeedUp5"/>
      <addaction name="actionSpeedUp10"/>
      <addaction name="separator"/>
+     <addaction name="actionSpeedDecrease"/>
+     <addaction name="actionSpeedIncrease"/>
+     <addaction name="separator"/>
      <addaction name="menuDecimal_digit"/>
     </widget>
     <widget class="QMenu" name="menuFreq">
@@ -3062,6 +3065,22 @@
   <action name="actionPlayPosition">
    <property name="text">
     <string>Play position(&amp;P)...</string>
+   </property>
+  </action>
+  <action name="actionSpeedDecrease">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Decrease(&amp;D)...</string>
+   </property>
+  </action>
+  <action name="actionSpeedIncrease">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Increase(&amp;D)...</string>
    </property>
   </action>
  </widget>

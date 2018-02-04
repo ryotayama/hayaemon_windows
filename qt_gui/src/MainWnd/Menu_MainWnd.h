@@ -237,6 +237,8 @@ public: // 関数
 	void OnChangeLRMenuSelected(bool checked);
 	void OnPlayRangeMenuSelected();
 	void OnPlayPositionMenuSelected();
+	void OnIncSpeedMenuSelected();
+	void OnDecSpeedMenuSelected();
 	void OnFadeout1SecMenuSelected();
 	void OnFadeout2SecMenuSelected();
 	void OnFadeout3SecMenuSelected();

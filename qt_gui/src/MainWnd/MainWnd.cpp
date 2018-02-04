@@ -18,6 +18,8 @@
 #include "../Common/CommandList.h"
 #include "../Common/Utils.h"
 #include "../CountLoopWnd/CountLoopWnd_MainWnd.h"
+#include "../DecSpeedWnd/DecSpeedWnd_MainWnd.h"
+#include "../IncSpeedWnd/IncSpeedWnd_MainWnd.h"
 #include "3DReverbCustomizeWnd.h"
 #include "ABLoopPosWnd.h"
 #include "ChorusCustomizeWnd.h"
@@ -120,6 +122,13 @@ void CMainWnd::ChangeCurPlayTab()
 //----------------------------------------------------------------------------
 BOOL CMainWnd::CheckLoop()
 {
+	if(!m_sound.ChannelIsStopped() && !m_sound.ChannelIsPausing()) {
+		if(m_menu.IsItemChecked(ID_INCSPEED) && nIncSpeedMode == 2)
+			UpSpeed(nIncSpeed);
+		if(m_menu.IsItemChecked(ID_DECSPEED) && nDecSpeedMode == 2)
+			DownSpeed(nDecSpeed);
+	}
+
 	if(bCountLoop) {
 		nCurrentLoopCount++;
 		if(nCurrentLoopCount >= nLoopCount) {
@@ -4616,6 +4625,110 @@ void CMainWnd::SetEQVisible(bool bEQVisible)
 	m_menu.CheckItem(ID_EQ, uCheck);
 }
 //----------------------------------------------------------------------------
+// だんだん速くする設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetIncSpeed()
+{
+	CIncSpeedWnd_MainWnd dlg(*this);
+	dlg.exec();
+}
+//----------------------------------------------------------------------------
+// だんだん速くする設定（時間ごと）
+//----------------------------------------------------------------------------
+void CMainWnd::SetIncSpeed(double nSecond, double nIncSpeed)
+{
+	if(nSecond == 0.0 || nIncSpeed == 0.0) {
+		this->nIncSpeed = 0.0;
+		SetIncSpeed(FALSE, 0);
+		nIncSpeedMode = 0;
+	}
+	else {
+		this->nIncSpeed = nIncSpeed;
+		SetIncSpeed(TRUE, nSecond);
+		nIncSpeedMode = 1;
+	}
+}
+//----------------------------------------------------------------------------
+// だんだん速くする設定（ループごと）
+//----------------------------------------------------------------------------
+void CMainWnd::SetIncSpeed(double nIncSpeed)
+{
+	BOOL bIncSpeed;
+	if(nIncSpeed == 0.0) {
+		this->nIncSpeed = 0.0;
+		bIncSpeed = FALSE;
+		nIncSpeedMode = 0;
+	}
+	else {
+		this->nIncSpeed = nIncSpeed;
+		bIncSpeed = TRUE;
+		nIncSpeedMode = 2;
+	}
+	m_menu.CheckItem(ID_INCSPEED, bIncSpeed ? MF_CHECKED : MF_UNCHECKED);
+	KillTimer(IDT_INCSPEED);
+}
+//----------------------------------------------------------------------------
+// だんだん速くする設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetIncSpeed(BOOL bIncSpeed, double nSecond)
+{
+	m_menu.CheckItem(ID_INCSPEED, bIncSpeed ? MF_CHECKED : MF_UNCHECKED);
+	if(bIncSpeed) SetTimer(IDT_INCSPEED, (int)(nSecond * 1000));
+	else KillTimer(IDT_INCSPEED);
+}
+//----------------------------------------------------------------------------
+// だんだん遅くする設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetDecSpeed()
+{
+	CDecSpeedWnd_MainWnd dlg(*this);
+	dlg.exec();
+}
+//----------------------------------------------------------------------------
+// だんだん遅くする設定（時間ごと）
+//----------------------------------------------------------------------------
+void CMainWnd::SetDecSpeed(double nSecond, double nDecSpeed)
+{
+	if(nSecond == 0.0 || nDecSpeed == 0.0) {
+		this->nDecSpeed = 0.0;
+		SetDecSpeed(FALSE, 0);
+		nDecSpeedMode = 0;
+	}
+	else {
+		this->nDecSpeed = nDecSpeed;
+		SetDecSpeed(TRUE, nSecond);
+		nDecSpeedMode = 1;
+	}
+}
+//----------------------------------------------------------------------------
+// だんだん遅くする設定（ループごと）
+//----------------------------------------------------------------------------
+void CMainWnd::SetDecSpeed(double nDecSpeed)
+{
+	BOOL bDecSpeed;
+	if(nDecSpeed == 0.0) {
+		this->nDecSpeed = 0.0;
+		bDecSpeed = FALSE;
+		nDecSpeedMode = 0;
+	}
+	else {
+		this->nDecSpeed = nDecSpeed;
+		bDecSpeed = TRUE;
+		nDecSpeedMode = 2;
+	}
+	m_menu.CheckItem(ID_DECSPEED, bDecSpeed ? MF_CHECKED : MF_UNCHECKED);
+	KillTimer(IDT_DECSPEED);
+}
+//----------------------------------------------------------------------------
+// だんだん遅くする設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetDecSpeed(BOOL bDecSpeed, double nSecond)
+{
+	m_menu.CheckItem(ID_DECSPEED, bDecSpeed ? MF_CHECKED : MF_UNCHECKED);
+	if(bDecSpeed) SetTimer(IDT_DECSPEED, (int)(nSecond * 1000));
+	else KillTimer(IDT_DECSPEED);
+}
+//----------------------------------------------------------------------------
 // マーカー追加時にループの設定
 //----------------------------------------------------------------------------
 void CMainWnd::SetInstantLoop()
@@ -7103,6 +7216,16 @@ void CMainWnd::OnTimer(UINT id)
 		}
 		break;
 	}
+	case IDT_INCSPEED:
+		if(!m_sound.ChannelIsStopped() && !m_sound.ChannelIsPausing()) {
+			UpSpeed(nIncSpeed);
+		}
+		break;
+	case IDT_DECSPEED:
+		if(!m_sound.ChannelIsStopped() && !m_sound.ChannelIsPausing()) {
+			DownSpeed(nDecSpeed);
+		}
+		break;
 	case IDT_TIME:
 		if(m_bFinish) {
 			m_bFinish = FALSE;

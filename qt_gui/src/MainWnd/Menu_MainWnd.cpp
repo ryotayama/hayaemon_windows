@@ -1531,6 +1531,20 @@ void CMenu_MainWnd::OnPlayPositionMenuSelected()
 	m_rMainWnd.SetPlayPosition();
 }
 //----------------------------------------------------------------------------
+// システム → 再生速度をだんだん遅くするメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDecSpeedMenuSelected()
+{
+	m_rMainWnd.SetDecSpeed();
+}
+//----------------------------------------------------------------------------
+// システム → 再生速度をだんだん速くするメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnIncSpeedMenuSelected()
+{
+	m_rMainWnd.SetIncSpeed();
+}
+//----------------------------------------------------------------------------
 // システム → 再生速度 → 小数点桁数 → 0桁メニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnSetSpeedDecimal0MenuSelected()
@@ -2715,6 +2729,8 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_COUNTLOOP, m_rMainWnd.actionCountLoop},
 		{ID_INSTANTLOOP, m_rMainWnd.actionInstantLoop},
 		{ID_SETPOSITIONAUTO, m_rMainWnd.actionSetMarkerPositionAuto},
+		{ID_DECSPEED, m_rMainWnd.actionSpeedDecrease},
+		{ID_INCSPEED, m_rMainWnd.actionSpeedIncrease},
 		{ID_SPEEDDEC_0, m_rMainWnd.actionSpeedDigit0},
 		{ID_SPEEDDEC_1, m_rMainWnd.actionSpeedDigit1},
 		{ID_SPEEDDEC_2, m_rMainWnd.actionSpeedDigit2},
@@ -3289,6 +3305,10 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnUp5SpeedMenuSelected);
 	connect(m_rMainWnd.actionSpeedUp10, &QAction::triggered,
 					this, &CMenu_MainWnd::OnUp10SpeedMenuSelected);
+	connect(m_rMainWnd.actionSpeedDecrease, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDecSpeedMenuSelected);
+	connect(m_rMainWnd.actionSpeedIncrease, &QAction::triggered,
+					this, &CMenu_MainWnd::OnIncSpeedMenuSelected);
 	// Effect - Speed - Decimal digit
 	connect(m_rMainWnd.actionSpeedDigit0, &QAction::toggled,
 					[&] (bool checked) {

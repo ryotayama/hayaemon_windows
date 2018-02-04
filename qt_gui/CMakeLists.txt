@@ -22,6 +22,12 @@ set(SRC_COUNTLOOPWND
   ${SRC_DIR}/CountLoopWnd/CountLoopWnd_MainWnd.cpp
   ${SRC_DIR}/CountLoopWnd/CountLoopWnd_MainWnd.h
 )
+set(SRC_DECSPEEDWND
+  ${SRC_DIR}/DecSpeedWnd/DecSpeedWnd_MainWnd.cpp
+  ${SRC_DIR}/DecSpeedWnd/DecSpeedWnd_MainWnd.h)
+set(SRC_INCSPEEDWND
+  ${SRC_DIR}/IncSpeedWnd/IncSpeedWnd_MainWnd.cpp
+  ${SRC_DIR}/IncSpeedWnd/IncSpeedWnd_MainWnd.h)
 set(SRC_MAINWND
   ${SRC_DIR}/MainWnd/3DReverbCustomizeWnd.cpp
   ${SRC_DIR}/MainWnd/3DReverbCustomizeWnd.h
@@ -123,6 +129,8 @@ endif()
 source_group(Bass FILES ${SRC_BASS})
 source_group(Common FILES ${SRC_COMMON})
 source_group(CountLoopWnd FILES ${SRC_COUNTLOOPWND})
+source_group(DecSpeedWnd FILES ${SRC_DECSPEEDWND})
+source_group(IncSpeedWnd FILES ${SRC_INCSPEEDWND})
 source_group(MainWnd FILES ${SRC_MAINWND})
 source_group("" FILES
   ${SRC_DIR}/App.cpp
@@ -139,6 +147,7 @@ endif()
 qt5_add_resources(RESOURCES ${SRC_DIR}/Hayaemon.qrc)
 qt5_wrap_ui(UI_MOC
   ${SRC_DIR}/CountLoopWnd/CountLoopWnd.ui
+  ${SRC_DIR}/IncSpeedWnd/IncSpeedWnd.ui
   ${SRC_DIR}/MainWnd/ABLoopPosWnd.ui
   ${SRC_DIR}/MainWnd/ChorusCustomizeWnd.ui
   ${SRC_DIR}/MainWnd/CompressorCustomizeWnd.ui
@@ -169,6 +178,8 @@ add_executable(Hayaemon
   ${SRC_BASS}
   ${SRC_COMMON}
   ${SRC_COUNTLOOPWND}
+  ${SRC_DECSPEEDWND}
+  ${SRC_INCSPEEDWND}
   ${SRC_MAINWND}
   ${RESOURCES}
   ${UI_MOC}

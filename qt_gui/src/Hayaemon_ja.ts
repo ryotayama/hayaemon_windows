@@ -22,139 +22,169 @@
     </message>
 </context>
 <context>
+    <name>CDecSpeedWnd_MainWnd</name>
+    <message>
+        <location filename="DecSpeedWnd/DecSpeedWnd_MainWnd.cpp" line="13"/>
+        <source>Decrease speed</source>
+        <translation>だんだん遅くする</translation>
+    </message>
+    <message>
+        <location filename="DecSpeedWnd/DecSpeedWnd_MainWnd.cpp" line="15"/>
+        <source>Turn down speed</source>
+        <comment>for seconds</comment>
+        <translation>再生速度を</translation>
+    </message>
+    <message>
+        <location filename="DecSpeedWnd/DecSpeedWnd_MainWnd.cpp" line="16"/>
+        <source>seconds</source>
+        <translation>% 下げる</translation>
+    </message>
+    <message>
+        <location filename="DecSpeedWnd/DecSpeedWnd_MainWnd.cpp" line="17"/>
+        <source>Turn down  speed</source>
+        <comment>for looping</comment>
+        <translation>ループごとに再生速度を</translation>
+    </message>
+    <message>
+        <location filename="DecSpeedWnd/DecSpeedWnd_MainWnd.cpp" line="18"/>
+        <source>% every looping</source>
+        <translation>% 下げる</translation>
+    </message>
+</context>
+<context>
     <name>CMainWnd</name>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="223"/>
+        <location filename="MainWnd/MainWnd.cpp" line="234"/>
         <source>failed to create toolbar.</source>
         <translation>ツールバーの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="229"/>
+        <location filename="MainWnd/MainWnd.cpp" line="240"/>
         <source>failed to create time label.</source>
         <translation>再生時間表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="235"/>
+        <location filename="MainWnd/MainWnd.cpp" line="246"/>
         <source>failed to create time slider.</source>
         <translation>再生時間設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="241"/>
+        <location filename="MainWnd/MainWnd.cpp" line="252"/>
         <source>failed to create speed label.</source>
         <translation>再生速度表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="247"/>
+        <location filename="MainWnd/MainWnd.cpp" line="258"/>
         <source>failed to create speed slider.</source>
         <translation>再生速度設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="284"/>
+        <location filename="MainWnd/MainWnd.cpp" line="295"/>
         <source>failed to create frequency label.</source>
         <translation>再生周波数表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="290"/>
+        <location filename="MainWnd/MainWnd.cpp" line="301"/>
         <source>failed to create frequency slider.</source>
         <translation>再生周波数設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="327"/>
+        <location filename="MainWnd/MainWnd.cpp" line="338"/>
         <source>failed to create pitch label.</source>
         <translation>音程表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="333"/>
+        <location filename="MainWnd/MainWnd.cpp" line="344"/>
         <source>failed to create pitch slider.</source>
         <translation>音程設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="371"/>
+        <location filename="MainWnd/MainWnd.cpp" line="382"/>
         <source>failed to create volume label.</source>
         <translation>音量表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="377"/>
+        <location filename="MainWnd/MainWnd.cpp" line="388"/>
         <source>failed to create volume slider.</source>
         <translation>音量設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="392"/>
+        <location filename="MainWnd/MainWnd.cpp" line="403"/>
         <source>failed to create pan label.</source>
         <translation>パン表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="398"/>
+        <location filename="MainWnd/MainWnd.cpp" line="409"/>
         <source>failed to create pan slider.</source>
         <translation>パン設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="461"/>
+        <location filename="MainWnd/MainWnd.cpp" line="472"/>
         <source>failed to create EQ(%1Hz) label.</source>
         <translation>イコライザ ( %1Hz ) 表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="470"/>
+        <location filename="MainWnd/MainWnd.cpp" line="481"/>
         <source>failed to create EQ(%1Hz) slider.</source>
         <translation>イコライザ ( %1Hz ) 設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="510"/>
+        <location filename="MainWnd/MainWnd.cpp" line="521"/>
         <source>failed to create tab.</source>
         <translation>タブの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="514"/>
+        <location filename="MainWnd/MainWnd.cpp" line="525"/>
         <source>No Title</source>
         <translation>無題</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="517"/>
+        <location filename="MainWnd/MainWnd.cpp" line="528"/>
         <source>failed to create playlist.</source>
         <translation>プレイリスト用リストビューの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="6281"/>
+        <location filename="MainWnd/MainWnd.cpp" line="6432"/>
         <source>Readable file(*.wav *.cda *.mp* *.ogg *.wma *.aiff *.aif *.ape *.flac *.m4a *.m4b *.mp4 *.aac *.nsf *.avi *.wmv *.mkv *.flv *.ini *.m3u *.m3u8);;Playable file(*.wav *.cda *.mp* *.ogg *.wma *.aiff *.aif *.ape *.flac *.m4a *.m4b *.mp4 *.aac *.nsf *.avi *.wmv *.mkv *.flv);;WAVE file(*.wav);;CDA file(*.cda);;MP3 file(*.mp3);;MP2 file(*.mp2);;MP1 file(*.mp1);;Ogg Vorbis file(*.ogg);;AIFF file(*.aiff;*.aif);;APE file(*.ape);;FLAC file(*.flac);;AAC file(*.m4a;*.m4b;*.mp4;*.aac);;NSF file(*.nsf);;AVI file(*.avi);;WMV file(*.wmv);;MKV file(*.mkv);;FLV file(*.flv);;Settings file(*.ini);;Playlist file(*.m3u;*.m3u8);;All file (*.*)</source>
         <translation>読込可能ファイル(*.wav *.cda *.mp* *.ogg *.wma *.aiff *.aif *.ape *.flac *.m4a *.m4b *.mp4 *.aac *.nsf *.avi *.wmv *.mkv *.flv *.ini *.m3u *.m3u8);;再生可能ファイル(*.wav *.cda *.mp* *.ogg *.wma *.aiff *.aif *.ape *.flac *.m4a *.m4b *.mp4 *.aac *.nsf *.avi *.wmv *.mkv *.flv);;WAVE ファイル(*.wav);;CDA ファイル(*.cda);;MP3 ファイル(*.mp3);;MP2 ファイル(*.mp2);;MP1 ファイル(*.mp1);;Ogg Vorbis ファイル(*.ogg);;AIFF ファイル(*.aiff *.aif);;APE ファイル(*.ape);;FLAC ファイル(*.flac);;AAC ファイル(*.m4a *.m4b *.mp4 *.aac);;NSF ファイル(*.nsf);;AVI ファイル(*.avi);;WMV ファイル(*.wmv);;MKV ファイル(*.mkv);;FLV ファイル(*.flv);;設定状態ファイル(*.ini);;プレイリストファイル(*.m3u *.m3u8);;すべてのファイル (*.*)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="6342"/>
+        <location filename="MainWnd/MainWnd.cpp" line="6493"/>
         <source>Settings(*.ini)</source>
         <translation>設定状態(*.ini)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="6938"/>
+        <location filename="MainWnd/MainWnd.cpp" line="7090"/>
         <source>failed to create menu.</source>
         <translation>メニューの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="6998"/>
+        <location filename="MainWnd/MainWnd.cpp" line="7150"/>
         <source>failed to init BASS.DLL.</source>
         <translation>BASS の初期化に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="7258"/>
+        <location filename="MainWnd/MainWnd.cpp" line="7423"/>
         <source>Show Speed Control(&amp;S)</source>
         <translation>再生速度コントロールの表示(&amp;V)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="7267"/>
+        <location filename="MainWnd/MainWnd.cpp" line="7432"/>
         <source>Show Frequency Control(&amp;S)</source>
         <translation>再生周波数コントロールの表示(&amp;V)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="7276"/>
+        <location filename="MainWnd/MainWnd.cpp" line="7441"/>
         <source>Show Pitch Control(&amp;S)</source>
         <translation>音程コントロールの表示(&amp;V)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="7285"/>
+        <location filename="MainWnd/MainWnd.cpp" line="7450"/>
         <source>Show Volume Control(&amp;S)</source>
         <translation>音量コントロールの表示(&amp;V)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="7294"/>
+        <location filename="MainWnd/MainWnd.cpp" line="7459"/>
         <source>Show Pan Control(&amp;S)</source>
         <translation>パンの表示(&amp;V)</translation>
     </message>
@@ -223,6 +253,51 @@
         <location filename="MainWnd/Tab_MainWnd.cpp" line="61"/>
         <source>Show Tab(&amp;S)</source>
         <translation>タブの表示(&amp;V)</translation>
+    </message>
+</context>
+<context>
+    <name>IncSpeedWnd</name>
+    <message>
+        <location filename="IncSpeedWnd/IncSpeedWnd.ui" line="20"/>
+        <source>Increase speed</source>
+        <translation>だんだん速くする</translation>
+    </message>
+    <message>
+        <location filename="IncSpeedWnd/IncSpeedWnd.ui" line="26"/>
+        <source>changes for every number of the set-up seconds</source>
+        <translation>秒数ごとに変更</translation>
+    </message>
+    <message>
+        <location filename="IncSpeedWnd/IncSpeedWnd.ui" line="41"/>
+        <source>Turn up speed</source>
+        <comment>for seconds</comment>
+        <translation>再生速度を</translation>
+    </message>
+    <message>
+        <location filename="IncSpeedWnd/IncSpeedWnd.ui" line="57"/>
+        <source>% in</source>
+        <translation>秒間に</translation>
+    </message>
+    <message>
+        <location filename="IncSpeedWnd/IncSpeedWnd.ui" line="71"/>
+        <source>seconds</source>
+        <translation>% 上げる</translation>
+    </message>
+    <message>
+        <location filename="IncSpeedWnd/IncSpeedWnd.ui" line="85"/>
+        <source>changes for every looping</source>
+        <translation>ループごとに変更</translation>
+    </message>
+    <message>
+        <location filename="IncSpeedWnd/IncSpeedWnd.ui" line="100"/>
+        <source>Turn up speed</source>
+        <comment>for looping</comment>
+        <translation>ループごとに再生速度を</translation>
+    </message>
+    <message>
+        <location filename="IncSpeedWnd/IncSpeedWnd.ui" line="119"/>
+        <source>% every looping</source>
+        <translation>% 上げる</translation>
     </message>
 </context>
 <context>
