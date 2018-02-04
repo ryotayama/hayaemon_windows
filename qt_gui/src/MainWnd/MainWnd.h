@@ -262,6 +262,7 @@ public: // 関数
 	virtual void ShowFlangerCustomizeWnd();
 	virtual void ShowGargleCustomizeWnd();
 	virtual void ShowOpenFileDialog(BOOL bClear);
+	virtual void ShowOpenFolderDialog(BOOL bClear);
 	virtual void ShowSaveFileDialog();
 	virtual void ShowReverbCustomizeWnd();
 	virtual void ShowTime(BOOL bReset = TRUE);

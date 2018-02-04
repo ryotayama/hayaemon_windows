@@ -318,6 +318,20 @@ void CMenu_MainWnd::OnAddFileMenuSelected()
 	m_rMainWnd.ShowOpenFileDialog(FALSE);
 }
 //----------------------------------------------------------------------------
+// ファイル → フォルダを開くメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnOpenFolderMenuSelected()
+{
+	m_rMainWnd.ShowOpenFolderDialog(TRUE);
+}
+//----------------------------------------------------------------------------
+// ファイル → フォルダを追加メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnAddFolderMenuSelected()
+{
+	m_rMainWnd.ShowOpenFolderDialog(FALSE);
+}
+//----------------------------------------------------------------------------
 // ファイル → 保存メニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnSaveFileMenuSelected()
@@ -2939,6 +2953,10 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnOpenFileMenuSelected);
 	connect(m_rMainWnd.actionFileAdd, &QAction::triggered,
 					this, &CMenu_MainWnd::OnAddFileMenuSelected);
+	connect(m_rMainWnd.actionFileOpenDirectory, &QAction::triggered,
+					this, &CMenu_MainWnd::OnOpenFolderMenuSelected);
+	connect(m_rMainWnd.actionFileAddDirectory, &QAction::triggered,
+					this, &CMenu_MainWnd::OnAddFolderMenuSelected);
 	connect(m_rMainWnd.actionFileSave, &QAction::triggered,
 					this, &CMenu_MainWnd::OnSaveFileMenuSelected);
 	// View

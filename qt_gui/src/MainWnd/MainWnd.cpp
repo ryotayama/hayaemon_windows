@@ -6602,6 +6602,35 @@ void CMainWnd::ShowOpenFileDialog(BOOL bClear)
 	}
 }
 //----------------------------------------------------------------------------
+// フォルダを開くダイアログの表示
+//----------------------------------------------------------------------------
+void CMainWnd::ShowOpenFolderDialog(BOOL bClear)
+{
+	QFileDialog dlg(this);
+	dlg.setFileMode(QFileDialog::Directory);
+	dlg.setOption(QFileDialog::ShowDirsOnly, true);
+	if(dlg.exec()) {
+		QStringList filePaths = dlg.selectedFiles();
+		int nSelect = m_tab->GetCurrentFocus();
+		if(bClear) {
+			ChangeCurPlayTab();
+			m_arrayList[nSelect]->DeleteAllItems();
+		}
+		m_arrayList[nSelect]->AddFile(filePaths.front());
+
+		if(m_arrayList[nSelect]->GetItemCount() <= 0) {
+			m_sound.StreamFree();
+			Stop();
+		}
+		else if(!(!bClear && m_sound.GetCurFileNum() > 0)) {
+			m_sound.SetCurFileNum(0);
+			PlayNext(bClear, TRUE);
+		}
+
+		SetPreviousNextMenuState();
+	}
+}
+//----------------------------------------------------------------------------
 // リバーブのカスタマイズ用ウィンドウの表示
 //----------------------------------------------------------------------------
 void CMainWnd::ShowReverbCustomizeWnd()

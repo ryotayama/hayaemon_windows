@@ -22,6 +22,7 @@ class CPlayListView_MainWnd : public QTableWidget
 public: // 関数
 	CPlayListView_MainWnd(CMainWnd & mainWnd, QWidget * parent = nullptr);
 
+	virtual void AddDirectory(const QString & lpszDirectoryPath);
 	virtual void AddFile(const QString & filePath, int nPos = -1);
 	virtual BOOL Create();
 	virtual BOOL DeleteAllItems();

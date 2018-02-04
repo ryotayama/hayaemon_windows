@@ -57,6 +57,8 @@ public: // 関数
 	void UncheckSoundEffectMenu();
 	void OnOpenFileMenuSelected();
 	void OnAddFileMenuSelected();
+	void OnOpenFolderMenuSelected();
+	void OnAddFolderMenuSelected();
 	void OnSaveFileMenuSelected();
 	void OnSpeedMenuSelected(bool checked);
 	void OnFreqMenuSelected(bool checked);

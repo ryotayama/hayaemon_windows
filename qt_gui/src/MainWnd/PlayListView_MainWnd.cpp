@@ -2,6 +2,7 @@
 // PlayListView_MainWnd.cpp : 速度表示用ラベルの管理を行う
 //----------------------------------------------------------------------------
 #include "PlayListView_MainWnd.h"
+#include <QDir>
 #include <QFileInfo>
 #include <QMimeData>
 #include <QTableWidgetItem>
@@ -18,6 +19,29 @@ CPlayListView_MainWnd::CPlayListView_MainWnd(CMainWnd & mainWnd,
 //----------------------------------------------------------------------------
 // ファイルの追加
 //----------------------------------------------------------------------------
+void CPlayListView_MainWnd::AddDirectory(const QString & lpszDirectoryPath)
+{
+	QDir dir(lpszDirectoryPath);
+	for (auto &info : dir.entryInfoList()) {
+		QString fileName = info.fileName();
+		
+		if(fileName == "." || fileName == "..") {
+			continue;
+		}
+
+		QString path = info.filePath();
+
+		if(info.isDir()) {
+			AddDirectory(path);
+			continue;
+		}
+
+		AddFile(path);
+	}
+}
+//----------------------------------------------------------------------------
+// ファイルの追加
+//----------------------------------------------------------------------------
 void CPlayListView_MainWnd::AddFile(const QString & filePath,
 																		int nPos /* = -1 */)
 {
@@ -29,7 +53,7 @@ void CPlayListView_MainWnd::AddFile(const QString & filePath,
 	QFileInfo file_info(filePath);
 
 	if(file_info.isDir()) {
-		// TODO add directory
+		AddDirectory(filePath);
 		return;
 	}
 

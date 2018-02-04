@@ -1053,6 +1053,8 @@
     </property>
     <addaction name="actionFileOpen"/>
     <addaction name="actionFileAdd"/>
+    <addaction name="actionFileOpenDirectory"/>
+    <addaction name="actionFileAddDirectory"/>
     <addaction name="separator"/>
     <addaction name="actionFileSave"/>
    </widget>
@@ -3100,6 +3102,16 @@
    </property>
    <property name="text">
     <string>Increase(&amp;F)...</string>
+   </property>
+  </action>
+  <action name="actionFileOpenDirectory">
+   <property name="text">
+    <string>Open Directory(&amp;F)...</string>
+   </property>
+  </action>
+  <action name="actionFileAddDirectory">
+   <property name="text">
+    <string>Add Directory(&amp;G)...</string>
    </property>
   </action>
  </widget>
