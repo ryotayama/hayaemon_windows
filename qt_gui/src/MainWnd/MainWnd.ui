@@ -954,6 +954,7 @@
      <addaction name="actionEQVisible"/>
      <addaction name="separator"/>
     </widget>
+    <addaction name="actionTimeSliderVisible"/>
     <addaction name="actionSpeedVisible"/>
     <addaction name="actionFreqVisible"/>
     <addaction name="actionPitchVisible"/>
@@ -974,6 +975,7 @@
       <property name="title">
        <string>Visible(&amp;V)</string>
       </property>
+      <addaction name="actionRecoverTimeSliderVisible"/>
       <addaction name="actionRecoverSpeedVisible"/>
       <addaction name="actionRecoverFreqVisible"/>
       <addaction name="actionRecoverPitchVisible"/>
@@ -3112,6 +3114,22 @@
   <action name="actionFileAddDirectory">
    <property name="text">
     <string>Add Directory(&amp;G)...</string>
+   </property>
+  </action>
+  <action name="actionTimeSliderVisible">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Position slider</string>
+   </property>
+  </action>
+  <action name="actionRecoverTimeSliderVisible">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Position slider(&amp;T)</string>
    </property>
   </action>
  </widget>

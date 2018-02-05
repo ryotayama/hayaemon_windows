@@ -339,6 +339,13 @@ void CMenu_MainWnd::OnSaveFileMenuSelected()
 	m_rMainWnd.ShowSaveFileDialog();
 }
 //----------------------------------------------------------------------------
+// 表示 → 再生位置スライダメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnTimeSliderMenuSelected(bool checked)
+{
+	m_rMainWnd.SetTimeSliderVisible(checked);
+}
+//----------------------------------------------------------------------------
 // 表示 → 再生速度メニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnSpeedMenuSelected(bool checked)
@@ -2733,6 +2740,7 @@ void CMenu_MainWnd::EnableItem(UINT uIDEnableItem, UINT uEnable)
 void CMenu_MainWnd::CreateActionMap()
 {
 	m_actionMap = std::unordered_map<UINT, QAction*>{
+		{ID_TIMESLIDER, m_rMainWnd.actionTimeSliderVisible},
 		{ID_SPEED, m_rMainWnd.actionSpeedVisible},
 		{ID_FREQ, m_rMainWnd.actionFreqVisible},
 		{ID_PITCH, m_rMainWnd.actionPitchVisible},
@@ -2841,6 +2849,8 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_ONLYLEFT, m_rMainWnd.actionOnlyLeft},
 		{ID_ONLYRIGHT, m_rMainWnd.actionOnlyRight},
 		{ID_CHANGELR, m_rMainWnd.actionChangeLR},
+		{ID_RECOVERTIMESLIDERVISIBLE,
+		 m_rMainWnd.actionRecoverTimeSliderVisible},
 		{ID_RECOVERSPEEDVISIBLE, m_rMainWnd.actionRecoverSpeedVisible},
 		{ID_RECOVERFREQVISIBLE, m_rMainWnd.actionRecoverFreqVisible},
 		{ID_RECOVERPITCHVISIBLE, m_rMainWnd.actionRecoverPitchVisible},
@@ -2960,6 +2970,8 @@ void CMenu_MainWnd::CreateConnections()
 	connect(m_rMainWnd.actionFileSave, &QAction::triggered,
 					this, &CMenu_MainWnd::OnSaveFileMenuSelected);
 	// View
+	connect(m_rMainWnd.actionTimeSliderVisible, &QAction::triggered,
+					this, &CMenu_MainWnd::OnTimeSliderMenuSelected);
 	connect(m_rMainWnd.actionSpeedVisible, &QAction::toggled,
 					this, &CMenu_MainWnd::OnSpeedMenuSelected);
 	connect(m_rMainWnd.actionFreqVisible, &QAction::toggled,

@@ -4089,6 +4089,16 @@ void CMainWnd::SetContinue(bool bContinue)
 	m_menu.CheckItem(ID_CONTINUE, bContinue ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
+// 再生位置スライダの表示状態を設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetTimeSliderVisible(bool bTimeSliderVisible)
+{
+	int nCmdShow = bTimeSliderVisible ? SW_SHOW : SW_HIDE;
+	UINT uCheck = bTimeSliderVisible ? MF_CHECKED : MF_UNCHECKED;
+	m_timeSlider.Show(nCmdShow);
+	m_menu.CheckItem(ID_TIMESLIDER, uCheck);
+}
+//----------------------------------------------------------------------------
 // 再生速度の表示状態を設定
 //----------------------------------------------------------------------------
 void CMainWnd::SetSpeedVisible(bool bSpeedVisible)
@@ -6790,6 +6800,13 @@ void CMainWnd::WriteInitFile()
 
 	// 表示・非表示の設定
 	_stprintf_s(buf, _T("%d"),
+		m_menu.IsItemChecked(ID_RECOVERTIMESLIDERVISIBLE) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("RecoverTimeSlider"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_TIMESLIDER) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("TimeSlider"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"),
 		m_menu.IsItemChecked(ID_RECOVERSPEEDVISIBLE) ? 1 : 0 ? 1 : 0);
 	WritePrivateProfileString(_T("Visible"), _T("RecoverSpeed"), buf, 
 		initFilePath.c_str());
@@ -7240,8 +7257,15 @@ LRESULT CMainWnd::OnCreate()
 	lstrcpy(chPath,
 					ToTstring(m_rApp.GetFilePath() + QString("Setting.ini")).c_str());
 
-	BOOL bSpeedVisible = TRUE, bFreqVisible = TRUE, bPitchVisible = TRUE,
-		bVolumeVisible = TRUE, bPanVisible = TRUE, bEQVisible = TRUE;
+	BOOL bTimeSliderVisible = TRUE, bSpeedVisible = TRUE, bFreqVisible = TRUE,
+		bPitchVisible = TRUE, bVolumeVisible = TRUE, bPanVisible = TRUE,
+		bEQVisible = TRUE;
+	if(GetPrivateProfileInt(_T("Visible"), _T("RecoverTimeSlider"), 1, chPath))
+	{
+		m_menu.SwitchItemChecked(ID_RECOVERTIMESLIDERVISIBLE);
+		bTimeSliderVisible = GetPrivateProfileInt(_T("Visible"),
+								_T("TimeSlider"), 1, chPath);
+	}
 	if(GetPrivateProfileInt(_T("Visible"), _T("RecoverSpeed"), 1, chPath)) {
 		m_menu.SwitchItemChecked(ID_RECOVERSPEEDVISIBLE);
 		bSpeedVisible = GetPrivateProfileInt(_T("Visible"), _T("Speed"), 1,
@@ -7278,6 +7302,7 @@ LRESULT CMainWnd::OnCreate()
 	if(!CreateControls())
 		return FALSE;
 
+	SetTimeSliderVisible(bTimeSliderVisible);
 	if(bSpeedVisible) SetSpeedVisible(true);
 	if(bFreqVisible) SetFreqVisible(true);
 	if(bPitchVisible) SetPitchVisible(true);
@@ -7574,6 +7599,15 @@ void CMainWnd::UpdateTimeThreadProc(void * pParam)
 //----------------------------------------------------------------------------
 void CMainWnd::SetContextMenus()
 {
+	// Position slider
+	QWidget * positionWidgets[] = { timeSlider };
+	for (auto w : positionWidgets) {
+		w->setContextMenuPolicy(Qt::CustomContextMenu);
+		connect(w, &QWidget::customContextMenuRequested,
+						std::bind(&CMainWnd::ShowContextMenu, this, w, nullptr,
+											actionTimeSliderVisible, tr("Show Position Slider(&S)"),
+											&CMainWnd::SetTimeSliderVisible, std::placeholders::_1));
+	}
 	// Speed
 	QWidget * speedWidgets[] = { speedLabel, speedSlider };
 	for (auto w : speedWidgets) {

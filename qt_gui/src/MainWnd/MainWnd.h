@@ -138,6 +138,7 @@ public: // 関数
 	virtual void SetAllLoop(bool bAllLoop);
 	virtual void SetAllEffects();
 	virtual void SetContinue(bool bContinue);
+	virtual void SetTimeSliderVisible(bool bTimeSliderVisible);
 	virtual void SetSpeedVisible(bool bSpeedVisible);
 	virtual void SetFreqVisible(bool bFreqVisible);
 	virtual void SetPitchVisible(bool bPitchVisible);

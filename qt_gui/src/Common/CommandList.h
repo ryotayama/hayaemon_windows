@@ -9,6 +9,7 @@
 //--------------------------------------------------------------------------
 typedef enum CMDID {
 	// 表示メニュー
+		ID_TIMESLIDER,
 		ID_SPEED,
 		ID_FREQ,
 		ID_PITCH,
@@ -151,6 +152,7 @@ typedef enum CMDID {
 	// システムメニュー
 		// 復元メニュー
 			// 表示状態メニュー
+				ID_RECOVERTIMESLIDERVISIBLE,
 				ID_RECOVERSPEEDVISIBLE,
 				ID_RECOVERFREQVISIBLE,
 				ID_RECOVERPITCHVISIBLE,
