@@ -7,6 +7,7 @@
 #include "../Common/CommandList.h"
 #include "../Common/Define.h"
 #include "MainWnd.h"
+#include "PlayListView_MainWnd.h"
 #include "Utility.h"
 //----------------------------------------------------------------------------
 // コンストラクタ
@@ -337,6 +338,13 @@ void CMenu_MainWnd::OnAddFolderMenuSelected()
 void CMenu_MainWnd::OnSaveFileMenuSelected()
 {
 	m_rMainWnd.ShowSaveFileDialog();
+}
+//----------------------------------------------------------------------------
+// すべてを選択メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSelectAllMenuSelected()
+{
+	m_rMainWnd.GetPlayList().SelectAll();
 }
 //----------------------------------------------------------------------------
 // 表示 → 再生位置スライダメニューが選択された
@@ -2969,6 +2977,9 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnAddFolderMenuSelected);
 	connect(m_rMainWnd.actionFileSave, &QAction::triggered,
 					this, &CMenu_MainWnd::OnSaveFileMenuSelected);
+	// Edit
+	connect(m_rMainWnd.actionEditSelectAll, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSelectAllMenuSelected);
 	// View
 	connect(m_rMainWnd.actionTimeSliderVisible, &QAction::triggered,
 					this, &CMenu_MainWnd::OnTimeSliderMenuSelected);

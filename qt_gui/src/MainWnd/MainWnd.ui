@@ -1060,7 +1060,14 @@
     <addaction name="separator"/>
     <addaction name="actionFileSave"/>
    </widget>
+   <widget class="QMenu" name="menuEdit_E">
+    <property name="title">
+     <string>Edit(&amp;E)</string>
+    </property>
+    <addaction name="actionEditSelectAll"/>
+   </widget>
    <addaction name="menuFile_F"/>
+   <addaction name="menuEdit_E"/>
    <addaction name="menuView_V"/>
    <addaction name="menuPlay_P"/>
    <addaction name="menuEffect"/>
@@ -3130,6 +3137,14 @@
    </property>
    <property name="text">
     <string>Position slider(&amp;T)</string>
+   </property>
+  </action>
+  <action name="actionEditSelectAll">
+   <property name="text">
+    <string>Select all(&amp;A)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
    </property>
   </action>
  </widget>

@@ -34,6 +34,7 @@ public: // 関数
 	virtual void ClearPlayOrder();
 	virtual void ResetNumber();
 	virtual void ScrollToItem(int nItem);
+	virtual void SelectAll();
 
 	virtual void OnDropFiles(const QList<QUrl> & urls);
 
@@ -82,6 +83,16 @@ public:
 		}
 		item->setText(pszText);
 		item->setIcon(iImage >= 0 ? m_icons[iImage] : QIcon());
+	}
+	virtual void SetItemState(int i, UINT state, UINT mask) {
+		if (state == LVIS_SELECTED) {
+			for (int j = 0; j < this->columnCount(); j++) {
+				auto item = this->item(i, j);
+				if (item != nullptr) {
+					item->setSelected(true);
+				}
+			}
+		}
 	}
 	virtual int InsertColumn(int nCol, const QString & lpszColumnHeading,
 								int nFormat = LVCFMT_LEFT, int nWidth = -1,

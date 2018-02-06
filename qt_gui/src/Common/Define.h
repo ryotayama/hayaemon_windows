@@ -59,6 +59,10 @@ typedef std::basic_string<TCHAR> tstring;
 # define SW_SHOW 5
 #endif
 
+#ifndef LVIS_SELECTED
+# define LVIS_SELECTED           0x0002
+#endif
+
 #ifndef MF_BYCOMMAND
 # define MF_BYCOMMAND        0x00000000L
 #endif

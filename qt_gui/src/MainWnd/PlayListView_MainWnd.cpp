@@ -105,6 +105,7 @@ void CPlayListView_MainWnd::AddFile(const QString & filePath,
 BOOL CPlayListView_MainWnd::Create()
 {
 	setAcceptDrops(true);
+	setSelectionBehavior(QAbstractItemView::SelectRows);
 
 	setColumnCount(8);
 	InsertColumn(0, "", LVCFMT_LEFT, 17, 0);
@@ -205,6 +206,17 @@ void CPlayListView_MainWnd::ScrollToItem(int nItem)
 void CPlayListView_MainWnd::OnDropFiles(const QList<QUrl> & urls)
 {
 	m_rMainWnd.AddDropFiles(urls, FALSE);
+}
+//----------------------------------------------------------------------------
+// すべての項目を選択
+//----------------------------------------------------------------------------
+void CPlayListView_MainWnd::SelectAll()
+{
+	if(GetItemCount() == 0) return;
+
+	for(int i = 0; i < GetItemCount(); i++)
+		SetItemState(i, LVIS_SELECTED, LVIS_SELECTED);
+	setFocus();
 }
 //----------------------------------------------------------------------------
 // Qtのラッパー

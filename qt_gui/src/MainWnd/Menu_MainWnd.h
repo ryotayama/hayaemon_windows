@@ -60,6 +60,7 @@ public: // 関数
 	void OnOpenFolderMenuSelected();
 	void OnAddFolderMenuSelected();
 	void OnSaveFileMenuSelected();
+	void OnSelectAllMenuSelected();
 	void OnTimeSliderMenuSelected(bool checked);
 	void OnSpeedMenuSelected(bool checked);
 	void OnFreqMenuSelected(bool checked);
