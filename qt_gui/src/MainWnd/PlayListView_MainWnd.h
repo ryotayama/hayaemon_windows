@@ -26,12 +26,15 @@ public: // 関数
 	virtual void AddFile(const QString & filePath, int nPos = -1);
 	virtual BOOL Create();
 	virtual BOOL DeleteAllItems();
+	virtual void DeleteSelectedItems();
+	virtual void Delete(int nItem);
 	virtual int GetMaxPlayOrder() const;
 	virtual void SetPlaying(int iItem);
 	virtual void SetPausing(int iItem);
 	virtual void SetPlayOrder(int iItem);
 	virtual void SetPlayOrder(int iItem, int nOrder);
 	virtual void ClearPlayOrder();
+	virtual void FixPlayOrder(int iItem);
 	virtual void ResetNumber();
 	virtual void ScrollToItem(int nItem);
 	virtual void SelectAll();

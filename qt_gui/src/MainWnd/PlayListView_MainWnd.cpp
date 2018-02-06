@@ -2,6 +2,7 @@
 // PlayListView_MainWnd.cpp : 速度表示用ラベルの管理を行う
 //----------------------------------------------------------------------------
 #include "PlayListView_MainWnd.h"
+#include <algorithm>
 #include <QDir>
 #include <QFileInfo>
 #include <QMimeData>
@@ -123,6 +124,100 @@ BOOL CPlayListView_MainWnd::Create()
 	return TRUE;
 }
 //----------------------------------------------------------------------------
+// 選択アイテムを削除
+//----------------------------------------------------------------------------
+void CPlayListView_MainWnd::DeleteSelectedItems()
+{
+	BOOL bPlayNext = FALSE;
+	BOOL bStop = FALSE;
+	BOOL bCurTab = &m_rMainWnd.GetCurPlayList() == this;
+	int nItem = -1;
+	auto items = selectedItems();
+	std::sort(items.begin(), items.end(),
+						[] (auto lhs, auto rhs) { return lhs->row() < rhs-> row(); });
+	auto end = std::unique(items.begin(), items.end(),
+												 [] (auto lhs, auto rhs) {
+													 return lhs->row() == rhs-> row();
+												 });
+	for (auto it = items.begin(); it != end; ++it) {
+		nItem = (*it)->row();
+		FixPlayOrder(nItem);
+		DeleteItem(nItem);
+		if(bCurTab) {
+			int nCurItem = m_rMainWnd.GetSound().GetCurFileNum();
+			if(nItem < nCurItem - 1)
+				// 再生中のアイテムより前のアイテムを削除する場合
+				m_rMainWnd.GetSound().SetCurFileNum(nCurItem - 1);
+			else if(nItem == nCurItem - 1) {
+				// 再生中のアイテムを削除する場合
+				if(GetItemCount() > 0) {
+					bStop = FALSE;
+					bPlayNext = TRUE;
+					m_rMainWnd.GetSound().SetCurFileNum(nItem);
+				}
+				else {
+					bPlayNext = FALSE;
+					bStop = TRUE;
+				}
+			}
+		}
+	}
+	if(GetItemCount() <= 0) {
+		bPlayNext = FALSE;
+		bStop = TRUE;
+	}
+	ResetNumber();
+	if(bCurTab) {
+		if(bPlayNext) m_rMainWnd.PlayNext(FALSE, TRUE);
+		else if(bStop) {
+			m_rMainWnd.GetSound().StreamFree();
+			m_rMainWnd.Stop();
+		}
+	}
+}
+//----------------------------------------------------------------------------
+// アイテムを削除
+//----------------------------------------------------------------------------
+void CPlayListView_MainWnd::Delete(int nItem)
+{
+	BOOL bPlayNext = FALSE;
+	BOOL bStop = FALSE;
+	BOOL bCurTab = &m_rMainWnd.GetCurPlayList() == this;
+	FixPlayOrder(nItem);
+	DeleteItem(nItem);
+	if(bCurTab) {
+		int nCurItem = m_rMainWnd.GetSound().GetCurFileNum();
+		if(nItem < nCurItem - 1) {
+			// 再生中のアイテムより前のアイテムを削除する場合
+			m_rMainWnd.GetSound().SetCurFileNum(nCurItem - 1);
+		}
+		else if(nItem == nCurItem - 1) {
+			// 再生中のアイテムを削除する場合
+			if(GetItemCount() > 0) {
+				bStop = FALSE;
+				bPlayNext = TRUE;
+				m_rMainWnd.GetSound().SetCurFileNum(nItem);
+			}
+			else {
+				bPlayNext = FALSE;
+				bStop = TRUE;
+			}
+		}
+	}
+	if(GetItemCount() <= 0) {
+		bPlayNext = FALSE;
+		bStop = TRUE;
+	}
+	ResetNumber();
+	if(bCurTab) {
+		if(bPlayNext) m_rMainWnd.PlayNext(FALSE, TRUE);
+		else if(bStop) {
+			m_rMainWnd.GetSound().StreamFree();
+			m_rMainWnd.Stop();
+		}
+	}
+}
+//----------------------------------------------------------------------------
 // 全て削除
 //----------------------------------------------------------------------------
 BOOL CPlayListView_MainWnd::DeleteAllItems()
@@ -183,6 +278,18 @@ void CPlayListView_MainWnd::SetPlayOrder(int iItem, int nOrder)
 void CPlayListView_MainWnd::ClearPlayOrder()
 {
 	for(int i = 0; i < (int)orders.size(); i++) orders[i] = -1;
+}
+//----------------------------------------------------------------------------
+// 与えられた項目より大きな再生順を持つ項目の再生順をひとつ下げる
+//----------------------------------------------------------------------------
+void CPlayListView_MainWnd::FixPlayOrder(int iItem)
+{
+	int nCur = orders[iItem];
+	for(int i = 0; i < (int)orders.size(); i++) {
+		int n = orders[i];
+		if(n > nCur) orders[i] = n - 1;
+	}
+	orders[iItem] = -1;
 }
 //----------------------------------------------------------------------------
 // 「No.」のリセット

@@ -1064,6 +1064,7 @@
     <property name="title">
      <string>Edit(&amp;E)</string>
     </property>
+    <addaction name="actionEditDelete"/>
     <addaction name="actionEditSelectAll"/>
    </widget>
    <addaction name="menuFile_F"/>
@@ -3145,6 +3146,11 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionEditDelete">
+   <property name="text">
+    <string>Delete(&amp;D)</string>
    </property>
   </action>
  </widget>

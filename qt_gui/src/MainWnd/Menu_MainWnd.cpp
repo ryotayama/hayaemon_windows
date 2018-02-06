@@ -340,6 +340,13 @@ void CMenu_MainWnd::OnSaveFileMenuSelected()
 	m_rMainWnd.ShowSaveFileDialog();
 }
 //----------------------------------------------------------------------------
+// 削除メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnDeleteMenuSelected()
+{
+	m_rMainWnd.GetPlayList().DeleteSelectedItems();
+}
+//----------------------------------------------------------------------------
 // すべてを選択メニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnSelectAllMenuSelected()
@@ -2978,6 +2985,8 @@ void CMenu_MainWnd::CreateConnections()
 	connect(m_rMainWnd.actionFileSave, &QAction::triggered,
 					this, &CMenu_MainWnd::OnSaveFileMenuSelected);
 	// Edit
+	connect(m_rMainWnd.actionEditDelete, &QAction::triggered,
+					this, &CMenu_MainWnd::OnDeleteMenuSelected);
 	connect(m_rMainWnd.actionEditSelectAll, &QAction::triggered,
 					this, &CMenu_MainWnd::OnSelectAllMenuSelected);
 	// View
