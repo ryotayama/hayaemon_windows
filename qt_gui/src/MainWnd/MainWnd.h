@@ -79,16 +79,19 @@ public: // 関数
 		m_eq16kLabel(*this), m_eq16kSlider(*this),
 		m_eq20kLabel(*this), m_eq20kSlider(*this),
 		m_sound(*this), m_soundEffect(*this, FALSE), isInitFileRead(FALSE),
-		bReverb(FALSE), b3DReverb(FALSE), bDelay(FALSE), bChorus(FALSE),
-		bCompressor(FALSE), bFlanger(FALSE), bGargle(FALSE), bDistortion(FALSE),
-		bMarkerPlay(FALSE), bCountLoop(FALSE), bInstantLoop(FALSE),
-		bSetPositionAuto(FALSE), m_bFinish(FALSE), nIncSpeed(0), nIncFreq(0),
-		nDecSpeed(0), nDecFreq(0), nFreqVelo(0), nFreqAccel(0), nLoopCount(0),
-		nCurrentLoopCount(0), nIncSpeedMode(0), nIncFreqMode(0), nDecSpeedMode(0),
-		nDecFreqMode(0), nCurPlayTab(0), dwFadeoutStartTime(0),
-		m_nLastDecimalDigit_pitch(0), m_nLastDecimalDigit_freq(0),
-		m_nLastDecimalDigit_speed(0), m_dStartSeconds(0.0), m_dEndSeconds(0.0),
-		m_timeThreadRunning(false), m_bForwarding(false), m_bRewinding(false) { }
+		bTimerPlay(FALSE), bTimerPlayNextDay(FALSE), bTimerStop(FALSE),
+		bTimerStopNextDay(FALSE), bReverb(FALSE), b3DReverb(FALSE), bDelay(FALSE),
+		bChorus(FALSE), bCompressor(FALSE), bFlanger(FALSE), bGargle(FALSE),
+		bDistortion(FALSE), bMarkerPlay(FALSE), bCountLoop(FALSE),
+		bInstantLoop(FALSE), bSetPositionAuto(FALSE), m_bFinish(FALSE),
+		nTimerPlayHour(0), nTimerPlayMinute(0), nTimerStopHour(0),
+		nTimerStopMinute(0), nIncSpeed(0), nIncFreq(0), nDecSpeed(0), nDecFreq(0),
+		nFreqVelo(0), nFreqAccel(0), nLoopCount(0), nCurrentLoopCount(0),
+		nIncSpeedMode(0), nIncFreqMode(0), nDecSpeedMode(0), nDecFreqMode(0),
+		nCurPlayTab(0), dwFadeoutStartTime(0), m_nLastDecimalDigit_pitch(0),
+		m_nLastDecimalDigit_freq(0), m_nLastDecimalDigit_speed(0),
+		m_dStartSeconds(0.0), m_dEndSeconds(0.0), m_timeThreadRunning(false),
+		m_bForwarding(false), m_bRewinding(false) { }
 	virtual ~CMainWnd();
 
 	virtual void AddDropFiles(const QList<QUrl> & urls, BOOL bClear);
@@ -235,6 +238,11 @@ public: // 関数
 	virtual void SetSpeed(double dSpeed);
 	virtual void SetTabVisible(bool bTabVisible);
 	virtual void SetTime(QWORD qwTime, BOOL bReset = TRUE);
+	virtual void SetTimerPlay();
+	virtual void SetTimerPlay(int nHour, int nMinute);
+	virtual void SetTimerPlay(BOOL bTimerPlay);
+	virtual void SetTimerStop(int nHour, int nMinute);
+	virtual void SetTimerStop(BOOL bTimerStop);
 	virtual void SetFreq(double dFreq);
 	virtual void SetPan(int nPan);
 	virtual void SetPitch(double dPitch);
@@ -369,6 +377,10 @@ protected: // メンバ変数
 	CSound m_soundEffect; // 効果音
 
 	BOOL isInitFileRead; // INI ファイルがすでに読み込まれたかどうか
+	BOOL bTimerPlay; // タイマー再生が予約されているかどうか
+	BOOL bTimerPlayNextDay; // タイマー再生を翌日にするかどうか
+	BOOL bTimerStop; // タイマー停止が予約されているかどうか
+	BOOL bTimerStopNextDay; // タイマー停止を翌日にするかどうか
 	BOOL bReverb; // リバーブが有効かどうか
 	BOOL b3DReverb; // ３Ｄリバーブが有効かどうか
 	BOOL bDelay; // ディレイが有効かどうか
@@ -382,6 +394,10 @@ protected: // メンバ変数
 	BOOL bInstantLoop; // マーカー追加時にループするかどうか
 	BOOL bSetPositionAuto; // マーカー位置変更時に再生位置を変更するかどうか
 	BOOL m_bFinish; // 再生が完了したかどうか
+	int nTimerPlayHour; // タイマー再生の時間
+	int nTimerPlayMinute; // タイマー再生の分
+	int nTimerStopHour; // タイマー停止の時間
+	int nTimerStopMinute; // タイマー停止の分
 	double nIncSpeed; // 再生速度をだんだん速くするパーセント
 	double nIncFreq; // 再生周波数をだんだん速くするパーセント
 	double nDecSpeed; // 再生速度をだんだん遅くするパーセント
@@ -422,6 +438,8 @@ public: // 定数
 		IDT_LOWBATTERY,
 		IDT_NOSENSE,
 		IDT_EARTRAINING,
+		IDT_TIMERPLAY,
+		IDT_TIMERSTOP,
 		IDT_INCSPEED,
 		IDT_INCFREQ,
 		IDT_DECSPEED,

@@ -1042,6 +1042,7 @@
     </widget>
     <addaction name="menuRecover_R"/>
     <addaction name="separator"/>
+    <addaction name="actionTimerPlay"/>
     <addaction name="actionPlayRange"/>
     <addaction name="actionPlayPosition"/>
     <addaction name="actionFadeOutStop"/>
@@ -3151,6 +3152,14 @@
   <action name="actionEditDelete">
    <property name="text">
     <string>Delete(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionTimerPlay">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Timer setting(&amp;T)...</string>
    </property>
   </action>
  </widget>

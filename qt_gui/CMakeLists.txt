@@ -106,6 +106,9 @@ set(SRC_MAINWND
   ${SRC_DIR}/MainWnd/VolumeSlider_MainWnd.cpp
   ${SRC_DIR}/MainWnd/VolumeSlider_MainWnd.h
 )
+set(SRC_TIMERPLAYWND
+  ${SRC_DIR}/TimerPlayWnd/TimerPlayWnd_MainWnd.cpp
+  ${SRC_DIR}/TimerPlayWnd/TimerPlayWnd_MainWnd.h)
 
 if (WIN32)
 set(BASS_DIR ${CMAKE_SOURCE_DIR}/3rdparty/bass/win32)
@@ -140,6 +143,7 @@ source_group(IncSpeedWnd FILES ${SRC_INCSPEEDWND})
 source_group(DecFreqWnd FILES ${SRC_DECFREQWND})
 source_group(IncFreqWnd FILES ${SRC_INCFREQWND})
 source_group(MainWnd FILES ${SRC_MAINWND})
+source_group(TimerPlayWnd FILES ${SRC_TIMERPLAYWND})
 source_group("" FILES
   ${SRC_DIR}/App.cpp
   ${SRC_DIR}/App.h
@@ -168,6 +172,7 @@ qt5_wrap_ui(UI_MOC
   ${SRC_DIR}/MainWnd/PlayRangeWnd.ui
   ${SRC_DIR}/MainWnd/PresetNameInputWnd.ui
   ${SRC_DIR}/MainWnd/Reverb3DCustomizeWnd.ui
+  ${SRC_DIR}/TimerPlayWnd/TimerPlayWnd.ui
   ${SRC_DIR}/MainWnd/ReverbCustomizeWnd.ui)
 
 include_directories(
@@ -191,6 +196,7 @@ add_executable(Hayaemon
   ${SRC_DECFREQWND}
   ${SRC_INCFREQWND}
   ${SRC_MAINWND}
+  ${SRC_TIMERPLAYWND}
   ${RESOURCES}
   ${UI_MOC}
 )

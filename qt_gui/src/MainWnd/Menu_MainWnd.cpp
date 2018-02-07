@@ -1553,6 +1553,13 @@ void CMenu_MainWnd::OnResetAllMenuSelected()
 	if(IsItemChecked(ID_CHANGELR)) m_rMainWnd.SetChangeLR();
 }
 //----------------------------------------------------------------------------
+// システム → タイマー設定メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnTimerPlayMenuSelected()
+{
+	m_rMainWnd.SetTimerPlay();
+}
+//----------------------------------------------------------------------------
 // システム → 再生範囲メニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnPlayRangeMenuSelected()
@@ -2887,6 +2894,7 @@ void CMenu_MainWnd::CreateActionMap()
 		 m_rMainWnd.actionRecoverPlayModeSetMarkerPositionAuto},
 		{ID_RECOVERREVERSE, m_rMainWnd.actionRecoverPlayModeReverse},
 		{ID_RECOVERRECORD, m_rMainWnd.actionRecoverPlayModeRecord},
+		{ID_TIMERPLAY, m_rMainWnd.actionTimerPlay},
 		{ID_PLAYRANGE, m_rMainWnd.actionPlayRange},
 		{ID_PLAYPOSITION, m_rMainWnd.actionPlayPosition},
 		{ID_FADEOUTSTOP, m_rMainWnd.actionFadeOutStop},
@@ -3576,6 +3584,8 @@ void CMenu_MainWnd::CreateConnections()
 	connect(m_rMainWnd.actionSetVolume100, &QAction::triggered,
 					this, &CMenu_MainWnd::OnSetVolume100MenuSelected);
 	// System
+	connect(m_rMainWnd.actionTimerPlay, &QAction::triggered,
+					this, &CMenu_MainWnd::OnTimerPlayMenuSelected);
 	connect(m_rMainWnd.actionPlayRange, &QAction::triggered,
 					this, &CMenu_MainWnd::OnPlayRangeMenuSelected);
 	connect(m_rMainWnd.actionPlayPosition, &QAction::triggered,

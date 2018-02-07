@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <chrono>
 #include <cmath>
+#include <ctime>
 #include <functional>
 #include <QDragEnterEvent>
 #include <QFileDialog>
@@ -22,6 +23,7 @@
 #include "../DecSpeedWnd/DecSpeedWnd_MainWnd.h"
 #include "../IncFreqWnd/IncFreqWnd_MainWnd.h"
 #include "../IncSpeedWnd/IncSpeedWnd_MainWnd.h"
+#include "../TimerPlayWnd/TimerPlayWnd_MainWnd.h"
 #include "3DReverbCustomizeWnd.h"
 #include "ABLoopPosWnd.h"
 #include "ChorusCustomizeWnd.h"
@@ -6495,6 +6497,62 @@ void CMainWnd::SetTime(QWORD qwTime, BOOL bReset)
 	ShowTime();
 }
 //----------------------------------------------------------------------------
+// タイマー設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetTimerPlay()
+{
+	CTimerPlayWnd_MainWnd dlg(*this);
+	dlg.exec();
+}
+//----------------------------------------------------------------------------
+// タイマー再生の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetTimerPlay(int nHour, int nMinute)
+{
+	nTimerPlayHour = nHour;
+	nTimerPlayMinute = nMinute;
+	SYSTEMTIME st;
+	GetLocalTime(&st);
+	bTimerPlayNextDay = (nHour < st.wHour || (nHour == st.wHour
+		&& nMinute < st.wMinute));
+	SetTimerStop(FALSE);
+	SetTimerPlay(TRUE);
+}
+//----------------------------------------------------------------------------
+// タイマー再生の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetTimerPlay(BOOL bTimerPlay)
+{
+	this->bTimerPlay = !bTimerPlay;
+	m_menu.CheckItem(ID_TIMERPLAY, bTimerPlay ? MF_CHECKED : MF_UNCHECKED);
+	if(bTimerPlay) SetTimer(IDT_TIMERPLAY, 1000);
+	else KillTimer(IDT_TIMERPLAY);
+}
+//----------------------------------------------------------------------------
+// タイマー停止の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetTimerStop(int nHour, int nMinute)
+{
+	nTimerStopHour = nHour;
+	nTimerStopMinute = nMinute;
+	SYSTEMTIME st;
+	GetLocalTime(&st);
+	bTimerStopNextDay = (nHour < st.wHour || (nHour == st.wHour
+		&& nMinute < st.wMinute));
+	SetTimerPlay(FALSE);
+	SetTimerStop(TRUE);
+}
+//----------------------------------------------------------------------------
+// タイマー停止の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetTimerStop(BOOL bTimerStop)
+{
+	this->bTimerStop = !bTimerStop;
+	m_menu.CheckItem(ID_TIMERPLAY, bTimerStop ? MF_CHECKED : MF_UNCHECKED);
+	if(bTimerStop) SetTimer(IDT_TIMERSTOP, 1000);
+	else KillTimer(IDT_TIMERSTOP);
+}
+//----------------------------------------------------------------------------
 // ３Ｄリバーブのカスタマイズ用ウィンドウの表示
 //----------------------------------------------------------------------------
 void CMainWnd::Show3DReverbCustomizeWnd()
@@ -7576,6 +7634,46 @@ void CMainWnd::OnTimer(UINT id)
 				  nEQ5K, nEQ6_3K, nEQ8K, nEQ10K,
 				  nEQ12_5K, nEQ16K, nEQ20K);
 			m_panLabel.SetPan(nPan);
+		}
+		break;
+	case IDT_TIMERPLAY:
+		{
+			time_t now = std::time(nullptr);
+			auto lNow = std::localtime(&now);
+			if(bTimerPlayNextDay) { // 翌日になったかどうかの判定
+				if(lNow->tm_hour < nTimerPlayHour || lNow->tm_hour == nTimerPlayHour
+					&& lNow->tm_min <= nTimerPlayMinute)
+					bTimerPlayNextDay = FALSE;
+			}
+
+			if(!bTimerPlayNextDay) {
+				if(lNow->tm_hour > nTimerPlayHour || (lNow->tm_hour == nTimerPlayHour
+					&& lNow->tm_min >= nTimerPlayMinute)) {
+					if(m_sound.ChannelIsStopped()
+						|| m_sound.ChannelIsPausing())
+						Play();
+					SetTimerPlay(FALSE);
+				}
+			}
+		}
+		break;
+	case IDT_TIMERSTOP:
+		{
+			time_t now = std::time(nullptr);
+			auto lNow = std::localtime(&now);
+			if(bTimerStopNextDay) { // 翌日になったかどうかの判定
+				if(lNow->tm_hour < nTimerStopHour || lNow->tm_hour == nTimerStopHour
+					&& lNow->tm_min <= nTimerStopMinute)
+					bTimerStopNextDay = FALSE;
+			}
+
+			if(!bTimerStopNextDay) {
+				if(lNow->tm_hour > nTimerStopHour || (lNow->tm_hour == nTimerStopHour
+					&& lNow->tm_min >= nTimerStopMinute)) {
+					if(m_sound.ChannelIsActive()) Pause();
+					SetTimerStop(FALSE);
+				}
+			}
 		}
 		break;
 	}
