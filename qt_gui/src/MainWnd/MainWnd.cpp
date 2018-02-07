@@ -2464,6 +2464,22 @@ BOOL CMainWnd::Play()
 	return TRUE;
 }
 //----------------------------------------------------------------------------
+// 番号を指定して再生
+//----------------------------------------------------------------------------
+void CMainWnd::Play(int n)
+{
+	m_sound.SetCurFileNum(n);
+	if(m_menu.IsItemChecked(ID_RANDOM))
+		m_arrayList[nCurPlayTab]->FixPlayOrder(n);
+	BOOL bRandom = m_menu.IsItemChecked(ID_RANDOM);
+	if(bRandom) m_menu.OnRandomMenuSelected(false);
+	PlayNext(TRUE, TRUE);
+	if(bRandom) {
+		m_menu.OnRandomMenuSelected(true);
+		m_arrayList[nCurPlayTab]->SetPlayOrder(n);
+	}
+}
+//----------------------------------------------------------------------------
 // 次のファイルを再生
 //----------------------------------------------------------------------------
 void CMainWnd::PlayNext(BOOL bPlay, BOOL bFadeoutCancel)

@@ -16,6 +16,8 @@ CPlayListView_MainWnd::CPlayListView_MainWnd(CMainWnd & mainWnd,
 																						 QWidget * parent /* = nullptr */)
 	: QTableWidget(parent), m_rMainWnd(mainWnd)
 {
+	connect(this, &QTableWidget::itemDoubleClicked,
+					this, &CPlayListView_MainWnd::OnLButtonDoubleClick);
 }
 //----------------------------------------------------------------------------
 // ファイルの追加
@@ -313,6 +315,17 @@ void CPlayListView_MainWnd::ScrollToItem(int nItem)
 void CPlayListView_MainWnd::OnDropFiles(const QList<QUrl> & urls)
 {
 	m_rMainWnd.AddDropFiles(urls, FALSE);
+}
+//----------------------------------------------------------------------------
+// ダブルクリックされた
+//----------------------------------------------------------------------------
+void CPlayListView_MainWnd::OnLButtonDoubleClick(QTableWidgetItem * item)
+{
+	int n = item->row();
+	if(n >= 0) {
+		m_rMainWnd.ChangeCurPlayTab();
+		m_rMainWnd.Play(n);
+	}
 }
 //----------------------------------------------------------------------------
 // すべての項目を選択

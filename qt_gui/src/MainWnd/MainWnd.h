@@ -121,6 +121,7 @@ public: // 関数
 	virtual BOOL OpenRandom();
 	virtual void Pause();
 	virtual BOOL Play();
+	virtual void Play(int n);
 	virtual void PlayNext(BOOL bPlay, BOOL bFadeoutCancel);
 	virtual void PlayPrevious();
 	virtual void ResetFreq();

@@ -40,6 +40,7 @@ public: // 関数
 	virtual void SelectAll();
 
 	virtual void OnDropFiles(const QList<QUrl> & urls);
+	virtual void OnLButtonDoubleClick(QTableWidgetItem * item);
 
 public: // メンバ変数の取得・設定
 
