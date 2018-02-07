@@ -1553,6 +1553,13 @@ void CMenu_MainWnd::OnResetAllMenuSelected()
 	if(IsItemChecked(ID_CHANGELR)) m_rMainWnd.SetChangeLR();
 }
 //----------------------------------------------------------------------------
+// システム → 最大値／最小値設定メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnLimitMenuSelected()
+{
+	m_rMainWnd.SetLimit();
+}
+//----------------------------------------------------------------------------
 // システム → タイマー設定メニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnTimerPlayMenuSelected()
@@ -2894,6 +2901,7 @@ void CMenu_MainWnd::CreateActionMap()
 		 m_rMainWnd.actionRecoverPlayModeSetMarkerPositionAuto},
 		{ID_RECOVERREVERSE, m_rMainWnd.actionRecoverPlayModeReverse},
 		{ID_RECOVERRECORD, m_rMainWnd.actionRecoverPlayModeRecord},
+		{ID_LIMIT, m_rMainWnd.actionLimit},
 		{ID_TIMERPLAY, m_rMainWnd.actionTimerPlay},
 		{ID_PLAYRANGE, m_rMainWnd.actionPlayRange},
 		{ID_PLAYPOSITION, m_rMainWnd.actionPlayPosition},
@@ -3584,6 +3592,8 @@ void CMenu_MainWnd::CreateConnections()
 	connect(m_rMainWnd.actionSetVolume100, &QAction::triggered,
 					this, &CMenu_MainWnd::OnSetVolume100MenuSelected);
 	// System
+	connect(m_rMainWnd.actionLimit, &QAction::triggered,
+					this, &CMenu_MainWnd::OnLimitMenuSelected);
 	connect(m_rMainWnd.actionTimerPlay, &QAction::triggered,
 					this, &CMenu_MainWnd::OnTimerPlayMenuSelected);
 	connect(m_rMainWnd.actionPlayRange, &QAction::triggered,

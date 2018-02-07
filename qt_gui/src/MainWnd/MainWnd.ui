@@ -1042,6 +1042,8 @@
     </widget>
     <addaction name="menuRecover_R"/>
     <addaction name="separator"/>
+    <addaction name="actionLimit"/>
+    <addaction name="separator"/>
     <addaction name="actionTimerPlay"/>
     <addaction name="actionPlayRange"/>
     <addaction name="actionPlayPosition"/>
@@ -3160,6 +3162,11 @@
    </property>
    <property name="text">
     <string>Timer setting(&amp;T)...</string>
+   </property>
+  </action>
+  <action name="actionLimit">
+   <property name="text">
+    <string>Min/Max setting(&amp;L)...</string>
    </property>
   </action>
  </widget>

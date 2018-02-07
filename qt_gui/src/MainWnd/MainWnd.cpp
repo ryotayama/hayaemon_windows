@@ -23,6 +23,7 @@
 #include "../DecSpeedWnd/DecSpeedWnd_MainWnd.h"
 #include "../IncFreqWnd/IncFreqWnd_MainWnd.h"
 #include "../IncSpeedWnd/IncSpeedWnd_MainWnd.h"
+#include "../LimitSettingWnd/LimitSettingWnd_MainWnd.h"
 #include "../TimerPlayWnd/TimerPlayWnd_MainWnd.h"
 #include "3DReverbCustomizeWnd.h"
 #include "ABLoopPosWnd.h"
@@ -4886,6 +4887,28 @@ void CMainWnd::SetPositionAuto()
 	bSetPositionAuto = !bSetPositionAuto;
 	m_menu.CheckItem(ID_SETPOSITIONAUTO, bSetPositionAuto
 		? MF_CHECKED : MF_UNCHECKED);
+}
+//----------------------------------------------------------------------------
+// 最大値／最小値の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetLimit()
+{
+	CLimitSettingWnd_MainWnd dlg(*this);
+	dlg.exec();
+}
+//----------------------------------------------------------------------------
+// 最大値／最小値の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetLimit(double dMinSpeed, double dMaxSpeed,
+						double dMinFreq, double dMaxFreq,
+						double dMinPitch, double dMaxPitch)
+{
+	m_speedSlider.SetLimit(dMinSpeed, dMaxSpeed);
+	m_speedLabel.SetLimit(dMinSpeed, dMaxSpeed);
+	m_freqSlider.SetLimit(dMinFreq, dMaxFreq);
+	m_freqLabel.SetLimit(dMinFreq, dMaxFreq);
+	m_pitchSlider.SetLimit(dMinPitch, dMaxPitch);
+	m_pitchLabel.SetLimit(dMinPitch, dMaxPitch);
 }
 //----------------------------------------------------------------------------
 // マーカーの設定

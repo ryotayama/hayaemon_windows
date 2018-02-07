@@ -34,6 +34,9 @@ set(SRC_INCFREQWND
 set(SRC_INCSPEEDWND
   ${SRC_DIR}/IncSpeedWnd/IncSpeedWnd_MainWnd.cpp
   ${SRC_DIR}/IncSpeedWnd/IncSpeedWnd_MainWnd.h)
+set(SRC_LIMITSETTINGWND
+  ${SRC_DIR}/LimitSettingWnd/LimitSettingWnd_MainWnd.cpp
+  ${SRC_DIR}/LimitSettingWnd/LimitSettingWnd_MainWnd.h)
 set(SRC_MAINWND
   ${SRC_DIR}/MainWnd/3DReverbCustomizeWnd.cpp
   ${SRC_DIR}/MainWnd/3DReverbCustomizeWnd.h
@@ -142,6 +145,7 @@ source_group(DecSpeedWnd FILES ${SRC_DECSPEEDWND})
 source_group(IncSpeedWnd FILES ${SRC_INCSPEEDWND})
 source_group(DecFreqWnd FILES ${SRC_DECFREQWND})
 source_group(IncFreqWnd FILES ${SRC_INCFREQWND})
+source_group(LimitSettingWnd FILES ${SRC_LIMITSETTINGWND})
 source_group(MainWnd FILES ${SRC_MAINWND})
 source_group(TimerPlayWnd FILES ${SRC_TIMERPLAYWND})
 source_group("" FILES
@@ -160,6 +164,7 @@ qt5_add_resources(RESOURCES ${SRC_DIR}/Hayaemon.qrc)
 qt5_wrap_ui(UI_MOC
   ${SRC_DIR}/CountLoopWnd/CountLoopWnd.ui
   ${SRC_DIR}/IncSpeedWnd/IncSpeedWnd.ui
+  ${SRC_DIR}/LimitSettingWnd/LimitSettingWnd.ui
   ${SRC_DIR}/MainWnd/ABLoopPosWnd.ui
   ${SRC_DIR}/MainWnd/ChorusCustomizeWnd.ui
   ${SRC_DIR}/MainWnd/CompressorCustomizeWnd.ui
@@ -195,6 +200,7 @@ add_executable(Hayaemon
   ${SRC_INCSPEEDWND}
   ${SRC_DECFREQWND}
   ${SRC_INCFREQWND}
+  ${SRC_LIMITSETTINGWND}
   ${SRC_MAINWND}
   ${SRC_TIMERPLAYWND}
   ${RESOURCES}

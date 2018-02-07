@@ -240,6 +240,7 @@ public: // 関数
 	void OnOnlyLeftMenuSelected(bool checked);
 	void OnOnlyRightMenuSelected(bool checked);
 	void OnChangeLRMenuSelected(bool checked);
+	void OnLimitMenuSelected();
 	void OnTimerPlayMenuSelected();
 	void OnPlayRangeMenuSelected();
 	void OnPlayPositionMenuSelected();

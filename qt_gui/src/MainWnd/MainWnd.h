@@ -211,6 +211,10 @@ public: // 関数
 	virtual void SetEarTraining(BOOL bEarTraining);
 	virtual void SetInstantLoop();
 	virtual void SetPositionAuto();
+	virtual void SetLimit();
+	virtual void SetLimit(double dMinSpeed, double dMaxSpeed,
+						  double dMinFreq, double dMaxFreq,
+						  double dMinPitch, double dMaxPitch);
 	virtual void SetMarkerPlay();
 	virtual void SetChangeLR();
 	virtual void SetChangeLR(BOOL bChangeLR);
