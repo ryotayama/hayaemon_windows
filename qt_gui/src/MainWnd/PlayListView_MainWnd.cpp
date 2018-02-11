@@ -49,7 +49,7 @@ void CPlayListView_MainWnd::AddFile(const QString & filePath,
 																		int nPos /* = -1 */)
 {
 	if(!QUrl::fromUserInput(filePath).isLocalFile()) {
-		// TODO add URL
+		AddURL(filePath);
 		return;
 	}
 
@@ -99,6 +99,43 @@ void CPlayListView_MainWnd::AddFile(const QString & filePath,
 
 	// ファイルパス
 	SetItem(n, 7, filePath);
+
+	orders.push_back(-1);
+}
+//----------------------------------------------------------------------------
+// ファイルの追加
+//----------------------------------------------------------------------------
+void CPlayListView_MainWnd::AddURL(const QString & lpszFilePath, int nPos)
+{
+	QFileInfo file_info(lpszFilePath);
+	QString ext = file_info.suffix();
+	auto cs = Qt::CaseInsensitive;
+
+	// 読み込めない拡張子の場合、何もしない
+	if( ext.compare("wav", cs) != 0 && ext.compare("cda", cs) != 0 &&
+		ext.compare("mp3", cs) != 0 && ext.compare("mp2", cs) != 0 &&
+		ext.compare("mp1", cs) != 0 && ext.compare("ogg", cs) != 0 &&
+		ext.compare("wma", cs) != 0 && ext.compare("aiff", cs) != 0 &&
+		ext.compare("aif", cs) != 0 && ext.compare("ape", cs) != 0 &&
+		ext.compare("flac", cs) != 0 && ext.compare("m4a", cs) != 0 &&
+		ext.compare("m4b", cs) != 0 &&
+		ext.compare("mp4", cs) != 0 && ext.compare("aac", cs) != 0 &&
+		ext.compare("avi", cs) != 0 && ext.compare("wmv", cs) != 0 &&
+		ext.compare("mkv", cs) != 0 && ext.compare("flv", cs) != 0)
+		return;
+
+	// No.
+	int n = nPos < 0 ? GetItemCount() : nPos;
+	InsertItem(n);
+	SetItem(n, 1, QString("%1").arg(n + 1));
+
+	SetItem(n, 0, _T(""), -1);
+
+	// タイトル
+	SetItem(n, 2, file_info.baseName());
+
+	// ファイルパス
+	SetItem(n, 7, lpszFilePath);
 
 	orders.push_back(-1);
 }

@@ -66,6 +66,8 @@ set(SRC_MAINWND
   ${SRC_DIR}/MainWnd/MainWnd.h
   ${SRC_DIR}/MainWnd/Menu_MainWnd.cpp
   ${SRC_DIR}/MainWnd/Menu_MainWnd.h
+  ${SRC_DIR}/MainWnd/OpenURLWnd.cpp
+  ${SRC_DIR}/MainWnd/OpenURLWnd.h
   ${SRC_DIR}/MainWnd/PanLabel_MainWnd.cpp
   ${SRC_DIR}/MainWnd/PanLabel_MainWnd.h
   ${SRC_DIR}/MainWnd/PanSlider_MainWnd.cpp
@@ -76,6 +78,7 @@ set(SRC_MAINWND
   ${SRC_DIR}/MainWnd/PitchSlider_MainWnd.h
   ${SRC_DIR}/MainWnd/PitchSpinBox.h
   ${SRC_DIR}/MainWnd/Platform.h
+  ${SRC_DIR}/MainWnd/Platform.cpp
   ${SRC_DIR}/MainWnd/Platform_macOS.cpp
   ${SRC_DIR}/MainWnd/PlayListView_MainWnd.cpp
   ${SRC_DIR}/MainWnd/PlayListView_MainWnd.h
@@ -173,6 +176,7 @@ qt5_wrap_ui(UI_MOC
   ${SRC_DIR}/MainWnd/FlangerCustomizeWnd.ui
   ${SRC_DIR}/MainWnd/GargleCustomizeWnd.ui
   ${SRC_DIR}/MainWnd/MainWnd.ui
+  ${SRC_DIR}/MainWnd/OpenURLWnd.ui
   ${SRC_DIR}/MainWnd/PlayPositionWnd.ui
   ${SRC_DIR}/MainWnd/PlayRangeWnd.ui
   ${SRC_DIR}/MainWnd/PresetNameInputWnd.ui

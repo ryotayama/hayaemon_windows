@@ -4,6 +4,8 @@
 #ifndef PlatformH
 #define PlatformH
 
+class QString;
+
 #if WIN32
 #include <tchar.h>
 
@@ -39,5 +41,7 @@ DWORD GetPrivateProfileString(LPCTSTR lpAppName, LPCTSTR lpKeyName,
 BOOL WritePrivateProfileString(LPCTSTR lpAppName, LPCTSTR lpKeyName,
 															 LPCTSTR lpString, LPCTSTR lpFileName);
 #endif
+
+bool PathIsURL(const QString & path);
 
 #endif // PlatformH

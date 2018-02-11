@@ -136,6 +136,12 @@ public: // 関数
 #endif
 		return m_hStream ? TRUE : FALSE;
 	}
+	virtual BOOL StreamCreateURL(LPCTSTR lpFilePath) {
+		StreamFree();
+		m_hStream = BASS_StreamCreateURL((LPCSTR)lpFilePath, 0,
+			BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_UNICODE, NULL, 0);
+		return m_hStream ? TRUE : FALSE;
+	}
 	virtual void StreamFree() {
 		if(m_hStream) BASS_StreamFree(m_hStream), m_hStream = 0;
 	}

@@ -333,6 +333,21 @@ void CMenu_MainWnd::OnAddFolderMenuSelected()
 	m_rMainWnd.ShowOpenFolderDialog(FALSE);
 }
 //----------------------------------------------------------------------------
+// ファイル → URLを開くメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnOpenURLMenuSelected()
+{
+	m_rMainWnd.ShowOpenURLWnd();
+}
+//----------------------------------------------------------------------------
+// ファイル → URLを開くメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnAddURLMenuSelected()
+{
+	BOOL bAdd = TRUE;
+	m_rMainWnd.ShowOpenURLWnd(bAdd);
+}
+//----------------------------------------------------------------------------
 // ファイル → 保存メニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnSaveFileMenuSelected()
@@ -2998,6 +3013,10 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnOpenFolderMenuSelected);
 	connect(m_rMainWnd.actionFileAddDirectory, &QAction::triggered,
 					this, &CMenu_MainWnd::OnAddFolderMenuSelected);
+	connect(m_rMainWnd.actionFileOpenUrl, &QAction::triggered,
+					this, &CMenu_MainWnd::OnOpenURLMenuSelected);
+	connect(m_rMainWnd.actionFileAddUrl, &QAction::triggered,
+					this, &CMenu_MainWnd::OnAddURLMenuSelected);
 	connect(m_rMainWnd.actionFileSave, &QAction::triggered,
 					this, &CMenu_MainWnd::OnSaveFileMenuSelected);
 	// Edit

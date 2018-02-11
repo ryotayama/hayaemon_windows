@@ -24,6 +24,7 @@ public: // 関数
 
 	virtual void AddDirectory(const QString & lpszDirectoryPath);
 	virtual void AddFile(const QString & filePath, int nPos = -1);
+	virtual void AddURL(const QString & lpszFilePath, int nPos = -1);
 	virtual BOOL Create();
 	virtual BOOL DeleteAllItems();
 	virtual void DeleteSelectedItems();

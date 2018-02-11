@@ -33,6 +33,7 @@
 #include "DistortionCustomizeWnd.h"
 #include "FlangerCustomizeWnd.h"
 #include "GargleCustomizeWnd.h"
+#include "OpenURLWnd.h"
 #include "PlayListView_MainWnd.h"
 #include "PlayPositionWnd.h"
 #include "PlayRangeWnd.h"
@@ -2024,8 +2025,9 @@ BOOL CMainWnd::OpenFile(const QString & lpszFilePath, int nCount)
 	if(m_sound.IsABLoopB()) SetABLoopB();
 	if(bMarkerPlay) SetMarkerPlay();
 	BOOL bRet = FALSE;
-	bRet = m_sound.StreamCreateFile(ToTstring(lpszFilePath).c_str(), FALSE,
-																	nCount);
+	tstring filePath = ToTstring(lpszFilePath);
+	if(PathIsURL(lpszFilePath)) bRet = m_sound.StreamCreateURL(filePath.c_str());
+	else bRet = m_sound.StreamCreateFile(filePath.c_str(), FALSE, nCount);
 	if(!bRet) {
 		KillTimer(IDT_TIME);
 		m_timeLabel.SetTime(0, 0);
@@ -6645,6 +6647,14 @@ void CMainWnd::ShowFlangerCustomizeWnd()
 void CMainWnd::ShowGargleCustomizeWnd()
 {
 	CGargleCustomizeWnd dlg(*this);
+	dlg.exec();
+}
+//----------------------------------------------------------------------------
+// URLを開くウィンドウの表示
+//----------------------------------------------------------------------------
+void CMainWnd::ShowOpenURLWnd(BOOL bAdd)
+{
+	COpenURLWnd dlg(*this, bAdd);
 	dlg.exec();
 }
 //----------------------------------------------------------------------------

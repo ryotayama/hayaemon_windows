@@ -21,6 +21,7 @@ public: // 関数
 	virtual int ChangeMarkerPos(int nMarker, QWORD nPos);
 	virtual BOOL StreamCreateFile(LPCTSTR lpFilePath, BOOL bDecode = FALSE,
 		int nCount = 1);
+	virtual BOOL StreamCreateURL(LPCTSTR lpFilePath, BOOL bDecode = FALSE);
 	virtual void EraseMarker(int nMarker);
 	virtual BOOL ChannelPlay();
 	static void CALLBACK LoopSyncProc(HSYNC handle, DWORD channel, DWORD data,

@@ -1060,6 +1060,8 @@
     <addaction name="actionFileAdd"/>
     <addaction name="actionFileOpenDirectory"/>
     <addaction name="actionFileAddDirectory"/>
+    <addaction name="actionFileOpenUrl"/>
+    <addaction name="actionFileAddUrl"/>
     <addaction name="separator"/>
     <addaction name="actionFileSave"/>
    </widget>
@@ -3167,6 +3169,16 @@
   <action name="actionLimit">
    <property name="text">
     <string>Min/Max setting(&amp;L)...</string>
+   </property>
+  </action>
+  <action name="actionFileOpenUrl">
+   <property name="text">
+    <string>Open URL(&amp;O)...</string>
+   </property>
+  </action>
+  <action name="actionFileAddUrl">
+   <property name="text">
+    <string>Add URL(&amp;A)...</string>
    </property>
   </action>
  </widget>

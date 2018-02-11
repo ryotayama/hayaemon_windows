@@ -66,6 +66,94 @@ void CSound::EraseMarker(int nMarker)
 //----------------------------------------------------------------------------
 // ファイルの読み込み
 //----------------------------------------------------------------------------
+BOOL CSound::StreamCreateURL(LPCTSTR lpFilePath, BOOL bDecode)
+{
+	BOOL bRet = FALSE;
+	if(!m_bMainStream) {
+		bRet = CBassFx::StreamCreateURL(lpFilePath);
+		TempoCreate(bDecode);
+		m_strCurFile = lpFilePath;
+		m_nLoopPosA = 0;
+		m_nLoopPosB = ChannelGetLength();
+		return bRet;
+	}
+
+	if(!bRet) {
+		bRet = CBassFx::StreamCreateURL(lpFilePath);
+		ReverseCreate();
+		TempoCreate(bDecode);
+		m_strCurFile = lpFilePath;
+		m_nLoopPosA = 0;
+		m_nLoopPosB = ChannelGetLength();
+		m_hFx20Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx25Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx31_5Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx40Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx50Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx63Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx80Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx100Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx125Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx160Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx200Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx250Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx315Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx400Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx500Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx630Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx800Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx1KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx1_25KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx1_6KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx2KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx2_5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx3_15KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx4KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx6_3KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx8KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx10KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx12_5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx16KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx20KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx20Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx25Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx31_5Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx40Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx50Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx63Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx80Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx100Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx125Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx160Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx200Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx250Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx315Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx400Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx500Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx630Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx800Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx1KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx1_25KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx1_6KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx2KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx2_5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx3_15KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx4KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx6_3KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx8KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx10KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx12_5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx16KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFx20KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+		m_hFxVolume = ChannelSetFX(BASS_FX_BFX_VOLUME, 1);
+	}
+	return bRet;
+}
+//----------------------------------------------------------------------------
+// ファイルの読み込み
+//----------------------------------------------------------------------------
 BOOL CSound::StreamCreateFile(LPCTSTR lpFilePath, BOOL bDecode, int nCount)
 {
 	BOOL bRet = FALSE;

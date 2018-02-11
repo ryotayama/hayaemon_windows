@@ -275,6 +275,7 @@ public: // 関数
 	virtual void ShowDistortionCustomizeWnd();
 	virtual void ShowFlangerCustomizeWnd();
 	virtual void ShowGargleCustomizeWnd();
+	virtual void ShowOpenURLWnd(BOOL bAdd = FALSE);
 	virtual void ShowOpenFileDialog(BOOL bClear);
 	virtual void ShowOpenFolderDialog(BOOL bClear);
 	virtual void ShowSaveFileDialog();
@@ -468,6 +469,7 @@ public: // メンバ変数の取得・設定
 	CVolumeSlider_MainWnd & GetVolumeSlider() { return m_volumeSlider; }
 	CPanLabel_MainWnd & GetPanLabel() { return m_panLabel; }
 	CPanSlider_MainWnd & GetPanSlider() { return m_panSlider; }
+	CTab_MainWnd & GetTab() { return *m_tab; }
 	CPlayListView_MainWnd & GetPlayList() {
 		int nSelect = m_tab->GetCurrentFocus();
 		return *m_arrayList[nSelect];
