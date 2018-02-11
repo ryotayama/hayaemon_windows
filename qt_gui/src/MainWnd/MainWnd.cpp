@@ -6537,6 +6537,8 @@ void CMainWnd::SetTabVisible(bool bTabVisible)
 void CMainWnd::SetTime(QWORD qwTime, BOOL bReset)
 {
 	if(bMarkerPlay) {
+		this->nCurrentLoopCount = 0;
+
 		BOOL bDone = FALSE; // 範囲を設定したかどうか
 		std::vector<QWORD> arrayMarker = m_sound.GetArrayMarker();
 		QWORD length = m_sound.ChannelGetLength();
