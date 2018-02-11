@@ -8,7 +8,9 @@
 #include <QMimeData>
 #include <QTableWidgetItem>
 #include <QUrl>
+#include "M3UFile.h"
 #include "MainWnd.h"
+#include "Utility.h"
 //----------------------------------------------------------------------------
 // コンストラクタ
 //----------------------------------------------------------------------------
@@ -69,7 +71,11 @@ void CPlayListView_MainWnd::AddFile(const QString & filePath,
 	else if (ext.compare("m3u8", cs) == 0) listType = 2;
 
 	if(listType) {
-		// TODO read playlist
+		CM3UFile file;
+		file.Init();
+		file.Read(ToTstring(filePath).c_str(), listType == 2);
+		for(int j = 0; j < file.GetLinesCount(); j++)
+			AddFile(ToQString(file.GetFilePath(j)));
 		return;
 	}
 

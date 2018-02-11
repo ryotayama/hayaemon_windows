@@ -48,7 +48,7 @@ typedef wchar_t TCHAR;
 typedef char TCHAR;
 #endif
 typedef TCHAR *LPTSTR;
-typedef const TCHAR *LPCTSTR;
+typedef const TCHAR *LPCTSTR, *PCTSTR;
 
 typedef std::basic_string<TCHAR> tstring;
 

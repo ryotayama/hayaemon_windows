@@ -26,4 +26,9 @@ inline QString ToQString(const std::wstring & str)
 	return QString::fromStdWString(str);
 }
 
+inline QString ToQString(const wchar_t * str)
+{
+	return ToQString(std::wstring(str));
+}
+
 #endif

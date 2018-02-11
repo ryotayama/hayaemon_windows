@@ -62,6 +62,8 @@ set(SRC_MAINWND
   ${SRC_DIR}/MainWnd/FreqLabel_MainWnd.h
   ${SRC_DIR}/MainWnd/FreqSlider_MainWnd.cpp
   ${SRC_DIR}/MainWnd/FreqSlider_MainWnd.h
+  ${SRC_DIR}/MainWnd/M3UFile.cpp
+  ${SRC_DIR}/MainWnd/M3UFile.h
   ${SRC_DIR}/MainWnd/MainWnd.cpp
   ${SRC_DIR}/MainWnd/MainWnd.h
   ${SRC_DIR}/MainWnd/Menu_MainWnd.cpp

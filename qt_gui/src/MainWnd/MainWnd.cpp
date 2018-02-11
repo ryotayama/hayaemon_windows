@@ -33,6 +33,7 @@
 #include "DistortionCustomizeWnd.h"
 #include "FlangerCustomizeWnd.h"
 #include "GargleCustomizeWnd.h"
+#include "M3UFile.h"
 #include "OpenURLWnd.h"
 #include "PlayListView_MainWnd.h"
 #include "PlayPositionWnd.h"
@@ -6760,7 +6761,14 @@ void CMainWnd::ShowReverbCustomizeWnd()
 //----------------------------------------------------------------------------
 void CMainWnd::ShowSaveFileDialog()
 {
-	QString filters = tr("Settings(*.ini)");
+	QString filter_ini = tr("Settings(*.ini)");
+	QString filter_m3u_a = tr("Absolute path playlist file(*.m3u)");
+	QString filter_m3u_r = tr("Relative path playlist file(*.m3u)");
+	QString filter_m3u8_a = tr("Absolute path playlist file(*.m3u8)");
+	QString filter_m3u8_r = tr("Relative path playlist file(*.m3u8)");
+	QString filters = filter_ini + ";;" +
+                    filter_m3u_a + ";;" + filter_m3u_r + ";;" +
+                    filter_m3u8_a + ";;" + filter_m3u8_r;
 	QString filePath = QFileDialog::getSaveFileName(
 			this, QString(), QString(), filters, &strSaveFormat,
 			QFileDialog::DontUseCustomDirectoryIcons);
@@ -6769,7 +6777,28 @@ void CMainWnd::ShowSaveFileDialog()
 		return;
 	}
 
-	SaveSettings(ToTstring(filePath).c_str());
+	if(strSaveFormat == filter_ini) { // 設定状態
+		SaveSettings(ToTstring(filePath).c_str());
+	} else {
+		// プレイリストファイル
+
+		QString str;
+		for(int i = 0; i < m_arrayList[nCurPlayTab]->GetItemCount(); i++) {
+			QString sFilePath;
+			m_arrayList[nCurPlayTab]->GetItemText(i, 7, &sFilePath);
+			if(strSaveFormat == filter_m3u_a || strSaveFormat == filter_m3u8_a) {
+				QString absolutePath = QDir(sFilePath).absolutePath();
+				str += QDir::cleanPath(absolutePath);
+			}
+			else str += sFilePath;
+			str += "\n";
+		}
+
+		CM3UFile file;
+		file.Save(ToTstring(filePath).c_str(), ToTstring(str),
+							strSaveFormat == filter_m3u8_a ||
+							strSaveFormat == filter_m3u8_r);
+	}
 }
 //----------------------------------------------------------------------------
 // 再生時間の表示
