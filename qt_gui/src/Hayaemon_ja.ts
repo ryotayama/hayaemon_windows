@@ -166,7 +166,7 @@
     <message>
         <location filename="MainWnd/MainWnd.cpp" line="7755"/>
         <source>Show Position Slider(&amp;S)</source>
-        <translation type="unfinished"></translation>
+        <translation>再生位置スライダーの表示(&amp;V)</translation>
     </message>
     <message>
         <location filename="MainWnd/MainWnd.cpp" line="7764"/>
