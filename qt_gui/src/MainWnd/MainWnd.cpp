@@ -2395,6 +2395,7 @@ BOOL CMainWnd::OpenNext()
 
 	int i = m_sound.GetCurFileNum();
 	for(; i < m_arrayList[nCurPlayTab]->GetItemCount(); i++) {
+		m_arrayList[nCurPlayTab]->SetPlayOrder(i, -1);
 		QString filePath;
 		m_arrayList[nCurPlayTab]->GetItemText(i, 7, &filePath);
 		m_sound.SetCurFileNum(i + 1);
