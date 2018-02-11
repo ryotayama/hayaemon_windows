@@ -1009,6 +1009,8 @@
      <addaction name="actionRecoverPan"/>
      <addaction name="separator"/>
      <addaction name="actionRecoverEQ"/>
+     <addaction name="separator"/>
+     <addaction name="actionRecoverPlaylist"/>
     </widget>
     <widget class="QMenu" name="menuFade_out_stop_time_G">
      <property name="title">
@@ -3179,6 +3181,14 @@
   <action name="actionFileAddUrl">
    <property name="text">
     <string>Add URL(&amp;A)...</string>
+   </property>
+  </action>
+  <action name="actionRecoverPlaylist">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Playlist(&amp;P)</string>
    </property>
   </action>
  </widget>

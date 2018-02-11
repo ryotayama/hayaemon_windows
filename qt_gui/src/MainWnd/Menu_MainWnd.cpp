@@ -2907,6 +2907,7 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_RECOVERVOLUME, m_rMainWnd.actionRecoverVolume},
 		{ID_RECOVERPAN, m_rMainWnd.actionRecoverPan},
 		{ID_RECOVEREQ, m_rMainWnd.actionRecoverEQ},
+		{ID_RECOVERLIST, m_rMainWnd.actionRecoverPlaylist},
 		{ID_RECOVERSLOOP, m_rMainWnd.actionRecoverPlayModeSingleLoop},
 		{ID_RECOVERALOOP, m_rMainWnd.actionRecoverPlayModeAllLoop},
 		{ID_RECOVERRANDOM, m_rMainWnd.actionRecoverPlayModeRandom},

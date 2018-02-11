@@ -2200,6 +2200,9 @@ void CMainWnd::OpenInitFileAfterShow()
 	GetPrivateProfileString(_T("Options"), _T("SaveFormat"), _T("WAVE"), buf, 
 		255, initFilePath.c_str());
 	strSaveFormat = ToQString(buf);
+	GetPrivateProfileString(_T("Options"), _T("RecoverList"), _T("1"), buf, 
+		255, initFilePath.c_str());
+	int _bRecoverList = _ttoi(buf);
 	GetPrivateProfileString(_T("Options"), _T("FadeoutStop"), _T("0"), buf, 
 		255, initFilePath.c_str());
 	if(_ttoi(buf)) m_menu.CheckItem(ID_FADEOUTSTOP, MF_CHECKED);
@@ -2269,6 +2272,64 @@ void CMainWnd::OpenInitFileAfterShow()
 		if(_bRecord) SetRecord();
 	}
 	if(_bNormalize) SetNormalize();
+
+	if(_bRecoverList) {
+		m_menu.SwitchItemChecked(ID_RECOVERLIST);
+
+		for(int i = 0; ; i++) {
+			TCHAR chKey[255];
+			_stprintf_s(chKey, _T("Title%d"), i);
+			GetPrivateProfileString(_T("PlayList"), chKey, _T(""), buf, 255,
+									initFilePath.c_str());
+			if(lstrcmp(buf, _T("")) == 0) break;
+			else {
+				if(i > 0) CreateNewList(FALSE);
+				m_tab->SetItem(buf, i);
+				if(i == 0) m_tab->SetCurrentFocus(0);
+			}
+		}
+		for(int i = 0; i < (int)m_arrayList.size(); i++) {
+			int j = 0;
+			while(TRUE) {
+				TCHAR filePath[MAX_PATH];
+				TCHAR chKey[255];
+				_stprintf_s(chKey, _T("Item%d-%d"), i, j);
+				GetPrivateProfileString(_T("PlayList"), chKey, _T(""), 
+					filePath, 255, initFilePath.c_str());
+				QString str = ToQString(filePath);
+				if(str.isEmpty()) break;
+				else m_arrayList[i]->AddFile(str);
+				j++;
+			}
+			int nColCount = m_arrayList[i]->columnCount();
+			for(int j = 0; j < nColCount; j++) {
+				TCHAR chKey[255];
+				_stprintf_s(chKey, _T("ListColumn%dWidth%d"), i, j);
+				GetPrivateProfileString(_T("Options"), chKey, _T("-1"), buf, 
+					255, initFilePath.c_str());
+				int nWidth = _ttoi(buf);
+				if(nWidth >= 0) m_arrayList[i]->setColumnWidth(j, nWidth);
+			}
+			if(i == 0) {
+				if(m_arrayList[0]->GetItemCount() > 0) {
+					m_sound.SetCurFileNum(0);
+					PlayNext(FALSE, TRUE);
+				}
+			}
+		}
+
+		GetPrivateProfileString(_T("Options"), _T("CurPlayTab"), _T("0"), buf, 
+			255, initFilePath.c_str());
+		m_tab->SetCurrentFocus(_ttoi(buf));
+		ChangeCurPlayTab();
+		GetPrivateProfileString(_T("Options"), _T("CurFileNum"), _T("-1"), buf, 
+			255, initFilePath.c_str());
+		if(_ttoi(buf) + 1 <= GetCurPlayList().GetItemCount()
+				&& _ttoi(buf) >= 0) {
+			Play(_ttoi(buf));
+			Stop(TRUE);
+		}
+	}
 
 	isInitFileRead = TRUE;
 }
@@ -7267,6 +7328,9 @@ void CMainWnd::WriteInitFile()
 	_stprintf_s(buf, _T("%d"), m_eq20kSlider.GetThumbPos());
 	WritePrivateProfileString(_T("Options"), _T("EQ20K"), buf, 
 		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_RECOVERLIST) ? 1 : 0);
+	WritePrivateProfileString(_T("Options"), _T("RecoverList"), buf, 
+		initFilePath.c_str());
 	WritePrivateProfileString(_T("Options"), _T("SaveFormat"), 
 		ToTstring(strSaveFormat).c_str(), initFilePath.c_str());
 	_stprintf_s(buf, _T("%3.1f"), m_speedSlider.GetRangeMin()
@@ -7369,6 +7433,40 @@ void CMainWnd::WriteInitFile()
 		WritePrivateProfileString(_T("Options"), _T("FadeoutNextTime"),
 		_T("3000"), initFilePath.c_str());
 	_stprintf_s(buf, _T("%d"), nCurPlayTab);
+	WritePrivateProfileString(_T("Options"), _T("CurPlayTab"), buf,
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_sound.GetCurFileNum() - 1);
+	WritePrivateProfileString(_T("Options"), _T("CurFileNum"), buf,
+		initFilePath.c_str());
+	for(int i = 0; i < (int)m_arrayList.size(); i++) {
+		int nColCount = m_arrayList[i]->columnCount();
+		for(int j = 0; j < nColCount; j++) {
+			TCHAR chKey[255];
+			_stprintf_s(chKey, _T("ListColumn%dWidth%d"), i, j);
+			int nWidth = m_arrayList[i]->columnWidth(j);
+			TCHAR chValue[255];
+			_stprintf_s(chValue, _T("%d"), nWidth);
+			WritePrivateProfileString(_T("Options"), chKey, chValue,
+									  initFilePath.c_str());
+		}
+	}
+	WritePrivateProfileString(_T("PlayList"), NULL, NULL, 
+		initFilePath.c_str());
+	for(int i = 0; i < (int)m_arrayList.size(); i++) {
+		TCHAR chKey[255];
+		_stprintf_s(chKey, _T("Title%d"), i);
+		tstring chValue = ToTstring(m_tab->tabText(i));
+		WritePrivateProfileString(_T("PlayList"), chKey, chValue.c_str(),
+									  initFilePath.c_str());
+		for(int j = 0; j < (int)m_arrayList[i]->GetItemCount(); j++) {
+			QString filePath;
+			m_arrayList[i]->GetItemText(j, 7, &filePath);
+			TCHAR chKey[255];
+			_stprintf_s(chKey, _T("Item%d-%d"), i, j);
+			WritePrivateProfileString(_T("PlayList"), chKey,
+									  ToTstring(filePath).c_str(), initFilePath.c_str());
+		}
+	}
 }
 //----------------------------------------------------------------------------
 // 閉じられようとしている

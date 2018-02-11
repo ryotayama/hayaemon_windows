@@ -32,6 +32,13 @@ public: // 関数
 	virtual void Show(int nCmdShow) {
 		setVisible(nCmdShow != SW_HIDE);
 	}
+	virtual void SetItem(LPTSTR lpText, int iItem) {
+#ifdef UNICODE
+		setTabText(iItem, QString::fromStdWString(lpText));
+#else
+		setTabText(iItem, QString::fromStdString(lpText));
+#endif
+	}
 };
 //----------------------------------------------------------------------------
 
