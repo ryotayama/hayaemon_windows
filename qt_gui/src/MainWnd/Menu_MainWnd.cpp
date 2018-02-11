@@ -1940,7 +1940,7 @@ void CMenu_MainWnd::OnFadeoutNext10SecMenuSelected()
 //----------------------------------------------------------------------------
 // システム → エフェクト → リバーブ → デフォルトメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::OnReverbDefaultMenuSelected(bool checked)
+void CMenu_MainWnd::OnReverbDefaultMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_REVERB_DEFAULT, checked ? MF_UNCHECKED : MF_CHECKED);
 	SetReverb(0.0f, 0.0f, 1000.0f, 0.001f, ID_REVERB_DEFAULT);
@@ -1958,7 +1958,7 @@ void CMenu_MainWnd::OnReverbCustomizeMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → デフォルトメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbDefaultMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbDefaultMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_DEFAULT, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -100, 0.0f, 1.49f, 0.83f, -2602, 0.007f, 200, 0.011f, 
@@ -1967,7 +1967,7 @@ void CMenu_MainWnd::On3DReverbDefaultMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → Padded Cellメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbPaddedCellMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbPaddedCellMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_PADDEDCELL, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -6000, 0.0f, 0.17f, 0.10f, -1204, 0.001f, 207, 0.002f,
@@ -1976,7 +1976,7 @@ void CMenu_MainWnd::On3DReverbPaddedCellMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → Roomメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbRoomMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbRoomMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_ROOM, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -454, 0.0f, 0.4f, 0.83f, -1646, 0.002f, 53, 0.003f,
@@ -1985,7 +1985,7 @@ void CMenu_MainWnd::On3DReverbRoomMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → Bathroomメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbBathroomMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbBathroomMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_BATHROOM, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -1200, 0.0f, 1.49f, 0.54f, -370, 0.007f, 1030, 0.011f,
@@ -1994,7 +1994,7 @@ void CMenu_MainWnd::On3DReverbBathroomMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → LivingRoomメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbLivingRoomMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbLivingRoomMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_LIVINGROOM, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -6000, 0.0f, 0.50f, 0.10f, -1376, 0.003f, -1104, 0.004f,
@@ -2003,7 +2003,7 @@ void CMenu_MainWnd::On3DReverbLivingRoomMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → StoneRoomメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbStoneRoomMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbStoneRoomMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_STONEROOM, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -300, 0.0f, 2.31f, 0.64f, -711, 0.012f, 83, 0.017f,
@@ -2012,7 +2012,7 @@ void CMenu_MainWnd::On3DReverbStoneRoomMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → Auditoriumメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbAuditoriumMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbAuditoriumMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_AUDITORIUM, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -476, 0.0f, 4.32f, 0.59f, -789, 0.020f, -289, 0.030f,
@@ -2021,7 +2021,7 @@ void CMenu_MainWnd::On3DReverbAuditoriumMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → ConcertHallメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbConcertHallMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbConcertHallMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_CONCERTHALL, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -500, 0.0f, 3.92f, 0.70f, -1230, 0.020f, -2, 0.029f,
@@ -2030,7 +2030,7 @@ void CMenu_MainWnd::On3DReverbConcertHallMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → Caveメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbCaveMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbCaveMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_CAVE, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, 0, 0.0f, 2.91f, 1.30f, -602, 0.015f, -302, 0.022f,
@@ -2039,7 +2039,7 @@ void CMenu_MainWnd::On3DReverbCaveMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → Arenaメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbArenaMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbArenaMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_ARENA, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -698, 0.0f, 7.24f, 0.33f, -1166, 0.020f, 16, 0.030f,
@@ -2048,7 +2048,7 @@ void CMenu_MainWnd::On3DReverbArenaMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → Hangarメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbHangarMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbHangarMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_HANGAR, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -1000, 0.0f,10.05f, 0.23f, -602, 0.020f, 198, 0.030f,
@@ -2057,7 +2057,7 @@ void CMenu_MainWnd::On3DReverbHangarMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → CarpetedHallwayメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbCarpetedHallwayMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbCarpetedHallwayMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_CARPETEDHALLWAY, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -4000, 0.0f, 0.30f, 0.10f, -1831, 0.002f, -1630, 0.030f,
@@ -2066,7 +2066,7 @@ void CMenu_MainWnd::On3DReverbCarpetedHallwayMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → Hallwayメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbHallwayMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbHallwayMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_HALLWAY, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -300, 0.0f, 1.49f, 0.59f, -1219, 0.007f, 441, 0.011f,
@@ -2075,7 +2075,7 @@ void CMenu_MainWnd::On3DReverbHallwayMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → StoneCorridorメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbStoneCorridorMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbStoneCorridorMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_STONECORRIDOR, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -237, 0.0f, 2.70f, 0.79f, -1214, 0.013f, 395, 0.020f,
@@ -2084,7 +2084,7 @@ void CMenu_MainWnd::On3DReverbStoneCorridorMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → Alleyメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbAlleyMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbAlleyMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_ALLEY, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -270, 0.0f, 1.49f, 0.86f, -1204, 0.007f, -4, 0.011f,
@@ -2093,7 +2093,7 @@ void CMenu_MainWnd::On3DReverbAlleyMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → Forestメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbForestMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbForestMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_FOREST, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -3300, 0.0f, 1.49f, 0.54f, -2560, 0.162f, -613, 0.088f,
@@ -2102,7 +2102,7 @@ void CMenu_MainWnd::On3DReverbForestMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → Cityメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbCityMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbCityMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_CITY, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -800, 0.0f, 1.49f, 0.67f, -2273, 0.007f, -2217, 0.011f,
@@ -2111,7 +2111,7 @@ void CMenu_MainWnd::On3DReverbCityMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → Mountainsメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbMountainsMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbMountainsMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_MOUNTAINS, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -2500, 0.0f, 1.49f, 0.21f, -2780, 0.300f, -2014, 0.100f,
@@ -2120,7 +2120,7 @@ void CMenu_MainWnd::On3DReverbMountainsMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → Quarryメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbQuarryMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbQuarryMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_QUARRY, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -1000, 0.0f, 1.49f, 0.83f,-10000, 0.061f, 500, 0.025f,
@@ -2129,7 +2129,7 @@ void CMenu_MainWnd::On3DReverbQuarryMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → Plainメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbPlainMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbPlainMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_PLAIN, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -2000, 0.0f, 1.49f, 0.50f, -2466, 0.179f, -2514, 0.100f,
@@ -2138,7 +2138,7 @@ void CMenu_MainWnd::On3DReverbPlainMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → ParkingLotメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbParkingLotMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbParkingLotMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_PARKINGLOT, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, 0, 0.0f, 1.65f, 1.50f, -1363, 0.008f, -1153, 0.012f,
@@ -2147,7 +2147,7 @@ void CMenu_MainWnd::On3DReverbParkingLotMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → SewerPipeメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbSewerPipeMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbSewerPipeMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_SEWERPIPE, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -1000, 0.0f, 2.81f, 0.14f, 429, 0.014f, 648, 0.021f,
@@ -2156,7 +2156,7 @@ void CMenu_MainWnd::On3DReverbSewerPipeMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → Underwaterメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbUnderwaterMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbUnderwaterMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_UNDERWATER, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -4000, 0.0f, 1.49f, 0.10f, -449, 0.007f, 1700, 0.011f,
@@ -2165,7 +2165,7 @@ void CMenu_MainWnd::On3DReverbUnderwaterMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → Small Roomメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbSmallRoomMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbSmallRoomMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_SMALLROOM, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -600, 0.0f, 1.10f, 0.83f, -400, 0.005f, 500, 0.010f,
@@ -2174,7 +2174,7 @@ void CMenu_MainWnd::On3DReverbSmallRoomMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → Medium Roomメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbMediumRoomMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbMediumRoomMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_MEDIUMROOM, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -600, 0.0f, 1.30f, 0.83f, -1000, 0.010f, -200, 0.020f,
@@ -2183,7 +2183,7 @@ void CMenu_MainWnd::On3DReverbMediumRoomMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → Large Roomメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbLargeRoomMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbLargeRoomMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_LARGEROOM, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -600, 0.0f, 1.50f, 0.83f, -1600, 0.020f, -1000, 0.040f, 
@@ -2192,7 +2192,7 @@ void CMenu_MainWnd::On3DReverbLargeRoomMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → Medium Hallメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbMediumHallMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbMediumHallMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_MEDIUMHALL, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -600, 0.0f, 1.80f, 0.70f, -1300, 0.015f, -800, 0.030f, 
@@ -2201,7 +2201,7 @@ void CMenu_MainWnd::On3DReverbMediumHallMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → Large Hallメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbLargeHallMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbLargeHallMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_LARGEHALL, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -600, 0.0f, 1.80f, 0.70f, -2000, 0.030f, -1400, 0.060f, 
@@ -2210,7 +2210,7 @@ void CMenu_MainWnd::On3DReverbLargeHallMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → ３Ｄリバーブ → Plateメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::On3DReverbPlateMenuSelected(bool checked)
+void CMenu_MainWnd::On3DReverbPlateMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_3DREVERB_PLATE, checked ? MF_UNCHECKED : MF_CHECKED);
 	Set3DReverb(-1000, -200, 0.0f, 1.30f, 0.90f, 0, 0.002f, 0, 0.010f, 100.0f, 
@@ -2230,7 +2230,7 @@ void CMenu_MainWnd::On3DReverbCustomizeMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → Delay → Defaultメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::OnDelayDefaultMenuSelected(bool checked)
+void CMenu_MainWnd::OnDelayDefaultMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_DELAY_DEFAULT, checked ? MF_UNCHECKED : MF_CHECKED);
 	SetDelay(8, 50, 600, 300, TRUE, ID_DELAY_DEFAULT);
@@ -2238,7 +2238,7 @@ void CMenu_MainWnd::OnDelayDefaultMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → Delay → Short Echoメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::OnDelayShortMenuSelected(bool checked)
+void CMenu_MainWnd::OnDelayShortMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_DELAY_SHORT, checked ? MF_UNCHECKED : MF_CHECKED);
 	SetDelay(15, 50, 150, 150, FALSE, ID_DELAY_SHORT);
@@ -2246,7 +2246,7 @@ void CMenu_MainWnd::OnDelayShortMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → Delay → Medium Echoメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::OnDelayMediumMenuSelected(bool checked)
+void CMenu_MainWnd::OnDelayMediumMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_DELAY_MEDIUM, checked ? MF_UNCHECKED : MF_CHECKED);
 	SetDelay(15, 50, 300, 300, FALSE, ID_DELAY_MEDIUM);
@@ -2254,7 +2254,7 @@ void CMenu_MainWnd::OnDelayMediumMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → Delay → Long Echoメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::OnDelayLongMenuSelected(bool checked)
+void CMenu_MainWnd::OnDelayLongMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_DELAY_LONG, checked ? MF_UNCHECKED : MF_CHECKED);
 	SetDelay(15, 50, 600, 600, FALSE, ID_DELAY_LONG);
@@ -2262,7 +2262,7 @@ void CMenu_MainWnd::OnDelayLongMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → Delay → Stereo Short Echoメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::OnDelayStereoShortMenuSelected(bool checked)
+void CMenu_MainWnd::OnDelayStereoShortMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_DELAY_STEREOSHORT, checked ? MF_UNCHECKED : MF_CHECKED);
 	SetDelay(15, 50, 300, 150, TRUE, ID_DELAY_STEREOSHORT);
@@ -2270,7 +2270,7 @@ void CMenu_MainWnd::OnDelayStereoShortMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → Delay → Stetreo Medium Echoメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::OnDelayStereoMediumMenuSelected(bool checked)
+void CMenu_MainWnd::OnDelayStereoMediumMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_DELAY_STEREOMEDIUM, checked ? MF_UNCHECKED : MF_CHECKED);
 	SetDelay(8, 50, 600, 300, TRUE, ID_DELAY_STEREOMEDIUM);
@@ -2278,7 +2278,7 @@ void CMenu_MainWnd::OnDelayStereoMediumMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → Delay → Stereo Long Echoメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::OnDelayStereoLongMenuSelected(bool checked)
+void CMenu_MainWnd::OnDelayStereoLongMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_DELAY_STEREOLONG, checked ? MF_UNCHECKED : MF_CHECKED);
 	SetDelay(15, 50, 1200, 600, TRUE, ID_DELAY_STEREOLONG);
@@ -2286,7 +2286,7 @@ void CMenu_MainWnd::OnDelayStereoLongMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → Delay → Mountain Echoメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::OnDelayMountainMenuSelected(bool checked)
+void CMenu_MainWnd::OnDelayMountainMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_DELAY_MOUNTAIN, checked ? MF_UNCHECKED : MF_CHECKED);
 	SetDelay(20, 0, 1500, 1500, FALSE, ID_DELAY_MOUNTAIN);
@@ -2294,7 +2294,7 @@ void CMenu_MainWnd::OnDelayMountainMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → Delay → Big Echoメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::OnDelayBigMenuSelected(bool checked)
+void CMenu_MainWnd::OnDelayBigMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_DELAY_BIG, checked ? MF_UNCHECKED : MF_CHECKED);
 	SetDelay(40, 50, 300, 300, FALSE, ID_DELAY_BIG);
@@ -2302,7 +2302,7 @@ void CMenu_MainWnd::OnDelayBigMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → Delay → Stereo Big Echoメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::OnDelayStereoBigMenuSelected(bool checked)
+void CMenu_MainWnd::OnDelayStereoBigMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_DELAY_STEREOBIG, checked ? MF_UNCHECKED : MF_CHECKED);
 	SetDelay(40, 50, 600, 300, TRUE, ID_DELAY_STEREOBIG);
@@ -2310,7 +2310,7 @@ void CMenu_MainWnd::OnDelayStereoBigMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → Delay → Doublingメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::OnDelayDoublingMenuSelected(bool checked)
+void CMenu_MainWnd::OnDelayDoublingMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_DELAY_DOUBLING, checked ? MF_UNCHECKED : MF_CHECKED);
 	SetDelay(100, 0, 31, 1, TRUE, ID_DELAY_DOUBLING);
@@ -2318,7 +2318,7 @@ void CMenu_MainWnd::OnDelayDoublingMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → Delay → Double Kickメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::OnDelayDoubleKickMenuSelected(bool checked)
+void CMenu_MainWnd::OnDelayDoubleKickMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_DELAY_DOUBLEKICK, checked ? MF_UNCHECKED : MF_CHECKED);
 	SetDelay(50, 0, 100, 100, FALSE, ID_DELAY_DOUBLEKICK);
@@ -2336,7 +2336,7 @@ void CMenu_MainWnd::OnDelayCustomizeMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → Chorus → Defaultメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::OnChorusDefaultMenuSelected(bool checked)
+void CMenu_MainWnd::OnChorusDefaultMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_CHORUS_DEFAULT, checked ? MF_UNCHECKED : MF_CHECKED);
 	SetChorus(50.0f, 10.0f, 25.0f, 1.1f, 1, 16.0f, BASS_DX8_PHASE_90,
@@ -2356,7 +2356,7 @@ void CMenu_MainWnd::OnChorusCustomizeMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → Compressor → Defaultメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::OnCompressorDefaultMenuSelected(bool checked)
+void CMenu_MainWnd::OnCompressorDefaultMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_COMPRESSOR_DEFAULT, checked ? MF_UNCHECKED : MF_CHECKED);
 	SetCompressor(0.0f, 10.0f, 200.0f, -20.0f, 3.0f, 4.0f,
@@ -2376,7 +2376,7 @@ void CMenu_MainWnd::OnCompressorCustomizeMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → Flanger → Defaultメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::OnFlangerDefaultMenuSelected(bool checked)
+void CMenu_MainWnd::OnFlangerDefaultMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_FLANGER_DEFAULT, checked ? MF_UNCHECKED : MF_CHECKED);
 	SetFlanger(50.0f, 100.0f, -50.0f, 0.25f, 1, 2.0f, BASS_DX8_PHASE_ZERO,
@@ -2396,7 +2396,7 @@ void CMenu_MainWnd::OnFlangerCustomizeMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → Gargle → Defaultメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::OnGargleDefaultMenuSelected(bool checked)
+void CMenu_MainWnd::OnGargleDefaultMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_GARGLE_DEFAULT, checked ? MF_UNCHECKED : MF_CHECKED);
 	SetGargle(20, 0, ID_GARGLE_DEFAULT);
@@ -2414,7 +2414,7 @@ void CMenu_MainWnd::OnGargleCustomizeMenuSelected(bool checked)
 //----------------------------------------------------------------------------
 // システム → エフェクト → Distortion → Defaultメニューが選択された
 //----------------------------------------------------------------------------
-void CMenu_MainWnd::OnDistortionDefaultMenuSelected(bool checked)
+void CMenu_MainWnd::OnDistortionDefaultMenuSelected(bool checked /* = true */)
 {
 	CheckItem(ID_DISTORTION_DEFAULT, checked ? MF_UNCHECKED : MF_CHECKED);
 	SetDistortion(-18.0f, 15.0f, 2400.0f, 2400.0f, 8000.0f,

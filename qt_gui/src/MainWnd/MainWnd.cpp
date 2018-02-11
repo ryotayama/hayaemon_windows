@@ -1579,7 +1579,7 @@ void CMainWnd::LoadSettings(const PCTSTR & pFilePath)
 	GetPrivateProfileString(_T("PlayMode"), _T("ReverbDefault"), _T("0"), buf,
 		255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_REVERB_DEFAULT))
-		m_menu.OnReverbDefaultMenuSelected(true);
+		m_menu.OnReverbDefaultMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("ReverbCustomize"), _T("0"), buf,
 		255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_REVERB_CUSTOMIZE)) {
@@ -1599,119 +1599,119 @@ void CMainWnd::LoadSettings(const PCTSTR & pFilePath)
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbDefault"), _T("0"), buf,
 		255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_DEFAULT))
-		m_menu.On3DReverbDefaultMenuSelected(true);
+		m_menu.On3DReverbDefaultMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbPaddedCell"), _T("0"),
 		buf, 255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_PADDEDCELL))
-		m_menu.On3DReverbPaddedCellMenuSelected(true);
+		m_menu.On3DReverbPaddedCellMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbRoom"), _T("0"), buf,
 		255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_ROOM))
-		m_menu.On3DReverbRoomMenuSelected(true);
+		m_menu.On3DReverbRoomMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbBathRoom"), _T("0"),
 		buf, 255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_BATHROOM))
-		m_menu.On3DReverbBathroomMenuSelected(true);
+		m_menu.On3DReverbBathroomMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbLivingRoom"), _T("0"),
 		buf,255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_LIVINGROOM))
-		m_menu.On3DReverbLivingRoomMenuSelected(true);
+		m_menu.On3DReverbLivingRoomMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbStoneRoom"), _T("0"),
 		buf, 255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_STONEROOM))
-		m_menu.On3DReverbStoneRoomMenuSelected(true);
+		m_menu.On3DReverbStoneRoomMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbAuditorium"), _T("0"),
 		buf, 255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_AUDITORIUM))
-		m_menu.On3DReverbAuditoriumMenuSelected(true);
+		m_menu.On3DReverbAuditoriumMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbConcertHall"), _T("0"),
 		buf, 255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_CONCERTHALL))
-		m_menu.On3DReverbConcertHallMenuSelected(true);
+		m_menu.On3DReverbConcertHallMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbCave"), _T("0"), buf,
 		255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_CAVE))
-		m_menu.On3DReverbCaveMenuSelected(true);
+		m_menu.On3DReverbCaveMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbArena"), _T("0"), buf,
 		255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_ARENA))
-		m_menu.On3DReverbArenaMenuSelected(true);
+		m_menu.On3DReverbArenaMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbHangar"), _T("0"), buf,
 		255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_HANGAR))
-		m_menu.On3DReverbHangarMenuSelected(true);
+		m_menu.On3DReverbHangarMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbCarpetedHallway"),
 		_T("0"), buf, 255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_CARPETEDHALLWAY))
-		m_menu.On3DReverbCarpetedHallwayMenuSelected(true);
+		m_menu.On3DReverbCarpetedHallwayMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbHallway"), _T("0"), buf,
 		255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_HALLWAY))
-		m_menu.On3DReverbHallwayMenuSelected(true);
+		m_menu.On3DReverbHallwayMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbStoneCorridor"),
 		_T("0"), buf, 255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_STONECORRIDOR))
-		m_menu.On3DReverbStoneCorridorMenuSelected(true);
+		m_menu.On3DReverbStoneCorridorMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbAlley"), _T("0"), buf,
 		255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_ALLEY))
-		m_menu.On3DReverbAlleyMenuSelected(true);
+		m_menu.On3DReverbAlleyMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbForest"), _T("0"), buf,
 		255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_FOREST))
-		m_menu.On3DReverbForestMenuSelected(true);
+		m_menu.On3DReverbForestMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbCity"), _T("0"), buf,
 		255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_CITY))
-		m_menu.On3DReverbCityMenuSelected(true);
+		m_menu.On3DReverbCityMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbMountains"), _T("0"),
 		buf, 255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_MOUNTAINS))
-		m_menu.On3DReverbMountainsMenuSelected(true);
+		m_menu.On3DReverbMountainsMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbQuarry"), _T("0"), buf,
 		255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_QUARRY))
-		m_menu.On3DReverbQuarryMenuSelected(true);
+		m_menu.On3DReverbQuarryMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbPlain"), _T("0"), buf,
 		255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_PLAIN))
-		m_menu.On3DReverbPlainMenuSelected(true);
+		m_menu.On3DReverbPlainMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbParkingLot"), _T("0"),
 		buf, 255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_PARKINGLOT))
-		m_menu.On3DReverbParkingLotMenuSelected(true);
+		m_menu.On3DReverbParkingLotMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbSewerPipe"), _T("0"),
 		buf, 255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_SEWERPIPE))
-		m_menu.On3DReverbSewerPipeMenuSelected(true);
+		m_menu.On3DReverbSewerPipeMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbUnderWater"), _T("0"),
 		buf, 255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_UNDERWATER))
-		m_menu.On3DReverbUnderwaterMenuSelected(true);
+		m_menu.On3DReverbUnderwaterMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbSmallRoom"), _T("0"),
 		buf, 255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_SMALLROOM))
-		m_menu.On3DReverbSmallRoomMenuSelected(true);
+		m_menu.On3DReverbSmallRoomMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbMediumRoom"), _T("0"),
 		buf, 255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_MEDIUMROOM))
-		m_menu.On3DReverbMediumRoomMenuSelected(true);
+		m_menu.On3DReverbMediumRoomMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbLargeRoom"), _T("0"),
 		buf, 255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_LARGEROOM))
-		m_menu.On3DReverbLargeRoomMenuSelected(true);
+		m_menu.On3DReverbLargeRoomMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbMediumHall"), _T("0"),
 		buf, 255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_MEDIUMHALL))
-		m_menu.On3DReverbMediumHallMenuSelected(true);
+		m_menu.On3DReverbMediumHallMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbLargeHall"), _T("0"),
 		buf, 255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_LARGEHALL))
-		m_menu.On3DReverbLargeHallMenuSelected(true);
+		m_menu.On3DReverbLargeHallMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbPlate"), _T("0"), buf,
 		255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_PLATE))
-		m_menu.On3DReverbPlateMenuSelected(true);
+		m_menu.On3DReverbPlateMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("3DReverbCustomize"), _T("0"),
 		buf, 255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_CUSTOMIZE)) {
@@ -1762,51 +1762,51 @@ void CMainWnd::LoadSettings(const PCTSTR & pFilePath)
 	GetPrivateProfileString(_T("PlayMode"), _T("DelayDefault"), _T("0"), buf,
 		255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_DEFAULT))
-		m_menu.OnDelayDefaultMenuSelected(true);
+		m_menu.OnDelayDefaultMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("DelayShort"), _T("0"), buf, 255,
 		pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_SHORT))
-		m_menu.OnDelayShortMenuSelected(true);
+		m_menu.OnDelayShortMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("DelayMedium"), _T("0"), buf,
 		255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_MEDIUM))
-		m_menu.OnDelayMediumMenuSelected(true);
+		m_menu.OnDelayMediumMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("DelayLong"), _T("0"), buf, 255, 
 		pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_LONG))
-		m_menu.OnDelayLongMenuSelected(true);
+		m_menu.OnDelayLongMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("DelayStereoShort"), _T("0"),
 		buf, 255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_STEREOSHORT))
-		m_menu.OnDelayStereoShortMenuSelected(true);
+		m_menu.OnDelayStereoShortMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("DelayStereoMedium"), _T("0"),
 		buf, 255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_STEREOMEDIUM))
-		m_menu.OnDelayStereoMediumMenuSelected(true);
+		m_menu.OnDelayStereoMediumMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("DelayStereoLong"), _T("0"), buf,
 		255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_STEREOLONG))
-		m_menu.OnDelayStereoLongMenuSelected(true);
+		m_menu.OnDelayStereoLongMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("DelayMountain"), _T("0"), buf,
 		255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_MOUNTAIN))
-		m_menu.OnDelayMountainMenuSelected(true);
+		m_menu.OnDelayMountainMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("DelayBig"), _T("0"), buf, 255, 
 		pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_BIG))
-		m_menu.OnDelayBigMenuSelected(true);
+		m_menu.OnDelayBigMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("DelayStereoBig"), _T("0"), buf,
 		255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_STEREOBIG))
-		m_menu.OnDelayStereoBigMenuSelected(true);
+		m_menu.OnDelayStereoBigMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("DelayDoubling"), _T("0"), buf,
 		255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_DOUBLING))
-		m_menu.OnDelayDoublingMenuSelected(true);
+		m_menu.OnDelayDoublingMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("DelayDoubleKick"), _T("0"), buf,
 		255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_DOUBLEKICK))
-		m_menu.OnDelayDoubleKickMenuSelected(true);
+		m_menu.OnDelayDoubleKickMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("DelayCustomize"), _T("0"), buf,
 		255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_CUSTOMIZE)) {
@@ -1830,7 +1830,7 @@ void CMainWnd::LoadSettings(const PCTSTR & pFilePath)
 	GetPrivateProfileString(_T("PlayMode"), _T("ChorusDefault"), _T("0"), buf,
 		255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_CHORUS_DEFAULT))
-		m_menu.OnChorusDefaultMenuSelected(true);
+		m_menu.OnChorusDefaultMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("ChorusCustomize"), _T("0"), buf,
 		255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_CHORUS_CUSTOMIZE)) {
@@ -1856,7 +1856,7 @@ void CMainWnd::LoadSettings(const PCTSTR & pFilePath)
 	GetPrivateProfileString(_T("PlayMode"), _T("CompressorDefault"), _T("0"),
 		buf, 255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_COMPRESSOR_DEFAULT))
-		m_menu.OnCompressorDefaultMenuSelected(true);
+		m_menu.OnCompressorDefaultMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("CompressorCustomize"), _T("0"),
 		buf, 255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_COMPRESSOR_CUSTOMIZE)) {
@@ -1886,7 +1886,7 @@ void CMainWnd::LoadSettings(const PCTSTR & pFilePath)
 	GetPrivateProfileString(_T("PlayMode"), _T("FlangerDefault"), _T("0"), buf,
 		255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_FLANGER_DEFAULT))
-		m_menu.OnFlangerDefaultMenuSelected(true);
+		m_menu.OnFlangerDefaultMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("FlangerCustomize"), _T("0"),
 		buf, 255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_FLANGER_CUSTOMIZE)) {
@@ -1914,7 +1914,7 @@ void CMainWnd::LoadSettings(const PCTSTR & pFilePath)
 	GetPrivateProfileString(_T("PlayMode"), _T("GargleDefault"), _T("0"), buf,
 		255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_GARGLE_DEFAULT))
-		m_menu.OnGargleDefaultMenuSelected(true);
+		m_menu.OnGargleDefaultMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("GargleCustomize"), _T("0"),
 		buf, 255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_GARGLE_CUSTOMIZE)) {
@@ -1930,7 +1930,7 @@ void CMainWnd::LoadSettings(const PCTSTR & pFilePath)
 	GetPrivateProfileString(_T("PlayMode"), _T("DistortionDefault"), _T("0"),
 		buf, 255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DISTORTION_DEFAULT))
-		m_menu.OnDistortionDefaultMenuSelected(true);
+		m_menu.OnDistortionDefaultMenuSelected();
 	GetPrivateProfileString(_T("PlayMode"), _T("DistortionCustomize"), _T("0"),
 		buf, 255, pFilePath);
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DISTORTION_CUSTOMIZE)) {
@@ -2142,13 +2142,13 @@ void CMainWnd::OpenInitFile()
 			chPath)) {
 		m_menu.SwitchItemChecked(ID_RECOVERALOOP);
 		if(GetPrivateProfileInt(_T("PlayMode"), _T("AllLoop"), 0, chPath))
-			SetAllLoop(true);
+			SetAllLoop();
 	}
 	if(GetPrivateProfileInt(_T("PlayMode"), _T("RecoverRandom"), 1,
 			chPath)) {
 		m_menu.SwitchItemChecked(ID_RECOVERRANDOM);
 		if(GetPrivateProfileInt(_T("PlayMode"), _T("Random"), 0, chPath))
-			SetRandom(true);
+			SetRandom();
 	}
 }
 //----------------------------------------------------------------------------
@@ -4100,7 +4100,7 @@ void CMainWnd::SetABLoopBSetting()
 //----------------------------------------------------------------------------
 // 全曲ループ
 //----------------------------------------------------------------------------
-void CMainWnd::SetAllLoop(bool bAllLoop)
+void CMainWnd::SetAllLoop(bool bAllLoop /* = true */)
 {
 	m_menu.CheckItem(ID_ALOOP, bAllLoop ? MF_CHECKED : MF_UNCHECKED);
 	m_toolBar.CheckButton(ID_ALOOP, bAllLoop);
@@ -5607,7 +5607,7 @@ void CMainWnd::SetPreset(int n)
 	GetPrivateProfileString(section, _T("ReverbDefault"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_REVERB_DEFAULT))
-		m_menu.OnReverbDefaultMenuSelected(true);
+		m_menu.OnReverbDefaultMenuSelected();
 
 	GetPrivateProfileString(section, _T("ReverbCustomize"), _T("0"), buf, 255, 
 		initFilePath.c_str());
@@ -5629,119 +5629,119 @@ void CMainWnd::SetPreset(int n)
 	GetPrivateProfileString(section, _T("3DReverbDefault"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_DEFAULT))
-		m_menu.On3DReverbDefaultMenuSelected(true);
+		m_menu.On3DReverbDefaultMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbPaddedCell"), _T("0"), buf,
 		255, initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_PADDEDCELL))
-		m_menu.On3DReverbPaddedCellMenuSelected(true);
+		m_menu.On3DReverbPaddedCellMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbRoom"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_ROOM))
-		m_menu.On3DReverbRoomMenuSelected(true);
+		m_menu.On3DReverbRoomMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbBathRoom"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_BATHROOM))
-		m_menu.On3DReverbBathroomMenuSelected(true);
+		m_menu.On3DReverbBathroomMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbLivingRoom"), _T("0"), buf,
 		255, initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_LIVINGROOM))
-		m_menu.On3DReverbLivingRoomMenuSelected(true);
+		m_menu.On3DReverbLivingRoomMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbStoneRoom"), _T("0"), buf,
 		255, initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_STONEROOM))
-		m_menu.On3DReverbStoneRoomMenuSelected(true);
+		m_menu.On3DReverbStoneRoomMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbAuditorium"), _T("0"), buf,
 		255, initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_AUDITORIUM))
-		m_menu.On3DReverbAuditoriumMenuSelected(true);
+		m_menu.On3DReverbAuditoriumMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbConcertHall"), _T("0"), buf,
 		255, initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_CONCERTHALL))
-		m_menu.On3DReverbConcertHallMenuSelected(true);
+		m_menu.On3DReverbConcertHallMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbCave"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_CAVE))
-		m_menu.On3DReverbCaveMenuSelected(true);
+		m_menu.On3DReverbCaveMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbArena"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_ARENA))
-		m_menu.On3DReverbArenaMenuSelected(true);
+		m_menu.On3DReverbArenaMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbHangar"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_HANGAR))
-		m_menu.On3DReverbHangarMenuSelected(true);
+		m_menu.On3DReverbHangarMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbCarpetedHallway"), _T("0"),
 		buf, 255, initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_CARPETEDHALLWAY))
-		m_menu.On3DReverbCarpetedHallwayMenuSelected(true);
+		m_menu.On3DReverbCarpetedHallwayMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbHallway"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_HALLWAY))
-		m_menu.On3DReverbHallwayMenuSelected(true);
+		m_menu.On3DReverbHallwayMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbStoneCorridor"), _T("0"), buf,
 		255, initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_STONECORRIDOR))
-		m_menu.On3DReverbStoneCorridorMenuSelected(true);
+		m_menu.On3DReverbStoneCorridorMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbAlley"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_ALLEY))
-		m_menu.On3DReverbAlleyMenuSelected(true);
+		m_menu.On3DReverbAlleyMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbForest"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_FOREST))
-		m_menu.On3DReverbForestMenuSelected(true);
+		m_menu.On3DReverbForestMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbCity"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_CITY))
-		m_menu.On3DReverbCityMenuSelected(true);
+		m_menu.On3DReverbCityMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbMountains"), _T("0"), buf,
 		255, initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_MOUNTAINS))
-		m_menu.On3DReverbMountainsMenuSelected(true);
+		m_menu.On3DReverbMountainsMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbQuarry"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_QUARRY))
-		m_menu.On3DReverbQuarryMenuSelected(true);
+		m_menu.On3DReverbQuarryMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbPlain"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_PLAIN))
-		m_menu.On3DReverbPlainMenuSelected(true);
+		m_menu.On3DReverbPlainMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbParkingLot"), _T("0"), buf,
 		255, initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_PARKINGLOT))
-		m_menu.On3DReverbParkingLotMenuSelected(true);
+		m_menu.On3DReverbParkingLotMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbSewerPipe"), _T("0"), buf,
 		255, initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_SEWERPIPE))
-		m_menu.On3DReverbSewerPipeMenuSelected(true);
+		m_menu.On3DReverbSewerPipeMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbUnderWater"), _T("0"), buf,
 		255, initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_UNDERWATER))
-		m_menu.On3DReverbUnderwaterMenuSelected(true);
+		m_menu.On3DReverbUnderwaterMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbSmallRoom"), _T("0"), buf, 255,
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_SMALLROOM))
-		m_menu.On3DReverbSmallRoomMenuSelected(true);
+		m_menu.On3DReverbSmallRoomMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbMediumRoom"), _T("0"), buf,
 		255, initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_MEDIUMROOM))
-		m_menu.On3DReverbMediumRoomMenuSelected(true);
+		m_menu.On3DReverbMediumRoomMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbLargeRoom"), _T("0"), buf, 255,
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_LARGEROOM))
-		m_menu.On3DReverbLargeRoomMenuSelected(true);
+		m_menu.On3DReverbLargeRoomMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbMediumHall"), _T("0"), buf,
 		255, initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_MEDIUMHALL))
-		m_menu.On3DReverbMediumHallMenuSelected(true);
+		m_menu.On3DReverbMediumHallMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbLargeHall"), _T("0"), buf, 255,
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_LARGEHALL))
-		m_menu.On3DReverbLargeHallMenuSelected(true);
+		m_menu.On3DReverbLargeHallMenuSelected();
 	GetPrivateProfileString(section, _T("3DReverbPlate"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_3DREVERB_PLATE))
-		m_menu.On3DReverbPlateMenuSelected(true);
+		m_menu.On3DReverbPlateMenuSelected();
 
 	GetPrivateProfileString(section, _T("3DReverbCustomize"), _T("0"), buf, 255,
 		initFilePath.c_str());
@@ -5792,51 +5792,51 @@ void CMainWnd::SetPreset(int n)
 	GetPrivateProfileString(section, _T("DelayDefault"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_DEFAULT))
-		m_menu.OnDelayDefaultMenuSelected(true);
+		m_menu.OnDelayDefaultMenuSelected();
 	GetPrivateProfileString(section, _T("DelayShort"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_SHORT))
-		m_menu.OnDelayShortMenuSelected(true);
+		m_menu.OnDelayShortMenuSelected();
 	GetPrivateProfileString(section, _T("DelayMedium"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_MEDIUM))
-		m_menu.OnDelayMediumMenuSelected(true);
+		m_menu.OnDelayMediumMenuSelected();
 	GetPrivateProfileString(section, _T("DelayLong"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_LONG))
-		m_menu.OnDelayLongMenuSelected(true);
+		m_menu.OnDelayLongMenuSelected();
 	GetPrivateProfileString(section, _T("DelayStereoShort"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_STEREOSHORT))
-		m_menu.OnDelayStereoShortMenuSelected(true);
+		m_menu.OnDelayStereoShortMenuSelected();
 	GetPrivateProfileString(section, _T("DelayStereoMedium"), _T("0"), buf, 255,
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_STEREOMEDIUM))
-		m_menu.OnDelayStereoMediumMenuSelected(true);
+		m_menu.OnDelayStereoMediumMenuSelected();
 	GetPrivateProfileString(section, _T("DelayStereoLong"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_STEREOLONG))
-		m_menu.OnDelayStereoLongMenuSelected(true);
+		m_menu.OnDelayStereoLongMenuSelected();
 	GetPrivateProfileString(section, _T("DelayMountain"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_MOUNTAIN))
-		m_menu.OnDelayMountainMenuSelected(true);
+		m_menu.OnDelayMountainMenuSelected();
 	GetPrivateProfileString(section, _T("DelayBig"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_BIG))
-		m_menu.OnDelayBigMenuSelected(true);
+		m_menu.OnDelayBigMenuSelected();
 	GetPrivateProfileString(section, _T("DelayStereoBig"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_STEREOBIG))
-		m_menu.OnDelayStereoBigMenuSelected(true);
+		m_menu.OnDelayStereoBigMenuSelected();
 	GetPrivateProfileString(section, _T("DelayDoubling"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_DOUBLING))
-		m_menu.OnDelayDoublingMenuSelected(true);
+		m_menu.OnDelayDoublingMenuSelected();
 	GetPrivateProfileString(section, _T("DelayDoubleKick"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DELAY_DOUBLEKICK))
-		m_menu.OnDelayDoubleKickMenuSelected(true);
+		m_menu.OnDelayDoubleKickMenuSelected();
 
 	GetPrivateProfileString(section, _T("DelayCustomize"), _T("0"), buf, 255, 
 		initFilePath.c_str());
@@ -5862,7 +5862,7 @@ void CMainWnd::SetPreset(int n)
 	GetPrivateProfileString(section, _T("ChorusDefault"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_CHORUS_DEFAULT))
-		m_menu.OnChorusDefaultMenuSelected(true);
+		m_menu.OnChorusDefaultMenuSelected();
 
 	GetPrivateProfileString(section, _T("ChorusCustomize"), _T("0"), buf, 255, 
 		initFilePath.c_str());
@@ -5890,7 +5890,7 @@ void CMainWnd::SetPreset(int n)
 	GetPrivateProfileString(section, _T("CompressorDefault"), _T("0"), buf, 255,
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_COMPRESSOR_DEFAULT))
-		m_menu.OnCompressorDefaultMenuSelected(true);
+		m_menu.OnCompressorDefaultMenuSelected();
 
 	GetPrivateProfileString(section, _T("CompressorCustomize"), _T("0"), buf,
 		255, initFilePath.c_str());
@@ -5918,7 +5918,7 @@ void CMainWnd::SetPreset(int n)
 	GetPrivateProfileString(section, _T("FlangerDefault"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_FLANGER_DEFAULT))
-		m_menu.OnFlangerDefaultMenuSelected(true);
+		m_menu.OnFlangerDefaultMenuSelected();
 
 	GetPrivateProfileString(section, _T("FlangerCustomize"), _T("0"), buf, 255, 
 		initFilePath.c_str());
@@ -5946,7 +5946,7 @@ void CMainWnd::SetPreset(int n)
 	GetPrivateProfileString(section, _T("GargleDefault"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_GARGLE_DEFAULT))
-		m_menu.OnGargleDefaultMenuSelected(true);
+		m_menu.OnGargleDefaultMenuSelected();
 	GetPrivateProfileString(section, _T("GargleCustomize"), _T("0"), buf, 255, 
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_GARGLE_CUSTOMIZE)) {
@@ -5962,7 +5962,7 @@ void CMainWnd::SetPreset(int n)
 	GetPrivateProfileString(section, _T("DistortionDefault"), _T("0"), buf, 255,
 		initFilePath.c_str());
 	if((BOOL)_ttoi(buf) && !m_menu.IsItemChecked(ID_DISTORTION_DEFAULT))
-		m_menu.OnDistortionDefaultMenuSelected(true);
+		m_menu.OnDistortionDefaultMenuSelected();
 
 	GetPrivateProfileString(section, _T("DistortionCustomize"), _T("0"), buf,
 		255, initFilePath.c_str());
@@ -6111,7 +6111,7 @@ void CMainWnd::SetPrevMarker()
 //----------------------------------------------------------------------------
 // ランダム再生の設定
 //----------------------------------------------------------------------------
-void CMainWnd::SetRandom(bool bRandom)
+void CMainWnd::SetRandom(bool bRandom /* = true */)
 {
 	m_menu.CheckItem(ID_RANDOM, bRandom ? MF_CHECKED : MF_UNCHECKED);
 	m_toolBar.CheckButton(ID_RANDOM, bRandom);
@@ -6208,7 +6208,7 @@ void CMainWnd::SetLowBattery()
 		m_nLastDecimalDigit_freq = m_freqSlider.GetDecimalDigit();
 		m_menu.OnSetFreqDecimal2MenuSelected();
 		if(!m_menu.IsItemChecked(ID_DISTORTION_DEFAULT))
-			m_menu.OnDistortionDefaultMenuSelected(true);
+			m_menu.OnDistortionDefaultMenuSelected();
 		m_menu.OnEQMiddleHighestMenuSelected();
 		SetTimer(IDT_LOWBATTERY, 20);
 	}
@@ -6218,7 +6218,7 @@ void CMainWnd::SetLowBattery()
 		nFreqAccel = 0.0;
 		m_menu.OnEQFlatMenuSelected();
 		if(m_menu.IsItemChecked(ID_DISTORTION_DEFAULT))
-			m_menu.OnDistortionDefaultMenuSelected(true);
+			m_menu.OnDistortionDefaultMenuSelected();
 		if(m_nLastDecimalDigit_freq == 0)
 			m_menu.OnSetFreqDecimal0MenuSelected();
 		else if(m_nLastDecimalDigit_freq == 1)
@@ -6241,7 +6241,7 @@ void CMainWnd::SetLowBattery(BOOL bLowBattery)
 		m_nLastDecimalDigit_freq = m_freqSlider.GetDecimalDigit();
 		m_menu.OnSetFreqDecimal2MenuSelected();
 		if(!m_menu.IsItemChecked(ID_DISTORTION_DEFAULT))
-			m_menu.OnDistortionDefaultMenuSelected(true);
+			m_menu.OnDistortionDefaultMenuSelected();
 		m_menu.OnEQMiddleHighestMenuSelected();
 		SetTimer(IDT_LOWBATTERY, 20);
 	}
@@ -6251,7 +6251,7 @@ void CMainWnd::SetLowBattery(BOOL bLowBattery)
 		nFreqAccel = 0.0;
 		m_menu.OnEQFlatMenuSelected();
 		if(m_menu.IsItemChecked(ID_DISTORTION_DEFAULT))
-			m_menu.OnDistortionDefaultMenuSelected(true);
+			m_menu.OnDistortionDefaultMenuSelected();
 		if(m_nLastDecimalDigit_freq == 0)
 			m_menu.OnSetFreqDecimal0MenuSelected();
 		else if(m_nLastDecimalDigit_freq == 1)

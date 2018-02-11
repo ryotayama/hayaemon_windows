@@ -139,7 +139,7 @@ public: // 関数
 	virtual void SetABLoopB_Sec(double dTime);
 	virtual void SetABLoopASetting();
 	virtual void SetABLoopBSetting();
-	virtual void SetAllLoop(bool bAllLoop);
+	virtual void SetAllLoop(bool bAllLoop = true);
 	virtual void SetAllEffects();
 	virtual void SetContinue(bool bContinue);
 	virtual void SetTimeSliderVisible(bool bTimeSliderVisible);
@@ -232,7 +232,7 @@ public: // 関数
 	virtual void SetPreset(int n);
 	virtual void SetPreviousNextMenuState();
 	virtual void SetPrevMarker();
-	virtual void SetRandom(bool bRandom);
+	virtual void SetRandom(bool bRandom = true);
 	virtual void SetReverse();
 	virtual void SetReverse(BOOL bReverse);
 	virtual void SetRecord();
