@@ -1001,6 +1001,8 @@
      <addaction name="menuVisible_V"/>
      <addaction name="menuPlay_mode_P"/>
      <addaction name="separator"/>
+     <addaction name="actionRecoverPlayPosition"/>
+     <addaction name="separator"/>
      <addaction name="actionRecoverSpeed"/>
      <addaction name="actionRecoverFreq"/>
      <addaction name="actionRecoverPitch"/>
@@ -3189,6 +3191,19 @@
    </property>
    <property name="text">
     <string>Playlist(&amp;P)</string>
+   </property>
+  </action>
+  <action name="actionPlay_Position">
+   <property name="text">
+    <string>Play Position(&amp;P)</string>
+   </property>
+  </action>
+  <action name="actionRecoverPlayPosition">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Play Position(&amp;P)</string>
    </property>
   </action>
  </widget>

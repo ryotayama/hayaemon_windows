@@ -2330,6 +2330,42 @@ void CMainWnd::OpenInitFileAfterShow()
 			Stop(TRUE);
 		}
 	}
+	GetPrivateProfileString(_T("Options"), _T("RecoverPlayPos"), _T("0"), 
+		buf, 255, initFilePath.c_str());
+	if(_bRecoverList && _ttoi(buf)) {
+		m_menu.CheckItem(ID_RECOVERPLAYPOS, MF_CHECKED);
+		int i = 0;
+		while(TRUE) {
+			TCHAR chKey[255];
+			_stprintf_s(chKey, _T("MarkerPos%d"), i + 1);
+			int nMarkerPos;
+			if((nMarkerPos = GetPrivateProfileInt(_T("Options"), chKey, 0,
+					initFilePath.c_str())) > 0) {
+				m_sound.ChannelSetPosition(nMarkerPos);
+				AddMarker();
+			}
+			else break;
+			i++;
+		}
+		GetPrivateProfileString(_T("Options"), _T("PlayPos"), _T("0.0"), buf,
+			255, initFilePath.c_str());
+		if((double)(int)_ttof(buf) > 0.0)
+			SetTime(m_sound.ChannelSeconds2Bytes((double)(int)_ttof(buf)));
+		if(!bMarkerPlay) {
+			GetPrivateProfileString(_T("Options"), _T("ABLoopPosB"),
+				_T("-1.000"), buf, 255, initFilePath.c_str());
+			if(_ttof(buf) >= 0.0) {
+				SetABLoopB();
+				SetABLoopB_Sec(_ttof(buf));
+			}
+			GetPrivateProfileString(_T("Options"), _T("ABLoopPosA"),
+				_T("-1.000"), buf, 255, initFilePath.c_str());
+			if(_ttof(buf) >= 0.0) {
+				SetABLoopA();
+				SetABLoopA_Sec(_ttof(buf));
+			}
+		}
+	}
 
 	isInitFileRead = TRUE;
 }
@@ -7433,6 +7469,59 @@ void CMainWnd::WriteInitFile()
 	_stprintf_s(buf, _T("%d"), m_sound.GetCurFileNum() - 1);
 	WritePrivateProfileString(_T("Options"), _T("CurFileNum"), buf,
 		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_RECOVERPLAYPOS) ? 1 : 0);
+	WritePrivateProfileString(_T("Options"), _T("RecoverPlayPos"), buf,
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%f"), m_sound.ChannelGetSecondsPosition());
+	WritePrivateProfileString(_T("Options"), _T("PlayPos"), buf,
+		initFilePath.c_str());
+	if(m_sound.IsABLoopA())
+		_stprintf_s(buf, _T("%.3f"), m_sound.GetLoopPosA_sec());
+	else _stprintf_s(buf, _T("%.3f"), -1.000);
+	WritePrivateProfileString(_T("Options"), _T("ABLoopPosA"), buf,
+		initFilePath.c_str());
+	if(m_sound.IsABLoopB())
+		_stprintf_s(buf, _T("%.3f"), m_sound.GetLoopPosB_sec());
+	else _stprintf_s(buf, _T("%.3f"), -1.000);
+	WritePrivateProfileString(_T("Options"), _T("ABLoopPosB"), buf,
+		initFilePath.c_str());
+	if(bMarkerPlay) {
+		std::vector<QWORD> arrayMarker = m_sound.GetArrayMarker();
+		int max = (int)arrayMarker.size();
+		int i = 0;
+		for(; i < max; i++) {
+			_stprintf_s(buf, _T("%d"), arrayMarker[i]);
+			TCHAR chKey[255];
+			_stprintf_s(chKey, _T("MarkerPos%d"), i + 1);
+			WritePrivateProfileString(_T("Options"), chKey, buf,
+				initFilePath.c_str());
+		}
+		while(TRUE) {
+			TCHAR chKey[255];
+			_stprintf_s(chKey, _T("MarkerPos%d"), i + 1);
+			OutputDebugString(chKey);
+			if(GetPrivateProfileInt(_T("Options"), chKey, 0,
+					initFilePath.c_str()) > 0)
+				WritePrivateProfileString(_T("Options"), chKey, NULL,
+					initFilePath.c_str());
+			else break;
+			i++;
+		}
+	}
+	else {
+		int i = 0;
+		while(TRUE) {
+			TCHAR chKey[255];
+			_stprintf_s(chKey, _T("MarkerPos%d"), i + 1);
+			OutputDebugString(chKey);
+			if(GetPrivateProfileInt(_T("Options"), chKey, 0,
+					initFilePath.c_str()) > 0)
+				WritePrivateProfileString(_T("Options"), chKey, NULL,
+					initFilePath.c_str());
+			else break;
+			i++;
+		}
+	}
 	for(int i = 0; i < (int)m_arrayList.size(); i++) {
 		int nColCount = m_arrayList[i]->columnCount();
 		for(int j = 0; j < nColCount; j++) {
