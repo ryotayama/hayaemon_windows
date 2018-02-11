@@ -2197,6 +2197,9 @@ void CMainWnd::OpenInitFileAfterShow()
 	int _bNormalize = _ttoi(buf);
 
 	// その他の設定
+	GetPrivateProfileString(_T("Options"), _T("SaveFormat"), _T("WAVE"), buf, 
+		255, initFilePath.c_str());
+	strSaveFormat = ToQString(buf);
 	GetPrivateProfileString(_T("Options"), _T("FadeoutStop"), _T("0"), buf, 
 		255, initFilePath.c_str());
 	if(_ttoi(buf)) m_menu.CheckItem(ID_FADEOUTSTOP, MF_CHECKED);
@@ -7264,6 +7267,8 @@ void CMainWnd::WriteInitFile()
 	_stprintf_s(buf, _T("%d"), m_eq20kSlider.GetThumbPos());
 	WritePrivateProfileString(_T("Options"), _T("EQ20K"), buf, 
 		initFilePath.c_str());
+	WritePrivateProfileString(_T("Options"), _T("SaveFormat"), 
+		ToTstring(strSaveFormat).c_str(), initFilePath.c_str());
 	_stprintf_s(buf, _T("%3.1f"), m_speedSlider.GetRangeMin()
 		/ pow(10.0, m_speedSlider.GetDecimalDigit()));
 	WritePrivateProfileString(_T("Options"), _T("MinimumSpeed"), buf,
