@@ -2555,8 +2555,8 @@ void CMainWnd::PlayNext(BOOL bPlay, BOOL bFadeoutCancel)
 	// bPlay : かならず再生するかどうか
 
 	if(!bPlay && !bFadeoutCancel && !m_sound.ChannelIsStopped() &&
-		 !m_sound.ChannelIsPausing() && dwFadeoutStartTime == 0 &&
-		 m_menu.IsItemChecked(ID_FADEOUTNEXT)) {
+	   !m_sound.ChannelIsPausing() && dwFadeoutStartTime == 0 &&
+	   m_menu.IsItemChecked(ID_FADEOUTNEXT)) {
 		dwFadeoutStartTime = timeGetTime();
 		SetTimer(IDT_FADEOUTNEXT, 1);
 	}
