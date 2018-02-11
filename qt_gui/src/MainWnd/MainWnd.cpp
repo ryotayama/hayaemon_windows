@@ -2150,6 +2150,21 @@ void CMainWnd::OpenInitFile()
 		if(GetPrivateProfileInt(_T("PlayMode"), _T("Random"), 0, chPath))
 			SetRandom();
 	}
+
+	// その他の設定
+	if(GetPrivateProfileInt(_T("Window"), _T("RecoverPos"), 0, chPath)) {
+		m_menu.SwitchItemChecked(ID_RECOVERWPOS);
+		int left = GetPrivateProfileInt(_T("Window"), _T("Left"), 0, chPath);
+		int top = GetPrivateProfileInt(_T("Window"), _T("Top"), 0, chPath);
+		this->move(left, top);
+	}
+	if(GetPrivateProfileInt(_T("Window"), _T("RecoverSize"), 0, chPath)) {
+		m_menu.SwitchItemChecked(ID_RECOVERWSIZE);
+		resize(GetPrivateProfileInt(_T("Window"), _T("Width"), 320, chPath),
+			GetPrivateProfileInt(_T("Window"), _T("Height"), 240, chPath));
+		if(GetPrivateProfileInt(_T("Window"), _T("Zoomed"), 0, chPath))
+			this->showMaximized();
+	}
 }
 //----------------------------------------------------------------------------
 // INI ファイルを開く
@@ -7028,6 +7043,29 @@ void CMainWnd::WriteInitFile()
 			ToTstring(m_rApp.GetFilePath() + QString("Setting.ini"));
 
 	TCHAR buf[255];
+
+	// ウィンドウの設定
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_RECOVERWPOS) ? 1 : 0);
+	WritePrivateProfileString(_T("Window"), _T("RecoverPos"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), this->x());
+	WritePrivateProfileString(_T("Window"), _T("Left"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), this->y());
+	WritePrivateProfileString(_T("Window"), _T("Top"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_RECOVERWSIZE) ? 1 : 0);
+	WritePrivateProfileString(_T("Window"), _T("RecoverSize"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), this->frameGeometry().width());
+	WritePrivateProfileString(_T("Window"), _T("Width"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), this->frameGeometry().height());
+	WritePrivateProfileString(_T("Window"), _T("Height"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), this->isMaximized() ? 1 : 0);
+	WritePrivateProfileString(_T("Window"), _T("Zoomed"), buf, 
+		initFilePath.c_str());
 
 	// 表示・非表示の設定
 	_stprintf_s(buf, _T("%d"),

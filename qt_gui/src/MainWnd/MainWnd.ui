@@ -1001,6 +1001,9 @@
      <addaction name="menuVisible_V"/>
      <addaction name="menuPlay_mode_P"/>
      <addaction name="separator"/>
+     <addaction name="actionRecoverWindowPosition"/>
+     <addaction name="actionRecoverWindowSize"/>
+     <addaction name="separator"/>
      <addaction name="actionRecoverPlayPosition"/>
      <addaction name="separator"/>
      <addaction name="actionRecoverSpeed"/>
@@ -3204,6 +3207,22 @@
    </property>
    <property name="text">
     <string>Play Position(&amp;P)</string>
+   </property>
+  </action>
+  <action name="actionRecoverWindowPosition">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Window position(&amp;P)</string>
+   </property>
+  </action>
+  <action name="actionRecoverWindowSize">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Window size(&amp;S)</string>
    </property>
   </action>
  </widget>

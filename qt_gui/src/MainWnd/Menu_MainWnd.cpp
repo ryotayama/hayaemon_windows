@@ -2901,6 +2901,8 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_RECOVERVOLUMEVISIBLE, m_rMainWnd.actionRecoverVolumeVisible},
 		{ID_RECOVERPANVISIBLE, m_rMainWnd.actionRecoverPanVisible},
 		{ID_RECOVEREQVISIBLE, m_rMainWnd.actionRecoverEQVisible},
+		{ID_RECOVERWPOS, m_rMainWnd.actionRecoverWindowPosition},
+		{ID_RECOVERWSIZE, m_rMainWnd.actionRecoverWindowSize},
 		{ID_RECOVERPLAYPOS, m_rMainWnd.actionRecoverPlayPosition},
 		{ID_RECOVERSPEED, m_rMainWnd.actionRecoverSpeed},
 		{ID_RECOVERFREQ, m_rMainWnd.actionRecoverFreq},
