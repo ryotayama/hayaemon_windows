@@ -29,9 +29,6 @@ CApp::CApp()
 //----------------------------------------------------------------------------
 CApp::~CApp()
 {
-	if(m_wnd != nullptr) {
-		delete m_wnd;
-	}
 }
 //----------------------------------------------------------------------------
 // 実行
@@ -53,7 +50,8 @@ int CApp::Run(int argc, char *argv[])
 	m_strPath = filePath.left(filePath.length() - fileName.length());
 	m_strPath = QDir::toNativeSeparators(m_strPath);
 
-	m_wnd = new CMainWnd(*this);
+	CMainWnd mainWnd(*this);
+	m_wnd = &mainWnd;
 	if(!m_wnd->Create()) return 0;
 
 	m_wnd->show();
