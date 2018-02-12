@@ -62,6 +62,7 @@ public: // 関数
 	void OnOpenURLMenuSelected();
 	void OnAddURLMenuSelected();
 	void OnSaveFileMenuSelected();
+	void OnExitMenuSelected();
 	void OnDeleteMenuSelected();
 	void OnSelectAllMenuSelected();
 	void OnTimeSliderMenuSelected(bool checked);

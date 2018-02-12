@@ -355,6 +355,13 @@ void CMenu_MainWnd::OnSaveFileMenuSelected()
 	m_rMainWnd.ShowSaveFileDialog();
 }
 //----------------------------------------------------------------------------
+// ファイル → 終了メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnExitMenuSelected()
+{
+	m_rMainWnd.close();
+}
+//----------------------------------------------------------------------------
 // 削除メニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnDeleteMenuSelected()
@@ -3023,6 +3030,8 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnAddURLMenuSelected);
 	connect(m_rMainWnd.actionFileSave, &QAction::triggered,
 					this, &CMenu_MainWnd::OnSaveFileMenuSelected);
+	connect(m_rMainWnd.actionFileExit, &QAction::triggered,
+					this, &CMenu_MainWnd::OnExitMenuSelected);
 	// Edit
 	connect(m_rMainWnd.actionEditDelete, &QAction::triggered,
 					this, &CMenu_MainWnd::OnDeleteMenuSelected);

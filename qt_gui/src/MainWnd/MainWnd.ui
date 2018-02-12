@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>MainWnd</class>
  <widget class="QMainWindow" name="MainWnd">
@@ -1071,6 +1071,8 @@
     <addaction name="actionFileAddUrl"/>
     <addaction name="separator"/>
     <addaction name="actionFileSave"/>
+    <addaction name="separator"/>
+    <addaction name="actionFileExit"/>
    </widget>
    <widget class="QMenu" name="menuEdit_E">
     <property name="title">
@@ -3223,6 +3225,14 @@
    </property>
    <property name="text">
     <string>Window size(&amp;S)</string>
+   </property>
+  </action>
+  <action name="actionFileExit">
+   <property name="text">
+    <string>Exit(&amp;X)</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+F4</string>
    </property>
   </action>
  </widget>
