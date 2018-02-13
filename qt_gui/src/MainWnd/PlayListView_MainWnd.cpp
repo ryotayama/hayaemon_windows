@@ -10,7 +10,12 @@
 #include <QUrl>
 #include "M3UFile.h"
 #include "MainWnd.h"
+#include "RMenu_ListView.h"
 #include "Utility.h"
+
+#ifdef max
+# undef max
+#endif
 //----------------------------------------------------------------------------
 // コンストラクタ
 //----------------------------------------------------------------------------
@@ -18,6 +23,9 @@ CPlayListView_MainWnd::CPlayListView_MainWnd(CMainWnd & mainWnd,
 																						 QWidget * parent /* = nullptr */)
 	: QTableWidget(parent), m_rMainWnd(mainWnd)
 {
+  setContextMenuPolicy(Qt::CustomContextMenu);
+	connect(this, &QWidget::customContextMenuRequested,
+					this, &CPlayListView_MainWnd::OnContextMenu);
 	connect(this, &QTableWidget::itemDoubleClicked,
 					this, &CPlayListView_MainWnd::OnLButtonDoubleClick);
 }
@@ -146,11 +154,25 @@ void CPlayListView_MainWnd::AddURL(const QString & lpszFilePath, int nPos)
 	orders.push_back(-1);
 }
 //----------------------------------------------------------------------------
+// 選択中のファイルをコピー
+//----------------------------------------------------------------------------
+void CPlayListView_MainWnd::CopySelectedItem(int nDst)
+{
+	m_rMainWnd.GetTab().SetCurrentFocus(nDst);
+	int nItem = -1;
+  for(int nItem : GetSelectedRows()) {
+		QString chPath;
+		GetItemText(nItem, 7, &chPath);
+		m_rMainWnd.AddFile(chPath);
+	}
+}
+//----------------------------------------------------------------------------
 // 作成
 //----------------------------------------------------------------------------
 BOOL CPlayListView_MainWnd::Create()
 {
 	setAcceptDrops(true);
+	setSelectionMode(QAbstractItemView::SelectionMode::ExtendedSelection);
 	setSelectionBehavior(QAbstractItemView::SelectRows);
 
 	setColumnCount(8);
@@ -169,6 +191,19 @@ BOOL CPlayListView_MainWnd::Create()
 	return TRUE;
 }
 //----------------------------------------------------------------------------
+// 新しい再生リストの作成
+//----------------------------------------------------------------------------
+void CPlayListView_MainWnd::CreateNewList()
+{
+	auto rows = GetSelectedRows();
+	m_rMainWnd.CreateNewList();
+	for(int row : rows) {
+		QString chPath;
+		GetItemText(row, 7, &chPath);
+		m_rMainWnd.AddFile(chPath);
+	}
+}
+//----------------------------------------------------------------------------
 // 選択アイテムを削除
 //----------------------------------------------------------------------------
 void CPlayListView_MainWnd::DeleteSelectedItems()
@@ -176,16 +211,7 @@ void CPlayListView_MainWnd::DeleteSelectedItems()
 	BOOL bPlayNext = FALSE;
 	BOOL bStop = FALSE;
 	BOOL bCurTab = &m_rMainWnd.GetCurPlayList() == this;
-	int nItem = -1;
-	auto items = selectedItems();
-	std::sort(items.begin(), items.end(),
-						[] (auto lhs, auto rhs) { return lhs->row() < rhs-> row(); });
-	auto end = std::unique(items.begin(), items.end(),
-												 [] (auto lhs, auto rhs) {
-													 return lhs->row() == rhs-> row();
-												 });
-	for (auto it = items.begin(); it != end; ++it) {
-		nItem = (*it)->row();
+	for (int nItem : GetSelectedRows()) {
 		FixPlayOrder(nItem);
 		DeleteItem(nItem);
 		if(bCurTab) {
@@ -283,6 +309,17 @@ int CPlayListView_MainWnd::GetMaxPlayOrder() const
 	return nMax;
 }
 //----------------------------------------------------------------------------
+// 選択中のアイテムを再生
+//----------------------------------------------------------------------------
+void CPlayListView_MainWnd::PlaySelectedItem()
+{
+	auto items = this->selectedItems();
+	if(!items.isEmpty()) {
+		m_rMainWnd.ChangeCurPlayTab();
+		m_rMainWnd.Play(items.front()->row());
+	}
+}
+//----------------------------------------------------------------------------
 // 再生中の設定
 //----------------------------------------------------------------------------
 void CPlayListView_MainWnd::SetPlaying(int iItem)
@@ -353,6 +390,28 @@ void CPlayListView_MainWnd::ScrollToItem(int nItem)
 	EnsureVisible(nItem, TRUE);
 }
 //----------------------------------------------------------------------------
+// コンテキストメニュー
+//----------------------------------------------------------------------------
+void CPlayListView_MainWnd::OnContextMenu(const QPoint & pos)
+{
+	bool hit = false;
+	for(int i = 0; i < rowCount(); i++) {
+		QRect rect = visualItemRect(item(i, 0));
+		for(int j = 1; j < columnCount(); j++) {
+			if(item(i, j) != nullptr) {
+				QRect rect2 = visualItemRect(item(i, j));
+				rect.setRight(std::max(rect.right(), rect2.right()));
+			}
+		}
+		hit = rect.contains(pos);
+		if(hit) {
+			break;
+		}
+	}
+	CRMenu_ListView menu(*this, hit);
+	menu.exec(this->mapToGlobal(pos));
+}
+//----------------------------------------------------------------------------
 // ファイルがドロップされた
 //----------------------------------------------------------------------------
 void CPlayListView_MainWnd::OnDropFiles(const QList<QUrl> & urls)
@@ -403,5 +462,23 @@ void CPlayListView_MainWnd::dragEnterEvent(QDragEnterEvent * e)
 void CPlayListView_MainWnd::dropEvent(QDropEvent * e)
 {
 	OnDropFiles(e->mimeData()->urls());
+}
+//----------------------------------------------------------------------------
+// 選択されたアイテムを取得する。ただし、列の重複はないリストを返す。
+//----------------------------------------------------------------------------
+std::vector<int> CPlayListView_MainWnd::GetSelectedRows()
+{
+	auto indexes = selectedIndexes();
+	std::sort(indexes.begin(), indexes.end(),
+						[] (auto lhs, auto rhs) { return lhs.row() < rhs.row(); });
+	auto end = std::unique(indexes.begin(), indexes.end(),
+												 [] (auto &lhs, auto &rhs) {
+													 return lhs.row() == rhs.row();
+												 });
+	std::vector<int> rows;
+	for(auto it = indexes.begin(); it != end; ++it) {
+		rows.push_back(it->row());
+	}
+	return rows;
 }
 //----------------------------------------------------------------------------

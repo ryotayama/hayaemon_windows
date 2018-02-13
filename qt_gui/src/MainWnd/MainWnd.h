@@ -95,6 +95,7 @@ public: // 関数
 	virtual ~CMainWnd();
 
 	virtual void AddDropFiles(const QList<QUrl> & urls, BOOL bClear);
+	virtual void AddFile(const QString & lpszFilePath);
 	virtual void AddMarker();
 	virtual void AddPreset();
 	virtual void AddPreset(tstring strPreset);
@@ -476,6 +477,9 @@ public: // メンバ変数の取得・設定
 	}
 	CPlayListView_MainWnd & GetCurPlayList() {
 		return *m_arrayList[nCurPlayTab];
+	}
+	CPlayListView_MainWnd & GetPlayList(int n) {
+		return *m_arrayList[n];
 	}
 	CSound & GetSound() { return m_sound; }
 	BOOL IsMarkerPlay() const { return bMarkerPlay; }

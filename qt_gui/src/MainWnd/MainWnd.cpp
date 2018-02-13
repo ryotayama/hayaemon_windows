@@ -89,6 +89,14 @@ void CMainWnd::AddDropFiles(const QList<QUrl> & urls, BOOL bClear)
 	SetPreviousNextMenuState();
 }
 //----------------------------------------------------------------------------
+// ファイルの追加
+//----------------------------------------------------------------------------
+void CMainWnd::AddFile(const QString & lpszFilePath)
+{
+	int nSelect = m_tab->GetCurrentFocus();
+	m_arrayList[nSelect]->AddFile(lpszFilePath);
+}
+//----------------------------------------------------------------------------
 // マーカーの追加
 //----------------------------------------------------------------------------
 void CMainWnd::AddMarker()

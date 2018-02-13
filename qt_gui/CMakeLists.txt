@@ -94,6 +94,8 @@ set(SRC_MAINWND
   ${SRC_DIR}/MainWnd/PresetNameInputWnd.h
   ${SRC_DIR}/MainWnd/ReverbCustomizeWnd.cpp
   ${SRC_DIR}/MainWnd/ReverbCustomizeWnd.h
+  ${SRC_DIR}/MainWnd/RMenu_ListView.cpp
+  ${SRC_DIR}/MainWnd/RMenu_ListView.h
   ${SRC_DIR}/MainWnd/Sound.cpp
   ${SRC_DIR}/MainWnd/Sound.h
   ${SRC_DIR}/MainWnd/SpeedLabel_MainWnd.cpp

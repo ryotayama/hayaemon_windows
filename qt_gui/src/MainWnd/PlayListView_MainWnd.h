@@ -25,11 +25,14 @@ public: // 関数
 	virtual void AddDirectory(const QString & lpszDirectoryPath);
 	virtual void AddFile(const QString & filePath, int nPos = -1);
 	virtual void AddURL(const QString & lpszFilePath, int nPos = -1);
+	virtual void CopySelectedItem(int nDst);
 	virtual BOOL Create();
+	virtual void CreateNewList();
 	virtual BOOL DeleteAllItems();
 	virtual void DeleteSelectedItems();
 	virtual void Delete(int nItem);
 	virtual int GetMaxPlayOrder() const;
+	virtual void PlaySelectedItem();
 	virtual void SetPlaying(int iItem);
 	virtual void SetPausing(int iItem);
 	virtual void SetPlayOrder(int iItem);
@@ -40,6 +43,7 @@ public: // 関数
 	virtual void ScrollToItem(int nItem);
 	virtual void SelectAll();
 
+	virtual void OnContextMenu(const QPoint & pos);
 	virtual void OnDropFiles(const QList<QUrl> & urls);
 	virtual void OnLButtonDoubleClick(QTableWidgetItem * item);
 
@@ -49,6 +53,7 @@ public: // メンバ変数の取得・設定
 	{
 		return orders;
 	}
+	CMainWnd & GetMainWnd() { return m_rMainWnd; }
 
 public:
 	// Qtのラッパー
@@ -111,11 +116,15 @@ public:
 	}
 
 protected:
-  void dragEnterEvent(QDragEnterEvent * e) override;
-  void dropEvent(QDropEvent * e) override;
+	void dragEnterEvent(QDragEnterEvent * e) override;
+	void dropEvent(QDropEvent * e) override;
 	QStringList mimeTypes() const override {
 		return QTableWidget::mimeTypes() << QStringLiteral("text/uri-list");
 	}
+
+private:
+
+	std::vector<int> GetSelectedRows();
 
 private: // メンバ変数
 

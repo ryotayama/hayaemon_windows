@@ -39,6 +39,9 @@ public: // 関数
 		setTabText(iItem, QString::fromStdString(lpText));
 #endif
 	}
+	virtual QString GetItemText(int iItem) {
+		return tabText(iItem);
+	}
 };
 //----------------------------------------------------------------------------
 
