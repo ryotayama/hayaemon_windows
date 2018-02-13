@@ -45,6 +45,7 @@ public: // 関数
 
 	virtual void OnContextMenu(const QPoint & pos);
 	virtual void OnDropFiles(const QList<QUrl> & urls);
+	virtual void OnKeyDown(QKeyEvent * e);
 	virtual void OnLButtonDoubleClick(QTableWidgetItem * item);
 
 public: // メンバ変数の取得・設定
@@ -121,6 +122,7 @@ protected:
 	QStringList mimeTypes() const override {
 		return QTableWidget::mimeTypes() << QStringLiteral("text/uri-list");
 	}
+	void keyPressEvent(QKeyEvent * e) override;
 
 private:
 

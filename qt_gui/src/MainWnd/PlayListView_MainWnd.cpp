@@ -419,6 +419,16 @@ void CPlayListView_MainWnd::OnDropFiles(const QList<QUrl> & urls)
 	m_rMainWnd.AddDropFiles(urls, FALSE);
 }
 //----------------------------------------------------------------------------
+// キーボードが押された
+//----------------------------------------------------------------------------
+void CPlayListView_MainWnd::OnKeyDown(QKeyEvent * e)
+{
+	int vk = e->key();
+	if((vk == Qt::Key_Return || vk == Qt::Key_Enter) && !e->isAutoRepeat())
+		PlaySelectedItem();
+	else if(vk == Qt::Key_Delete) DeleteSelectedItems();
+}
+//----------------------------------------------------------------------------
 // ダブルクリックされた
 //----------------------------------------------------------------------------
 void CPlayListView_MainWnd::OnLButtonDoubleClick(QTableWidgetItem * item)
@@ -462,6 +472,10 @@ void CPlayListView_MainWnd::dragEnterEvent(QDragEnterEvent * e)
 void CPlayListView_MainWnd::dropEvent(QDropEvent * e)
 {
 	OnDropFiles(e->mimeData()->urls());
+}
+void CPlayListView_MainWnd::keyPressEvent(QKeyEvent * e)
+{
+	OnKeyDown(e);
 }
 //----------------------------------------------------------------------------
 // 選択されたアイテムを取得する。ただし、列の重複はないリストを返す。
