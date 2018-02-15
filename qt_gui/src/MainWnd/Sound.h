@@ -7,6 +7,7 @@
 #include <vector>
 #include "../Common/BassFx.h"
 #include "../Common/Define.h"
+class CApp;
 class CMainWnd;
 //----------------------------------------------------------------------------
 // 音の再生管理クラス
@@ -15,7 +16,7 @@ class CSound : public CBassFx
 {
 public: // 関数
 
-	CSound(CMainWnd & mainWnd, BOOL bMainStream = TRUE);
+	CSound(CApp & app, CMainWnd & mainWnd, BOOL bMainStream = TRUE);
 
 	virtual void AddMarker(QWORD nPos);
 	virtual int ChangeMarkerPos(int nMarker, QWORD nPos);
@@ -116,6 +117,7 @@ public: // 関数
 	virtual BOOL SetSampleRate(float samplerate);
 	virtual BOOL ChannelSetVolume(float volume);
 	virtual UINT OnLoop();
+	virtual void SaveFile(LPCTSTR lpszFilePath, int nFormat);
 	virtual void SetMonoral(BOOL bMonoral = TRUE);
 	static void CALLBACK Monoral(HDSP handle, DWORD channel, void *buffer,
 								 DWORD length, void *user);
@@ -134,9 +136,13 @@ public: // 関数
 	virtual void SetNormalize(BOOL bNormalize = TRUE);
 	static void CALLBACK Normalize(HDSP handle, DWORD channel,
 								   void *buffer, DWORD length, void *user);
+	virtual void SetPan(int nPan);
+	static void CALLBACK Pan(HDSP handle, DWORD channel,
+							 void *buffer, DWORD length, void *user);
 
 private: // メンバ変数
 
+	CApp & m_rApp;
 	CMainWnd & m_rMainWnd;
 
 	BOOL m_bLoop; // １曲ループがオンかどうか
@@ -149,6 +155,7 @@ private: // メンバ変数
 	int m_nCurFile;
 	std::vector<QWORD> m_arrayMarker;
 	int m_peak;
+	int m_nPan;
 	BOOL m_bMainStream;
 
 	HFX m_hFx20Hz, m_hFx25Hz, m_hFx31_5Hz, m_hFx40Hz, m_hFx50Hz, m_hFx63Hz,
@@ -169,7 +176,7 @@ private: // メンバ変数
 		m_hFx20KHz_2;
 
 	HDSP m_hMonoralDsp, m_hVocalCancelDsp, m_hOnlyLeftDsp, m_hOnlyRightDsp,
-		 m_hChangeLRDsp , m_hNormalizeDsp;
+		 m_hChangeLRDsp , m_hNormalizeDsp, m_hPanDsp;
 
 	BASS_DX8_REVERB m_bdr;
 	BASS_DX8_I3DL2REVERB m_bdir;
@@ -189,6 +196,7 @@ public: // メンバ変数の取得・設定
 	virtual QWORD GetLoopPosB() const { return m_nLoopPosB; }
 	virtual double GetLoopPosA_sec() const { return ChannelBytes2Seconds(m_nLoopPosA); }
 	virtual double GetLoopPosB_sec() const { return ChannelBytes2Seconds(m_nLoopPosB); }
+	virtual tstring GetCurFileName() const { return m_strCurFile; }
 	virtual int GetCurFileNum() const { return m_nCurFile; }
 	virtual void SetCurFileNum(int n) { m_nCurFile = n; }
 	virtual std::vector<QWORD> GetArrayMarker() const { return m_arrayMarker; }

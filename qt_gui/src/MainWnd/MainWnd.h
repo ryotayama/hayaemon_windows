@@ -78,19 +78,20 @@ public: // 関数
 		m_eq12_5kLabel(*this), m_eq12_5kSlider(*this),
 		m_eq16kLabel(*this), m_eq16kSlider(*this),
 		m_eq20kLabel(*this), m_eq20kSlider(*this),
-		m_sound(*this), m_soundEffect(*this, FALSE), isInitFileRead(FALSE),
-		bTimerPlay(FALSE), bTimerPlayNextDay(FALSE), bTimerStop(FALSE),
-		bTimerStopNextDay(FALSE), bReverb(FALSE), b3DReverb(FALSE), bDelay(FALSE),
-		bChorus(FALSE), bCompressor(FALSE), bFlanger(FALSE), bGargle(FALSE),
-		bDistortion(FALSE), bMarkerPlay(FALSE), bCountLoop(FALSE),
-		bInstantLoop(FALSE), bSetPositionAuto(FALSE), m_bFinish(FALSE),
-		nTimerPlayHour(0), nTimerPlayMinute(0), nTimerStopHour(0),
+		m_sound(app, *this), m_soundEffect(app, *this, FALSE),
+		isInitFileRead(FALSE), bTimerPlay(FALSE), bTimerPlayNextDay(FALSE),
+		bTimerStop(FALSE), bTimerStopNextDay(FALSE), bReverb(FALSE),
+		b3DReverb(FALSE), bDelay(FALSE), bChorus(FALSE), bCompressor(FALSE),
+		bFlanger(FALSE), bGargle(FALSE), bDistortion(FALSE), bMarkerPlay(FALSE),
+		bCountLoop(FALSE), bInstantLoop(FALSE), bSetPositionAuto(FALSE),
+		m_bFinish(FALSE), nTimerPlayHour(0), nTimerPlayMinute(0), nTimerStopHour(0),
 		nTimerStopMinute(0), nIncSpeed(0), nIncFreq(0), nDecSpeed(0), nDecFreq(0),
 		nFreqVelo(0), nFreqAccel(0), nLoopCount(0), nCurrentLoopCount(0),
 		nIncSpeedMode(0), nIncFreqMode(0), nDecSpeedMode(0), nDecFreqMode(0),
 		nCurPlayTab(0), dwFadeoutStartTime(0), m_nLastDecimalDigit_pitch(0),
 		m_nLastDecimalDigit_freq(0), m_nLastDecimalDigit_speed(0),
-		m_dStartSeconds(0.0), m_dEndSeconds(0.0), m_timeThreadRunning(false),
+		m_dStartSeconds(0.0), m_dEndSeconds(0.0),
+		m_strLAMECommandLine(_T("--preset cbr 192")), m_timeThreadRunning(false),
 		m_bForwarding(false), m_bRewinding(false) { }
 	virtual ~CMainWnd();
 
@@ -429,6 +430,7 @@ protected: // メンバ変数
 	int m_nLastDecimalDigit_speed; // 前回の小数点桁数（再生速度）
 	double m_dStartSeconds; // 再生範囲の開始位置
 	double m_dEndSeconds; // 再生範囲の停止位置
+	tstring m_strLAMECommandLine;
 	std::unique_ptr<std::thread> m_timeThread;
 	bool m_timeThreadRunning;
 	bool m_bForwarding;
@@ -486,6 +488,13 @@ public: // メンバ変数の取得・設定
 	BOOL IsSetPositionAuto() const { return bSetPositionAuto; }
 	void SetFinish(BOOL bFinish) { m_bFinish = bFinish; }
 
+	tstring GetStrLAMECommandLine() { return m_strLAMECommandLine; }
+
+public:
+
+	// Qtのラッパー
+	virtual void KillTimer(UINT_PTR nIDEvent);
+
 private:
 
 	struct EQItem {
@@ -505,7 +514,6 @@ private:
 	void dragEnterEvent(QDragEnterEvent * e) final;
 	void dropEvent(QDropEvent * e) final;
 	// Qtのラッパー
-	virtual void KillTimer(UINT_PTR nIDEvent);
 	virtual void SetCaption(const QString & lpWindowName);
 	virtual void SetTimer(UINT_PTR nIDEvent, UINT nElapse);
 

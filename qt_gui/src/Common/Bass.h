@@ -49,6 +49,9 @@ public: // 関数
 	virtual QWORD ChannelGetLength() const {
 		return BASS_ChannelGetLength(m_hStream, 0);
 	}
+	virtual DWORD ChannelGetData(void *buffer, DWORD length) const {
+		return BASS_ChannelGetData(m_hStream, buffer, length);
+	}
 	virtual QWORD ChannelGetPosition() const {
 		return BASS_ChannelGetPosition(m_hStream, 0);
 	}

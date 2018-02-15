@@ -134,6 +134,7 @@ set(SRC_BASS
   ${BASS_DIR}/include/bass/bass_fx.h
   ${BASS_DIR}/include/bass/bassalac.h
   ${BASS_DIR}/include/bass/basscd.h
+  ${BASS_DIR}/include/bass/bassenc.h
   ${BASS_DIR}/include/bass/bassflac.h
 )
 elseif (APPLE)
@@ -222,12 +223,14 @@ target_link_libraries(Hayaemon
   bass_fx
   bassalac
   basscd
+  bassenc
   bassflac
   winmm
 )
 elseif (APPLE)
 target_link_libraries(Hayaemon
   bass
+  bassenc
   bass_ape
   bass_fx
   bassflac

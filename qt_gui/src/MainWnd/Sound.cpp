@@ -2,35 +2,45 @@
 // Sound.cpp : 音の再生管理
 //----------------------------------------------------------------------------
 #include "Sound.h"
+#include <stdio.h>
 #include <algorithm>
 #include <cctype>
+#include <QFile>
+#include <QFileInfo>
+#include <QMessageBox>
+#include <QProgressDialog>
+#include "bass/bassenc.h"
+#include "../App.h"
+#include "../Common/CommandList.h"
 #include "../Common/Define.h"
 #include "MainWnd.h"
+#include "Utility.h"
 //----------------------------------------------------------------------------
 // コンストラクタ
 //----------------------------------------------------------------------------
-CSound::CSound(CMainWnd & mainWnd, BOOL bMainStream)
-	: m_rMainWnd(mainWnd), m_bLoop(FALSE), m_nLoopPosA(0), m_nLoopPosB(0),
-		m_bABLoopA(FALSE), m_bABLoopB(FALSE), m_nCurFile(0), m_peak(0),
-		m_bMainStream(bMainStream), m_hFx20Hz(0), m_hFx25Hz(0), m_hFx31_5Hz(0),
-		m_hFx40Hz(0), m_hFx50Hz(0), m_hFx63Hz(0), m_hFx80Hz(0), m_hFx100Hz(0),
-		m_hFx125Hz(0), m_hFx160Hz(0), m_hFx200Hz(0), m_hFx250Hz(0), m_hFx315Hz(0),
-		m_hFx400Hz(0), m_hFx500Hz(0), m_hFx630Hz(0), m_hFx800Hz(0), m_hFx1KHz(0),
-		m_hFx1_25KHz(0), m_hFx1_6KHz(0), m_hFx2KHz(0), m_hFx2_5KHz(0),
-		m_hFx3_15KHz(0), m_hFx4KHz(0), m_hFx5KHz(0), m_hFx6_3KHz(0), m_hFx8KHz(0),
-		m_hFx10KHz(0), m_hFx12_5KHz(0), m_hFx16KHz(0), m_hFx20KHz(0),
-		m_hFxReverb(0), m_hFx3DReverb(0), m_hFxDelay(0), m_hFxChorus(0),
-		m_hFxCompressor(0), m_hFxFlanger(0), m_hFxGargle(0), m_hFxDistortion(0),
-		m_hFxVolume(0), m_hFx20Hz_2(0), m_hFx25Hz_2(0), m_hFx31_5Hz_2(0),
-		m_hFx40Hz_2(0), m_hFx50Hz_2(0), m_hFx63Hz_2(0), m_hFx80Hz_2(0),
-		m_hFx100Hz_2(0), m_hFx125Hz_2(0), m_hFx160Hz_2(0), m_hFx200Hz_2(0),
-		m_hFx250Hz_2(0), m_hFx315Hz_2(0), m_hFx400Hz_2(0), m_hFx500Hz_2(0),
-		m_hFx630Hz_2(0), m_hFx800Hz_2(0), m_hFx1KHz_2(0), m_hFx1_25KHz_2(0),
-		m_hFx1_6KHz_2(0), m_hFx2KHz_2(0), m_hFx2_5KHz_2(0), m_hFx3_15KHz_2(0),
-		m_hFx4KHz_2(0), m_hFx5KHz_2(0), m_hFx6_3KHz_2(0), m_hFx8KHz_2(0),
-		m_hFx10KHz_2(0), m_hFx12_5KHz_2(0), m_hFx16KHz_2(0), m_hFx20KHz_2(0),
-		m_hMonoralDsp(0), m_hVocalCancelDsp(0), m_hOnlyLeftDsp(0),
-		m_hOnlyRightDsp(0), m_hChangeLRDsp(0), m_hNormalizeDsp(0)
+CSound::CSound(CApp & app, CMainWnd & mainWnd, BOOL bMainStream)
+	: m_rApp(app), m_rMainWnd(mainWnd), m_bLoop(FALSE), m_nLoopPosA(0),
+		m_nLoopPosB(0), m_bABLoopA(FALSE), m_bABLoopB(FALSE), m_nCurFile(0),
+		m_peak(0), m_nPan(0), m_bMainStream(bMainStream), m_hFx20Hz(0),
+		m_hFx25Hz(0), m_hFx31_5Hz(0), m_hFx40Hz(0), m_hFx50Hz(0), m_hFx63Hz(0),
+		m_hFx80Hz(0), m_hFx100Hz(0), m_hFx125Hz(0), m_hFx160Hz(0), m_hFx200Hz(0),
+		m_hFx250Hz(0), m_hFx315Hz(0), m_hFx400Hz(0), m_hFx500Hz(0), m_hFx630Hz(0),
+		m_hFx800Hz(0), m_hFx1KHz(0), m_hFx1_25KHz(0), m_hFx1_6KHz(0), m_hFx2KHz(0),
+		m_hFx2_5KHz(0), m_hFx3_15KHz(0), m_hFx4KHz(0), m_hFx5KHz(0),
+		m_hFx6_3KHz(0), m_hFx8KHz(0), m_hFx10KHz(0), m_hFx12_5KHz(0),
+		m_hFx16KHz(0), m_hFx20KHz(0), m_hFxReverb(0), m_hFx3DReverb(0),
+		m_hFxDelay(0), m_hFxChorus(0), m_hFxCompressor(0), m_hFxFlanger(0),
+		m_hFxGargle(0), m_hFxDistortion(0), m_hFxVolume(0), m_hFx20Hz_2(0),
+		m_hFx25Hz_2(0), m_hFx31_5Hz_2(0), m_hFx40Hz_2(0), m_hFx50Hz_2(0),
+		m_hFx63Hz_2(0), m_hFx80Hz_2(0), m_hFx100Hz_2(0), m_hFx125Hz_2(0),
+		m_hFx160Hz_2(0), m_hFx200Hz_2(0), m_hFx250Hz_2(0), m_hFx315Hz_2(0),
+		m_hFx400Hz_2(0), m_hFx500Hz_2(0), m_hFx630Hz_2(0), m_hFx800Hz_2(0),
+		m_hFx1KHz_2(0), m_hFx1_25KHz_2(0), m_hFx1_6KHz_2(0), m_hFx2KHz_2(0),
+		m_hFx2_5KHz_2(0), m_hFx3_15KHz_2(0), m_hFx4KHz_2(0), m_hFx5KHz_2(0),
+		m_hFx6_3KHz_2(0), m_hFx8KHz_2(0), m_hFx10KHz_2(0), m_hFx12_5KHz_2(0),
+		m_hFx16KHz_2(0), m_hFx20KHz_2(0), m_hMonoralDsp(0), m_hVocalCancelDsp(0),
+		m_hOnlyLeftDsp(0), m_hOnlyRightDsp(0), m_hChangeLRDsp(0),
+		m_hNormalizeDsp(0), m_hPanDsp(0)
 {
 	// BASS_FXSetParametersでボリュームを変更しようとするだけでは、bass_fxが
 	// ロードされないので、明示的にbass_fxの関数を実行する。
@@ -1746,5 +1756,176 @@ UINT CSound::OnLoop()
 		return 1;
 	}
 	return 0;
+}
+//----------------------------------------------------------------------------
+// 保存
+//----------------------------------------------------------------------------
+void CSound::SaveFile(LPCTSTR lpszFilePath, int nFormat)
+{
+	// nFormat : 0 ( WAVE ), 1 ( MP3 ), 2 ( OGG )
+
+	if(GetCurFileName() == _T("")) return;
+#ifdef _WIN32
+	if(nFormat == 1) { // MP3
+		QString strLamePath = m_rApp.GetFilePath() + "lame.exe";
+		if(!QFileInfo(strLamePath).exists()) {
+			QMessageBox::information(&m_rMainWnd, QObject::tr("Save file"),
+					   QObject::tr(
+					      "To save MP3 file, lame.exe is required.\n"
+					      "Put lame.exe in the same directory as hayaemon.exe."));
+			return;
+		}
+	}
+	else if(nFormat == 2) { // OGG
+		QString strLamePath = m_rApp.GetFilePath() + "oggenc2.exe";
+		if(!QFileInfo(strLamePath).exists()) {
+			QMessageBox::information(&m_rMainWnd, QObject::tr("Save file"),
+					   QObject::tr(
+					      "To save Ogg Vorbis file, oggenc2.exe is required.\n"
+					      "Put oggenc2.exe in the same directory as hayaemon.exe."));
+			return;
+		}
+	}
+#else
+# error NOT IMPLEMENTED.
+#endif
+
+	m_rMainWnd.KillTimer(m_rMainWnd.IDT_TIME);
+	QWORD curPos = ChannelGetPosition();
+
+	// ABループ中の場合は、AからBまでを保存
+	BOOL bABLoopA = m_bABLoopA;
+	BOOL bABLoopB = m_bABLoopB;
+	QWORD nStartPosition = m_bABLoopA ? GetLoopPosA() : 0;
+	QWORD nEndPosition = m_bABLoopB ? GetLoopPosB() : ChannelGetLength();
+	int nStartPosition_sec = m_bABLoopA ? (int)GetLoopPosA_sec() : 0;
+	int nEndPosition_sec = m_bABLoopB ?
+		(int)GetLoopPosB_sec() : (int)ChannelGetSecondsLength();
+
+	BOOL bPlaying = FALSE;
+	if(ChannelPause()) bPlaying = TRUE;
+
+	StreamCreateFile(m_strCurFile.c_str(), TRUE);
+	m_rMainWnd.SetAllEffects();
+	SetPan(m_rMainWnd.GetPanSlider().GetThumbPos());
+
+	BOOL bRet;
+	if(nFormat == 0) { // WAVE
+#ifdef UNICODE
+		auto strCmdLine = QString::fromStdWString(lpszFilePath).toStdU16String();
+#else
+		auto strCmdLine = std::string(lpszFilePath);
+#endif
+		bRet = BASS_Encode_Start(m_hStream, (char*)strCmdLine.c_str(),
+								 BASS_ENCODE_PCM | BASS_ENCODE_FP_16BIT |
+								 BASS_ENCODE_AUTOFREE | BASS_IF_UNICODE, NULL,
+								 0);
+	}
+#ifdef _WIN32
+	else if(nFormat == 1) { // MP3
+		tstring strCmdLine = ToTstring(m_rApp.GetFilePath());
+		strCmdLine += _T("lame ");
+		strCmdLine += m_rMainWnd.GetStrLAMECommandLine();
+		strCmdLine += _T(" - \"");
+		strCmdLine += lpszFilePath;
+		strCmdLine += _T("\"");
+#ifdef UNICODE
+		auto cmdLine = ToQString(strCmdLine).toStdU16String();
+#else
+		auto cmdLine = strCmdLine;
+#endif
+		bRet = BASS_Encode_Start(m_hStream, (char*)cmdLine.c_str(),
+								 BASS_ENCODE_FP_16BIT | BASS_ENCODE_AUTOFREE |
+								 BASS_IF_UNICODE, NULL, 0);
+	}
+	else if(nFormat == 2) { // OGG
+		tstring strCmdLine = ToTstring(m_rApp.GetFilePath());
+		strCmdLine += _T("oggenc2 -o \"");
+		strCmdLine += lpszFilePath;
+		strCmdLine += _T("\" -");
+#ifdef UNICODE
+		auto cmdLine = ToQString(strCmdLine).toStdU16String();
+#else
+		auto cmdLine = strCmdLine;
+#endif
+		bRet = BASS_Encode_Start(m_hStream, (char*)cmdLine.c_str(),
+								 BASS_ENCODE_AUTOFREE | BASS_IF_UNICODE, NULL,
+								 0);
+	}
+#endif
+
+	if(!bRet) {
+		QFile::remove(ToQString(lpszFilePath));
+		StreamCreateFile(m_strCurFile.c_str());
+		m_rMainWnd.SetAllEffects();
+		if(curPos > 0) ChannelSetPosition(curPos);
+		if(bPlaying) m_rMainWnd.Pause();
+		if(bABLoopA) SetLoopPosA(nStartPosition);
+		if(bABLoopB) SetLoopPosB(nEndPosition);
+		return;
+	}
+
+	QProgressDialog wnd(&m_rMainWnd);
+	wnd.setWindowFlags(wnd.windowFlags() & ~Qt::WindowContextHelpButtonHint);
+	wnd.setRange(0, nEndPosition_sec - nStartPosition_sec);
+	wnd.setWindowModality(Qt::WindowModal);
+	QString title = QObject::tr("Saving - ");
+	title += QFileInfo(ToQString(lpszFilePath)).fileName();
+	wnd.setWindowTitle(title);
+
+	if(m_bABLoopA) ChannelSetPosition(nStartPosition);
+	float buf[10000];
+	while(ChannelIsActive()) {
+		// ウィンドウが閉じられた場合は、終了
+		if(wnd.wasCanceled()) {
+			BASS_Encode_Stop(m_hStream);
+			QFile::remove(ToQString(lpszFilePath));
+			break;
+		}
+
+		LONG c = ChannelGetData(buf, sizeof(buf) | BASS_DATA_FLOAT);
+		if(!m_rMainWnd.GetMenu().IsItemChecked(ID_REVERSE))
+			wnd.setValue((int)ChannelGetSecondsPosition() -
+							   (int)nStartPosition);
+		else
+			wnd.setValue((int)ChannelGetSecondsLength() -
+							   (int)ChannelGetSecondsPosition() -
+							   (int)nStartPosition);
+		fflush(stdout);
+
+		if(m_bABLoopB && ChannelGetPosition() >= nEndPosition)
+			break;
+	}
+
+	BASS_Encode_Stop(m_hStream);
+	StreamCreateFile(m_strCurFile.c_str());
+	m_rMainWnd.SetAllEffects();
+	if(curPos > 0) ChannelSetPosition(curPos);
+	if(bPlaying) m_rMainWnd.Pause();
+	if(bABLoopA) SetLoopPosA(nStartPosition);
+	if(bABLoopB) SetLoopPosB(nEndPosition);
+}
+//----------------------------------------------------------------------------
+// パンの設定
+//----------------------------------------------------------------------------
+void CSound::SetPan(int nPan)
+{
+	m_nPan = nPan;
+	m_hPanDsp = BASS_ChannelSetDSP(m_hStream, &Pan, &m_nPan, 4);
+}
+//----------------------------------------------------------------------------
+// パン用コールバック関数
+//----------------------------------------------------------------------------
+void CALLBACK CSound::Pan(HDSP handle, DWORD channel,
+									   void *buffer, DWORD length, void *user)
+{
+	int *pnPan = (int*)user;
+	float fPan = *pnPan / 100.0f;
+	float *data = (float*)buffer;
+	int max = length / 4;
+	for(int a = 0; a < max; a += 2) {
+		if(fPan > 0.00f) data[a] = data[a] * (1.00f - fPan);
+		else data[a + 1] = data[a + 1] * (1.00f + fPan);
+	}
 }
 //----------------------------------------------------------------------------

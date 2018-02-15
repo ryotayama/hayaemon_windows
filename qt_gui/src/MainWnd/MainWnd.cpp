@@ -6822,7 +6822,7 @@ void CMainWnd::ShowOpenFileDialog(BOOL bClear)
 			ChangeCurPlayTab();
 			m_arrayList[nSelect]->DeleteAllItems();
 		}
-		for (QString &fileName : fileNames)  {
+		for (QString &fileName : fileNames) {
 			m_arrayList[nSelect]->AddFile(fileName);
 		}
 
@@ -6880,43 +6880,78 @@ void CMainWnd::ShowReverbCustomizeWnd()
 //----------------------------------------------------------------------------
 void CMainWnd::ShowSaveFileDialog()
 {
+	QString filter_wav = tr("WAVE file(*.wav)");
+	QString filter_mp3 = tr("MP3 file(*.mp3)");
+	QString filter_ogg = tr("Ogg Vorbis file(*.ogg)");
 	QString filter_ini = tr("Settings(*.ini)");
 	QString filter_m3u_a = tr("Absolute path playlist file(*.m3u)");
 	QString filter_m3u_r = tr("Relative path playlist file(*.m3u)");
 	QString filter_m3u8_a = tr("Absolute path playlist file(*.m3u8)");
 	QString filter_m3u8_r = tr("Relative path playlist file(*.m3u8)");
-	QString filters = filter_ini + ";;" +
-                    filter_m3u_a + ";;" + filter_m3u_r + ";;" +
-                    filter_m3u8_a + ";;" + filter_m3u8_r;
-	QString filePath = QFileDialog::getSaveFileName(
-			this, QString(), QString(), filters, &strSaveFormat,
-			QFileDialog::DontUseCustomDirectoryIcons);
+	QString filters = filter_wav + ";;" +
+#ifdef _WIN32
+										filter_mp3 + ";;" + filter_ogg + ";;" + 
+#endif
+										filter_ini + ";;" +
+										filter_m3u_a + ";;" + filter_m3u_r + ";;" +
+										filter_m3u8_a + ";;" + filter_m3u8_r;
 
-	if(filePath.isEmpty()) {
-		return;
-	}
-
-	if(strSaveFormat == filter_ini) { // 設定状態
-		SaveSettings(ToTstring(filePath).c_str());
-	} else {
-		// プレイリストファイル
-
-		QString str;
-		for(int i = 0; i < m_arrayList[nCurPlayTab]->GetItemCount(); i++) {
-			QString sFilePath;
-			m_arrayList[nCurPlayTab]->GetItemText(i, 7, &sFilePath);
-			if(strSaveFormat == filter_m3u_a || strSaveFormat == filter_m3u8_a) {
-				QString absolutePath = QDir(sFilePath).absolutePath();
-				str += QDir::cleanPath(absolutePath);
-			}
-			else str += sFilePath;
-			str += "\n";
+	while(1) {
+		QString filePath = QFileDialog::getSaveFileName(
+				this, QString(), QString(), filters, &strSaveFormat,
+				QFileDialog::DontUseCustomDirectoryIcons);
+		if(filePath.isEmpty()) {
+			break;
 		}
 
-		CM3UFile file;
-		file.Save(ToTstring(filePath).c_str(), ToTstring(str),
-							strSaveFormat == filter_m3u8_a ||
-							strSaveFormat == filter_m3u8_r);
+		if(strSaveFormat == filter_wav || strSaveFormat == filter_mp3 ||
+			 strSaveFormat == filter_ogg) {
+			// 音声ファイル
+
+			// 入力・出力ファイルが同一ファイルだった場合は、エラー
+			if(filePath.compare(ToQString(m_sound.GetCurFileName()),
+													Qt::CaseInsensitive) == 0) {
+				QMessageBox::warning(this, tr("Save"),
+					tr("This software can't override input/output same file."));
+				continue;
+			}
+
+			if(strSaveFormat == filter_wav) { // WAVE
+				WriteInitFile();
+				m_sound.SaveFile(ToTstring(filePath).c_str(), 0);
+			}
+			else if(strSaveFormat == filter_mp3) { // MP3
+				WriteInitFile();
+				m_sound.SaveFile(ToTstring(filePath).c_str(), 1);
+			}
+			else { // Ogg Vorbis
+				WriteInitFile();
+				m_sound.SaveFile(ToTstring(filePath).c_str(), 2);
+			}
+		} else if(strSaveFormat == filter_ini) { // 設定状態
+			SaveSettings(ToTstring(filePath).c_str());
+		} else {
+			// プレイリストファイル
+
+			QString str;
+			for(int i = 0; i < m_arrayList[nCurPlayTab]->GetItemCount(); i++) {
+				QString sFilePath;
+				m_arrayList[nCurPlayTab]->GetItemText(i, 7, &sFilePath);
+				if(strSaveFormat == filter_m3u_a || strSaveFormat == filter_m3u8_a) {
+					QString absolutePath = QDir(sFilePath).absolutePath();
+					str += QDir::cleanPath(absolutePath);
+				}
+				else str += sFilePath;
+				str += "\n";
+			}
+
+			CM3UFile file;
+			file.Save(ToTstring(filePath).c_str(), ToTstring(str),
+								strSaveFormat == filter_m3u8_a ||
+								strSaveFormat == filter_m3u8_r);
+		}
+
+		break;
 	}
 }
 //----------------------------------------------------------------------------
@@ -8005,6 +8040,17 @@ void CMainWnd::UpdateTimeThreadProc(void * pParam)
 	}
 }
 //----------------------------------------------------------------------------
+// タイマーを停止
+//----------------------------------------------------------------------------
+void CMainWnd::KillTimer(UINT_PTR nIDEvent)
+{
+	auto it = m_timers.find(nIDEvent);
+	if(it == m_timers.end()) {
+		return;
+	}
+	it->second->stop();
+}
+//----------------------------------------------------------------------------
 // 各種コントロールにコンテキストメニューを割り当てる
 //----------------------------------------------------------------------------
 void CMainWnd::SetContextMenus()
@@ -8108,14 +8154,6 @@ void CMainWnd::dragEnterEvent(QDragEnterEvent * e)
 void CMainWnd::dropEvent(QDropEvent * e)
 {
 	AddDropFiles(e->mimeData()->urls(), TRUE);
-}
-void CMainWnd::KillTimer(UINT_PTR nIDEvent)
-{
-	auto it = m_timers.find(nIDEvent);
-	if(it == m_timers.end()) {
-		return;
-	}
-	it->second->stop();
 }
 void CMainWnd::SetCaption(const QString & lpWindowName)
 {

@@ -150,66 +150,91 @@
     </message>
     <message>
         <location filename="MainWnd/MainWnd.cpp" line="6883"/>
+        <source>WAVE file(*.wav)</source>
+        <translation>WAVE ファイル(*.wav)</translation>
+    </message>
+    <message>
+        <location filename="MainWnd/MainWnd.cpp" line="6884"/>
+        <source>MP3 file(*.mp3)</source>
+        <translation>MP3 ファイル(*.mp3)</translation>
+    </message>
+    <message>
+        <location filename="MainWnd/MainWnd.cpp" line="6885"/>
+        <source>Ogg Vorbis file(*.ogg)</source>
+        <translation>Ogg Vorbis ファイル(*.ogg)</translation>
+    </message>
+    <message>
+        <location filename="MainWnd/MainWnd.cpp" line="6886"/>
         <source>Settings(*.ini)</source>
         <translation>設定状態(*.ini)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="6884"/>
+        <location filename="MainWnd/MainWnd.cpp" line="6887"/>
         <source>Absolute path playlist file(*.m3u)</source>
         <translation>絶対パス プレイリストファイル(*.m3u)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="6885"/>
+        <location filename="MainWnd/MainWnd.cpp" line="6888"/>
         <source>Relative path playlist file(*.m3u)</source>
         <translation>相対パス プレイリストファイル(*.m3u)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="6886"/>
+        <location filename="MainWnd/MainWnd.cpp" line="6889"/>
         <source>Absolute path playlist file(*.m3u8)</source>
         <translation>絶対パス プレイリストファイル(*.m3u8)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="6887"/>
+        <location filename="MainWnd/MainWnd.cpp" line="6890"/>
         <source>Relative path playlist file(*.m3u8)</source>
         <translation>相対パス プレイリストファイル(*.m3u8)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="7622"/>
+        <location filename="MainWnd/MainWnd.cpp" line="6914"/>
+        <source>Save</source>
+        <translation>名前を付けて保存</translation>
+    </message>
+    <message>
+        <location filename="MainWnd/MainWnd.cpp" line="6915"/>
+        <source>This software can&apos;t override input/output same file.</source>
+        <translation>同一ファイルの上書きには対応していません。</translation>
+    </message>
+    <message>
+        <location filename="MainWnd/MainWnd.cpp" line="7657"/>
         <source>failed to create menu.</source>
         <translation>メニューの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="7690"/>
+        <location filename="MainWnd/MainWnd.cpp" line="7725"/>
         <source>failed to init BASS.DLL.</source>
         <translation>BASS の初期化に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="8018"/>
+        <location filename="MainWnd/MainWnd.cpp" line="8064"/>
         <source>Show Position Slider(&amp;S)</source>
         <translation>再生位置スライダーの表示(&amp;V)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="8027"/>
+        <location filename="MainWnd/MainWnd.cpp" line="8073"/>
         <source>Show Speed Control(&amp;S)</source>
         <translation>再生速度コントロールの表示(&amp;V)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="8036"/>
+        <location filename="MainWnd/MainWnd.cpp" line="8082"/>
         <source>Show Frequency Control(&amp;S)</source>
         <translation>再生周波数コントロールの表示(&amp;V)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="8045"/>
+        <location filename="MainWnd/MainWnd.cpp" line="8091"/>
         <source>Show Pitch Control(&amp;S)</source>
         <translation>音程コントロールの表示(&amp;V)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="8054"/>
+        <location filename="MainWnd/MainWnd.cpp" line="8100"/>
         <source>Show Volume Control(&amp;S)</source>
         <translation>音量コントロールの表示(&amp;V)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="8063"/>
+        <location filename="MainWnd/MainWnd.cpp" line="8109"/>
         <source>Show Pan Control(&amp;S)</source>
         <translation>パンの表示(&amp;V)</translation>
     </message>
@@ -379,6 +404,33 @@ Application exit.</source>
         <location filename="App.cpp" line="67"/>
         <source>Error</source>
         <translation>エラー</translation>
+    </message>
+    <message>
+        <location filename="MainWnd/Sound.cpp" line="1771"/>
+        <location filename="MainWnd/Sound.cpp" line="1781"/>
+        <source>Save file</source>
+        <translation>名前を付けて保存</translation>
+    </message>
+    <message>
+        <location filename="MainWnd/Sound.cpp" line="1772"/>
+        <source>To save MP3 file, lame.exe is required.
+Put lame.exe in the same directory as hayaemon.exe.</source>
+        <translation>MP3形式での保存には、LAME.EXEが必要です。
+Hayaemon.exeと同じディレクトリにLAME.EXEを置いて下さい。</translation>
+    </message>
+    <message>
+        <location filename="MainWnd/Sound.cpp" line="1782"/>
+        <source>To save Ogg Vorbis file, oggenc2.exe is required.
+Put oggenc2.exe in the same directory as hayaemon.exe.</source>
+        <oldsource>To save Ogg Vorbis file, oggenc.exe is required.
+Put oggenc.exe in the same directory as hayaemon.exe.</oldsource>
+        <translation>Ogg Vorbis形式での保存には、oggenc2.exeが必要です。
+Hayaemon.exeと同じディレクトリにoggenc2.exeを置いて下さい。</translation>
+    </message>
+    <message>
+        <location filename="MainWnd/Sound.cpp" line="1871"/>
+        <source>Saving - </source>
+        <translation>保存中 - </translation>
     </message>
 </context>
 </TS>
