@@ -16,7 +16,12 @@ class QString;
 //----------------------------------------------------------------------------
 // Windows固有のAPIを実装
 //----------------------------------------------------------------------------
+#ifndef MAX_PATH
+#	define MAX_PATH 260
+#endif
+
 #ifdef UNICODE
+# define lstrcmp wcscmp
 # define lstrcpy wcscpy
 template <size_t N, typename ... Args>
 int _stprintf_s(wchar_t (&buf)[N], const wchar_t *format, Args const & ... args)
@@ -27,11 +32,16 @@ int _ttoi(const TCHAR *str);
 double _ttof(const TCHAR *str);
 double _tstof(const TCHAR *str);
 #else
+# define lstrcmp strcmp
 # define lstrcpy strcpy
 # define _stprintf_s sprintf
 # define _ttoi atoi
 # define _tstof atof
 #endif
+int _tcsicmp(const TCHAR *lhs, const TCHAR *rhs);
+
+void OutputDebugString(const TCHAR *str);
+DWORD timeGetTime(void);
 
 UINT GetPrivateProfileInt(LPCTSTR lpAppName, LPCTSTR lpKeyName, int nDefault,
 													LPCTSTR lpFileName);

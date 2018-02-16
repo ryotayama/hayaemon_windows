@@ -6,7 +6,6 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QTextStream>
-#include "..\Common\Utils.h"
 #include "Utility.h"
 //--------------------------------------------------------------------------
 // コンストラクタ

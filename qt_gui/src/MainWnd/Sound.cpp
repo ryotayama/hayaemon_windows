@@ -1859,18 +1859,22 @@ void CSound::SetNormalize(BOOL bNormalize)
 		if(!decoder) decoder = BASS_APE_StreamCreateFile(FALSE,
 			m_strCurFile.c_str(), 0, 0,
 			BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
+#ifdef _WIN32
 		if(!decoder) decoder = BASS_CD_StreamCreateFile(
 			(char*)m_strCurFile.c_str(),
 			BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
+#endif
 		if(!decoder) decoder = BASS_FLAC_StreamCreateFile(FALSE,
 			m_strCurFile.c_str(), 0, 0,
 			BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
+#ifdef _WIN32
 		if(!decoder) decoder = BASS_AAC_StreamCreateFile(FALSE,
 			m_strCurFile.c_str(), 0, 0,
 			BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
 		if(!decoder) decoder = BASS_MP4_StreamCreateFile(FALSE,
 			m_strCurFile.c_str(), 0, 0,
 			BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
+#endif
 		BASS_ChannelSetPosition(decoder, 0, BASS_POS_DECODETO);
 		m_peak = 0;
 		while(BASS_ChannelIsActive(decoder)) {

@@ -39,7 +39,7 @@
 #include "PlayPositionWnd.h"
 #include "PlayRangeWnd.h"
 #include "Platform.h"
-#include "presetNameInputWnd.h"
+#include "PresetNameInputWnd.h"
 #include "ReverbCustomizeWnd.h"
 #include "Utility.h"
 //----------------------------------------------------------------------------
@@ -6672,10 +6672,10 @@ void CMainWnd::SetTimerPlay(int nHour, int nMinute)
 {
 	nTimerPlayHour = nHour;
 	nTimerPlayMinute = nMinute;
-	SYSTEMTIME st;
-	GetLocalTime(&st);
-	bTimerPlayNextDay = (nHour < st.wHour || (nHour == st.wHour
-		&& nMinute < st.wMinute));
+	time_t now = std::time(nullptr);
+	auto st = std::localtime(&now);
+	bTimerPlayNextDay = (nHour < st->tm_hour || (nHour == st->tm_hour
+		&& nMinute < st->tm_min));
 	SetTimerStop(FALSE);
 	SetTimerPlay(TRUE);
 }
@@ -6696,10 +6696,10 @@ void CMainWnd::SetTimerStop(int nHour, int nMinute)
 {
 	nTimerStopHour = nHour;
 	nTimerStopMinute = nMinute;
-	SYSTEMTIME st;
-	GetLocalTime(&st);
-	bTimerStopNextDay = (nHour < st.wHour || (nHour == st.wHour
-		&& nMinute < st.wMinute));
+	time_t now = std::time(nullptr);
+	auto st = std::localtime(&now);
+	bTimerStopNextDay = (nHour < st->tm_hour || (nHour == st->tm_hour
+		&& nMinute < st->tm_min));
 	SetTimerPlay(FALSE);
 	SetTimerStop(TRUE);
 }

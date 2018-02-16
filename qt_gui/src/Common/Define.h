@@ -38,15 +38,20 @@ typedef int BOOL;
 typedef long LONG;
 typedef unsigned int UINT;
 typedef unsigned long long UINT_PTR;
-typedef unsigned long DWORD;
-typedef uint64_t QWORD;
 typedef long long LRESULT;
+#ifdef _WIN32
+typedef unsigned long DWORD;
+#elif __APPLE__
+typedef uint32_t DWORD;
+#endif
+typedef uint64_t QWORD;
 
 #ifdef UNICODE
 typedef wchar_t TCHAR;
 #else
 typedef char TCHAR;
 #endif
+typedef const char *LPCSTR;
 typedef TCHAR *LPTSTR;
 typedef const TCHAR *LPCTSTR, *PCTSTR;
 

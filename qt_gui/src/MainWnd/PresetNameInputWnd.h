@@ -5,7 +5,7 @@
 #define PresetNameInputWndH
 
 #include <QDialog>
-#include "Ui_PresetNameInputWnd.h"
+#include "ui_PresetNameInputWnd.h"
 class CMainWnd;
 //----------------------------------------------------------------------------
 // プリセット名入力ウィンドウの管理を行うクラス

@@ -161,7 +161,7 @@ source_group("" FILES
   ${SRC_DIR}/App.h
 )
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 add_definitions(-D_UNICODE -DUNICODE)
 if (WIN32)
 add_definitions(-D_CRT_SECURE_NO_WARNINGS)

@@ -5,8 +5,12 @@
 
 #if __APPLE__
 
+#include <time.h>
+
 #include <map>
+#include <QDebug>
 #include <QSettings>
+#include <QString>
 
 #include "Utility.h"
 
@@ -23,6 +27,20 @@ double _tstof(const TCHAR *str) {
 	return _ttof(str);
 }
 #endif
+
+int _tcsicmp(const TCHAR *lhs, const TCHAR *rhs) {
+	auto l = ToQString(lhs);
+	auto r = ToQString(rhs);
+	return l.compare(r, Qt::CaseInsensitive);
+}
+
+void OutputDebugString(const TCHAR *str) {
+	qDebug() << str;
+}
+
+DWORD timeGetTime(void) {
+	return clock();
+}
 
 namespace {
 
@@ -88,6 +106,8 @@ DWORD GetPrivateProfileString(LPCTSTR lpAppName, LPCTSTR lpKeyName,
 		value = v.toString().toStdWString();
 	}
 	std::copy(value.begin(), value.end(), lpReturnedString);
+	size_t l = value.size();
+	lpReturnedString[value.size()] = 0;
 	settings->endGroup();
 	return value.length();
 }
@@ -100,7 +120,9 @@ BOOL WritePrivateProfileString(LPCTSTR lpAppName, LPCTSTR lpKeyName,
 		return FALSE;
 	}
 	settings->beginGroup(ToQString(lpAppName));
-	settings->setValue(ToQString(lpKeyName), ToQString(lpString));
+	if (lpKeyName != nullptr && lpString != nullptr) {
+		settings->setValue(ToQString(lpKeyName), ToQString(lpString));
+	}
 	settings->endGroup();
 
 	return TRUE;
