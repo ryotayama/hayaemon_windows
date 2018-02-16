@@ -176,7 +176,7 @@ private: // メンバ変数
 		m_hFx20KHz_2;
 
 	HDSP m_hMonoralDsp, m_hVocalCancelDsp, m_hOnlyLeftDsp, m_hOnlyRightDsp,
-		 m_hChangeLRDsp , m_hNormalizeDsp, m_hPanDsp;
+		 m_hChangeLRDsp, m_hNormalizeDsp, m_hPanDsp;
 
 	BASS_DX8_REVERB m_bdr;
 	BASS_DX8_I3DL2REVERB m_bdir;
