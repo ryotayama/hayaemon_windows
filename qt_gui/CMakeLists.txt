@@ -42,6 +42,8 @@ set(SRC_MAINWND
   ${SRC_DIR}/MainWnd/3DReverbCustomizeWnd.h
   ${SRC_DIR}/MainWnd/ABLoopPosWnd.cpp
   ${SRC_DIR}/MainWnd/ABLoopPosWnd.h
+  ${SRC_DIR}/MainWnd/AllSaveWnd_MainWnd.cpp
+  ${SRC_DIR}/MainWnd/AllSaveWnd_MainWnd.h
   ${SRC_DIR}/MainWnd/ChorusCustomizeWnd.cpp
   ${SRC_DIR}/MainWnd/ChorusCustomizeWnd.h
   ${SRC_DIR}/MainWnd/CompressorCustomizeWnd.cpp
@@ -174,6 +176,7 @@ qt5_wrap_ui(UI_MOC
   ${SRC_DIR}/IncSpeedWnd/IncSpeedWnd.ui
   ${SRC_DIR}/LimitSettingWnd/LimitSettingWnd.ui
   ${SRC_DIR}/MainWnd/ABLoopPosWnd.ui
+  ${SRC_DIR}/MainWnd/AllSaveWnd.ui
   ${SRC_DIR}/MainWnd/ChorusCustomizeWnd.ui
   ${SRC_DIR}/MainWnd/CompressorCustomizeWnd.ui
   ${SRC_DIR}/MainWnd/DelayCustomizeWnd.ui

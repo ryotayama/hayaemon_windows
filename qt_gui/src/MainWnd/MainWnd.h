@@ -281,6 +281,7 @@ public: // 関数
 	virtual void ShowOpenFileDialog(BOOL bClear);
 	virtual void ShowOpenFolderDialog(BOOL bClear);
 	virtual void ShowSaveFileDialog();
+	virtual void ShowSaveAllFileDialog();
 	virtual void ShowReverbCustomizeWnd();
 	virtual void ShowTime(BOOL bReset = TRUE);
 	virtual void StartRewind();
@@ -412,7 +413,7 @@ protected: // メンバ変数
 	double nDecFreq; // 再生周波数をだんだん遅くするパーセント
 	double nFreqVelo; // 周波数の差分（古びたレコード再生用）
 	double nFreqAccel; // 周波数の差分の加速度（古びたレコード再生用）
-	QString strSaveFormat; // 前回保存したファイル形式
+	tstring strSaveFormat; // 前回保存したファイル形式
 	int nLoopCount; // 回数ループ時のループ回数
 	int nCurrentLoopCount; // 現時点でループした回数
 	int nIncSpeedMode; // 再生速度をだんだん速くするモード
@@ -488,6 +489,7 @@ public: // メンバ変数の取得・設定
 	BOOL IsSetPositionAuto() const { return bSetPositionAuto; }
 	void SetFinish(BOOL bFinish) { m_bFinish = bFinish; }
 
+	tstring GetStrSaveFormat() { return strSaveFormat; }
 	tstring GetStrLAMECommandLine() { return m_strLAMECommandLine; }
 
 public:

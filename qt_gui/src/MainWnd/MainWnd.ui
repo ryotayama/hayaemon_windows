@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>MainWnd</class>
  <widget class="QMainWindow" name="MainWnd">
@@ -1071,6 +1071,7 @@
     <addaction name="actionFileAddUrl"/>
     <addaction name="separator"/>
     <addaction name="actionFileSave"/>
+    <addaction name="actionFileSaveAll"/>
     <addaction name="separator"/>
     <addaction name="actionFileExit"/>
    </widget>
@@ -3233,6 +3234,11 @@
    </property>
    <property name="shortcut">
     <string>Alt+F4</string>
+   </property>
+  </action>
+  <action name="actionFileSaveAll">
+   <property name="text">
+    <string>Save all(&amp;A)...</string>
    </property>
   </action>
  </widget>

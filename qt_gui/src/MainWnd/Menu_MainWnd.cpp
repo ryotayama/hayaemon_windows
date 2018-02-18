@@ -355,6 +355,13 @@ void CMenu_MainWnd::OnSaveFileMenuSelected()
 	m_rMainWnd.ShowSaveFileDialog();
 }
 //----------------------------------------------------------------------------
+// ファイル → 一括変換メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnSaveAllFileMenuSelected()
+{
+	m_rMainWnd.ShowSaveAllFileDialog();
+}
+//----------------------------------------------------------------------------
 // ファイル → 終了メニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnExitMenuSelected()
@@ -3030,6 +3037,8 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnAddURLMenuSelected);
 	connect(m_rMainWnd.actionFileSave, &QAction::triggered,
 					this, &CMenu_MainWnd::OnSaveFileMenuSelected);
+	connect(m_rMainWnd.actionFileSaveAll, &QAction::triggered,
+					this, &CMenu_MainWnd::OnSaveAllFileMenuSelected);
 	connect(m_rMainWnd.actionFileExit, &QAction::triggered,
 					this, &CMenu_MainWnd::OnExitMenuSelected);
 	// Edit

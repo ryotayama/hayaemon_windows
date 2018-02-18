@@ -27,6 +27,7 @@
 #include "../TimerPlayWnd/TimerPlayWnd_MainWnd.h"
 #include "3DReverbCustomizeWnd.h"
 #include "ABLoopPosWnd.h"
+#include "AllSaveWnd_MainWnd.h"
 #include "ChorusCustomizeWnd.h"
 #include "CompressorCustomizeWnd.h"
 #include "DelayCustomizeWnd.h"
@@ -2222,7 +2223,7 @@ void CMainWnd::OpenInitFileAfterShow()
 	// その他の設定
 	GetPrivateProfileString(_T("Options"), _T("SaveFormat"), _T("WAVE"), buf, 
 		255, initFilePath.c_str());
-	strSaveFormat = ToQString(buf);
+	strSaveFormat = buf;
 	GetPrivateProfileString(_T("Options"), _T("RecoverList"), _T("1"), buf, 
 		255, initFilePath.c_str());
 	int _bRecoverList = _ttoi(buf);
@@ -6895,17 +6896,20 @@ void CMainWnd::ShowSaveFileDialog()
 										filter_ini + ";;" +
 										filter_m3u_a + ";;" + filter_m3u_r + ";;" +
 										filter_m3u8_a + ";;" + filter_m3u8_r;
+	QString filter;
+	if(strSaveFormat == _T("MP3")) filter = filter_mp3;
+	else if(strSaveFormat == _T("OGG")) filter = filter_ogg;
+	else filter = filter_wav;
 
 	while(1) {
 		QString filePath = QFileDialog::getSaveFileName(
-				this, QString(), QString(), filters, &strSaveFormat,
+				this, QString(), QString(), filters, &filter,
 				QFileDialog::DontUseCustomDirectoryIcons);
 		if(filePath.isEmpty()) {
 			break;
 		}
 
-		if(strSaveFormat == filter_wav || strSaveFormat == filter_mp3 ||
-			 strSaveFormat == filter_ogg) {
+		if(filter == filter_wav || filter == filter_mp3 || filter == filter_ogg) {
 			// 音声ファイル
 
 			// 入力・出力ファイルが同一ファイルだった場合は、エラー
@@ -6916,19 +6920,22 @@ void CMainWnd::ShowSaveFileDialog()
 				continue;
 			}
 
-			if(strSaveFormat == filter_wav) { // WAVE
+			if(filter == filter_wav) { // WAVE
+				strSaveFormat = _T("WAVE");
 				WriteInitFile();
 				m_sound.SaveFile(ToTstring(filePath).c_str(), 0);
 			}
-			else if(strSaveFormat == filter_mp3) { // MP3
+			else if(filter == filter_mp3) { // MP3
+				strSaveFormat = _T("MP3");
 				WriteInitFile();
 				m_sound.SaveFile(ToTstring(filePath).c_str(), 1);
 			}
 			else { // Ogg Vorbis
+				strSaveFormat = _T("OGG");
 				WriteInitFile();
 				m_sound.SaveFile(ToTstring(filePath).c_str(), 2);
 			}
-		} else if(strSaveFormat == filter_ini) { // 設定状態
+		} else if(filter == filter_ini) { // 設定状態
 			SaveSettings(ToTstring(filePath).c_str());
 		} else {
 			// プレイリストファイル
@@ -6937,7 +6944,7 @@ void CMainWnd::ShowSaveFileDialog()
 			for(int i = 0; i < m_arrayList[nCurPlayTab]->GetItemCount(); i++) {
 				QString sFilePath;
 				m_arrayList[nCurPlayTab]->GetItemText(i, 7, &sFilePath);
-				if(strSaveFormat == filter_m3u_a || strSaveFormat == filter_m3u8_a) {
+				if(filter == filter_m3u_a || filter == filter_m3u8_a) {
 					QString absolutePath = QDir(sFilePath).absolutePath();
 					str += QDir::cleanPath(absolutePath);
 				}
@@ -6947,11 +6954,104 @@ void CMainWnd::ShowSaveFileDialog()
 
 			CM3UFile file;
 			file.Save(ToTstring(filePath).c_str(), ToTstring(str),
-								strSaveFormat == filter_m3u8_a ||
-								strSaveFormat == filter_m3u8_r);
+								filter == filter_m3u8_a || filter == filter_m3u8_r);
 		}
 
 		break;
+	}
+}
+//----------------------------------------------------------------------------
+// 一括変換ダイアログの表示
+//----------------------------------------------------------------------------
+void CMainWnd::ShowSaveAllFileDialog()
+{
+	QFileDialog dlg(this);
+	dlg.setFileMode(QFileDialog::Directory);
+	dlg.setOption(QFileDialog::ShowDirsOnly, true);
+	if(dlg.exec()) {
+		CAllSaveWnd_MainWnd wnd(*this);
+		if(!wnd.exec()) {
+			return;
+		}
+		int nFormat = wnd.GetFormat();
+
+		if(nFormat == 1) { // MP3
+			QString strLamePath = m_rApp.GetFilePath() + "lame.exe";
+			if(!QFileInfo(strLamePath).exists()) {
+				QMessageBox::information(this, tr("Save file"),
+					tr("To save MP3 file, lame.exe is required.\n"
+						 "Put lame.exe in the same directory as hayaemon.exe."));
+				return;
+			}
+		}
+		else if(nFormat == 2) { // OGG
+			QString strLamePath = m_rApp.GetFilePath() + "oggenc2.exe";
+			if(!QFileInfo(strLamePath).exists()) {
+				QMessageBox::information(this, tr("Save file"),
+					tr("To save Ogg Vorbis file, oggenc2.exe is required.\n"
+						 "Put oggenc2.exe in the same directory as hayaemon.exe."));
+				return;
+			}
+		}
+
+		// 現在読み込んでいるファイルを一時的に退避
+		tstring curFileName = m_sound.GetCurFileName();
+		KillTimer(IDT_TIME);
+		QWORD curPos = m_sound.ChannelGetPosition();
+		BOOL bPlaying = FALSE;
+		if(m_sound.ChannelPause()) bPlaying = TRUE;
+		m_sound.ChannelStop();
+
+		// 全てのファイルを変換
+		for(int i = 0; i < m_arrayList[nCurPlayTab]->GetItemCount(); i++) {
+			QString str = dlg.selectedFiles().front();
+			str += "/";
+			QString sFilePath;
+			m_arrayList[nCurPlayTab]->GetItemText(i, 7, &sFilePath);
+			str += QFileInfo(sFilePath).baseName();
+
+			// ファイルの存在チェック
+			int n = 2;
+			QString strFormat, str2 = str + strFormat;
+			if(nFormat == 0) strFormat = ".wav";
+			else if (nFormat == 1) strFormat = ".mp3";
+			else if (nFormat == 2) strFormat = ".ogg";
+			if(!QFileInfo(str2 + strFormat).exists())
+				str += strFormat;
+			else {
+				do {
+					str2 = QString("%1(%2)").arg(str).arg(n++);
+					str2 += strFormat;
+				}
+				while(QFileInfo(str2).exists());
+				str += QString("(%1)").arg(n);
+				str += strFormat;
+			}
+
+			m_sound.SetCurFileName(ToTstring(sFilePath));
+				// 保存したいファイルに変更
+			tstring tstr = ToTstring(str);
+			if(nFormat == 0) { // WAVE
+				strSaveFormat = _T("WAVE");
+				WriteInitFile();
+				m_sound.SaveFile(tstr.c_str(), 0);
+			}
+			else if(nFormat == 1) { // MP3
+				strSaveFormat = _T("MP3");
+				WriteInitFile();
+				m_sound.SaveFile(tstr.c_str(), 1);
+			}
+			else {
+				strSaveFormat = _T("OGG");
+				WriteInitFile();
+				m_sound.SaveFile(tstr.c_str(), 2);
+			}
+		}
+
+		m_sound.StreamCreateFile(curFileName.c_str());
+		SetAllEffects();
+		if(curPos > 0) m_sound.ChannelSetPosition(curPos);
+		if(bPlaying) Pause();
 	}
 }
 //----------------------------------------------------------------------------
@@ -7445,7 +7545,7 @@ void CMainWnd::WriteInitFile()
 	WritePrivateProfileString(_T("Options"), _T("RecoverList"), buf, 
 		initFilePath.c_str());
 	WritePrivateProfileString(_T("Options"), _T("SaveFormat"), 
-		ToTstring(strSaveFormat).c_str(), initFilePath.c_str());
+		strSaveFormat.c_str(), initFilePath.c_str());
 	_stprintf_s(buf, _T("%3.1f"), m_speedSlider.GetRangeMin()
 		/ pow(10.0, m_speedSlider.GetDecimalDigit()));
 	WritePrivateProfileString(_T("Options"), _T("MinimumSpeed"), buf,

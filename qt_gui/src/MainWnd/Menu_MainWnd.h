@@ -62,6 +62,7 @@ public: // 関数
 	void OnOpenURLMenuSelected();
 	void OnAddURLMenuSelected();
 	void OnSaveFileMenuSelected();
+	void OnSaveAllFileMenuSelected();
 	void OnExitMenuSelected();
 	void OnDeleteMenuSelected();
 	void OnSelectAllMenuSelected();

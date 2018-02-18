@@ -197,6 +197,7 @@ public: // メンバ変数の取得・設定
 	virtual double GetLoopPosA_sec() const { return ChannelBytes2Seconds(m_nLoopPosA); }
 	virtual double GetLoopPosB_sec() const { return ChannelBytes2Seconds(m_nLoopPosB); }
 	virtual tstring GetCurFileName() const { return m_strCurFile; }
+	virtual void SetCurFileName(tstring str) { m_strCurFile = str; }
 	virtual int GetCurFileNum() const { return m_nCurFile; }
 	virtual void SetCurFileNum(int n) { m_nCurFile = n; }
 	virtual std::vector<QWORD> GetArrayMarker() const { return m_arrayMarker; }
