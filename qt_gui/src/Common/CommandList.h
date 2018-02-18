@@ -8,6 +8,9 @@
 // COMMAND ID
 //--------------------------------------------------------------------------
 typedef enum CMDID {
+	// ファイルメニュー
+		ID_SAVEFILE,
+		ID_SAVEALLFILE,
 	// 表示メニュー
 		ID_TIMESLIDER,
 		ID_SPEED,

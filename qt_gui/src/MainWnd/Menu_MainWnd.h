@@ -21,6 +21,7 @@ public: // 関数
 
 	virtual BOOL Create();
 	void SetABLoopState(BOOL bALoop, BOOL bBLoop);
+	void SetFileLoadState(BOOL bLoad);
 	void SetDelay(float fWetDryMix, float fFeedback, float fLeftDelay,
 		float fRightDelay, BOOL lPanDelay, UINT uID);
 	void SetChorus(float fWetDryMix, float fDepth, float fFeedback,

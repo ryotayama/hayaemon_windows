@@ -43,6 +43,14 @@ void CMenu_MainWnd::SetABLoopState(BOOL bALoop, BOOL bBLoop)
 	EnableItem(ID_ABLOOP_B_SETTING, bBLoop ? MFS_ENABLED : MFS_DISABLED);
 }
 //----------------------------------------------------------------------------
+// ファイルが読み込まれたかどうかを設定
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::SetFileLoadState(BOOL bLoad)
+{
+	EnableItem(ID_SAVEFILE, bLoad ? MFS_ENABLED : MFS_DISABLED);
+	EnableItem(ID_SAVEALLFILE, bLoad ? MFS_ENABLED : MFS_DISABLED);
+}
+//----------------------------------------------------------------------------
 // ディレイの設定
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::SetDelay(float fWetDryMix, float fFeedback,
@@ -2798,6 +2806,8 @@ void CMenu_MainWnd::EnableItem(UINT uIDEnableItem, UINT uEnable)
 void CMenu_MainWnd::CreateActionMap()
 {
 	m_actionMap = std::unordered_map<UINT, QAction*>{
+		{ID_SAVEFILE, m_rMainWnd.actionFileSave},
+		{ID_SAVEALLFILE, m_rMainWnd.actionFileSaveAll},
 		{ID_TIMESLIDER, m_rMainWnd.actionTimeSliderVisible},
 		{ID_SPEED, m_rMainWnd.actionSpeedVisible},
 		{ID_FREQ, m_rMainWnd.actionFreqVisible},

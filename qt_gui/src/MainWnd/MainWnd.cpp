@@ -2039,6 +2039,7 @@ BOOL CMainWnd::OpenFile(const QString & lpszFilePath, int nCount)
 	if(PathIsURL(lpszFilePath)) bRet = m_sound.StreamCreateURL(filePath.c_str());
 	else bRet = m_sound.StreamCreateFile(filePath.c_str(), FALSE, nCount);
 	if(!bRet) {
+		m_menu.SetFileLoadState(FALSE);
 		KillTimer(IDT_TIME);
 		m_timeLabel.SetTime(0, 0);
 		m_timeSlider.SetTime(0, 10);
@@ -2047,6 +2048,7 @@ BOOL CMainWnd::OpenFile(const QString & lpszFilePath, int nCount)
 	}
 	m_sound.ClearMarker();
 	SetAllEffects();
+	m_menu.SetFileLoadState(TRUE);
 	m_toolBar.SetPlayingState(FALSE);
 	if(m_menu.IsItemChecked(ID_REVERSE)) {
 		if(m_menu.IsItemChecked(ID_PLAYRANGE)) SetSeconds(m_dEndSeconds);
@@ -2581,6 +2583,7 @@ BOOL CMainWnd::Play()
 	m_sound.ChannelSetAttribute(BASS_ATTRIB_VOL, 1.0f);
 	if(!m_sound.ChannelPlay()) {
 		// 再生に失敗
+		m_menu.SetFileLoadState(FALSE);
 		KillTimer(IDT_TIME);
 		m_timeLabel.SetTime(0, 0);
 		m_timeSlider.SetTime(0, 10);

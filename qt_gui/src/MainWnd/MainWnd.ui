@@ -3067,6 +3067,9 @@
    </property>
   </action>
   <action name="actionFileSave">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Save(&amp;S)...</string>
    </property>
@@ -3237,6 +3240,9 @@
    </property>
   </action>
   <action name="actionFileSaveAll">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Save all(&amp;A)...</string>
    </property>
