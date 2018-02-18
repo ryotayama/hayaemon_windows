@@ -9274,7 +9274,7 @@ void CMainWnd::ShowSaveAllFileDialog()
 						str += strFormat;
 					else {
 						do {
-							_stprintf_s(szNum, _T("%d"), n);
+							_stprintf_s(szNum, _T("%d"), n++);
 							str2 = str;
 							str2 += (tstring)_T("(") + szNum + _T(")");
 							str2 += strFormat;
