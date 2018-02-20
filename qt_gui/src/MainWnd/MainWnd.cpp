@@ -529,7 +529,7 @@ BOOL CMainWnd::CreateControls()
 	if(GetPrivateProfileInt(_T("Options"), _T("RecoverEQ"), 0, chPath)) {
 		m_menu.SwitchItemChecked(ID_RECOVEREQ);
 		for (auto &item : m_eqItems) {
-			tstring key = ToTstring("EQ" + item.title);
+			tstring key = ToTstring("eq" + item.title);
 			int eq = GetPrivateProfileInt(_T("Options"), key.c_str(), 0,
 				chPath);
 			item.label.SetEQ(eq);
@@ -7801,7 +7801,7 @@ LRESULT CMainWnd::OnCreate()
 	}
 	if(GetPrivateProfileInt(_T("Visible"), _T("RecoverEQ"), 1, chPath)) {
 		m_menu.SwitchItemChecked(ID_RECOVEREQVISIBLE);
-		bEQVisible = GetPrivateProfileInt(_T("Visible"), _T("EQ"), 0,
+		bEQVisible = GetPrivateProfileInt(_T("Visible"), _T("eq"), 0,
 			chPath);
 	}
 	BOOL bTabVisible = GetPrivateProfileInt(_T("Visible"), _T("Tab"), 1,
