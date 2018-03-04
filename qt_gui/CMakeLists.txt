@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.0.2)
 project(hayaemon_qt)
 
 find_package(Qt5Widgets)
+find_package(Qt5Multimedia)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -126,6 +127,9 @@ set(SRC_MAINWND
   ${SRC_DIR}/MainWnd/VolumeSlider_MainWnd.cpp
   ${SRC_DIR}/MainWnd/VolumeSlider_MainWnd.h
 )
+set(SRC_METRONOMEWND
+  ${SRC_DIR}/MetronomeWnd/MetronomeWnd_MainWnd.cpp
+  ${SRC_DIR}/MetronomeWnd/MetronomeWnd_MainWnd.h)
 set(SRC_TIMERPLAYWND
   ${SRC_DIR}/TimerPlayWnd/TimerPlayWnd_MainWnd.cpp
   ${SRC_DIR}/TimerPlayWnd/TimerPlayWnd_MainWnd.h)
@@ -165,6 +169,7 @@ source_group(DecFreqWnd FILES ${SRC_DECFREQWND})
 source_group(IncFreqWnd FILES ${SRC_INCFREQWND})
 source_group(LimitSettingWnd FILES ${SRC_LIMITSETTINGWND})
 source_group(MainWnd FILES ${SRC_MAINWND})
+source_group(MetronomeWnd FILES ${SRC_METRONOMEWND})
 source_group(TimerPlayWnd FILES ${SRC_TIMERPLAYWND})
 source_group("" FILES
   ${SRC_DIR}/App.cpp
@@ -197,8 +202,9 @@ qt5_wrap_ui(UI_MOC
   ${SRC_DIR}/MainWnd/PlayRangeWnd.ui
   ${SRC_DIR}/MainWnd/PresetNameInputWnd.ui
   ${SRC_DIR}/MainWnd/Reverb3DCustomizeWnd.ui
-  ${SRC_DIR}/TimerPlayWnd/TimerPlayWnd.ui
-  ${SRC_DIR}/MainWnd/ReverbCustomizeWnd.ui)
+  ${SRC_DIR}/MainWnd/ReverbCustomizeWnd.ui
+  ${SRC_DIR}/MetronomeWnd/MetronomeWnd.ui
+  ${SRC_DIR}/TimerPlayWnd/TimerPlayWnd.ui)
 
 include_directories(
   ${SRC_DIR}/Common
@@ -222,6 +228,7 @@ add_executable(Hayaemon
   ${SRC_INCFREQWND}
   ${SRC_LIMITSETTINGWND}
   ${SRC_MAINWND}
+  ${SRC_METRONOMEWND}
   ${SRC_TIMERPLAYWND}
   ${RESOURCES}
   ${UI_MOC}
@@ -248,11 +255,14 @@ target_link_libraries(Hayaemon
 )
 endif()
 
-qt5_use_modules(Hayaemon Widgets)
+qt5_use_modules(Hayaemon Widgets Multimedia)
 
 add_custom_command(TARGET Hayaemon
   POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory
     ${CMAKE_SOURCE_DIR}/sound
-    $<TARGET_FILE_DIR:Hayaemon>/sound)
+    $<TARGET_FILE_DIR:Hayaemon>/sound
+  COMMAND ${CMAKE_COMMAND} -E copy
+    ${CMAKE_SOURCE_DIR}/resource/click.wav
+    $<TARGET_FILE_DIR:Hayaemon>/.)
 

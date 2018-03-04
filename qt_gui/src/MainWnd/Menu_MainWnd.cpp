@@ -1967,6 +1967,13 @@ void CMenu_MainWnd::OnFadeoutNext10SecMenuSelected()
 	CheckItem(ID_FADEOUTNEXT10SEC, MF_CHECKED);
 }
 //----------------------------------------------------------------------------
+// システム → メトロノームメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnMetronomeMenuSelected()
+{
+	m_rMainWnd.SetMetronome();
+}
+//----------------------------------------------------------------------------
 // システム → エフェクト → リバーブ → デフォルトメニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnReverbDefaultMenuSelected(bool checked /* = true */)
@@ -2985,6 +2992,7 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_FADEOUTNEXT8SEC, m_rMainWnd.actionFadeOutNext8Sec},
 		{ID_FADEOUTNEXT9SEC, m_rMainWnd.actionFadeOutNext9Sec},
 		{ID_FADEOUTNEXT10SEC, m_rMainWnd.actionFadeOutNext10Sec},
+		{ID_METRONOME, m_rMainWnd.actionMetronome},
 		{ID_COPYTIME, m_rMainWnd.actionCopyTime},
 	};
 }
@@ -3669,6 +3677,8 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnPlayRangeMenuSelected);
 	connect(m_rMainWnd.actionPlayPosition, &QAction::triggered,
 					this, &CMenu_MainWnd::OnPlayPositionMenuSelected);
+	connect(m_rMainWnd.actionMetronome, &QAction::triggered,
+					this, &CMenu_MainWnd::OnMetronomeMenuSelected);
 	connect(m_rMainWnd.actionCopyTime, &QAction::triggered,
 					this, &CMenu_MainWnd::OnCopyTimeMenuSelected);
 }

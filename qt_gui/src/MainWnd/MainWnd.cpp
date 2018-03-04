@@ -16,6 +16,8 @@
 #include <QGuiApplication>
 #include <QMessageBox>
 #include <QMimeData>
+#include <QSound>
+#include <QThread>
 #include <QTimer>
 #include "../App.h"
 #include "../Common/CommandList.h"
@@ -26,6 +28,7 @@
 #include "../IncFreqWnd/IncFreqWnd_MainWnd.h"
 #include "../IncSpeedWnd/IncSpeedWnd_MainWnd.h"
 #include "../LimitSettingWnd/LimitSettingWnd_MainWnd.h"
+#include "../MetronomeWnd/MetronomeWnd_MainWnd.h"
 #include "../TimerPlayWnd/TimerPlayWnd_MainWnd.h"
 #include "3DReverbCustomizeWnd.h"
 #include "ABLoopPosWnd.h"
@@ -5172,6 +5175,37 @@ void CMainWnd::SetMarkerPlay()
 	}
 }
 //----------------------------------------------------------------------------
+// メトロノームの設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetMetronome()
+{
+	CMetronomeWnd_MainWnd dlg(*this);
+	dlg.exec();
+}
+//----------------------------------------------------------------------------
+// メトロノームの設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetMetronome(int nBpm)
+{
+	StopMetronome();
+#if _WIN32
+	SetPriorityClass(GetCurrentProcess(), REALTIME_PRIORITY_CLASS);
+#endif
+	m_nBpm = nBpm;
+	m_nInterval = 60000 / m_nBpm;
+	SetTimer(IDT_METRONOME, 1);
+}
+//----------------------------------------------------------------------------
+// メトロノームの停止
+//----------------------------------------------------------------------------
+void CMainWnd::StopMetronome()
+{
+	KillTimer(IDT_METRONOME);
+#if _WIN32
+	SetPriorityClass(GetCurrentProcess(), NORMAL_PRIORITY_CLASS);
+#endif
+}
+//----------------------------------------------------------------------------
 // 左右入れ替え
 //----------------------------------------------------------------------------
 void CMainWnd::SetChangeLR()
@@ -7907,6 +7941,9 @@ LRESULT CMainWnd::OnCreate()
 
 	SetPreviousNextMenuState();
 
+	QString strClick = m_rApp.GetFilePath() + "click.wav";
+	lpSound = new QSound(strClick, this);
+
 	m_timeThreadRunning = true;
 	m_timeThread.reset(
 			new std::thread(std::bind(&CMainWnd::UpdateTimeThreadProc, this)));
@@ -7963,6 +8000,15 @@ void CMainWnd::OnTimer(UINT id)
 			double dVolume = pow(((double)dwFadeTime - (double)dwInterval)
 								/ (double)dwFadeTime, 2.0);
 			m_sound.ChannelSetAttribute(BASS_ATTRIB_VOL, (float)dVolume);
+		}
+		break;
+	}
+	case IDT_METRONOME:
+	{
+		DWORD dwTime = timeGetTime();
+		if(dwTime >= dwLastTime + m_nInterval || dwTime < dwLastTime) {
+			dwLastTime = dwTime;
+			lpSound->play();
 		}
 		break;
 	}

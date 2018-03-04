@@ -6,6 +6,7 @@
 
 class CApp;
 class CPlayListView_MainWnd;
+class QSound;
 class QTimer;
 class QUrl;
 #include <memory>
@@ -88,7 +89,8 @@ public: // 関数
 		nTimerStopMinute(0), nIncSpeed(0), nIncFreq(0), nDecSpeed(0), nDecFreq(0),
 		nFreqVelo(0), nFreqAccel(0), nLoopCount(0), nCurrentLoopCount(0),
 		nIncSpeedMode(0), nIncFreqMode(0), nDecSpeedMode(0), nDecFreqMode(0),
-		nCurPlayTab(0), dwFadeoutStartTime(0), m_nLastDecimalDigit_pitch(0),
+		nCurPlayTab(0), dwLastTime(0), lpSound(nullptr), m_nBpm(120),
+		m_nInterval(0), dwFadeoutStartTime(0), m_nLastDecimalDigit_pitch(0),
 		m_nLastDecimalDigit_freq(0), m_nLastDecimalDigit_speed(0),
 		m_dStartSeconds(0.0), m_dEndSeconds(0.0),
 		m_strLAMECommandLine(_T("--preset cbr 192")), m_timeThreadRunning(false),
@@ -220,6 +222,9 @@ public: // 関数
 						  double dMinFreq, double dMaxFreq,
 						  double dMinPitch, double dMaxPitch);
 	virtual void SetMarkerPlay();
+	virtual void SetMetronome();
+	virtual void SetMetronome(int nBpm);
+	virtual void StopMetronome();
 	virtual void SetChangeLR();
 	virtual void SetChangeLR(BOOL bChangeLR);
 	virtual void SetNextMarker();
@@ -427,6 +432,10 @@ protected: // メンバ変数
 	int nDecFreqMode; // 再生周波数をだんだん遅くするモード
 						   // 1 : 時間ごと, 2 : ループごと
 	int nCurPlayTab; // 現在再生中のファイルが存在しているタブ
+	DWORD dwLastTime; // 前回の時間（メトロノーム用）
+	QSound * lpSound; // 音（メトロノーム用）
+	int m_nBpm; // テンポ（メトロノーム用）
+	int m_nInterval; // 間隔（メトロノーム用）
 	DWORD dwFadeoutStartTime; // フェードアウト開始時間
 	int m_nLastDecimalDigit_pitch; // 前回の小数点桁数（音程）
 	int m_nLastDecimalDigit_freq; // 前回の小数点桁数（再生周波数）
@@ -444,6 +453,7 @@ public: // 定数
 	// タイマー ID
 	enum {
 		IDT_TIME = 11,
+		IDT_METRONOME,
 		IDT_REWIND,
 		IDT_FORWARD,
 		IDT_RECORD,
@@ -489,6 +499,9 @@ public: // メンバ変数の取得・設定
 		return *m_arrayList[n];
 	}
 	CSound & GetSound() { return m_sound; }
+
+	int GetBpm() const { return m_nBpm; }
+
 	BOOL IsMarkerPlay() const { return bMarkerPlay; }
 	BOOL IsSetPositionAuto() const { return bSetPositionAuto; }
 	void SetFinish(BOOL bFinish) { m_bFinish = bFinish; }

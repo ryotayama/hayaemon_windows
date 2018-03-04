@@ -1105,6 +1105,8 @@
     <addaction name="actionFadeOutNext"/>
     <addaction name="menuFade_out_next_time_H"/>
     <addaction name="separator"/>
+    <addaction name="actionMetronome"/>
+    <addaction name="separator"/>
     <addaction name="actionCopyTime"/>
    </widget>
    <widget class="QMenu" name="menuFile_F">
@@ -3306,6 +3308,11 @@
   <action name="actionCopyTime">
    <property name="text">
     <string>Copy current position to clipboard(&amp;C)</string>
+   </property>
+  </action>
+  <action name="actionMetronome">
+   <property name="text">
+    <string>Metronome(&amp;M)...</string>
    </property>
   </action>
  </widget>

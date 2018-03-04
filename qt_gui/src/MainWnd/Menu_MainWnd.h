@@ -274,6 +274,7 @@ public: // 関数
 	void OnFadeoutNext8SecMenuSelected();
 	void OnFadeoutNext9SecMenuSelected();
 	void OnFadeoutNext10SecMenuSelected();
+	void OnMetronomeMenuSelected();
 	void OnReverbDefaultMenuSelected(bool checked = true);
 	void OnReverbCustomizeMenuSelected(bool checked);
 	void On3DReverbDefaultMenuSelected(bool checked = true);
