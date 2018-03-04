@@ -39,6 +39,7 @@ public: // 関数
 	virtual void OnMarkerPlayButtonSelected();
 	virtual void OnAddMarkerButtonSelected();
 	virtual void OnDeleteMarkerButtonSelected();
+	virtual void OnExplorerButtonSelected(bool checked);
 
 private: // メンバ変数
 

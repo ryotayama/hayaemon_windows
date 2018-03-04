@@ -68,6 +68,7 @@ public: // 関数
 	void OnDeleteMenuSelected();
 	void OnSelectAllMenuSelected();
 	void OnTimeSliderMenuSelected(bool checked);
+	void OnExplorerMenuSelected(bool checked);
 	void OnSpeedMenuSelected(bool checked);
 	void OnFreqMenuSelected(bool checked);
 	void OnPitchMenuSelected(bool checked);
@@ -366,6 +367,7 @@ public: // 関数
 	void OnEQHighCutLowMenuSelected();
 	void OnEQHighCutLowestMenuSelected();
 	void OnResetAllMenuSelected();
+	void OnCopyTimeMenuSelected();
 
 	CPresetMenu & GetPresetMenu() {
 		return m_presetMenu;

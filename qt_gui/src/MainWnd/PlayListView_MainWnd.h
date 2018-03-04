@@ -7,15 +7,14 @@
 class CMainWnd;
 #include <stdint.h>
 #include <vector>
-#include <QIcon>
 #include <QList>
-#include <QTableWidget>
 #include "../Common/Define.h"
+#include "../Common/ListView.h"
 class QUrl;
 //----------------------------------------------------------------------------
 // プレイリスト用リストビューの管理を行うクラス
 //----------------------------------------------------------------------------
-class CPlayListView_MainWnd : public QTableWidget
+class CPlayListView_MainWnd : public CListView
 {
 	Q_OBJECT
 
@@ -74,47 +73,6 @@ public:
 	virtual void GetItemText(int iItem, int iSubItem, QString * pszText) const {
 		*pszText = this->item(iItem, iSubItem)->text();
 	}
-	virtual void SetItem(int i, int iSubItem, const QString & pszText) {
-		SetItem(i, iSubItem, pszText, -1);
-	}
-	virtual void SetItem(int i, int iSubItem, const char16_t * pszText,
-											 int iImage) {
-		SetItem(i, iSubItem, QString::fromUtf16(pszText), iImage);
-	}
-	virtual void SetItem(int i, int iSubItem, const wchar_t * pszText,
-											 int iImage) {
-		SetItem(i, iSubItem, QString::fromWCharArray(pszText), iImage);
-	}
-	virtual void SetItem(int i, int iSubItem, const QString & pszText,
-											 int iImage) {
-		auto item = this->item(i, iSubItem);
-		if (item == nullptr) {
-			item = new QTableWidgetItem();
-			setItem(i, iSubItem, item);
-		}
-		item->setText(pszText);
-		item->setIcon(iImage >= 0 ? m_icons[iImage] : QIcon());
-	}
-	virtual void SetItemState(int i, UINT state, UINT mask) {
-		if (state == LVIS_SELECTED) {
-			for (int j = 0; j < this->columnCount(); j++) {
-				auto item = this->item(i, j);
-				if (item != nullptr) {
-					item->setSelected(true);
-				}
-			}
-		}
-	}
-	virtual int InsertColumn(int nCol, const QString & lpszColumnHeading,
-								int nFormat = LVCFMT_LEFT, int nWidth = -1,
-								int nSubItem = -1);
-	virtual int InsertItem(int nItem) {
-		insertRow(nItem);
-		return nItem;
-	}
-	virtual void Show(int nCmdShow) {
-		this->setVisible(nCmdShow != SW_HIDE);
-	}
 
 protected:
 	void dragEnterEvent(QDragEnterEvent * e) override;
@@ -126,7 +84,9 @@ protected:
 
 private:
 
-	std::vector<int> GetSelectedRows();
+	QIcon GetItemIcon(int idx) const override {
+		return idx >= 0 ? m_icons[idx] : QIcon();
+	}
 
 private: // メンバ変数
 

@@ -11,6 +11,8 @@ set(SRC_COMMON
   ${SRC_DIR}/Common/BassFx.h
   ${SRC_DIR}/Common/CommandList.h
   ${SRC_DIR}/Common/Define.h
+  ${SRC_DIR}/Common/ListView.cpp
+  ${SRC_DIR}/Common/ListView.h
   ${SRC_DIR}/Common/SliderCtrl.h
   ${SRC_DIR}/Common/SliderCtrlCore.h
   ${SRC_DIR}/Common/StaticCore.h
@@ -52,6 +54,10 @@ set(SRC_MAINWND
   ${SRC_DIR}/MainWnd/DelayCustomizeWnd.h
   ${SRC_DIR}/MainWnd/DistortionCustomizeWnd.cpp
   ${SRC_DIR}/MainWnd/DistortionCustomizeWnd.h
+  ${SRC_DIR}/MainWnd/Explorer.cpp
+  ${SRC_DIR}/MainWnd/Explorer.h
+  ${SRC_DIR}/MainWnd/ExplorerBar.cpp
+  ${SRC_DIR}/MainWnd/ExplorerBar.h
   ${SRC_DIR}/MainWnd/FlangerCustomizeWnd.cpp
   ${SRC_DIR}/MainWnd/FlangerCustomizeWnd.h
   ${SRC_DIR}/MainWnd/GargleCustomizeWnd.cpp
@@ -96,6 +102,8 @@ set(SRC_MAINWND
   ${SRC_DIR}/MainWnd/PresetNameInputWnd.h
   ${SRC_DIR}/MainWnd/ReverbCustomizeWnd.cpp
   ${SRC_DIR}/MainWnd/ReverbCustomizeWnd.h
+  ${SRC_DIR}/MainWnd/RMenu_Explorer.cpp
+  ${SRC_DIR}/MainWnd/RMenu_Explorer.h
   ${SRC_DIR}/MainWnd/RMenu_ListView.cpp
   ${SRC_DIR}/MainWnd/RMenu_ListView.h
   ${SRC_DIR}/MainWnd/Sound.cpp

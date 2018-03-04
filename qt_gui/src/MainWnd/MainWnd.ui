@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>1177</height>
+    <width>799</width>
+    <height>975</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <normaloff>:/icon/resource/icon1.ico</normaloff>:/icon/resource/icon1.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout_2">
+   <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,1000">
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
@@ -280,6 +280,23 @@
        </widget>
       </item>
       <item>
+       <widget class="QToolButton" name="explorerButton">
+        <property name="toolTip">
+         <string>Switch visibility of explorer</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../Hayaemon.qrc">
+          <normaloff>:/icon/resource/explorer.png</normaloff>:/icon/resource/explorer.png</iconset>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
        <spacer name="horizontalSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -302,175 +319,203 @@
      </layout>
     </item>
     <item>
-     <widget class="CSliderCtrlCore" name="timeSlider">
+     <widget class="QSplitter" name="splitter">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
+      <property name="childrenCollapsible">
+       <bool>false</bool>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <layout class="QVBoxLayout" name="explorerLayout">
+        <item>
+         <widget class="CExplorerBar" name="m_explorerBar"/>
+        </item>
+        <item>
+         <widget class="CExplorer" name="m_explorer">
+          <property name="showGrid">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="layoutWidget">
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="CSliderCtrlCore" name="timeSlider">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="speedGroupBox">
+          <property name="title">
+           <string/>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <widget class="QLabel" name="speedLabel">
+               <property name="text">
+                <string>Speed :</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDoubleSpinBox" name="speedSpinBox"/>
+             </item>
+             <item>
+              <widget class="QLabel" name="speedLabel2">
+               <property name="text">
+                <string>%</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="CSliderCtrlCore" name="speedSlider">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <item>
+              <widget class="QLabel" name="freqLabel">
+               <property name="text">
+                <string>Frequency :</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDoubleSpinBox" name="freqSpinBox"/>
+             </item>
+             <item>
+              <widget class="QLabel" name="freqLabel2">
+               <property name="text">
+                <string>%</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="CSliderCtrlCore" name="freqSlider">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <item>
+              <widget class="QLabel" name="pitchLabel">
+               <property name="text">
+                <string>Pitch :</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="CPitchSpinBox" name="pitchSpinBox"/>
+             </item>
+             <item>
+              <widget class="CSliderCtrlCore" name="pitchSlider">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="volumeGroupBox">
+          <property name="title">
+           <string/>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <widget class="QLabel" name="volumeLabel">
+               <property name="text">
+                <string>Volume :</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDoubleSpinBox" name="volumeSpinBox"/>
+             </item>
+             <item>
+              <widget class="QLabel" name="volumeLabel2">
+               <property name="text">
+                <string>%</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="CSliderCtrlCore" name="volumeSlider">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <item>
+              <widget class="QLabel" name="panLabel">
+               <property name="text">
+                <string>Pan :</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="panSpinBox"/>
+             </item>
+             <item>
+              <widget class="CSliderCtrlCore" name="panSlider">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="eqGroupBox">
+          <property name="title">
+           <string/>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
+          </property>
+          <layout class="QGridLayout" name="eqLayout"/>
+         </widget>
+        </item>
+        <item>
+         <widget class="CTab_MainWnd" name="m_tab"/>
+        </item>
+       </layout>
+      </widget>
      </widget>
-    </item>
-    <item>
-     <widget class="QGroupBox" name="speedGroupBox">
-      <property name="title">
-       <string/>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <item>
-          <widget class="QLabel" name="speedLabel">
-           <property name="text">
-            <string>Speed :</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QDoubleSpinBox" name="speedSpinBox"/>
-         </item>
-         <item>
-          <widget class="QLabel" name="speedLabel2">
-           <property name="text">
-            <string>%</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="CSliderCtrlCore" name="speedSlider">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_4">
-         <item>
-          <widget class="QLabel" name="freqLabel">
-           <property name="text">
-            <string>Frequency :</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QDoubleSpinBox" name="freqSpinBox"/>
-         </item>
-         <item>
-          <widget class="QLabel" name="freqLabel2">
-           <property name="text">
-            <string>%</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="CSliderCtrlCore" name="freqSlider">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_6">
-         <item>
-          <widget class="QLabel" name="pitchLabel">
-           <property name="text">
-            <string>Pitch :</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="CPitchSpinBox" name="pitchSpinBox"/>
-         </item>
-         <item>
-          <widget class="CSliderCtrlCore" name="pitchSlider">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item>
-     <widget class="QGroupBox" name="volumeGroupBox">
-      <property name="title">
-       <string/>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_3">
-         <item>
-          <widget class="QLabel" name="volumeLabel">
-           <property name="text">
-            <string>Volume :</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QDoubleSpinBox" name="volumeSpinBox"/>
-         </item>
-         <item>
-          <widget class="QLabel" name="volumeLabel2">
-           <property name="text">
-            <string>%</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="CSliderCtrlCore" name="volumeSlider">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_5">
-         <item>
-          <widget class="QLabel" name="panLabel">
-           <property name="text">
-            <string>Pan :</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="panSpinBox"/>
-         </item>
-         <item>
-          <widget class="CSliderCtrlCore" name="panSlider">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item>
-     <widget class="QGroupBox" name="eqGroupBox">
-      <property name="title">
-       <string/>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-      <layout class="QGridLayout" name="eqLayout"/>
-     </widget>
-    </item>
-    <item>
-     <widget class="CTab_MainWnd" name="m_tab"/>
     </item>
    </layout>
   </widget>
@@ -479,7 +524,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>799</width>
      <height>31</height>
     </rect>
    </property>
@@ -955,6 +1000,7 @@
      <addaction name="separator"/>
     </widget>
     <addaction name="actionTimeSliderVisible"/>
+    <addaction name="actionExplorerVisible"/>
     <addaction name="actionSpeedVisible"/>
     <addaction name="actionFreqVisible"/>
     <addaction name="actionPitchVisible"/>
@@ -1058,6 +1104,8 @@
     <addaction name="menuFade_out_stop_time_G"/>
     <addaction name="actionFadeOutNext"/>
     <addaction name="menuFade_out_next_time_H"/>
+    <addaction name="separator"/>
+    <addaction name="actionCopyTime"/>
    </widget>
    <widget class="QMenu" name="menuFile_F">
     <property name="title">
@@ -3247,6 +3295,19 @@
     <string>Save all(&amp;A)...</string>
    </property>
   </action>
+  <action name="actionExplorerVisible">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Explorer(&amp;E)</string>
+   </property>
+  </action>
+  <action name="actionCopyTime">
+   <property name="text">
+    <string>Copy current position to clipboard(&amp;C)</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -3270,6 +3331,16 @@
    <extends>QDoubleSpinBox</extends>
    <header>PitchSpinBox.h</header>
   </customwidget>
+  <customwidget>
+   <class>CExplorer</class>
+   <extends>QTableView</extends>
+   <header>Explorer.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CExplorerBar</class>
+   <extends>QLineEdit</extends>
+   <header>ExplorerBar.h</header>
+  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>prevButton</tabstop>
@@ -3287,6 +3358,9 @@
   <tabstop>markerPlayButton</tabstop>
   <tabstop>addMarkerButton</tabstop>
   <tabstop>deleteMarkerButton</tabstop>
+  <tabstop>explorerButton</tabstop>
+  <tabstop>m_explorerBar</tabstop>
+  <tabstop>m_explorer</tabstop>
   <tabstop>timeSlider</tabstop>
   <tabstop>speedSpinBox</tabstop>
   <tabstop>speedSlider</tabstop>

@@ -9,9 +9,11 @@
 #include <cmath>
 #include <ctime>
 #include <functional>
+#include <QClipboard>
 #include <QDragEnterEvent>
 #include <QFileDialog>
 #include <QFileInfo>
+#include <QGuiApplication>
 #include <QMessageBox>
 #include <QMimeData>
 #include <QTimer>
@@ -226,6 +228,37 @@ BOOL CMainWnd::CheckLoop()
 	else return TRUE;
 }
 //----------------------------------------------------------------------------
+// 現在の再生位置をクリップボードにコピー
+//----------------------------------------------------------------------------
+void CMainWnd::CopyTime()
+{
+	double maxTime = m_sound.ChannelGetSecondsLength();
+
+	double time = m_sound.ChannelGetSecondsPosition();
+
+	if(time < 0.0f) time = 0.0f;
+
+	int maxHour = (int)(maxTime / 3600) % 60;
+
+	int hour = (int)(time / 3600) % 60;
+	int second = (int)(time / 60) % 60;
+	int minute = (int)time % 60;
+
+	TCHAR text[20];
+	int nLength = 0;
+	if(maxHour > 0) {
+		_stprintf_s(text, _T("%02d:%02d:%02d"), hour, second, minute);
+		nLength = 8;
+	}
+	else {
+		_stprintf_s(text, _T("%02d:%02d"), second, minute);
+		nLength = 5;
+	}
+
+	QClipboard *clipboard = QGuiApplication::clipboard();
+	clipboard->setText(ToQString(text));
+}
+//----------------------------------------------------------------------------
 // 新しい再生リストを作成
 //----------------------------------------------------------------------------
 void CMainWnd::CreateNewList(BOOL bChangeFocus)
@@ -267,6 +300,25 @@ BOOL CMainWnd::CreateControls()
 	if(!m_timeSlider.Create()) {
 		m_rApp.ShowError(tr("failed to create time slider."));
 		return FALSE;
+	}
+
+	// エクスプローラ用ツールバーの作成
+	if(!m_explorerBar->Create()) {
+		m_rApp.ShowError(tr("failed to create explorer bar."));
+		return FALSE;
+	}
+
+	// エクスプローラの作成
+	if(!m_explorer->Create(*this)) {
+		m_rApp.ShowError(tr("failed to create explorer."));
+		return FALSE;
+	}
+
+	GetPrivateProfileString(_T("Options"), _T("ExplorerPath"), _T(""), 
+		buf, 255, chPath);
+	if(_tcsicmp(buf, _T("")) != 0) {
+		SetCurrentDirectory(buf);
+		m_explorer->ShowFiles();
 	}
 
 	// 再生速度表示用ラベルの作成
@@ -4249,6 +4301,19 @@ void CMainWnd::SetTimeSliderVisible(bool bTimeSliderVisible)
 	m_menu.CheckItem(ID_TIMESLIDER, uCheck);
 }
 //----------------------------------------------------------------------------
+// エクスプローラの表示状態を設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetExplorerVisible(bool bExplorerVisible)
+{
+	UINT uCheck = bExplorerVisible ? MF_CHECKED : MF_UNCHECKED;
+	splitter->widget(0)->setVisible(bExplorerVisible);
+	m_menu.CheckItem(ID_EXPLORER, uCheck);
+	m_toolBar.CheckButton(ID_EXPLORER, bExplorerVisible);
+	if(bExplorerVisible) {
+		m_explorer->setFocus();
+	}
+}
+//----------------------------------------------------------------------------
 // 再生速度の表示状態を設定
 //----------------------------------------------------------------------------
 void CMainWnd::SetSpeedVisible(bool bSpeedVisible)
@@ -7222,6 +7287,9 @@ void CMainWnd::WriteInitFile()
 	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_TIMESLIDER) ? 1 : 0);
 	WritePrivateProfileString(_T("Visible"), _T("TimeSlider"), buf, 
 		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_EXPLORER) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("Explorer"), buf, 
+		initFilePath.c_str());
 	_stprintf_s(buf, _T("%d"),
 		m_menu.IsItemChecked(ID_RECOVERSPEEDVISIBLE) ? 1 : 0 ? 1 : 0);
 	WritePrivateProfileString(_T("Visible"), _T("RecoverSpeed"), buf, 
@@ -7736,6 +7804,9 @@ void CMainWnd::WriteInitFile()
 									  ToTstring(filePath).c_str(), initFilePath.c_str());
 		}
 	}
+	WritePrivateProfileString(_T("Options"), _T("ExplorerPath"),
+		m_explorerBar->GetEdit().text().toStdWString().c_str(),
+		initFilePath.c_str());
 }
 //----------------------------------------------------------------------------
 // 閉じられようとしている
@@ -7774,6 +7845,8 @@ LRESULT CMainWnd::OnCreate()
 		bTimeSliderVisible = GetPrivateProfileInt(_T("Visible"),
 								_T("TimeSlider"), 1, chPath);
 	}
+	BOOL bExplorerVisible = GetPrivateProfileInt(_T("Visible"), _T("Explorer"),
+								0, chPath);
 	if(GetPrivateProfileInt(_T("Visible"), _T("RecoverSpeed"), 1, chPath)) {
 		m_menu.SwitchItemChecked(ID_RECOVERSPEEDVISIBLE);
 		bSpeedVisible = GetPrivateProfileInt(_T("Visible"), _T("Speed"), 1,
@@ -7811,6 +7884,7 @@ LRESULT CMainWnd::OnCreate()
 		return FALSE;
 
 	SetTimeSliderVisible(bTimeSliderVisible);
+	SetExplorerVisible(bExplorerVisible);
 	if(bSpeedVisible) SetSpeedVisible(true);
 	if(bFreqVisible) SetFreqVisible(true);
 	if(bPitchVisible) SetPitchVisible(true);

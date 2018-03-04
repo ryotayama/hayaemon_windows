@@ -6,14 +6,6 @@
 #include "../Common/CommandList.h"
 #include "MainWnd.h"
 #include "PlayListView_MainWnd.h"
-
-enum {
-	ID_PLAY,
-	ID_PAUSE,
-	ID_STOP,
-	ID_ABLOOP_A,
-	ID_ABLOOP_B,
-};
 //----------------------------------------------------------------------------
 // コンストラクタ
 //----------------------------------------------------------------------------
@@ -33,7 +25,8 @@ CToolBar_MainWnd::CToolBar_MainWnd(CMainWnd & mainWnd)
 								 {ID_ABLOOP_B, m_rMainWnd.abLoopBButton},
 								 {ID_MARKERPLAY, m_rMainWnd.markerPlayButton},
 								 {ID_ADDMARKER, m_rMainWnd.addMarkerButton},
-								 {ID_DELETEMARKER, m_rMainWnd.deleteMarkerButton}})
+								 {ID_DELETEMARKER, m_rMainWnd.deleteMarkerButton},
+								 {ID_EXPLORER, m_rMainWnd.explorerButton}})
 {
 }
 //----------------------------------------------------------------------------
@@ -288,6 +281,13 @@ void CToolBar_MainWnd::OnDeleteMarkerButtonSelected()
 	m_rMainWnd.DeleteMarker();
 }
 //----------------------------------------------------------------------------
+// エクスプローラボタンが選択された
+//----------------------------------------------------------------------------
+void CToolBar_MainWnd::OnExplorerButtonSelected(bool checked)
+{
+	m_rMainWnd.SetExplorerVisible(checked);
+}
+//----------------------------------------------------------------------------
 // チェック状態の設定
 //----------------------------------------------------------------------------
 void CToolBar_MainWnd::CheckButton(int nID, BOOL fCheck)
@@ -376,5 +376,7 @@ void CToolBar_MainWnd::CreateConnections()
 					this, &CToolBar_MainWnd::OnAddMarkerButtonSelected);
 	connect(m_rMainWnd.deleteMarkerButton, &QToolButton::clicked,
 					this, &CToolBar_MainWnd::OnDeleteMarkerButtonSelected);
+	connect(m_rMainWnd.explorerButton, &QToolButton::clicked,
+					this, &CToolBar_MainWnd::OnExplorerButtonSelected);
 }
 //----------------------------------------------------------------------------

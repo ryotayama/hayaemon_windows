@@ -21,7 +21,7 @@
 //----------------------------------------------------------------------------
 CPlayListView_MainWnd::CPlayListView_MainWnd(CMainWnd & mainWnd,
 																						 QWidget * parent /* = nullptr */)
-	: QTableWidget(parent), m_rMainWnd(mainWnd)
+	: CListView(parent), m_rMainWnd(mainWnd)
 {
   setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(this, &QWidget::customContextMenuRequested,
@@ -294,9 +294,7 @@ void CPlayListView_MainWnd::Delete(int nItem)
 BOOL CPlayListView_MainWnd::DeleteAllItems()
 {
 	orders.clear();
-	clearContents();
-	setRowCount(0);
-	return TRUE;
+	return CListView::DeleteAllItems();
 }
 //----------------------------------------------------------------------------
 // 再生順の最大値を得る
@@ -403,7 +401,7 @@ void CPlayListView_MainWnd::OnContextMenu(const QPoint & pos)
 				rect.setRight(std::max(rect.right(), rect2.right()));
 			}
 		}
-		hit = rect.contains(pos);
+		hit = rect.top() <= pos.y() && pos.y() <= rect.bottom();
 		if(hit) {
 			break;
 		}
@@ -453,18 +451,6 @@ void CPlayListView_MainWnd::SelectAll()
 //----------------------------------------------------------------------------
 // Qtのラッパー
 //----------------------------------------------------------------------------
-int CPlayListView_MainWnd::InsertColumn(
-		int nCol, const QString & lpszColumnHeading,
-		int nFormat /*= LVCFMT_LEFT*/, int nWidth /*= -1*/,
-		int nSubItem /*= -1*/)
-{
-	auto item = new QTableWidgetItem(lpszColumnHeading);
-	item->setTextAlignment(
-			nFormat == LVCFMT_RIGHT ? Qt::AlignRight : Qt::AlignLeft);
-	this->setHorizontalHeaderItem(nCol, item);
-	this->setColumnWidth(nCol, nWidth);
-	return nCol;
-}
 void CPlayListView_MainWnd::dragEnterEvent(QDragEnterEvent * e)
 {
 	e->acceptProposedAction();
@@ -476,23 +462,5 @@ void CPlayListView_MainWnd::dropEvent(QDropEvent * e)
 void CPlayListView_MainWnd::keyPressEvent(QKeyEvent * e)
 {
 	OnKeyDown(e);
-}
-//----------------------------------------------------------------------------
-// 選択されたアイテムを取得する。ただし、列の重複はないリストを返す。
-//----------------------------------------------------------------------------
-std::vector<int> CPlayListView_MainWnd::GetSelectedRows()
-{
-	auto indexes = selectedIndexes();
-	std::sort(indexes.begin(), indexes.end(),
-						[] (auto lhs, auto rhs) { return lhs.row() < rhs.row(); });
-	auto end = std::unique(indexes.begin(), indexes.end(),
-												 [] (auto &lhs, auto &rhs) {
-													 return lhs.row() == rhs.row();
-												 });
-	std::vector<int> rows;
-	for(auto it = indexes.begin(); it != end; ++it) {
-		rows.push_back(it->row());
-	}
-	return rows;
 }
 //----------------------------------------------------------------------------

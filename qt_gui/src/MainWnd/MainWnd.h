@@ -43,11 +43,11 @@ class CMainWnd : public QMainWindow, public Ui::MainWnd
 public: // 関数
 
 	CMainWnd(CApp & app): m_rApp(app), m_menu(*this), m_toolBar(*this),
-		m_timeLabel(*this), m_timeSlider(*this), m_speedLabel(*this),
-		m_speedSlider(*this), m_freqLabel(*this), m_freqSlider(*this),
-		m_pitchLabel(*this), m_pitchSlider(*this), m_volumeLabel(*this),
-		m_volumeSlider(*this), m_panLabel(*this), m_panSlider(*this),
-		m_eq20Label(*this), m_eq20Slider(*this),
+		m_timeLabel(*this), m_timeSlider(*this),
+		m_speedLabel(*this), m_speedSlider(*this), m_freqLabel(*this),
+		m_freqSlider(*this), m_pitchLabel(*this), m_pitchSlider(*this),
+		m_volumeLabel(*this), m_volumeSlider(*this), m_panLabel(*this),
+		m_panSlider(*this), m_eq20Label(*this), m_eq20Slider(*this),
 		m_eq25Label(*this), m_eq25Slider(*this),
 		m_eq31_5Label(*this), m_eq31_5Slider(*this),
 		m_eq40Label(*this), m_eq40Slider(*this),
@@ -102,6 +102,7 @@ public: // 関数
 	virtual void AddPreset(tstring strPreset);
 	virtual void ChangeCurPlayTab();
 	virtual BOOL CheckLoop();
+	virtual void CopyTime();
 	virtual BOOL Create() { return OnCreate(); }
 	virtual void CreateNewList(BOOL bChangeFocus = TRUE);
 	virtual BOOL CreateControls();
@@ -145,6 +146,7 @@ public: // 関数
 	virtual void SetAllEffects();
 	virtual void SetContinue(bool bContinue);
 	virtual void SetTimeSliderVisible(bool bTimeSliderVisible);
+	virtual void SetExplorerVisible(bool bExplorerVisible);
 	virtual void SetSpeedVisible(bool bSpeedVisible);
 	virtual void SetFreqVisible(bool bFreqVisible);
 	virtual void SetPitchVisible(bool bPitchVisible);
@@ -461,6 +463,8 @@ public: // 定数
 public: // メンバ変数の取得・設定
 
 	CMenu_MainWnd & GetMenu() { return m_menu; }
+	CExplorerBar & GetExplorerBar() { return *m_explorerBar; }
+	CExplorer & GetExplorer() { return *m_explorer; }
 	CSpeedLabel_MainWnd & GetSpeedLabel() { return m_speedLabel; }
 	CSpeedSlider_MainWnd & GetSpeedSlider() { return m_speedSlider; }
 	CFreqLabel_MainWnd & GetFreqLabel() { return m_freqLabel; }

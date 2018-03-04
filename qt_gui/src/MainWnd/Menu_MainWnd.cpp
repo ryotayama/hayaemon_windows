@@ -398,6 +398,13 @@ void CMenu_MainWnd::OnTimeSliderMenuSelected(bool checked)
 	m_rMainWnd.SetTimeSliderVisible(checked);
 }
 //----------------------------------------------------------------------------
+// 表示 → エクスプローラメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnExplorerMenuSelected(bool checked)
+{
+	m_rMainWnd.SetExplorerVisible(checked);
+}
+//----------------------------------------------------------------------------
 // 表示 → 再生速度メニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnSpeedMenuSelected(bool checked)
@@ -2765,6 +2772,13 @@ void CMenu_MainWnd::OnEQHighCutLowestMenuSelected()
 					 0, 0, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3);
 }
 //----------------------------------------------------------------------------
+// システム → 現在の再生位置をクリップボードにコピーメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnCopyTimeMenuSelected()
+{
+	m_rMainWnd.CopyTime();
+}
+//----------------------------------------------------------------------------
 // メニューの項目のチェック状態を設定
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::CheckItem(UINT uIDCheckItem, UINT uCheck)
@@ -2809,6 +2823,7 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_SAVEFILE, m_rMainWnd.actionFileSave},
 		{ID_SAVEALLFILE, m_rMainWnd.actionFileSaveAll},
 		{ID_TIMESLIDER, m_rMainWnd.actionTimeSliderVisible},
+		{ID_EXPLORER, m_rMainWnd.actionExplorerVisible},
 		{ID_SPEED, m_rMainWnd.actionSpeedVisible},
 		{ID_FREQ, m_rMainWnd.actionFreqVisible},
 		{ID_PITCH, m_rMainWnd.actionPitchVisible},
@@ -2970,6 +2985,7 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_FADEOUTNEXT8SEC, m_rMainWnd.actionFadeOutNext8Sec},
 		{ID_FADEOUTNEXT9SEC, m_rMainWnd.actionFadeOutNext9Sec},
 		{ID_FADEOUTNEXT10SEC, m_rMainWnd.actionFadeOutNext10Sec},
+		{ID_COPYTIME, m_rMainWnd.actionCopyTime},
 	};
 }
 //----------------------------------------------------------------------------
@@ -3059,6 +3075,8 @@ void CMenu_MainWnd::CreateConnections()
 	// View
 	connect(m_rMainWnd.actionTimeSliderVisible, &QAction::triggered,
 					this, &CMenu_MainWnd::OnTimeSliderMenuSelected);
+	connect(m_rMainWnd.actionExplorerVisible, &QAction::triggered,
+					this, &CMenu_MainWnd::OnExplorerMenuSelected);
 	connect(m_rMainWnd.actionSpeedVisible, &QAction::toggled,
 					this, &CMenu_MainWnd::OnSpeedMenuSelected);
 	connect(m_rMainWnd.actionFreqVisible, &QAction::toggled,
@@ -3651,5 +3669,7 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnPlayRangeMenuSelected);
 	connect(m_rMainWnd.actionPlayPosition, &QAction::triggered,
 					this, &CMenu_MainWnd::OnPlayPositionMenuSelected);
+	connect(m_rMainWnd.actionCopyTime, &QAction::triggered,
+					this, &CMenu_MainWnd::OnCopyTimeMenuSelected);
 }
 //----------------------------------------------------------------------------
