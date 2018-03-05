@@ -1107,6 +1107,7 @@
     <addaction name="separator"/>
     <addaction name="actionMetronome"/>
     <addaction name="separator"/>
+    <addaction name="actionTopMost"/>
     <addaction name="actionCopyTime"/>
    </widget>
    <widget class="QMenu" name="menuFile_F">
@@ -3313,6 +3314,14 @@
   <action name="actionMetronome">
    <property name="text">
     <string>Metronome(&amp;M)...</string>
+   </property>
+  </action>
+  <action name="actionTopMost">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Bring window top(&amp;S)</string>
    </property>
   </action>
  </widget>

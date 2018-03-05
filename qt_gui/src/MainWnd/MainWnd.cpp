@@ -2278,6 +2278,9 @@ void CMainWnd::OpenInitFileAfterShow()
 	int _bNormalize = _ttoi(buf);
 
 	// その他の設定
+	GetPrivateProfileString(_T("Options"), _T("TopMost"), _T("0"), buf, 255, 
+		initFilePath.c_str());
+	int _bTopMost = _ttoi(buf);
 	GetPrivateProfileString(_T("Options"), _T("SaveFormat"), _T("WAVE"), buf, 
 		255, initFilePath.c_str());
 	strSaveFormat = buf;
@@ -2354,6 +2357,7 @@ void CMainWnd::OpenInitFileAfterShow()
 	}
 	if(_bNormalize) SetNormalize();
 
+	if(_bTopMost) SetTopMost(); // QtのバグなのかTopMostにならないことがある
 	if(_bRecoverList) {
 		m_menu.SwitchItemChecked(ID_RECOVERLIST);
 
@@ -6817,6 +6821,22 @@ void CMainWnd::SetTimerStop(BOOL bTimerStop)
 	else KillTimer(IDT_TIMERSTOP);
 }
 //----------------------------------------------------------------------------
+// 最前面表示の設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetTopMost()
+{
+	auto lStyle = windowFlags();
+	if(lStyle & Qt::WindowStaysOnTopHint) {
+		setWindowFlag(Qt::WindowStaysOnTopHint, false);
+		m_menu.CheckItem(ID_TOPMOST, MF_UNCHECKED);
+	}
+	else {
+		setWindowFlag(Qt::WindowStaysOnTopHint, true);
+		m_menu.CheckItem(ID_TOPMOST, MF_CHECKED);
+	}
+	show();
+}
+//----------------------------------------------------------------------------
 // ３Ｄリバーブのカスタマイズ用ウィンドウの表示
 //----------------------------------------------------------------------------
 void CMainWnd::Show3DReverbCustomizeWnd()
@@ -7648,6 +7668,9 @@ void CMainWnd::WriteInitFile()
 		initFilePath.c_str());
 	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_RECOVERLIST) ? 1 : 0);
 	WritePrivateProfileString(_T("Options"), _T("RecoverList"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), windowFlags() & Qt::WindowStaysOnTopHint ? 1 : 0);
+	WritePrivateProfileString(_T("Options"), _T("TopMost"), buf, 
 		initFilePath.c_str());
 	WritePrivateProfileString(_T("Options"), _T("SaveFormat"), 
 		strSaveFormat.c_str(), initFilePath.c_str());

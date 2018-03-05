@@ -257,6 +257,7 @@ public: // 関数
 	virtual void SetTimerPlay(BOOL bTimerPlay);
 	virtual void SetTimerStop(int nHour, int nMinute);
 	virtual void SetTimerStop(BOOL bTimerStop);
+	virtual void SetTopMost();
 	virtual void SetFreq(double dFreq);
 	virtual void SetPan(int nPan);
 	virtual void SetPitch(double dPitch);

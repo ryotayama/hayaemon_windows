@@ -2779,6 +2779,13 @@ void CMenu_MainWnd::OnEQHighCutLowestMenuSelected()
 					 0, 0, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3);
 }
 //----------------------------------------------------------------------------
+// システム → 最前面表示メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnTopMostMenuSelected()
+{
+	m_rMainWnd.SetTopMost();
+}
+//----------------------------------------------------------------------------
 // システム → 現在の再生位置をクリップボードにコピーメニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnCopyTimeMenuSelected()
@@ -2993,6 +3000,7 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_FADEOUTNEXT9SEC, m_rMainWnd.actionFadeOutNext9Sec},
 		{ID_FADEOUTNEXT10SEC, m_rMainWnd.actionFadeOutNext10Sec},
 		{ID_METRONOME, m_rMainWnd.actionMetronome},
+		{ID_TOPMOST, m_rMainWnd.actionTopMost},
 		{ID_COPYTIME, m_rMainWnd.actionCopyTime},
 	};
 }
@@ -3679,6 +3687,8 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnPlayPositionMenuSelected);
 	connect(m_rMainWnd.actionMetronome, &QAction::triggered,
 					this, &CMenu_MainWnd::OnMetronomeMenuSelected);
+	connect(m_rMainWnd.actionTopMost, &QAction::triggered,
+					this, &CMenu_MainWnd::OnTopMostMenuSelected);
 	connect(m_rMainWnd.actionCopyTime, &QAction::triggered,
 					this, &CMenu_MainWnd::OnCopyTimeMenuSelected);
 }

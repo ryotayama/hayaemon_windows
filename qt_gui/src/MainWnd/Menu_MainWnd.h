@@ -368,6 +368,7 @@ public: // 関数
 	void OnEQHighCutLowMenuSelected();
 	void OnEQHighCutLowestMenuSelected();
 	void OnResetAllMenuSelected();
+	void OnTopMostMenuSelected();
 	void OnCopyTimeMenuSelected();
 
 	CPresetMenu & GetPresetMenu() {
