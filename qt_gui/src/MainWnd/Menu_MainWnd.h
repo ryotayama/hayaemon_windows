@@ -8,6 +8,7 @@
 #include <QObject>
 #include "../Common/Define.h"
 #include "PresetMenu.h"
+class CApp;
 class CMainWnd;
 class QAction;
 //----------------------------------------------------------------------------
@@ -17,7 +18,7 @@ class CMenu_MainWnd : public QObject
 {
 public: // 関数
 
-	explicit CMenu_MainWnd(CMainWnd & mainWnd);
+	CMenu_MainWnd(CApp & app, CMainWnd & mainWnd);
 
 	virtual BOOL Create();
 	void SetABLoopState(BOOL bALoop, BOOL bBLoop);
@@ -370,6 +371,7 @@ public: // 関数
 	void OnResetAllMenuSelected();
 	void OnTopMostMenuSelected();
 	void OnCopyTimeMenuSelected();
+	void OnVersionInfoMenuSelected();
 
 	CPresetMenu & GetPresetMenu() {
 		return m_presetMenu;
@@ -377,6 +379,7 @@ public: // 関数
 
 private: // メンバ変数
 
+	CApp & m_rApp;
 	CMainWnd & m_rMainWnd;
 
 	CPresetMenu m_presetMenu;

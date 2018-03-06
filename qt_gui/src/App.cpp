@@ -44,6 +44,11 @@ int CApp::Run(int argc, char *argv[])
 	}
 	
 	m_cstrName = QObject::tr("Hayaemon");
+	m_cstrVersionInfo = u8"2.75β4";
+	m_cstrAuthorName = QObject::tr("Ryota");
+	m_cstrAuthorEMail = "taro@edolfzoku.com";
+	m_cstrAuthorWebSiteName = QObject::tr("Free Software Development Station");
+	m_cstrAuthorURL = "http://soft.edolfzoku.com/";
 
 	QString filePath = QCoreApplication::applicationFilePath();
 	QString fileName = QFileInfo(filePath).fileName();

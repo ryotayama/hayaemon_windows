@@ -4,6 +4,8 @@
 #include "Menu_MainWnd.h"
 #include <cassert>
 #include <QActionGroup>
+#include <QMessageBox>
+#include "../App.h"
 #include "../Common/CommandList.h"
 #include "../Common/Define.h"
 #include "MainWnd.h"
@@ -12,8 +14,8 @@
 //----------------------------------------------------------------------------
 // コンストラクタ
 //----------------------------------------------------------------------------
-CMenu_MainWnd::CMenu_MainWnd(CMainWnd & mainWnd)
-	: m_rMainWnd(mainWnd), m_presetMenu(mainWnd, m_actionMap)
+CMenu_MainWnd::CMenu_MainWnd(CApp & app, CMainWnd & mainWnd)
+	: m_rApp(app), m_rMainWnd(mainWnd), m_presetMenu(mainWnd, m_actionMap)
 {
 }
 //----------------------------------------------------------------------------
@@ -2793,6 +2795,36 @@ void CMenu_MainWnd::OnCopyTimeMenuSelected()
 	m_rMainWnd.CopyTime();
 }
 //----------------------------------------------------------------------------
+// ヘルプ → バージョン情報メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnVersionInfoMenuSelected()
+{
+	QString str = m_rApp.GetName() + " ";
+	QString strVersion = m_rApp.GetVersionInfo();
+	int nPos = strVersion.indexOf("β", 0);
+	if(nPos > 0) {
+		str += "Version " + strVersion.left(nPos);
+		str += " β ";
+		str += strVersion.mid(nPos + 1);
+	}
+	else {
+		str += "Version " + strVersion +
+			   tr(" stable");
+	}
+	str += "\n\n  " + m_rApp.GetAuthorName()
+		+ " <" + m_rApp.GetAuthorEMail() + ">\n  "
+		+ m_rApp.GetAuthorWebSiteName() + " : " + m_rApp.GetAuthorURL();
+
+	QMessageBox msgbox;
+	msgbox.setWindowTitle(tr("Version"));
+	msgbox.setText(str);
+	auto horizontalSpacer = new QSpacerItem(
+		600, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
+	auto layout = (QGridLayout*)msgbox.layout();
+	layout->addItem(horizontalSpacer, layout->rowCount(), 0, 1, layout->columnCount());
+	msgbox.exec();
+}
+//----------------------------------------------------------------------------
 // メニューの項目のチェック状態を設定
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::CheckItem(UINT uIDCheckItem, UINT uCheck)
@@ -3691,5 +3723,8 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnTopMostMenuSelected);
 	connect(m_rMainWnd.actionCopyTime, &QAction::triggered,
 					this, &CMenu_MainWnd::OnCopyTimeMenuSelected);
+	// Help
+	connect(m_rMainWnd.actionVersionInfo, &QAction::triggered,
+					this, &CMenu_MainWnd::OnVersionInfoMenuSelected);
 }
 //----------------------------------------------------------------------------

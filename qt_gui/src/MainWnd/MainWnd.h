@@ -43,7 +43,7 @@ class CMainWnd : public QMainWindow, public Ui::MainWnd
 
 public: // 関数
 
-	CMainWnd(CApp & app): m_rApp(app), m_menu(*this), m_toolBar(*this),
+	CMainWnd(CApp & app): m_rApp(app), m_menu(app, *this), m_toolBar(*this),
 		m_timeLabel(*this), m_timeSlider(*this),
 		m_speedLabel(*this), m_speedSlider(*this), m_freqLabel(*this),
 		m_freqSlider(*this), m_pitchLabel(*this), m_pitchSlider(*this),

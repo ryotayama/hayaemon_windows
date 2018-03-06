@@ -1133,12 +1133,20 @@
     <addaction name="actionEditDelete"/>
     <addaction name="actionEditSelectAll"/>
    </widget>
+   <widget class="QMenu" name="menuHelp_H">
+    <property name="title">
+     <string>Help(&amp;H)</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="actionVersionInfo"/>
+   </widget>
    <addaction name="menuFile_F"/>
    <addaction name="menuEdit_E"/>
    <addaction name="menuView_V"/>
    <addaction name="menuPlay_P"/>
    <addaction name="menuEffect"/>
    <addaction name="menuSystem_S"/>
+   <addaction name="menuHelp_H"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionPlayPlayPause">
@@ -3322,6 +3330,11 @@
    </property>
    <property name="text">
     <string>Bring window top(&amp;S)</string>
+   </property>
+  </action>
+  <action name="actionVersionInfo">
+   <property name="text">
+    <string>Version(&amp;A)...</string>
    </property>
   </action>
  </widget>
