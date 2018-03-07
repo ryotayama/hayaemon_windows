@@ -2451,6 +2451,15 @@ void CMainWnd::OpenInitFileAfterShow()
 			}
 		}
 	}
+	GetPrivateProfileString(_T("Options"), _T("Language"), _T(""), buf, 255,
+													initFilePath.c_str());
+	if(lstrcmp(buf, _T("ja")) == 0) {
+		actionLanguageJapanese->setChecked(true);
+	} else if(lstrcmp(buf, _T("en")) == 0) {
+		actionLanguageEnglish->setChecked(true);
+	} else {
+		actionLanguageDefault->setChecked(true);
+	}
 
 	isInitFileRead = TRUE;
 }
@@ -7863,6 +7872,15 @@ void CMainWnd::WriteInitFile()
 	}
 	WritePrivateProfileString(_T("Options"), _T("ExplorerPath"),
 		m_explorerBar->GetEdit().text().toStdWString().c_str(),
+		initFilePath.c_str());
+
+	TCHAR lang[8] = {0};
+	if (actionLanguageJapanese->isChecked()) {
+		lstrcpy(lang, _T("ja"));
+	} else if (actionLanguageEnglish->isChecked()) {
+		lstrcpy(lang, _T("en"));
+	}
+	WritePrivateProfileString(_T("Options"), _T("Language"), lang,
 		initFilePath.c_str());
 }
 //----------------------------------------------------------------------------

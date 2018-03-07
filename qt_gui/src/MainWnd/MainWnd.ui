@@ -1093,6 +1093,14 @@
      <addaction name="actionFadeOutNext9Sec"/>
      <addaction name="actionFadeOutNext10Sec"/>
     </widget>
+    <widget class="QMenu" name="menuLanguage">
+     <property name="title">
+      <string>Language</string>
+     </property>
+     <addaction name="actionLanguageDefault"/>
+     <addaction name="actionLanguageJapanese"/>
+     <addaction name="actionLanguageEnglish"/>
+    </widget>
     <addaction name="menuRecover_R"/>
     <addaction name="separator"/>
     <addaction name="actionLimit"/>
@@ -1109,6 +1117,8 @@
     <addaction name="separator"/>
     <addaction name="actionTopMost"/>
     <addaction name="actionCopyTime"/>
+    <addaction name="separator"/>
+    <addaction name="menuLanguage"/>
    </widget>
    <widget class="QMenu" name="menuFile_F">
     <property name="title">
@@ -3335,6 +3345,30 @@
   <action name="actionVersionInfo">
    <property name="text">
     <string>Version(&amp;A)...</string>
+   </property>
+  </action>
+  <action name="actionLanguageDefault">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Default</string>
+   </property>
+  </action>
+  <action name="actionLanguageJapanese">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Japanese</string>
+   </property>
+  </action>
+  <action name="actionLanguageEnglish">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>English</string>
    </property>
   </action>
  </widget>

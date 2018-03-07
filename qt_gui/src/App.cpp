@@ -5,10 +5,13 @@
 #include <QApplication>
 #include <QDir>
 #include <QFileInfo>
+#include <QLocale>
 #include <QMessageBox>
 #include <QString>
 #include <QTranslator>
 #include "./MainWnd/MainWnd.h"
+#include "./MainWnd/Platform.h"
+#include "./MainWnd/Utility.h"
 //----------------------------------------------------------------------------
 // main 関数
 //----------------------------------------------------------------------------
@@ -37,10 +40,27 @@ int CApp::Run(int argc, char *argv[])
 {
 	QApplication app(argc, argv);
 
+	QString filePath = QCoreApplication::applicationFilePath();
+	QString fileName = QFileInfo(filePath).fileName();
+	m_strPath = filePath.left(filePath.length() - fileName.length());
+	m_strPath = QDir::toNativeSeparators(m_strPath);
+
 	// 翻訳のインストール
+	TCHAR lang[255];
+	GetPrivateProfileString(_T("Options"), _T("Language"), _T(""), lang, 255,
+													ToTstring(m_strPath + "Setting.ini").c_str());
+	if (lstrcmp(lang, _T("")) == 0) {
+		QString loc = QLocale::system().name();
+		loc.truncate(loc.lastIndexOf('_'));
+		if (loc == "ja") {
+			lstrcpy(lang, _T("ja"));
+		}
+	}
 	QTranslator ts;
-	if(ts.load(":/translation/Hayaemon_ja.qm")) {
-		app.installTranslator(&ts);
+	if (lstrcmp(lang, _T("ja")) == 0) { 
+		if(ts.load(":/translation/Hayaemon_ja.qm")) {
+			app.installTranslator(&ts);
+		}
 	}
 	
 	m_cstrName = QObject::tr("Hayaemon");
@@ -49,11 +69,6 @@ int CApp::Run(int argc, char *argv[])
 	m_cstrAuthorEMail = "taro@edolfzoku.com";
 	m_cstrAuthorWebSiteName = QObject::tr("Free Software Development Station");
 	m_cstrAuthorURL = "http://soft.edolfzoku.com/";
-
-	QString filePath = QCoreApplication::applicationFilePath();
-	QString fileName = QFileInfo(filePath).fileName();
-	m_strPath = filePath.left(filePath.length() - fileName.length());
-	m_strPath = QDir::toNativeSeparators(m_strPath);
 
 	CMainWnd mainWnd(*this);
 	m_wnd = &mainWnd;

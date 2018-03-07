@@ -16,6 +16,8 @@ class QAction;
 //----------------------------------------------------------------------------
 class CMenu_MainWnd : public QObject
 {
+	Q_OBJECT
+
 public: // 関数
 
 	CMenu_MainWnd(CApp & app, CMainWnd & mainWnd);

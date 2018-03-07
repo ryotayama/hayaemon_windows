@@ -3090,6 +3090,13 @@ void CMenu_MainWnd::CreateActionGroups()
 											m_rMainWnd.actionFadeOutNext10Sec}) {
 		fadeout_next_group->addAction(action);
 	}
+	// System - Language
+	auto lang_group = new QActionGroup(&m_rMainWnd);
+	for (auto action : {m_rMainWnd.actionLanguageDefault,
+											m_rMainWnd.actionLanguageJapanese,
+											m_rMainWnd.actionLanguageEnglish}) {
+		lang_group->addAction(action);
+	}
 }
 //----------------------------------------------------------------------------
 // シグナル&スロットの設定
