@@ -4,6 +4,7 @@
 #include "Menu_MainWnd.h"
 #include <cassert>
 #include <QActionGroup>
+#include <QDesktopServices>
 #include <QMessageBox>
 #include "../App.h"
 #include "../Common/CommandList.h"
@@ -2795,6 +2796,21 @@ void CMenu_MainWnd::OnCopyTimeMenuSelected()
 	m_rMainWnd.CopyTime();
 }
 //----------------------------------------------------------------------------
+// ヘルプ → マニュアルメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnManualMenuSelected()
+{
+	QString lang = QLocale().name();
+	lang.truncate(lang.lastIndexOf('_'));
+	if (lang == "ja") {
+		QDesktopServices::openUrl(
+			QUrl("http://soft.edolfzoku.com/hayaemon2/manual.html"));
+	} else {
+		QString manualPath = m_rApp.GetFilePath() + "manual\\index.html";
+		QDesktopServices::openUrl("file:///" + manualPath);
+	}
+}
+//----------------------------------------------------------------------------
 // ヘルプ → バージョン情報メニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnVersionInfoMenuSelected()
@@ -3731,6 +3747,8 @@ void CMenu_MainWnd::CreateConnections()
 	connect(m_rMainWnd.actionCopyTime, &QAction::triggered,
 					this, &CMenu_MainWnd::OnCopyTimeMenuSelected);
 	// Help
+	connect(m_rMainWnd.actionManual, &QAction::triggered,
+					this, &CMenu_MainWnd::OnManualMenuSelected);
 	connect(m_rMainWnd.actionVersionInfo, &QAction::triggered,
 					this, &CMenu_MainWnd::OnVersionInfoMenuSelected);
 }

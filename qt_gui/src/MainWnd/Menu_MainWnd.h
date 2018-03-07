@@ -373,6 +373,7 @@ public: // 関数
 	void OnResetAllMenuSelected();
 	void OnTopMostMenuSelected();
 	void OnCopyTimeMenuSelected();
+	void OnManualMenuSelected();
 	void OnVersionInfoMenuSelected();
 
 	CPresetMenu & GetPresetMenu() {
