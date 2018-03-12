@@ -5,7 +5,12 @@
 #include <cassert>
 #include <QActionGroup>
 #include <QDesktopServices>
+#include <QEventLoop>
 #include <QMessageBox>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <QUrl>
 #include "../App.h"
 #include "../Common/CommandList.h"
 #include "../Common/Define.h"
@@ -2811,6 +2816,59 @@ void CMenu_MainWnd::OnManualMenuSelected()
 	}
 }
 //----------------------------------------------------------------------------
+// ヘルプ → アップデートの確認メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnUpdateCheckMenuSelected()
+{
+	QNetworkAccessManager manager;
+	if (manager.networkAccessible() == QNetworkAccessManager::NotAccessible) {
+		QMessageBox::warning(&m_rMainWnd, tr("Offline"),
+				tr("Failed to connect to the Internet."));
+		return;
+	}
+	QString strVersion = m_rApp.GetVersionInfo();
+	strVersion.replace(".", "");
+	int nPos = strVersion.indexOf(u8"β", 0);
+	QString strFileName = "Hayaemon";
+	if(nPos > 0) {
+		int nNextVersion = strVersion.left(nPos).toInt() + 1;
+		QString chVersion = QString("%1").arg(nNextVersion);
+		strFileName += chVersion + ".zip";
+	}
+	else {
+		int nNextVersion = strVersion.left(nPos).toInt() + 2;
+		QString chVersion = QString("%1").arg(nNextVersion);
+		strFileName += chVersion + ".zip";
+	}
+	QUrl url("http://soft.edolfzoku.com/hayaemon2/" + strFileName);
+	QEventLoop loop;
+	connect(&manager, SIGNAL(finished(QNetworkReply *)), &loop, SLOT(quit()));
+	auto header = manager.head(QNetworkRequest(url));
+	loop.exec();
+
+	QVariant len = header->header(QNetworkRequest::ContentLengthHeader);
+	if(len.toLongLong() > 2000000) {
+		int nButton = QMessageBox::question(nullptr, tr("Question"),
+			tr("The latest version has been released.\n"
+				 "Do you want to access the official site?"));
+		if(nButton == QMessageBox::Yes) {
+			QString lang = QLocale().name();
+			lang.truncate(lang.lastIndexOf('_'));
+			QUrl url2;
+			if (lang == "ja") {
+				url2 = "http://soft.edolfzoku.com/hayaemon2/";
+			} else {
+				url2 = "http://en.edolfzoku.com/hayaemon2/";
+			}
+			QDesktopServices::openUrl(url2);
+		}
+	}
+	else {
+		QMessageBox::information(nullptr, tr("Information"),
+			tr("Your version is latest."));
+	}
+}
+//----------------------------------------------------------------------------
 // ヘルプ → バージョン情報メニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnVersionInfoMenuSelected()
@@ -3749,6 +3807,8 @@ void CMenu_MainWnd::CreateConnections()
 	// Help
 	connect(m_rMainWnd.actionManual, &QAction::triggered,
 					this, &CMenu_MainWnd::OnManualMenuSelected);
+	connect(m_rMainWnd.actionUpdateCheck, &QAction::triggered,
+					this, &CMenu_MainWnd::OnUpdateCheckMenuSelected);
 	connect(m_rMainWnd.actionVersionInfo, &QAction::triggered,
 					this, &CMenu_MainWnd::OnVersionInfoMenuSelected);
 }

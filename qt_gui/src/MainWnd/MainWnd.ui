@@ -1150,6 +1150,7 @@
     <addaction name="separator"/>
     <addaction name="actionManual"/>
     <addaction name="separator"/>
+    <addaction name="actionUpdateCheck"/>
     <addaction name="actionVersionInfo"/>
    </widget>
    <addaction name="menuFile_F"/>
@@ -3381,6 +3382,11 @@
   <action name="action_2">
    <property name="text">
     <string>\</string>
+   </property>
+  </action>
+  <action name="actionUpdateCheck">
+   <property name="text">
+    <string>Update Check(&amp;U)...</string>
    </property>
   </action>
  </widget>
