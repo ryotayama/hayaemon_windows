@@ -72,7 +72,12 @@ public:
 	}
 	virtual int GetItemCount() const { return rowCount(); }
 	virtual void GetItemText(int iItem, int iSubItem, QString * pszText) const {
-		*pszText = this->item(iItem, iSubItem)->text();
+		auto item = this->item(iItem, iSubItem);
+		if (item == nullptr) {
+			*pszText = "";
+		} else {
+			*pszText = this->item(iItem, iSubItem)->text();
+		}
 	}
 
 protected:

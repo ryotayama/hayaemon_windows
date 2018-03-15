@@ -2960,6 +2960,7 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_ALOOP, m_rMainWnd.actionAllLoop},
 		{ID_RANDOM, m_rMainWnd.actionRandomPlay},
 		{ID_CONTINUE, m_rMainWnd.actionContinuousPlay},
+		{ID_SAMEARTIST, m_rMainWnd.actionSameArtist},
 		{ID_ABLOOP_A_SETTING, m_rMainWnd.actionABLoopAPosSetting},
 		{ID_ABLOOP_B_SETTING, m_rMainWnd.actionABLoopBPosSetting},
 		{ID_MARKERPLAY, m_rMainWnd.actionMarkerPlay},

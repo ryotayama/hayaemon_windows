@@ -568,6 +568,7 @@
     <addaction name="actionAllLoop"/>
     <addaction name="actionRandomPlay"/>
     <addaction name="actionContinuousPlay"/>
+    <addaction name="actionSameArtist"/>
     <addaction name="separator"/>
     <addaction name="actionSetABLoopA"/>
     <addaction name="actionSetABLoopB"/>

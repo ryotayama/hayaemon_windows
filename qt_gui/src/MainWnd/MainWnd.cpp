@@ -2256,6 +2256,9 @@ void CMainWnd::OpenInitFileAfterShow()
 	GetPrivateProfileString(_T("PlayMode"), _T("Continue"), _T("1"), buf, 255, 
 		initFilePath.c_str());
 	int _bContinue = _ttoi(buf);
+	GetPrivateProfileString(_T("PlayMode"), _T("SameArtist"), _T("0"), buf, 255,
+		initFilePath.c_str());
+	int _bSameArtist = _ttoi(buf);
 	GetPrivateProfileString(_T("PlayMode"), _T("RecoverInstantLoop"), _T("1"), 
 		buf, 255, initFilePath.c_str());
 	int _bRecoverInstantLoop = _ttoi(buf);
@@ -2346,6 +2349,7 @@ void CMainWnd::OpenInitFileAfterShow()
 		m_menu.SwitchItemChecked(ID_RECOVERCONTINUE);
 		SetContinue(_bContinue);
 	}
+	if(_bSameArtist) m_menu.SwitchItemChecked(ID_SAMEARTIST);
 	if(_bRecoverInstantLoop) {
 		m_menu.SwitchItemChecked(ID_RECOVERINSTANTLOOP);
 		if(_bInstantLoop) SetInstantLoop();
@@ -2481,10 +2485,19 @@ BOOL CMainWnd::OpenNext()
 	// 開くべきファイルを探す
 
 	int i = m_sound.GetCurFileNum();
+	QString chArtist;
+	m_arrayList[nCurPlayTab]->GetItemText(i - 1, 3, &chArtist);
 	for(; i < m_arrayList[nCurPlayTab]->GetItemCount(); i++) {
 		m_arrayList[nCurPlayTab]->SetPlayOrder(i, -1);
 		QString filePath;
 		m_arrayList[nCurPlayTab]->GetItemText(i, 7, &filePath);
+		QString chNewArtist;
+		m_arrayList[nCurPlayTab]->GetItemText(i, 3, &chNewArtist);
+		if(m_menu.IsItemChecked(ID_SAMEARTIST) &&
+				chArtist != chNewArtist) {
+			if(i == m_arrayList[nCurPlayTab]->GetItemCount() - 1) i = -1;
+			continue;
+		}
 		m_sound.SetCurFileNum(i + 1);
 		if(OpenFile(filePath)) {
 			QString chTitle;
@@ -2518,6 +2531,8 @@ BOOL CMainWnd::OpenPrevious()
 {
 	int i = m_sound.GetCurFileNum();
 
+	QString chArtist;
+	m_arrayList[nCurPlayTab]->GetItemText(i - 1, 3, &chArtist);
 	if(m_menu.IsItemChecked(ID_RANDOM)) {
 		m_arrayList[nCurPlayTab]->SetPlayOrder(m_sound.GetCurFileNum()-1, -1);
 		int nMax = m_arrayList[nCurPlayTab]->GetMaxPlayOrder();
@@ -2558,6 +2573,13 @@ BOOL CMainWnd::OpenPrevious()
 	for(; i >= 0; i--) {
 		QString filePath;
 		m_arrayList[nCurPlayTab]->GetItemText(i, 7, &filePath);
+		QString chNewArtist;
+		m_arrayList[nCurPlayTab]->GetItemText(i, 3, &chNewArtist);
+		if(m_menu.IsItemChecked(ID_SAMEARTIST) &&
+				chArtist != chNewArtist) {
+			if(i == 0) i = m_arrayList[nCurPlayTab]->GetItemCount() - 1;
+			continue;
+		}
 		m_sound.SetCurFileNum(i+1);
 		if(OpenFile(filePath)) {
 			QString chTitle;
@@ -2593,11 +2615,18 @@ BOOL CMainWnd::OpenRandom()
 		m_arrayList[nCurPlayTab]->ClearPlayOrder();
 
 	int i = m_sound.GetCurFileNum();
+	QString chArtist;
+	m_arrayList[nCurPlayTab]->GetItemText(i - 1, 3, &chArtist);
 
 	// 未再生のファイルを探す
 	std::vector<int> list;
 	std::vector<int> order = m_arrayList[nCurPlayTab]->GetOrders();
 	for(int i = 0; i < m_arrayList[nCurPlayTab]->GetItemCount(); i++) {
+		QString chNewArtist;
+		m_arrayList[nCurPlayTab]->GetItemText(i, 3, &chNewArtist);
+		if(m_menu.IsItemChecked(ID_SAMEARTIST) &&
+				chArtist != chNewArtist)
+			continue;
 		if(order[i] < 0) list.push_back(i);
 	}
 	BOOL bRet = FALSE;
@@ -7541,6 +7570,9 @@ void CMainWnd::WriteInitFile()
 		initFilePath.c_str());
 	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_CONTINUE) ? 1 : 0);
 	WritePrivateProfileString(_T("PlayMode"), _T("Continue"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_SAMEARTIST) ? 1 : 0);
+	WritePrivateProfileString(_T("PlayMode"), _T("SameArtist"), buf, 
 		initFilePath.c_str());
 	_stprintf_s(buf, _T("%d"),
 		m_menu.IsItemChecked(ID_RECOVERINSTANTLOOP) ? 1 : 0);
