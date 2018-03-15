@@ -150,6 +150,7 @@ set(SRC_BASS
   ${BASS_DIR}/include/bass/basscd.h
   ${BASS_DIR}/include/bass/bassenc.h
   ${BASS_DIR}/include/bass/bassflac.h
+  ${BASS_DIR}/include/bass/tags.h
 )
 elseif (APPLE)
 set(SRC_BASS
@@ -157,6 +158,7 @@ set(SRC_BASS
   ${BASS_DIR}/include/bass/bass_ape.h
   ${BASS_DIR}/include/bass/bass_fx.h
   ${BASS_DIR}/include/bass/bassflac.h
+  ${BASS_DIR}/include/bass/tags.h
 )
 endif()
 
@@ -243,6 +245,7 @@ target_link_libraries(Hayaemon
   basscd
   bassenc
   bassflac
+  tags
   winmm
 )
 elseif (APPLE)
@@ -252,6 +255,7 @@ target_link_libraries(Hayaemon
   bass_ape
   bass_fx
   bassflac
+  tags
 )
 endif()
 

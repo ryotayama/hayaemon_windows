@@ -55,6 +55,10 @@ CMainWnd::~CMainWnd()
 {
 	m_timeThreadRunning = false;
 	m_timeThread->join();
+
+	if(m_updateThread.joinable()) {
+		m_updateThread.join();
+	}
 }
 //----------------------------------------------------------------------------
 // ドロップされたファイルの追加
@@ -93,6 +97,8 @@ void CMainWnd::AddDropFiles(const QList<QUrl> & urls, BOOL bClear)
 	}
 
 	SetPreviousNextMenuState();
+
+	StartUpdateInfo();
 }
 //----------------------------------------------------------------------------
 // ファイルの追加
@@ -2122,6 +2128,7 @@ BOOL CMainWnd::OpenFile(const QString & lpszFilePath, int nCount)
 		}
 	}
 
+	StartUpdateInfo();
 	return TRUE;
 }
 //----------------------------------------------------------------------------
@@ -2402,6 +2409,7 @@ void CMainWnd::OpenInitFileAfterShow()
 				}
 			}
 		}
+		StartUpdateInfo();
 
 		GetPrivateProfileString(_T("Options"), _T("CurPlayTab"), _T("0"), buf, 
 			255, initFilePath.c_str());
@@ -6968,6 +6976,7 @@ void CMainWnd::ShowOpenFileDialog(BOOL bClear)
 		}
 
 		SetPreviousNextMenuState();
+		StartUpdateInfo();
 	}
 }
 //----------------------------------------------------------------------------
@@ -6997,6 +7006,7 @@ void CMainWnd::ShowOpenFolderDialog(BOOL bClear)
 		}
 
 		SetPreviousNextMenuState();
+		StartUpdateInfo();
 	}
 }
 //----------------------------------------------------------------------------
@@ -7233,6 +7243,20 @@ void CMainWnd::StartForward()
 	else m_toolBar.SetState(ID_NEXT, TBSTATE_CHECKED | TBSTATE_ENABLED);
 	SetTimer(IDT_FORWARD, 100);
 	m_bForwarding = true;
+}
+//----------------------------------------------------------------------------
+// 情報の更新を開始
+//----------------------------------------------------------------------------
+void CMainWnd::StartUpdateInfo()
+{
+	if(m_updateThreadRunning) {
+		m_bRetryUpdate = TRUE;
+		return;
+	}
+	if(m_updateThread.joinable()) {
+		m_updateThread.join();
+	}
+	m_updateThread.swap(std::thread([=] { UpdateThreadProc(this); }));
 }
 //----------------------------------------------------------------------------
 // 早送りの停止
@@ -8288,6 +8312,21 @@ void CMainWnd::OnTimer(UINT id)
 		}
 		break;
 	}
+}
+//----------------------------------------------------------------------------
+// 情報の更新用スレッド
+//----------------------------------------------------------------------------
+void CMainWnd::UpdateThreadProc(void * pParam)
+{
+	CMainWnd* pMainWnd = (CMainWnd *)pParam;
+	pMainWnd->m_updateThreadRunning = true;
+	for(int i = 0; i < (int)pMainWnd->GetArrayList().size(); i++) {
+		for(int j = 0; j < pMainWnd->GetPlayList(i).GetItemCount(); j++) {
+			if(pMainWnd->IsRetryUpdate()) i = 0, j = 0;
+			pMainWnd->GetPlayList(i).UpdateItemInfo(j);
+		}
+	}
+	pMainWnd->m_updateThreadRunning = false;
 }
 //----------------------------------------------------------------------------
 // 時間表示の更新用スレッド

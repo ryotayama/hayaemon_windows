@@ -41,6 +41,7 @@ public: // 関数
 	virtual void ResetNumber();
 	virtual void ScrollToItem(int nItem);
 	virtual void SelectAll();
+	virtual void UpdateItemInfo(int nItem);
 
 	virtual void OnContextMenu(const QPoint & pos);
 	virtual void OnDropFiles(const QList<QUrl> & urls);

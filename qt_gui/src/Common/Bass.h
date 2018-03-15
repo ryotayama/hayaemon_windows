@@ -14,6 +14,7 @@
 #include "bass/basscd.h"
 #endif
 #include "bass/bassflac.h"
+#include "bass/tags.h"
 
 #include "Define.h"
 
@@ -29,7 +30,7 @@ class CBass
 {
 public: // 関数
 
-	CBass(): m_hStream(0), m_hSync(0) { }
+	CBass(): m_hStream(0), m_hTempStream(0), m_hSync(0) { }
 	virtual ~CBass() { Destroy(); }
 
 	virtual void Destroy() {
@@ -148,10 +149,59 @@ public: // 関数
 	virtual void StreamFree() {
 		if(m_hStream) BASS_StreamFree(m_hStream), m_hStream = 0;
 	}
+	virtual void StartReadTag(LPCTSTR lpFilePath) {
+		if(m_hTempStream) BASS_StreamFree(m_hTempStream), m_hTempStream = 0;
+#ifdef UNICODE
+		std::wstring s = lpFilePath;
+		auto upath = QString::fromStdWString(s).toStdU16String();
+		lpFilePath = (LPCTSTR)upath.c_str();
+#endif
+		m_hTempStream = BASS_StreamCreateFile(FALSE, lpFilePath, 0, 0,
+			BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
+		if(!m_hTempStream) m_hTempStream = BASS_APE_StreamCreateFile(FALSE,
+			lpFilePath, 0, 0,
+			BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
+#if _WIN32
+		if(!m_hTempStream) m_hTempStream = BASS_CD_StreamCreateFile(
+			(char*)lpFilePath,
+			BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
+#endif
+		if(!m_hTempStream) m_hTempStream = BASS_FLAC_StreamCreateFile(FALSE,
+			lpFilePath, 0, 0,
+			BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
+#if _WIN32
+		if(!m_hTempStream) m_hTempStream = BASS_AAC_StreamCreateFile(FALSE,
+			lpFilePath, 0, 0,
+			BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
+		if(!m_hTempStream) m_hTempStream = BASS_MP4_StreamCreateFile(FALSE,
+			lpFilePath, 0, 0,
+			BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
+		if(!m_hTempStream) m_hTempStream = BASS_ALAC_StreamCreateFile(FALSE,
+			lpFilePath, 0, 0,
+			BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
+#endif
+	}
+	virtual const char* ReadTitleTag() {
+		return TAGS_Read(m_hTempStream, "%TITL");
+	}
+	virtual const char* ReadArtistTag() {
+		return TAGS_Read(m_hTempStream, "%ARTI");
+	}
+	virtual const char* ReadYearTag() {
+		return TAGS_Read(m_hTempStream, "%YEAR");
+	}
+	virtual double ReadTime() const {
+		return BASS_ChannelBytes2Seconds(m_hTempStream,
+			BASS_ChannelGetLength(m_hTempStream, 0));
+	}
+	virtual void EndReadTag() {
+		if(m_hTempStream) BASS_StreamFree(m_hTempStream), m_hTempStream = 0;
+	}
 
 public: // メンバ変数
 
 	HSTREAM m_hStream;
+	HSTREAM m_hTempStream;
 	HSYNC m_hSync;
 };
 //----------------------------------------------------------------------------

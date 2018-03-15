@@ -10,6 +10,7 @@
 #include <QUrl>
 #include "M3UFile.h"
 #include "MainWnd.h"
+#include "Platform.h"
 #include "RMenu_ListView.h"
 #include "Utility.h"
 
@@ -386,6 +387,60 @@ void CPlayListView_MainWnd::ResetNumber()
 void CPlayListView_MainWnd::ScrollToItem(int nItem)
 {
 	EnsureVisible(nItem, TRUE);
+}
+//----------------------------------------------------------------------------
+// アイテムの情報をアップデート
+//----------------------------------------------------------------------------
+void CPlayListView_MainWnd::UpdateItemInfo(int nItem)
+{
+	// パスを得る
+	QString chPath;
+	GetItemText(nItem, 7, &chPath);
+
+	// ファイル名を取得
+	QString chFileName = QFileInfo(chPath).fileName();
+	QString chFileExt = QFileInfo(chPath).suffix();
+
+	// ファイル名
+	SetItem(nItem, 6, chFileName);
+
+	if(PathIsURL(chPath)) return;
+
+	if(chFileExt.compare("nsf", Qt::CaseInsensitive) == 0)
+		return;
+
+	// タイトル
+	m_rMainWnd.GetSound().StartReadTag(ToTstring(chPath).c_str());
+	LPCSTR t = (LPCSTR)m_rMainWnd.GetSound().ReadTitleTag();
+	QString chTitle = ToQString(t);
+	SetItem(nItem, 2, !chTitle.isEmpty() ? chTitle : chFileName);
+
+	// アーティスト
+	t = (LPCSTR)m_rMainWnd.GetSound().ReadArtistTag();
+	QString chArtist = ToQString(t);
+	SetItem(nItem, 3, chArtist);
+
+	// 年
+	t = (LPCSTR)m_rMainWnd.GetSound().ReadYearTag();
+	QString chYear = ToQString(t);
+	SetItem(nItem, 4, chYear);
+
+	// 長さ
+	double time = m_rMainWnd.GetSound().ReadTime();
+
+	int hour = (int)(time / 3600) % 60;
+	int second = (int)(time / 60) % 60;
+	int minute = (int)time % 60;
+
+	TCHAR chTime[255] = _T("");
+	if(time >= 0.0) {
+		if(hour > 0)
+			_stprintf_s(chTime, _T("%02d:%02d:%02d"), hour, second, minute);
+		else _stprintf_s(chTime, _T("%02d:%02d"), second, minute);
+	}
+	m_rMainWnd.GetSound().EndReadTag();
+
+	SetItem(nItem, 5, ToQString(chTime));
 }
 //----------------------------------------------------------------------------
 // コンテキストメニュー

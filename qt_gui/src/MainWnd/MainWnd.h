@@ -93,8 +93,9 @@ public: // 関数
 		m_nInterval(0), dwFadeoutStartTime(0), m_nLastDecimalDigit_pitch(0),
 		m_nLastDecimalDigit_freq(0), m_nLastDecimalDigit_speed(0),
 		m_dStartSeconds(0.0), m_dEndSeconds(0.0),
-		m_strLAMECommandLine(_T("--preset cbr 192")), m_timeThreadRunning(false),
-		m_bForwarding(false), m_bRewinding(false) { }
+		m_strLAMECommandLine(_T("--preset cbr 192")), m_updateThreadRunning(false),
+		m_timeThreadRunning(false), m_bRetryUpdate(FALSE), m_bForwarding(false),
+		m_bRewinding(false) { }
 	virtual ~CMainWnd();
 
 	virtual void AddDropFiles(const QList<QUrl> & urls, BOOL bClear);
@@ -294,6 +295,7 @@ public: // 関数
 	virtual void ShowTime(BOOL bReset = TRUE);
 	virtual void StartRewind();
 	virtual void StartForward();
+	virtual void StartUpdateInfo();
 	virtual void StopRewind();
 	virtual void StopForward();
 	virtual void Stop(BOOL bForce = TRUE);
@@ -307,6 +309,7 @@ public: // 関数
 	virtual LRESULT OnCreate();
 	virtual void OnTimer(UINT id);
 
+	static void UpdateThreadProc(void * pParam);
 	static void UpdateTimeThreadProc(void * pParam);
 
 protected: // メンバ変数
@@ -444,6 +447,9 @@ protected: // メンバ変数
 	double m_dStartSeconds; // 再生範囲の開始位置
 	double m_dEndSeconds; // 再生範囲の停止位置
 	tstring m_strLAMECommandLine;
+	std::thread m_updateThread;
+	bool m_updateThreadRunning;
+	BOOL m_bRetryUpdate;
 	std::unique_ptr<std::thread> m_timeThread;
 	bool m_timeThreadRunning;
 	bool m_bForwarding;
@@ -499,12 +505,20 @@ public: // メンバ変数の取得・設定
 	CPlayListView_MainWnd & GetPlayList(int n) {
 		return *m_arrayList[n];
 	}
+	std::vector<CPlayListView_MainWnd*> GetArrayList() {
+		return m_arrayList;
+	}
 	CSound & GetSound() { return m_sound; }
 
 	int GetBpm() const { return m_nBpm; }
 
 	BOOL IsMarkerPlay() const { return bMarkerPlay; }
 	BOOL IsSetPositionAuto() const { return bSetPositionAuto; }
+	BOOL IsRetryUpdate() {
+		BOOL bRetryUpdate = m_bRetryUpdate;
+		m_bRetryUpdate = FALSE;
+		return bRetryUpdate;
+	}
 	void SetFinish(BOOL bFinish) { m_bFinish = bFinish; }
 
 	tstring GetStrSaveFormat() { return strSaveFormat; }
