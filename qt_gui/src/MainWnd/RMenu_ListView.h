@@ -19,6 +19,9 @@ public: // 関数
 
 	void OnDeleteMenuSelected();
 	void OnPlayMenuSelected();
+	void OnEditTitleMenuSelected();
+	void OnEditArtistMenuSelected();
+	void OnEditYearMenuSelected();
 
 private: // メンバ変数
 

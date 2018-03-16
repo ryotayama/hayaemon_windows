@@ -10,6 +10,7 @@ class CMainWnd;
 #include <QList>
 #include "../Common/Define.h"
 #include "../Common/ListView.h"
+class QTableWidgetItem;
 class QUrl;
 //----------------------------------------------------------------------------
 // プレイリスト用リストビューの管理を行うクラス
@@ -40,6 +41,7 @@ public: // 関数
 	virtual void FixPlayOrder(int iItem);
 	virtual void ResetNumber();
 	virtual void ScrollToItem(int nItem);
+	virtual void SaveTag(QTableWidgetItem * item);
 	virtual void SelectAll();
 	virtual void UpdateItemInfo(int nItem);
 
@@ -92,6 +94,17 @@ private:
 
 	QIcon GetItemIcon(int idx) const override {
 		return idx >= 0 ? m_icons[idx] : QIcon();
+	}
+	void SetItemEditable(int i, int iSubItem, bool editable) {
+		auto item = this->item(i, iSubItem);
+		if (item != nullptr) {
+			auto flags = item->flags();
+			if (editable) {
+				item->setFlags(flags | Qt::ItemIsEditable);
+			} else {
+				item->setFlags(flags & (~Qt::ItemIsEditable));
+			}
+		}
 	}
 
 private: // メンバ変数

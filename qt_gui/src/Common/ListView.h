@@ -40,6 +40,7 @@ public: // 関数
 		auto item = this->item(i, iSubItem);
 		if (item == nullptr) {
 			item = new QTableWidgetItem();
+			item->setFlags(item->flags() & (~Qt::ItemIsEditable));
 			setItem(i, iSubItem, item);
 		}
 		item->setText(pszText);

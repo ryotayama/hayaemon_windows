@@ -139,6 +139,7 @@ set(BASS_DIR ${CMAKE_SOURCE_DIR}/3rdparty/bass/win32)
 elseif (APPLE)
 set(BASS_DIR ${CMAKE_SOURCE_DIR}/3rdparty/bass/macOS)
 endif()
+set(TAGLIB_DIR ${CMAKE_SOURCE_DIR}/3rdparty/taglib-1.11.1)
 
 if (WIN32)
 set(SRC_BASS
@@ -179,7 +180,7 @@ source_group("" FILES
 )
 
 set(CMAKE_CXX_STANDARD 14)
-add_definitions(-D_UNICODE -DUNICODE)
+add_definitions(-D_UNICODE -DUNICODE -DTAGLIB_STATIC)
 if (WIN32)
 add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
@@ -211,7 +212,8 @@ qt5_wrap_ui(UI_MOC
 include_directories(
   ${SRC_DIR}/Common
   ${SRC_DIR}/MainWnd
-  ${BASS_DIR}/include)
+  ${BASS_DIR}/include
+  ${TAGLIB_DIR}/include)
 if (WIN32)
 link_directories(${BASS_DIR}/lib/x64)
 elseif (APPLE)
@@ -247,6 +249,8 @@ target_link_libraries(Hayaemon
   bassflac
   tags
   winmm
+  debug ${TAGLIB_DIR}/lib/win32/Debug/tag.lib
+  optimized ${TAGLIB_DIR}/lib/win32/Release/tag.lib
 )
 elseif (APPLE)
 target_link_libraries(Hayaemon

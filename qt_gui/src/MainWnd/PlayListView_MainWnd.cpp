@@ -8,6 +8,8 @@
 #include <QMimeData>
 #include <QTableWidgetItem>
 #include <QUrl>
+#include <taglib/fileref.h>
+#include <taglib/tag.h>
 #include "M3UFile.h"
 #include "MainWnd.h"
 #include "Platform.h"
@@ -29,6 +31,8 @@ CPlayListView_MainWnd::CPlayListView_MainWnd(CMainWnd & mainWnd,
 					this, &CPlayListView_MainWnd::OnContextMenu);
 	connect(this, &QTableWidget::itemDoubleClicked,
 					this, &CPlayListView_MainWnd::OnLButtonDoubleClick);
+	connect(this, &QTableWidget::itemChanged,
+					this, &CPlayListView_MainWnd::SaveTag);
 }
 //----------------------------------------------------------------------------
 // ファイルの追加
@@ -382,6 +386,55 @@ void CPlayListView_MainWnd::ResetNumber()
 	}
 }
 //----------------------------------------------------------------------------
+// タグの設定
+//----------------------------------------------------------------------------
+void CPlayListView_MainWnd::SaveTag(QTableWidgetItem * item)
+{
+	int nItem = item->row();
+	int nSubItem = item->column();
+	if(nSubItem != 2 && nSubItem != 3 && nSubItem != 4) {
+		return;
+	}
+
+	QString chValue;
+	GetItemText(nItem, nSubItem, &chValue);
+
+	QString chPath;
+	GetItemText(nItem, 7, &chPath);
+
+	BOOL bPlaying = FALSE; // 再生中のファイルのタグ更新かどうか
+	BOOL bStopped = FALSE, bPausing = FALSE;
+	QWORD qwPos;
+	if(&m_rMainWnd.GetCurPlayList() == this &&
+			m_rMainWnd.GetSound().GetCurFileName() == ToTstring(chPath)) {
+		bPlaying = TRUE;
+		qwPos = m_rMainWnd.GetSound().ChannelGetPosition();
+		bStopped = m_rMainWnd.GetSound().ChannelIsStopped();
+		bPausing = m_rMainWnd.GetSound().ChannelIsPausing();
+	}
+
+	if(bPlaying) m_rMainWnd.GetSound().StreamFree();
+	TagLib::FileRef f(chPath.toStdWString().c_str());
+	if(!f.isNull() && f.tag() != nullptr) {
+		TagLib::Tag * tag = f.tag();
+		if(nSubItem == 2) {
+			tag->setTitle(chValue.toStdWString());
+		} else if(nSubItem == 3) {
+			tag->setArtist(chValue.toStdWString());
+		} else if(nSubItem == 4) {
+			tag->setYear(chValue.toInt());
+		}
+		f.save();
+	}
+	if(bPlaying) {
+		m_rMainWnd.GetSound().StreamCreateFile(ToTstring(chPath).c_str());
+		m_rMainWnd.GetSound().ClearMarker();
+		m_rMainWnd.SetAllEffects();
+		m_rMainWnd.GetSound().ChannelSetPosition(qwPos);
+		if(!bStopped && !bPausing) m_rMainWnd.GetSound().ChannelPlay();
+	}
+}
+//----------------------------------------------------------------------------
 // 指定された項目までスクロール
 //----------------------------------------------------------------------------
 void CPlayListView_MainWnd::ScrollToItem(int nItem)
@@ -409,19 +462,21 @@ void CPlayListView_MainWnd::UpdateItemInfo(int nItem)
 	if(chFileExt.compare("nsf", Qt::CaseInsensitive) == 0)
 		return;
 
-	// タイトル
-	m_rMainWnd.GetSound().StartReadTag(ToTstring(chPath).c_str());
-	LPCSTR t = (LPCSTR)m_rMainWnd.GetSound().ReadTitleTag();
-	QString chTitle = ToQString(t);
-	SetItem(nItem, 2, !chTitle.isEmpty() ? chTitle : chFileName);
+	TagLib::FileRef f(chPath.toStdWString().c_str());
+	if(!f.isNull() && f.tag() != nullptr) {
+		TagLib::Tag * tag = f.tag();
+		// タイトル
+		QString chTitle = ToQString(tag->title().toWString());
+		SetItem(nItem, 2, !chTitle.isEmpty() ? chTitle : chFileName);
 
-	// アーティスト
-	t = (LPCSTR)m_rMainWnd.GetSound().ReadArtistTag();
-	QString chArtist = ToQString(t);
-	SetItem(nItem, 3, chArtist);
+		// アーティスト
+		QString chArtist = ToQString(tag->artist().toWString());
+		SetItem(nItem, 3, chArtist);
+	}
 
 	// 年
-	t = (LPCSTR)m_rMainWnd.GetSound().ReadYearTag();
+	m_rMainWnd.GetSound().StartReadTag(ToTstring(chPath).c_str());
+	LPCSTR t = (LPCSTR)m_rMainWnd.GetSound().ReadYearTag();
 	QString chYear = ToQString(t);
 	SetItem(nItem, 4, chYear);
 
@@ -441,6 +496,10 @@ void CPlayListView_MainWnd::UpdateItemInfo(int nItem)
 	m_rMainWnd.GetSound().EndReadTag();
 
 	SetItem(nItem, 5, ToQString(chTime));
+
+	SetItemEditable(nItem, 2, true);
+	SetItemEditable(nItem, 3, true);
+	SetItemEditable(nItem, 4, true);
 }
 //----------------------------------------------------------------------------
 // コンテキストメニュー

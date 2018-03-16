@@ -77,217 +77,217 @@
 <context>
     <name>CMainWnd</name>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="292"/>
+        <location filename="MainWnd/MainWnd.cpp" line="298"/>
         <source>failed to create toolbar.</source>
         <translation>ツールバーの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="298"/>
+        <location filename="MainWnd/MainWnd.cpp" line="304"/>
         <source>failed to create time label.</source>
         <translation>再生時間表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="304"/>
+        <location filename="MainWnd/MainWnd.cpp" line="310"/>
         <source>failed to create time slider.</source>
         <translation>再生時間設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="310"/>
+        <location filename="MainWnd/MainWnd.cpp" line="316"/>
         <source>failed to create explorer bar.</source>
         <translation>エクスプローラ用ツールバーの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="316"/>
+        <location filename="MainWnd/MainWnd.cpp" line="322"/>
         <source>failed to create explorer.</source>
         <translation>エクスプローラの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="329"/>
+        <location filename="MainWnd/MainWnd.cpp" line="335"/>
         <source>failed to create speed label.</source>
         <translation>再生速度表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="335"/>
+        <location filename="MainWnd/MainWnd.cpp" line="341"/>
         <source>failed to create speed slider.</source>
         <translation>再生速度設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="372"/>
+        <location filename="MainWnd/MainWnd.cpp" line="378"/>
         <source>failed to create frequency label.</source>
         <translation>再生周波数表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="378"/>
+        <location filename="MainWnd/MainWnd.cpp" line="384"/>
         <source>failed to create frequency slider.</source>
         <translation>再生周波数設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="415"/>
+        <location filename="MainWnd/MainWnd.cpp" line="421"/>
         <source>failed to create pitch label.</source>
         <translation>音程表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="421"/>
+        <location filename="MainWnd/MainWnd.cpp" line="427"/>
         <source>failed to create pitch slider.</source>
         <translation>音程設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="459"/>
+        <location filename="MainWnd/MainWnd.cpp" line="465"/>
         <source>failed to create volume label.</source>
         <translation>音量表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="465"/>
+        <location filename="MainWnd/MainWnd.cpp" line="471"/>
         <source>failed to create volume slider.</source>
         <translation>音量設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="480"/>
+        <location filename="MainWnd/MainWnd.cpp" line="486"/>
         <source>failed to create pan label.</source>
         <translation>パン表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="486"/>
+        <location filename="MainWnd/MainWnd.cpp" line="492"/>
         <source>failed to create pan slider.</source>
         <translation>パン設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="549"/>
+        <location filename="MainWnd/MainWnd.cpp" line="555"/>
         <source>failed to create EQ(%1Hz) label.</source>
         <translation>イコライザ ( %1Hz ) 表示用ラベルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="558"/>
+        <location filename="MainWnd/MainWnd.cpp" line="564"/>
         <source>failed to create EQ(%1Hz) slider.</source>
         <translation>イコライザ ( %1Hz ) 設定用スライダの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="598"/>
+        <location filename="MainWnd/MainWnd.cpp" line="604"/>
         <source>failed to create tab.</source>
         <translation>タブの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="602"/>
+        <location filename="MainWnd/MainWnd.cpp" line="608"/>
         <source>No Title</source>
         <translation>無題</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="605"/>
+        <location filename="MainWnd/MainWnd.cpp" line="611"/>
         <source>failed to create playlist.</source>
         <translation>プレイリスト用リストビューの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="6917"/>
+        <location filename="MainWnd/MainWnd.cpp" line="6954"/>
         <source>Readable file(*.wav *.cda *.mp* *.ogg *.wma *.aiff *.aif *.ape *.flac *.m4a *.m4b *.mp4 *.aac *.nsf *.avi *.wmv *.mkv *.flv *.ini *.m3u *.m3u8);;Playable file(*.wav *.cda *.mp* *.ogg *.wma *.aiff *.aif *.ape *.flac *.m4a *.m4b *.mp4 *.aac *.nsf *.avi *.wmv *.mkv *.flv);;WAVE file(*.wav);;CDA file(*.cda);;MP3 file(*.mp3);;MP2 file(*.mp2);;MP1 file(*.mp1);;Ogg Vorbis file(*.ogg);;AIFF file(*.aiff;*.aif);;APE file(*.ape);;FLAC file(*.flac);;AAC file(*.m4a;*.m4b;*.mp4;*.aac);;NSF file(*.nsf);;AVI file(*.avi);;WMV file(*.wmv);;MKV file(*.mkv);;FLV file(*.flv);;Settings file(*.ini);;Playlist file(*.m3u;*.m3u8);;All file (*.*)</source>
         <translation>読込可能ファイル(*.wav *.cda *.mp* *.ogg *.wma *.aiff *.aif *.ape *.flac *.m4a *.m4b *.mp4 *.aac *.nsf *.avi *.wmv *.mkv *.flv *.ini *.m3u *.m3u8);;再生可能ファイル(*.wav *.cda *.mp* *.ogg *.wma *.aiff *.aif *.ape *.flac *.m4a *.m4b *.mp4 *.aac *.nsf *.avi *.wmv *.mkv *.flv);;WAVE ファイル(*.wav);;CDA ファイル(*.cda);;MP3 ファイル(*.mp3);;MP2 ファイル(*.mp2);;MP1 ファイル(*.mp1);;Ogg Vorbis ファイル(*.ogg);;AIFF ファイル(*.aiff *.aif);;APE ファイル(*.ape);;FLAC ファイル(*.flac);;AAC ファイル(*.m4a *.m4b *.mp4 *.aac);;NSF ファイル(*.nsf);;AVI ファイル(*.avi);;WMV ファイル(*.wmv);;MKV ファイル(*.mkv);;FLV ファイル(*.flv);;設定状態ファイル(*.ini);;プレイリストファイル(*.m3u *.m3u8);;すべてのファイル (*.*)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="7015"/>
+        <location filename="MainWnd/MainWnd.cpp" line="7054"/>
         <source>WAVE file(*.wav)</source>
         <translation>WAVE ファイル(*.wav)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="7016"/>
+        <location filename="MainWnd/MainWnd.cpp" line="7055"/>
         <source>MP3 file(*.mp3)</source>
         <translation>MP3 ファイル(*.mp3)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="7017"/>
+        <location filename="MainWnd/MainWnd.cpp" line="7056"/>
         <source>Ogg Vorbis file(*.ogg)</source>
         <translation>Ogg Vorbis ファイル(*.ogg)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="7018"/>
+        <location filename="MainWnd/MainWnd.cpp" line="7057"/>
         <source>Settings(*.ini)</source>
         <translation>設定状態(*.ini)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="7019"/>
+        <location filename="MainWnd/MainWnd.cpp" line="7058"/>
         <source>Absolute path playlist file(*.m3u)</source>
         <translation>絶対パス プレイリストファイル(*.m3u)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="7020"/>
+        <location filename="MainWnd/MainWnd.cpp" line="7059"/>
         <source>Relative path playlist file(*.m3u)</source>
         <translation>相対パス プレイリストファイル(*.m3u)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="7021"/>
+        <location filename="MainWnd/MainWnd.cpp" line="7060"/>
         <source>Absolute path playlist file(*.m3u8)</source>
         <translation>絶対パス プレイリストファイル(*.m3u8)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="7022"/>
+        <location filename="MainWnd/MainWnd.cpp" line="7061"/>
         <source>Relative path playlist file(*.m3u8)</source>
         <translation>相対パス プレイリストファイル(*.m3u8)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="7049"/>
+        <location filename="MainWnd/MainWnd.cpp" line="7088"/>
         <source>Save</source>
         <translation>名前を付けて保存</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="7050"/>
+        <location filename="MainWnd/MainWnd.cpp" line="7089"/>
         <source>This software can&apos;t override input/output same file.</source>
         <translation>同一ファイルの上書きには対応していません。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="7112"/>
-        <location filename="MainWnd/MainWnd.cpp" line="7121"/>
+        <location filename="MainWnd/MainWnd.cpp" line="7151"/>
+        <location filename="MainWnd/MainWnd.cpp" line="7160"/>
         <source>Save file</source>
         <translation>名前を付けて保存</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="7113"/>
+        <location filename="MainWnd/MainWnd.cpp" line="7152"/>
         <source>To save MP3 file, lame.exe is required.
 Put lame.exe in the same directory as hayaemon.exe.</source>
         <translation>MP3形式での保存には、LAME.EXEが必要です。
 Hayaemon.exeと同じディレクトリにLAME.EXEを置いて下さい。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="7122"/>
+        <location filename="MainWnd/MainWnd.cpp" line="7161"/>
         <source>To save Ogg Vorbis file, oggenc2.exe is required.
 Put oggenc2.exe in the same directory as hayaemon.exe.</source>
         <translation>Ogg Vorbis形式での保存には、oggenc2.exeが必要です。
 Hayaemon.exeと同じディレクトリにoggenc2.exeを置いて下さい。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="7906"/>
+        <location filename="MainWnd/MainWnd.cpp" line="7962"/>
         <source>failed to create menu.</source>
         <translation>メニューの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="7977"/>
+        <location filename="MainWnd/MainWnd.cpp" line="8033"/>
         <source>failed to init BASS.DLL.</source>
         <translation>BASS の初期化に失敗しました。</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="8328"/>
+        <location filename="MainWnd/MainWnd.cpp" line="8399"/>
         <source>Show Position Slider(&amp;S)</source>
         <translation>再生位置スライダーの表示(&amp;V)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="8337"/>
+        <location filename="MainWnd/MainWnd.cpp" line="8408"/>
         <source>Show Speed Control(&amp;S)</source>
         <translation>再生速度コントロールの表示(&amp;V)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="8346"/>
+        <location filename="MainWnd/MainWnd.cpp" line="8417"/>
         <source>Show Frequency Control(&amp;S)</source>
         <translation>再生周波数コントロールの表示(&amp;V)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="8355"/>
+        <location filename="MainWnd/MainWnd.cpp" line="8426"/>
         <source>Show Pitch Control(&amp;S)</source>
         <translation>音程コントロールの表示(&amp;V)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="8364"/>
+        <location filename="MainWnd/MainWnd.cpp" line="8435"/>
         <source>Show Volume Control(&amp;S)</source>
         <translation>音量コントロールの表示(&amp;V)</translation>
     </message>
     <message>
-        <location filename="MainWnd/MainWnd.cpp" line="8373"/>
+        <location filename="MainWnd/MainWnd.cpp" line="8444"/>
         <source>Show Pan Control(&amp;S)</source>
         <translation>パンの表示(&amp;V)</translation>
     </message>
@@ -353,37 +353,37 @@ Do you want to access the official site?</source>
 <context>
     <name>CPlayListView_MainWnd</name>
     <message>
-        <location filename="MainWnd/PlayListView_MainWnd.cpp" line="180"/>
+        <location filename="MainWnd/PlayListView_MainWnd.cpp" line="181"/>
         <source>No.</source>
         <translation>No.</translation>
     </message>
     <message>
-        <location filename="MainWnd/PlayListView_MainWnd.cpp" line="181"/>
+        <location filename="MainWnd/PlayListView_MainWnd.cpp" line="182"/>
         <source>Title</source>
         <translation>タイトル</translation>
     </message>
     <message>
-        <location filename="MainWnd/PlayListView_MainWnd.cpp" line="182"/>
+        <location filename="MainWnd/PlayListView_MainWnd.cpp" line="183"/>
         <source>Artist</source>
         <translation>アーティスト</translation>
     </message>
     <message>
-        <location filename="MainWnd/PlayListView_MainWnd.cpp" line="183"/>
+        <location filename="MainWnd/PlayListView_MainWnd.cpp" line="184"/>
         <source>Year</source>
         <translation>年</translation>
     </message>
     <message>
-        <location filename="MainWnd/PlayListView_MainWnd.cpp" line="184"/>
+        <location filename="MainWnd/PlayListView_MainWnd.cpp" line="185"/>
         <source>Length</source>
         <translation>長さ</translation>
     </message>
     <message>
-        <location filename="MainWnd/PlayListView_MainWnd.cpp" line="185"/>
+        <location filename="MainWnd/PlayListView_MainWnd.cpp" line="186"/>
         <source>File Name</source>
         <translation>ファイル名</translation>
     </message>
     <message>
-        <location filename="MainWnd/PlayListView_MainWnd.cpp" line="186"/>
+        <location filename="MainWnd/PlayListView_MainWnd.cpp" line="187"/>
         <source>Path</source>
         <translation>場所</translation>
     </message>
@@ -427,6 +427,26 @@ Do you want to access the official site?</source>
         <location filename="MainWnd/RMenu_ListView.cpp" line="34"/>
         <source>Delete(&amp;D)</source>
         <translation>削除(&amp;D)</translation>
+    </message>
+    <message>
+        <location filename="MainWnd/RMenu_ListView.cpp" line="41"/>
+        <source>Edit the Tag(&amp;T)</source>
+        <translation>タグの編集(&amp;T)</translation>
+    </message>
+    <message>
+        <location filename="MainWnd/RMenu_ListView.cpp" line="42"/>
+        <source>Title(&amp;T)</source>
+        <translation>タイトル(&amp;T)</translation>
+    </message>
+    <message>
+        <location filename="MainWnd/RMenu_ListView.cpp" line="46"/>
+        <source>Artist(&amp;A)</source>
+        <translation>アーティスト(&amp;A)</translation>
+    </message>
+    <message>
+        <location filename="MainWnd/RMenu_ListView.cpp" line="50"/>
+        <source>Year(&amp;Y)</source>
+        <translation>年(&amp;Y)</translation>
     </message>
 </context>
 <context>

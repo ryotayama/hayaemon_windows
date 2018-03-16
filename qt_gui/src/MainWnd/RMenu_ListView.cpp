@@ -37,6 +37,21 @@ CRMenu_ListView::CRMenu_ListView(CPlayListView_MainWnd & parent, bool bOnItem)
 		addAction(deleteAct);
 		addSeparator();
 		addMenu(copyMenu);
+		addSeparator();
+		auto editTagMenu = new QMenu(tr("Edit the Tag(&T)"));
+		auto editTitleAct = new QAction(tr("Title(&T)"), this);
+		connect(editTitleAct, &QAction::triggered,
+						this, &CRMenu_ListView::OnEditTitleMenuSelected);
+		editTagMenu->addAction(editTitleAct);
+		auto editArtistAct = new QAction(tr("Artist(&A)"), this);
+		connect(editArtistAct, &QAction::triggered,
+						this, &CRMenu_ListView::OnEditArtistMenuSelected);
+		editTagMenu->addAction(editArtistAct);
+		auto editYearAct = new QAction(tr("Year(&Y)"), this);
+		connect(editYearAct, &QAction::triggered,
+						this, &CRMenu_ListView::OnEditYearMenuSelected);
+		editTagMenu->addAction(editYearAct);
+		addMenu(editTagMenu);
 	}
 }
 //----------------------------------------------------------------------------
@@ -52,5 +67,41 @@ void CRMenu_ListView::OnDeleteMenuSelected()
 void CRMenu_ListView::OnPlayMenuSelected()
 {
 	m_rParent.GetMainWnd().GetPlayList().PlaySelectedItem();
+}
+//----------------------------------------------------------------------------
+// タイトルタグの編集メニューが選択された
+//----------------------------------------------------------------------------
+void CRMenu_ListView::OnEditTitleMenuSelected()
+{
+	for (auto item : m_rParent.GetMainWnd().GetPlayList().selectedItems()) {
+		if (item->column() == 2) {
+			m_rParent.GetMainWnd().GetPlayList().editItem(item);
+			break;
+		}
+	}
+}
+//----------------------------------------------------------------------------
+// アーティストタグの編集メニューが選択された
+//----------------------------------------------------------------------------
+void CRMenu_ListView::OnEditArtistMenuSelected()
+{
+	for (auto item : m_rParent.GetMainWnd().GetPlayList().selectedItems()) {
+		if (item->column() == 3) {
+			m_rParent.GetMainWnd().GetPlayList().editItem(item);
+			break;
+		}
+	}
+}
+//----------------------------------------------------------------------------
+// 年タグの編集メニューが選択された
+//----------------------------------------------------------------------------
+void CRMenu_ListView::OnEditYearMenuSelected()
+{
+	for (auto item : m_rParent.GetMainWnd().GetPlayList().selectedItems()) {
+		if (item->column() == 4) {
+			m_rParent.GetMainWnd().GetPlayList().editItem(item);
+			break;
+		}
+	}
 }
 //----------------------------------------------------------------------------
