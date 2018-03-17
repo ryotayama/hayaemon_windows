@@ -239,6 +239,7 @@ public: // 関数
 	virtual void SetOnlyLeft(BOOL bOnlyLeft);
 	virtual void SetOnlyRight();
 	virtual void SetOnlyRight(BOOL bOnlyRight);
+	virtual void SetPlayListVisible(bool bListVisible);
 	virtual void SetPreset(int n);
 	virtual void SetPreviousNextMenuState();
 	virtual void SetPrevMarker();

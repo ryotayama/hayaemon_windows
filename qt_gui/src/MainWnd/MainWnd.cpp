@@ -5513,6 +5513,17 @@ void CMainWnd::SetOnlyRight(BOOL bOnlyRight)
 	m_menu.CheckItem(ID_ONLYRIGHT, bOnlyRight ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
+// 再生リストの表示状態を設定
+//----------------------------------------------------------------------------
+void CMainWnd::SetPlayListVisible(bool bListVisible)
+{
+	int nCmdShow = bListVisible ? SW_SHOW : SW_HIDE;
+	UINT uCheck = bListVisible ? MF_CHECKED : MF_UNCHECKED;
+	m_tab->Show(nCmdShow);
+	m_menu.CheckItem(ID_PLAYLIST, uCheck);
+	m_toolBar.CheckButton(ID_PLAYLIST, bListVisible);
+}
+//----------------------------------------------------------------------------
 // プリセットの設定
 //----------------------------------------------------------------------------
 void CMainWnd::SetPreset(int n)
@@ -6739,9 +6750,8 @@ void CMainWnd::SetSeconds(double fSeconds)
 //----------------------------------------------------------------------------
 void CMainWnd::SetTabVisible(bool bTabVisible)
 {
-	int nCmdShow = bTabVisible ? SW_SHOW : SW_HIDE;
 	UINT uCheck = bTabVisible ? MF_CHECKED : MF_UNCHECKED;
-	m_tab->Show(nCmdShow);
+	m_tab->tabBar()->setVisible(bTabVisible);
 	m_menu.CheckItem(ID_TAB, uCheck);
 }
 //----------------------------------------------------------------------------
@@ -7544,6 +7554,13 @@ void CMainWnd::WriteInitFile()
 	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_TAB) ? 1 : 0);
 	WritePrivateProfileString(_T("Visible"), _T("Tab"), buf, 
 		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"),
+		m_menu.IsItemChecked(ID_RECOVERLISTVISIBLE) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("RecoverPlayList"), buf, 
+		initFilePath.c_str());
+	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_PLAYLIST) ? 1 : 0);
+	WritePrivateProfileString(_T("Visible"), _T("PlayList"), buf, 
+		initFilePath.c_str());
 
 	// 再生モードの設定
 	_stprintf_s(buf, _T("%d"), m_menu.IsItemChecked(ID_RECOVERSLOOP) ? 1 : 0);
@@ -7969,7 +7986,7 @@ LRESULT CMainWnd::OnCreate()
 
 	BOOL bTimeSliderVisible = TRUE, bSpeedVisible = TRUE, bFreqVisible = TRUE,
 		bPitchVisible = TRUE, bVolumeVisible = TRUE, bPanVisible = TRUE,
-		bEQVisible = TRUE;
+		bEQVisible = TRUE, bListVisible = TRUE;
 	if(GetPrivateProfileInt(_T("Visible"), _T("RecoverTimeSlider"), 1, chPath))
 	{
 		m_menu.SwitchItemChecked(ID_RECOVERTIMESLIDERVISIBLE);
@@ -8010,6 +8027,11 @@ LRESULT CMainWnd::OnCreate()
 	}
 	BOOL bTabVisible = GetPrivateProfileInt(_T("Visible"), _T("Tab"), 1,
 						chPath);
+	if(GetPrivateProfileInt(_T("Visible"), _T("RecoverPlayList"), 1, chPath)) {
+		m_menu.SwitchItemChecked(ID_RECOVERLISTVISIBLE);
+		bListVisible = GetPrivateProfileInt(_T("Visible"), _T("PlayList"), 1,
+			chPath);
+	}
 
 	if(!CreateControls())
 		return FALSE;
@@ -8022,6 +8044,7 @@ LRESULT CMainWnd::OnCreate()
 	if(bVolumeVisible) SetVolumeVisible(true);
 	if(bPanVisible) SetPanVisible(true);
 	if(bEQVisible) SetEQVisible(true);
+	SetPlayListVisible(bListVisible);
 	SetTabVisible(bTabVisible);
 
 	m_timeLabel.SetTime(0, 0);

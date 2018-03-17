@@ -10,10 +10,9 @@
 BOOL CVolumeLabel_MainWnd::Create()
 {
 	auto spinbox = m_rMainWnd.volumeSpinBox;
+	spinbox->setRange(0.0, 100.0);
 	spinbox->setDecimals(1);
 	spinbox->setSingleStep(0.1);
-
-	spinbox->setRange(0.0, 100.0);
 
 	SetVolume(100.0);
 

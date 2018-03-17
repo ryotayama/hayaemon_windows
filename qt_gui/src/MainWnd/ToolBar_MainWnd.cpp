@@ -26,7 +26,8 @@ CToolBar_MainWnd::CToolBar_MainWnd(CMainWnd & mainWnd)
 								 {ID_MARKERPLAY, m_rMainWnd.markerPlayButton},
 								 {ID_ADDMARKER, m_rMainWnd.addMarkerButton},
 								 {ID_DELETEMARKER, m_rMainWnd.deleteMarkerButton},
-								 {ID_EXPLORER, m_rMainWnd.explorerButton}})
+								 {ID_EXPLORER, m_rMainWnd.explorerButton},
+								 {ID_PLAYLIST, m_rMainWnd.playlistButton}})
 {
 }
 //----------------------------------------------------------------------------

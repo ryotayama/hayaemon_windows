@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="icon">
+    <file>../resource/playlist.png</file>
     <file>../resource/explorer.png</file>
     <file>../resource/add_marker.png</file>
     <file>../resource/delete_marker.png</file>

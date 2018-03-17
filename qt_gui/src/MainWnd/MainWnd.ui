@@ -297,6 +297,23 @@
        </widget>
       </item>
       <item>
+       <widget class="QToolButton" name="playlistButton">
+        <property name="toolTip">
+         <string>Switch visibility of playlist</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../Hayaemon.qrc">
+          <normaloff>:/icon/resource/playlist.png</normaloff>:/icon/resource/playlist.png</iconset>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
        <spacer name="horizontalSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -1012,6 +1029,7 @@
     <addaction name="actionPanVisible"/>
     <addaction name="menuViewEQ"/>
     <addaction name="actionTabVisible"/>
+    <addaction name="actionPlaylistVisible"/>
    </widget>
    <widget class="QMenu" name="menuSystem_S">
     <property name="title">
@@ -1032,6 +1050,7 @@
       <addaction name="actionRecoverVolumeVisible"/>
       <addaction name="actionRecoverPanVisible"/>
       <addaction name="actionRecoverEQVisible"/>
+      <addaction name="actionRecoverPlaylistVisible"/>
      </widget>
      <widget class="QMenu" name="menuPlay_mode_P">
       <property name="title">
@@ -3393,6 +3412,22 @@
     <string>Update Check(&amp;U)...</string>
    </property>
   </action>
+  <action name="actionPlaylistVisible">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Playlist(&amp;P)</string>
+   </property>
+  </action>
+  <action name="actionRecoverPlaylistVisible">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Playlist(&amp;P)</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -3444,6 +3479,7 @@
   <tabstop>addMarkerButton</tabstop>
   <tabstop>deleteMarkerButton</tabstop>
   <tabstop>explorerButton</tabstop>
+  <tabstop>playlistButton</tabstop>
   <tabstop>m_explorerBar</tabstop>
   <tabstop>m_explorer</tabstop>
   <tabstop>timeSlider</tabstop>

@@ -462,6 +462,13 @@ void CMenu_MainWnd::OnTabMenuSelected(bool checked)
 	m_rMainWnd.SetTabVisible(checked);
 }
 //----------------------------------------------------------------------------
+// 表示 → 再生リストメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnPlayListMenuSelected(bool checked)
+{
+	m_rMainWnd.SetPlayListVisible(checked);
+}
+//----------------------------------------------------------------------------
 // 再生 → 頭出しメニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnHeadMenuSelected()
@@ -2951,6 +2958,7 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_PAN, m_rMainWnd.actionPanVisible},
 		{ID_EQ, m_rMainWnd.actionEQVisible},
 		{ID_TAB, m_rMainWnd.actionTabVisible},
+		{ID_PLAYLIST, m_rMainWnd.actionPlaylistVisible},
 		{ID_HEAD, m_rMainWnd.actionHead},
 		{ID_PREV, m_rMainWnd.actionPrevious},
 		{ID_NEXT, m_rMainWnd.actionNext},
@@ -3061,6 +3069,7 @@ void CMenu_MainWnd::CreateActionMap()
 		{ID_RECOVERVOLUMEVISIBLE, m_rMainWnd.actionRecoverVolumeVisible},
 		{ID_RECOVERPANVISIBLE, m_rMainWnd.actionRecoverPanVisible},
 		{ID_RECOVEREQVISIBLE, m_rMainWnd.actionRecoverEQVisible},
+		{ID_RECOVERLISTVISIBLE, m_rMainWnd.actionRecoverPlaylistVisible},
 		{ID_RECOVERWPOS, m_rMainWnd.actionRecoverWindowPosition},
 		{ID_RECOVERWSIZE, m_rMainWnd.actionRecoverWindowSize},
 		{ID_RECOVERPLAYPOS, m_rMainWnd.actionRecoverPlayPosition},
@@ -3221,6 +3230,8 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnEQMenuSelected);
 	connect(m_rMainWnd.actionTabVisible, &QAction::triggered,
 					this, &CMenu_MainWnd::OnTabMenuSelected);
+	connect(m_rMainWnd.actionPlaylistVisible, &QAction::triggered,
+					this, &CMenu_MainWnd::OnPlayListMenuSelected);
 	// Play
 	connect(m_rMainWnd.actionPlayPlayPause, &QAction::triggered,
 					this, &CMenu_MainWnd::OnPauseMenuSelected);
