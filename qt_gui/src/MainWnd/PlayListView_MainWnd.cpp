@@ -26,7 +26,8 @@ CPlayListView_MainWnd::CPlayListView_MainWnd(CMainWnd & mainWnd,
 																						 QWidget * parent /* = nullptr */)
 	: CListView(parent), m_rMainWnd(mainWnd)
 {
-  setContextMenuPolicy(Qt::CustomContextMenu);
+	this->verticalHeader()->hide();
+	setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(this, &QWidget::customContextMenuRequested,
 					this, &CPlayListView_MainWnd::OnContextMenu);
 	connect(this, &QTableWidget::itemDoubleClicked,
