@@ -10,6 +10,7 @@
 #include <ctime>
 #include <functional>
 #include <QClipboard>
+#include <QDir>
 #include <QDragEnterEvent>
 #include <QFileDialog>
 #include <QFileInfo>
@@ -326,7 +327,7 @@ BOOL CMainWnd::CreateControls()
 	GetPrivateProfileString(_T("Options"), _T("ExplorerPath"), _T(""), 
 		buf, 255, chPath);
 	if(_tcsicmp(buf, _T("")) != 0) {
-		SetCurrentDirectory(buf);
+		QDir::setCurrent(ToQString(buf));
 		m_explorer->ShowFiles();
 	}
 
@@ -6883,11 +6884,11 @@ void CMainWnd::SetTopMost()
 {
 	auto lStyle = windowFlags();
 	if(lStyle & Qt::WindowStaysOnTopHint) {
-		setWindowFlag(Qt::WindowStaysOnTopHint, false);
+		setWindowFlags(lStyle & (~Qt::WindowStaysOnTopHint));
 		m_menu.CheckItem(ID_TOPMOST, MF_UNCHECKED);
 	}
 	else {
-		setWindowFlag(Qt::WindowStaysOnTopHint, true);
+		setWindowFlags(lStyle | Qt::WindowStaysOnTopHint);
 		m_menu.CheckItem(ID_TOPMOST, MF_CHECKED);
 	}
 	show();
@@ -7295,7 +7296,7 @@ void CMainWnd::StartUpdateInfo()
 	if(m_updateThread.joinable()) {
 		m_updateThread.join();
 	}
-	m_updateThread.swap(std::thread([=] { UpdateThreadProc(this); }));
+	m_updateThread = std::thread([=] { UpdateThreadProc(this); });
 }
 //----------------------------------------------------------------------------
 // 早送りの停止

@@ -415,7 +415,11 @@ void CPlayListView_MainWnd::SaveTag(QTableWidgetItem * item)
 	}
 
 	if(bPlaying) m_rMainWnd.GetSound().StreamFree();
+#if _WIN32
 	TagLib::FileRef f(chPath.toStdWString().c_str());
+#elif __APPLE__
+	TagLib::FileRef f(chPath.toUtf8().toStdString().c_str());
+#endif
 	if(!f.isNull() && f.tag() != nullptr) {
 		TagLib::Tag * tag = f.tag();
 		if(nSubItem == 2) {
@@ -463,7 +467,11 @@ void CPlayListView_MainWnd::UpdateItemInfo(int nItem)
 	if(chFileExt.compare("nsf", Qt::CaseInsensitive) == 0)
 		return;
 
+#if _WIN32
 	TagLib::FileRef f(chPath.toStdWString().c_str());
+#elif __APPLE__
+	TagLib::FileRef f(chPath.toUtf8().toStdString().c_str());
+#endif
 	if(!f.isNull() && f.tag() != nullptr) {
 		TagLib::Tag * tag = f.tag();
 		// タイトル

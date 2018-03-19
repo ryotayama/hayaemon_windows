@@ -260,6 +260,9 @@ target_link_libraries(Hayaemon
   bass_fx
   bassflac
   tags
+  debug ${TAGLIB_DIR}/lib/macOS/Debug/libtag.a
+  optimized ${TAGLIB_DIR}/lib/macOS/Release/libtag.a
+  z
 )
 endif()
 
