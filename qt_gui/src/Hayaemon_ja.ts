@@ -458,6 +458,11 @@ Do you want to access the official site?</source>
         <source>Open Folder(&amp;O)</source>
         <translation>フォルダを開く(&amp;O)</translation>
     </message>
+    <message>
+        <location filename="MainWnd/RMenu_ListView.cpp" line="61"/>
+        <source>Show Play List(&amp;S)</source>
+        <translation>再生リストの表示(&amp;V)</translation>
+    </message>
 </context>
 <context>
     <name>CTab_MainWnd</name>

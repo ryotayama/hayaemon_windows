@@ -56,7 +56,14 @@ CRMenu_ListView::CRMenu_ListView(CPlayListView_MainWnd & parent, bool bOnItem)
 		connect(openFolderAct, &QAction::triggered,
 						this, &CRMenu_ListView::OnOpenFolderMenuSelected);
 		addAction(openFolderAct);
+		addSeparator();
 	}
+	auto visibleAct = new QAction(tr("Show Play List(&S)"), this);
+	visibleAct->setCheckable(true);
+	visibleAct->setChecked(true);
+	connect(visibleAct, &QAction::triggered,
+					this, &CRMenu_ListView::OnVisibleMenuSelected);
+	addAction(visibleAct);
 }
 //----------------------------------------------------------------------------
 // 削除メニューが選択された
@@ -114,5 +121,12 @@ void CRMenu_ListView::OnEditYearMenuSelected()
 void CRMenu_ListView::OnOpenFolderMenuSelected()
 {
 	m_rParent.GetMainWnd().GetPlayList().OpenFolder();
+}
+//----------------------------------------------------------------------------
+// 再生リストの表示メニューが選択された
+//----------------------------------------------------------------------------
+void CRMenu_ListView::OnVisibleMenuSelected()
+{
+	m_rParent.GetMainWnd().GetMenu().OnPlayListMenuSelected(false);
 }
 //----------------------------------------------------------------------------
