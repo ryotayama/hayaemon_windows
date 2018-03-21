@@ -52,6 +52,10 @@ CRMenu_ListView::CRMenu_ListView(CPlayListView_MainWnd & parent, bool bOnItem)
 						this, &CRMenu_ListView::OnEditYearMenuSelected);
 		editTagMenu->addAction(editYearAct);
 		addMenu(editTagMenu);
+		auto openFolderAct = new QAction(tr("Open Folder(&O)"), this);
+		connect(openFolderAct, &QAction::triggered,
+						this, &CRMenu_ListView::OnOpenFolderMenuSelected);
+		addAction(openFolderAct);
 	}
 }
 //----------------------------------------------------------------------------
@@ -103,5 +107,12 @@ void CRMenu_ListView::OnEditYearMenuSelected()
 			break;
 		}
 	}
+}
+//----------------------------------------------------------------------------
+// フォルダを開くメニューが選択された
+//----------------------------------------------------------------------------
+void CRMenu_ListView::OnOpenFolderMenuSelected()
+{
+	m_rParent.GetMainWnd().GetPlayList().OpenFolder();
 }
 //----------------------------------------------------------------------------

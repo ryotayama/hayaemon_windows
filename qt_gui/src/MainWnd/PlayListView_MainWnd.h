@@ -39,6 +39,7 @@ public: // 関数
 	virtual void SetPlayOrder(int iItem, int nOrder);
 	virtual void ClearPlayOrder();
 	virtual void FixPlayOrder(int iItem);
+	virtual void OpenFolder();
 	virtual void ResetNumber();
 	virtual void ScrollToItem(int nItem);
 	virtual void SaveTag(QTableWidgetItem * item);

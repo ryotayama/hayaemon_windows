@@ -3,6 +3,7 @@
 //----------------------------------------------------------------------------
 #include "PlayListView_MainWnd.h"
 #include <algorithm>
+#include <QDesktopServices>
 #include <QDir>
 #include <QFileInfo>
 #include <QMimeData>
@@ -376,6 +377,22 @@ void CPlayListView_MainWnd::FixPlayOrder(int iItem)
 		if(n > nCur) orders[i] = n - 1;
 	}
 	orders[iItem] = -1;
+}
+//----------------------------------------------------------------------------
+// フォルダを開く
+//----------------------------------------------------------------------------
+void CPlayListView_MainWnd::OpenFolder()
+{
+	for (int nItem : GetSelectedRows()) {
+		QString chPath;
+		GetItemText(nItem, 7, &chPath);
+		if(PathIsURL(chPath)) {
+			continue;
+		}
+		QFileInfo fi(chPath);
+		QDesktopServices::openUrl(
+				QUrl("file:///" + fi.absoluteDir().absolutePath()));
+	}
 }
 //----------------------------------------------------------------------------
 // 「No.」のリセット

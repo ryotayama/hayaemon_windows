@@ -22,6 +22,7 @@ public: // 関数
 	void OnEditTitleMenuSelected();
 	void OnEditArtistMenuSelected();
 	void OnEditYearMenuSelected();
+	void OnOpenFolderMenuSelected();
 
 private: // メンバ変数
 
