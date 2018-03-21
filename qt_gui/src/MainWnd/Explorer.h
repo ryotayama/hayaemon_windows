@@ -23,6 +23,7 @@ public: // 関数
 	virtual BOOL Create(CMainWnd & mainWnd);
 	virtual BOOL OpenDirectory();
 	virtual void OpenFiles(BOOL bClear);
+	virtual void OpenFolder();
 	virtual BOOL ShowFiles();
 
 	virtual void OnContextMenu(const QPoint & pos);

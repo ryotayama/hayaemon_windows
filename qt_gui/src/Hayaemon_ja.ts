@@ -54,22 +54,22 @@
 <context>
     <name>CExplorer</name>
     <message>
-        <location filename="MainWnd/Explorer.cpp" line="40"/>
+        <location filename="MainWnd/Explorer.cpp" line="42"/>
         <source>Name</source>
         <translation>名前</translation>
     </message>
     <message>
-        <location filename="MainWnd/Explorer.cpp" line="41"/>
+        <location filename="MainWnd/Explorer.cpp" line="43"/>
         <source>Date Modified</source>
         <translation>更新日時</translation>
     </message>
     <message>
-        <location filename="MainWnd/Explorer.cpp" line="42"/>
+        <location filename="MainWnd/Explorer.cpp" line="44"/>
         <source>Type</source>
         <translation>種類</translation>
     </message>
     <message>
-        <location filename="MainWnd/Explorer.cpp" line="43"/>
+        <location filename="MainWnd/Explorer.cpp" line="45"/>
         <source>Size</source>
         <translation>サイズ</translation>
     </message>
@@ -402,6 +402,11 @@ Do you want to access the official site?</source>
     </message>
     <message>
         <location filename="MainWnd/RMenu_Explorer.cpp" line="26"/>
+        <source>Open Folder(&amp;O)</source>
+        <translation>フォルダを開く(&amp;O)</translation>
+    </message>
+    <message>
+        <location filename="MainWnd/RMenu_Explorer.cpp" line="33"/>
         <source>Show Exploler(&amp;S)</source>
         <translation>エクスプローラの表示(&amp;V)</translation>
     </message>

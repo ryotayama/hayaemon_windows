@@ -22,6 +22,13 @@ CRMenu_Explorer::CRMenu_Explorer(CExplorer & parent, bool bOnItem)
 		addAction(addAct);
 
 		addSeparator();
+
+		auto openFolderAct = new QAction(tr("Open Folder(&O)"), this);
+		connect(openFolderAct, &QAction::triggered,
+						this, &CRMenu_Explorer::OnOpenFolderMenuSelected);
+		addAction(openFolderAct);
+
+		addSeparator();
 	}
 	auto visibleAct = new QAction(tr("Show Exploler(&S)"), this);
 	visibleAct->setCheckable(true);
@@ -43,6 +50,13 @@ void CRMenu_Explorer::OnOpenFilesMenuSelected()
 void CRMenu_Explorer::OnAddFilesMenuSelected()
 {
 	m_rParent.OpenFiles(FALSE);
+}
+//----------------------------------------------------------------------------
+// フォルダを開くメニューが選択された
+//----------------------------------------------------------------------------
+void CRMenu_Explorer::OnOpenFolderMenuSelected()
+{
+	m_rParent.OpenFolder();
 }
 //----------------------------------------------------------------------------
 // エクスプローラの表示メニューが選択された

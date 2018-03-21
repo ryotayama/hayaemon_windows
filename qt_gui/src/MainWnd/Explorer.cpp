@@ -5,10 +5,12 @@
 #include <algorithm>
 #include <QApplication>
 #include <QDateTime>
+#include <QDesktopServices>
 #include <QDir>
 #include <QFileIconProvider>
 #include <QFileInfo>
 #include "MainWnd.h"
+#include "Platform.h"
 #include "PlayListView_MainWnd.h"
 #include "RMenu_Explorer.h"
 
@@ -68,6 +70,21 @@ void CExplorer::OpenFiles(BOOL bClear)
 		m_rMainWnd->GetSound().SetCurFileNum(0);
 		m_rMainWnd->PlayNext(TRUE, FALSE);
 		m_rMainWnd->SetPreviousNextMenuState();
+	}
+}
+//----------------------------------------------------------------------------
+// フォルダを開く
+//----------------------------------------------------------------------------
+void CExplorer::OpenFolder()
+{
+	for (int nItem : GetSelectedRows()) {
+		QString chPath = filePaths[nItem];
+		if(PathIsURL(chPath)) {
+			continue;
+		}
+		QFileInfo fi(chPath);
+		QDesktopServices::openUrl(
+				QUrl("file:///" + fi.absoluteDir().absolutePath()));
 	}
 }
 //----------------------------------------------------------------------------
@@ -198,7 +215,7 @@ void CExplorer::OnLButtonDoubleClick(int row, int column)
 {
 	if(!OpenDirectory()) {
 		bool ctrl = QApplication::keyboardModifiers() & Qt::ControlModifier;
-		OpenFiles(GetKeyState(ctrl));
+		OpenFiles(ctrl);
 	}
 }
 //----------------------------------------------------------------------------

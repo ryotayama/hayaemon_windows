@@ -19,6 +19,7 @@ public: // 関数
 
 	void OnOpenFilesMenuSelected();
 	void OnAddFilesMenuSelected();
+	void OnOpenFolderMenuSelected();
 	void OnVisibleMenuSelected();
 
 private: // メンバ変数
