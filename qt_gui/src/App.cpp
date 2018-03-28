@@ -40,6 +40,8 @@ int CApp::Run(int argc, char *argv[])
 {
 	QApplication app(argc, argv);
 
+	qRegisterMetaType<QVector<int>>();
+
 	QString filePath = QCoreApplication::applicationFilePath();
 	QString fileName = QFileInfo(filePath).fileName();
 	m_strPath = filePath.left(filePath.length() - fileName.length());
