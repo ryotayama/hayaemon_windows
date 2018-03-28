@@ -8092,6 +8092,17 @@ LRESULT CMainWnd::OnCreate()
 
 	OpenInitFileAfterShow();
 
+	// アイコンにドロップされたファイルを読み込む
+	auto argv = QApplication::arguments();
+	for(int i = 1; i < argv.size(); i++)
+		m_arrayList[0]->AddFile(argv[i]);
+
+	if(argv.size() > 1) {
+		nCurPlayTab = 0;
+		Play(m_arrayList[0]->GetItemCount()-1);
+		StartUpdateInfo();
+	}
+
 	SetPreviousNextMenuState();
 
 	QString strClick = m_rApp.GetFilePath() + "click.wav";
