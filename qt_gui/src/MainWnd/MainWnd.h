@@ -130,8 +130,10 @@ public: // 関数
 	virtual void Play(int n);
 	virtual void PlayNext(BOOL bPlay, BOOL bFadeoutCancel);
 	virtual void PlayPrevious();
+	virtual void ResetAllControlPos();
 	virtual void ResetFreq();
 	virtual void ResetPitch();
+	virtual void ResetSize();
 	virtual void ResetSpeed();
 	virtual void ResetVolume();
 	virtual void Rewind();

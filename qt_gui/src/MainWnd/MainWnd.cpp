@@ -50,7 +50,7 @@
 #include "ReverbCustomizeWnd.h"
 #include "Utility.h"
 //----------------------------------------------------------------------------
-// ドロップされたファイルの追加
+// デストラクタ
 //----------------------------------------------------------------------------
 CMainWnd::~CMainWnd()
 {
@@ -2818,6 +2818,12 @@ void CMainWnd::PlayPrevious()
 	}
 }
 //----------------------------------------------------------------------------
+// 全てのコントロールの位置を再設定
+//----------------------------------------------------------------------------
+void CMainWnd::ResetAllControlPos()
+{
+}
+//----------------------------------------------------------------------------
 // 再生周波数をデフォルトに戻す
 //----------------------------------------------------------------------------
 void CMainWnd::ResetFreq()
@@ -2830,6 +2836,12 @@ void CMainWnd::ResetFreq()
 void CMainWnd::ResetPitch()
 {
 	m_pitchLabel.SetPitch(0.0);
+}
+//----------------------------------------------------------------------------
+// サイズの再設定
+//----------------------------------------------------------------------------
+void CMainWnd::ResetSize()
+{
 }
 //----------------------------------------------------------------------------
 // 再生速度をデフォルトに戻す
@@ -4353,6 +4365,8 @@ void CMainWnd::SetTimeSliderVisible(bool bTimeSliderVisible)
 	UINT uCheck = bTimeSliderVisible ? MF_CHECKED : MF_UNCHECKED;
 	m_timeSlider.Show(nCmdShow);
 	m_menu.CheckItem(ID_TIMESLIDER, uCheck);
+	ResetAllControlPos();
+	ResetSize();
 }
 //----------------------------------------------------------------------------
 // エクスプローラの表示状態を設定
@@ -4366,6 +4380,8 @@ void CMainWnd::SetExplorerVisible(bool bExplorerVisible)
 	if(bExplorerVisible) {
 		m_explorer->setFocus();
 	}
+	ResetAllControlPos();
+	ResetSize();
 }
 //----------------------------------------------------------------------------
 // 再生速度の表示状態を設定
@@ -4382,6 +4398,8 @@ void CMainWnd::SetSpeedVisible(bool bSpeedVisible)
 	m_speedLabel.Show(nCmdShow);
 	m_speedSlider.Show(nCmdShow);
 	m_menu.CheckItem(ID_SPEED, uCheck);
+	ResetAllControlPos();
+	ResetSize();
 }
 //----------------------------------------------------------------------------
 // 再生周波数の表示状態を設定
@@ -4398,6 +4416,8 @@ void CMainWnd::SetFreqVisible(bool bFreqVisible)
 	m_freqLabel.Show(nCmdShow);
 	m_freqSlider.Show(nCmdShow);
 	m_menu.CheckItem(ID_FREQ, uCheck);
+	ResetAllControlPos();
+	ResetSize();
 }
 //----------------------------------------------------------------------------
 // 音程の表示状態を設定
@@ -4414,6 +4434,8 @@ void CMainWnd::SetPitchVisible(bool bPitchVisible)
 	m_pitchLabel.Show(nCmdShow);
 	m_pitchSlider.Show(nCmdShow);
 	m_menu.CheckItem(ID_PITCH, uCheck);
+	ResetAllControlPos();
+	ResetSize();
 }
 //----------------------------------------------------------------------------
 // 音量の表示状態を設定
@@ -4428,6 +4450,8 @@ void CMainWnd::SetVolumeVisible(bool bVolumeVisible)
 	m_volumeLabel.Show(nCmdShow);
 	m_volumeSlider.Show(nCmdShow);
 	m_menu.CheckItem(ID_VOLUME, uCheck);
+	ResetAllControlPos();
+	ResetSize();
 }
 //----------------------------------------------------------------------------
 // パンの表示状態を設定
@@ -4441,6 +4465,8 @@ void CMainWnd::SetPanVisible(bool bPanVisible)
 	m_panLabel.Show(nCmdShow);
 	m_panSlider.Show(nCmdShow);
 	m_menu.CheckItem(ID_PAN, uCheck);
+	ResetAllControlPos();
+	ResetSize();
 }
 //----------------------------------------------------------------------------
 // 回数ループの設定
@@ -4901,6 +4927,8 @@ void CMainWnd::SetEQVisible(bool bEQVisible)
 	m_eq20kLabel.Show(m_menu.IsItemChecked(ID_EQ20K) ? nCmdShow : SW_HIDE);
 	m_eq20kSlider.Show(m_menu.IsItemChecked(ID_EQ20K) ? nCmdShow : SW_HIDE);
 	m_menu.CheckItem(ID_EQ, uCheck);
+	ResetAllControlPos();
+	ResetSize();
 }
 //----------------------------------------------------------------------------
 // 再生周波数をだんだん速くする設定
@@ -5523,6 +5551,8 @@ void CMainWnd::SetPlayListVisible(bool bListVisible)
 	m_tab->Show(nCmdShow);
 	m_menu.CheckItem(ID_PLAYLIST, uCheck);
 	m_toolBar.CheckButton(ID_PLAYLIST, bListVisible);
+	ResetAllControlPos();
+	ResetSize();
 }
 //----------------------------------------------------------------------------
 // プリセットの設定
@@ -6754,6 +6784,8 @@ void CMainWnd::SetTabVisible(bool bTabVisible)
 	UINT uCheck = bTabVisible ? MF_CHECKED : MF_UNCHECKED;
 	m_tab->tabBar()->setVisible(bTabVisible);
 	m_menu.CheckItem(ID_TAB, uCheck);
+	ResetAllControlPos();
+	ResetSize();
 }
 //----------------------------------------------------------------------------
 // 時間の設定
