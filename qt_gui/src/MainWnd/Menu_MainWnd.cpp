@@ -469,6 +469,20 @@ void CMenu_MainWnd::OnPlayListMenuSelected(bool checked)
 	m_rMainWnd.SetPlayListVisible(checked);
 }
 //----------------------------------------------------------------------------
+// 表示 → 全てのコントロールを閉じるメニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnCloseAllMenuSelected()
+{
+	if(IsItemChecked(ID_TIMESLIDER)) OnTimeSliderMenuSelected(false);
+	if(IsItemChecked(ID_SPEED)) OnSpeedMenuSelected(false);
+	if(IsItemChecked(ID_FREQ)) OnFreqMenuSelected(false);
+	if(IsItemChecked(ID_PITCH)) OnPitchMenuSelected(false);
+	if(IsItemChecked(ID_VOLUME)) OnVolumeMenuSelected(false);
+	if(IsItemChecked(ID_PAN)) OnPanMenuSelected(false);
+	if(IsItemChecked(ID_EQ)) OnEQMenuSelected(false);
+	if(IsItemChecked(ID_PLAYLIST)) OnPlayListMenuSelected(false);
+}
+//----------------------------------------------------------------------------
 // 再生 → 頭出しメニューが選択された
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnHeadMenuSelected()
@@ -3232,6 +3246,8 @@ void CMenu_MainWnd::CreateConnections()
 					this, &CMenu_MainWnd::OnTabMenuSelected);
 	connect(m_rMainWnd.actionPlaylistVisible, &QAction::triggered,
 					this, &CMenu_MainWnd::OnPlayListMenuSelected);
+	connect(m_rMainWnd.actionCloseAll, &QAction::triggered,
+					this, &CMenu_MainWnd::OnCloseAllMenuSelected);
 	// Play
 	connect(m_rMainWnd.actionPlayPlayPause, &QAction::triggered,
 					this, &CMenu_MainWnd::OnPauseMenuSelected);

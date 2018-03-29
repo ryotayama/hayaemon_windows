@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>799</width>
+    <width>816</width>
     <height>975</height>
    </rect>
   </property>
@@ -544,7 +544,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>799</width>
+     <width>816</width>
      <height>31</height>
     </rect>
    </property>
@@ -1030,6 +1030,9 @@
     <addaction name="menuViewEQ"/>
     <addaction name="actionTabVisible"/>
     <addaction name="actionPlaylistVisible"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="actionCloseAll"/>
    </widget>
    <widget class="QMenu" name="menuSystem_S">
     <property name="title">
@@ -3426,6 +3429,11 @@
    </property>
    <property name="text">
     <string>Playlist(&amp;P)</string>
+   </property>
+  </action>
+  <action name="actionCloseAll">
+   <property name="text">
+    <string>Close all(&amp;C)</string>
    </property>
   </action>
  </widget>

@@ -80,6 +80,7 @@ public: // 関数
 	void OnEQMenuSelected(bool checked);
 	void OnTabMenuSelected(bool checked);
 	void OnPlayListMenuSelected(bool checked);
+	void OnCloseAllMenuSelected();
 	void OnHeadMenuSelected();
 	void OnPauseMenuSelected();
 	void OnPreviousMenuSelected();

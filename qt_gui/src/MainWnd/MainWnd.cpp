@@ -4864,6 +4864,7 @@ void CMainWnd::SetEQVisible(bool bEQVisible)
 {
 	int nCmdShow = bEQVisible ? SW_SHOW : SW_HIDE;
 	UINT uCheck = bEQVisible ? MF_CHECKED : MF_UNCHECKED;
+	eqGroupBox->setVisible(bEQVisible);
 	m_eq20Label.Show(m_menu.IsItemChecked(ID_EQ20) ? nCmdShow : SW_HIDE);
 	m_eq20Slider.Show(m_menu.IsItemChecked(ID_EQ20) ? nCmdShow : SW_HIDE);
 	m_eq25Label.Show(m_menu.IsItemChecked(ID_EQ25) ? nCmdShow : SW_HIDE);
