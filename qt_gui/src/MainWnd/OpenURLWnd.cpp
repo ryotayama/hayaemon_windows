@@ -45,6 +45,7 @@ void COpenURLWnd::OpenURL()
 	}
 
 	m_rMainWnd.SetPreviousNextMenuState();
+	m_rMainWnd.StartUpdateInfo();
 
 	accepted();
 }
