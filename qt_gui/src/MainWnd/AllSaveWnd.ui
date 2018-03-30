@@ -15,23 +15,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QComboBox" name="m_Combo">
-     <item>
-      <property name="text">
-       <string>WAVE file(*.wav)</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>MP3 file(*.mp3)</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Ogg Vorbis file(*.ogg)</string>
-      </property>
-     </item>
-    </widget>
+    <widget class="QComboBox" name="m_Combo"/>
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">

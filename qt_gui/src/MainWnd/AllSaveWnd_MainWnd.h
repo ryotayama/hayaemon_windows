@@ -12,6 +12,8 @@ class CMainWnd;
 //----------------------------------------------------------------------------
 class CAllSaveWnd_MainWnd : public QDialog, public Ui::AllSaveWnd
 {
+	Q_OBJECT
+
 public: // 関数
 
 	explicit CAllSaveWnd_MainWnd(CMainWnd & mainWnd);
