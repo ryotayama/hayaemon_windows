@@ -41,6 +41,7 @@
 #include "FlangerCustomizeWnd.h"
 #include "GargleCustomizeWnd.h"
 #include "M3UFile.h"
+#include "MainWnd_inline.h"
 #include "OpenURLWnd.h"
 #include "PlayListView_MainWnd.h"
 #include "PlayPositionWnd.h"
@@ -7137,21 +7138,22 @@ void CMainWnd::ShowSaveFileDialog()
 			if(filter == filter_wav) { // WAVE
 				strSaveFormat = _T("WAVE");
 				WriteInitFile();
-				m_sound.SaveFile(ToTstring(filePath).c_str(), 0);
+				m_sound.SaveFile(filePath, 0);
 			}
 			else if(filter == filter_mp3) { // MP3
 				strSaveFormat = _T("MP3");
 				WriteInitFile();
-				m_sound.SaveFile(ToTstring(filePath).c_str(), 1);
+				m_sound.SaveFile(filePath, 1);
 			}
 			else { // Ogg Vorbis
 				strSaveFormat = _T("OGG");
 				WriteInitFile();
-				m_sound.SaveFile(ToTstring(filePath).c_str(), 2);
+				m_sound.SaveFile(filePath, 2);
 			}
-		} else if(filter == filter_ini) { // 設定状態
-			SaveSettings(ToTstring(filePath).c_str());
-		} else {
+		}
+		else if(filter == filter_ini) // 設定状態
+			SaveSettings(filePath);
+		else {
 			// プレイリストファイル
 
 			QString str;

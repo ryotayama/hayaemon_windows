@@ -140,6 +140,7 @@ public: // 関数
 	virtual void ReturnSeconds(int seconds);
 	virtual void SavePreset(PCTSTR pFilePath);
 	virtual void SaveSettings(const PCTSTR & pFilePath);
+	virtual void SaveSettings(const QString & filePath);
 	virtual void SetABLoopA(QWORD pos);
 	virtual void SetABLoopA();
 	virtual void SetABLoopA_Sec(double dTime);

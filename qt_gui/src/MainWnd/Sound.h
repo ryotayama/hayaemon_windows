@@ -118,6 +118,7 @@ public: // 関数
 	virtual BOOL ChannelSetVolume(float volume);
 	virtual UINT OnLoop();
 	virtual void SaveFile(LPCTSTR lpszFilePath, int nFormat);
+	virtual void SaveFile(const QString & filePath, int nFormat);
 	virtual void SetMonoral(BOOL bMonoral = TRUE);
 	static void CALLBACK Monoral(HDSP handle, DWORD channel, void *buffer,
 								 DWORD length, void *user);

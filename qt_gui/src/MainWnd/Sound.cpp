@@ -14,6 +14,7 @@
 #include "../Common/CommandList.h"
 #include "../Common/Define.h"
 #include "MainWnd.h"
+#include "Sound_inline.h"
 #include "Utility.h"
 //----------------------------------------------------------------------------
 // コンストラクタ

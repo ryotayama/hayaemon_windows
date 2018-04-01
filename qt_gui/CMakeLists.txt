@@ -75,6 +75,7 @@ set(SRC_MAINWND
   ${SRC_DIR}/MainWnd/M3UFile.h
   ${SRC_DIR}/MainWnd/MainWnd.cpp
   ${SRC_DIR}/MainWnd/MainWnd.h
+  ${SRC_DIR}/MainWnd/MainWnd_inline.h
   ${SRC_DIR}/MainWnd/Menu_MainWnd.cpp
   ${SRC_DIR}/MainWnd/Menu_MainWnd.h
   ${SRC_DIR}/MainWnd/OpenURLWnd.cpp
@@ -109,6 +110,7 @@ set(SRC_MAINWND
   ${SRC_DIR}/MainWnd/RMenu_ListView.h
   ${SRC_DIR}/MainWnd/Sound.cpp
   ${SRC_DIR}/MainWnd/Sound.h
+  ${SRC_DIR}/MainWnd/Sound_inline.h
   ${SRC_DIR}/MainWnd/SpeedLabel_MainWnd.cpp
   ${SRC_DIR}/MainWnd/SpeedLabel_MainWnd.h
   ${SRC_DIR}/MainWnd/SpeedSlider_MainWnd.cpp
