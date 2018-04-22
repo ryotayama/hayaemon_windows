@@ -138,7 +138,7 @@
      <item row="10" column="0">
       <widget class="QLabel" name="label_8">
        <property name="text">
-        <string>DENSITY</string>
+        <string>DENSITY:</string>
        </property>
       </widget>
      </item>

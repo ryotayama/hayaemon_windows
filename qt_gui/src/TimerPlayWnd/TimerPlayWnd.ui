@@ -71,7 +71,7 @@
        <item>
         <widget class="QLabel" name="m_label3">
          <property name="text">
-          <string/>
+          <string comment="1" extracomment="Play at">      </string>
          </property>
         </widget>
        </item>
@@ -133,7 +133,7 @@
        <item>
         <widget class="QLabel" name="m_label6">
          <property name="text">
-          <string/>
+          <string comment="2" extracomment="Stop at"> </string>
          </property>
         </widget>
        </item>
