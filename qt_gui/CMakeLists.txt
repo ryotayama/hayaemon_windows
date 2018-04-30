@@ -136,33 +136,34 @@ set(SRC_TIMERPLAYWND
   ${SRC_DIR}/TimerPlayWnd/TimerPlayWnd_MainWnd.cpp
   ${SRC_DIR}/TimerPlayWnd/TimerPlayWnd_MainWnd.h)
 
+set(THIRDPARTY_DIR ${CMAKE_SOURCE_DIR}/3rdparty)
 if (WIN32)
-set(BASS_DIR ${CMAKE_SOURCE_DIR}/3rdparty/bass/win32)
+  set(BASS_DIR ${THIRDPARTY_DIR}/bass/win32)
+  set(BASSLIB_DIR ${BASS_DIR}/lib/x64)
 elseif (APPLE)
-set(BASS_DIR ${CMAKE_SOURCE_DIR}/3rdparty/bass/macOS)
+  set(BASS_DIR ${THIRDPARTY_DIR}/bass/macOS)
+  set(BASSLIB_DIR ${BASS_DIR}/lib)
 endif()
-set(TAGLIB_DIR ${CMAKE_SOURCE_DIR}/3rdparty/taglib-1.11.1)
+set(TAGLIB_DIR ${THIRDPARTY_DIR}/taglib-1.11.1)
 
 if (WIN32)
-set(SRC_BASS
-  ${BASS_DIR}/include/bass/bass.h
-  ${BASS_DIR}/include/bass/bass_aac.h
-  ${BASS_DIR}/include/bass/bass_ape.h
-  ${BASS_DIR}/include/bass/bass_fx.h
-  ${BASS_DIR}/include/bass/bassalac.h
-  ${BASS_DIR}/include/bass/basscd.h
-  ${BASS_DIR}/include/bass/bassenc.h
-  ${BASS_DIR}/include/bass/bassflac.h
-  ${BASS_DIR}/include/bass/tags.h
-)
+  set(SRC_BASS
+    ${BASS_DIR}/include/bass/bass.h
+    ${BASS_DIR}/include/bass/bass_aac.h
+    ${BASS_DIR}/include/bass/bass_ape.h
+    ${BASS_DIR}/include/bass/bass_fx.h
+    ${BASS_DIR}/include/bass/bassalac.h
+    ${BASS_DIR}/include/bass/basscd.h
+    ${BASS_DIR}/include/bass/bassenc.h
+    ${BASS_DIR}/include/bass/bassflac.h
+    ${BASS_DIR}/include/bass/tags.h)
 elseif (APPLE)
-set(SRC_BASS
-  ${BASS_DIR}/include/bass/bass.h
-  ${BASS_DIR}/include/bass/bass_ape.h
-  ${BASS_DIR}/include/bass/bass_fx.h
-  ${BASS_DIR}/include/bass/bassflac.h
-  ${BASS_DIR}/include/bass/tags.h
-)
+  set(SRC_BASS
+    ${BASS_DIR}/include/bass/bass.h
+    ${BASS_DIR}/include/bass/bass_ape.h
+    ${BASS_DIR}/include/bass/bass_fx.h
+    ${BASS_DIR}/include/bass/bassflac.h
+    ${BASS_DIR}/include/bass/tags.h)
 endif()
 
 source_group(Bass FILES ${SRC_BASS})
@@ -184,8 +185,8 @@ source_group("" FILES
 set(CMAKE_CXX_STANDARD 14)
 add_definitions(-D_UNICODE -DUNICODE -DTAGLIB_STATIC)
 if (WIN32)
-add_definitions(-D_CRT_SECURE_NO_WARNINGS)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
+  add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
 endif()
 
 qt5_add_resources(RESOURCES ${SRC_DIR}/Hayaemon.qrc)
@@ -216,11 +217,7 @@ include_directories(
   ${SRC_DIR}/MainWnd
   ${BASS_DIR}/include
   ${TAGLIB_DIR}/include)
-if (WIN32)
-link_directories(${BASS_DIR}/lib/x64)
-elseif (APPLE)
-link_directories(${BASS_DIR}/lib)
-endif()
+link_directories(${BASSLIB_DIR})
 
 add_executable(Hayaemon
   ${SRC_DIR}/App.cpp
@@ -240,33 +237,31 @@ add_executable(Hayaemon
   ${UI_MOC}
 )
 if (WIN32)
-target_link_libraries(Hayaemon
-  bass
-  bass_aac
-  bass_ape
-  bass_fx
-  bassalac
-  basscd
-  bassenc
-  bassflac
-  tags
-  winmm
-  debug ${TAGLIB_DIR}/lib/win32/Debug/tag.lib
-  optimized ${TAGLIB_DIR}/lib/win32/Release/tag.lib
-)
+  target_link_libraries(Hayaemon
+    bass
+    bass_aac
+    bass_ape
+    bass_fx
+    bassalac
+    basscd
+    bassenc
+    bassflac
+    tags
+    winmm
+    debug ${TAGLIB_DIR}/lib/win32/Debug/tag.lib
+    optimized ${TAGLIB_DIR}/lib/win32/Release/tag.lib)
 elseif (APPLE)
-target_link_libraries(Hayaemon
-  bass
-  bassenc
-  bass_ape
-  bass_fx
-  bassflac
-  tags
-  debug ${TAGLIB_DIR}/lib/macOS/Debug/libtag.a
-  optimized ${TAGLIB_DIR}/lib/macOS/Release/libtag.a
-  z
-)
-endif()
+  target_link_libraries(Hayaemon
+    bass
+    bassenc
+    bass_ape
+    bass_fx
+    bassflac
+    tags
+    debug ${TAGLIB_DIR}/lib/macOS/Debug/libtag.a
+    optimized ${TAGLIB_DIR}/lib/macOS/Release/libtag.a
+    z)
+endif ()
 
 qt5_use_modules(Hayaemon Widgets Multimedia)
 
@@ -279,3 +274,19 @@ add_custom_command(TARGET Hayaemon
     ${CMAKE_SOURCE_DIR}/resource/click.wav
     $<TARGET_FILE_DIR:Hayaemon>/.)
 
+install(TARGETS Hayaemon RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX})
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/sound
+        DESTINATION ${CMAKE_INSTALL_PREFIX})
+install(FILES ${CMAKE_SOURCE_DIR}/resource/click.wav
+        DESTINATION ${CMAKE_INSTALL_PREFIX})
+if (WIN32)
+  install(DIRECTORY ${BASSLIB_DIR}/ DESTINATION ${CMAKE_INSTALL_PREFIX}
+          FILES_MATCHING PATTERN "*.dll")
+  install(FILES ${THIRDPARTY_DIR}/lame/win32/bin/x64/lame.exe
+          DESTINATION ${CMAKE_INSTALL_PREFIX})
+  install(FILES ${THIRDPARTY_DIR}/oggenc/win32/bin/x64/oggenc2.exe
+          DESTINATION ${CMAKE_INSTALL_PREFIX})
+elseif (APPLE)
+  install(DIRECTORY ${BASSLIB_DIR}/ DESTINATION ${CMAKE_INSTALL_PREFIX}
+          FILES_MATCHING PATTERN "*.dylib")
+endif ()
