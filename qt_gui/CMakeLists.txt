@@ -219,7 +219,15 @@ include_directories(
   ${TAGLIB_DIR}/include)
 link_directories(${BASSLIB_DIR})
 
+if (WIN32)
+  set(APP_BUNDLE WIN32)
+  set(APP_ICON ${CMAKE_SOURCE_DIR}/resource/windows.rc)
+elseif (APPLE)
+endif ()
+
 add_executable(Hayaemon
+  ${APP_BUNDLE}
+  ${APP_ICON}
   ${SRC_DIR}/App.cpp
   ${SRC_DIR}/App.h
   ${SRC_BASS}
