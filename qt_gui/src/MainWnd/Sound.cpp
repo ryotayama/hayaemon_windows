@@ -1435,7 +1435,6 @@ void CSound::SaveFile(LPCTSTR lpszFilePath, int nFormat)
 		}
 	}
 #else
-# error NOT IMPLEMENTED.
 #endif
 
 	m_rMainWnd.KillTimer(m_rMainWnd.IDT_TIME);
