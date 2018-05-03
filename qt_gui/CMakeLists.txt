@@ -3,6 +3,17 @@ project(hayaemon_qt)
 
 find_package(Qt5Widgets)
 find_package(Qt5Multimedia)
+
+if (Qt5Widgets_FOUND)
+  if (Qt5Widgets_VERSION VERSION_LESS 5.9.0)
+    message(FATAL_ERROR "Minimum supported Qt5 version is 5.9.0!")
+  else ()
+    message("Qt5 version ${Qt5Widgets_VERSION}")
+  endif ()
+else ()
+  message(SEND_ERROR "The Qt5Widgets library could not be found!")
+endif (Qt5Widgets_FOUND)
+
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
