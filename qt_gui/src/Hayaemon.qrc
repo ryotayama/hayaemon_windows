@@ -1,0 +1,27 @@
+<RCC>
+  <qresource prefix="icon">
+    <file>../resource/playlist.png</file>
+    <file>../resource/explorer.png</file>
+    <file>../resource/add_marker.png</file>
+    <file>../resource/delete_marker.png</file>
+    <file>../resource/marker_play.png</file>
+    <file>../resource/next_marker.png</file>
+    <file>../resource/prev_marker.png</file>
+    <file>../resource/next.png</file>
+    <file>../resource/prev.png</file>
+    <file>../resource/all_loop.png</file>
+    <file>../resource/random_play.png</file>
+    <file>../resource/single_loop.png</file>
+    <file>../resource/abloop_a.png</file>
+    <file>../resource/abloop_b.png</file>
+    <file>../resource/pause.png</file>
+    <file>../resource/play.png</file>
+    <file>../resource/stop.png</file>
+    <file>../resource/icon1.ico</file>
+    <file>../resource/pause.ico</file>
+    <file>../resource/play.ico</file>
+  </qresource>
+  <qresource prefix="translation">
+    <file>Hayaemon_ja.qm</file>
+  </qresource>
+</RCC>
