@@ -2910,6 +2910,10 @@ void CMenu_MainWnd::OnVersionInfoMenuSelected()
 		+ " <" + m_rApp.GetAuthorEMail() + ">\n  "
 		+ m_rApp.GetAuthorWebSiteName() + " : " + m_rApp.GetAuthorURL();
 
+	str += "\n\n"
+				 "  This software is built using Qt " QT_VERSION_STR ".\n"
+				 "  Qt is licensed under terms of the GNU LGPLv3.";
+
 	QMessageBox msgbox;
 	msgbox.setWindowTitle(tr("Version"));
 	msgbox.setText(str);
