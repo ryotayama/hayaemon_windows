@@ -1,6 +1,15 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(hayaemon_qt)
 
+set(default_build_type "Release")
+if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+  set(CMAKE_BUILD_TYPE "${default_build_type}" CACHE
+      STRING "Choose the type of build." FORCE)
+  set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS
+               "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
+endif()
+message("Build type: ${CMAKE_BUILD_TYPE}")
+
 find_package(Qt5Widgets)
 find_package(Qt5Multimedia)
 
@@ -234,6 +243,21 @@ if (WIN32)
   set(APP_BUNDLE WIN32)
   set(APP_ICON ${CMAKE_SOURCE_DIR}/resource/windows.rc)
 elseif (APPLE)
+  if ("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
+    set(APP_BUNDLE MACOSX_BUNDLE)
+    set(APP_ICON_NAME icon1.icns)
+    set(APP_ICON ${CMAKE_SOURCE_DIR}/resource/${APP_ICON_NAME})
+    # set(MACOSX_BUNDLE_BUNDLE_NAME Hayaemon)
+    # set(MACOSX_BUNDLE_GUI_IDENTIFIER "")
+    set(MACOSX_BUNDLE_ICON_FILE ${APP_ICON_NAME})
+    set_source_files_properties(
+      ${APP_ICON} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+    # set(MACOSX_BUNDLE_INFO_STRING "")
+    # set(MACOSX_BUNDLE_SHORT_VERSION_STRING "" )
+    # set(MACOSX_BUNDLE_LONG_VERSION_STRING "")
+    # set(MACOSX_BUNDLE_BUNDLE_VERSION "")
+    # set(MACOSX_BUNDLE_COPYRIGHT "")
+  endif ()
 endif ()
 
 add_executable(Hayaemon
@@ -284,6 +308,18 @@ endif ()
 
 qt5_use_modules(Hayaemon Widgets Multimedia)
 
+if (WIN32)
+  file(GLOB_RECURSE BASSLIB_FILES ${BASSLIB_DIR}/*.dll)
+elseif (APPLE)
+  file(GLOB_RECURSE BASSLIB_FILES ${BASSLIB_DIR}/*.dylib)
+endif ()
+
+foreach (LIB_FILE ${BASSLIB_FILES})
+  add_custom_command(TARGET Hayaemon
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy ${LIB_FILE} $<TARGET_FILE_DIR:Hayaemon>/.)
+endforeach ()
+
 add_custom_command(TARGET Hayaemon
   POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory
@@ -293,12 +329,12 @@ add_custom_command(TARGET Hayaemon
     ${CMAKE_SOURCE_DIR}/resource/click.wav
     $<TARGET_FILE_DIR:Hayaemon>/.)
 
-install(TARGETS Hayaemon RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX})
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/sound
         DESTINATION ${CMAKE_INSTALL_PREFIX})
 install(FILES ${CMAKE_SOURCE_DIR}/resource/click.wav
         DESTINATION ${CMAKE_INSTALL_PREFIX})
 if (WIN32)
+  install(TARGETS Hayaemon RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX})
   install(DIRECTORY ${BASSLIB_DIR}/ DESTINATION ${CMAKE_INSTALL_PREFIX}
           FILES_MATCHING PATTERN "*.dll")
   install(FILES ${THIRDPARTY_DIR}/lame/win32/bin/x64/lame.exe
@@ -306,6 +342,11 @@ if (WIN32)
   install(FILES ${THIRDPARTY_DIR}/oggenc/win32/bin/x64/oggenc2.exe
           DESTINATION ${CMAKE_INSTALL_PREFIX})
 elseif (APPLE)
+  if ("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
+    install(TARGETS Hayaemon BUNDLE DESTINATION ${CMAKE_INSTALL_PREFIX})
+  else ()
+    install(TARGETS Hayaemon RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX})
+  endif ()
   install(DIRECTORY ${BASSLIB_DIR}/ DESTINATION ${CMAKE_INSTALL_PREFIX}
           FILES_MATCHING PATTERN "*.dylib")
 endif ()
