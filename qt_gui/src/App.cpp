@@ -1,4 +1,4 @@
-﻿//----------------------------------------------------------------------------
+//----------------------------------------------------------------------------
 // App.cpp : アプリケーションの管理を行う
 //----------------------------------------------------------------------------
 #include "App.h"
@@ -66,9 +66,9 @@ int CApp::Run(int argc, char *argv[])
 	}
 	
 	m_cstrName = QObject::tr("Hayaemon");
-	m_cstrVersionInfo = u8"2.75β4";
+	m_cstrVersionInfo = u8"0.01β1";
 	m_cstrAuthorName = QObject::tr("Ryota");
-	m_cstrAuthorEMail = "taro@edolfzoku.com";
+	m_cstrAuthorEMail = "ryota.yamauch@gmail.com";
 	m_cstrAuthorWebSiteName = QObject::tr("Free Software Development Station");
 	m_cstrAuthorURL = "http://soft.edolfzoku.com/";
 
