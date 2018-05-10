@@ -325,6 +325,9 @@ add_custom_command(TARGET Hayaemon
   COMMAND ${CMAKE_COMMAND} -E copy_directory
     ${CMAKE_SOURCE_DIR}/sound
     $<TARGET_FILE_DIR:Hayaemon>/sound
+  COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_SOURCE_DIR}/licenses
+    $<TARGET_FILE_DIR:Hayaemon>/licenses
   COMMAND ${CMAKE_COMMAND} -E copy
     ${CMAKE_SOURCE_DIR}/resource/click.wav
     $<TARGET_FILE_DIR:Hayaemon>/.)
