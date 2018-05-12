@@ -8,15 +8,16 @@
 //----------------------------------------------------------------------------
 // コンストラクタ
 //----------------------------------------------------------------------------
-CExplorerBar::CExplorerBar(QWidget * mainWnd)
-	: m_rMainWnd(*dynamic_cast<CMainWnd *>(mainWnd)), m_edit(*this)
+CExplorerBar::CExplorerBar(QWidget * parent)
+	: m_rMainWnd(nullptr), m_edit(*this)
 {
 }
 //----------------------------------------------------------------------------
 // 作成
 //----------------------------------------------------------------------------
-BOOL CExplorerBar::Create()
+BOOL CExplorerBar::Create(CMainWnd * mainWnd)
 {
+	m_rMainWnd = mainWnd;
 	connect(&m_edit, &QLineEdit::returnPressed,
 					this, &CExplorerBar::OnReturnKeyPressed);
 	return TRUE;
@@ -30,9 +31,9 @@ void CExplorerBar::OnReturnKeyPressed()
 
 	if(m_edit.text() != chPath) {
 		QDir::setCurrent(m_edit.text());
-		if(!m_rMainWnd.GetExplorer().ShowFiles()) {
+		if(!m_rMainWnd->GetExplorer().ShowFiles()) {
 			QDir::setCurrent(chPath);
-			m_rMainWnd.GetExplorer().ShowFiles();
+			m_rMainWnd->GetExplorer().ShowFiles();
 		}
 	}
 }

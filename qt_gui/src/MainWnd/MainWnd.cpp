@@ -314,7 +314,7 @@ BOOL CMainWnd::CreateControls()
 	}
 
 	// エクスプローラ用ツールバーの作成
-	if(!m_explorerBar->Create()) {
+	if(!m_explorerBar->Create(this)) {
 		m_rApp.ShowError(tr("failed to create explorer bar."));
 		return FALSE;
 	}

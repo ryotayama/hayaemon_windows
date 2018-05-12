@@ -15,14 +15,14 @@ class CExplorerBar : public QLineEdit
 {
 public: // 関数
 
-	explicit CExplorerBar(QWidget * mainWnd);
+	explicit CExplorerBar(QWidget * parent);
 
-	virtual BOOL Create();
+	virtual BOOL Create(CMainWnd * mainWnd);
 	virtual void OnReturnKeyPressed();
 
 private: // メンバ変数
 
-	CMainWnd & m_rMainWnd;
+	CMainWnd * m_rMainWnd;
 	QLineEdit & m_edit;
 
 public: // メンバ変数の取得・設定
