@@ -260,6 +260,7 @@ elseif (APPLE)
     # set(MACOSX_BUNDLE_LONG_VERSION_STRING "")
     # set(MACOSX_BUNDLE_BUNDLE_VERSION "")
     # set(MACOSX_BUNDLE_COPYRIGHT "")
+    set(BUNDLE_DISPLAY_NAME Hayaemon)
   endif ()
 endif ()
 
@@ -307,6 +308,8 @@ elseif (APPLE)
     debug ${TAGLIB_DIR}/lib/macOS/Debug/libtag.a
     optimized ${TAGLIB_DIR}/lib/macOS/Release/libtag.a
     z)
+   set_target_properties(Hayaemon PROPERTIES MACOSX_BUNDLE_INFO_PLIST
+                         ${SRC_DIR}/Info.plist.in)
 endif ()
 
 qt5_use_modules(Hayaemon Widgets Multimedia)
