@@ -19,15 +19,15 @@ CApp::CApp(const int & nCmdShow)
 #if JP
 	: m_nCmdShow(nCmdShow), m_cstrName(_T("聞々ハヤえもん")),
 	  m_cstrAuthorName(_T("りょーた")),
-	  m_cstrAuthorEMail(_T("taro@edolfzoku.com")),
+	  m_cstrAuthorEMail(_T("ryota.yamauch@gmail.com")),
 	  m_cstrAuthorWebSiteName(_T("フリーソフト開発所")),
 #else // JP
 	: m_nCmdShow(nCmdShow), m_cstrName(_T("Hayaemon")),
 	  m_cstrAuthorName(_T("Ryota")),
-	  m_cstrAuthorEMail(_T("taro@edolfzoku.com")),
+	  m_cstrAuthorEMail(_T("ryota.yamauch@gmail.com")),
 	  m_cstrAuthorWebSiteName(_T("Free Software Development Station")),
 #endif // JP
-	  m_cstrVersionInfo(_T("2.75β4")),
+	  m_cstrVersionInfo(_T("2.75β5")),
 	  m_cstrAuthorURL(_T("http://soft.edolfzoku.com/")),
 	  m_wnd(*this)
 {

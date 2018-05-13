@@ -1,8 +1,8 @@
 ------------------------------------------------------------------------------
- Hayaemon Version 2.75 beta 2
+ Hayaemon Version 2.75 beta 5
 ------------------------------------------------------------------------------
-                                                        Last update: 2013/5/27
-                                                    Ryota <taro@edolfzoku.com>
+                                                        Last update: 2018/5/14
+                                      Ryota Yamauchi <ryota.yamauch@gmail.com>
                                             Free Software Development Station:
                                                     http://soft.edolfzoku.com/
 ------------------------------------------------------------------------------
@@ -44,7 +44,7 @@
  Development Environment
 ------------------------------------------------------------------------------
 
- Windows 7 / Visual C++ 2010 Express, Windows SDK.
+ Windows 7 / Visual C++ 2017, Windows SDK.
 
  Hayaemon's sound engine is using the high performance audio library "BASS.DLL".
  Mr. Ian Luck that has provided useful libraries, thank you deeply.
@@ -68,6 +68,16 @@
 ------------------------------------------------------------------------------
  History
 ------------------------------------------------------------------------------
+
+2018/5/14 Version 2.75 beta 5
+ Changed the icon to the cherry blossom icon.
+
+2017/8/30 Version 2.75 beta 4
+ Fixed not booting in Windows XP environment.
+
+2017/8/23 Version 2.75 beta 3
+ @12guitar21 and @guxtuti_cording reflected the icon designed
+ by @UmeboshiKantaro for iOS.
 
 2013/5/27 Version 2.75 beta 2
  Japanese version only updated.
