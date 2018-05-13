@@ -66,7 +66,7 @@ int CApp::Run(int argc, char *argv[])
 	}
 	
 	m_cstrName = QObject::tr("Hayaemon");
-	m_cstrVersionInfo = u8"0.01β1";
+	m_cstrVersionInfo = u8"0.01β2";
 	m_cstrAuthorName = QObject::tr("Ryota");
 	m_cstrAuthorEMail = "ryota.yamauch@gmail.com";
 	m_cstrAuthorWebSiteName = QObject::tr("Free Software Development Station");
