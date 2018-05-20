@@ -32,10 +32,12 @@ set(SRC_COMMON
   ${SRC_DIR}/Common/BassFx.h
   ${SRC_DIR}/Common/CommandList.h
   ${SRC_DIR}/Common/Define.h
+  ${SRC_DIR}/Common/DoubleSpinBox.h
   ${SRC_DIR}/Common/ListView.cpp
   ${SRC_DIR}/Common/ListView.h
   ${SRC_DIR}/Common/SliderCtrl.h
   ${SRC_DIR}/Common/SliderCtrlCore.h
+  ${SRC_DIR}/Common/SpinBox.h
   ${SRC_DIR}/Common/StaticCore.h
   ${SRC_DIR}/Common/Tab.h
   ${SRC_DIR}/Common/Utils.cpp

@@ -22,6 +22,7 @@
 #include <QTimer>
 #include "../App.h"
 #include "../Common/CommandList.h"
+#include "../Common/SpinBox.h"
 #include "../Common/Utils.h"
 #include "../CountLoopWnd/CountLoopWnd_MainWnd.h"
 #include "../DecFreqWnd/DecFreqWnd_MainWnd.h"
@@ -543,7 +544,7 @@ BOOL CMainWnd::CreateControls()
 		label->setObjectName("eq" + item.title + "Label");
 		label->setText(QString(item.title + "Hz : ").replace("K", " K"));
 
-		auto spinbox = new QSpinBox(eqGroupBox);
+		auto spinbox = new CSpinBox(eqGroupBox);
 		spinbox->setObjectName("eq" + item.title + "SpinBox");
 
 		auto slider = new CSliderCtrlCore(eqGroupBox);

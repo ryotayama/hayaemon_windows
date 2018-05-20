@@ -391,7 +391,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QDoubleSpinBox" name="speedSpinBox"/>
+              <widget class="CDoubleSpinBox" name="speedSpinBox"/>
              </item>
              <item>
               <widget class="QLabel" name="speedLabel2">
@@ -419,7 +419,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QDoubleSpinBox" name="freqSpinBox"/>
+              <widget class="CDoubleSpinBox" name="freqSpinBox"/>
              </item>
              <item>
               <widget class="QLabel" name="freqLabel2">
@@ -480,7 +480,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QDoubleSpinBox" name="volumeSpinBox"/>
+              <widget class="CDoubleSpinBox" name="volumeSpinBox"/>
              </item>
              <item>
               <widget class="QLabel" name="volumeLabel2">
@@ -508,7 +508,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="panSpinBox"/>
+              <widget class="CSpinBox" name="panSpinBox"/>
              </item>
              <item>
               <widget class="CSliderCtrlCore" name="panSlider">
@@ -548,7 +548,7 @@
      <x>0</x>
      <y>0</y>
      <width>816</width>
-     <height>31</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuPlay_P">
@@ -3469,6 +3469,16 @@
    <class>CExplorerBar</class>
    <extends>QLineEdit</extends>
    <header>ExplorerBar.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CDoubleSpinBox</class>
+   <extends>QDoubleSpinBox</extends>
+   <header>DoubleSpinBox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CSpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>SpinBox.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

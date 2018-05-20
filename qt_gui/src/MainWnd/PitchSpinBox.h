@@ -4,23 +4,23 @@
 #ifndef PitchSpinBoxH
 #define PitchSpinBoxH
 
-#include <QDoubleSpinBox>
+#include "../Common/DoubleSpinBox.h"
 //----------------------------------------------------------------------------
 // 音程表示用ラベル用スピンボックスクラス
 //----------------------------------------------------------------------------
-class CPitchSpinBox : public QDoubleSpinBox
+class CPitchSpinBox : public CDoubleSpinBox
 {
 public:
-	CPitchSpinBox(QWidget * parent = nullptr) : QDoubleSpinBox(parent) { }
+	CPitchSpinBox(QWidget * parent = nullptr) : CDoubleSpinBox(parent) { }
 
 	QString textFromValue(double value) const override
 	{
 		if (value > 0) {
-			return u8"＃" + QDoubleSpinBox::textFromValue(value);
+			return u8"＃" + CDoubleSpinBox::textFromValue(value);
 		} else if (value < 0) {
-			return u8"♭" + QDoubleSpinBox::textFromValue(-value);
+			return u8"♭" + CDoubleSpinBox::textFromValue(-value);
 		} else {
-			return QDoubleSpinBox::textFromValue(value);
+			return CDoubleSpinBox::textFromValue(value);
 		}
 	}
 	double valueFromText(const QString &text) const override
