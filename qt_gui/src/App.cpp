@@ -7,6 +7,7 @@
 #include <QFileInfo>
 #include <QLocale>
 #include <QMessageBox>
+#include <QStandardPaths>
 #include <QString>
 #include <QTranslator>
 #include "./MainWnd/MainWnd.h"
@@ -88,5 +89,20 @@ void CApp::ShowError(const QString & strError)
 	QString str = QString(QObject::tr("%1\nApplication exit.")).arg(strError);
 	QMessageBox::critical(m_wnd, QObject::tr("Error"), str);
 	m_wnd->close();
+}
+//----------------------------------------------------------------------------
+// 設定ファイルのパスを取得する
+//----------------------------------------------------------------------------
+tstring CApp::GetSettingFilePath() const
+{
+#if __APPLE__
+	auto dir =
+			QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation);
+	auto path = dir + "/Hayaemon/Setting.ini";
+	path = QDir::cleanPath(path);
+	return ToTstring(path);
+#else
+	return ToTstring(m_strPath + "Setting.ini");
+#endif
 }
 //----------------------------------------------------------------------------

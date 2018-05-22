@@ -5,6 +5,7 @@
 #define AppH
 
 #include <QString>
+#include "Common/Define.h"
 class CMainWnd;
 class QString;
 //----------------------------------------------------------------------------
@@ -40,6 +41,7 @@ public: // メンバ変数の取得・設定
 	QString GetAuthorEMail() const { return m_cstrAuthorEMail; }
 	QString GetAuthorWebSiteName() const { return m_cstrAuthorWebSiteName; }
 	QString GetAuthorURL() const { return m_cstrAuthorURL; }
+	tstring GetSettingFilePath() const;
 };
 //----------------------------------------------------------------------------
 
