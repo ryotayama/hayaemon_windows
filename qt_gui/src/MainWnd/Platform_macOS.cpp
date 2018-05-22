@@ -122,6 +122,8 @@ BOOL WritePrivateProfileString(LPCTSTR lpAppName, LPCTSTR lpKeyName,
 	settings->beginGroup(ToQString(lpAppName));
 	if (lpKeyName != nullptr && lpString != nullptr) {
 		settings->setValue(ToQString(lpKeyName), ToQString(lpString));
+	} else {
+		settings->remove("");
 	}
 	settings->endGroup();
 
