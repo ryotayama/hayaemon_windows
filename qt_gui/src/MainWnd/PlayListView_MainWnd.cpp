@@ -218,7 +218,9 @@ void CPlayListView_MainWnd::DeleteSelectedItems()
 	BOOL bPlayNext = FALSE;
 	BOOL bStop = FALSE;
 	BOOL bCurTab = &m_rMainWnd.GetCurPlayList() == this;
-	for (int nItem : GetSelectedRows()) {
+	auto rows = GetSelectedRows();
+	for (size_t i = 0; i < rows.size(); i++) {
+		int nItem = rows[i];
 		FixPlayOrder(nItem);
 		DeleteItem(nItem);
 		if(bCurTab) {
@@ -238,6 +240,9 @@ void CPlayListView_MainWnd::DeleteSelectedItems()
 					bStop = TRUE;
 				}
 			}
+		}
+		for (size_t j = i + 1; j < rows.size(); j++) {
+			--rows[j];
 		}
 	}
 	if(GetItemCount() <= 0) {
