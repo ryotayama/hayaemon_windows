@@ -1854,10 +1854,14 @@ void CALLBACK CSound::OnlyRight(HDSP handle, DWORD channel,
 void CSound::SetNormalize(BOOL bNormalize)
 {
 	if(bNormalize) {
-		HSTREAM decoder = BASS_StreamCreateFile(FALSE, m_strCurFile.c_str(), 0,
+#ifdef UNICODE
+		auto upath = QString::fromStdWString(m_strCurFile).toStdU16String();
+		auto filePath = (LPCTSTR)upath.c_str();
+#endif
+		HSTREAM decoder = BASS_StreamCreateFile(FALSE, filePath, 0,
 			0, BASS_SAMPLE_FLOAT | BASS_STREAM_DECODE | BASS_IF_UNICODE);
 		if(!decoder) decoder = BASS_APE_StreamCreateFile(FALSE,
-			m_strCurFile.c_str(), 0, 0,
+			filePath, 0, 0,
 			BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
 #ifdef _WIN32
 		if(!decoder) decoder = BASS_CD_StreamCreateFile(
@@ -1865,14 +1869,14 @@ void CSound::SetNormalize(BOOL bNormalize)
 			BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
 #endif
 		if(!decoder) decoder = BASS_FLAC_StreamCreateFile(FALSE,
-			m_strCurFile.c_str(), 0, 0,
+			filePath, 0, 0,
 			BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
 #ifdef _WIN32
 		if(!decoder) decoder = BASS_AAC_StreamCreateFile(FALSE,
-			m_strCurFile.c_str(), 0, 0,
+			filePath, 0, 0,
 			BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
 		if(!decoder) decoder = BASS_MP4_StreamCreateFile(FALSE,
-			m_strCurFile.c_str(), 0, 0,
+			filePath, 0, 0,
 			BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_IF_UNICODE);
 #endif
 		BASS_ChannelSetPosition(decoder, 0, BASS_POS_DECODETO);
