@@ -10,7 +10,7 @@
 
 ### 開発環境
 - Apple LLVM version 6.0以上
-- [Qt](https://www.qt.io/download) 5.9以上
+- [Qt](https://www.qt.io/download) 5.6.3以上
 - [CMake](https://cmake.org/download/) 3.0.2以上
 - サウンド関連の実装には、高性能オーディオライブラリ「BASS」を使用しています。有用なライブラリを公開なさっている Ian Luck 氏に、深く感謝致します。
 
