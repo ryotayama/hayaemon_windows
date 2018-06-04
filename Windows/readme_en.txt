@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
- Hayaemon Version 2.75 beta 5
+ Hayaemon Version 2.75 beta 6
 ------------------------------------------------------------------------------
-                                                        Last update: 2018/5/14
+                                                         Last update: 2018/6/4
                                       Ryota Yamauchi <ryota.yamauch@gmail.com>
                                             Free Software Development Station:
                                                     http://soft.edolfzoku.com/
@@ -68,6 +68,9 @@
 ------------------------------------------------------------------------------
  History
 ------------------------------------------------------------------------------
+
+2018/6/4 Version 2.75 beta 6
+ Changed the normal icon from the cherry blossom icon.
 
 2018/5/14 Version 2.75 beta 5
  Changed the icon to the cherry blossom icon.
