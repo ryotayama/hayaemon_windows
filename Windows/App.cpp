@@ -27,7 +27,7 @@ CApp::CApp(const int & nCmdShow)
 	  m_cstrAuthorEMail(_T("ryota.yamauch@gmail.com")),
 	  m_cstrAuthorWebSiteName(_T("Free Software Development Station")),
 #endif // JP
-	  m_cstrVersionInfo(_T("2.75É¿6")),
+	  m_cstrVersionInfo(_T("2.76")),
 	  m_cstrAuthorURL(_T("http://soft.edolfzoku.com/")),
 	  m_wnd(*this)
 {
