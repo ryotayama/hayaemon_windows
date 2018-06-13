@@ -85,7 +85,7 @@
 反映させてくれました。
 　○うめさん（Twitter: @UmeboshiKantaro）
 　○しゅがーたろうくん（Twitter: @12guitar21）
-　○坂口くん（Twitter: @guxtuti_cording）
+　○坂口くん
 
 2013/5/27(月) Version 2.75 β 2 開発版
 　ヘルプメニューから、オンラインマニュアルにアクセスできるようにしました。
