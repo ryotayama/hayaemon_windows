@@ -1,0 +1,456 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}</ProjectGuid>
+    <RootNamespace>Hayaemon</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140_xp</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ExtensionsToDeleteOnClean>*.tlog;*.lastbuildstate;*.cdf;*.cache;*.obj;*.obj.enc;*.ilk;*.ipdb;*.iobj;*.resources;*.tlb;*.tli;*.tlh;*.tmp;*.rsp;*.pgc;*.pgd;*.meta;*.tlog;*.manifest;*.res;*.pch;*.exp;*.idb;*.rep;*.xdc;*.pdb;*_manifest.rc;*.bsc;*.sbr;*.xml;*.metagen;*.bi</ExtensionsToDeleteOnClean>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;JP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>comctl32.lib;Winmm.lib;wsock32.lib;Wininet.lib;libjpeg.lib;bass.lib;bass_ape.lib;basscd.lib;bassflac.lib;bass_fx.lib;bassenc.lib;shlwapi.lib;bass_aac.lib;tags.lib;BASS_DSHOW.lib;bass_alac.lib;bassasio.lib;basswasapi.lib;bassmix.lib;npnez.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+      <Profile>true</Profile>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
+      <OptimizeReferences>
+      </OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;JP;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>comctl32.lib;Winmm.lib;wsock32.lib;Wininet.lib;libjpeg.lib;bass.lib;bass_ape.lib;basscd.lib;bassflac.lib;bass_fx.lib;bassenc.lib;shlwapi.lib;bass_aac.lib;tags.lib;BASS_DSHOW.lib;bass_alac.lib;bassasio.lib;basswasapi.lib;bassmix.lib;npnez.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Common\AcceleratorTable.h" />
+    <ClInclude Include="Common\Bass.h" />
+    <ClInclude Include="Common\bassasio.h" />
+    <ClInclude Include="Common\bassmix.h" />
+    <ClInclude Include="Common\bass_aac.h" />
+    <ClInclude Include="Common\bass_alac.h" />
+    <ClInclude Include="Common\bass_ape.h" />
+    <ClInclude Include="Common\BASS_DSHOW.h" />
+    <ClInclude Include="Common\bass_fx.h" />
+    <ClInclude Include="Common\BassFx.h" />
+    <ClInclude Include="Common\bassinc.h" />
+    <ClInclude Include="Common\Bitmap.h" />
+    <ClInclude Include="Common\Button.h" />
+    <ClInclude Include="Common\ButtonExt.h" />
+    <ClInclude Include="Common\ClientDC.h" />
+    <ClInclude Include="Common\ComboBox.h" />
+    <ClInclude Include="Common\CommandList.h" />
+    <ClInclude Include="Common\DC.h" />
+    <ClInclude Include="Common\Define.h" />
+    <ClInclude Include="Common\Edit.h" />
+    <ClInclude Include="Common\EditExt.h" />
+    <ClInclude Include="Common\Font.h" />
+    <ClInclude Include="Common\FrameWnd.h" />
+    <ClInclude Include="Common\HotKeyCtrl.h" />
+    <ClInclude Include="Common\jconfig.h" />
+    <ClInclude Include="Common\jerror.h" />
+    <ClInclude Include="Common\jmorecfg.h" />
+    <ClInclude Include="Common\jpeglib.h" />
+    <ClInclude Include="Common\ListView.h" />
+    <ClInclude Include="Common\Menu.h" />
+    <ClInclude Include="Common\mp3infp_ExportFunc.h" />
+    <ClInclude Include="Common\oauth.h" />
+    <ClInclude Include="Common\ProgressCtrl.h" />
+    <ClInclude Include="Common\RadioButton.h" />
+    <ClInclude Include="Common\sha1.h" />
+    <ClInclude Include="Common\SliderCtrl.h" />
+    <ClInclude Include="Common\SnapWnd.h" />
+    <ClInclude Include="Common\socket.h" />
+    <ClInclude Include="Common\Static.h" />
+    <ClInclude Include="Common\Tab.h" />
+    <ClInclude Include="Common\tags.h" />
+    <ClInclude Include="Common\ToolBar.h" />
+    <ClInclude Include="Common\UpDownCtrl.h" />
+    <ClInclude Include="Common\Utils.h" />
+    <ClInclude Include="Common\Wnd.h" />
+    <ClInclude Include="CountLoopWnd\CountLoopWnd_MainWnd.h" />
+    <ClInclude Include="DecFreqWnd\DecFreqWnd_MainWnd.h" />
+    <ClInclude Include="DecSpeedWnd\DecSpeedWnd_MainWnd.h" />
+    <ClInclude Include="IncFreqWnd\IncFreqWnd_MainWnd.h" />
+    <ClInclude Include="IncSpeedWnd\IncSpeedWnd_MainWnd.h" />
+    <ClInclude Include="KeySettingWnd\KeyInputWnd.h" />
+    <ClInclude Include="KeySettingWnd\KeySettingWnd_MainWnd.h" />
+    <ClInclude Include="KeySettingWnd\List_KeySettingWnd.h" />
+    <ClInclude Include="LimitSettingWnd\LimitSettingWnd_MainWnd.h" />
+    <ClInclude Include="MainWnd\3DReverbCustomizeWnd.h" />
+    <ClInclude Include="MainWnd\ABLoopPosWnd.h" />
+    <ClInclude Include="MainWnd\AllSaveWnd_MainWnd.h" />
+    <ClInclude Include="MainWnd\ChorusCustomizeWnd.h" />
+    <ClInclude Include="MainWnd\CompressorCustomizeWnd.h" />
+    <ClInclude Include="MainWnd\DelayCustomizeWnd.h" />
+    <ClInclude Include="MainWnd\DistortionCustomizeWnd.h" />
+    <ClInclude Include="MainWnd\Divider2_MainWnd.h" />
+    <ClInclude Include="MainWnd\Divider3_MainWnd.h" />
+    <ClInclude Include="MainWnd\Divider4_MainWnd.h" />
+    <ClInclude Include="MainWnd\Divider5_MainWnd.h" />
+    <ClInclude Include="MainWnd\Divider_MainWnd.h" />
+    <ClInclude Include="MainWnd\Edit_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ100Label_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ100Slider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ10KLabel_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ10KSlider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ125Label_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ125Slider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ12_5KLabel_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ12_5KSlider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ160Label_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ160Slider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ16KLabel_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ16KSlider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ1KLabel_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ1KSlider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ1_25KLabel_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ1_25KSlider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ1_6KLabel_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ1_6KSlider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ200Label_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ200Slider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ20KLabel_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ20KSlider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ20Label_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ20Slider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ250Label_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ250Slider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ25Label_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ25Slider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ2KLabel_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ2KSlider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ2_5KLabel_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ2_5KSlider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ315Label_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ315Slider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ31_5Label_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ31_5Slider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ3_15KLabel_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ3_15KSlider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ400Label_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ400Slider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ40Label_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ40Slider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ4KLabel_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ4KSlider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ500Label_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ500Slider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ50Label_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ50Slider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ5KLabel_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ5KSlider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ630Label_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ630Slider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ63Label_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ63Slider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ6_3KLabel_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ6_3KSlider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ800Label_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ800Slider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ80Label_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ80Slider_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ8KLabel_MainWnd.h" />
+    <ClInclude Include="MainWnd\EQ8KSlider_MainWnd.h" />
+    <ClInclude Include="MainWnd\Explorer.h" />
+    <ClInclude Include="MainWnd\ExplorerBar.h" />
+    <ClInclude Include="MainWnd\FlangerCustomizeWnd.h" />
+    <ClInclude Include="MainWnd\FreqLabel_MainWnd.h" />
+    <ClInclude Include="MainWnd\FreqSlider_MainWnd.h" />
+    <ClInclude Include="MainWnd\GargleCustomizeWnd.h" />
+    <ClInclude Include="MainWnd\LAMECommandLineWnd.h" />
+    <ClInclude Include="MainWnd\LyricsManager.h" />
+    <ClInclude Include="MainWnd\M3UFile.h" />
+    <ClInclude Include="MainWnd\MainWnd.h" />
+    <ClInclude Include="MainWnd\Menu_MainWnd.h" />
+    <ClInclude Include="MainWnd\OpenURLWnd.h" />
+    <ClInclude Include="MainWnd\PanLabel_MainWnd.h" />
+    <ClInclude Include="MainWnd\PanSlider_MainWnd.h" />
+    <ClInclude Include="MainWnd\PitchAnalyser.h" />
+    <ClInclude Include="MainWnd\PitchLabel_MainWnd.h" />
+    <ClInclude Include="MainWnd\PitchSlider_MainWnd.h" />
+    <ClInclude Include="MainWnd\PlayListView_MainWnd.h" />
+    <ClInclude Include="MainWnd\PlayPositionWnd.h" />
+    <ClInclude Include="MainWnd\PlayRangeWnd.h" />
+    <ClInclude Include="MainWnd\PresetNameInputWnd.h" />
+    <ClInclude Include="MainWnd\ProgressWnd_MainWnd.h" />
+    <ClInclude Include="MainWnd\ReverbCustomizeWnd.h" />
+    <ClInclude Include="MainWnd\RMenu_EQCtrl.h" />
+    <ClInclude Include="MainWnd\RMenu_Explorer.h" />
+    <ClInclude Include="MainWnd\RMenu_FreqCtrl.h" />
+    <ClInclude Include="MainWnd\RMenu_ListView.h" />
+    <ClInclude Include="MainWnd\RMenu_PanCtrl.h" />
+    <ClInclude Include="MainWnd\RMenu_PitchCtrl.h" />
+    <ClInclude Include="MainWnd\RMenu_SpeedCtrl.h" />
+    <ClInclude Include="MainWnd\RMenu_Tab.h" />
+    <ClInclude Include="MainWnd\RMenu_Taskbar.h" />
+    <ClInclude Include="MainWnd\RMenu_TimeSlider.h" />
+    <ClInclude Include="MainWnd\RMenu_VideoScreen.h" />
+    <ClInclude Include="MainWnd\RMenu_VolumeCtrl.h" />
+    <ClInclude Include="MainWnd\Sound.h" />
+    <ClInclude Include="MainWnd\SpeedLabel_MainWnd.h" />
+    <ClInclude Include="MainWnd\SpeedSlider_MainWnd.h" />
+    <ClInclude Include="MainWnd\Tab_MainWnd.h" />
+    <ClInclude Include="MainWnd\TimeLabel_MainWnd.h" />
+    <ClInclude Include="MainWnd\TimeSlider_MainWnd.h" />
+    <ClInclude Include="MainWnd\ToolBar_MainWnd.h" />
+    <ClInclude Include="MainWnd\TweetWnd.h" />
+    <ClInclude Include="MainWnd\TwitterAuthorizeWnd.h" />
+    <ClInclude Include="MainWnd\VideoScreen_MainWnd.h" />
+    <ClInclude Include="MainWnd\VolumeLabel_MainWnd.h" />
+    <ClInclude Include="MainWnd\VolumeSlider_MainWnd.h" />
+    <ClInclude Include="App.h" />
+    <ClInclude Include="MetronomeWnd\MetronomeWnd_MainWnd.h" />
+    <ClInclude Include="OutKeySettingWnd\OutKeyInputWnd.h" />
+    <ClInclude Include="OutKeySettingWnd\OutKeySettingWnd_MainWnd.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="TimerPlayWnd\TimerPlayWnd_MainWnd.h" />
+    <ClInclude Include="VideoScreenWnd\RMenu_VideoScreenWnd.h" />
+    <ClInclude Include="VideoScreenWnd\VideoScreenWnd_MainWnd.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Common\AcceleratorTable.cpp" />
+    <ClCompile Include="Common\Button.cpp" />
+    <ClCompile Include="Common\ButtonExt.cpp" />
+    <ClCompile Include="Common\ComboBox.cpp" />
+    <ClCompile Include="Common\CommandList.cpp" />
+    <ClCompile Include="Common\EditExt.cpp" />
+    <ClCompile Include="Common\hash.cpp" />
+    <ClCompile Include="Common\Menu.cpp" />
+    <ClCompile Include="Common\oauth.cpp" />
+    <ClCompile Include="Common\oauth_http.cpp" />
+    <ClCompile Include="Common\RadioButton.cpp" />
+    <ClCompile Include="Common\sha1.c" />
+    <ClCompile Include="Common\socket.cpp" />
+    <ClCompile Include="Common\ToolBar.cpp" />
+    <ClCompile Include="Common\Utils.cpp" />
+    <ClCompile Include="Common\Wnd.cpp" />
+    <ClCompile Include="CountLoopWnd\CountLoopWnd_MainWnd.cpp" />
+    <ClCompile Include="DecFreqWnd\DecFreqWnd_MainWnd.cpp" />
+    <ClCompile Include="DecSpeedWnd\DecSpeedWnd_MainWnd.cpp" />
+    <ClCompile Include="IncFreqWnd\IncFreqWnd_MainWnd.cpp" />
+    <ClCompile Include="IncSpeedWnd\IncSpeedWnd_MainWnd.cpp" />
+    <ClCompile Include="KeySettingWnd\KeyInputWnd.cpp" />
+    <ClCompile Include="KeySettingWnd\KeySettingWnd_MainWnd.cpp" />
+    <ClCompile Include="KeySettingWnd\List_KeySettingWnd.cpp" />
+    <ClCompile Include="LimitSettingWnd\LimitSettingWnd_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\3DReverbCustomizeWnd.cpp" />
+    <ClCompile Include="MainWnd\ABLoopPosWnd.cpp" />
+    <ClCompile Include="MainWnd\AllSaveWnd_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\ChorusCustomizeWnd.cpp" />
+    <ClCompile Include="MainWnd\CompressorCustomizeWnd.cpp" />
+    <ClCompile Include="MainWnd\DelayCustomizeWnd.cpp" />
+    <ClCompile Include="MainWnd\DistortionCustomizeWnd.cpp" />
+    <ClCompile Include="MainWnd\Divider2_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\Divider3_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\Divider4_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\Divider5_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\Divider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\Edit_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ100Label_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ100Slider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ10KLabel_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ10KSlider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ125Label_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ125Slider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ12_5KLabel_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ12_5KSlider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ160Label_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ160Slider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ16KLabel_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ16KSlider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ1KLabel_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ1KSlider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ1_25KLabel_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ1_25KSlider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ1_6KLabel_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ1_6KSlider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ200Label_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ200Slider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ20KLabel_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ20KSlider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ20Label_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ20Slider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ250Label_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ250Slider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ25Label_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ25Slider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ2KLabel_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ2KSlider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ2_5KLabel_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ2_5KSlider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ315Label_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ315Slider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ31_5Label_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ31_5Slider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ3_15KLabel_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ3_15KSlider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ400Label_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ400Slider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ40Label_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ40Slider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ4KLabel_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ4KSlider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ500Label_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ500Slider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ50Label_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ50Slider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ5KLabel_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ5KSlider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ630Label_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ630Slider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ63Label_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ63Slider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ6_3KLabel_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ6_3KSlider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ800Label_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ800Slider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ80Label_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ80Slider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ8KLabel_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\EQ8KSlider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\Explorer.cpp" />
+    <ClCompile Include="MainWnd\ExplorerBar.cpp" />
+    <ClCompile Include="MainWnd\FlangerCustomizeWnd.cpp" />
+    <ClCompile Include="MainWnd\FreqLabel_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\FreqSlider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\GargleCustomizeWnd.cpp" />
+    <ClCompile Include="MainWnd\LAMECommandLineWnd.cpp" />
+    <ClCompile Include="MainWnd\LyricsManager.cpp" />
+    <ClCompile Include="MainWnd\M3UFile.cpp" />
+    <ClCompile Include="MainWnd\MainWnd.cpp" />
+    <ClCompile Include="MainWnd\Menu_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\OpenURLWnd.cpp" />
+    <ClCompile Include="MainWnd\PanLabel_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\PanSlider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\PitchAnalyser.cpp" />
+    <ClCompile Include="MainWnd\PitchLabel_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\PitchSlider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\PlayListView_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\PlayPositionWnd.cpp" />
+    <ClCompile Include="MainWnd\PlayRangeWnd.cpp" />
+    <ClCompile Include="MainWnd\PresetNameInputWnd.cpp" />
+    <ClCompile Include="MainWnd\ProgressWnd_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\ReverbCustomizeWnd.cpp" />
+    <ClCompile Include="MainWnd\RMenu_EQCtrl.cpp" />
+    <ClCompile Include="MainWnd\RMenu_Explorer.cpp" />
+    <ClCompile Include="MainWnd\RMenu_FreqCtrl.cpp" />
+    <ClCompile Include="MainWnd\RMenu_ListView.cpp" />
+    <ClCompile Include="MainWnd\RMenu_PanCtrl.cpp" />
+    <ClCompile Include="MainWnd\RMenu_PitchCtrl.cpp" />
+    <ClCompile Include="MainWnd\RMenu_SpeedCtrl.cpp" />
+    <ClCompile Include="MainWnd\RMenu_Tab.cpp" />
+    <ClCompile Include="MainWnd\RMenu_Taskbar.cpp" />
+    <ClCompile Include="MainWnd\RMenu_TimeSlider.cpp" />
+    <ClCompile Include="MainWnd\RMenu_VideoScreen.cpp" />
+    <ClCompile Include="MainWnd\RMenu_VolumeCtrl.cpp" />
+    <ClCompile Include="MainWnd\Sound.cpp" />
+    <ClCompile Include="MainWnd\SpeedLabel_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\SpeedSlider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\Tab_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\TimeLabel_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\TimeSlider_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\ToolBar_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\TweetWnd.cpp" />
+    <ClCompile Include="MainWnd\TwitterAuthorizeWnd.cpp" />
+    <ClCompile Include="MainWnd\VideoScreen_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\VolumeLabel_MainWnd.cpp" />
+    <ClCompile Include="MainWnd\VolumeSlider_MainWnd.cpp" />
+    <ClCompile Include="App.cpp" />
+    <ClCompile Include="MetronomeWnd\MetronomeWnd_MainWnd.cpp" />
+    <ClCompile Include="OutKeySettingWnd\OutKeyInputWnd.cpp" />
+    <ClCompile Include="OutKeySettingWnd\OutKeySettingWnd_MainWnd.cpp" />
+    <ClCompile Include="TimerPlayWnd\TimerPlayWnd_MainWnd.cpp" />
+    <ClCompile Include="VideoScreenWnd\RMenu_VideoScreenWnd.cpp" />
+    <ClCompile Include="VideoScreenWnd\VideoScreenWnd_MainWnd.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Hayaemon.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon1.ico" />
+    <None Include="pause.ico" />
+    <None Include="play.ico" />
+    <None Include="readme.txt" />
+    <None Include="toolbar1.bmp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
