@@ -1,6 +1,6 @@
 /*
 	BASSCD 2.4 C/C++ header file
-	Copyright (c) 2003-2011 Un4seen Developments Ltd.
+	Copyright (c) 2003-2014 Un4seen Developments Ltd.
 
 	See the BASSCD.CHM file for more detailed documentation
 */
@@ -104,6 +104,7 @@ typedef struct {
 
 // BASS_CD_GetTOC modes
 #define BASS_CD_TOC_TIME	0x100
+#define BASS_CD_TOC_INDEX	0x200 // + track #
 
 // TOC structures
 typedef struct
@@ -144,8 +145,13 @@ user   : The 'user' parameter value given when calling BASS_CD_StreamCreate/File
 #define BASS_CD_DATA_SUBCHANNEL	0
 #define BASS_CD_DATA_C2			1
 
+#define BASS_CD_TRACK_PREGAP	0xFFFF
+
 // BASS_CHANNELINFO type
 #define BASS_CTYPE_STREAM_CD	0x10200
+
+// BASS_ChannelGetLength/GetPosition/SetPosition mode
+#define BASS_POS_CD_TRACK		4		// track number
 
 DWORD BASSCDDEF(BASS_CD_SetInterface)(DWORD iface);
 
@@ -181,6 +187,18 @@ DWORD BASSCDDEF(BASS_CD_Analog_GetPosition)(DWORD drive);
 
 #ifdef __cplusplus
 }
+
+#ifdef _WIN32
+static inline HSTREAM BASS_CD_StreamCreateFile(const WCHAR *file, DWORD flags)
+{
+	return BASS_CD_StreamCreateFile((const char*)file, flags|BASS_UNICODE);
+}
+
+static inline HSTREAM BASS_CD_StreamCreateFileEx(const WCHAR *file, DWORD flags, CDDATAPROC *proc, void *user)
+{
+	return BASS_CD_StreamCreateFileEx((const char*)file, flags|BASS_UNICODE, proc, user);
+}
+#endif
 #endif
 
 #endif

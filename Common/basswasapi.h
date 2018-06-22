@@ -1,6 +1,6 @@
 /*
-	BASSWASAPI beta C/C++ header file
-	Copyright (c) 2009-2013 Un4seen Developments Ltd.
+	BASSWASAPI 2.4 C/C++ header file
+	Copyright (c) 2009-2017 Un4seen Developments Ltd.
 
 	See the BASSWASAPI.CHM file for more detailed documentation
 */
@@ -19,7 +19,8 @@ extern "C" {
 #endif
 
 // Additional error codes returned by BASS_ErrorGetCode
-#define BASS_ERROR_WASAPI	5000	// no WASAPI
+#define BASS_ERROR_WASAPI			5000	// no WASAPI
+#define BASS_ERROR_WASAPI_BUFFER	5001	// buffer size is invalid
 
 // Device info structure
 typedef struct {
@@ -70,8 +71,9 @@ typedef struct {
 #define BASS_WASAPI_EXCLUSIVE	1
 #define BASS_WASAPI_AUTOFORMAT	2
 #define BASS_WASAPI_BUFFER		4
-#define BASS_WASAPI_SESSIONVOL	8
 #define BASS_WASAPI_EVENT		16
+#define BASS_WASAPI_SAMPLES		32
+#define BASS_WASAPI_DITHER		64
 
 // BASS_WASAPI_INFO "format"
 #define BASS_WASAPI_FORMAT_FLOAT	0
@@ -80,10 +82,11 @@ typedef struct {
 #define BASS_WASAPI_FORMAT_24BIT	3
 #define BASS_WASAPI_FORMAT_32BIT	4
 
-// BASS_WASAPI_Set/GetVolume "curve"
+// BASS_WASAPI_Set/GetVolume modes
 #define BASS_WASAPI_CURVE_DB		0
 #define BASS_WASAPI_CURVE_LINEAR	1
 #define BASS_WASAPI_CURVE_WINDOWS	2
+#define BASS_WASAPI_VOL_SESSION		8
 
 typedef DWORD (CALLBACK WASAPIPROC)(void *buffer, DWORD length, void *user);
 /* WASAPI callback function.
@@ -103,11 +106,12 @@ user   : The 'user' parameter given when calling BASS_WASAPI_SetNotify */
 #define BASS_WASAPI_NOTIFY_DISABLED		1
 #define BASS_WASAPI_NOTIFY_DEFOUTPUT	2
 #define BASS_WASAPI_NOTIFY_DEFINPUT		3
+#define BASS_WASAPI_NOTIFY_FAIL			0x100
 
 DWORD BASSWASAPIDEF(BASS_WASAPI_GetVersion)();
 BOOL BASSWASAPIDEF(BASS_WASAPI_SetNotify)(WASAPINOTIFYPROC *proc, void *user);
 BOOL BASSWASAPIDEF(BASS_WASAPI_GetDeviceInfo)(DWORD device, BASS_WASAPI_DEVICEINFO *info);
-float BASSDEF(BASS_WASAPI_GetDeviceLevel)(DWORD device, int chan);
+float BASSWASAPIDEF(BASS_WASAPI_GetDeviceLevel)(DWORD device, int chan);
 BOOL BASSWASAPIDEF(BASS_WASAPI_SetDevice)(DWORD device);
 DWORD BASSWASAPIDEF(BASS_WASAPI_GetDevice)();
 DWORD BASSWASAPIDEF(BASS_WASAPI_CheckFormat)(DWORD device, DWORD freq, DWORD chans, DWORD flags);
@@ -119,13 +123,14 @@ BOOL BASSWASAPIDEF(BASS_WASAPI_Lock)(BOOL lock);
 BOOL BASSWASAPIDEF(BASS_WASAPI_Start)();
 BOOL BASSWASAPIDEF(BASS_WASAPI_Stop)(BOOL reset);
 BOOL BASSWASAPIDEF(BASS_WASAPI_IsStarted)();
-BOOL BASSWASAPIDEF(BASS_WASAPI_SetVolume)(DWORD curve, float volume);
-float BASSWASAPIDEF(BASS_WASAPI_GetVolume)(DWORD curve);
-BOOL BASSWASAPIDEF(BASS_WASAPI_SetMute)(BOOL mute);
-BOOL BASSWASAPIDEF(BASS_WASAPI_GetMute)();
+BOOL BASSWASAPIDEF(BASS_WASAPI_SetVolume)(DWORD mode, float volume);
+float BASSWASAPIDEF(BASS_WASAPI_GetVolume)(DWORD mode);
+BOOL BASSWASAPIDEF(BASS_WASAPI_SetMute)(DWORD mode, BOOL mute);
+BOOL BASSWASAPIDEF(BASS_WASAPI_GetMute)(DWORD mode);
 DWORD BASSWASAPIDEF(BASS_WASAPI_PutData)(void *buffer, DWORD length);
-DWORD BASSDEF(BASS_WASAPI_GetData)(void *buffer, DWORD length);
-DWORD BASSDEF(BASS_WASAPI_GetLevel)();
+DWORD BASSWASAPIDEF(BASS_WASAPI_GetData)(void *buffer, DWORD length);
+DWORD BASSWASAPIDEF(BASS_WASAPI_GetLevel)();
+BOOL BASSWASAPIDEF(BASS_WASAPI_GetLevelEx)(float *levels, float length, DWORD flags);
 
 #ifdef __cplusplus
 }

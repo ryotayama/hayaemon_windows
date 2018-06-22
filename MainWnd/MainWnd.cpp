@@ -10402,9 +10402,9 @@ LRESULT CMainWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 					xVideo_UNICODE);
 	if(!xVideo_Init(m_hWnd, 0)) {
 #if JP
-		m_rApp.ShowError(_T("BASS_DSHOW.DLL ÇÃèâä˙âªÇ…é∏îsÇµÇ‹ÇµÇΩÅB"));
+		m_rApp.ShowError(_T("xVideo.DLL ÇÃèâä˙âªÇ…é∏îsÇµÇ‹ÇµÇΩÅB"));
 #else // JP
-		m_rApp.ShowError(_T("failed to init BASS_DSHOW.DLL."));
+		m_rApp.ShowError(_T("failed to init xVideo.DLL."));
 #endif // JP
 		return FALSE;
 	}

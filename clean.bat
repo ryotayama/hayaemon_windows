@@ -21,6 +21,8 @@ del Release\*.log
 del Release\*.tlog
 del Release\*.m3u8
 del Release\*.ini
+del Release\*.iobj
+del Release\*.ipdb
 del Debug\*.obj
 del Debug\*.htm
 del Debug\*.pdb
@@ -39,3 +41,4 @@ del Debug\*.ini
 del Debug\*.csv
 del Debug\*.vsp
 rmdir /q /s ipch
+rmdir /q /s Release\Hayaemon.tlog

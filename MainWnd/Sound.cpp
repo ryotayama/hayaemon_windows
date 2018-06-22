@@ -11,7 +11,7 @@
 #include "../Common/basswasapi.h"
 #include "MainWnd.h"
 #include "Sound.h"
-#include "../Common/BASS_DSHOW.h"
+#include "../Common/xVideo.h"
 #include "ProgressWnd_MainWnd.h"
 //----------------------------------------------------------------------------
 // コンストラクタ
@@ -1390,7 +1390,7 @@ void CSound::StartASIO()
 		BASS_ChannelGetInfo(m_hStream, &info);
 		BASS_ASIO_ChannelSetRate(0, 0, info.freq);
 		BASS_ASIO_SetRate(info.freq);
-		BASS_ASIO_Start(0);
+		BASS_ASIO_Start(0, 0);
 	}
 }
 //----------------------------------------------------------------------------

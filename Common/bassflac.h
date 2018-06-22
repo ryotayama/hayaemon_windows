@@ -1,6 +1,6 @@
 /*
 	BASSFLAC 2.4 C/C++ header file
-	Copyright (c) 2004-2009 Un4seen Developments Ltd.
+	Copyright (c) 2004-2017 Un4seen Developments Ltd.
 
 	See the BASSFLAC.CHM file for more detailed documentation
 */
@@ -29,6 +29,7 @@ extern "C" {
 // Additional tag types
 #define BASS_TAG_FLAC_CUE			12		// cuesheet : TAG_FLAC_CUE structure
 #define BASS_TAG_FLAC_PICTURE		0x12000	// + index #, picture : TAG_FLAC_PICTURE structure
+#define BASS_TAG_FLAC_METADATA		0x12400	// + index #, application metadata : TAG_FLAC_METADATA structure
 
 typedef struct {
 	DWORD apic;			// ID3v2 "APIC" picture type
@@ -68,12 +69,30 @@ typedef struct {
 #define TAG_FLAC_CUE_TRACK_DATA	1	// data track
 #define TAG_FLAC_CUE_TRACK_PRE	2	// pre-emphasis
 
+typedef struct {
+	char id[4];
+	DWORD length;		// data length
+	const void *data;
+} TAG_FLAC_METADATA;
+
 HSTREAM BASSFLACDEF(BASS_FLAC_StreamCreateFile)(BOOL mem, const void *file, QWORD offset, QWORD length, DWORD flags);
 HSTREAM BASSFLACDEF(BASS_FLAC_StreamCreateURL)(const char *url, DWORD offset, DWORD flags, DOWNLOADPROC *proc, void *user);
 HSTREAM BASSFLACDEF(BASS_FLAC_StreamCreateFileUser)(DWORD system, DWORD flags, const BASS_FILEPROCS *procs, void *user);
 
 #ifdef __cplusplus
 }
+
+#ifdef _WIN32
+static inline HSTREAM BASS_FLAC_StreamCreateFile(BOOL mem, const WCHAR *file, QWORD offset, QWORD length, DWORD flags)
+{
+	return BASS_FLAC_StreamCreateFile(mem, (const void*)file, offset, length, flags|BASS_UNICODE);
+}
+
+static inline HSTREAM BASS_FLAC_StreamCreateURL(const WCHAR *url, DWORD offset, DWORD flags, DOWNLOADPROC *proc, void *user)
+{
+	return BASS_FLAC_StreamCreateURL((const char*)url, offset, flags|BASS_UNICODE, proc, user);
+}
+#endif
 #endif
 
 #endif

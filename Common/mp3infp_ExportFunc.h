@@ -3,6 +3,13 @@
 
 /*
 ■改変履歴
+2018-02-20 Ver.2.55
+・mp3infp_GetValue()/mp3infp_SetValue()関連の修正
+>MP3で"AART_v2", "DISC_v2"に対応
+>MP4で"AART"に対応
+>OGGで"AART", "DISC"に対応
+・mp3infp_SetConf()の引数をconstポインタに変更
+
 2009-12-01 Ver.2.54h/u8
 ・mp3infp_GetValue()/mp3infp_SetValue()関連の修正
 >WAVで"TRACK"に対応
@@ -184,14 +191,16 @@ typedef DWORD (WINAPI *LPMP3INFP_LOADW)(HWND hWnd,LPCWSTR szFileName);
 	著作権								"ICOP_v2"	"ICOP_rmp"
 	ソフトウェア/エンコーダ				"ISFT_v2"	"ISFT_rmp"
 	(ID3v2)
+	アルバムアーティスト				"AART_v2" (v2.55～)
 	作曲								"COMP_v2"
+	ディスク番号						"DISC_v2" (v2.55～)
 	Orig.アーティスト					"OART_v2"
 	URL									"URL_v2"
 	エンコードした人					"ENC2_v2"
 	(RiffSIF)
 	ソース											"ISRC_rmp"
 	エンジニア										"IENG_rmp"
-	(ID3v1/2)
+	(ID3v1/2/APE)
 	トラック番号			"TRACK_v1"	"TRACK_v2"				"TRACK_APE"
 
 	[WAV]
@@ -256,10 +265,12 @@ typedef DWORD (WINAPI *LPMP3INFP_LOADW)(HWND hWnd,LPCWSTR szFileName);
 	タイトル				"INAM"
 	アーティスト			"IART"
 	アルバム				"IPRD"
+	アルバムアーティスト	"AART" (v2.55～)
 	コメント				"ICMT"
 	作成日					"ICRD"
 	ジャンル				"IGNR"
 	トラック番号			"TRACK"
+	ディスク番号			"DISC" (v2.55～)
 
 	[APE]
 	フォーマット(※1)		"AFMT"
@@ -278,6 +289,7 @@ typedef DWORD (WINAPI *LPMP3INFP_LOADW)(HWND hWnd,LPCWSTR szFileName);
 	タイトル				"INAM"
 	アーティスト			"IART"
 	アルバム				"IPRD"
+	アルバムアーティスト	"AART"	(v2.55～)
 	グループ				"IGRP"
 	作曲					"COMPOSER"
 	ジャンル				"IGNR"
@@ -331,6 +343,7 @@ typedef DWORD (WINAPI *LPMP3INFP_GETTYPE)();
 名前：	mp3infp_GetValue
 概要：	タグ情報を取得する
 補足：	mp3infp_Load()の後に呼び出してください
+        本関数を複数回呼び出すと、以前の結果は無効になります
 引数：	
 		IN const char *szValueName	タグの種類を示す名前(表1を参照)
 		OUT char **buf			タグ情報を示すバッファのポインタを受け取るポインタ
@@ -385,18 +398,18 @@ typedef DWORD (WINAPI *LPMP3INFP_MP3_GETTAGTYPE)();
 /*=======================================================================================
 名前：	mp3infp_SetConf
 概要：	mp3infpの動作設定
-引数：	IN char *tag		設定項目(表2参照)
-		IN char *val		設定値(表2参照)
+引数：	IN const char *tag		設定項目(表2参照)
+		IN const char *val		設定値(表2参照)
 戻値：	BOOL 成功=TRUE/失敗=FALSE
 対応：	Ver2.42～
 補足：	・他のプロセスのmp3infp.dll/シェル拡張のmp3infpには影響しない
 		・設定内容は保存されない
 */
-BOOL __stdcall mp3infp_SetConfA(char *tag,char *value);
-typedef BOOL (WINAPI *LPMP3INFP_SETCONFA)(char *tag,char *value);
+BOOL __stdcall mp3infp_SetConfA(const char *tag,const char *value);
+typedef BOOL (WINAPI *LPMP3INFP_SETCONFA)(const char *tag,const char *value);
 
-BOOL __stdcall mp3infp_SetConfW(WCHAR *tag,WCHAR *value);
-typedef BOOL (WINAPI *LPMP3INFP_SETCONFW)(WCHAR *tag,WCHAR *value);
+BOOL __stdcall mp3infp_SetConfW(LPCWSTR tag,LPCWSTR value);
+typedef BOOL (WINAPI *LPMP3INFP_SETCONFW)(LPCWSTR tag,LPCWSTR value);
 
 #ifdef UNICODE
 #define mp3infp_SetConf		mp3infp_SetConfW
@@ -440,8 +453,10 @@ mp3infp_SetConf()指定する設定項目・値一覧
 	(項目名)
 	"mp3_ID3v2Unicode"
 	(値)
-	"0"(default)	無効
-	"1"				有効
+	"0"				無効
+	"1"(default)	有効 (UTF-16)
+	"2"				UTF-16BE (ID3v2.4のみ) (Ver2.55～)
+	"3"				UTF-8 (ID3v2.4のみ) (Ver2.55～)
 
 	[ID3v2を非同期化する](Ver2.43～)
 	(項目名)

@@ -1,6 +1,6 @@
 /*
-	BASSASIO 1.2 C/C++ header file
-	Copyright (c) 2005-2012 Un4seen Developments Ltd.
+	BASSASIO 1.4 C/C++ header file
+	Copyright (c) 2005-2014 Un4seen Developments Ltd.
 
 	See the BASSASIO.CHM file for more detailed documentation
 */
@@ -18,7 +18,7 @@ extern "C" {
 #define BASSASIODEF(f) WINAPI f
 #endif
 
-#define BASSASIOVERSION 0x102	// API version
+#define BASSASIOVERSION 0x103	// API version
 
 // error codes returned by BASS_ASIO_ErrorGetCode
 #define BASS_OK				0	// all is OK
@@ -63,10 +63,12 @@ typedef struct {
 } BASS_ASIO_CHANNELINFO;
 
 // sample formats
-#define BASS_ASIO_FORMAT_16BIT	16 // 16-bit integer
-#define BASS_ASIO_FORMAT_24BIT  17 // 24-bit integer
-#define BASS_ASIO_FORMAT_32BIT  18 // 32-bit integer
-#define BASS_ASIO_FORMAT_FLOAT  19 // 32-bit floating-point
+#define BASS_ASIO_FORMAT_16BIT		16 // 16-bit integer
+#define BASS_ASIO_FORMAT_24BIT		17 // 24-bit integer
+#define BASS_ASIO_FORMAT_32BIT		18 // 32-bit integer
+#define BASS_ASIO_FORMAT_FLOAT		19 // 32-bit floating-point
+#define BASS_ASIO_FORMAT_DSD_LSB	32 // DSD (LSB 1st)
+#define BASS_ASIO_FORMAT_DSD_MSB	33 // DSD (MSB 1st)
 
 // BASS_ASIO_ChannelReset flags
 #define BASS_ASIO_RESET_ENABLE	1 // disable channel
@@ -114,12 +116,14 @@ BOOL BASSASIODEF(BASS_ASIO_GetInfo)(BASS_ASIO_INFO *info);
 BOOL BASSASIODEF(BASS_ASIO_CheckRate)(double rate);
 BOOL BASSASIODEF(BASS_ASIO_SetRate)(double rate);
 double BASSASIODEF(BASS_ASIO_GetRate)();
-BOOL BASSASIODEF(BASS_ASIO_Start)(DWORD buflen);
+BOOL BASSASIODEF(BASS_ASIO_Start)(DWORD buflen, DWORD threads);
 BOOL BASSASIODEF(BASS_ASIO_Stop)();
 BOOL BASSASIODEF(BASS_ASIO_IsStarted)();
 DWORD BASSASIODEF(BASS_ASIO_GetLatency)(BOOL input);
 float BASSASIODEF(BASS_ASIO_GetCPU)();
 BOOL BASSASIODEF(BASS_ASIO_Monitor)(int input, DWORD output, DWORD gain, DWORD state, DWORD pan);
+BOOL BASSASIODEF(BASS_ASIO_SetDSD)(BOOL dsd);
+BOOL BASSASIODEF(BASS_ASIO_Future)(DWORD selector, void *param);
 
 BOOL BASSASIODEF(BASS_ASIO_ChannelGetInfo)(BOOL input, DWORD channel, BASS_ASIO_CHANNELINFO *info);
 BOOL BASSASIODEF(BASS_ASIO_ChannelReset)(BOOL input, int channel, DWORD flags);
