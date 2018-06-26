@@ -1,4 +1,4 @@
-聞々ハヤえもん for Windows
+﻿聞々ハヤえもん for Windows
 =======================
 
 ## 免責事項
@@ -6,12 +6,20 @@
 - 作者は、このソフトによって発生した損害に関し、一切の責任を負わない。
 - 作者は、このソフトのサポート ( 不具合修正・バージョンアップなど ) に関する一切の義務を負わない。
 
-### 開発環境
-- Visual C++ 2017
-- Windows SDK
+## 開発環境
+- Visual Studio Community 2017
 - サウンド関連の実装には、高性能オーディオライブラリ「BASS」を使用しています。有用なライブラリを公開なさっている Ian Luck 氏に、深く感謝致します。
 
   Un4seen Developments : http://www.un4seen.com/
+
+## 開発環境の構築
+- Visual Studio Community 2017 をインストールしておいてください。
+　※Windows XP用にビルドする場合は、インストール時に C++ に関する Windows XP サポートというオプションが必要です。
+![スクリーンショット](https://user-images.githubusercontent.com/6075785/41812408-38a833a0-775d-11e8-9afb-4125a8dd0c8c.png)
+- git cloneコマンドを叩くか、ZIPファイルをダウンロードし、ハヤえもんのプロジェクトフォルダを入手してください。
+- プロジェクトフォルダ直下にある getlibs.bat というバッチファイルを実行してください。
+　※getlibs.bat を実行する事で、外部ライブラリのLIBファイルがプロジェクトフォルダ直下に保存され、DLLファイルがReleaseフォルダに保存されます。
+- Hayaemon.sln を開く事で開発を始める事ができます。
 
 ## ライセンス
 [GPL v3 ライセンス](https://www.gnu.org/licenses/gpl-3.0.html)
