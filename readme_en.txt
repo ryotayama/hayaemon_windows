@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
- Hayaemon Version 2.76 stable
+ Hayaemon Version 2.77 beta 1
 ------------------------------------------------------------------------------
-                                                        Last update: 2018/6/12
+                                                        Last update: 2018/6/27
                                       Ryota Yamauchi <ryota.yamauch@gmail.com>
                                             Free Software Development Station:
                                                     http://soft.edolfzoku.com/
@@ -68,6 +68,9 @@
 ------------------------------------------------------------------------------
  History
 ------------------------------------------------------------------------------
+
+2018/6/27 Version 2.77 beta 1
+ Updated external libraries to latest version.
 
 2018/6/12 Version 2.76 stable
  Stable version is released.
