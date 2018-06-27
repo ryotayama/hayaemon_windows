@@ -63,7 +63,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>comctl32.lib;Winmm.lib;wsock32.lib;Wininet.lib;libjpeg.lib;bass.lib;bass_ape.lib;basscd.lib;bassflac.lib;bass_fx.lib;bassenc.lib;shlwapi.lib;bass_aac.lib;tags.lib;BASS_DSHOW.lib;bass_alac.lib;bassasio.lib;basswasapi.lib;bassmix.lib;npnez.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>comctl32.lib;Winmm.lib;wsock32.lib;Wininet.lib;libjpeg.lib;bass.lib;bass_ape.lib;basscd.lib;bassflac.lib;bass_fx.lib;bassenc.lib;shlwapi.lib;bass_aac.lib;tags.lib;xVideo.lib;bassalac.lib;bassasio.lib;basswasapi.lib;bassmix.lib;npnez.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
