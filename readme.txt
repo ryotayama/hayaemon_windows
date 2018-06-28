@@ -1,1904 +1,1905 @@
 ------------------------------------------------------------------------------
- •·Xƒnƒ„‚¦‚à‚ñ Version 2.77 ƒÀ 1 ŠJ”­”Å
+ èžã€…ãƒãƒ¤ãˆã‚‚ã‚“ Version 2.77 Î² 1 é–‹ç™ºç‰ˆ
 ------------------------------------------------------------------------------
-                                                          ÅIXV“ú 2018/6/27
-                                          ŽR“à@—Ç‘¾ <ryota.yamauch@gmail.com>
-                               ƒtƒŠ[ƒ\ƒtƒgŠJ”­Š : http://soft.edolfzoku.com/
+                                                          æœ€çµ‚æ›´æ–°æ—¥ 2018/6/27
+                                          å±±å†…ã€€è‰¯å¤ª <ryota.yamauch@gmail.com>
+                               ãƒ•ãƒªãƒ¼ã‚½ãƒ•ãƒˆé–‹ç™ºæ‰€ : http://soft.edolfzoku.com/
 ------------------------------------------------------------------------------
- ˆÈ‰º‚ð‘S‚Ä‚¨“Ç‚Ý‚É‚È‚Á‚Ä‚©‚çA‚±‚Ìƒ\ƒtƒgƒEƒFƒA‚ð‚²—˜—p‰º‚³‚¢B
-------------------------------------------------------------------------------
-
-@•·Xƒnƒ„‚¦‚à‚ñ‚ðƒ_ƒEƒ“ƒ[ƒh‚µ‚Ä‚¢‚½‚¾‚«A‚ ‚è‚ª‚Æ‚¤‚²‚´‚¢‚Ü‚·B
-
-@‚±‚Ìƒ\ƒtƒg‚ÍAWAVE, MP3, Ogg Vorbis, WMA, M3U ‚È‚Ç‚ÌŠeŽíƒtƒH[ƒ}ƒbƒg‚É‘Î‰ž‚µ
-‚½AÄ¶‘¬“x^Ä¶Žü”g”^‰¹’ö‚ðŽ©—R‚É•ÏX‚Å‚«‚é MP3 ƒvƒŒ[ƒ„‚Æ‚µ‚ÄŒöŠJ’†‚ÌƒI[
-ƒvƒ“ƒ\[ƒX‚ÌƒtƒŠ[ƒ\ƒtƒg‚Å‚·B
-
-@‚±‚Ìƒ\ƒtƒg‚ÉŠÖ‚·‚é‚²ˆÓŒ©E‚²Š´‘zAŠJ”­‚ÉŽQ‰Á‚µ‚Ä‚­‚¾‚³‚é•û‚È‚Ç‚Í‘åŠ½Œ}‚Å‚·B
-‚º‚ÐŒfŽ¦”Â‚âƒ[ƒ‹‚È‚Ç‚Å‚¨’m‚ç‚¹‰º‚³‚¢B
-
-------------------------------------------------------------------------------
- –ÆÓŽ–€
+ ä»¥ä¸‹ã‚’å…¨ã¦ãŠèª­ã¿ã«ãªã£ã¦ã‹ã‚‰ã€ã“ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚’ã”åˆ©ç”¨ä¸‹ã•ã„ã€‚
 ------------------------------------------------------------------------------
 
-@‚±‚Ìƒ\ƒtƒg‚Í–³•ÛØE–³Ó”C‚Å‚·BˆÈ‰º‚ÌðŒ‚É“¯ˆÓ‚µ‚Ä‚¢‚½‚¾‚¯‚éê‡‚É‚Ì‚ÝA‚±
-‚Ìƒ\ƒtƒg‚ð‚²—˜—p‚¢‚½‚¾‚­‚±‚Æ‚ª‚Å‚«‚Ü‚·B
+ã€€èžã€…ãƒãƒ¤ãˆã‚‚ã‚“ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ã¦ã„ãŸã ãã€ã‚ã‚ŠãŒã¨ã†ã”ã–ã„ã¾ã™ã€‚
 
-@EìŽÒ‚ÍA‚±‚Ìƒ\ƒtƒg‚É‚æ‚Á‚Ä”­¶‚µ‚½‘¹ŠQ‚ÉŠÖ‚µAˆêØ‚ÌÓ”C‚ð•‰‚í‚È‚¢B
-@EìŽÒ‚ÍA‚±‚Ìƒ\ƒtƒg‚ÌƒTƒ|[ƒg ( •s‹ï‡C³Eƒo[ƒWƒ‡ƒ“ƒAƒbƒv‚È‚Ç ) ‚ÉŠÖ‚·‚é
-@@ˆêØ‚Ì‹`–±‚ð•‰‚í‚È‚¢B
+ã€€ã“ã®ã‚½ãƒ•ãƒˆã¯ã€WAVE, MP3, Ogg Vorbis, WMA, M3U ãªã©ã®å„ç¨®ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã«å¯¾å¿œã—
+ãŸã€å†ç”Ÿé€Ÿåº¦ï¼å†ç”Ÿå‘¨æ³¢æ•°ï¼éŸ³ç¨‹ã‚’è‡ªç”±ã«å¤‰æ›´ã§ãã‚‹ MP3 ãƒ—ãƒ¬ãƒ¼ãƒ¤ã¨ã—ã¦å…¬é–‹ä¸­ã®ã‚ªãƒ¼
+ãƒ—ãƒ³ã‚½ãƒ¼ã‚¹ã®ãƒ•ãƒªãƒ¼ã‚½ãƒ•ãƒˆã§ã™ã€‚
 
-@‚à‚µA‚±‚ê‚ç‚ÌðŒ‚É“¯ˆÓ‚µ‚Ä‚¢‚½‚¾‚¯‚È‚¢ê‡A‚¨Žè”‚Å‚·‚ª‚±‚Ìƒ\ƒtƒg‚ðíœ‚µ
-‚Ä‰º‚³‚¢‚Ü‚·‚æ‚¤‚¨Šè‚¢\‚µã‚°‚Ü‚·B
-
-------------------------------------------------------------------------------
- “®ìŠÂ‹«
-------------------------------------------------------------------------------
-
-@Windows XP ˆÈ~‚Ì OS ‚É‘Î‰ž‚µ‚Ä‚¢‚Ü‚·B“®ì•ñ‚ÍŠ½Œ}‚µ‚Ü‚·B
-@DirectX 3 ˆÈ~‚ª“±“ü‚³‚ê‚Ä‚¢‚éŠÂ‹«‚ª•K—v‚Å‚·B
+ã€€ã“ã®ã‚½ãƒ•ãƒˆã«é–¢ã™ã‚‹ã”æ„è¦‹ãƒ»ã”æ„Ÿæƒ³ã€é–‹ç™ºã«å‚åŠ ã—ã¦ãã ã•ã‚‹æ–¹ãªã©ã¯å¤§æ­“è¿Žã§ã™ã€‚
+ãœã²æŽ²ç¤ºæ¿ã‚„ãƒ¡ãƒ¼ãƒ«ãªã©ã§ãŠçŸ¥ã‚‰ã›ä¸‹ã•ã„ã€‚
 
 ------------------------------------------------------------------------------
- ŠJ”­ŠÂ‹«
+ å…è²¬äº‹é …
 ------------------------------------------------------------------------------
 
-@Windows 10 / Visual Studio Community 2017, Windows SDK ‚ðŽg‚¢AŠJ”­‚ðs‚Á‚Ä
-‚¢‚Ü‚·B
+ã€€ã“ã®ã‚½ãƒ•ãƒˆã¯ç„¡ä¿è¨¼ãƒ»ç„¡è²¬ä»»ã§ã™ã€‚ä»¥ä¸‹ã®æ¡ä»¶ã«åŒæ„ã—ã¦ã„ãŸã ã‘ã‚‹å ´åˆã«ã®ã¿ã€ã“
+ã®ã‚½ãƒ•ãƒˆã‚’ã”åˆ©ç”¨ã„ãŸã ãã“ã¨ãŒã§ãã¾ã™ã€‚
 
-@ƒTƒEƒ“ƒhŠÖ˜A‚ÌŽÀ‘•‚É‚ÍA‚«”\ƒI[ƒfƒBƒIƒ‰ƒCƒuƒ‰ƒŠuBASSv‚ðŽg—p‚µ‚Ä‚¢‚Ü‚·B
-—L—p‚Èƒ‰ƒCƒuƒ‰ƒŠ‚ðŒöŠJ‚È‚³‚Á‚Ä‚¢‚é Ian Luck Ž‚ÉA[‚­Š´ŽÓ’v‚µ‚Ü‚·B
+ã€€ãƒ»ä½œè€…ã¯ã€ã“ã®ã‚½ãƒ•ãƒˆã«ã‚ˆã£ã¦ç™ºç”Ÿã—ãŸæå®³ã«é–¢ã—ã€ä¸€åˆ‡ã®è²¬ä»»ã‚’è² ã‚ãªã„ã€‚
+ã€€ãƒ»ä½œè€…ã¯ã€ã“ã®ã‚½ãƒ•ãƒˆã®ã‚µãƒãƒ¼ãƒˆ ( ä¸å…·åˆä¿®æ­£ãƒ»ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚¢ãƒƒãƒ—ãªã© ) ã«é–¢ã™ã‚‹
+ã€€ã€€ä¸€åˆ‡ã®ç¾©å‹™ã‚’è² ã‚ãªã„ã€‚
+
+ã€€ã‚‚ã—ã€ã“ã‚Œã‚‰ã®æ¡ä»¶ã«åŒæ„ã—ã¦ã„ãŸã ã‘ãªã„å ´åˆã€ãŠæ‰‹æ•°ã§ã™ãŒã“ã®ã‚½ãƒ•ãƒˆã‚’å‰Šé™¤ã—
+ã¦ä¸‹ã•ã„ã¾ã™ã‚ˆã†ãŠé¡˜ã„ç”³ã—ä¸Šã’ã¾ã™ã€‚
+
+------------------------------------------------------------------------------
+ å‹•ä½œç’°å¢ƒ
+------------------------------------------------------------------------------
+
+ã€€Windows XP ä»¥é™ã® OS ã«å¯¾å¿œã—ã¦ã„ã¾ã™ã€‚å‹•ä½œå ±å‘Šã¯æ­“è¿Žã—ã¾ã™ã€‚
+ã€€DirectX 3 ä»¥é™ãŒå°Žå…¥ã•ã‚Œã¦ã„ã‚‹ç’°å¢ƒãŒå¿…è¦ã§ã™ã€‚
+
+------------------------------------------------------------------------------
+ é–‹ç™ºç’°å¢ƒ
+------------------------------------------------------------------------------
+
+ã€€Windows 10 / Visual Studio Community 2017, Windows SDK ã‚’ä½¿ã„ã€é–‹ç™ºã‚’è¡Œã£ã¦
+ã„ã¾ã™ã€‚
+
+ã€€ã‚µã‚¦ãƒ³ãƒ‰é–¢é€£ã®å®Ÿè£…ã«ã¯ã€é«˜æ€§èƒ½ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªãƒ©ã‚¤ãƒ–ãƒ©ãƒªã€ŒBASSã€ã‚’ä½¿ç”¨ã—ã¦ã„ã¾ã™ã€‚
+æœ‰ç”¨ãªãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’å…¬é–‹ãªã•ã£ã¦ã„ã‚‹ Ian Luck æ°ã«ã€æ·±ãæ„Ÿè¬è‡´ã—ã¾ã™ã€‚
 
 	Un4seen Developments : http://www.un4seen.com/
 
 ------------------------------------------------------------------------------
- ƒCƒ“ƒXƒg[ƒ‹
+ ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«
 ------------------------------------------------------------------------------
 
-@ƒCƒ“ƒXƒg[ƒ‰‚Í‚Â‚¯‚Ä‚¢‚Ü‚¹‚ñ‚Ì‚ÅA“K“–‚ÈêŠ‚É‰ð“€‚µ‚Ä‚­‚¾‚³‚¢B
+ã€€ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ©ã¯ã¤ã‘ã¦ã„ã¾ã›ã‚“ã®ã§ã€é©å½“ãªå ´æ‰€ã«è§£å‡ã—ã¦ãã ã•ã„ã€‚
 
-@ƒAƒ“ƒCƒ“ƒXƒg[ƒ‹‚·‚éŽž‚ÍAƒ_ƒEƒ“ƒ[ƒh‚µ‚½ƒtƒ@ƒCƒ‹‚ð‘S‚Äíœ‚µ‚Ä‰º‚³‚ê‚ÎŒ‹\
-‚Å‚·B‚±‚Ìƒ\ƒtƒg‚ÍAƒŒƒWƒXƒgƒŠ‚Ö‚Ì‘‚«ž‚Ý‚Ís‚Á‚Ä‚¢‚Ü‚¹‚ñB
-
-------------------------------------------------------------------------------
- ƒ}ƒjƒ…ƒAƒ‹
-------------------------------------------------------------------------------
-
-@manual ƒtƒHƒ‹ƒ_‚Ì index.html ‚ªƒ}ƒjƒ…ƒAƒ‹‚Æ‚È‚Á‚Ä‚¢‚Ü‚·B
+ã€€ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã™ã‚‹æ™‚ã¯ã€ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’å…¨ã¦å‰Šé™¤ã—ã¦ä¸‹ã•ã‚Œã°çµæ§‹
+ã§ã™ã€‚ã“ã®ã‚½ãƒ•ãƒˆã¯ã€ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã¸ã®æ›¸ãè¾¼ã¿ã¯è¡Œã£ã¦ã„ã¾ã›ã‚“ã€‚
 
 ------------------------------------------------------------------------------
- XV—š—ð
+ ãƒžãƒ‹ãƒ¥ã‚¢ãƒ«
 ------------------------------------------------------------------------------
 
-2018/6/27(…) Version 2.77 ƒÀ 1 ŠJ”­”Å
-@ŠO•”ƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒo[ƒWƒ‡ƒ“‚ðÅV‰»‚µ‚Ü‚µ‚½B
-
-2018/6/10(‰Î) Version 2.76 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2018/6/4(ŒŽ) Version 2.75 ƒÀ 6 ŠJ”­”Å
-@ƒAƒCƒRƒ“‚ðŠúŠÔŒÀ’è‚Ì÷ƒAƒCƒRƒ“‚©‚ç’Êí‚ÌƒAƒCƒRƒ“‚É•ÏX‚µ‚Ü‚µ‚½B
-
-2018/5/14(ŒŽ) Version 2.75 ƒÀ 5 ŠJ”­”Å
-@ƒAƒCƒRƒ“‚ð‹GßŒÀ’è‚Å÷‚ÌƒAƒCƒRƒ“‚É•ÏX‚µ‚Ü‚µ‚½B
-
-2017/8/30(…) Version 2.75 ƒÀ 4 ŠJ”­”Å
-@Windows XP‚ÌŠÂ‹«‚Å‹N“®‚µ‚È‚©‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2017/8/23(…) Version 2.75 ƒÀ 3 ŠJ”­”Å
-@iOS—p‚É‚¤‚ß‚³‚ñ‚ªƒfƒUƒCƒ“‚µ‚Ä‚­‚ê‚½ƒAƒCƒRƒ“‚ð‚µ‚ã‚ª[‚½‚ë‚¤‚­‚ñ‚ÆâŒû‚­‚ñ‚ª
-”½‰f‚³‚¹‚Ä‚­‚ê‚Ü‚µ‚½B
-@›‚¤‚ß‚³‚ñiTwitter: @UmeboshiKantaroj
-@›‚µ‚ã‚ª[‚½‚ë‚¤‚­‚ñiTwitter: @12guitar21j
-@›âŒû‚­‚ñ
-
-2013/5/27(ŒŽ) Version 2.75 ƒÀ 2 ŠJ”­”Å
-@ƒwƒ‹ƒvƒƒjƒ…[‚©‚çAƒIƒ“ƒ‰ƒCƒ“ƒ}ƒjƒ…ƒAƒ‹‚ÉƒAƒNƒZƒX‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/5/20(ŒŽ) Version 2.75 ƒÀ 1 ŠJ”­”Å
-@Ä¶¨“¯‚¶ƒA[ƒeƒBƒXƒg‚Ì‹È‚ðÄ¶ƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2013/5/19(“ú) Version 2.74 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2013/5/15(…) Version 2.73 ƒÀ 18 ŠJ”­”Å
-@ƒAƒvƒŠƒP[ƒVƒ‡ƒ“I—¹’¼Œã‚ÉÄ‹N“®‚·‚é‚ÆAÄ¶ƒŠƒXƒg‚ª‘S‚Ä•œŒ³‚³‚ê‚È‚¢Ž–‚ª
-‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2013/5/6(ŒŽ) Version 2.73 ƒÀ 17 ŠJ”­”Å
-@NSFƒtƒ@ƒCƒ‹“Ç‚Ýž‚ÝŽž‚Ì‹““®‚ª‚¨‚©‚µ‚¢Ž–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2013/5/5(“ú) Version 2.73 ƒÀ 16 ŠJ”­”Å
-@NSFƒtƒ@ƒCƒ‹‚Ì“Ç‚Ýž‚Ý‚É‘Î‰ž‚µ‚Ü‚µ‚½B
-
-2013/4/29(ŒŽ) Version 2.73 ƒÀ 15 ŠJ”­”Å
-@‹N“®‚ð‚‘¬‰»‚µ‚Ü‚µ‚½B
-
-2013/4/28(“ú) Version 2.73 ƒÀ 14 ŠJ”­”Å
-@ƒcƒC[ƒg‰æ–Ê‚ÅƒXƒy[ƒXƒL[‚ª“ü—Í‚Å‚«‚È‚©‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2013/4/28(“ú) Version 2.73 ƒÀ 13 ŠJ”­”Å
-@ŠÖ˜A•t‚¯‚Å‚ÌŽ©“®Ä¶‚ª‚¤‚Ü‚­“®‚¢‚Ä‚¢‚È‚©‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2013/4/22(ŒŽ) Version 2.73 ƒÀ 12 ŠJ”­”Å
-@ƒƒ‚ƒŠƒŠ[ƒN‚ð‹N‚±‚µ‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2013/4/22(ŒŽ) Version 2.73 ƒÀ 11 ŠJ”­”Å
-@‰ÌŽŒ•\Ž¦‚Ì‹““®‚ð‚‘¬‰»‚µ‚Ü‚µ‚½B
-
-2013/4/22(ŒŽ) Version 2.73 ƒÀ 10 ŠJ”­”Å
-@ƒsƒbƒ`ƒAƒiƒ‰ƒCƒU‚Ì‹““®‚ð‚‘¬‰»‚µ‚Ü‚µ‚½B
-
-2013/4/21(“ú) Version 2.73 ƒÀ 9 ŠJ”­”Å
-@ƒrƒfƒI‰æ–Ê”ñ•\Ž¦Žž‚É‚àƒsƒbƒ`ƒAƒiƒ‰ƒCƒUˆ—‚ª“®ì‚µAˆ—‚ªd‚½‚­‚È‚Á‚Ä‚¢‚½‚Ì
-‚ðC³‚µ‚Ü‚µ‚½B
-
-2013/4/6(“y) Version 2.73 ƒÀ 8 ŠJ”­”Å
-@‰¹—Ê‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚Éu‰¹—ÊŽw’èvƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2013/4/5(‹à) Version 2.73 ƒÀ 7 ŠJ”­”Å
-@‰¹—Ê‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚ÉuƒfƒtƒHƒ‹ƒg‚É–ß‚·vƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2013/4/4(–Ø) Version 2.73 ƒÀ 6 ŠJ”­”Å
-@uƒGƒtƒFƒNƒgv¨u‰¹—Êv¨u‰¹—ÊŽw’èvƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2013/4/3(…) Version 2.73 ƒÀ 5 ŠJ”­”Å
-@uƒGƒtƒFƒNƒgv¨u‰¹—Êv¨uƒfƒtƒHƒ‹ƒg‚É–ß‚·vƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2013/4/2(‰Î) Version 2.73 ƒÀ 4 ŠJ”­”Å
-@ƒVƒXƒeƒ€ƒƒjƒ…[‚Éu‰¹Ž¿v¨uWASAPIvƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½BWASAPI”r‘¼
-ƒ‚[ƒh‚É‚æ‚èA‚‰¹Ž¿‚Å‰¹Šy‚ðÄ¶‚Å‚«‚é‚æ‚¤‚É‚È‚è‚Ü‚µ‚½B
-
-2013/4/1(ŒŽ) Version 2.73 ƒÀ 3 ŠJ”­”Å
-@ƒVƒXƒeƒ€ƒƒjƒ…[‚Éu‰¹Ž¿v¨uƒm[ƒ}ƒ‹vuASIOvƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2013/3/31(“ú) Version 2.73 ƒÀ 2 ŠJ”­”Å
-@ƒtƒ@ƒCƒ‹ƒƒjƒ…[‚ÉuURL‚ð’Ç‰Ávƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2013/3/30(“y) Version 2.73 ƒÀ 1 ŠJ”­”Å
-@ƒtƒ@ƒCƒ‹ƒƒjƒ…[‚ÉuURL‚ðŠJ‚­vƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2013/3/29(‹à) Version 2.72 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2013/3/28(–Ø) Version 2.71 ƒÀ 29 ŠJ”­”Å
-@ƒrƒfƒI‰æ–Ê‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çu‰ÌŽŒvuƒsƒbƒ`ƒAƒiƒ‰ƒCƒUv‚ðØ‚è‘Ö‚¦‚ç‚ê
-‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/3/27(…) Version 2.71 ƒÀ 28 ŠJ”­”Å
-@‘O‰ñI—¹Žž‚ÌƒrƒfƒI‰æ–Ê•\Ž¦“à—e‚ð•œŒ³‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/3/26(‰Î) Version 2.71 ƒÀ 27 ŠJ”­”Å
-@ƒsƒbƒ`ƒAƒiƒ‰ƒCƒU‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B‰¹’ö‚²‚Æ‚Ì‰¹‚Ì‹­‚³‚ðŽ‹Šo“I‚ÉŠm”F‚Å‚«‚é
-‚æ‚¤‚É‚È‚è‚Ü‚µ‚½B
-
-2013/3/25(ŒŽ) Version 2.71 ƒÀ 26 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚Ì•\Ž¦‚ª‚¨‚©‚µ‚­‚È‚éŽ–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2013/3/24(“ú) Version 2.71 ƒÀ 25 ŠJ”­”Å
-@LRC‰ÌŽŒƒtƒ@ƒCƒ‹‚Ìbgfolderƒ^ƒO‚ðŽg—p‚µ‚½”wŒi‰æ‘œ(JPEG)‚Ì•\Ž¦‚É‘Î‰ž‚µ‚Ü‚µ‚½B
-
-2013/3/23(“y) Version 2.71 ƒÀ 24 ŠJ”­”Å
-@ƒx[ƒX‚ÌŽ¨ƒRƒsƒƒjƒ…[‚Ì‘I‘ðó‘Ô‚ª‚¨‚©‚µ‚­‚È‚éŽ–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2013/3/22(‹à) Version 2.71 ƒÀ 23 ŠJ”­”Å
-@‰¹’ö‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚Éu¬”“_Œ…”vƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2013/3/21(–Ø) Version 2.71 ƒÀ 22 ŠJ”­”Å
-@‰¹’ö‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚Éu”¼‰¹‰º‚°‚évu”¼‰¹ã‚°‚év“™‚Ìƒƒjƒ…[‚ð’Ç‰Á‚µ‚½
-Ž–‚É‚æ‚èAŠÈ’P‚É‰¹’ö‚Ì•ÏX‚ª‚Å‚«‚é‚æ‚¤‚É‚È‚è‚Ü‚µ‚½B
-
-2013/3/20(…) Version 2.71 ƒÀ 21 ŠJ”­”Å
-@‰¹’ö‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚Éu‰¹’öŽw’èvƒƒjƒ…[‚ð’Ç‰Á‚µ‚½Ž–‚É‚æ‚èAŠÈ’P‚É
-‰¹’öŽw’è‚ª‚Å‚«‚é‚æ‚¤‚É‚È‚è‚Ü‚µ‚½B
-
-2013/3/19(‰Î) Version 2.71 ƒÀ 20 ŠJ”­”Å
-@ƒOƒ‰ƒtƒBƒbƒNƒCƒRƒ‰ƒCƒU‚ªˆê•”•œŒ³‚Å‚«‚Ä‚¢‚È‚©‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2013/3/18(ŒŽ) Version 2.71 ƒÀ 19 ŠJ”­”Å
-@ABƒ‹[ƒvŠÔ‚Ì•Û‘¶‚ª‚Å‚«‚È‚­‚È‚Á‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2013/3/17(“ú) Version 2.71 ƒÀ 18 ŠJ”­”Å
-@Ä¶Žü”g”‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚Éu¬”“_Œ…”vƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2013/3/16(“y) Version 2.71 ƒÀ 17 ŠJ”­”Å
-@Ä¶Žü”g”‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚Éu‚¾‚ñ‚¾‚ñ‘¬‚­‚·‚évu‚¾‚ñ‚¾‚ñ’x‚­‚·‚év
-ƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2013/3/15(‹à) Version 2.71 ƒÀ 16 ŠJ”­”Å
-@Ä¶Žü”g”‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚ÉuX%‰º‚°‚évuX%ã‚°‚évƒƒjƒ…[‚ð’Ç‰Á‚µ‚½Ž–
-‚É‚æ‚èAŠÈ’P‚ÉŽü”g”‚Ì•ÏX‚ª‚Å‚«‚é‚æ‚¤‚É‚È‚è‚Ü‚µ‚½B
-
-2013/3/14(–Ø) Version 2.71 ƒÀ 15 ŠJ”­”Å
-@Ä¶Žü”g”‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚ÉuŽü”g”Žw’èvƒƒjƒ…[‚ð’Ç‰Á‚µ‚½Ž–‚É‚æ‚èA
-ŠÈ’P‚ÉŽü”g”Žw’è‚ª‚Å‚«‚é‚æ‚¤‚É‚È‚è‚Ü‚µ‚½B
-
-2013/3/13(…) Version 2.71 ƒÀ 14 ŠJ”­”Å
-@Ä¶‘¬“x‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚Éu¬”“_Œ…”vƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2013/3/12(‰Î) Version 2.71 ƒÀ 13 ŠJ”­”Å
-@Ä¶‘¬“x‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚Éu‚¾‚ñ‚¾‚ñ‘¬‚­‚·‚évu‚¾‚ñ‚¾‚ñ’x‚­‚·‚év
-ƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2013/3/11(ŒŽ) Version 2.71 ƒÀ 12 ŠJ”­”Å
-@Ä¶‘¬“x‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚ÉuX%‰º‚°‚évuX%ã‚°‚évƒƒjƒ…[‚ð’Ç‰Á‚µ‚½Ž–
-‚É‚æ‚èAŠÈ’P‚É‘¬“x‚Ì•ÏX‚ª‚Å‚«‚é‚æ‚¤‚É‚È‚è‚Ü‚µ‚½B
-
-2013/3/10(“ú) Version 2.71 ƒÀ 11 ŠJ”­”Å
-@Ä¶‘¬“x‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚Éu‘¬“xŽw’èvƒƒjƒ…[‚ð’Ç‰Á‚µ‚½Ž–‚É‚æ‚èAŠÈ’P‚É
-‘¬“xŽw’è‚ª‚Å‚«‚é‚æ‚¤‚É‚È‚è‚Ü‚µ‚½B
-
-2013/3/9(“y) Version 2.71 ƒÀ 10 ŠJ”­”Å
-@‘O‰ñI—¹Žž‚Ìƒ}[ƒJ[Ä¶‚ÌÝ’èó‘Ô‚ð•œŒ³‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/3/8(‹à) Version 2.71 ƒÀ 9 ŠJ”­”Å
-@‰‰ñ‹N“®Žž‚ÉƒrƒfƒI‰æ–Ê‚ð•\Ž¦‚µ‚È‚¢‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/3/7(–Ø) Version 2.71 ƒÀ 8 ŠJ”­”Å
-@uƒAƒbƒvƒf[ƒg‚ÌŠm”Fvƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2013/3/6(…) Version 2.71 ƒÀ 7 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚Ìƒ^ƒO•\Ž¦‚ð‚‘¬‰»‚µ‚Ü‚µ‚½B
-
-2013/3/5(‰Î) Version 2.71 ƒÀ 6 ŠJ”­”Å
-@‰ÌŽŒ‚Ì•\Ž¦‚ð‚‘¬‰»‚µ‚Ü‚µ‚½B
-
-2013/3/4(ŒŽ) Version 2.71 ƒÀ 5 ŠJ”­”Å
-@Ä¶ŽžŠÔ‚Ì•\Ž¦‚ð‚‘¬‰»‚µ‚Ü‚µ‚½B
-
-2013/3/3(“ú) Version 2.71 ƒÀ 4 ŠJ”­”Å
-@Ý’èó‘Ô‚ð•Û‘¶‚µ‚Ä‚¢‚éSetting.ini‚É‚¨‚©‚µ‚È’l‚ª“ü‚éŽ–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü
-‚µ‚½B
-
-2013/3/2(“y) Version 2.71 ƒÀ 3 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚ª•œŒ³‚Å‚«‚È‚¢Ž–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2013/3/1(‹à) Version 2.71 ƒÀ 2 ŠJ”­”Å
-@ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌI—¹‚ð‚‘¬‰»‚µ‚Ü‚µ‚½B
-
-2013/2/28(–Ø) Version 2.71 ƒÀ 1 ŠJ”­”Å
-@‹N“®‚ð‚‘¬‰»‚µ‚Ü‚µ‚½B
-
-2013/2/27(…) Version 2.70 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2013/2/26(‰Î) Version 2.69 ƒÀ 15 ŠJ”­”Å
-@ƒOƒ‰ƒtƒBƒbƒNƒCƒRƒ‰ƒCƒU‚Ì•œŒ³‚ª‚¤‚Ü‚­‚¢‚©‚È‚¢Ž–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2013/2/25(ŒŽ) Version 2.69 ƒÀ 14 ŠJ”­”Å
-@Ä¶‘¬“xAÄ¶Žü”g”A‰¹’ö‚Ì•œŒ³‚ª‚¤‚Ü‚­‚¢‚©‚È‚¢Ž–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2013/2/24(“ú) Version 2.69 ƒÀ 13 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çu”Nvƒ^ƒO‚ð•ÒW‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/2/23(“y) Version 2.69 ƒÀ 12 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çuƒA[ƒeƒBƒXƒgvƒ^ƒO‚ð•ÒW‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü
-‚µ‚½B
-
-2013/2/22(‹à) Version 2.69 ƒÀ 11 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çuƒ^ƒCƒgƒ‹vƒ^ƒO‚ð•ÒW‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü
-‚µ‚½B
-
-2013/2/21(–Ø) Version 2.69 ƒÀ 10 ŠJ”­”Å
-@Ä¶’†‚Ìƒtƒ@ƒCƒ‹‚Ìƒ^ƒO‚ªXV‚Å‚«‚È‚©‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2013/2/20(…) Version 2.69 ƒÀ 9 ŠJ”­”Å
-@Šg’£Žqu.m4bv‚Ìƒtƒ@ƒCƒ‹‚ðŠJ‚¯‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/2/19(‰Î) Version 2.69 ƒÀ 8 ŠJ”­”Å
-@ƒ^ƒO‚Ì•ÒW’†‚ÉƒXƒy[ƒXƒL[‚ªŽg—p‚Å‚«‚È‚©‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2013/2/18(ŒŽ) Version 2.69 ƒÀ 7 ŠJ”­”Å
-@ƒ^ƒu‚ðíœ‚µ‚½Û‚ÉƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ªˆÙíI—¹‚·‚éŽ–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2013/2/17(“ú) Version 2.69 ƒÀ 6 ŠJ”­”Å
-@ƒ^ƒO‚Ì•ÒW’†‚ÉƒJ[ƒ\ƒ‹ƒL[‚ð‰Ÿ‚·Ž–‚Å•ÒW‚·‚é‰ÓŠ‚ðˆÚ“®‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/2/16(“y) Version 2.69 ƒÀ 5 ŠJ”­”Å
-@ƒ^ƒO‚Ì•ÒW’†‚ÉEscƒL[‚ð‰Ÿ‚·Ž–‚Åƒ^ƒO‚Ì•ÒW‚ðƒLƒƒƒ“ƒZƒ‹‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/2/15(‹à) Version 2.69 ƒÀ 4 ŠJ”­”Å
-@mp3infp.dll‚ðŽg—p‚µ‚½ƒ^ƒO‚ÌXV‚É‘Î‰ž‚µ‚Ü‚µ‚½B
-
-2013/2/14(–Ø) Version 2.69 ƒÀ 3 ŠJ”­”Å
-@mp3infp.dll‚ðŽg—p‚·‚é‚æ‚¤‚É‚µ‚½Ž–‚É‚æ‚èAƒ^ƒOî•ñ‚Ì“Ç‚Ýž‚Ý‚ª‚‘¬‰»‚³‚ê‚Ü‚µ‚½B
-
-2013/2/13(…) Version 2.69 ƒÀ 2 ŠJ”­”Å
-@‹N“®‚ð‚‘¬‰»‚µ‚Ü‚µ‚½B
-
-2013/2/12(‰Î) Version 2.69 ƒÀ 1 ŠJ”­”Å
-@ƒhƒ‰ƒbƒO•ƒhƒƒbƒv‚É‚æ‚èAƒrƒfƒI‰æ–Ê‚ÌƒTƒCƒY‚ð’²®‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/2/11(ŒŽ) Version 2.68 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2013/2/10(“ú) Version 2.67 ƒÀ 24 ŠJ”­”Å
-@ƒfƒBƒXƒg[ƒVƒ‡ƒ“‚ÌƒJƒXƒ^ƒ}ƒCƒYƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½BŠeƒpƒ‰ƒ[ƒ^‚ð’²®‚·‚é
-Ž–‚É‚æ‚èŽ©—R‚ÉƒfƒBƒXƒg[ƒVƒ‡ƒ“‚ð•ÏX‚Å‚«‚é‚æ‚¤‚É‚È‚è‚Ü‚µ‚½B
-
-2013/2/9(“y) Version 2.67 ƒÀ 23 ŠJ”­”Å
-@ƒK[ƒOƒ‹‚ÌƒJƒXƒ^ƒ}ƒCƒYƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½BŠeƒpƒ‰ƒ[ƒ^‚ð’²®‚·‚éŽ–
-‚É‚æ‚èŽ©—R‚ÉƒK[ƒOƒ‹‚ð•ÏX‚Å‚«‚é‚æ‚¤‚É‚È‚è‚Ü‚µ‚½B
-
-2013/2/8(‹à) Version 2.67 ƒÀ 22 ŠJ”­”Å
-@ƒtƒ‰ƒ“ƒWƒƒ[‚ÌƒJƒXƒ^ƒ}ƒCƒYƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½BŠeƒpƒ‰ƒ[ƒ^‚ð’²®‚·‚éŽ–
-‚É‚æ‚èŽ©—R‚Éƒtƒ‰ƒ“ƒWƒƒ[‚ð•ÏX‚Å‚«‚é‚æ‚¤‚É‚È‚è‚Ü‚µ‚½B
-
-2013/2/7(–Ø) Version 2.67 ƒÀ 21 ŠJ”­”Å
-@ƒRƒ“ƒvƒŒƒbƒT[‚ÌƒJƒXƒ^ƒ}ƒCƒYƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½BŠeƒpƒ‰ƒ[ƒ^‚ð’²®‚·‚éŽ–
-‚É‚æ‚èŽ©—R‚ÉƒRƒ“ƒvƒŒƒbƒT[‚ð•ÏX‚Å‚«‚é‚æ‚¤‚É‚È‚è‚Ü‚µ‚½B
-
-2013/2/6(…) Version 2.67 ƒÀ 20 ŠJ”­”Å
-@‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çA‰¹’ö‚ðƒfƒtƒHƒ‹ƒg‚É–ß‚¹‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/2/5(‰Î) Version 2.67 ƒÀ 19 ŠJ”­”Å
-@I—¹Žž‚É‰¹‚ª–Â‚Á‚Ä‚µ‚Ü‚¤Ž–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2013/2/4(ŒŽ) Version 2.67 ƒÀ 18 ŠJ”­”Å
-@‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çAÄ¶Žü”g”‚ðƒfƒtƒHƒ‹ƒg‚É–ß‚¹‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/2/3(“ú) Version 2.67 ƒÀ 17 ŠJ”­”Å
-@‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çAÄ¶‘¬“x‚ðƒfƒtƒHƒ‹ƒg‚É–ß‚¹‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/2/2(“y) Version 2.67 ƒÀ 16 ŠJ”­”Å
-@‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çAƒOƒ‰ƒtƒBƒbƒNƒCƒRƒ‰ƒCƒU‚ð”ñ•\Ž¦‚É‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/2/1(‹à) Version 2.67 ƒÀ 15 ŠJ”­”Å
-@‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çAƒpƒ“‚ð”ñ•\Ž¦‚É‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/1/31(–Ø) Version 2.67 ƒÀ 14 ŠJ”­”Å
-@‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çA‰¹—ÊƒRƒ“ƒgƒ[ƒ‹‚ð”ñ•\Ž¦‚É‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/1/30(…) Version 2.67 ƒÀ 13 ŠJ”­”Å
-@‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çA‰¹’öƒRƒ“ƒgƒ[ƒ‹‚ð”ñ•\Ž¦‚É‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/1/29(‰Î) Version 2.67 ƒÀ 12 ŠJ”­”Å
-@‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çAÄ¶Žü”g”ƒRƒ“ƒgƒ[ƒ‹‚ð”ñ•\Ž¦‚É‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/1/28(ŒŽ) Version 2.67 ƒÀ 11 ŠJ”­”Å
-@‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çAÄ¶‘¬“xƒRƒ“ƒgƒ[ƒ‹‚ð”ñ•\Ž¦‚É‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/1/27(“ú) Version 2.67 ƒÀ 10 ŠJ”­”Å
-@‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çAƒ^ƒu‚ð”ñ•\Ž¦‚É‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/1/26(“y) Version 2.67 ƒÀ 9 ŠJ”­”Å
-@‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çAÄ¶ˆÊ’uƒXƒ‰ƒCƒ_‚ð”ñ•\Ž¦‚É‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/1/25(‹à) Version 2.67 ƒÀ 8 ŠJ”­”Å
-@‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çAƒGƒNƒXƒvƒ[ƒ‰‚ð”ñ•\Ž¦‚É‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/1/24(–Ø) Version 2.67 ƒÀ 7 ŠJ”­”Å
-@‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çAÄ¶ƒŠƒXƒg‚ð”ñ•\Ž¦‚É‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/1/23(…) Version 2.67 ƒÀ 6 ŠJ”­”Å
-@‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çAƒrƒfƒI‰æ–Ê‚ð”ñ•\Ž¦‚É‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/1/22(‰Î) Version 2.67 ƒÀ 5 ŠJ”­”Å
-@ƒR[ƒ‰ƒX‚ÌƒJƒXƒ^ƒ}ƒCƒYƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½BŠeƒpƒ‰ƒ[ƒ^‚ð’²®‚·‚éŽ–‚É
-‚æ‚èŽ©—R‚ÉƒR[ƒ‰ƒX‚ð•ÏX‚Å‚«‚é‚æ‚¤‚É‚È‚è‚Ü‚µ‚½B
-
-2013/1/21(ŒŽ) Version 2.67 ƒÀ 4 ŠJ”­”Å
-@I—¹Žž‚ÌƒŒƒXƒ|ƒ“ƒX‚ð‚‘¬‰»‚µ‚Ü‚µ‚½B
-
-2013/1/20(“ú) Version 2.67 ƒÀ 3 ŠJ”­”Å
-@ƒfƒBƒŒƒC‚ÌƒJƒXƒ^ƒ}ƒCƒYƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½BŠeƒpƒ‰ƒ[ƒ^‚ð’²®‚·‚éŽ–‚É
-‚æ‚èŽ©—R‚ÉƒfƒBƒŒƒC‚ð•ÏX‚Å‚«‚é‚æ‚¤‚É‚È‚è‚Ü‚µ‚½B
-
-2013/1/19(“y) Version 2.67 ƒÀ 2 ŠJ”­”Å
-@‚R‚cƒŠƒo[ƒu‚ÌƒJƒXƒ^ƒ}ƒCƒYƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½BŠeƒpƒ‰ƒ[ƒ^‚ð’²®‚·‚éŽ–‚É
-‚æ‚èŽ©—R‚É‚R‚cƒŠƒo[ƒu‚ð•ÏX‚Å‚«‚é‚æ‚¤‚É‚È‚è‚Ü‚µ‚½B
-
-2013/1/18(‹à) Version 2.67 ƒÀ 1 ŠJ”­”Å
-@ƒŠƒo[ƒu‚ÌƒJƒXƒ^ƒ}ƒCƒYƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½BŠeƒpƒ‰ƒ[ƒ^‚ð’²®‚·‚éŽ–‚É‚æ‚è
-Ž©—R‚ÉƒŠƒo[ƒu‚ð•ÏX‚Å‚«‚é‚æ‚¤‚É‚È‚è‚Ü‚µ‚½B
-
-2013/1/17(–Ø) Version 2.66 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2013/1/16(…) Version 2.65 ƒÀ 24 ŠJ”­”Å
-@ABƒ‹[ƒvŽž‚Ì‹t‰ñ“]Ä¶‚É‚·‚é‚Æ‹““®‚ª‚¨‚©‚µ‚­‚È‚Á‚Ä‚µ‚Ü‚Á‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü
-‚µ‚½B
-
-2013/1/15(‰Î) Version 2.65 ƒÀ 23 ŠJ”­”Å
-@MP3‘‚«o‚µŽž‚ÌLAMEƒRƒ}ƒ“ƒhƒ‰ƒCƒ“ƒIƒvƒVƒ‡ƒ“‚ðŽw’è‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/1/14(ŒŽ) Version 2.65 ƒÀ 22 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çÄ¶’†‚Ì‹È‚Ì‰ÌŽŒ‚ðLyrics Master‚ÅŒŸõ‚Å‚«
-‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/1/13(“ú) Version 2.65 ƒÀ 21 ŠJ”­”Å
-@Å‘å’l^Å¬’l‚ÌÝ’èŽž‚ÉA’l‚ª‚¨‚©‚µ‚­‚È‚Á‚Ä‚µ‚Ü‚¤Ž–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2013/1/12(“y) Version 2.65 ƒÀ 20 ŠJ”­”Å
-@ƒGƒtƒFƒNƒg¨‰¹’ö¨‰¹’öŽw’èƒƒjƒ…[‚É‚æ‚èAŠÈ’P‚É‰¹’ö‚ªŽw’è‚Å‚«‚é‚æ‚¤‚É‚È‚è
-‚Ü‚µ‚½B
-
-2013/1/11(‹à) Version 2.65 ƒÀ 19 ŠJ”­”Å
-@ƒGƒtƒFƒNƒg¨Ä¶Žü”g”¨Žü”g”Žw’èƒƒjƒ…[‚É‚æ‚èAŠÈ’P‚É‘¬“x‚ªŽw’è‚Å‚«‚é‚æ‚¤
-‚É‚È‚è‚Ü‚µ‚½B
-
-2013/1/10(–Ø) Version 2.65 ƒÀ 18 ŠJ”­”Å
-@ƒGƒtƒFƒNƒg¨Ä¶‘¬“x¨‘¬“xŽw’èƒƒjƒ…[‚É‚æ‚èAŠÈ’P‚É‘¬“x‚ªŽw’è‚Å‚«‚é‚æ‚¤‚É
-‚È‚è‚Ü‚µ‚½B
-
-2013/1/9(…) Version 2.65 ƒÀ 17 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚É“Çž‰Â”\‚Èƒtƒ@ƒCƒ‹‚Ì‚Ý•\Ž¦‚·‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/1/8(‰Î) Version 2.65 ƒÀ 16 ŠJ”­”Å
-@ƒrƒfƒI‰æ–Ê‚Ì—¼’[‚ªƒOƒŒ[‚É‚È‚Á‚Ä‚µ‚Ü‚Á‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2013/1/7(ŒŽ) Version 2.65 ƒÀ 15 ŠJ”­”Å
-@“®‰æ‚Ì•\Ž¦ƒTƒCƒY‚ª‚¨‚©‚µ‚­‚È‚éŽ–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2013/1/6(“ú) Version 2.65 ƒÀ 14 ŠJ”­”Å
-@FLVƒtƒ@ƒCƒ‹‚Ì“Ç‚Ýž‚Ý‚É‘Î‰ž‚µ‚Ü‚µ‚½Bi—vffdshow^FLV Splitterj
-
-2013/1/5(“y) Version 2.65 ƒÀ 13 ŠJ”­”Å
-@ƒGƒNƒXƒvƒ[ƒ‰ƒyƒCƒ“‚É“Çž‰Â”\‚Èƒtƒ@ƒCƒ‹‚Ì‚Ý•\Ž¦‚·‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2013/1/4(‹à) Version 2.65 ƒÀ 12 ŠJ”­”Å
-@u‘S‚ÄƒfƒtƒHƒ‹ƒg‚É–ß‚·v‘I‘ðŽžAŒø‰Ê‰¹‚ÌÄ¶‚ª’âŽ~‚µ‚Ä‚¢‚È‚©‚Á‚½‚Ì‚ðC³‚µ‚Ü
-‚µ‚½B
-
-2013/1/3(–Ø) Version 2.65 ƒÀ 11 ŠJ”­”Å
-@‰Ì‚Ö‚½ƒ‚[ƒhÝ’èŽžAˆê•”‚ÌƒGƒtƒFƒNƒg‚ªƒIƒt‚É‚È‚Á‚Ä‚¢‚È‚©‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2013/1/2(…) Version 2.65 ƒÀ 10 ŠJ”­”Å
-@ƒVƒXƒeƒ€ËÄ¶ˆÊ’uƒƒjƒ…[‚É‚æ‚èAÄ¶ˆÊ’u‚ð0.001•b’PˆÊ‚ÅŽw’è‚Å‚«‚é‚æ‚¤‚É
-‚µ‚Ü‚µ‚½B
-
-2013/1/1(‰Î) Version 2.65 ƒÀ 9 ŠJ”­”Å
-@‘O‰ñI—¹Žž‚ÌABƒ‹[ƒv‚ÌÝ’èó‘Ô‚ð•œŒ³‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/12/31(ŒŽ) Version 2.65 ƒÀ 8 ŠJ”­”Å
-@Œø‰Ê‰¹‚ÌˆêŽí‚Æ‚µ‚ÄAu”g‰¹vƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/12/31(ŒŽ) Version 2.65 ƒÀ 7 ŠJ”­”Å
-@Œø‰Ê‰¹‚ÌˆêŽí‚Æ‚µ‚ÄAuƒŒƒR[ƒhƒmƒCƒYvƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/12/30(“ú) Version 2.65 ƒÀ 6 ŠJ”­”Å
-@uABƒ‹[ƒv(A)‚ÌˆÊ’uÝ’èvuABƒ‹[ƒv(B)‚ÌˆÊ’uÝ’èvƒƒjƒ…[‚É‚æ‚èAABƒ‹[ƒv
-ˆÊ’u‚Ì”÷’²®‚ª‰Â”\‚É‚È‚è‚Ü‚µ‚½B
-
-2012/12/30(“ú) Version 2.65 ƒÀ 5 ŠJ”­”Å
-@uŒ»ÝˆÊ’u‚ðABƒ‹[ƒv(A)‚ÉÝ’èvuŒ»ÝˆÊ’u‚ðABƒ‹[ƒv(B)‚ÉÝ’èvƒƒjƒ…[‚ð’Ç‰Á
-‚µ‚Ü‚µ‚½B
-
-2012/12/30(“ú) Version 2.65 ƒÀ 4 ŠJ”­”Å
-@ƒc[ƒ‹ƒo[‚ÌƒŠƒZƒbƒgŽž‚É‘S‚Ä‚Ìƒ{ƒ^ƒ“‚ªƒŠƒZƒbƒg‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚Ì‚ðC³
-‚µ‚Ü‚µ‚½B
-
-2012/12/30(“ú) Version 2.65 ƒÀ 3 ŠJ”­”Å
-@‹È‚Ì’âŽ~Žž‚ÌƒtƒF[ƒhƒAƒEƒgŽžŠÔ‚ð1`10•b‚ÌŠÔ‚Å‘I‘ð‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/12/29(“y) Version 2.65 ƒÀ 2 ŠJ”­”Å
-@‹È‚ÌØ‘ÖŽž‚ÌƒtƒF[ƒhƒAƒEƒgŽžŠÔ‚ð1`10•b‚ÌŠÔ‚Å‘I‘ð‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/12/28(‹à) Version 2.65 ƒÀ 1 ŠJ”­”Å
-@Ä¶”ÍˆÍ‚ÌŽw’è‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/12/27(–Ø) Version 2.64 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2012/12/26(…) Version 2.63 ƒÀ 16 ŠJ”­”Å
-@u‚‰¹ƒJƒbƒgi’´Å‹­jvƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/12/26(…) Version 2.63 ƒÀ 15 ŠJ”­”Å
-@u’†‰¹ƒJƒbƒgi’´Å‹­jvƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/12/25(‰Î) Version 2.63 ƒÀ 14 ŠJ”­”Å
-@‘S‹Èƒ‹[ƒv‚ª³í‚É‹@”\‚µ‚Ä‚¢‚È‚©‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/12/25(‰Î) Version 2.63 ƒÀ 13 ŠJ”­”Å
-@u’á‰¹ƒJƒbƒgi’´Å‹­jvƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/12/25(‰Î) Version 2.63 ƒÀ 12 ŠJ”­”Å
-@uƒhƒ‰ƒ€iƒnƒCƒnƒbƒgAƒVƒ“ƒoƒ‹j‚ÌŽ¨ƒRƒsvƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/12/24(ŒŽ) Version 2.63 ƒÀ 11 ŠJ”­”Å
-@u‚‰¹‹­’²i’´Å‹­jvƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/12/24(ŒŽ) Version 2.63 ƒÀ 10 ŠJ”­”Å
-@u’†‰¹‹­’²i’´Å‹­jvƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/12/24(ŒŽ) Version 2.63 ƒÀ 9 ŠJ”­”Å
-@uƒx[ƒX‚ÌŽ¨ƒRƒsv‚Ì•iŽ¿‚ð‰ü‘P‚µA‚à‚Á‚ÆŽ¨ƒRƒs‚µ‚â‚·‚­‚µ‚Ü‚µ‚½B
-
-2012/12/24(ŒŽ) Version 2.63 ƒÀ 8 ŠJ”­”Å
-@u’á‰¹‹­’²i’´Å‹­jvƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/12/24(ŒŽ) Version 2.63 ƒÀ 7 ŠJ”­”Å
-@ƒOƒ‰ƒtƒBƒbƒNƒCƒRƒ‰ƒCƒU‚Ì’²®”ÍˆÍ‚ð-15`15‚©‚çA-30`30‚É•ÏX‚µ‚Ü‚µ‚½B
-
-2012/12/23(“ú) Version 2.63 ƒÀ 6 ŠJ”­”Å
-@u‚PƒIƒNƒ^[ƒuã‚°‚évu‚PƒIƒNƒ^[ƒu‰º‚°‚évƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/12/23(“ú) Version 2.63 ƒÀ 5 ŠJ”­”Å
-@ƒcƒCƒbƒ^[‚Ö‚Ì“Še‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/12/23(“ú) Version 2.63 ƒÀ 4 ŠJ”­”Å
-@³í‚ÉI—¹‚Å‚«‚È‚¢Ž–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/12/19(…) Version 2.63 ƒÀ 3 ŠJ”­”Å
-@ƒx[ƒX‚ÌŽ¨ƒRƒs‘I‘ðŽžAƒƒjƒ…[‚Éƒ`ƒFƒbƒNƒ}[ƒN‚ª‚Â‚­‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/12/18(‰Î) Version 2.63 ƒÀ 2 ŠJ”­”Å
-@ƒ‰ƒ“ƒ_ƒ€Ä¶ŽžA‘S‚Ä‚ÌÄ¶‚ªI‚í‚é‚ÆÅŒã‚Ì‹È‚ªŒJ‚è•Ô‚µÄ¶‚³‚ê‚Ä‚µ‚Ü‚Á‚Ä‚¢‚½
-‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/12/17(ŒŽ) Version 2.63 ƒÀ 1 ŠJ”­”Å
-@ƒ‰ƒ“ƒ_ƒ€Ä¶ŽžA“Çž•s”\‚Èƒtƒ@ƒCƒ‹‚ª‚ ‚é‚ÆÄ¶‚ª’âŽ~‚µ‚Ä‚µ‚Ü‚Á‚Ä‚¢‚½‚Ì‚ðC³
-‚µ‚Ü‚µ‚½B
-
-2012/12/16(“ú) Version 2.62 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2012/12/15(“y) Version 2.61 ƒÀ 20 ŠJ”­”Å
-@ƒm[ƒ}ƒ‰ƒCƒYƒƒjƒ…[‘I‘ðŽž‚Éƒ{[ƒJƒ‹ƒLƒƒƒ“ƒZƒ‹‹@”\‚ª“­‚¢‚Ä‚µ‚Ü‚Á‚Ä‚¢‚½‚Ì‚ð
-C³‚µ‚Ü‚µ‚½B
-
-2012/12/14(‹à) Version 2.61 ƒÀ 19 ŠJ”­”Å
-@Ä¶ˆÊ’u‚ÌƒŒƒWƒ…[ƒ€‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@Ä¶’âŽ~Žž‚ÉÄ¶ƒŠƒXƒg‚Ì‚P‹È–Ú‚É–ß‚Á‚Ä‚µ‚Ü‚Á‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/12/13(–Ø) Version 2.61 ƒÀ 18 ŠJ”­”Å
-@ƒ^ƒu”ñ•\Ž¦Žž‚ÉƒGƒNƒXƒvƒ[ƒ‰‚Ì•‚ð’²®‚Å‚«‚È‚©‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/12/12(…) Version 2.61 ƒÀ 17 ŠJ”­”Å
-@ALACƒtƒ@ƒCƒ‹‚Ì“Ç‚Ýž‚Ý‚É‘Î‰ž‚µ‚Ü‚µ‚½B
-
-2012/12/11(‰Î) Version 2.61 ƒÀ 16 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çÄ¶’†‚ÌƒA[ƒeƒBƒXƒg‚Ì‹È‚ðiTunes Store‚Å
-ŒŸõ‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/12/10(ŒŽ) Version 2.61 ƒÀ 15 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çÄ¶’†‚Ì‹È‚Ì‰ÌŽŒ‚ðƒCƒ“ƒ^[ƒlƒbƒg‚ÅŒŸõ
-‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/12/9(“ú) Version 2.61 ƒÀ 14 ŠJ”­”Å
-@‹È‚ÌØ‘ÖŽž‚ÉŽG‰¹‚ª‚·‚éŽ–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/12/8(“y) Version 2.61 ƒÀ 13 ŠJ”­”Å
-@ƒGƒNƒXƒvƒ[ƒ‰•\Ž¦ŽžA‰æ–Ê•\Ž¦‚ª‚¨‚©‚µ‚­‚È‚éŽ–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/12/7(‹à) Version 2.61 ƒÀ 12 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çÄ¶’†‚ÌƒA[ƒeƒBƒXƒg‚Ì‹È‚ðAmazon‚ÅŒŸõ
-‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/12/6(–Ø) Version 2.61 ƒÀ 11 ŠJ”­”Å
-@ƒGƒNƒXƒvƒ[ƒ‰‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çƒtƒ@ƒCƒ‹‚ð’Ç‰Á‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/12/5(…) Version 2.61 ƒÀ 10 ŠJ”­”Å
-@ƒGƒNƒXƒvƒ[ƒ‰‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çƒtƒ@ƒCƒ‹‚ðŠJ‚¯‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/12/4(‰Î) Version 2.61 ƒÀ 9 ŠJ”­”Å
-@ƒGƒNƒXƒvƒ[ƒ‰‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çƒtƒ@ƒCƒ‹‚ª‘¶Ý‚·‚éƒtƒHƒ‹ƒ_‚ðŠJ‚¯‚é‚æ‚¤
-‚É‚µ‚Ü‚µ‚½B
-
-2012/12/3(ŒŽ) Version 2.61 ƒÀ 8 ŠJ”­”Å
-@ƒGƒNƒXƒvƒ[ƒ‰‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çƒtƒ@ƒCƒ‹‚ÌƒvƒƒpƒeƒB‚ð•\Ž¦‚Å‚«‚é‚æ‚¤‚É
-‚µ‚Ü‚µ‚½B
-
-2012/12/2(“ú) Version 2.61 ƒÀ 7 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚ç‰¹ºƒtƒ@ƒCƒ‹‚ª‘¶Ý‚·‚éƒtƒHƒ‹ƒ_‚ðŠJ‚¯‚é‚æ‚¤
-‚É‚µ‚Ü‚µ‚½B
-
-2012/12/1(“y) Version 2.61 ƒÀ 6 ŠJ”­”Å
-@ƒc[ƒ‹ƒo[‚©‚çƒGƒNƒXƒvƒ[ƒ‰‚Ì•\Ž¦ó‘Ô‚ðØ‚è‘Ö‚¦‚ç‚ê‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/11/29(–Ø) Version 2.61 ƒÀ 5 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚çƒtƒ@ƒCƒ‹‚ÌƒvƒƒpƒeƒB‚ð•\Ž¦‚Å‚«‚é‚æ‚¤‚É
-‚µ‚Ü‚µ‚½B
-
-2012/11/29(–Ø) Version 2.61 ƒÀ 4 ŠJ”­”Å
-@ƒRƒ“ƒgƒ[ƒ‹‚Ì•\Ž¦ó‘Ô‚ðØ‚è‘Ö‚¦‚½Û‚ÉAƒEƒBƒ“ƒhƒEƒTƒCƒY‚ª‚¨‚©‚µ‚­‚È‚éŽ–‚ª
-‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/11/28(…) Version 2.61 ƒÀ 3 ŠJ”­”Å
-@ƒ^ƒu”ñ•\Ž¦Žž‚ÉÄ¶ƒŠƒXƒgã•”‚É—]•ª‚ÈƒXƒy[ƒX‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/11/26(ŒŽ) Version 2.61 ƒÀ 2 ŠJ”­”Å
-@ƒGƒNƒXƒvƒ[ƒ‰‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½BƒGƒNƒXƒvƒ[ƒ‰•—‚ÌƒRƒ“ƒgƒ[ƒ‹‚©‚çŠÈ’P‚É
-‹È‚ðŠJ‚­Ž–‚ªo—ˆ‚é‚æ‚¤‚É‚È‚è‚Ü‚µ‚½B
-
-2012/11/21(…) Version 2.61 ƒÀ 1 ŠJ”­”Å
-@ƒ^ƒu‚ð”ñ•\Ž¦‚É‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/11/21(…) Version 2.60 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2012/11/19(ŒŽ) Version 2.59 ƒÀ 12 ŠJ”­”Å
-@ƒGƒtƒFƒNƒg‚ÌƒvƒŠƒZƒbƒgŠÇ—‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B‚¨‹C‚É“ü‚è‚ÌƒGƒtƒFƒNƒg‚ðuŽž‚É
-ŒÄ‚Ño‚¹‚é‚æ‚¤‚É‚È‚è‚Ü‚µ‚½B
-
-2012/11/19(ŒŽ) Version 2.59 ƒÀ 11 ŠJ”­”Å
-@ˆê•”‚ÌŠÂ‹«‚Å‹N“®‚µ‚È‚¢Ž–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/11/11(“ú) Version 2.59 ƒÀ 10 ŠJ”­”Å
-@ŠÂ‹«‚Ìˆá‚¢‚É‚æ‚èAÝ’èó‘Ô‚ª³‚µ‚­“Ç‚Ýž‚ß‚È‚¢Ž–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/11/10(“y) Version 2.59 ƒÀ 9 ŠJ”­”Å
-@”‘½‚­‚Ì—v–]‚ª‚ ‚Á‚½uÝ’èó‘Ô‚Ì‘‚«o‚µ^“Ç‚Ýž‚Ý‹@”\v‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-uƒtƒ@ƒCƒ‹¨•Û‘¶vƒƒjƒ…[‚©‚ç‘‚«o‚µ‚½Ý’èó‘Ô‚ðuƒtƒ@ƒCƒ‹¨ŠJ‚­v‚©‚ç
-‚¢‚Â‚Å‚à“Ç‚Ýž‚ÞŽ–‚ª‚Å‚«‚Ü‚·B
-
-2012/11/10(“y) Version 2.59 ƒÀ 8 ŠJ”­”Å
-@D•]‚¾‚Á‚½Version 2.46‚ÌƒŠƒo[ƒu‚ð•œŠˆ‚³‚¹‚Ü‚µ‚½B
-
-2012/11/10(“y) Version 2.59 ƒÀ 7 ŠJ”­”Å
-@u‘S‚Ä‚ÌƒRƒ“ƒgƒ[ƒ‹‚ð•Â‚¶‚évƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/11/9(‹à) Version 2.59 ƒÀ 6 ŠJ”­”Å
-@ƒGƒtƒFƒNƒgƒƒjƒ…[‚Éu‚‰¹ƒJƒbƒgvƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/11/9(‹à) Version 2.59 ƒÀ 5 ŠJ”­”Å
-@ƒGƒtƒFƒNƒgƒƒjƒ…[‚Éu’†‰¹ƒJƒbƒgvƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/11/9(‹à) Version 2.59 ƒÀ 4 ŠJ”­”Å
-@ƒGƒtƒFƒNƒgƒƒjƒ…[‚Éu’á‰¹ƒJƒbƒgvƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/11/8(–Ø) Version 2.59 ƒÀ 3 ŠJ”­”Å
-@ƒGƒtƒFƒNƒgƒƒjƒ…[‚Éu’®ŠoƒgƒŒ[ƒjƒ“ƒOvƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/11/7(…) Version 2.59 ƒÀ 2 ŠJ”­”Å
-@ƒOƒ‰ƒtƒBƒbƒNƒCƒRƒ‰ƒCƒU‚ªˆê•”•œŒ³‚³‚ê‚È‚©‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/11/6(‰Î) Version 2.59 ƒÀ 1 ŠJ”­”Å
-@ˆêŠ‡•Û‘¶ŽžAƒtƒ@ƒCƒ‹–¼‚Éu_h001v‚ª•t‰Á‚³‚ê‚È‚¢‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/11/4(“ú) Version 2.58 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2012/11/4(“ú) Version 2.57 ƒÀ 16 ŠJ”­”Å
-@ƒRƒ“ƒgƒ[ƒ‹‚Ì•\Ž¦ó‘Ô‚ðØ‚è‘Ö‚¦‚½Û‚ÉAÄ¶ƒŠƒXƒg‚ÌƒTƒCƒY‚ª•Ï‚í‚Á‚Ä‚µ‚Ü‚Á‚Ä
-‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/11/4(“ú) Version 2.57 ƒÀ 15 ŠJ”­”Å
-@ƒ‰ƒ“ƒ_ƒ€Ä¶ŽžAˆê‚Â‘O‚Ìƒtƒ@ƒCƒ‹‚ðŠJ‚¢‚½Û‚É‹È–¼‚ªƒEƒBƒ“ƒhƒEƒ^ƒCƒgƒ‹‚É”½‰f
-‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/11/3(“y) Version 2.57 ƒÀ 14 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚Ì•\Ž¦^”ñ•\Ž¦‚ðØ‚è‘Ö‚¦‚éÛ‚ÉA‚Ü‚¾ƒrƒfƒI‰æ–Ê‚ª‘å‚«‚­‚È‚éê‡‚ª
-‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/10/31(…) Version 2.57 ƒÀ 13 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚Ì•\Ž¦^”ñ•\Ž¦‚ðØ‚è‘Ö‚¦‚é“x‚ÉƒrƒfƒI‰æ–Ê‚ª™X‚É‘å‚«‚­‚È‚Á‚Ä‚¢‚½
-‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/10/30(‰Î) Version 2.57 ƒÀ 12 ŠJ”­”Å
-@‰Ì‚Ö‚½ƒ‚[ƒh‰ðœŒã‚ÉÄ¶‘¬“x‚ª¬”“_2Œ…‚Ì‚Ü‚Ü–ß‚ç‚È‚©‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/10/30(‰Î) Version 2.57 ƒÀ 11 ŠJ”­”Å
-@ˆê‚Â‘O‚Ìƒtƒ@ƒCƒ‹‚ðŠJ‚¢‚½Žž‚ÉA‹È–¼‚ªƒEƒBƒ“ƒhƒEƒ^ƒCƒgƒ‹‚É”½‰f‚³‚ê‚Ä‚¢‚È‚©‚Á‚½
-‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/10/29(ŒŽ) Version 2.57 ƒÀ 10 ŠJ”­”Å
-@‘S‚Ä‚ÌƒRƒ“ƒgƒ[ƒ‹‚Ì•\Ž¦^”ñ•\Ž¦‚ð“Æ—§‚µ‚ÄØ‚è‘Ö‚¦‚ç‚ê‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/10/28(“ú) Version 2.57 ƒÀ 9 ŠJ”­”Å
-@ƒ\[ƒXƒR[ƒh‚ð®—‚µAŽÀsƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY‚ð–ñ50KBíŒ¸‚µ‚Ü‚µ‚½B
-
-2012/10/28(“ú) Version 2.57 ƒÀ 8 ŠJ”­”Å
-@ƒc[ƒ‹ƒo[‚Ìƒ{ƒ^ƒ“”‚É‰ž‚¶‚ÄAƒEƒBƒ“ƒhƒEƒTƒCƒY‚ð‚à‚Á‚Æ¬‚³‚­‚Å‚«‚é‚æ‚¤‚É
-‚µ‚Ü‚µ‚½B
-
-2012/10/27(“y) Version 2.57 ƒÀ 7 ŠJ”­”Å
-@ƒOƒ‰ƒtƒBƒbƒNƒCƒRƒ‰ƒCƒU‚ÌŠeŽü”g”‘Ñˆæ‚É‚Â‚¢‚ÄAŠeƒRƒ“ƒgƒ[ƒ‹‚²‚Æ‚É•\Ž¦‚·‚é‚©
-‚Ç‚¤‚©‚ðØ‚è‘Ö‚¦‚ç‚ê‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/10/16(‰Î) Version 2.57 ƒÀ 6 ŠJ”­”Å
-@ƒOƒ‰ƒtƒBƒbƒNƒCƒRƒ‰ƒCƒU‚ÌŽü”g”‘Ñˆæ‚ð31ƒoƒ“ƒh‚É‘‚â‚µ‚Ü‚µ‚½B
-
-2012/10/8(ŒŽ) Version 2.57 ƒÀ 5 ŠJ”­”Å
-@ƒRƒ“ƒgƒ[ƒ‹‚Ì•\Ž¦ó‘Ô‚ðØ‚è‘Ö‚¦‚½ÛAƒEƒBƒ“ƒhƒEƒTƒCƒY‚ª‚¨‚©‚µ‚­‚È‚éŽ–‚ª
-‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/10/6(“y) Version 2.57 ƒÀ 4 ŠJ”­”Å
-@uÄ¶ˆÊ’uvƒƒjƒ…[Žg—pŒãAƒEƒBƒ“ƒhƒE‚ªƒAƒNƒeƒBƒu‚É‚È‚Á‚Ä‚¢‚È‚©‚Á‚½‚Ì‚ð
-C³‚µ‚Ü‚µ‚½B
-
-2012/10/4(–Ø) Version 2.57 ƒÀ 3 ŠJ”­”Å
-@u‰Ì‚Ö‚½ƒ‚[ƒhvƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/10/4(–Ø) Version 2.57 ƒÀ 2 ŠJ”­”Å
-@ƒc[ƒ‹ƒo[‚Ìƒ{ƒ^ƒ“ƒTƒCƒY‚Éu’†v‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/10/2(‰Î) Version 2.57 ƒÀ 1 ŠJ”­”Å
-@ƒc[ƒ‹ƒo[‚Ìƒ{ƒ^ƒ“ƒTƒCƒY‚ð•ÏX‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/9/20(–Ø) Version 2.56 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2012/9/18(‰Î) Version 2.55 ƒÀ 5 ŠJ”­”Å
-@ƒGƒtƒFƒNƒg‚ÌŽí—Þ‚Éu“d’rØ‚êv‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/9/18(‰Î) Version 2.55 ƒÀ 4 ŠJ”­”Å
-@Ä¶‘¬“xAÄ¶Žü”g”‚ÌƒfƒtƒHƒ‹ƒg‚É–ß‚·ƒƒjƒ…[‚É‚Â‚¢‚ÄA‹““®‚ª‚¨‚©‚µ‚¢Ž–‚ª
-‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/9/17(ŒŽ) Version 2.55 ƒÀ 3 ŠJ”­”Å
-@Ä¶‘¬“x‚ð5%ã‚°‚éA10%ã‚°‚é‹@”\‚ª“®ì‚µ‚È‚¢Ž–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/9/14(‹à) Version 2.55 ƒÀ 2 ŠJ”­”Å
-@uƒx[ƒX‚ÌŽ¨ƒRƒsvƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/9/12(…) Version 2.55 ƒÀ 1 ŠJ”­”Å
-@ƒGƒtƒFƒNƒgƒƒjƒ…[‚Éu‘S‚ÄƒfƒtƒHƒ‹ƒg‚É–ß‚·vƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/9/11(‰Î) Version 2.54 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2012/9/9(“ú) Version 2.53 ƒÀ 12 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚ÉuÄ¶v‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/9/9(“ú) Version 2.53 ƒÀ 11 ŠJ”­”Å
-@ƒrƒfƒI‰æ–Ê‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚Éu‘S‰æ–Ê•\Ž¦v‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/9/9(“ú) Version 2.53 ƒÀ 10 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚É‚¨‚¯‚éƒ^ƒu‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚Éu–¼‘O‚Ì•ÏXv‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/9/9(“ú) Version 2.53 ƒÀ 9 ŠJ”­”Å
-@ƒ}ƒEƒXƒzƒC[ƒ‹Žg—pŽž‚Ì‹““®‚ª‚Ü‚¾ˆê•”‚¨‚©‚µ‚©‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/9/9(“ú) Version 2.53 ƒÀ 8 ŠJ”­”Å
-@ƒÀ 2 ˆÈ~AƒOƒ‰ƒtƒBƒbƒNƒCƒRƒ‰ƒCƒU‚ª‹@”\‚µ‚Ä‚¢‚È‚©‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/9/8(“y) Version 2.53 ƒÀ 7 ŠJ”­”Å
-@ƒ}ƒEƒXƒzƒC[ƒ‹Žg—pŽž‚Ì‹““®‚ªˆê•”‚¨‚©‚µ‚©‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/9/5(…) Version 2.53 ƒÀ 6 ŠJ”­”Å
-@Ä¶‘¬“x^Žü”g”^‰¹’ö‚ÌÝ’è‚ªãŽè‚­‚¢‚©‚È‚¢Ž–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/9/4(‰Î) Version 2.53 ƒÀ 5 ŠJ”­”Å
-@‰¹’ö‚Ì¬”“_Œ…”‚ð0Œ…`2Œ…‚Ì”ÍˆÍ‚Å‘I‚×‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/9/2(“ú) Version 2.53 ƒÀ 4 ŠJ”­”Å
-@Ä¶Žü”g”‚Ì¬”“_Œ…”‚ð0Œ…`2Œ…‚Ì”ÍˆÍ‚Å‘I‚×‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/9/2(“ú) Version 2.53 ƒÀ 3 ŠJ”­”Å
-@Ä¶‘¬“x‚Ì¬”“_Œ…”‚ð0Œ…`2Œ…‚Ì”ÍˆÍ‚Å‘I‚×‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/8/26(“ú) Version 2.53 ƒÀ 2 ŠJ”­”Å
-@‰pŒê”Å‚Æ“ú–{Œê”Å‚Ìƒ\[ƒX‚ð“ˆê‰»‚·‚é‚Æ‚Æ‚à‚ÉAƒR[ƒh“à—e‚ð‘S–Ê“I‚ÉŒ©’¼‚µA
-ŽÀsƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY‚ðíŒ¸‚µ‚Ü‚µ‚½B
-
-2012/8/24(‹à) Version 2.53 ƒÀ 1 ŠJ”­”Å
-@ƒ\[ƒXƒR[ƒh‚ð®—‚µAŽÀsƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY‚ðíŒ¸‚µ‚Ü‚µ‚½B
-
-2012/8/24(‹à) Version 2.52 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2012/8/24(‹à) Version 2.51 ƒÀ 12 ŠJ”­”Å
-@Å¬‰»Žž‚Éƒ^ƒXƒNƒgƒŒƒC‚ÉŠi”[‚·‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/8/23(–Ø) Version 2.51 ƒÀ 11 ŠJ”­”Å
-@ƒƒ‚ƒŠƒŠ[ƒN‚ð‹N‚±‚µ‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/8/23(–Ø) Version 2.51 ƒÀ 10 ŠJ”­”Å
-@ƒGƒtƒFƒNƒg‚ÌˆêŽíuƒK[ƒOƒ‹v‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/8/23(–Ø) Version 2.51 ƒÀ 9 ŠJ”­”Å
-@ƒGƒtƒFƒNƒg‚ÌˆêŽíuƒtƒ‰ƒ“ƒWƒƒ[v‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/8/22(…) Version 2.51 ƒÀ 8 ŠJ”­”Å
-@ƒGƒtƒFƒNƒg‚ÌˆêŽíuƒRƒ“ƒvƒŒƒbƒT[v‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/8/22(…) Version 2.51 ƒÀ 7 ŠJ”­”Å
-@ƒGƒtƒFƒNƒg‚ÌˆêŽíuƒR[ƒ‰ƒXv‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/8/21(‰Î) Version 2.51 ƒÀ 6 ŠJ”­”Å
-@ƒGƒtƒFƒNƒg‚ÌˆêŽíuƒfƒBƒXƒg[ƒVƒ‡ƒ“v‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/8/19(“ú) Version 2.51 ƒÀ 5 ŠJ”­”Å
-@ƒGƒtƒFƒNƒgŒn‚Ìƒƒjƒ…[‚ð®—‚µAƒGƒtƒFƒNƒgƒƒjƒ…[‚Æ‚µ‚Ä‚Ü‚Æ‚ß‚Ü‚µ‚½B
-
-2012/8/19(“ú) Version 2.51 ƒÀ 4 ŠJ”­”Å
-@ƒGƒtƒFƒNƒg‚ÌƒvƒŠƒZƒbƒg‚ð“ú–{Œê‚É‚µ‚Ü‚µ‚½B
-
-2012/8/14(‰Î) Version 2.51 ƒÀ 3 ŠJ”­”Å
-@ƒ^ƒCƒgƒ‹ƒo[‚ÉŒ»ÝÄ¶’†‚Ì‹È‚Ìƒ^ƒCƒgƒ‹‚ð•\Ž¦‚·‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/8/12(“ú) Version 2.51 ƒÀ 2 ŠJ”­”Å
-@ƒEƒBƒ“ƒhƒE‚ÌˆÊ’u‚ª³‚µ‚­•œŒ³‚³‚ê‚È‚¢Ž–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/8/12(“ú) Version 2.51 ƒÀ 1 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg“à‚ÌƒAƒCƒeƒ€‚ð•À‚Ñ‘Ö‚¦‚é‚ÆA•\Ž¦‚ª‚¨‚©‚µ‚­‚È‚é‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/8/10(‹à) Version 2.50 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2012/8/8(…) Version 2.49 ƒÀ 17 ŠJ”­”Å
-@ˆêŠ‡•ÏŠ·ŽžA‘å—Ê‚Ìƒ_ƒCƒAƒƒOƒ{ƒbƒNƒX‚ª•\Ž¦‚³‚ê‚Ä‚µ‚Ü‚¤Ž–‚ª‚ ‚Á‚½‚Ì‚ðC³
-‚µ‚Ü‚µ‚½B
-
-2012/8/7(‰Î) Version 2.49 ƒÀ 16 ŠJ”­”Å
-@ŠJ‚¢‚½ƒtƒ@ƒCƒ‹‚ª‘S‚ÄƒƒbƒN‚³‚ê‚Ä‚µ‚Ü‚Á‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/8/7(‰Î) Version 2.49 ƒÀ 15 ŠJ”­”Å
-@ƒRƒ“ƒgƒ[ƒ‹‚Ì•\Ž¦ó‘Ô‚ðØ‚è‘Ö‚¦‚é‚ÆAƒEƒBƒ“ƒhƒEƒTƒCƒY‚ª¬‚³‚­‚È‚Á‚Ä‚µ‚Ü‚Á‚Ä
-‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/8/6(ŒŽ) Version 2.49 ƒÀ 14 ŠJ”­”Å
-@‹N“®Žž‚É—]•ª‚Èu–³‘èvƒ^ƒu‚ªì‚ç‚ê‚Ä‚µ‚Ü‚¤Ž–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/8/5(“ú) Version 2.49 ƒÀ 13 ŠJ”­”Å
-@‘S‰æ–Ê•\Ž¦ŽžAÄ¶ƒŠƒXƒg‚ª•\Ž¦‚³‚ê‚È‚¢Ž–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/8/4(“y) Version 2.49 ƒÀ 12 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚Ìu’·‚³v‚ª•¶Žš‰»‚¯‚·‚éŽ–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/8/1(…) Version 2.49 ƒÀ 11 ŠJ”­”Å
-@“®‰æ‚ÌÄ¶‚ª‚Å‚«‚È‚­‚È‚Á‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/7/28(“y) Version 2.49 ƒÀ 10 ŠJ”­”Å
-@‹È‚ÌØ‘ÖŽž‚ÉƒtƒF[ƒhƒAƒEƒg‹@”\‚É‚Â‚¢‚ÄAÄ¶’†ˆÈŠO‚Ìê‡‚ÍƒtƒF[ƒhƒAƒEƒg
-‚³‚¹‚È‚¢‚æ‚¤‚ÉC³‚µ‚Ü‚µ‚½B
-
-2012/7/28(“y) Version 2.49 ƒÀ 9 ŠJ”­”Å
-@‰ÌŽŒ‚Ì•\Ž¦‚ª‘å‚«‚·‚¬‚éŽ–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/7/28(“y) Version 2.49 ƒÀ 8 ŠJ”­”Å
-@‹È‚ÌØ‘ÖŽž‚ÉƒtƒF[ƒhƒAƒEƒg‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/7/28(“y) Version 2.49 ƒÀ 7 ŠJ”­”Å
-@Ä¶’âŽ~Žž‚ÉƒtƒF[ƒhƒAƒEƒg‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/7/22(“ú) Version 2.49 ƒÀ 6 ŠJ”­”Å
-@‹N“®‚ð‚‘¬‰»‚µ‚Ü‚µ‚½B
-
-2012/7/16(ŒŽ) Version 2.49 ƒÀ 5 ŠJ”­”Å
-@ƒ\[ƒXƒR[ƒh‚ð®—‚µAŽÀsƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY‚ðíŒ¸‚µ‚Ü‚µ‚½B
-
-2012/7/15(“ú) Version 2.49 ƒÀ 4 ŠJ”­”Å
-@u¶‰E“ü‚ê‘Ö‚¦v‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/7/15(“ú) Version 2.49 ƒÀ 3 ŠJ”­”Å
-@Ctrl + TabƒL[‚Åƒ^ƒu‚ðØ‚è‘Ö‚¦‚ç‚ê‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/7/14(“y) Version 2.49 ƒÀ 2 ŠJ”­”Å
-@•¡”‚Ìƒ^ƒu‚ª‘¶Ý‚µ‚Ä‚¢‚éŽž‚ÉƒtƒHƒ‹ƒ_‚ðŠJ‚­‚ÆAŠJ‚¢‚½ƒtƒHƒ‹ƒ_“à‚Ì‹È‚ªÄ¶‚³‚ê
-‚È‚¢Ž–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/7/14(“y) Version 2.49 ƒÀ 1 ŠJ”­”Å
-@‹N“®‚ð‚‘¬‰»‚µ‚Ü‚µ‚½B
-
-2012/7/13(‹à) Version 2.48 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2012/7/8(“ú) Version 2.47 ƒÀ 8 ŠJ”­”Å
-@ƒGƒtƒFƒNƒg‚ÌˆêŽíuDelayv‚ÌƒvƒŠƒZƒbƒg‚ð12Ží—Þ’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/7/7(“y) Version 2.47 ƒÀ 7 ŠJ”­”Å
-@ƒrƒfƒI‰æ–Ê‚Ì”wŒiF‚ª‚¨‚©‚µ‚­‚È‚éŽ–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/7/7(“y) Version 2.47 ƒÀ 6 ŠJ”­”Å
-@ƒGƒtƒFƒNƒg‚ÌˆêŽíuReverbv‚ÌƒvƒŠƒZƒbƒg‚ð29Ží—Þ’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/7/1(“ú) Version 2.47 ƒÀ 5 ŠJ”­”Å
-@Ä¶ˆÊ’u‚Ì•ÏXŽž‚É‰ÌŽŒ•\Ž¦‚ª‚¨‚©‚µ‚­‚È‚éŽ–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/7/1(“ú) Version 2.47 ƒÀ 4 ŠJ”­”Å
-@‰ÌŽŒ•\Ž¦Žž‚ÌƒtƒHƒ“ƒgƒTƒCƒY‚ÌŽ©“®”»’è‹@”\‚ð‰ü‘P‚µ‚Ü‚µ‚½B
-
-2012/6/30(“y) Version 2.47 ƒÀ 3 ŠJ”­”Å
-@offsetƒ^ƒOŽg—pŽž‚É‰ÌŽŒ‚Ì•\Ž¦‚ª‚¨‚©‚µ‚­‚È‚éŽ–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/6/30(“y) Version 2.47 ƒÀ 2 ŠJ”­”Å
-@Ä¶I—¹ŒãA‰ÌŽŒ‚Ì•\Ž¦‚ªÁ‚¦‚È‚¢Ž–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/6/30(“y) Version 2.47 ƒÀ 1 ŠJ”­”Å
-@LRCƒtƒH[ƒ}ƒbƒg‚É‚æ‚é‰ÌŽŒƒtƒ@ƒCƒ‹‚Ì•\Ž¦‚É‘Î‰ž‚µ‚Ü‚µ‚½BŒ»ƒo[ƒWƒ‡ƒ“‚Å‚ÍA
-Shift_JISŒ`Ž®‚É‘Î‰ž‚µ‚Ä‚¢‚Ü‚·B‰¹ºƒtƒ@ƒCƒ‹‚Æ“¯‚¶ƒtƒHƒ‹ƒ_‚ÉLRCƒtƒH[ƒ}ƒbƒg‚Ì
-‰ÌŽŒƒtƒ@ƒCƒ‹i*.lrcA*.kraA*.txtj‚ð’u‚­Ž–‚Å‰ÌŽŒ‚ð•\Ž¦‚·‚éŽ–‚ª‚Å‚«‚Ü‚·B
-Šg’£ŽqˆÈŠO‚Ìƒtƒ@ƒCƒ‹–¼‚Í‰¹ºƒtƒ@ƒCƒ‹‚Æ“¯ˆê‚É‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
-
-2012/6/7(–Ø) Version 2.46 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2012/6/2(“y) Version 2.45 ƒÀ 10 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚Éƒtƒ@ƒCƒ‹‚ðƒhƒƒbƒv‚µ‚½Û‚ÉAÄ¶‚ª’âŽ~‚µ‚Ä‚µ‚Ü‚¤Ž–‚ª‚ ‚Á‚½‚Ì‚ð
-C³‚µ‚Ü‚µ‚½B
-
-2012/5/27(“ú) Version 2.45 ƒÀ 9 ŠJ”­”Å
-@ƒ^ƒu–¼‚Ì•ÒW’†‚É•Ê‚Ìƒ^ƒu‚ðƒNƒŠƒbƒN‚·‚é‚ÆAƒ^ƒu–¼‚Ì•ÒWó‘Ô‚ª‰ðœ‚³‚ê‚È‚©‚Á‚½
-‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/5/27(“ú) Version 2.45 ƒÀ 8 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚©‚ç‚ÌíœŽž‚ÉÄ¶‚ª’âŽ~‚µ‚Ä‚µ‚Ü‚¤Ž–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/5/27(“ú) Version 2.45 ƒÀ 7 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚Ìƒ^ƒu‚ðƒhƒ‰ƒbƒO•ƒhƒƒbƒv‚·‚éŽ–‚É‚æ‚èA•À‚Ñ‘Ö‚¦‚ª‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü
-‚µ‚½B
-
-2012/5/26(“y) Version 2.45 ƒÀ 6 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚©‚ç‚ÌíœŽž‚Ì‹““®‚ð‚‘¬‰»‚µ‚Ü‚µ‚½B
-
-2012/5/23(…) Version 2.45 ƒÀ 5 ŠJ”­”Å
-@‘‘—‚èAŠª‚«–ß‚µ‚Ì‹““®‚ð‰ü‘P‚µ‚Ü‚µ‚½B
-
-2012/5/20(“ú) Version 2.45 ƒÀ 4 ŠJ”­”Å
-@ƒƒgƒƒm[ƒ€‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/5/16(…) Version 2.45 ƒÀ 3 ŠJ”­”Å
-@‹N“®‚ð‚‘¬‰»‚µ‚Ü‚µ‚½B
-
-2012/5/13(“ú) Version 2.45 ƒÀ 2 ŠJ”­”Å
-@Ä¶ˆÊ’u•\Ž¦—pƒ‰ƒxƒ‹‚É‚¿‚ç‚Â‚«‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/5/12(“y) Version 2.45 ƒÀ 1 ŠJ”­”Å
-@“®‰æ‚Æ‰¹º‚Ì‚¸‚ê‚ðŒyŒ¸‚µ‚Ü‚µ‚½B
-
-2012/5/10(–Ø) Version 2.44 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2012/5/10(–Ø) Version 2.43 ƒÀ 12 ŠJ”­”Å
-@“®‰æ‚ÌÄ¶Š®—¹Žž‚ÉƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ªŒÅ‚Ü‚éŽ–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/5/5(“y) Version 2.43 ƒÀ 11 ŠJ”­”Å
-@“®‰æ‚ÌÄ¶‘¬“xA‰¹’öAƒOƒ‰ƒtƒBƒbƒNƒCƒRƒ‰ƒCƒU‚ð•ÏX‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/5/4(‹à) Version 2.43 ƒÀ 10 ŠJ”­”Å
-@Windows XP ‚Å“®‰æ‚ªÄ¶‚Å‚«‚È‚©‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/5/3(–Ø) Version 2.43 ƒÀ 9 ŠJ”­”Å
-@“®‰æÄ¶’†AŽŸ‚Ìƒtƒ@ƒCƒ‹‚Ö‚ÌØ‚è‘Ö‚¦Žž‚É‰æ–Ê‚ª‚¿‚ç‚Â‚­Ž–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü
-‚µ‚½B
-
-2012/4/30(ŒŽ) Version 2.43 ƒÀ 8 ŠJ”­”Å
-@ƒVƒ‡[ƒgƒJƒbƒgƒL[‚É‚æ‚é‚`‚aƒ‹[ƒv‚Ì‘€ì‚ª‚Å‚«‚È‚©‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/4/30(ŒŽ) Version 2.43 ƒÀ 7 ŠJ”­”Å
-@•¡”‚Ìƒ^ƒu‚ª‘¶Ý‚µ‚Ä‚¢‚éŽž‚ÉƒEƒBƒ“ƒhƒEã‚Éƒtƒ@ƒCƒ‹‚ðƒhƒƒbƒv‚·‚é‚ÆAƒhƒƒbƒv
-‚µ‚½ƒtƒ@ƒCƒ‹‚ªÄ¶‚³‚ê‚È‚¢Ž–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/4/30(ŒŽ) Version 2.43 ƒÀ 6 ŠJ”­”Å
-@•¡”‚Ìƒ^ƒu‚ª‘¶Ý‚µ‚Ä‚¢‚éŽž‚Éƒtƒ@ƒCƒ‹‚ðŠJ‚­‚ÆAŠJ‚¢‚½ƒtƒ@ƒCƒ‹‚ªÄ¶‚³‚ê‚È‚¢
-Ž–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/4/30(ŒŽ) Version 2.43 ƒÀ 5 ŠJ”­”Å
-@Ä¶ƒŠƒXƒgã‚Å‘I‘ð’†‚ÌƒAƒCƒeƒ€‚ð‰EƒNƒŠƒbƒN‚µ‚Äuíœvƒƒjƒ…[‚ð‘I‘ð‚·‚éŽ–
-‚É‚æ‚èA‘I‘ð’†‚ÌƒAƒCƒeƒ€‚ðíœ‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/4/30(ŒŽ) Version 2.43 ƒÀ 4 ŠJ”­”Å
-@ƒ^ƒu‚ð‰EƒNƒŠƒbƒN‚µ‚ÄuV‚µ‚¢ƒ^ƒuvƒƒjƒ…[‚ð‘I‘ð‚·‚éŽ–‚É‚æ‚èAV‚µ‚¢ƒ^ƒu‚ð
-ì¬‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/4/30(ŒŽ) Version 2.43 ƒÀ 3 ŠJ”­”Å
-@“®‰æÄ¶’†‚ÉƒrƒfƒI‰æ–Ê‚ðƒ_ƒuƒ‹ƒNƒŠƒbƒN‚·‚éŽ–‚É‚æ‚èAƒtƒ‹ƒXƒNƒŠ[ƒ“‚É‚Å‚«‚é
-‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/4/25(…) Version 2.43 ƒÀ 2 ŠJ”­”Å
-@“®‰æ‚ÌÄ¶‚ªŠ®—¹‚µ‚Ä‚àŽŸ‚Ìƒtƒ@ƒCƒ‹‚ÌÄ¶‚ªŽn‚Ü‚ç‚È‚©‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/4/24(‰Î) Version 2.43 ƒÀ 1 ŠJ”­”Å
-@“®‰æ‚Ì“Ç‚Ýž‚Ý‚É‘Î‰ž‚µ‚Ü‚µ‚½B
-
-2012/3/6(‰Î) Version 2.42 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2012/3/4(“ú) Version 2.41 ƒÀ 5 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚Å‘I‘ðƒtƒ@ƒCƒ‹‚ð‰EƒNƒŠƒbƒN‚·‚éŽ–‚É‚æ‚èAÄ¶ƒŠƒXƒgŠÔ‚ÌƒRƒs[‚ª
-‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/2/28(‰Î) Version 2.41 ƒÀ 4 ŠJ”­”Å
-@•ÒW¨íœƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/2/27(ŒŽ) Version 2.41 ƒÀ 3 ŠJ”­”Å
-@•ÒW¨‚·‚×‚Ä‘I‘ðƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/2/25(“y) Version 2.41 ƒÀ 2 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg“à‚Ìƒhƒ‰ƒbƒO‚É‚æ‚é•À‚Ñ‘Ö‚¦Žž‚Ì‹““®‚ð‰ü‘P‚µ‚Ü‚µ‚½B
-
-2012/2/21(‰Î) Version 2.41 ƒÀ 1 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚ðƒ^ƒu‚ÅŠÇ—‚Å‚«‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/2/15(…) Version 2.40 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2012/2/12(“ú) Version 2.39 ƒÀ 14 ŠJ”­”Å
-@•Û‘¶Žž‚Éƒpƒ“‚Ì•ÏX‚ª”½‰f‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/2/7(‰Î) Version 2.39 ƒÀ 13 ŠJ”­”Å
-@‹N“®Žž‚É‰æ–Ê•\Ž¦‚ª‚¨‚©‚µ‚­‚È‚éŽ–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/2/1(…) Version 2.39 ƒÀ 12 ŠJ”­”Å
-@Ä¶ˆÊ’uƒXƒ‰ƒCƒ_‚ð”ñ•\Ž¦‚É‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/2/1(…) Version 2.39 ƒÀ 11 ŠJ”­”Å
-@ƒtƒ@ƒCƒ‹‚Ì’Ç‰ÁŽž‚ÉÄ¶ƒŠƒXƒg“à‚ÌuÄ¶’†v‚ð•\‚·ƒ}[ƒN‚ªÄ¶’†ˆÈŠO‚Ìƒtƒ@ƒCƒ‹
-‚É‚à•\Ž¦‚³‚ê‚Ä‚µ‚Ü‚¤•s‹ï‡‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2012/2/1(…) Version 2.39 ƒÀ 10 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚ÉuNo.vuƒ^ƒCƒgƒ‹vuƒA[ƒeƒBƒXƒgvu”Nvu’·‚³v‚ð•\Ž¦‚·‚é‚æ‚¤‚É
-‚µ‚Ü‚µ‚½B
-@Ä¶ƒŠƒXƒg‚Ì—ñ‚Ì•^•À‚Ñ‡‚ð•œŒ³‚·‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/1/29(“ú) Version 2.39 ƒÀ 9 ŠJ”­”Å
-@ƒm[ƒ}ƒ‰ƒCƒY‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/1/26(–Ø) Version 2.39 ƒÀ 8 ŠJ”­”Å
-@‘å—e—Ê‚Ìƒtƒ@ƒCƒ‹‚ð“Ç‚Ýž‚ñ‚¾Žž‚ÉƒXƒ‰ƒCƒ_‚ª“®‚©‚È‚­‚È‚é•s‹ï‡‚ª‚ ‚Á‚½‚Ì‚ð
-C³‚µ‚Ü‚µ‚½B
-
-2012/1/17(‰Î) Version 2.39 ƒÀ 7 ŠJ”­”Å
-@ƒOƒ‰ƒtƒBƒbƒNƒCƒRƒ‰ƒCƒU‚ÌŠeƒRƒ“ƒgƒ[ƒ‹‚É‚Â‚¢‚ÄA‰¡ˆÊ’u‚ª‚¸‚ê‚Ä‚¢‚½‚Ì‚ðC³
-‚µ‚Ü‚µ‚½B
-
-2012/1/16(ŒŽ) Version 2.39 ƒÀ 6 ŠJ”­”Å
-@ƒ\[ƒXƒR[ƒh‚ð®—‚µAŽÀsƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY‚ðíŒ¸‚µ‚Ü‚µ‚½B
-
-2012/1/14(“y) Version 2.39 ƒÀ 5 ŠJ”­”Å
-@Ä¶‘¬“x‚ð‚¾‚ñ‚¾‚ñ’x‚­‚·‚é‹@”\‚É‚Â‚¢‚ÄA•b”‚ð0.01•b’PˆÊ‚ÅŽw’è‚Å‚«‚é‚æ‚¤‚É
-‚µ‚Ü‚µ‚½B
-
-2012/1/14(“y) Version 2.39 ƒÀ 4 ŠJ”­”Å
-@Ä¶‘¬“x‚ð‚¾‚ñ‚¾‚ñ‘¬‚­‚·‚é‹@”\‚É‚Â‚¢‚ÄA•b”‚ð0.01•b’PˆÊ‚ÅŽw’è‚Å‚«‚é‚æ‚¤‚É
-‚µ‚Ü‚µ‚½B
-
-2012/1/13(‹à) Version 2.39 ƒÀ 3 ŠJ”­”Å
-@Ä¶Žü”g”‚ð‚¾‚ñ‚¾‚ñ’x‚­‚·‚é‹@”\‚É‚Â‚¢‚ÄA•b”‚ð0.01•b’PˆÊ‚ÅŽw’è‚Å‚«‚é‚æ‚¤‚É
-‚µ‚Ü‚µ‚½B
-
-2012/1/12(–Ø) Version 2.39 ƒÀ 2 ŠJ”­”Å
-@Ä¶Žü”g”‚ð‚¾‚ñ‚¾‚ñ‘¬‚­‚·‚é‹@”\‚É‚Â‚¢‚ÄA•b”‚ð0.01•b’PˆÊ‚ÅŽw’è‚Å‚«‚é‚æ‚¤‚É
-‚µ‚Ü‚µ‚½B
-
-2012/1/11(…) Version 2.39 ƒÀ 1 ŠJ”­”Å
-@ƒc[ƒ‹ƒo[‚ÌƒJƒXƒ^ƒ}ƒCƒY‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2012/1/10(‰Î) Version 2.38 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2012/1/5(–Ø) Version 2.37 ƒÀ 7 ŠJ”­”Å
-@‘½”‚Ì—v–]‚ª‚ ‚Á‚½‚`‚aƒ‹[ƒv‹@”\‚Ì•œŠˆ‚ðŽÀŒ»‚µ‚Ü‚µ‚½B¡Œã‚Ìƒo[ƒWƒ‡ƒ“‚Å‚ÍA
-‚`‚aƒ‹[ƒv^ƒ}[ƒJ[‹@”\‚Ì—¼•û‚ðŽg—p‰Â”\‚Å‚·B
-
-2012/1/4(…) Version 2.37 ƒÀ 6 ŠJ”­”Å
-@‰¹’ö‚ÌÝ’è”ÍˆÍiÅ‘å’l^Å¬’lj‚ðƒJƒXƒ^ƒ}ƒCƒY‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/1/2(ŒŽ) Version 2.37 ƒÀ 5 ŠJ”­”Å
-@Ä¶Žü”g”‚ÌÝ’è”ÍˆÍiÅ‘å’l^Å¬’lj‚ðƒJƒXƒ^ƒ}ƒCƒY‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2012/1/2(ŒŽ) Version 2.37 ƒÀ 4 ŠJ”­”Å
-@Ä¶‘¬“x‚ÌÝ’è”ÍˆÍiÅ‘å’l^Å¬’lj‚ðƒJƒXƒ^ƒ}ƒCƒY‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2011/12/24(“y) Version 2.37 ƒÀ 3 ŠJ”­”Å
-@—é–ØŒ’Ž¡‚³‚ñ‚Ì‚²‹¦—Í‚É‚æ‚èA‰º‹L‚ÌXV‚ðs‚¢‚Ü‚µ‚½B
-@‡@ƒ\[ƒXƒR[ƒh‚ð®—‚µAŽÀsƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY‚ðíŒ¸‚µ‚Ü‚µ‚½B
-@‡AƒVƒ‡[ƒgƒJƒbƒgƒL[“o˜^‚É‚Â‚¢‚ÄA‚¢‚­‚Â‚©‚Ì•s‹ï‡‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-@‡B¡‚Ü‚ÅƒVƒ‡[ƒgƒJƒbƒgƒL[‚Æ‚µ‚Ä“o˜^‚Å‚«‚È‚©‚Á‚½ƒRƒ}ƒ“ƒh‚ð‘S‚Ä“o˜^‰Â”\‚É‚µ‚Ü
-@@‚µ‚½B
-
-2011/12/20(‰Î) Version 2.37 ƒÀ 2 ŠJ”­”Å
-@ƒƒjƒ…[‚Ì•¶Œ¾‚É‚Â‚¢‚ÄAuƒL[Ý’èv‚ðuƒVƒ‡[ƒgƒJƒbƒgƒL[Ý’èv‚ÉAuŠO•”
-ƒL[Ý’èv‚ðuƒOƒ[ƒoƒ‹ƒzƒbƒgƒL[Ý’èv‚É•ÏX‚µ‚Ü‚µ‚½B
-
-2011/12/12(ŒŽ) Version 2.37 ƒÀ 1 ŠJ”­”Å
-@ìŒû‹M‘å‚³‚ñ‚Ì‚²‹¦—Í‚É‚æ‚èAƒ^ƒCƒ}[’âŽ~‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½BŠJ”­‚É‚²‹¦—Í
-‚­‚¾‚³‚Á‚½ìŒû‹M‘å‚³‚ñ‚ÉŠ´ŽÓ‚Å‚·B
-
-2011/11/27(“ú) Version 2.36 ˆÀ’è”Å revision 5
-@ƒL[Ý’è‚É‚Äu+vƒL[‚ª“o˜^‚Å‚«‚È‚©‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2011/11/26(“y) Version 2.36 ˆÀ’è”Å revision 4
-@ìŒû‹M‘å‚³‚ñ‚Ì‚²‹¦—Í‚É‚æ‚èAƒL[Ý’è‚É‚Ä“o˜^‚Å‚«‚È‚¢ƒL[‚ª‚ ‚Á‚½‚Ì‚ðC³
-‚µ‚Ü‚µ‚½BŠJ”­‚É‚²‹¦—Í‚­‚¾‚³‚Á‚½ìŒû‹M‘å‚³‚ñ‚ÉŠ´ŽÓ‚Å‚·B
-
-2011/11/25(‹à) Version 2.36 ˆÀ’è”Å revision 3
-@—é–ØŒ’Ž¡‚³‚ñ‚Ì‚²‹¦—Í‚É‚æ‚èAVersion 2.35 ƒÀ 5 ˆÈ~ƒAƒCƒRƒ“‚Éƒtƒ@ƒCƒ‹‚ð
-ƒhƒƒbƒv‚µ‚½Žž‚Ì‹““®‚ª‚¨‚©‚µ‚­‚È‚Á‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½BŠJ”­‚É‚²‹¦—Í
-‚­‚¾‚³‚Á‚½—é–ØŒ’Ž¡‚³‚ñ‚ÉŠ´ŽÓ‚Å‚·B
-
-2011/11/19(“y) Version 2.36 ˆÀ’è”Å revision 2
-@—é–ØŒ’Ž¡‚³‚ñ‚Ì‚²‹¦—Í‚É‚æ‚èAVersion 2.35 ƒÀ 5 ˆÈ~ƒXƒ‰ƒCƒ_‚É‚æ‚è‰¹’ö•ÏX‚ª
-‚Å‚«‚È‚­‚È‚Á‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½BŠJ”­‚É‚²‹¦—Í‚­‚¾‚³‚Á‚½—é–ØŒ’Ž¡‚³‚ñ‚ÉŠ´ŽÓ
-‚Å‚·B
-
-2011/11/14(ŒŽ) Version 2.36 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2011/11/13(“ú) Version 2.35 ƒÀ 6 ŠJ”­”Å
-@Ä¶Žü”g”‚ð‚¾‚ñ‚¾‚ñ’x‚­‚·‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2011/11/13(“ú) Version 2.35 ƒÀ 5 ŠJ”­”Å
-@—é–ØŒ’Ž¡‚³‚ñ‚Ì‚²‹¦—Í‚É‚æ‚èAUNICODE‚É‘Î‰ž‚µ‚Ü‚µ‚½BŠJ”­‚É‚²‹¦—Í‚­‚¾‚³‚Á‚½
-—é–ØŒ’Ž¡‚³‚ñ‚ÉŠ´ŽÓ‚Å‚·B
-
-2011/11/05(“y) Version 2.35 ƒÀ 4 ŠJ”­”Å
-@Ä¶‘¬“x‚ð‚¾‚ñ‚¾‚ñ’x‚­‚·‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2011/10/23(“ú) Version 2.35 ƒÀ 3 ŠJ”­”Å
-@ƒ}[ƒJ[ˆÊ’u‚Ì’²®Žž‚ÉÄ¶ˆÊ’u‚ð˜A“®‚³‚¹‚é‚©‚Ç‚¤‚©‚ð‘I‚×‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2011/10/17(ŒŽ) Version 2.35 ƒÀ 2 ŠJ”­”Å
-@Ä¶Žü”g”‚ð‚¾‚ñ‚¾‚ñ‘¬‚­‚·‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2011/10/16(“ú) Version 2.35 ƒÀ 1 ŠJ”­”Å
-@WAVEŒ`Ž®‚Å‘‚«o‚µ‚½Û‚ÌƒtƒH[ƒ}ƒbƒg‚ª‚¨‚©‚µ‚­‚È‚Á‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2011/10/15(“y) Version 2.34 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2011/10/12(…) Version 2.33 ƒÀ 8 ŠJ”­”Å
-@Ä¶¨ƒ}[ƒJ[íœƒƒjƒ…[‚É‚æ‚èƒ}[ƒJ[‚ðíœ‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2011/10/12(…) Version 2.33 ƒÀ 7 ŠJ”­”Å
-@‘O‰ñI—¹Žž‚Ìuƒ}[ƒJ[’Ç‰ÁŽž‚Éƒ‹[ƒv‚·‚é‚©‚Ç‚¤‚©v‚ð•œŒ³‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2011/10/11(‰Î) Version 2.33 ƒÀ 6 ŠJ”­”Å
-@‰¹º‚Ì•Û‘¶Žž‚É‚Ü‚¾ƒmƒCƒY‚ª“ü‚Á‚Ä‚µ‚Ü‚¤Ž–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2011/10/10(ŒŽ) Version 2.33 ƒÀ 5 ŠJ”­”Å
-@‰¹º‚ðƒ‚ƒmƒ‰ƒ‹‰»‚·‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2011/10/10(ŒŽ) Version 2.33 ƒÀ 4 ŠJ”­”Å
-@ƒc[ƒ‹ƒo[‚Éuƒ}[ƒJ[íœvƒ{ƒ^ƒ“‚ð’Ç‰Á‚µAƒ}[ƒJ[‚Ì’Ç‰Á^íœ‚ðŠÈ’P‚É
-s‚¦‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2011/10/10(ŒŽ) Version 2.33 ƒÀ 3 ŠJ”­”Å
-@ƒ}[ƒJ[’Ç‰ÁŽž‚Éƒ‹[ƒv‚·‚é‚©‚Ç‚¤‚©‚ð‘I‚×‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2011/10/9(“ú) Version 2.33 ƒÀ 2 ŠJ”­”Å
-@‰¹º‚Ì•Û‘¶Žž‚ÉƒmƒCƒY‚ª“ü‚Á‚Ä‚µ‚Ü‚¤Ž–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2011/10/8(“y) Version 2.33 ƒÀ 1 ŠJ”­”Å
-@Ž¨ƒRƒs‚È‚Ç‚É•Ö—˜‚Èu‚¾‚ñ‚¾‚ñ‘¬‚­‚·‚é‹@”\v‚ÉAƒ‹[ƒv‚²‚Æ‚ÉÄ¶‘¬“x‚ðã‚°‚é
-‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2011/9/26(ŒŽ) Version 2.32 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2011/9/25(“ú) Version 2.31 ƒÀ 7 ŠJ”­”Å
-@ƒ}[ƒJ[ŠÔ‚ðŽw’è‰ñ”‚¸‚Âƒ‹[ƒvÄ¶‚·‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2011/9/22(–Ø) Version 2.31 ƒÀ 6 ŠJ”­”Å
-@”z•zƒtƒ@ƒCƒ‹‚ðÅ“K‰»‚µAƒtƒ@ƒCƒ‹ƒTƒCƒY‚ðk¬‚µ‚Ü‚µ‚½B
-@¦ 933 KB Ë 655 KB ( 70.2 % )
-
-2011/9/21(…) Version 2.31 ƒÀ 5 ŠJ”­”Å
-@‰EƒNƒŠƒbƒN‚É‚æ‚èƒ}[ƒJ[‚ðíœ‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2011/9/20(‰Î) Version 2.31 ƒÀ 4 ŠJ”­”Å
-@Ctrl ƒL[‚ð‰Ÿ‚µ‚È‚ª‚çƒhƒ‰ƒbƒO‚·‚éŽ–‚ÅAƒ}[ƒJ[ˆÊ’u‚Ì”÷’²®‚ð‚Å‚«‚é‚æ‚¤‚É
-‚µ‚Ü‚µ‚½B
-
-2011/9/20(‰Î) Version 2.31 ƒÀ 3 ŠJ”­”Å
-@ƒL[ƒ{[ƒhƒVƒ‡[ƒgƒJƒbƒg‚É‚æ‚èAuƒ}[ƒJ[Ä¶vuƒ}[ƒJ[’Ç‰Áv‚ð‘€ì‚Å‚«‚é
-‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2011/9/20(‰Î) Version 2.31 ƒÀ 2 ŠJ”­”Å
-@AB ƒ‹[ƒv‚Ìi‰»”Å‚Å‚ ‚éuƒ}[ƒJ[‹@”\v‚ð’Ç‰Á‚µ‚Ü‚µ‚½B‚±‚Ìƒ}[ƒJ[‹@”\‚É‚æ‚è
-”CˆÓ‚Ì‰ÓŠ‚Éƒ}[ƒJ[‚ð’u‚­Ž–‚ª‚Å‚«AŽ©—R‚Éƒ}[ƒJ[ŠÔ‚Ìƒ‹[ƒvÄ¶‚ª‚Å‚«‚Ü‚·B
-
-2011/9/14(…) Version 2.31 ƒÀ 1 ŠJ”­”Å
-@Ä¶’âŽ~Žž‚àu‚¾‚ñ‚¾‚ñ‘¬‚­‚·‚é‹@”\v‚ª‹@”\‚µ‚Ä‚µ‚Ü‚Á‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2011/9/7(…) Version 2.30 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2011/9/2(‹à) Version 2.29 ƒÀ 11 ŠJ”­”Å
-@u‚¾‚ñ‚¾‚ñ‘¬‚­‚·‚é‹@”\v‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2011/9/1(–Ø) Version 2.29 ƒÀ 10 ŠJ”­”Å
-@ƒ^ƒCƒ}[Ä¶ƒ_ƒCƒAƒƒO‚Ì‘€ì«‚ð‰ü‘P‚µ‚Ü‚µ‚½B
-
-2011/8/30(‰Î) Version 2.29 ƒÀ 9 ŠJ”­”Å
-@ƒAƒCƒRƒ“‚É256~256‚ÌƒTƒCƒY‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2011/8/29(ŒŽ) Version 2.29 ƒÀ 8 ŠJ”­”Å
-@ŠO•”ƒL[Ý’èƒ_ƒCƒAƒƒO‚Ì‘€ì«‚ð‰ü‘P‚µ‚Ü‚µ‚½B
-
-2011/8/28(“ú) Version 2.29 ƒÀ 7 ŠJ”­”Å
-@ƒL[Ý’èƒ_ƒCƒAƒƒO‚Ì‘€ì«‚ð‰ü‘P‚µ‚Ü‚µ‚½B
-
-2011/8/26(‹à) Version 2.29 ƒÀ 6 ŠJ”­”Å
-@•Û‘¶Žž‚É‰¹—Ê‚ÌÝ’è‚ª”½‰f‚³‚ê‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-@‰¹—Ê‚ð¬”“_’PˆÊ‚ÅÝ’è‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2011/8/25(–Ø) Version 2.29 ƒÀ 5 ŠJ”­”Å
-@ƒL[Ý’è^ŠO•”ƒL[Ý’è‚ÉuÄ¶ˆÊ’uv‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2011/8/24(…) Version 2.29 ƒÀ 4 ŠJ”­”Å
-@ƒVƒXƒeƒ€¨ƒGƒtƒFƒNƒg¨ƒŠƒo[ƒuƒƒjƒ…[‚É‚æ‚èAƒŠƒo[ƒu‚ð‚©‚¯‚ç‚ê‚é‚æ‚¤‚É
-‚µ‚Ü‚µ‚½B
-
-2011/8/23(‰Î) Version 2.29 ƒÀ 3 ŠJ”­”Å
-@ƒVƒXƒeƒ€¨Ä¶ˆÊ’uƒƒjƒ…[‚É‚æ‚èAƒL[ƒ{[ƒh‚ÅÄ¶ˆÊ’u‚ðÝ’è‚Å‚«‚é‚æ‚¤‚É
-‚µ‚Ü‚µ‚½B
-
-2011/8/22(ŒŽ) Version 2.29 ƒÀ 2 ŠJ”­”Å
-@”ñ•\Ž¦‚ÌƒRƒ“ƒgƒ[ƒ‹‚É‚àƒtƒH[ƒJƒX‚ªˆÚ‚Á‚Ä‚µ‚Ü‚Á‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2011/8/22(ŒŽ) Version 2.29 ƒÀ 1 ŠJ”­”Å
-@u¶‚Ì‚ÝÄ¶vu‰E‚Ì‚ÝÄ¶v‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2011/8/21(“ú) Version 2.28 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2011/8/21(“ú) Version 2.27 ƒÀ 17 ŠJ”­”Å
-@Windows XP ˆÈ‘O‚Ì OS ‚ÅƒtƒHƒ“ƒg‚ª‚¨‚©‚µ‚­‚È‚Á‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2011/8/21(“ú) Version 2.27 ƒÀ 16 ŠJ”­”Å
-@ƒ{[ƒJƒ‹ƒLƒƒƒ“ƒZƒ‹‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2011/8/17(…) Version 2.27 ƒÀ 15 ŠJ”­”Å
-@BASS.DLL ‚Ìƒo[ƒWƒ‡ƒ“‚ð 2.3.0.3 ‚©‚ç 2.4.7.1 ‚É‚µ‚Ü‚µ‚½B
-
-2011/8/14(“ú) Version 2.27 ƒÀ 14 ŠJ”­”Å
-@ƒL[Ý’èuÄ¶‘¬“x‚ðƒfƒtƒHƒ‹ƒg‚É–ß‚·vuÄ¶Žü”g”‚ðƒfƒtƒHƒ‹ƒg‚É–ß‚·vu‰¹’ö
-‚ðƒfƒtƒHƒ‹ƒg‚É–ß‚·v‚ª‹@”\‚µ‚È‚¢Ž–‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2011/8/14(“ú) Version 2.27 ƒÀ 13 ŠJ”­”Å
-@ABƒ‹[ƒvŽž‚É•Û‘¶‚µ‚½ê‡‚ÍAABƒ‹[ƒv•”•ª‚¾‚¯‚ð•Û‘¶‚·‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2011/8/13(“y) Version 2.27 ƒÀ 12 ŠJ”­”Å
-@uŒÃ‚Ñ‚½ƒŒƒR[ƒhÄ¶v‚ÌƒGƒtƒFƒNƒgŒø‰Ê‚ð‰ü‘P‚µ‚Ü‚µ‚½B
-
-2011/8/13(“y) Version 2.27 ƒÀ 11 ŠJ”­”Å
-@Windows XP ˆÈ‘O‚Ì OS ‚Å‰æ–Ê•\Ž¦‚ª•ö‚ê‚Ä‚¢‚½‚Ì‚ð‰ü‘P‚µ‚Ü‚µ‚½B
-@ƒtƒ@ƒCƒ‹¨•Û‘¶ƒƒjƒ…[‘I‘ðŽžA‘O‰ñ•Û‘¶‚µ‚½ƒtƒ@ƒCƒ‹Œ`Ž®‚ðƒfƒtƒHƒ‹ƒg‚Å‘I‘ð‚·‚é
-‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2011/8/7(“ú) Version 2.27 ƒÀ 10 ŠJ”­”Å
-@‹t‰ñ“]Ä¶Žž‚É•Û‘¶‚·‚é‚ÆAƒvƒƒOƒŒƒXƒo[‚ª‹t‚Éi‚ñ‚Å‚µ‚Ü‚Á‚Ä‚¢‚½‚Ì‚ðC³
-‚µ‚Ü‚µ‚½B
-
-2011/8/5(‹à) Version 2.27 ƒÀ 9 ŠJ”­”Å
-@ƒwƒ‹ƒv¨ƒ}ƒjƒ…ƒAƒ‹ƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2011/8/2(‰Î) Version 2.27 ƒÀ 8 ŠJ”­”Å
-@”z•zŽž‚Ìƒtƒ@ƒCƒ‹Œ`Ž®‚ðZIPƒtƒ@ƒCƒ‹‚É•ÏX‚µ‚Ü‚µ‚½B
-@ƒVƒXƒeƒ€¨ƒL[Ý’è^ŠO•”ƒL[Ý’èƒƒjƒ…[‚É‚ÄAƒL[‘€ì‚Å‰¹—Ê‚ð•ÏX‚Å‚«‚é
-‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2009/11/23(ŒŽ) Version 2.27 ƒÀ 7 ŠJ”­”Å
-@EQƒvƒŠƒZƒbƒgƒƒjƒ…[‚É’á‰¹‹­’²iÅ‹­jƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@EQƒvƒŠƒZƒbƒgƒƒjƒ…[‚É’á‰¹‹­’²iÅŽãjƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@EQƒvƒŠƒZƒbƒgƒƒjƒ…[‚É’†‰¹‹­’²iÅ‹­jƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@EQƒvƒŠƒZƒbƒgƒƒjƒ…[‚É’†‰¹‹­’²i‹­jƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@EQƒvƒŠƒZƒbƒgƒƒjƒ…[‚É’†‰¹‹­’²i’†jƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@EQƒvƒŠƒZƒbƒgƒƒjƒ…[‚É’†‰¹‹­’²iŽãjƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@EQƒvƒŠƒZƒbƒgƒƒjƒ…[‚É’†‰¹‹­’²iÅŽãjƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@EQƒvƒŠƒZƒbƒgƒƒjƒ…[‚É‚‰¹‹­’²iÅ‹­jƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@EQƒvƒŠƒZƒbƒgƒƒjƒ…[‚É‚‰¹‹­’²i‹­jƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@EQƒvƒŠƒZƒbƒgƒƒjƒ…[‚É‚‰¹‹­’²i’†jƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@EQƒvƒŠƒZƒbƒgƒƒjƒ…[‚É‚‰¹‹­’²iŽãjƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@EQƒvƒŠƒZƒbƒgƒƒjƒ…[‚É‚‰¹‹­’²iÅŽãjƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2009/11/23(ŒŽ) Version 2.27 ƒÀ 6 ŠJ”­”Å
-@EQƒvƒŠƒZƒbƒgƒƒjƒ…[‚É’á‰¹‹­’²i‹­jƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2009/11/23(ŒŽ) Version 2.27 ƒÀ 5 ŠJ”­”Å
-@EQƒvƒŠƒZƒbƒgƒƒjƒ…[‚É’á‰¹‹­’²i’†jƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2009/11/23(ŒŽ) Version 2.27 ƒÀ 4 ŠJ”­”Å
-@EQƒvƒŠƒZƒbƒgƒƒjƒ…[‚É’á‰¹‹­’²iŽãjƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2009/11/23(ŒŽ) Version 2.27 ƒÀ 3 ŠJ”­”Å
-@ƒVƒXƒeƒ€ƒƒjƒ…[‚ÉEQƒvƒŠƒZƒbƒgiFLATjƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2009/10/31(“y) Version 2.27 ƒÀ 2 ŠJ”­”Å
-@ƒOƒ‰ƒtƒBƒbƒNƒCƒRƒ‰ƒCƒU ( 125 Hz ) ‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2009/10/20(‰Î) Version 2.27 ƒÀ 1 ŠJ”­”Å
-@ƒOƒ‰ƒtƒBƒbƒNƒCƒRƒ‰ƒCƒU ( 16 KHz ) ‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2008/10/11(“y) Version 2.26 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2008/09/28(“ú) Version 2.25 ƒÀ 9 ŠJ”­”Å
-@ˆêŽž’âŽ~Œã‚ÉÄ¶ˆÊ’u‚ð1•b–ß‚·ƒVƒ‡[ƒgƒJƒbƒg‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@ˆêŽž’âŽ~Œã‚ÉÄ¶ˆÊ’u‚ð2•b–ß‚·ƒVƒ‡[ƒgƒJƒbƒg‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@ˆêŽž’âŽ~Œã‚ÉÄ¶ˆÊ’u‚ð3•b–ß‚·ƒVƒ‡[ƒgƒJƒbƒg‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@ˆêŽž’âŽ~Œã‚ÉÄ¶ˆÊ’u‚ð5•b–ß‚·ƒVƒ‡[ƒgƒJƒbƒg‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@ˆêŽž’âŽ~Œã‚ÉÄ¶ˆÊ’u‚ð10•b–ß‚·ƒVƒ‡[ƒgƒJƒbƒg‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2008/09/23(‰Î) Version 2.25 ƒÀ 8 ŠJ”­”Å
-@ŠO•”ƒL[Ý’è‚ª•œŒ³‚³‚ê‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2008/09/14(“ú) Version 2.25 ƒÀ 7 ŠJ”­”Å
-@Ä¶‘¬“x‚ðƒfƒtƒHƒ‹ƒg‚É–ß‚·ƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@Ä¶Žü”g”‚ðƒfƒtƒHƒ‹ƒg‚É–ß‚·ƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@‰¹’ö‚ðƒfƒtƒHƒ‹ƒg‚É–ß‚·ƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2008/09/07(“ú) Version 2.25 ƒÀ 6 ŠJ”­”Å
-@Ä¶‘¬“x‚ð0.1%‰º‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@Ä¶‘¬“x‚ð0.1%ã‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@Ä¶Žü”g”‚ð0.1%‰º‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@Ä¶Žü”g”‚ð0.1%ã‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2008/08/31(“ú) Version 2.25 ƒÀ 5 ŠJ”­”Å
-@‰¹’ö‚ð”¼‰¹‰º‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@‰¹’ö‚ð‘S‰¹‰º‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@‰¹’ö‚ð”¼‰¹ã‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@‰¹’ö‚ð‘S‰¹ã‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2008/08/30(“y) Version 2.25 ƒÀ 4 ŠJ”­”Å
-@Ä¶Žü”g”‚ð1%‰º‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@Ä¶Žü”g”‚ð2%‰º‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@Ä¶Žü”g”‚ð3%‰º‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@Ä¶Žü”g”‚ð5%‰º‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@Ä¶Žü”g”‚ð10%‰º‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@Ä¶Žü”g”‚ð1%ã‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@Ä¶Žü”g”‚ð2%ã‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@Ä¶Žü”g”‚ð3%ã‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@Ä¶Žü”g”‚ð5%ã‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@Ä¶Žü”g”‚ð10%ã‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2008/08/29(‹à) Version 2.25 ƒÀ 3 ŠJ”­”Å
-@Ä¶‘¬“x‚ð1%‰º‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@Ä¶‘¬“x‚ð2%‰º‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@Ä¶‘¬“x‚ð3%‰º‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@Ä¶‘¬“x‚ð5%‰º‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@Ä¶‘¬“x‚ð10%‰º‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@Ä¶‘¬“x‚ð1%ã‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@Ä¶‘¬“x‚ð2%ã‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@Ä¶‘¬“x‚ð3%ã‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@Ä¶‘¬“x‚ð5%ã‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@Ä¶‘¬“x‚ð10%ã‚°‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2008/08/28(–Ø) Version 2.25 ƒÀ 2 ŠJ”­”Å
-@Œ»Ý‚ÌÄ¶ˆÊ’u‚ðƒNƒŠƒbƒvƒ{[ƒh‚ÉƒRƒs[‚·‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2008/08/25(ŒŽ) Version 2.25 ƒÀ 1 ŠJ”­”Å
-@ƒEƒBƒ“ƒhƒE‚ðÅ‘O–Ê‚É•\Ž¦‚·‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2008/07/22(‰Î) Version 2.24 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2008/07/21(ŒŽ) Version 2.23 ƒÀ 8 ŠJ”­”Å
-@Ä¶ˆÊ’u‚ð2•bi‚ß‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@Ä¶ˆÊ’u‚ð3•bi‚ß‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@Ä¶ˆÊ’u‚ð5•bi‚ß‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@Ä¶ˆÊ’u‚ð10•bi‚ß‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2008/07/21(ŒŽ) Version 2.23 ƒÀ 7 ŠJ”­”Å
-@Ä¶ˆÊ’u‚ð1•bi‚ß‚é‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2008/07/06(“ú) Version 2.23 ƒÀ 6 ŠJ”­”Å
-@Ä¶ˆÊ’u‚ð1•b–ß‚·‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2008/07/06(“ú) Version 2.23 ƒÀ 5 ŠJ”­”Å
-@Ä¶ˆÊ’u‚ð2•b–ß‚·‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2008/07/06(“ú) Version 2.23 ƒÀ 4 ŠJ”­”Å
-@Ä¶ˆÊ’u‚ð3•b–ß‚·‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2008/07/06(“ú) Version 2.23 ƒÀ 3 ŠJ”­”Å
-@Ä¶ˆÊ’u‚ð5•b–ß‚·‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2008/07/06(“ú) Version 2.23 ƒÀ 2 ŠJ”­”Å
-@Ä¶ˆÊ’u‚ð10•b–ß‚·‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2008/06/22(“ú) Version 2.23 ƒÀ 1 ŠJ”­”Å
-@–ÚŠo‚Ü‚µ‹@”\iƒ^ƒCƒ}[Ä¶j‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2008/06/22(“ú) Version 2.22 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2008/05/06(‰Î) Version 2.21 ƒÀ 4 ŠJ”­”Å
-@ƒVƒXƒeƒ€¨ŠO•”ƒL[Ý’èƒƒjƒ…[‚É‚æ‚éŠO•”ƒEƒBƒ“ƒhƒE‚©‚ç‚ÌƒL[‘€ì‚É‘Î‰ž‚µ‚Ü‚µ‚½B
-
-2008/03/09(“ú) Version 2.21 ƒÀ 3 ŠJ”­”Å
-@ABƒ‹[ƒv‚ðƒL[ƒ{[ƒhƒVƒ‡[ƒgƒJƒbƒg‚É‚æ‚è‘€ì‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2008/02/03(“ú) Version 2.21 ƒÀ 2 ŠJ”­”Å
-@Ä¶^ˆêŽž’âŽ~—p‚ÌƒL[ƒ{[ƒhƒVƒ‡[ƒgƒJƒbƒg‚Æ‚µ‚ÄƒfƒtƒHƒ‹ƒg‚ÅƒXƒy[ƒXƒL[‚ð
-’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2008/01/30(…) Version 2.21 ƒÀ 1 ŠJ”­”Å
-@ˆÊ’u^ƒTƒCƒY•œŒ³‚ÌÛ‚ÉˆêuAƒfƒtƒHƒ‹ƒg‚ÌˆÊ’u^ƒTƒCƒY‚ÅƒEƒBƒ“ƒhƒE‚ª•\Ž¦‚³‚ê‚Ä
-‚µ‚Ü‚Á‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2008/01/29(‰Î) Version 2.20 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2008/01/28(ŒŽ) Version 2.19 ƒÀ 6 ŠJ”­”Å
-@‘½d‹N“®‚ÌÝ’è“à—e‚ª•œŒ³‚Å‚«‚Ä‚¢‚È‚©‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2008/01/27(“ú) Version 2.19 ƒÀ 5 ŠJ”­”Å
-@‰¹’ö‚ð 0.1 ’PˆÊ‚ÅŽw’è‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2008/01/25(‹à) Version 2.19 ƒÀ 4 ŠJ”­”Å
-@ƒL[Ý’è‚ª•œŒ³‚³‚ê‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2008/01/23(…) Version 2.19 ƒÀ 3 ŠJ”­”Å
-@‘‘—‚è‚ÆŠª‚«–ß‚µ‚ª“¯Žž‚É‚Å‚«‚Ä‚µ‚Ü‚Á‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2008/01/22(‰Î) Version 2.19 ƒÀ 2 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚ÉÄ¶‡‚Æ‚¢‚¤“à•”§Œä—p‚Ì—ñ‚ª•\Ž¦‚³‚ê‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2008/01/21(ŒŽ) Version 2.19 ƒÀ 1 ŠJ”­”Å
-@ƒL[ƒJƒXƒ^ƒ}ƒCƒY‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2008/01/13(“ú) Version 2.18 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2007/12/31(ŒŽ) Version 2.17 ƒÀ 7 ŠJ”­”Å
-@Ä¶‘¬“x‚ð 0.1% ’PˆÊ‚ÅŽw’è‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2007/12/31(ŒŽ) Version 2.17 ƒÀ 6 ŠJ”­”Å
-@Ä¶Žü”g”‚ð 0.1% ’PˆÊ‚ÅŽw’è‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-@uŒÃ‚Ñ‚½ƒŒƒR[ƒhÄ¶v‚ð‰ü—Ç‚µ‚Ü‚µ‚½B
-
-2007/12/31(ŒŽ) Version 2.17 ƒÀ 5 ŠJ”­”Å
-@2.17 ƒÀ 1 ˆÈ~AÄ¶ƒtƒ@ƒCƒ‹‚ð•ÏX‚µ‚½Û‚ÉÄ¶Žü”g”‚ªƒŠƒZƒbƒg‚³‚ê‚Ä‚¢‚½‚Ì‚ð
-C³‚µ‚Ü‚µ‚½B
-
-2007/12/30(“ú) Version 2.17 ƒÀ 4 ŠJ”­”Å
-@ƒEƒBƒ“ƒhƒE‚ÌˆÊ’u^ƒTƒCƒY•œŒ³Žž‚Ì‹““®‚ð‰ü‘P‚µ‚Ü‚µ‚½B
-
-2007/12/29(“y) Version 2.17 ƒÀ 3 ŠJ”­”Å
-@ƒVƒXƒeƒ€¨‘½d‹N“®ƒƒjƒ…[‚É‚æ‚è‘½d‹N“®‚ð‹–‚·‚©‚Ç‚¤‚©‚ð‘I‘ð‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü
-‚µ‚½B
-
-2007/12/29(“y) Version 2.17 ƒÀ 2 ŠJ”­”Å
-@‘O‰ñI—¹Žž‚ÌŒÃ‚Ñ‚½ƒŒƒR[ƒhÄ¶‚Ìó‘Ô‚ð•œŒ³‚·‚é‚©‚Ç‚¤‚©‚ð‘I‘ð‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü
-‚µ‚½B
-
-2007/12/29(“y) Version 2.17 ƒÀ 1 ŠJ”­”Å
-@uŒÃ‚Ñ‚½ƒŒƒR[ƒhÄ¶v‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2007/12/27(–Ø) Version 2.16 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2007/12/24(ŒŽ) Version 2.15 ƒÀ 3 ŠJ”­”Å
-@ˆêŠ‡•ÏŠ·Žž‚ÉƒtƒH[ƒ}ƒbƒg‚ðŽw’è‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2007/12/23(“ú) Version 2.15 ƒÀ 2 ŠJ”­”Å
-@ƒ‰ƒxƒ‹‚ÌƒtƒHƒ“ƒg‚ª‘S‚Äƒ^ƒCƒgƒ‹ƒo[‚Æ“¯‚¶‚à‚Ì‚É‚È‚Á‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2007/11/18(“ú) Version 2.15 ƒÀ 1 ŠJ”­”Å
-@“®ì‚ð‚‘¬‰»‚µ‚Ü‚µ‚½BiINI ƒtƒ@ƒCƒ‹‚Ì‘‚«ž‚Ýƒ^ƒCƒ~ƒ“ƒO‚ð‰ü‘Pj
-
-2007/11/04(“ú) Version 2.14 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2007/10/17(…) Version 2.13 ƒÀ 5 ŠJ”­”Å
-@2.11 ƒÀ 2 ˆÈ~A‘¬“x‚â‰¹’ö‚Ì•ÏXŽž‚Éƒ‹[ƒvÄ¶‚ª‚Å‚«‚È‚­‚È‚Á‚Ä‚¢‚½‚Ì‚ðC³
-‚µ‚Ü‚µ‚½B
-
-2007/09/18(‰Î) Version 2.13 ƒÀ 4 ŠJ”­”Å
-@ƒŠƒXƒgƒrƒ…[‚Ìƒ\[ƒg‚É‘Î‰ž‚µ‚Ü‚µ‚½B
-
-2007/09/18(‰Î) Version 2.13 ƒÀ 3 ŠJ”­”Å
-@2.13 ƒÀ 1 ‚æ‚èA•Û‘¶Žž‚É•K‚¸‹t‰ñ“]Ä¶‚É‚È‚Á‚Ä‚µ‚Ü‚Á‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2007/09/17(ŒŽ) Version 2.13 ƒÀ 2 ŠJ”­”Å
-@‘O‰ñI—¹Žž‚Ì‹t‰ñ“]Ä¶‚Ìó‘Ô‚ð•œŒ³‚·‚é‚©‚Ç‚¤‚©‚ð‘I‘ð‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2007/09/16(“ú) Version 2.13 ƒÀ 1 ŠJ”­”Å
-@‹t‰ñ“]Ä¶‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2007/09/16(“ú) Version 2.12 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2007/09/15(“y) Version 2.11 ƒÀ 4 ŠJ”­”Å
-@2.11 ƒÀ 2 ˆÈ~Aƒ‹[ƒvÄ¶‚ª‚Å‚«‚È‚­‚È‚Á‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2007/08/20(ŒŽ) Version 2.11 ƒÀ 3 ŠJ”­”Å
-@AAC ƒtƒ@ƒCƒ‹‚Ì“Ç‚Ýž‚Ý‚É‘Î‰ž‚µ‚Ü‚µ‚½B
-
-2007/08/20(ŒŽ) Version 2.11 ƒÀ 2 ŠJ”­”Å
-@BASS.DLL ‚Ìƒo[ƒWƒ‡ƒ“‚ð 2.3.0.1 ‚©‚ç 2.3.0.3 ‚É‚µ‚Ü‚µ‚½B
-
-2007/08/19(“ú) Version 2.11 ƒÀ 1 ŠJ”­”Å
-@‘Î‰ž OS ‚É Windows Vista ( 32ƒrƒbƒg”Å ) ‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2007/03/05(ŒŽ) Version 2.10 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2007/03/04(“ú) Version 2.09 ƒÀ 6 ŠJ”­”Å
-@FLAC ƒtƒ@ƒCƒ‹‚Ì“Ç‚Ýž‚Ý‚É‘Î‰ž‚µ‚Ü‚µ‚½B
-
-2007/02/27(‰Î) Version 2.09 ƒÀ 5 ŠJ”­”Å
-@ƒRƒ“ƒgƒ[ƒ‹ƒo[‚ÆÄ¶ƒŠƒXƒg‚ÌƒfƒtƒHƒ‹ƒg‚Å‚Ì•\Ž¦ó‘Ô‚ðƒIƒ“‚É‚µ‚Ü‚µ‚½B
-
-2007/02/25(“ú) Version 2.09 ƒÀ 4 ŠJ”­”Å
-@CD ( CDA ƒtƒ@ƒCƒ‹ ) ‚Ì“Ç‚Ýž‚Ý‚É‘Î‰ž‚µ‚Ü‚µ‚½B
-
-2007/02/25(“ú) Version 2.09 ƒÀ 3 ŠJ”­”Å
-@APE ƒtƒ@ƒCƒ‹‚Ì“Ç‚Ýž‚Ý‚É‘Î‰ž‚µ‚Ü‚µ‚½B
-
-2007/02/25(“ú) Version 2.09 ƒÀ 2 ŠJ”­”Å
-@Ogg Vorbis Œ`Ž®‚Å‚Ì•Û‘¶‚É‘Î‰ž‚µ‚Ü‚µ‚½ ( —v oggenc.exe ) B
-
-2007/02/24(“y) Version 2.09 ƒÀ 1 ŠJ”­”Å
-@MP3 Œ`Ž®‚Å‚Ì•Û‘¶‚É‘Î‰ž‚µ‚Ü‚µ‚½ ( —v LAME.EXE ) B
-
-2007/02/22(–Ø) Version 2.08 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2007/02/18(“ú) Version 2.07 ƒÀ 8 ŠJ”­”Å
-@ƒtƒ@ƒCƒ‹¨ƒtƒHƒ‹ƒ_‚ð’Ç‰Áƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2007/02/18(“ú) Version 2.07 ƒÀ 7 ŠJ”­”Å
-@ƒtƒ@ƒCƒ‹¨’Ç‰Áƒƒjƒ…[‚É‚æ‚èAŒ»Ý‚ÌÄ¶ƒŠƒXƒg‚Éƒtƒ@ƒCƒ‹‚ð’Ç‰Á‚Å‚«‚é‚æ‚¤‚É‚µ
-‚Ü‚µ‚½B
-
-2007/02/18(“ú) Version 2.07 ƒÀ 6 ŠJ”­”Å
-@M3Uƒtƒ@ƒCƒ‹“à‚É“Çž‰Â”\ƒtƒ@ƒCƒ‹‚ª‘¶Ý‚µ‚È‚©‚Á‚½ê‡A‹““®‚ª‚¨‚©‚µ‚­‚È‚Á‚Ä‚¢‚½
-‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2007/02/18(“ú) Version 2.07 ƒÀ 5 ŠJ”­”Å
-@ƒtƒ@ƒCƒ‹¨ƒtƒHƒ‹ƒ_‚ðŠJ‚­ƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2007/02/17(“y) Version 2.07 ƒÀ 4 ŠJ”­”Å
-@ƒtƒ@ƒCƒ‹¨ˆêŠ‡•ÏŠ·ƒƒjƒ…[‚É‚æ‚èˆêŠ‡•ÏŠ·‚ª‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2007/02/14(…) Version 2.07 ƒÀ 3 ŠJ”­”Å
-@‚`‚aƒ‹[ƒv‚ðƒ{ƒ^ƒ“‚ðƒNƒŠƒbƒN‚µ‚½Žž“_‚Å‚ÌÄ¶ˆÊ’u‚ÉÝ’è‚·‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2007/02/13(‰Î) Version 2.07 ƒÀ 2 ŠJ”­”Å
-@Ä¶ˆÊ’uÝ’è—pƒXƒ‰ƒCƒ_‚ªƒNƒŠƒbƒN‚³‚ê‚½ˆÊ’u‚ÉÄ¶ˆÊ’u‚ðˆÚ‚·‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2007/02/13(‰Î) Version 2.07 ƒÀ 1 ŠJ”­”Å
-@‹N“®‚ª‚à‚½‚Â‚­‚Ì‚ð‰ü‘P‚µ‚Ü‚µ‚½B
-
-2007/02/12(ŒŽ) Version 2.06 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2007/02/11(“ú) Version 2.05 ƒÀ 17 ŠJ”­”Å
-@ƒtƒ@ƒCƒ‹¨•Û‘¶ƒƒjƒ…[‚É‚æ‚éM3UŒ`Ž®‚ÌƒvƒŒƒCƒŠƒXƒgi‘Š‘ÎƒpƒXj‚Ì•Û‘¶‚É‘Î‰ž‚µ
-‚Ü‚µ‚½B
-
-2007/02/11(“ú) Version 2.05 ƒÀ 16 ŠJ”­”Å
-@ƒVƒXƒeƒ€¨•œŒ³¨Ä¶ƒ‚[ƒhƒƒjƒ…[‚É‚æ‚èA‘O‰ñI—¹Žž‚Ì‚P‹Èƒ‹[ƒv“™‚Ì‘I‘ðó‘Ô
-‚ð•œŒ³‚·‚é‚©‚Ç‚¤‚©‚ð‘I‘ð‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2007/02/11(“ú) Version 2.05 ƒÀ 15 ŠJ”­”Å
-@ƒVƒXƒeƒ€¨•œŒ³¨•\Ž¦ó‘Ôƒƒjƒ…[‚É‚æ‚èA‘O‰ñI—¹Žž‚ÌƒRƒ“ƒgƒ[ƒ‹ƒo[“™‚Ì•\Ž¦
-ó‘Ô‚ð•œŒ³‚·‚é‚©‚Ç‚¤‚©‚ð‘I‘ð‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2007/02/10(“y) Version 2.05 ƒÀ 14 ŠJ”­”Å
-@ƒVƒXƒeƒ€¨•œŒ³¨Ä¶ƒŠƒXƒgƒƒjƒ…[‚É‚æ‚èA‘O‰ñI—¹Žž‚ÌÄ¶ƒŠƒXƒg‚ð•œŒ³‚Å‚«‚é
-‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2007/02/10(“y) Version 2.05 ƒÀ 13 ŠJ”­”Å
-@ƒAƒCƒRƒ“‚Éƒhƒƒbƒv‚³‚ê‚½M3UŒ`Ž®‚ÌƒvƒŒƒCƒŠƒXƒg‚Ì“Ç‚Ýž‚Ý‚É‘Î‰ž‚µ‚Ü‚µ‚½B
-
-2007/02/10(“y) Version 2.05 ƒÀ 12 ŠJ”­”Å
-@ƒtƒ@ƒCƒ‹¨•Û‘¶ƒƒjƒ…[‚É‚æ‚éM3UŒ`Ž®‚ÌƒvƒŒƒCƒŠƒXƒg‚Ì•Û‘¶‚É‘Î‰ž‚µ‚Ü‚µ‚½B
-
-2007/02/06(‰Î) Version 2.05 ƒÀ 11 ŠJ”­”Å
-@Ä¶ŠÖ˜A‚Ìƒƒjƒ…[‚ðuÄ¶vƒƒjƒ…[‚Æ‚µ‚Ä“Æ—§‚³‚¹‚Ü‚µ‚½B
-
-2007/02/06(‰Î) Version 2.05 ƒÀ 10 ŠJ”­”Å
-@ƒVƒXƒeƒ€¨•œŒ³¨ƒOƒ‰ƒtƒBƒbƒNƒCƒRƒ‰ƒCƒUƒƒjƒ…[‚É‚æ‚èA‘O‰ñI—¹Žž‚ÌƒOƒ‰ƒtƒBƒb
-ƒNƒCƒRƒ‰ƒCƒU‚ð•œŒ³‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2007/02/06(‰Î) Version 2.05 ƒÀ 9 ŠJ”­”Å
-@ƒVƒXƒeƒ€¨•œŒ³¨ƒpƒ“ƒƒjƒ…[‚É‚æ‚èA‘O‰ñI—¹Žž‚Ìƒpƒ“‚ð•œŒ³‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ
-‚½B
-
-2007/02/06(‰Î) Version 2.05 ƒÀ 8 ŠJ”­”Å
-@ƒVƒXƒeƒ€¨•œŒ³¨‰¹—Êƒƒjƒ…[‚É‚æ‚èA‘O‰ñI—¹Žž‚Ì‰¹—Ê‚ð•œŒ³‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ
-‚½B
-
-2007/02/05(ŒŽ) Version 2.05 ƒÀ 7 ŠJ”­”Å
-@M3UŒ`Ž®‚ÌƒvƒŒƒCƒŠƒXƒgi‘Š‘ÎƒpƒXj‚Ì“Ç‚Ýž‚Ý‚É‘Î‰ž‚µ‚Ü‚µ‚½B
-
-2007/02/05(ŒŽ) Version 2.05 ƒÀ 6 ŠJ”­”Å
-@ƒEƒBƒ“ƒhƒE‚Éƒhƒƒbƒv‚³‚ê‚½M3UŒ`Ž®‚ÌƒvƒŒƒCƒŠƒXƒgiâ‘ÎƒpƒXj‚Ì“Ç‚Ýž‚Ý‚É‘Î‰ž‚µ
-‚Ü‚µ‚½B
-
-2007/02/05(ŒŽ) Version 2.05 ƒÀ 5 ŠJ”­”Å
-@M3UŒ`Ž®‚ÌƒvƒŒƒCƒŠƒXƒgiâ‘ÎƒpƒXj‚Ì“Ç‚Ýž‚Ý‚É‘Î‰ž‚µ‚Ü‚µ‚½B
-
-2007/01/29(ŒŽ) Version 2.05 ƒÀ 4 ŠJ”­”Å
-@ƒEƒBƒ“ƒhƒE‚ÌˆÊ’u^ƒTƒCƒY‚ð•œŒ³Žž‚É•â³‚·‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2007/01/29(ŒŽ) Version 2.05 ƒÀ 3 ŠJ”­”Å
-@ƒVƒXƒeƒ€¨•œŒ³¨Ä¶‘¬“x^Ä¶Žü”g”^‰¹’öƒƒjƒ…[‚É‚æ‚èA‘O‰ñI—¹Žž‚ÌÄ¶‘¬
-“x^Ä¶Žü”g”^‰¹’ö‚ð•œŒ³‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2007/01/08(ŒŽ) Version 2.05 ƒÀ 2 ŠJ”­”Å
-@ƒVƒXƒeƒ€¨•œŒ³¨ƒEƒBƒ“ƒhƒEˆÊ’u^ƒTƒCƒYƒƒjƒ…[‚É‚æ‚èA‘O‰ñI—¹Žž‚ÌƒEƒBƒ“ƒhƒE
-‚ÌˆÊ’u^ƒTƒCƒY‚ð•œŒ³‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2007/01/02(‰Î) Version 2.05 ƒÀ 1 ŠJ”­”Å
-@uƒtƒ@ƒCƒ‹‚ðŠJ‚­vƒ_ƒCƒAƒƒO‚©‚çAu“Ç‚ÝŽæ‚èê—pƒtƒ@ƒCƒ‹‚Æ‚µ‚ÄŠJ‚­vƒIƒvƒVƒ‡
-ƒ“‚ðíœ‚µ‚Ü‚µ‚½B
-
-2006/06/25(“ú) Version 2.04 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2006/07/17(ŒŽ) Version 2.03 ƒÀ 4 ŠJ”­”Å
-@¡‚Ü‚Å BASS 2.2.0.4 ‚ðŽg‚Á‚Ä‚¢‚½‚Ì‚ð 2.3.0.1 ‚ðŽg—p‚·‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/07/15(“y) Version 2.03 ƒÀ 3 ŠJ”­”Å
-@‘O‰ñ‚Ì‰¹—Ê‚ð•œŒ³‚·‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/07/12(…) Version 2.03 ƒÀ 2 ŠJ”­”Å
-@˜A‘±Ä¶ƒƒjƒ…[‚ªƒfƒtƒHƒ‹ƒg‚ÅƒIƒt‚É‚È‚Á‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2006/07/09(“ú) Version 2.03 ƒÀ 1 ŠJ”­”Å
-@‘O‰ñ‚ÌÄ¶ƒ‚[ƒh‚ÌƒIƒ“EƒIƒt‚ð•œŒ³‚·‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/06/25(“ú) Version 2.02 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2006/06/24(“y) Version 2.01 ƒÀ 24 ŠJ”­”Å
-@ƒXƒ‰ƒCƒ_‚ÉƒtƒH[ƒJƒX‚ª‚ ‚éê‡APgUpƒL[‚Å’l‚ªŒ¸­APgDnƒL[‚Å’l‚ª‘‰Á‚µ‚Ä‚¢
-‚½‚Ì‚ð”½‘Î‚É‚µ‚Ü‚µ‚½B
-
-2006/06/24(“y) Version 2.01 ƒÀ 23 ŠJ”­”Å
-@ƒXƒ‰ƒCƒ_‚ÉƒtƒH[ƒJƒX‚ª‚ ‚éê‡AãƒL[‚Å’l‚ªŒ¸­A‰ºƒL[‚Å’l‚ª‘‰Á‚µ‚Ä‚¢‚½‚Ì
-‚ð”½‘Î‚É‚µ‚Ü‚µ‚½B
-
-2006/06/11(“ú) Version 2.01 ƒÀ 22 ŠJ”­”Å
-@ƒXƒ‰ƒCƒ_‚ÉƒtƒH[ƒJƒX‚ª‚ ‚éê‡AHOME ƒL[‚É‚æ‚èƒfƒtƒHƒ‹ƒg‚Ì’l‚É–ß‚¹‚é‚æ‚¤‚É‚µ
-‚Ü‚µ‚½B
-
-2006/06/10(“y) Version 2.01 ƒÀ 21 ŠJ”­”Å
-@ƒÀ 20 ‚ÌXV‚Å‹N“®‚ª’x‚­‚È‚Á‚Ä‚µ‚Ü‚Á‚Ä‚¢‚½‚Ì‚ð‰ü‘P‚µ‚Ü‚µ‚½B
-
-2006/06/10(“y) Version 2.01 ƒÀ 20 ŠJ”­”Å
-@‘O‰ñ‚ÌƒRƒ“ƒgƒ[ƒ‹ƒo[‚È‚Ç‚Ì•\Ž¦ó‘Ô‚ð•œŒ³‚·‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/04/25(‰Î) Version 2.01 ƒÀ 19 ŠJ”­”Å
-@ƒGƒfƒBƒbƒgƒRƒ“ƒgƒ[ƒ‹‚ÉƒtƒH[ƒJƒX‚ª‚ ‚éê‡AHOME ƒL[‚É‚æ‚èƒfƒtƒHƒ‹ƒg‚Ì’l‚É
-–ß‚¹‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/04/23(“ú) Version 2.01 ƒÀ 18 ŠJ”­”Å
-@ƒAƒbƒvƒ_ƒEƒ“ƒRƒ“ƒgƒ[ƒ‹‚É‚æ‚è”’l‚ð•ÏX‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/04/18(‰Î) Version 2.01 ƒÀ 17 ŠJ”­”Å
-@˜A‘±Ä¶ƒƒjƒ…[‚É‚æ‚è˜A‘±Ä¶‚ÌƒIƒ“EƒIƒt‚ðØ‚è‘Ö‚¦‚ç‚ê‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/04/15(“y) Version 2.01 ƒÀ 16 ŠJ”­”Å
-@ƒ_ƒuƒ‹ƒNƒŠƒbƒN‚âƒGƒ“ƒ^[ƒL[‚ÅÄ¶‡‚ð•ÏX‚µ‚½ê‡A‚»‚êˆÈ~ƒ‰ƒ“ƒ_ƒ€Ä¶‚É‚È‚Á
-‚Ä‚µ‚Ü‚Á‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2006/04/15(“y) Version 2.01 ƒÀ 15 ŠJ”­”Å
-@ƒOƒ‰ƒtƒBƒbƒNƒCƒRƒ‰ƒCƒU ( 250 Hz ) ‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2006/04/09(“ú) Version 2.01 ƒÀ 14 ŠJ”­”Å
-@ƒOƒ‰ƒtƒBƒbƒNƒCƒRƒ‰ƒCƒU ( 500 Hz ) ‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2006/04/09(“ú) Version 2.01 ƒÀ 13 ŠJ”­”Å
-@ƒOƒ‰ƒtƒBƒbƒNƒCƒRƒ‰ƒCƒU ( 1 KHz ) ‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2006/04/08(“y) Version 2.01 ƒÀ 12 ŠJ”­”Å
-@ƒOƒ‰ƒtƒBƒbƒNƒCƒRƒ‰ƒCƒU ( 2 KHz ) ‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2006/04/08(“y) Version 2.01 ƒÀ 11 ŠJ”­”Å
-@ƒOƒ‰ƒtƒBƒbƒNƒCƒRƒ‰ƒCƒU ( 4 KHz ) ‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2006/04/08(“y) Version 2.01 ƒÀ 10 ŠJ”­”Å
-@ƒOƒ‰ƒtƒBƒbƒNƒCƒRƒ‰ƒCƒU ( 8 KHz ) ‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2006/04/08(“y) Version 2.01 ƒÀ 9 ŠJ”­”Å
-@ƒc[ƒ‹ƒo[‚©‚çƒRƒ“ƒgƒ[ƒ‹ƒo[‚ÌŠJ•Âƒ{ƒ^ƒ“‚ðíœ‚µ‚Ü‚µ‚½B
-
-2006/04/08(“y) Version 2.01 ƒÀ 8 ŠJ”­”Å
-@‹N“®Žž‚ÉAƒRƒ“ƒgƒ[ƒ‹ƒo[‚âÄ¶ƒŠƒXƒg‚ð•\Ž¦‚µ‚È‚¢‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/03/27(ŒŽ) Version 2.01 ƒÀ 7 ŠJ”­”Å
-@ƒVƒXƒeƒ€ƒtƒHƒ“ƒg‚ÌÝ’è‚É‚æ‚Á‚Ä‚ÍA‰æ–Ê‚ÌƒŒƒCƒAƒEƒg‚ª•ö‚ê‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ
-‚½B
-
-2006/03/27(ŒŽ) Version 2.01 ƒÀ 6 ŠJ”­”Å
-@‚P‹Èƒ‹[ƒv‚Ì‚Æ‚«‚ÉAƒc[ƒ‹ƒo[‚Ì‘S‹Èƒ‹[ƒvEƒ‰ƒ“ƒ_ƒ€Ä¶Ý’è—p‚Ìƒ{ƒ^ƒ“‚ð”ñ•\
-Ž¦‚É‚µ‚Ä‚¢‚½‚Ì‚ðAŠDF•\Ž¦ ( ‘I‘ð•s‰Â ) ‚É‚·‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/03/27(ŒŽ) Version 2.01 ƒÀ 5 ŠJ”­”Å
-@ƒtƒHƒ‹ƒ_‚ÌƒAƒCƒRƒ“EƒEƒBƒ“ƒhƒE‚Ö‚Ìƒhƒƒbƒv‚É‘Î‰ž‚µ‚Ü‚µ‚½B
-
-2006/03/26(“ú) Version 2.01 ƒÀ 4 ŠJ”­”Å
-@Tab, Shift + Tab ‚É‚æ‚èAƒRƒ“ƒgƒ[ƒ‹‚ÌƒtƒH[ƒJƒX‚ðˆÚ“®‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/03/26(“ú) Version 2.01 ƒÀ 3 ŠJ”­”Å
-@‰¹—ÊEƒpƒ“‚Ì’l‚ðƒeƒLƒXƒgƒ{ƒbƒNƒX‚©‚ç•ÏX‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/03/26(“ú) Version 2.01 ƒÀ 2 ŠJ”­”Å
-@Ä¶‘¬“xEÄ¶Žü”g”E‰¹’ö‚Ì’l‚ðƒeƒLƒXƒgƒ{ƒbƒNƒX‚©‚ç•ÏX‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/03/24(‹à) Version 2.01 ƒÀ 1 ŠJ”­”Å
-@Ctrl + A ‚É‚æ‚èÄ¶ƒŠƒXƒg‚Ì‚·‚×‚Ä‚Ì€–Ú‚ð‘I‘ð‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/03/23(–Ø) Version 2.00 ˆÀ’è”Å
-@ˆÀ’è”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2006/03/22(…) Version 2.00 ƒÀ 6 ŠJ”­”Å
-@AB ƒ‹[ƒv’†‚É’âŽ~EˆêŽž’âŽ~‚ð‚·‚é‚ÆAAB ƒ‹[ƒv‚ª‚«‚©‚È‚­‚È‚Á‚Ä‚¢‚½‚Ì‚ðC³‚µ
-‚Ü‚µ‚½B
-
-2006/03/22(…) Version 2.00 ƒÀ 5 ŠJ”­”Å
-@•t‘®ƒtƒ@ƒCƒ‹‚Æ‚µ‚ÄAƒ}ƒjƒ…ƒAƒ‹‚ðì¬E’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2006/03/21(‰Î) Version 2.00 ƒÀ 4 ŠJ”­”Å
-@AB ƒ‹[ƒv‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2006/03/20(ŒŽ) Version 2.00 ƒÀ 3 ŠJ”­”Å
-@ƒÀ 2 ‚ÌXV‚É‚æ‚èAÄ¶ˆÊ’uÝ’è—pƒXƒ‰ƒCƒ_‚ðƒNƒŠƒbƒN‚µ‚½ê‡‚ÌˆÚ“®—Ê‚ª‚¨‚©‚µ‚­
-‚È‚Á‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2006/03/20(ŒŽ) Version 2.00 ƒÀ 2 ŠJ”­”Å
-@Ä¶ˆÊ’uÝ’è—pƒXƒ‰ƒCƒ_‚ª–³‘Ê‚Èƒƒ‚ƒŠ‚ð‘å—Ê‚ÉÁ”ï‚µ‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2006/03/20(ŒŽ) Version 2.00 ƒÀ 1 ŠJ”­”Å
-@ƒÀ”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ü‚µ‚½B
-
-2006/03/20(ŒŽ) Version 2.00 ƒ¿ 46 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg“à‚Å‚Ìƒhƒ‰ƒbƒO•ƒhƒƒbƒv‚É‚æ‚é•À‚×‘Ö‚¦‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2006/03/19(“ú) Version 2.00 ƒ¿ 45 ŠJ”­”Å
-@Ä¶‘¬“xEÄ¶Žü”g”E‰¹’öE‰¹—ÊEƒpƒ“‚ÌÝ’è—pƒXƒ‰ƒCƒ_‚Ì‚Â‚Ü‚Ý‚ðƒ_ƒuƒ‹ƒNƒŠƒbƒN
-‚µ‚½ê‡A’l‚ðƒfƒtƒHƒ‹ƒg‚É–ß‚·‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/03/19(“ú) Version 2.00 ƒ¿ 44 ŠJ”­”Å
-@ƒEƒBƒ“ƒhƒE‚ÉƒfƒXƒNƒgƒbƒv‚Ö‚ÌƒXƒiƒbƒv‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2006/03/19(“ú) Version 2.00 ƒ¿ 43 ŠJ”­”Å
-@V‚µ‚­Ä¶‚·‚éƒtƒ@ƒCƒ‹‚ªƒŠƒXƒgƒrƒ…[‚Ì’†‰›‚É•\Ž¦‚³‚ê‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-@Ä¶ƒŠƒXƒg‚ðƒXƒNƒ[ƒ‹‚µ‚½ó‘Ô‚ÅAƒEƒBƒ“ƒhƒE‚ÌÅ¬ƒTƒCƒY‚ª³‚µ‚­Ý’è‚Å‚«‚Ä‚¢
-‚È‚©‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2006/03/18(“y) Version 2.00 ƒ¿ 42 ŠJ”­”Å
-@ƒ‰ƒ“ƒ_ƒ€Ä¶‚É‘Î‰ž‚µ‚Ü‚µ‚½B
-
-2006/03/16(–Ø) Version 2.00 ƒ¿ 41 ŠJ”­”Å
-@ƒfƒŠ[ƒgƒL[‚É‚æ‚èÄ¶ƒŠƒXƒg‚©‚çƒtƒ@ƒCƒ‹‚ðíœ‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/03/16(–Ø) Version 2.00 ƒ¿ 40 ŠJ”­”Å
-@ƒ_ƒuƒ‹ƒNƒŠƒbƒN‚É‚æ‚èÄ¶ƒŠƒXƒg“à‚Å‘I‘ð’†‚Ìƒtƒ@ƒCƒ‹‚ðÄ¶‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/03/16(–Ø) Version 2.00 ƒ¿ 39 ŠJ”­”Å
-@ƒGƒ“ƒ^[ƒL[‚ÅÄ¶ƒŠƒXƒg“à‚Å‘I‘ð’†‚Ìƒtƒ@ƒCƒ‹‚ðÄ¶‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/03/16(–Ø) Version 2.00 ƒ¿ 38 ŠJ”­”Å
-@Ä¶’†‚Ìƒtƒ@ƒCƒ‹‚ðÄ¶ƒŠƒXƒg“à‚Å‹­’²•\Ž¦‚·‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/03/15(…) Version 2.00 ƒ¿ 37 ŠJ”­”Å
-@ƒtƒ@ƒCƒ‹‚ðŠJ‚­ƒ_ƒCƒAƒƒO‚©‚ç‚Ì•¡”ƒtƒ@ƒCƒ‹‚ÌƒI[ƒvƒ“‚É‘Î‰ž‚µ‚Ü‚µ‚½B
-
-2006/03/15(…) Version 2.00 ƒ¿ 36 ŠJ”­”Å
-@ƒtƒ@ƒCƒ‹‚ÌƒEƒBƒ“ƒhƒE‚Ö‚ÌƒhƒƒbƒvŒã‚ÉAÄ¶‡‚ª‚¨‚©‚µ‚­‚È‚é‚±‚Æ‚ª‚ ‚Á‚½‚Ì‚ðC
-³‚µ‚Ü‚µ‚½B
-
-2006/03/15(…) Version 2.00 ƒ¿ 35 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg•”•ª‚Éƒtƒ@ƒCƒ‹‚ðƒhƒƒbƒv‚µ‚½ê‡‚ÍAƒtƒ@ƒCƒ‹‚ð’Ç‰Á‚·‚é‚æ‚¤‚É‚µ‚Ü‚µ
-‚½B
-
-2006/03/15(…) Version 2.00 ƒ¿ 34 ŠJ”­”Å
-@‹N“®’¼Œã‚Éƒtƒ@ƒCƒ‹‚ðŠJ‚­ƒ_ƒCƒAƒƒO‚©‚çƒtƒ@ƒCƒ‹‚ðŠJ‚­‚ÆA‘O‚ÖEŽŸ‚Öƒƒjƒ…[‚Ì
-•\Ž¦ó‘Ô‚ª‚¨‚©‚µ‚­‚È‚Á‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2006/03/15(…) Version 2.00 ƒ¿ 33 ŠJ”­”Å
-@Šª‚«–ß‚µE‘‘—‚èƒ{ƒ^ƒ“‚ðA‘O‚ÖEŽŸ‚Ö‚Æ‚µ‚Ä‚à‹@”\‚·‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/03/15(…) Version 2.00 ƒ¿ 32 ŠJ”­”Å
-@ƒƒjƒ…[‚©‚çAÄ¶ƒtƒ@ƒCƒ‹‚ð‚Ð‚Æ‚Â‘O‚Ìƒtƒ@ƒCƒ‹E‚Ð‚Æ‚ÂŽŸ‚Ìƒtƒ@ƒCƒ‹‚É•ÏX‚Å‚«
-‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/03/15(…) Version 2.00 ƒ¿ 31 ŠJ”­”Å
-@‘S‹Èƒ‹[ƒv‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2006/03/14(‰Î) Version 2.00 ƒ¿ 30 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚Ì•\Ž¦E”ñ•\Ž¦‚ðƒƒjƒ…[‚âƒc[ƒ‹ƒo[‚Ìƒ{ƒ^ƒ“‚©‚çØ‚è‘Ö‚¦‚ç‚ê‚é‚æ‚¤
-‚É‚µ‚Ü‚µ‚½B
-
-2006/03/14(‰Î) Version 2.00 ƒ¿ 29 ŠJ”­”Å
-@ƒRƒ“ƒgƒ[ƒ‹ƒo[‚Ì•\Ž¦E”ñ•\Ž¦‚ðƒc[ƒ‹ƒo[‚Ìƒ{ƒ^ƒ“‚©‚çØ‚è‘Ö‚¦‚ç‚ê‚é‚æ‚¤‚É‚µ
-‚Ü‚µ‚½B
-
-2006/03/14(‰Î) Version 2.00 ƒ¿ 28 ŠJ”­”Å
-@Ä¶ƒŠƒXƒg‚Ì•\Ž¦—p‚ÉƒŠƒXƒgƒrƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@ƒEƒBƒ“ƒhƒE‚ÌÅ¬ƒTƒCƒY‚ðÝ’è‚µ‚Ü‚µ‚½B
-
-2006/03/13(ŒŽ) Version 2.00 ƒ¿ 27 ŠJ”­”Å
-@ŠÂ‹«‚É‚æ‚Á‚Ä‚ÍA‹N“®’¼Œã‚É‹­§I—¹‚µ‚Ä‚µ‚Ü‚Á‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2006/03/12(“ú) Version 2.00 ƒ¿ 26 ŠJ”­”Å
-@ƒRƒ“ƒgƒ[ƒ‹‚Ì”z’u‚ðÄ’²®‚µ‚Ü‚µ‚½B
-
-2006/03/12(“ú) Version 2.00 ƒ¿ 25 ŠJ”­”Å
-@ƒRƒ“ƒgƒ[ƒ‹ƒo[‚Ì•\Ž¦E”ñ•\Ž¦‚ðƒƒjƒ…[‚©‚çØ‚è‘Ö‚¦‚ç‚ê‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/03/11(“y) Version 2.00 ƒ¿ 24 ŠJ”­”Å
-@ƒpƒ“‚Ì•ÏX‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2006/03/11(“y) Version 2.00 ƒ¿ 23 ŠJ”­”Å
-@‰¹—Ê‚Ì•ÏX‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2006/03/11(“y) Version 2.00 ƒ¿ 22 ŠJ”­”Å
-@“ü—ÍEo—Íƒtƒ@ƒCƒ‹‚ª“¯ˆêƒtƒ@ƒCƒ‹‚Ìê‡‚ÍAƒGƒ‰[‚ðo‚·‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/03/11(“y) Version 2.00 ƒ¿ 21 ŠJ”­”Å
-@•Û‘¶’†ƒ_ƒCƒAƒƒO‚ÉƒvƒƒOƒŒƒXƒo[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2006/03/11(“y) Version 2.00 ƒ¿ 20 ŠJ”­”Å
-@‰¹ºƒtƒ@ƒCƒ‹‚Ì•Û‘¶‹@”\‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-
-2006/03/10(‹à) Version 2.00 ƒ¿ 19 ŠJ”­”Å
-@ƒtƒ@ƒCƒ‹‚ÌƒEƒBƒ“ƒhƒE‚Ö‚Ìƒhƒƒbƒv‚É‘Î‰ž‚µ‚Ü‚µ‚½B
-
-2006/03/09(–Ø) Version 2.00 ƒ¿ 18 ŠJ”­”Å
-@Ä¶ŽžŠÔ‚Ì•\Ž¦‚ªƒ}ƒCƒiƒX‚É‚È‚é‚±‚Æ‚ª‚ ‚Á‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2006/03/09(–Ø) Version 2.00 ƒ¿ 17 ŠJ”­”Å
-@‹N“®‚ð‚‘¬‰»‚µ‚Ü‚µ‚½B
-@ƒtƒ@ƒCƒ‹‚ÌƒAƒCƒRƒ“‚Ö‚Ìƒhƒƒbƒv‚É‘Î‰ž‚µ‚Ü‚µ‚½B
-@“Ç‚Ýž‚ß‚È‚¢ƒtƒ@ƒCƒ‹Œ`Ž®‚¾‚Á‚½ê‡AÄ¶ŽžŠÔ‚ðƒ[ƒ‚É–ß‚·‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/03/08(…) Version 2.00 ƒ¿ 16 ŠJ”­”Å
-@Ä¶ˆÊ’uÝ’è—pƒXƒ‰ƒCƒ_‚ÌˆÊ’u‚ð’²®‚µ‚Ü‚µ‚½B
-
-2006/03/04(“y) Version 2.00 ƒ¿ 15 ŠJ”­”Å
-@ƒ¿ 13 ‚ÌXV‚É‚æ‚èA“ªo‚µƒƒjƒ…[‚ª‹@”\‚µ‚È‚­‚È‚Á‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2006/03/04(“y) Version 2.00 ƒ¿ 14 ŠJ”­”Å
-@ƒL[ƒ{[ƒhƒVƒ‡[ƒgƒJƒbƒg‚É‚æ‚èAˆê•”ƒƒjƒ…[‚ð‘€ì‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/03/04(“y) Version 2.00 ƒ¿ 13 ŠJ”­”Å
-@Šª‚«–ß‚µE‘‘—‚èƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-@“ªo‚µ/Šª‚«–ß‚µƒ{ƒ^ƒ“‚ª“ªo‚µ‚Æ‚µ‚Ä”FŽ¯‚³‚ê‚éŽžŠÔ‚ð’·‚­‚µ‚Ü‚µ‚½B
-
-2006/03/04(“y) Version 2.00 ƒ¿ 12 ŠJ”­”Å
-@WMA ƒtƒ@ƒCƒ‹‚ÌÄ¶‚É‘Î‰ž‚µ‚Ü‚µ‚½B
-
-2006/03/03(‹à) Version 2.00 ƒ¿ 11 ŠJ”­”Å
-@Ä¶ŽžŠÔ•\Ž¦—pƒ‰ƒxƒ‹‚ÌˆÊ’u‚ð’²®‚µ‚Ü‚µ‚½B
-
-2006/03/03(‹à) Version 2.00 ƒ¿ 10 ŠJ”­”Å
-@ƒAƒCƒRƒ“‚ðì¬EÝ’è‚µ‚Ü‚µ‚½B
-
-2006/03/02(–Ø) Version 2.00 ƒ¿ 9 ŠJ”­”Å
-@‘‘—‚èƒ{ƒ^ƒ“‚ð’·‰Ÿ‚µ‚·‚é‚±‚Æ‚ÅA‘‘—‚è‚ª‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/03/02(–Ø) Version 2.00 ƒ¿ 8 ŠJ”­”Å
-@“ªo‚µˆÈŠO‚Ìƒ{ƒ^ƒ“‚Å‚àA’·‰Ÿ‚µ‚·‚é‚ÆŠª‚«–ß‚µ‚É‚È‚Á‚Ä‚µ‚Ü‚Á‚Ä‚¢‚½‚Ì‚ðC³‚µ‚Ü
-‚µ‚½B
-
-2006/03/02(–Ø) Version 2.00 ƒ¿ 7 ŠJ”­”Å
-@“ªo‚µƒ{ƒ^ƒ“‚ð’·‰Ÿ‚µ‚·‚é‚±‚Æ‚ÅAŠª‚«–ß‚µ‚ª‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/02/28(‰Î) Version 2.00 ƒ¿ 6 ŠJ”­”Å
-@Ä¶ŽžŠÔ•\Ž¦—pƒ‰ƒxƒ‹‚ÌXVˆ—‚ð’âŽ~’†‚É‚Ís‚í‚È‚¢‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/02/28(‰Î) Version 2.00 ƒ¿ 5 ŠJ”­”Å
-@Ä¶ŽžŠÔ•\Ž¦—pƒ‰ƒxƒ‹‚ðƒNƒŠƒbƒN‚·‚é‚±‚Æ‚ÅAuÄ¶ŽžŠÔ•\Ž¦ƒ‚[ƒhv‚ÆuŽc‚èŽžŠÔ
-•\Ž¦ƒ‚[ƒhv‚Æ‚ðØ‚è‘Ö‚¦‚ç‚ê‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/02/27(ŒŽ) Version 2.00 ƒ¿ 4 ŠJ”­”Å
-@ƒRƒ“ƒgƒ[ƒ‹‚ÌŠÔŠu‚ð’²®‚µ‚Ü‚µ‚½B
-@ƒRƒ“ƒgƒ[ƒ‹ŠÔ‚É‹æØ‚èü‚ð•\Ž¦‚·‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-
-2006/02/27(ŒŽ) Version 2.00 ƒ¿ 3 ŠJ”­”Å
-@ƒ\[ƒXƒR[ƒh‚ð®—‚µ‚Ü‚µ‚½B
-
-2006/02/27(ŒŽ) Version 2.00 ƒ¿ 2 ŠJ”­”Å
-@ƒXƒ‰ƒCƒ_‚ð“®‚©‚µ‚Ä‚©‚çƒtƒ@ƒCƒ‹‚ð“Ç‚Ýž‚Þ‚ÆAÄ¶‘¬“x‚È‚Ç‚ªÝ’è‚³‚ê‚Ä‚¢‚È‚©‚Á‚½
-‚Ì‚ðC³‚µ‚Ü‚µ‚½B
-
-2006/02/27(ŒŽ) Version 2.00 ƒ¿ 1 ŠJ”­”Å
-@ŒöŠJ‚µ‚Ü‚µ‚½B
+ã€€manual ãƒ•ã‚©ãƒ«ãƒ€ã® index.html ãŒãƒžãƒ‹ãƒ¥ã‚¢ãƒ«ã¨ãªã£ã¦ã„ã¾ã™ã€‚
 
 ------------------------------------------------------------------------------
- ƒXƒyƒVƒƒƒ‹ƒTƒ“ƒNƒX
+ æ›´æ–°å±¥æ­´
 ------------------------------------------------------------------------------
 
-@•·Xƒnƒ„‚¦‚à‚ñ‚ÌŠJ”­‚É‚ ‚½‚èAˆÈ‰º‚Ì•ûX‚É‚½‚¢‚Ö‚ñ‚¨¢˜b‚É‚È‚Á‚Ä‚¨‚è‚Ü‚·B
-@‚±‚Ìê‚ðŽØ‚è‚ÄA‚¨—ç\‚µã‚°‚Ü‚·B‚ ‚è‚ª‚Æ‚¤‚²‚´‚¢‚Ü‚·I
+2018/6/27(æ°´) Version 2.77 Î² 1 é–‹ç™ºç‰ˆ
+ã€€å¤–éƒ¨ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’æœ€æ–°åŒ–ã—ã¾ã—ãŸã€‚
 
-›Tetsuya N‚³‚ñi@TetuFonj
-›—é–Ø Œ’Ž¡‚³‚ñ
-›ìŒû ‹M‘å‚³‚ñ
-›iwamoto ‚³‚ñ
-›Shuel ‚³‚ñ
-	ƒ[ƒ‹ƒhEƒƒCƒhEƒGƒfƒ“ : http://wweden.s18.xrea.com
-›‚¢‚Á‚µ`‚³‚ñ
-	‚»‚¨‚·‚Ì‚¨•”‰® : http://www.so-s.com/
-›ƒxƒ‹ƒm‚³‚ñ
-›‚½‚Â‚ ‚«‚³‚ñ
-›ˆî•ä‚³‚ñ
-	ˆî•äƒvƒƒWƒFƒNƒg : http://www13.ocn.ne.jp/~inaho/index.html
-›DAI ‚³‚ñ
-›¼ì ‹M—m‚³‚ñ
-›‰Í“c ‹±˜Y‚³‚ñ
-›ŽO‘î Œ³‹M‚³‚ñ
-›‰Y•Ó —æ‚³‚ñ
-	STAR DUST‘fÞŠÙ : http://lunar.littlestar.jp/stardust/
-	STAR DUST‰pŒêŠÙ : http://lunar.littlestar.jp/stardust/english/
+2018/6/10(ç«) Version 2.76 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2018/6/4(æœˆ) Version 2.75 Î² 6 é–‹ç™ºç‰ˆ
+ã€€ã‚¢ã‚¤ã‚³ãƒ³ã‚’æœŸé–“é™å®šã®æ¡œã‚¢ã‚¤ã‚³ãƒ³ã‹ã‚‰é€šå¸¸ã®ã‚¢ã‚¤ã‚³ãƒ³ã«å¤‰æ›´ã—ã¾ã—ãŸã€‚
+
+2018/5/14(æœˆ) Version 2.75 Î² 5 é–‹ç™ºç‰ˆ
+ã€€ã‚¢ã‚¤ã‚³ãƒ³ã‚’å­£ç¯€é™å®šã§æ¡œã®ã‚¢ã‚¤ã‚³ãƒ³ã«å¤‰æ›´ã—ã¾ã—ãŸã€‚
+
+2017/8/30(æ°´) Version 2.75 Î² 4 é–‹ç™ºç‰ˆ
+ã€€Windows XPã®ç’°å¢ƒã§èµ·å‹•ã—ãªã‹ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2017/8/23(æ°´) Version 2.75 Î² 3 é–‹ç™ºç‰ˆ
+ã€€é–‹ç™ºç’°å¢ƒã‚’Visual C++ 2010 Expressã‹ã‚‰Visual Studio Community 2017ã«å¤‰æ›´ã—ã¾ã—ãŸã€‚
+ã€€iOSç”¨ã«ã†ã‚ã•ã‚“ãŒãƒ‡ã‚¶ã‚¤ãƒ³ã—ã¦ãã‚ŒãŸã‚¢ã‚¤ã‚³ãƒ³ã‚’ã—ã‚…ãŒãƒ¼ãŸã‚ã†ãã‚“ã¨å‚å£ãã‚“ãŒ
+åæ˜ ã•ã›ã¦ãã‚Œã¾ã—ãŸã€‚
+ã€€â—‹ã†ã‚ã•ã‚“ï¼ˆTwitter: @UmeboshiKantaroï¼‰
+ã€€â—‹ã—ã‚…ãŒãƒ¼ãŸã‚ã†ãã‚“ï¼ˆTwitter: @12guitar21ï¼‰
+ã€€â—‹å‚å£ãã‚“
+
+2013/5/27(æœˆ) Version 2.75 Î² 2 é–‹ç™ºç‰ˆ
+ã€€ãƒ˜ãƒ«ãƒ—ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€ã‚ªãƒ³ãƒ©ã‚¤ãƒ³ãƒžãƒ‹ãƒ¥ã‚¢ãƒ«ã«ã‚¢ã‚¯ã‚»ã‚¹ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/5/20(æœˆ) Version 2.75 Î² 1 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿâ†’åŒã˜ã‚¢ãƒ¼ãƒ†ã‚£ã‚¹ãƒˆã®æ›²ã‚’å†ç”Ÿãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2013/5/19(æ—¥) Version 2.74 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2013/5/15(æ°´) Version 2.73 Î² 18 é–‹ç™ºç‰ˆ
+ã€€ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†ç›´å¾Œã«å†èµ·å‹•ã™ã‚‹ã¨ã€å†ç”Ÿãƒªã‚¹ãƒˆãŒå…¨ã¦å¾©å…ƒã•ã‚Œãªã„äº‹ãŒ
+ã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2013/5/6(æœˆ) Version 2.73 Î² 17 é–‹ç™ºç‰ˆ
+ã€€NSFãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿æ™‚ã®æŒ™å‹•ãŒãŠã‹ã—ã„äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2013/5/5(æ—¥) Version 2.73 Î² 16 é–‹ç™ºç‰ˆ
+ã€€NSFãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¯¾å¿œã—ã¾ã—ãŸã€‚
+
+2013/4/29(æœˆ) Version 2.73 Î² 15 é–‹ç™ºç‰ˆ
+ã€€èµ·å‹•ã‚’é«˜é€ŸåŒ–ã—ã¾ã—ãŸã€‚
+
+2013/4/28(æ—¥) Version 2.73 Î² 14 é–‹ç™ºç‰ˆ
+ã€€ãƒ„ã‚¤ãƒ¼ãƒˆç”»é¢ã§ã‚¹ãƒšãƒ¼ã‚¹ã‚­ãƒ¼ãŒå…¥åŠ›ã§ããªã‹ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2013/4/28(æ—¥) Version 2.73 Î² 13 é–‹ç™ºç‰ˆ
+ã€€é–¢é€£ä»˜ã‘ã§ã®è‡ªå‹•å†ç”ŸãŒã†ã¾ãå‹•ã„ã¦ã„ãªã‹ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2013/4/22(æœˆ) Version 2.73 Î² 12 é–‹ç™ºç‰ˆ
+ã€€ãƒ¡ãƒ¢ãƒªãƒªãƒ¼ã‚¯ã‚’èµ·ã“ã—ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2013/4/22(æœˆ) Version 2.73 Î² 11 é–‹ç™ºç‰ˆ
+ã€€æ­Œè©žè¡¨ç¤ºã®æŒ™å‹•ã‚’é«˜é€ŸåŒ–ã—ã¾ã—ãŸã€‚
+
+2013/4/22(æœˆ) Version 2.73 Î² 10 é–‹ç™ºç‰ˆ
+ã€€ãƒ”ãƒƒãƒã‚¢ãƒŠãƒ©ã‚¤ã‚¶ã®æŒ™å‹•ã‚’é«˜é€ŸåŒ–ã—ã¾ã—ãŸã€‚
+
+2013/4/21(æ—¥) Version 2.73 Î² 9 é–‹ç™ºç‰ˆ
+ã€€ãƒ“ãƒ‡ã‚ªç”»é¢éžè¡¨ç¤ºæ™‚ã«ã‚‚ãƒ”ãƒƒãƒã‚¢ãƒŠãƒ©ã‚¤ã‚¶å‡¦ç†ãŒå‹•ä½œã—ã€å‡¦ç†ãŒé‡ãŸããªã£ã¦ã„ãŸã®
+ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2013/4/6(åœŸ) Version 2.73 Î² 8 é–‹ç™ºç‰ˆ
+ã€€éŸ³é‡ã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã€ŒéŸ³é‡æŒ‡å®šã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2013/4/5(é‡‘) Version 2.73 Î² 7 é–‹ç™ºç‰ˆ
+ã€€éŸ³é‡ã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã€Œãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«æˆ»ã™ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2013/4/4(æœ¨) Version 2.73 Î² 6 é–‹ç™ºç‰ˆ
+ã€€ã€Œã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€â†’ã€ŒéŸ³é‡ã€â†’ã€ŒéŸ³é‡æŒ‡å®šã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2013/4/3(æ°´) Version 2.73 Î² 5 é–‹ç™ºç‰ˆ
+ã€€ã€Œã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€â†’ã€ŒéŸ³é‡ã€â†’ã€Œãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«æˆ»ã™ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2013/4/2(ç«) Version 2.73 Î² 4 é–‹ç™ºç‰ˆ
+ã€€ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã€ŒéŸ³è³ªã€â†’ã€ŒWASAPIã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚WASAPIæŽ’ä»–
+ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã‚Šã€é«˜éŸ³è³ªã§éŸ³æ¥½ã‚’å†ç”Ÿã§ãã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã—ãŸã€‚
+
+2013/4/1(æœˆ) Version 2.73 Î² 3 é–‹ç™ºç‰ˆ
+ã€€ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã€ŒéŸ³è³ªã€â†’ã€ŒãƒŽãƒ¼ãƒžãƒ«ã€ã€ŒASIOã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2013/3/31(æ—¥) Version 2.73 Î² 2 é–‹ç™ºç‰ˆ
+ã€€ãƒ•ã‚¡ã‚¤ãƒ«ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã€ŒURLã‚’è¿½åŠ ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2013/3/30(åœŸ) Version 2.73 Î² 1 é–‹ç™ºç‰ˆ
+ã€€ãƒ•ã‚¡ã‚¤ãƒ«ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã€ŒURLã‚’é–‹ãã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2013/3/29(é‡‘) Version 2.72 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2013/3/28(æœ¨) Version 2.71 Î² 29 é–‹ç™ºç‰ˆ
+ã€€ãƒ“ãƒ‡ã‚ªç”»é¢ã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€Œæ­Œè©žã€ã€Œãƒ”ãƒƒãƒã‚¢ãƒŠãƒ©ã‚¤ã‚¶ã€ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‰ã‚Œ
+ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/3/27(æ°´) Version 2.71 Î² 28 é–‹ç™ºç‰ˆ
+ã€€å‰å›žçµ‚äº†æ™‚ã®ãƒ“ãƒ‡ã‚ªç”»é¢è¡¨ç¤ºå†…å®¹ã‚’å¾©å…ƒã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/3/26(ç«) Version 2.71 Î² 27 é–‹ç™ºç‰ˆ
+ã€€ãƒ”ãƒƒãƒã‚¢ãƒŠãƒ©ã‚¤ã‚¶æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚éŸ³ç¨‹ã”ã¨ã®éŸ³ã®å¼·ã•ã‚’è¦–è¦šçš„ã«ç¢ºèªã§ãã‚‹
+ã‚ˆã†ã«ãªã‚Šã¾ã—ãŸã€‚
+
+2013/3/25(æœˆ) Version 2.71 Î² 26 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã®è¡¨ç¤ºãŒãŠã‹ã—ããªã‚‹äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2013/3/24(æ—¥) Version 2.71 Î² 25 é–‹ç™ºç‰ˆ
+ã€€LRCæ­Œè©žãƒ•ã‚¡ã‚¤ãƒ«ã®bgfolderã‚¿ã‚°ã‚’ä½¿ç”¨ã—ãŸèƒŒæ™¯ç”»åƒ(JPEG)ã®è¡¨ç¤ºã«å¯¾å¿œã—ã¾ã—ãŸã€‚
+
+2013/3/23(åœŸ) Version 2.71 Î² 24 é–‹ç™ºç‰ˆ
+ã€€ãƒ™ãƒ¼ã‚¹ã®è€³ã‚³ãƒ”ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é¸æŠžçŠ¶æ…‹ãŒãŠã‹ã—ããªã‚‹äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2013/3/22(é‡‘) Version 2.71 Î² 23 é–‹ç™ºç‰ˆ
+ã€€éŸ³ç¨‹ã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã€Œå°æ•°ç‚¹æ¡æ•°ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2013/3/21(æœ¨) Version 2.71 Î² 22 é–‹ç™ºç‰ˆ
+ã€€éŸ³ç¨‹ã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã€ŒåŠéŸ³ä¸‹ã’ã‚‹ã€ã€ŒåŠéŸ³ä¸Šã’ã‚‹ã€ç­‰ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ãŸ
+äº‹ã«ã‚ˆã‚Šã€ç°¡å˜ã«éŸ³ç¨‹ã®å¤‰æ›´ãŒã§ãã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã—ãŸã€‚
+
+2013/3/20(æ°´) Version 2.71 Î² 21 é–‹ç™ºç‰ˆ
+ã€€éŸ³ç¨‹ã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã€ŒéŸ³ç¨‹æŒ‡å®šã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ãŸäº‹ã«ã‚ˆã‚Šã€ç°¡å˜ã«
+éŸ³ç¨‹æŒ‡å®šãŒã§ãã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã—ãŸã€‚
+
+2013/3/19(ç«) Version 2.71 Î² 20 é–‹ç™ºç‰ˆ
+ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ãŒä¸€éƒ¨å¾©å…ƒã§ãã¦ã„ãªã‹ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2013/3/18(æœˆ) Version 2.71 Î² 19 é–‹ç™ºç‰ˆ
+ã€€ABãƒ«ãƒ¼ãƒ—é–“ã®ä¿å­˜ãŒã§ããªããªã£ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2013/3/17(æ—¥) Version 2.71 Î² 18 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿå‘¨æ³¢æ•°ã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã€Œå°æ•°ç‚¹æ¡æ•°ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2013/3/16(åœŸ) Version 2.71 Î² 17 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿå‘¨æ³¢æ•°ã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã€Œã ã‚“ã ã‚“é€Ÿãã™ã‚‹ã€ã€Œã ã‚“ã ã‚“é…ãã™ã‚‹ã€
+ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2013/3/15(é‡‘) Version 2.71 Î² 16 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿå‘¨æ³¢æ•°ã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã€ŒX%ä¸‹ã’ã‚‹ã€ã€ŒX%ä¸Šã’ã‚‹ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ãŸäº‹
+ã«ã‚ˆã‚Šã€ç°¡å˜ã«å‘¨æ³¢æ•°ã®å¤‰æ›´ãŒã§ãã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã—ãŸã€‚
+
+2013/3/14(æœ¨) Version 2.71 Î² 15 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿå‘¨æ³¢æ•°ã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã€Œå‘¨æ³¢æ•°æŒ‡å®šã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ãŸäº‹ã«ã‚ˆã‚Šã€
+ç°¡å˜ã«å‘¨æ³¢æ•°æŒ‡å®šãŒã§ãã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã—ãŸã€‚
+
+2013/3/13(æ°´) Version 2.71 Î² 14 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿé€Ÿåº¦ã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã€Œå°æ•°ç‚¹æ¡æ•°ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2013/3/12(ç«) Version 2.71 Î² 13 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿé€Ÿåº¦ã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã€Œã ã‚“ã ã‚“é€Ÿãã™ã‚‹ã€ã€Œã ã‚“ã ã‚“é…ãã™ã‚‹ã€
+ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2013/3/11(æœˆ) Version 2.71 Î² 12 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿé€Ÿåº¦ã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã€ŒX%ä¸‹ã’ã‚‹ã€ã€ŒX%ä¸Šã’ã‚‹ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ãŸäº‹
+ã«ã‚ˆã‚Šã€ç°¡å˜ã«é€Ÿåº¦ã®å¤‰æ›´ãŒã§ãã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã—ãŸã€‚
+
+2013/3/10(æ—¥) Version 2.71 Î² 11 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿé€Ÿåº¦ã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã€Œé€Ÿåº¦æŒ‡å®šã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ãŸäº‹ã«ã‚ˆã‚Šã€ç°¡å˜ã«
+é€Ÿåº¦æŒ‡å®šãŒã§ãã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã—ãŸã€‚
+
+2013/3/9(åœŸ) Version 2.71 Î² 10 é–‹ç™ºç‰ˆ
+ã€€å‰å›žçµ‚äº†æ™‚ã®ãƒžãƒ¼ã‚«ãƒ¼å†ç”Ÿã®è¨­å®šçŠ¶æ…‹ã‚’å¾©å…ƒã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/3/8(é‡‘) Version 2.71 Î² 9 é–‹ç™ºç‰ˆ
+ã€€åˆå›žèµ·å‹•æ™‚ã«ãƒ“ãƒ‡ã‚ªç”»é¢ã‚’è¡¨ç¤ºã—ãªã„ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/3/7(æœ¨) Version 2.71 Î² 8 é–‹ç™ºç‰ˆ
+ã€€ã€Œã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã®ç¢ºèªã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2013/3/6(æ°´) Version 2.71 Î² 7 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã®ã‚¿ã‚°è¡¨ç¤ºã‚’é«˜é€ŸåŒ–ã—ã¾ã—ãŸã€‚
+
+2013/3/5(ç«) Version 2.71 Î² 6 é–‹ç™ºç‰ˆ
+ã€€æ­Œè©žã®è¡¨ç¤ºã‚’é«˜é€ŸåŒ–ã—ã¾ã—ãŸã€‚
+
+2013/3/4(æœˆ) Version 2.71 Î² 5 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿæ™‚é–“ã®è¡¨ç¤ºã‚’é«˜é€ŸåŒ–ã—ã¾ã—ãŸã€‚
+
+2013/3/3(æ—¥) Version 2.71 Î² 4 é–‹ç™ºç‰ˆ
+ã€€è¨­å®šçŠ¶æ…‹ã‚’ä¿å­˜ã—ã¦ã„ã‚‹Setting.iniã«ãŠã‹ã—ãªå€¤ãŒå…¥ã‚‹äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾
+ã—ãŸã€‚
+
+2013/3/2(åœŸ) Version 2.71 Î² 3 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆãŒå¾©å…ƒã§ããªã„äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2013/3/1(é‡‘) Version 2.71 Î² 2 é–‹ç™ºç‰ˆ
+ã€€ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®çµ‚äº†ã‚’é«˜é€ŸåŒ–ã—ã¾ã—ãŸã€‚
+
+2013/2/28(æœ¨) Version 2.71 Î² 1 é–‹ç™ºç‰ˆ
+ã€€èµ·å‹•ã‚’é«˜é€ŸåŒ–ã—ã¾ã—ãŸã€‚
+
+2013/2/27(æ°´) Version 2.70 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2013/2/26(ç«) Version 2.69 Î² 15 é–‹ç™ºç‰ˆ
+ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ã®å¾©å…ƒãŒã†ã¾ãã„ã‹ãªã„äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2013/2/25(æœˆ) Version 2.69 Î² 14 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿé€Ÿåº¦ã€å†ç”Ÿå‘¨æ³¢æ•°ã€éŸ³ç¨‹ã®å¾©å…ƒãŒã†ã¾ãã„ã‹ãªã„äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2013/2/24(æ—¥) Version 2.69 Î² 13 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€Œå¹´ã€ã‚¿ã‚°ã‚’ç·¨é›†ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/2/23(åœŸ) Version 2.69 Î² 12 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€Œã‚¢ãƒ¼ãƒ†ã‚£ã‚¹ãƒˆã€ã‚¿ã‚°ã‚’ç·¨é›†ã§ãã‚‹ã‚ˆã†ã«ã—ã¾
+ã—ãŸã€‚
+
+2013/2/22(é‡‘) Version 2.69 Î² 11 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€Œã‚¿ã‚¤ãƒˆãƒ«ã€ã‚¿ã‚°ã‚’ç·¨é›†ã§ãã‚‹ã‚ˆã†ã«ã—ã¾
+ã—ãŸã€‚
+
+2013/2/21(æœ¨) Version 2.69 Î² 10 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿä¸­ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¿ã‚°ãŒæ›´æ–°ã§ããªã‹ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2013/2/20(æ°´) Version 2.69 Î² 9 é–‹ç™ºç‰ˆ
+ã€€æ‹¡å¼µå­ã€Œ.m4bã€ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã‘ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/2/19(ç«) Version 2.69 Î² 8 é–‹ç™ºç‰ˆ
+ã€€ã‚¿ã‚°ã®ç·¨é›†ä¸­ã«ã‚¹ãƒšãƒ¼ã‚¹ã‚­ãƒ¼ãŒä½¿ç”¨ã§ããªã‹ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2013/2/18(æœˆ) Version 2.69 Î² 7 é–‹ç™ºç‰ˆ
+ã€€ã‚¿ãƒ–ã‚’å‰Šé™¤ã—ãŸéš›ã«ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãŒç•°å¸¸çµ‚äº†ã™ã‚‹äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2013/2/17(æ—¥) Version 2.69 Î² 6 é–‹ç™ºç‰ˆ
+ã€€ã‚¿ã‚°ã®ç·¨é›†ä¸­ã«ã‚«ãƒ¼ã‚½ãƒ«ã‚­ãƒ¼ã‚’æŠ¼ã™äº‹ã§ç·¨é›†ã™ã‚‹ç®‡æ‰€ã‚’ç§»å‹•ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/2/16(åœŸ) Version 2.69 Î² 5 é–‹ç™ºç‰ˆ
+ã€€ã‚¿ã‚°ã®ç·¨é›†ä¸­ã«Escã‚­ãƒ¼ã‚’æŠ¼ã™äº‹ã§ã‚¿ã‚°ã®ç·¨é›†ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/2/15(é‡‘) Version 2.69 Î² 4 é–‹ç™ºç‰ˆ
+ã€€mp3infp.dllã‚’ä½¿ç”¨ã—ãŸã‚¿ã‚°ã®æ›´æ–°ã«å¯¾å¿œã—ã¾ã—ãŸã€‚
+
+2013/2/14(æœ¨) Version 2.69 Î² 3 é–‹ç™ºç‰ˆ
+ã€€mp3infp.dllã‚’ä½¿ç”¨ã™ã‚‹ã‚ˆã†ã«ã—ãŸäº‹ã«ã‚ˆã‚Šã€ã‚¿ã‚°æƒ…å ±ã®èª­ã¿è¾¼ã¿ãŒé«˜é€ŸåŒ–ã•ã‚Œã¾ã—ãŸã€‚
+
+2013/2/13(æ°´) Version 2.69 Î² 2 é–‹ç™ºç‰ˆ
+ã€€èµ·å‹•ã‚’é«˜é€ŸåŒ–ã—ã¾ã—ãŸã€‚
+
+2013/2/12(ç«) Version 2.69 Î² 1 é–‹ç™ºç‰ˆ
+ã€€ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—ã«ã‚ˆã‚Šã€ãƒ“ãƒ‡ã‚ªç”»é¢ã®ã‚µã‚¤ã‚ºã‚’èª¿æ•´ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/2/11(æœˆ) Version 2.68 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2013/2/10(æ—¥) Version 2.67 Î² 24 é–‹ç™ºç‰ˆ
+ã€€ãƒ‡ã‚£ã‚¹ãƒˆãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚«ã‚¹ã‚¿ãƒžã‚¤ã‚ºãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚å„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’èª¿æ•´ã™ã‚‹
+äº‹ã«ã‚ˆã‚Šè‡ªç”±ã«ãƒ‡ã‚£ã‚¹ãƒˆãƒ¼ã‚·ãƒ§ãƒ³ã‚’å¤‰æ›´ã§ãã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã—ãŸã€‚
+
+2013/2/9(åœŸ) Version 2.67 Î² 23 é–‹ç™ºç‰ˆ
+ã€€ã‚¬ãƒ¼ã‚°ãƒ«ã®ã‚«ã‚¹ã‚¿ãƒžã‚¤ã‚ºãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚å„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’èª¿æ•´ã™ã‚‹äº‹
+ã«ã‚ˆã‚Šè‡ªç”±ã«ã‚¬ãƒ¼ã‚°ãƒ«ã‚’å¤‰æ›´ã§ãã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã—ãŸã€‚
+
+2013/2/8(é‡‘) Version 2.67 Î² 22 é–‹ç™ºç‰ˆ
+ã€€ãƒ•ãƒ©ãƒ³ã‚¸ãƒ£ãƒ¼ã®ã‚«ã‚¹ã‚¿ãƒžã‚¤ã‚ºãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚å„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’èª¿æ•´ã™ã‚‹äº‹
+ã«ã‚ˆã‚Šè‡ªç”±ã«ãƒ•ãƒ©ãƒ³ã‚¸ãƒ£ãƒ¼ã‚’å¤‰æ›´ã§ãã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã—ãŸã€‚
+
+2013/2/7(æœ¨) Version 2.67 Î² 21 é–‹ç™ºç‰ˆ
+ã€€ã‚³ãƒ³ãƒ—ãƒ¬ãƒƒã‚µãƒ¼ã®ã‚«ã‚¹ã‚¿ãƒžã‚¤ã‚ºãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚å„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’èª¿æ•´ã™ã‚‹äº‹
+ã«ã‚ˆã‚Šè‡ªç”±ã«ã‚³ãƒ³ãƒ—ãƒ¬ãƒƒã‚µãƒ¼ã‚’å¤‰æ›´ã§ãã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã—ãŸã€‚
+
+2013/2/6(æ°´) Version 2.67 Î² 20 é–‹ç™ºç‰ˆ
+ã€€å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€éŸ³ç¨‹ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«æˆ»ã›ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/2/5(ç«) Version 2.67 Î² 19 é–‹ç™ºç‰ˆ
+ã€€çµ‚äº†æ™‚ã«éŸ³ãŒé³´ã£ã¦ã—ã¾ã†äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2013/2/4(æœˆ) Version 2.67 Î² 18 é–‹ç™ºç‰ˆ
+ã€€å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€å†ç”Ÿå‘¨æ³¢æ•°ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«æˆ»ã›ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/2/3(æ—¥) Version 2.67 Î² 17 é–‹ç™ºç‰ˆ
+ã€€å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€å†ç”Ÿé€Ÿåº¦ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«æˆ»ã›ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/2/2(åœŸ) Version 2.67 Î² 16 é–‹ç™ºç‰ˆ
+ã€€å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ã‚’éžè¡¨ç¤ºã«ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/2/1(é‡‘) Version 2.67 Î² 15 é–‹ç™ºç‰ˆ
+ã€€å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€ãƒ‘ãƒ³ã‚’éžè¡¨ç¤ºã«ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/1/31(æœ¨) Version 2.67 Î² 14 é–‹ç™ºç‰ˆ
+ã€€å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€éŸ³é‡ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚’éžè¡¨ç¤ºã«ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/1/30(æ°´) Version 2.67 Î² 13 é–‹ç™ºç‰ˆ
+ã€€å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€éŸ³ç¨‹ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚’éžè¡¨ç¤ºã«ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/1/29(ç«) Version 2.67 Î² 12 é–‹ç™ºç‰ˆ
+ã€€å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€å†ç”Ÿå‘¨æ³¢æ•°ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚’éžè¡¨ç¤ºã«ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/1/28(æœˆ) Version 2.67 Î² 11 é–‹ç™ºç‰ˆ
+ã€€å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€å†ç”Ÿé€Ÿåº¦ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚’éžè¡¨ç¤ºã«ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/1/27(æ—¥) Version 2.67 Î² 10 é–‹ç™ºç‰ˆ
+ã€€å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€ã‚¿ãƒ–ã‚’éžè¡¨ç¤ºã«ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/1/26(åœŸ) Version 2.67 Î² 9 é–‹ç™ºç‰ˆ
+ã€€å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€å†ç”Ÿä½ç½®ã‚¹ãƒ©ã‚¤ãƒ€ã‚’éžè¡¨ç¤ºã«ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/1/25(é‡‘) Version 2.67 Î² 8 é–‹ç™ºç‰ˆ
+ã€€å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€ã‚¨ã‚¯ã‚¹ãƒ—ãƒ­ãƒ¼ãƒ©ã‚’éžè¡¨ç¤ºã«ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/1/24(æœ¨) Version 2.67 Î² 7 é–‹ç™ºç‰ˆ
+ã€€å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€å†ç”Ÿãƒªã‚¹ãƒˆã‚’éžè¡¨ç¤ºã«ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/1/23(æ°´) Version 2.67 Î² 6 é–‹ç™ºç‰ˆ
+ã€€å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€ãƒ“ãƒ‡ã‚ªç”»é¢ã‚’éžè¡¨ç¤ºã«ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/1/22(ç«) Version 2.67 Î² 5 é–‹ç™ºç‰ˆ
+ã€€ã‚³ãƒ¼ãƒ©ã‚¹ã®ã‚«ã‚¹ã‚¿ãƒžã‚¤ã‚ºãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚å„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’èª¿æ•´ã™ã‚‹äº‹ã«
+ã‚ˆã‚Šè‡ªç”±ã«ã‚³ãƒ¼ãƒ©ã‚¹ã‚’å¤‰æ›´ã§ãã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã—ãŸã€‚
+
+2013/1/21(æœˆ) Version 2.67 Î² 4 é–‹ç™ºç‰ˆ
+ã€€çµ‚äº†æ™‚ã®ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’é«˜é€ŸåŒ–ã—ã¾ã—ãŸã€‚
+
+2013/1/20(æ—¥) Version 2.67 Î² 3 é–‹ç™ºç‰ˆ
+ã€€ãƒ‡ã‚£ãƒ¬ã‚¤ã®ã‚«ã‚¹ã‚¿ãƒžã‚¤ã‚ºãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚å„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’èª¿æ•´ã™ã‚‹äº‹ã«
+ã‚ˆã‚Šè‡ªç”±ã«ãƒ‡ã‚£ãƒ¬ã‚¤ã‚’å¤‰æ›´ã§ãã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã—ãŸã€‚
+
+2013/1/19(åœŸ) Version 2.67 Î² 2 é–‹ç™ºç‰ˆ
+ã€€ï¼“ï¼¤ãƒªãƒãƒ¼ãƒ–ã®ã‚«ã‚¹ã‚¿ãƒžã‚¤ã‚ºãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚å„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’èª¿æ•´ã™ã‚‹äº‹ã«
+ã‚ˆã‚Šè‡ªç”±ã«ï¼“ï¼¤ãƒªãƒãƒ¼ãƒ–ã‚’å¤‰æ›´ã§ãã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã—ãŸã€‚
+
+2013/1/18(é‡‘) Version 2.67 Î² 1 é–‹ç™ºç‰ˆ
+ã€€ãƒªãƒãƒ¼ãƒ–ã®ã‚«ã‚¹ã‚¿ãƒžã‚¤ã‚ºãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚å„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’èª¿æ•´ã™ã‚‹äº‹ã«ã‚ˆã‚Š
+è‡ªç”±ã«ãƒªãƒãƒ¼ãƒ–ã‚’å¤‰æ›´ã§ãã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã—ãŸã€‚
+
+2013/1/17(æœ¨) Version 2.66 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2013/1/16(æ°´) Version 2.65 Î² 24 é–‹ç™ºç‰ˆ
+ã€€ABãƒ«ãƒ¼ãƒ—æ™‚ã®é€†å›žè»¢å†ç”Ÿã«ã™ã‚‹ã¨æŒ™å‹•ãŒãŠã‹ã—ããªã£ã¦ã—ã¾ã£ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾
+ã—ãŸã€‚
+
+2013/1/15(ç«) Version 2.65 Î² 23 é–‹ç™ºç‰ˆ
+ã€€MP3æ›¸ãå‡ºã—æ™‚ã®LAMEã‚³ãƒžãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’æŒ‡å®šã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/1/14(æœˆ) Version 2.65 Î² 22 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰å†ç”Ÿä¸­ã®æ›²ã®æ­Œè©žã‚’Lyrics Masterã§æ¤œç´¢ã§ã
+ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/1/13(æ—¥) Version 2.65 Î² 21 é–‹ç™ºç‰ˆ
+ã€€æœ€å¤§å€¤ï¼æœ€å°å€¤ã®è¨­å®šæ™‚ã«ã€å€¤ãŒãŠã‹ã—ããªã£ã¦ã—ã¾ã†äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2013/1/12(åœŸ) Version 2.65 Î² 20 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆâ†’éŸ³ç¨‹â†’éŸ³ç¨‹æŒ‡å®šãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ˆã‚Šã€ç°¡å˜ã«éŸ³ç¨‹ãŒæŒ‡å®šã§ãã‚‹ã‚ˆã†ã«ãªã‚Š
+ã¾ã—ãŸã€‚
+
+2013/1/11(é‡‘) Version 2.65 Î² 19 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆâ†’å†ç”Ÿå‘¨æ³¢æ•°â†’å‘¨æ³¢æ•°æŒ‡å®šãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ˆã‚Šã€ç°¡å˜ã«é€Ÿåº¦ãŒæŒ‡å®šã§ãã‚‹ã‚ˆã†
+ã«ãªã‚Šã¾ã—ãŸã€‚
+
+2013/1/10(æœ¨) Version 2.65 Î² 18 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆâ†’å†ç”Ÿé€Ÿåº¦â†’é€Ÿåº¦æŒ‡å®šãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ˆã‚Šã€ç°¡å˜ã«é€Ÿåº¦ãŒæŒ‡å®šã§ãã‚‹ã‚ˆã†ã«
+ãªã‚Šã¾ã—ãŸã€‚
+
+2013/1/9(æ°´) Version 2.65 Î² 17 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã«èª­è¾¼å¯èƒ½ãªãƒ•ã‚¡ã‚¤ãƒ«ã®ã¿è¡¨ç¤ºã™ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/1/8(ç«) Version 2.65 Î² 16 é–‹ç™ºç‰ˆ
+ã€€ãƒ“ãƒ‡ã‚ªç”»é¢ã®ä¸¡ç«¯ãŒã‚°ãƒ¬ãƒ¼ã«ãªã£ã¦ã—ã¾ã£ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2013/1/7(æœˆ) Version 2.65 Î² 15 é–‹ç™ºç‰ˆ
+ã€€å‹•ç”»ã®è¡¨ç¤ºã‚µã‚¤ã‚ºãŒãŠã‹ã—ããªã‚‹äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2013/1/6(æ—¥) Version 2.65 Î² 14 é–‹ç™ºç‰ˆ
+ã€€FLVãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¯¾å¿œã—ã¾ã—ãŸã€‚ï¼ˆè¦ffdshowï¼FLV Splitterï¼‰
+
+2013/1/5(åœŸ) Version 2.65 Î² 13 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ã‚¯ã‚¹ãƒ—ãƒ­ãƒ¼ãƒ©ãƒšã‚¤ãƒ³ã«èª­è¾¼å¯èƒ½ãªãƒ•ã‚¡ã‚¤ãƒ«ã®ã¿è¡¨ç¤ºã™ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2013/1/4(é‡‘) Version 2.65 Î² 12 é–‹ç™ºç‰ˆ
+ã€€ã€Œå…¨ã¦ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«æˆ»ã™ã€é¸æŠžæ™‚ã€åŠ¹æžœéŸ³ã®å†ç”ŸãŒåœæ­¢ã—ã¦ã„ãªã‹ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾
+ã—ãŸã€‚
+
+2013/1/3(æœ¨) Version 2.65 Î² 11 é–‹ç™ºç‰ˆ
+ã€€æ­Œã¸ãŸãƒ¢ãƒ¼ãƒ‰è¨­å®šæ™‚ã€ä¸€éƒ¨ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒã‚ªãƒ•ã«ãªã£ã¦ã„ãªã‹ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2013/1/2(æ°´) Version 2.65 Î² 10 é–‹ç™ºç‰ˆ
+ã€€ã‚·ã‚¹ãƒ†ãƒ â‡’å†ç”Ÿä½ç½®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ˆã‚Šã€å†ç”Ÿä½ç½®ã‚’0.001ç§’å˜ä½ã§æŒ‡å®šã§ãã‚‹ã‚ˆã†ã«
+ã—ã¾ã—ãŸã€‚
+
+2013/1/1(ç«) Version 2.65 Î² 9 é–‹ç™ºç‰ˆ
+ã€€å‰å›žçµ‚äº†æ™‚ã®ABãƒ«ãƒ¼ãƒ—ã®è¨­å®šçŠ¶æ…‹ã‚’å¾©å…ƒã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/12/31(æœˆ) Version 2.65 Î² 8 é–‹ç™ºç‰ˆ
+ã€€åŠ¹æžœéŸ³ã®ä¸€ç¨®ã¨ã—ã¦ã€ã€Œæ³¢éŸ³ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/12/31(æœˆ) Version 2.65 Î² 7 é–‹ç™ºç‰ˆ
+ã€€åŠ¹æžœéŸ³ã®ä¸€ç¨®ã¨ã—ã¦ã€ã€Œãƒ¬ã‚³ãƒ¼ãƒ‰ãƒŽã‚¤ã‚ºã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/12/30(æ—¥) Version 2.65 Î² 6 é–‹ç™ºç‰ˆ
+ã€€ã€ŒABãƒ«ãƒ¼ãƒ—(A)ã®ä½ç½®è¨­å®šã€ã€ŒABãƒ«ãƒ¼ãƒ—(B)ã®ä½ç½®è¨­å®šã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ˆã‚Šã€ABãƒ«ãƒ¼ãƒ—
+ä½ç½®ã®å¾®èª¿æ•´ãŒå¯èƒ½ã«ãªã‚Šã¾ã—ãŸã€‚
+
+2012/12/30(æ—¥) Version 2.65 Î² 5 é–‹ç™ºç‰ˆ
+ã€€ã€Œç¾åœ¨ä½ç½®ã‚’ABãƒ«ãƒ¼ãƒ—(A)ã«è¨­å®šã€ã€Œç¾åœ¨ä½ç½®ã‚’ABãƒ«ãƒ¼ãƒ—(B)ã«è¨­å®šã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ 
+ã—ã¾ã—ãŸã€‚
+
+2012/12/30(æ—¥) Version 2.65 Î² 4 é–‹ç™ºç‰ˆ
+ã€€ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒªã‚»ãƒƒãƒˆæ™‚ã«å…¨ã¦ã®ãƒœã‚¿ãƒ³ãŒãƒªã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ãªã‹ã£ãŸã®ã‚’ä¿®æ­£
+ã—ã¾ã—ãŸã€‚
+
+2012/12/30(æ—¥) Version 2.65 Î² 3 é–‹ç™ºç‰ˆ
+ã€€æ›²ã®åœæ­¢æ™‚ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆæ™‚é–“ã‚’1ï½ž10ç§’ã®é–“ã§é¸æŠžã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/12/29(åœŸ) Version 2.65 Î² 2 é–‹ç™ºç‰ˆ
+ã€€æ›²ã®åˆ‡æ›¿æ™‚ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆæ™‚é–“ã‚’1ï½ž10ç§’ã®é–“ã§é¸æŠžã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/12/28(é‡‘) Version 2.65 Î² 1 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿç¯„å›²ã®æŒ‡å®šæ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/12/27(æœ¨) Version 2.64 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2012/12/26(æ°´) Version 2.63 Î² 16 é–‹ç™ºç‰ˆ
+ã€€ã€Œé«˜éŸ³ã‚«ãƒƒãƒˆï¼ˆè¶…æœ€å¼·ï¼‰ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/12/26(æ°´) Version 2.63 Î² 15 é–‹ç™ºç‰ˆ
+ã€€ã€Œä¸­éŸ³ã‚«ãƒƒãƒˆï¼ˆè¶…æœ€å¼·ï¼‰ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/12/25(ç«) Version 2.63 Î² 14 é–‹ç™ºç‰ˆ
+ã€€å…¨æ›²ãƒ«ãƒ¼ãƒ—ãŒæ­£å¸¸ã«æ©Ÿèƒ½ã—ã¦ã„ãªã‹ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/12/25(ç«) Version 2.63 Î² 13 é–‹ç™ºç‰ˆ
+ã€€ã€Œä½ŽéŸ³ã‚«ãƒƒãƒˆï¼ˆè¶…æœ€å¼·ï¼‰ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/12/25(ç«) Version 2.63 Î² 12 é–‹ç™ºç‰ˆ
+ã€€ã€Œãƒ‰ãƒ©ãƒ ï¼ˆãƒã‚¤ãƒãƒƒãƒˆã€ã‚·ãƒ³ãƒãƒ«ï¼‰ã®è€³ã‚³ãƒ”ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/12/24(æœˆ) Version 2.63 Î² 11 é–‹ç™ºç‰ˆ
+ã€€ã€Œé«˜éŸ³å¼·èª¿ï¼ˆè¶…æœ€å¼·ï¼‰ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/12/24(æœˆ) Version 2.63 Î² 10 é–‹ç™ºç‰ˆ
+ã€€ã€Œä¸­éŸ³å¼·èª¿ï¼ˆè¶…æœ€å¼·ï¼‰ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/12/24(æœˆ) Version 2.63 Î² 9 é–‹ç™ºç‰ˆ
+ã€€ã€Œãƒ™ãƒ¼ã‚¹ã®è€³ã‚³ãƒ”ã€ã®å“è³ªã‚’æ”¹å–„ã—ã€ã‚‚ã£ã¨è€³ã‚³ãƒ”ã—ã‚„ã™ãã—ã¾ã—ãŸã€‚
+
+2012/12/24(æœˆ) Version 2.63 Î² 8 é–‹ç™ºç‰ˆ
+ã€€ã€Œä½ŽéŸ³å¼·èª¿ï¼ˆè¶…æœ€å¼·ï¼‰ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/12/24(æœˆ) Version 2.63 Î² 7 é–‹ç™ºç‰ˆ
+ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ã®èª¿æ•´ç¯„å›²ã‚’-15ï½ž15ã‹ã‚‰ã€-30ï½ž30ã«å¤‰æ›´ã—ã¾ã—ãŸã€‚
+
+2012/12/23(æ—¥) Version 2.63 Î² 6 é–‹ç™ºç‰ˆ
+ã€€ã€Œï¼‘ã‚ªã‚¯ã‚¿ãƒ¼ãƒ–ä¸Šã’ã‚‹ã€ã€Œï¼‘ã‚ªã‚¯ã‚¿ãƒ¼ãƒ–ä¸‹ã’ã‚‹ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/12/23(æ—¥) Version 2.63 Î² 5 é–‹ç™ºç‰ˆ
+ã€€ãƒ„ã‚¤ãƒƒã‚¿ãƒ¼ã¸ã®æŠ•ç¨¿æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/12/23(æ—¥) Version 2.63 Î² 4 é–‹ç™ºç‰ˆ
+ã€€æ­£å¸¸ã«çµ‚äº†ã§ããªã„äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/12/19(æ°´) Version 2.63 Î² 3 é–‹ç™ºç‰ˆ
+ã€€ãƒ™ãƒ¼ã‚¹ã®è€³ã‚³ãƒ”é¸æŠžæ™‚ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ãƒã‚§ãƒƒã‚¯ãƒžãƒ¼ã‚¯ãŒã¤ãã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/12/18(ç«) Version 2.63 Î² 2 é–‹ç™ºç‰ˆ
+ã€€ãƒ©ãƒ³ãƒ€ãƒ å†ç”Ÿæ™‚ã€å…¨ã¦ã®å†ç”ŸãŒçµ‚ã‚ã‚‹ã¨æœ€å¾Œã®æ›²ãŒç¹°ã‚Šè¿”ã—å†ç”Ÿã•ã‚Œã¦ã—ã¾ã£ã¦ã„ãŸ
+ã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/12/17(æœˆ) Version 2.63 Î² 1 é–‹ç™ºç‰ˆ
+ã€€ãƒ©ãƒ³ãƒ€ãƒ å†ç”Ÿæ™‚ã€èª­è¾¼ä¸èƒ½ãªãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚ã‚‹ã¨å†ç”ŸãŒåœæ­¢ã—ã¦ã—ã¾ã£ã¦ã„ãŸã®ã‚’ä¿®æ­£
+ã—ã¾ã—ãŸã€‚
+
+2012/12/16(æ—¥) Version 2.62 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2012/12/15(åœŸ) Version 2.61 Î² 20 é–‹ç™ºç‰ˆ
+ã€€ãƒŽãƒ¼ãƒžãƒ©ã‚¤ã‚ºãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠžæ™‚ã«ãƒœãƒ¼ã‚«ãƒ«ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ©Ÿèƒ½ãŒåƒã„ã¦ã—ã¾ã£ã¦ã„ãŸã®ã‚’
+ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/12/14(é‡‘) Version 2.61 Î² 19 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿä½ç½®ã®ãƒ¬ã‚¸ãƒ¥ãƒ¼ãƒ æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿåœæ­¢æ™‚ã«å†ç”Ÿãƒªã‚¹ãƒˆã®ï¼‘æ›²ç›®ã«æˆ»ã£ã¦ã—ã¾ã£ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/12/13(æœ¨) Version 2.61 Î² 18 é–‹ç™ºç‰ˆ
+ã€€ã‚¿ãƒ–éžè¡¨ç¤ºæ™‚ã«ã‚¨ã‚¯ã‚¹ãƒ—ãƒ­ãƒ¼ãƒ©ã®å¹…ã‚’èª¿æ•´ã§ããªã‹ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/12/12(æ°´) Version 2.61 Î² 17 é–‹ç™ºç‰ˆ
+ã€€ALACãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¯¾å¿œã—ã¾ã—ãŸã€‚
+
+2012/12/11(ç«) Version 2.61 Î² 16 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰å†ç”Ÿä¸­ã®ã‚¢ãƒ¼ãƒ†ã‚£ã‚¹ãƒˆã®æ›²ã‚’iTunes Storeã§
+æ¤œç´¢ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/12/10(æœˆ) Version 2.61 Î² 15 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰å†ç”Ÿä¸­ã®æ›²ã®æ­Œè©žã‚’ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆã§æ¤œç´¢
+ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/12/9(æ—¥) Version 2.61 Î² 14 é–‹ç™ºç‰ˆ
+ã€€æ›²ã®åˆ‡æ›¿æ™‚ã«é›‘éŸ³ãŒã™ã‚‹äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/12/8(åœŸ) Version 2.61 Î² 13 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ã‚¯ã‚¹ãƒ—ãƒ­ãƒ¼ãƒ©è¡¨ç¤ºæ™‚ã€ç”»é¢è¡¨ç¤ºãŒãŠã‹ã—ããªã‚‹äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/12/7(é‡‘) Version 2.61 Î² 12 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰å†ç”Ÿä¸­ã®ã‚¢ãƒ¼ãƒ†ã‚£ã‚¹ãƒˆã®æ›²ã‚’Amazonã§æ¤œç´¢
+ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/12/6(æœ¨) Version 2.61 Î² 11 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ã‚¯ã‚¹ãƒ—ãƒ­ãƒ¼ãƒ©ã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ãƒ•ã‚¡ã‚¤ãƒ«ã‚’è¿½åŠ ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/12/5(æ°´) Version 2.61 Î² 10 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ã‚¯ã‚¹ãƒ—ãƒ­ãƒ¼ãƒ©ã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã‘ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/12/4(ç«) Version 2.61 Î² 9 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ã‚¯ã‚¹ãƒ—ãƒ­ãƒ¼ãƒ©ã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã™ã‚‹ãƒ•ã‚©ãƒ«ãƒ€ã‚’é–‹ã‘ã‚‹ã‚ˆã†
+ã«ã—ã¾ã—ãŸã€‚
+
+2012/12/3(æœˆ) Version 2.61 Î² 8 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ã‚¯ã‚¹ãƒ—ãƒ­ãƒ¼ãƒ©ã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’è¡¨ç¤ºã§ãã‚‹ã‚ˆã†ã«
+ã—ã¾ã—ãŸã€‚
+
+2012/12/2(æ—¥) Version 2.61 Î² 7 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰éŸ³å£°ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã™ã‚‹ãƒ•ã‚©ãƒ«ãƒ€ã‚’é–‹ã‘ã‚‹ã‚ˆã†
+ã«ã—ã¾ã—ãŸã€‚
+
+2012/12/1(åœŸ) Version 2.61 Î² 6 é–‹ç™ºç‰ˆ
+ã€€ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã‹ã‚‰ã‚¨ã‚¯ã‚¹ãƒ—ãƒ­ãƒ¼ãƒ©ã®è¡¨ç¤ºçŠ¶æ…‹ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‰ã‚Œã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/11/29(æœ¨) Version 2.61 Î² 5 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’è¡¨ç¤ºã§ãã‚‹ã‚ˆã†ã«
+ã—ã¾ã—ãŸã€‚
+
+2012/11/29(æœ¨) Version 2.61 Î² 4 é–‹ç™ºç‰ˆ
+ã€€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®è¡¨ç¤ºçŠ¶æ…‹ã‚’åˆ‡ã‚Šæ›¿ãˆãŸéš›ã«ã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºãŒãŠã‹ã—ããªã‚‹äº‹ãŒ
+ã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/11/28(æ°´) Version 2.61 Î² 3 é–‹ç™ºç‰ˆ
+ã€€ã‚¿ãƒ–éžè¡¨ç¤ºæ™‚ã«å†ç”Ÿãƒªã‚¹ãƒˆä¸Šéƒ¨ã«ä½™åˆ†ãªã‚¹ãƒšãƒ¼ã‚¹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/11/26(æœˆ) Version 2.61 Î² 2 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ã‚¯ã‚¹ãƒ—ãƒ­ãƒ¼ãƒ©æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚ã‚¨ã‚¯ã‚¹ãƒ—ãƒ­ãƒ¼ãƒ©é¢¨ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‹ã‚‰ç°¡å˜ã«
+æ›²ã‚’é–‹ãäº‹ãŒå‡ºæ¥ã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã—ãŸã€‚
+
+2012/11/21(æ°´) Version 2.61 Î² 1 é–‹ç™ºç‰ˆ
+ã€€ã‚¿ãƒ–ã‚’éžè¡¨ç¤ºã«ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/11/21(æ°´) Version 2.60 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2012/11/19(æœˆ) Version 2.59 Î² 12 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ—ãƒªã‚»ãƒƒãƒˆç®¡ç†æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚ãŠæ°—ã«å…¥ã‚Šã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’çž¬æ™‚ã«
+å‘¼ã³å‡ºã›ã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã—ãŸã€‚
+
+2012/11/19(æœˆ) Version 2.59 Î² 11 é–‹ç™ºç‰ˆ
+ã€€ä¸€éƒ¨ã®ç’°å¢ƒã§èµ·å‹•ã—ãªã„äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/11/11(æ—¥) Version 2.59 Î² 10 é–‹ç™ºç‰ˆ
+ã€€ç’°å¢ƒã®é•ã„ã«ã‚ˆã‚Šã€è¨­å®šçŠ¶æ…‹ãŒæ­£ã—ãèª­ã¿è¾¼ã‚ãªã„äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/11/10(åœŸ) Version 2.59 Î² 9 é–‹ç™ºç‰ˆ
+ã€€æ•°å¤šãã®è¦æœ›ãŒã‚ã£ãŸã€Œè¨­å®šçŠ¶æ…‹ã®æ›¸ãå‡ºã—ï¼èª­ã¿è¾¼ã¿æ©Ÿèƒ½ã€ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€Œãƒ•ã‚¡ã‚¤ãƒ«â†’ä¿å­˜ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰æ›¸ãå‡ºã—ãŸè¨­å®šçŠ¶æ…‹ã‚’ã€Œãƒ•ã‚¡ã‚¤ãƒ«â†’é–‹ãã€ã‹ã‚‰
+ã„ã¤ã§ã‚‚èª­ã¿è¾¼ã‚€äº‹ãŒã§ãã¾ã™ã€‚
+
+2012/11/10(åœŸ) Version 2.59 Î² 8 é–‹ç™ºç‰ˆ
+ã€€å¥½è©•ã ã£ãŸVersion 2.46ã®ãƒªãƒãƒ¼ãƒ–ã‚’å¾©æ´»ã•ã›ã¾ã—ãŸã€‚
+
+2012/11/10(åœŸ) Version 2.59 Î² 7 é–‹ç™ºç‰ˆ
+ã€€ã€Œå…¨ã¦ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚’é–‰ã˜ã‚‹ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/11/9(é‡‘) Version 2.59 Î² 6 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã€Œé«˜éŸ³ã‚«ãƒƒãƒˆã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/11/9(é‡‘) Version 2.59 Î² 5 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã€Œä¸­éŸ³ã‚«ãƒƒãƒˆã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/11/9(é‡‘) Version 2.59 Î² 4 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã€Œä½ŽéŸ³ã‚«ãƒƒãƒˆã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/11/8(æœ¨) Version 2.59 Î² 3 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã€Œè´è¦šãƒˆãƒ¬ãƒ¼ãƒ‹ãƒ³ã‚°ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/11/7(æ°´) Version 2.59 Î² 2 é–‹ç™ºç‰ˆ
+ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ãŒä¸€éƒ¨å¾©å…ƒã•ã‚Œãªã‹ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/11/6(ç«) Version 2.59 Î² 1 é–‹ç™ºç‰ˆ
+ã€€ä¸€æ‹¬ä¿å­˜æ™‚ã€ãƒ•ã‚¡ã‚¤ãƒ«åã«ã€Œ_h001ã€ãŒä»˜åŠ ã•ã‚Œãªã„ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/11/4(æ—¥) Version 2.58 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2012/11/4(æ—¥) Version 2.57 Î² 16 é–‹ç™ºç‰ˆ
+ã€€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®è¡¨ç¤ºçŠ¶æ…‹ã‚’åˆ‡ã‚Šæ›¿ãˆãŸéš›ã«ã€å†ç”Ÿãƒªã‚¹ãƒˆã®ã‚µã‚¤ã‚ºãŒå¤‰ã‚ã£ã¦ã—ã¾ã£ã¦
+ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/11/4(æ—¥) Version 2.57 Î² 15 é–‹ç™ºç‰ˆ
+ã€€ãƒ©ãƒ³ãƒ€ãƒ å†ç”Ÿæ™‚ã€ä¸€ã¤å‰ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã„ãŸéš›ã«æ›²åãŒã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¤ãƒˆãƒ«ã«åæ˜ 
+ã•ã‚Œã¦ã„ãªã‹ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/11/3(åœŸ) Version 2.57 Î² 14 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã®è¡¨ç¤ºï¼éžè¡¨ç¤ºã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹éš›ã«ã€ã¾ã ãƒ“ãƒ‡ã‚ªç”»é¢ãŒå¤§ãããªã‚‹å ´åˆãŒ
+ã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/10/31(æ°´) Version 2.57 Î² 13 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã®è¡¨ç¤ºï¼éžè¡¨ç¤ºã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹åº¦ã«ãƒ“ãƒ‡ã‚ªç”»é¢ãŒå¾ã€…ã«å¤§ãããªã£ã¦ã„ãŸ
+ã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/10/30(ç«) Version 2.57 Î² 12 é–‹ç™ºç‰ˆ
+ã€€æ­Œã¸ãŸãƒ¢ãƒ¼ãƒ‰è§£é™¤å¾Œã«å†ç”Ÿé€Ÿåº¦ãŒå°æ•°ç‚¹2æ¡ã®ã¾ã¾æˆ»ã‚‰ãªã‹ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/10/30(ç«) Version 2.57 Î² 11 é–‹ç™ºç‰ˆ
+ã€€ä¸€ã¤å‰ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã„ãŸæ™‚ã«ã€æ›²åãŒã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¤ãƒˆãƒ«ã«åæ˜ ã•ã‚Œã¦ã„ãªã‹ã£ãŸ
+ã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/10/29(æœˆ) Version 2.57 Î² 10 é–‹ç™ºç‰ˆ
+ã€€å…¨ã¦ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®è¡¨ç¤ºï¼éžè¡¨ç¤ºã‚’ç‹¬ç«‹ã—ã¦åˆ‡ã‚Šæ›¿ãˆã‚‰ã‚Œã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/10/28(æ—¥) Version 2.57 Î² 9 é–‹ç™ºç‰ˆ
+ã€€ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰ã‚’æ•´ç†ã—ã€å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚ºã‚’ç´„50KBå‰Šæ¸›ã—ã¾ã—ãŸã€‚
+
+2012/10/28(æ—¥) Version 2.57 Î² 8 é–‹ç™ºç‰ˆ
+ã€€ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒœã‚¿ãƒ³æ•°ã«å¿œã˜ã¦ã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’ã‚‚ã£ã¨å°ã•ãã§ãã‚‹ã‚ˆã†ã«
+ã—ã¾ã—ãŸã€‚
+
+2012/10/27(åœŸ) Version 2.57 Î² 7 é–‹ç™ºç‰ˆ
+ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ã®å„å‘¨æ³¢æ•°å¸¯åŸŸã«ã¤ã„ã¦ã€å„ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã”ã¨ã«è¡¨ç¤ºã™ã‚‹ã‹
+ã©ã†ã‹ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‰ã‚Œã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/10/16(ç«) Version 2.57 Î² 6 é–‹ç™ºç‰ˆ
+ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ã®å‘¨æ³¢æ•°å¸¯åŸŸã‚’31ãƒãƒ³ãƒ‰ã«å¢—ã‚„ã—ã¾ã—ãŸã€‚
+
+2012/10/8(æœˆ) Version 2.57 Î² 5 é–‹ç™ºç‰ˆ
+ã€€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®è¡¨ç¤ºçŠ¶æ…‹ã‚’åˆ‡ã‚Šæ›¿ãˆãŸéš›ã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºãŒãŠã‹ã—ããªã‚‹äº‹ãŒ
+ã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/10/6(åœŸ) Version 2.57 Î² 4 é–‹ç™ºç‰ˆ
+ã€€ã€Œå†ç”Ÿä½ç½®ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½¿ç”¨å¾Œã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã£ã¦ã„ãªã‹ã£ãŸã®ã‚’
+ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/10/4(æœ¨) Version 2.57 Î² 3 é–‹ç™ºç‰ˆ
+ã€€ã€Œæ­Œã¸ãŸãƒ¢ãƒ¼ãƒ‰ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/10/4(æœ¨) Version 2.57 Î² 2 é–‹ç™ºç‰ˆ
+ã€€ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒœã‚¿ãƒ³ã‚µã‚¤ã‚ºã«ã€Œä¸­ã€ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/10/2(ç«) Version 2.57 Î² 1 é–‹ç™ºç‰ˆ
+ã€€ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒœã‚¿ãƒ³ã‚µã‚¤ã‚ºã‚’å¤‰æ›´ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/9/20(æœ¨) Version 2.56 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2012/9/18(ç«) Version 2.55 Î² 5 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ç¨®é¡žã«ã€Œé›»æ± åˆ‡ã‚Œã€ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/9/18(ç«) Version 2.55 Î² 4 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿé€Ÿåº¦ã€å†ç”Ÿå‘¨æ³¢æ•°ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«æˆ»ã™ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã¤ã„ã¦ã€æŒ™å‹•ãŒãŠã‹ã—ã„äº‹ãŒ
+ã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/9/17(æœˆ) Version 2.55 Î² 3 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿé€Ÿåº¦ã‚’5%ä¸Šã’ã‚‹ã€10%ä¸Šã’ã‚‹æ©Ÿèƒ½ãŒå‹•ä½œã—ãªã„äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/9/14(é‡‘) Version 2.55 Î² 2 é–‹ç™ºç‰ˆ
+ã€€ã€Œãƒ™ãƒ¼ã‚¹ã®è€³ã‚³ãƒ”ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/9/12(æ°´) Version 2.55 Î² 1 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã€Œå…¨ã¦ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«æˆ»ã™ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/9/11(ç«) Version 2.54 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2012/9/9(æ—¥) Version 2.53 Î² 12 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã€Œå†ç”Ÿã€ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/9/9(æ—¥) Version 2.53 Î² 11 é–‹ç™ºç‰ˆ
+ã€€ãƒ“ãƒ‡ã‚ªç”»é¢ã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã€Œå…¨ç”»é¢è¡¨ç¤ºã€ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/9/9(æ—¥) Version 2.53 Î² 10 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã«ãŠã‘ã‚‹ã‚¿ãƒ–ã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã€Œåå‰ã®å¤‰æ›´ã€ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/9/9(æ—¥) Version 2.53 Î² 9 é–‹ç™ºç‰ˆ
+ã€€ãƒžã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«ä½¿ç”¨æ™‚ã®æŒ™å‹•ãŒã¾ã ä¸€éƒ¨ãŠã‹ã—ã‹ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/9/9(æ—¥) Version 2.53 Î² 8 é–‹ç™ºç‰ˆ
+ã€€Î² 2 ä»¥é™ã€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ãŒæ©Ÿèƒ½ã—ã¦ã„ãªã‹ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/9/8(åœŸ) Version 2.53 Î² 7 é–‹ç™ºç‰ˆ
+ã€€ãƒžã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«ä½¿ç”¨æ™‚ã®æŒ™å‹•ãŒä¸€éƒ¨ãŠã‹ã—ã‹ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/9/5(æ°´) Version 2.53 Î² 6 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿé€Ÿåº¦ï¼å‘¨æ³¢æ•°ï¼éŸ³ç¨‹ã®è¨­å®šãŒä¸Šæ‰‹ãã„ã‹ãªã„äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/9/4(ç«) Version 2.53 Î² 5 é–‹ç™ºç‰ˆ
+ã€€éŸ³ç¨‹ã®å°æ•°ç‚¹æ¡æ•°ã‚’0æ¡ï½ž2æ¡ã®ç¯„å›²ã§é¸ã¹ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/9/2(æ—¥) Version 2.53 Î² 4 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿå‘¨æ³¢æ•°ã®å°æ•°ç‚¹æ¡æ•°ã‚’0æ¡ï½ž2æ¡ã®ç¯„å›²ã§é¸ã¹ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/9/2(æ—¥) Version 2.53 Î² 3 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿé€Ÿåº¦ã®å°æ•°ç‚¹æ¡æ•°ã‚’0æ¡ï½ž2æ¡ã®ç¯„å›²ã§é¸ã¹ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/8/26(æ—¥) Version 2.53 Î² 2 é–‹ç™ºç‰ˆ
+ã€€è‹±èªžç‰ˆã¨æ—¥æœ¬èªžç‰ˆã®ã‚½ãƒ¼ã‚¹ã‚’çµ±ä¸€åŒ–ã™ã‚‹ã¨ã¨ã‚‚ã«ã€ã‚³ãƒ¼ãƒ‰å†…å®¹ã‚’å…¨é¢çš„ã«è¦‹ç›´ã—ã€
+å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚ºã‚’å‰Šæ¸›ã—ã¾ã—ãŸã€‚
+
+2012/8/24(é‡‘) Version 2.53 Î² 1 é–‹ç™ºç‰ˆ
+ã€€ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰ã‚’æ•´ç†ã—ã€å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚ºã‚’å‰Šæ¸›ã—ã¾ã—ãŸã€‚
+
+2012/8/24(é‡‘) Version 2.52 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2012/8/24(é‡‘) Version 2.51 Î² 12 é–‹ç™ºç‰ˆ
+ã€€æœ€å°åŒ–æ™‚ã«ã‚¿ã‚¹ã‚¯ãƒˆãƒ¬ã‚¤ã«æ ¼ç´ã™ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/8/23(æœ¨) Version 2.51 Î² 11 é–‹ç™ºç‰ˆ
+ã€€ãƒ¡ãƒ¢ãƒªãƒªãƒ¼ã‚¯ã‚’èµ·ã“ã—ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/8/23(æœ¨) Version 2.51 Î² 10 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ä¸€ç¨®ã€Œã‚¬ãƒ¼ã‚°ãƒ«ã€ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/8/23(æœ¨) Version 2.51 Î² 9 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ä¸€ç¨®ã€Œãƒ•ãƒ©ãƒ³ã‚¸ãƒ£ãƒ¼ã€ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/8/22(æ°´) Version 2.51 Î² 8 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ä¸€ç¨®ã€Œã‚³ãƒ³ãƒ—ãƒ¬ãƒƒã‚µãƒ¼ã€ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/8/22(æ°´) Version 2.51 Î² 7 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ä¸€ç¨®ã€Œã‚³ãƒ¼ãƒ©ã‚¹ã€ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/8/21(ç«) Version 2.51 Î² 6 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ä¸€ç¨®ã€Œãƒ‡ã‚£ã‚¹ãƒˆãƒ¼ã‚·ãƒ§ãƒ³ã€ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/8/19(æ—¥) Version 2.51 Î² 5 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç³»ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’æ•´ç†ã—ã€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¨ã—ã¦ã¾ã¨ã‚ã¾ã—ãŸã€‚
+
+2012/8/19(æ—¥) Version 2.51 Î² 4 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ—ãƒªã‚»ãƒƒãƒˆã‚’æ—¥æœ¬èªžã«ã—ã¾ã—ãŸã€‚
+
+2012/8/14(ç«) Version 2.51 Î² 3 é–‹ç™ºç‰ˆ
+ã€€ã‚¿ã‚¤ãƒˆãƒ«ãƒãƒ¼ã«ç¾åœ¨å†ç”Ÿä¸­ã®æ›²ã®ã‚¿ã‚¤ãƒˆãƒ«ã‚’è¡¨ç¤ºã™ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/8/12(æ—¥) Version 2.51 Î² 2 é–‹ç™ºç‰ˆ
+ã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä½ç½®ãŒæ­£ã—ãå¾©å…ƒã•ã‚Œãªã„äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/8/12(æ—¥) Version 2.51 Î² 1 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆå†…ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’ä¸¦ã³æ›¿ãˆã‚‹ã¨ã€è¡¨ç¤ºãŒãŠã‹ã—ããªã‚‹ã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/8/10(é‡‘) Version 2.50 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2012/8/8(æ°´) Version 2.49 Î² 17 é–‹ç™ºç‰ˆ
+ã€€ä¸€æ‹¬å¤‰æ›æ™‚ã€å¤§é‡ã®ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒœãƒƒã‚¯ã‚¹ãŒè¡¨ç¤ºã•ã‚Œã¦ã—ã¾ã†äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£
+ã—ã¾ã—ãŸã€‚
+
+2012/8/7(ç«) Version 2.49 Î² 16 é–‹ç™ºç‰ˆ
+ã€€é–‹ã„ãŸãƒ•ã‚¡ã‚¤ãƒ«ãŒå…¨ã¦ãƒ­ãƒƒã‚¯ã•ã‚Œã¦ã—ã¾ã£ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/8/7(ç«) Version 2.49 Î² 15 é–‹ç™ºç‰ˆ
+ã€€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®è¡¨ç¤ºçŠ¶æ…‹ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹ã¨ã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºãŒå°ã•ããªã£ã¦ã—ã¾ã£ã¦
+ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/8/6(æœˆ) Version 2.49 Î² 14 é–‹ç™ºç‰ˆ
+ã€€èµ·å‹•æ™‚ã«ä½™åˆ†ãªã€Œç„¡é¡Œã€ã‚¿ãƒ–ãŒä½œã‚‰ã‚Œã¦ã—ã¾ã†äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/8/5(æ—¥) Version 2.49 Î² 13 é–‹ç™ºç‰ˆ
+ã€€å…¨ç”»é¢è¡¨ç¤ºæ™‚ã€å†ç”Ÿãƒªã‚¹ãƒˆãŒè¡¨ç¤ºã•ã‚Œãªã„äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/8/4(åœŸ) Version 2.49 Î² 12 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã®ã€Œé•·ã•ã€ãŒæ–‡å­—åŒ–ã‘ã™ã‚‹äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/8/1(æ°´) Version 2.49 Î² 11 é–‹ç™ºç‰ˆ
+ã€€å‹•ç”»ã®å†ç”ŸãŒã§ããªããªã£ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/7/28(åœŸ) Version 2.49 Î² 10 é–‹ç™ºç‰ˆ
+ã€€æ›²ã®åˆ‡æ›¿æ™‚ã«ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆæ©Ÿèƒ½ã«ã¤ã„ã¦ã€å†ç”Ÿä¸­ä»¥å¤–ã®å ´åˆã¯ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
+ã•ã›ãªã„ã‚ˆã†ã«ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/7/28(åœŸ) Version 2.49 Î² 9 é–‹ç™ºç‰ˆ
+ã€€æ­Œè©žã®è¡¨ç¤ºãŒå¤§ãã™ãŽã‚‹äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/7/28(åœŸ) Version 2.49 Î² 8 é–‹ç™ºç‰ˆ
+ã€€æ›²ã®åˆ‡æ›¿æ™‚ã«ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆæ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/7/28(åœŸ) Version 2.49 Î² 7 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿåœæ­¢æ™‚ã«ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆæ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/7/22(æ—¥) Version 2.49 Î² 6 é–‹ç™ºç‰ˆ
+ã€€èµ·å‹•ã‚’é«˜é€ŸåŒ–ã—ã¾ã—ãŸã€‚
+
+2012/7/16(æœˆ) Version 2.49 Î² 5 é–‹ç™ºç‰ˆ
+ã€€ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰ã‚’æ•´ç†ã—ã€å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚ºã‚’å‰Šæ¸›ã—ã¾ã—ãŸã€‚
+
+2012/7/15(æ—¥) Version 2.49 Î² 4 é–‹ç™ºç‰ˆ
+ã€€ã€Œå·¦å³å…¥ã‚Œæ›¿ãˆã€æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/7/15(æ—¥) Version 2.49 Î² 3 é–‹ç™ºç‰ˆ
+ã€€Ctrl + Tabã‚­ãƒ¼ã§ã‚¿ãƒ–ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‰ã‚Œã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/7/14(åœŸ) Version 2.49 Î² 2 é–‹ç™ºç‰ˆ
+ã€€è¤‡æ•°ã®ã‚¿ãƒ–ãŒå­˜åœ¨ã—ã¦ã„ã‚‹æ™‚ã«ãƒ•ã‚©ãƒ«ãƒ€ã‚’é–‹ãã¨ã€é–‹ã„ãŸãƒ•ã‚©ãƒ«ãƒ€å†…ã®æ›²ãŒå†ç”Ÿã•ã‚Œ
+ãªã„äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/7/14(åœŸ) Version 2.49 Î² 1 é–‹ç™ºç‰ˆ
+ã€€èµ·å‹•ã‚’é«˜é€ŸåŒ–ã—ã¾ã—ãŸã€‚
+
+2012/7/13(é‡‘) Version 2.48 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2012/7/8(æ—¥) Version 2.47 Î² 8 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ä¸€ç¨®ã€ŒDelayã€ã®ãƒ—ãƒªã‚»ãƒƒãƒˆã‚’12ç¨®é¡žè¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/7/7(åœŸ) Version 2.47 Î² 7 é–‹ç™ºç‰ˆ
+ã€€ãƒ“ãƒ‡ã‚ªç”»é¢ã®èƒŒæ™¯è‰²ãŒãŠã‹ã—ããªã‚‹äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/7/7(åœŸ) Version 2.47 Î² 6 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ä¸€ç¨®ã€ŒReverbã€ã®ãƒ—ãƒªã‚»ãƒƒãƒˆã‚’29ç¨®é¡žè¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/7/1(æ—¥) Version 2.47 Î² 5 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿä½ç½®ã®å¤‰æ›´æ™‚ã«æ­Œè©žè¡¨ç¤ºãŒãŠã‹ã—ããªã‚‹äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/7/1(æ—¥) Version 2.47 Î² 4 é–‹ç™ºç‰ˆ
+ã€€æ­Œè©žè¡¨ç¤ºæ™‚ã®ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚ºã®è‡ªå‹•åˆ¤å®šæ©Ÿèƒ½ã‚’æ”¹å–„ã—ã¾ã—ãŸã€‚
+
+2012/6/30(åœŸ) Version 2.47 Î² 3 é–‹ç™ºç‰ˆ
+ã€€offsetã‚¿ã‚°ä½¿ç”¨æ™‚ã«æ­Œè©žã®è¡¨ç¤ºãŒãŠã‹ã—ããªã‚‹äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/6/30(åœŸ) Version 2.47 Î² 2 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿçµ‚äº†å¾Œã€æ­Œè©žã®è¡¨ç¤ºãŒæ¶ˆãˆãªã„äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/6/30(åœŸ) Version 2.47 Î² 1 é–‹ç™ºç‰ˆ
+ã€€LRCãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã«ã‚ˆã‚‹æ­Œè©žãƒ•ã‚¡ã‚¤ãƒ«ã®è¡¨ç¤ºã«å¯¾å¿œã—ã¾ã—ãŸã€‚ç¾ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§ã¯ã€
+Shift_JISå½¢å¼ã«å¯¾å¿œã—ã¦ã„ã¾ã™ã€‚éŸ³å£°ãƒ•ã‚¡ã‚¤ãƒ«ã¨åŒã˜ãƒ•ã‚©ãƒ«ãƒ€ã«LRCãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã®
+æ­Œè©žãƒ•ã‚¡ã‚¤ãƒ«ï¼ˆ*.lrcã€*.kraã€*.txtï¼‰ã‚’ç½®ãäº‹ã§æ­Œè©žã‚’è¡¨ç¤ºã™ã‚‹äº‹ãŒã§ãã¾ã™ã€‚
+æ‹¡å¼µå­ä»¥å¤–ã®ãƒ•ã‚¡ã‚¤ãƒ«åã¯éŸ³å£°ãƒ•ã‚¡ã‚¤ãƒ«ã¨åŒä¸€ã«ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+
+2012/6/7(æœ¨) Version 2.46 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2012/6/2(åœŸ) Version 2.45 Î² 10 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã«ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ‰ãƒ­ãƒƒãƒ—ã—ãŸéš›ã«ã€å†ç”ŸãŒåœæ­¢ã—ã¦ã—ã¾ã†äº‹ãŒã‚ã£ãŸã®ã‚’
+ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/5/27(æ—¥) Version 2.45 Î² 9 é–‹ç™ºç‰ˆ
+ã€€ã‚¿ãƒ–åã®ç·¨é›†ä¸­ã«åˆ¥ã®ã‚¿ãƒ–ã‚’ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹ã¨ã€ã‚¿ãƒ–åã®ç·¨é›†çŠ¶æ…‹ãŒè§£é™¤ã•ã‚Œãªã‹ã£ãŸ
+ã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/5/27(æ—¥) Version 2.45 Î² 8 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã‹ã‚‰ã®å‰Šé™¤æ™‚ã«å†ç”ŸãŒåœæ­¢ã—ã¦ã—ã¾ã†äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/5/27(æ—¥) Version 2.45 Î² 7 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã®ã‚¿ãƒ–ã‚’ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—ã™ã‚‹äº‹ã«ã‚ˆã‚Šã€ä¸¦ã³æ›¿ãˆãŒã§ãã‚‹ã‚ˆã†ã«ã—ã¾
+ã—ãŸã€‚
+
+2012/5/26(åœŸ) Version 2.45 Î² 6 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã‹ã‚‰ã®å‰Šé™¤æ™‚ã®æŒ™å‹•ã‚’é«˜é€ŸåŒ–ã—ã¾ã—ãŸã€‚
+
+2012/5/23(æ°´) Version 2.45 Î² 5 é–‹ç™ºç‰ˆ
+ã€€æ—©é€ã‚Šã€å·»ãæˆ»ã—ã®æŒ™å‹•ã‚’æ”¹å–„ã—ã¾ã—ãŸã€‚
+
+2012/5/20(æ—¥) Version 2.45 Î² 4 é–‹ç™ºç‰ˆ
+ã€€ãƒ¡ãƒˆãƒ­ãƒŽãƒ¼ãƒ æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/5/16(æ°´) Version 2.45 Î² 3 é–‹ç™ºç‰ˆ
+ã€€èµ·å‹•ã‚’é«˜é€ŸåŒ–ã—ã¾ã—ãŸã€‚
+
+2012/5/13(æ—¥) Version 2.45 Î² 2 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿä½ç½®è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã«ã¡ã‚‰ã¤ããŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/5/12(åœŸ) Version 2.45 Î² 1 é–‹ç™ºç‰ˆ
+ã€€å‹•ç”»ã¨éŸ³å£°ã®ãšã‚Œã‚’è»½æ¸›ã—ã¾ã—ãŸã€‚
+
+2012/5/10(æœ¨) Version 2.44 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2012/5/10(æœ¨) Version 2.43 Î² 12 é–‹ç™ºç‰ˆ
+ã€€å‹•ç”»ã®å†ç”Ÿå®Œäº†æ™‚ã«ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãŒå›ºã¾ã‚‹äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/5/5(åœŸ) Version 2.43 Î² 11 é–‹ç™ºç‰ˆ
+ã€€å‹•ç”»ã®å†ç”Ÿé€Ÿåº¦ã€éŸ³ç¨‹ã€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ã‚’å¤‰æ›´ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/5/4(é‡‘) Version 2.43 Î² 10 é–‹ç™ºç‰ˆ
+ã€€Windows XP ã§å‹•ç”»ãŒå†ç”Ÿã§ããªã‹ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/5/3(æœ¨) Version 2.43 Î² 9 é–‹ç™ºç‰ˆ
+ã€€å‹•ç”»å†ç”Ÿä¸­ã€æ¬¡ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®åˆ‡ã‚Šæ›¿ãˆæ™‚ã«ç”»é¢ãŒã¡ã‚‰ã¤ãäº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾
+ã—ãŸã€‚
+
+2012/4/30(æœˆ) Version 2.43 Î² 8 é–‹ç™ºç‰ˆ
+ã€€ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã«ã‚ˆã‚‹ï¼¡ï¼¢ãƒ«ãƒ¼ãƒ—ã®æ“ä½œãŒã§ããªã‹ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/4/30(æœˆ) Version 2.43 Î² 7 é–‹ç™ºç‰ˆ
+ã€€è¤‡æ•°ã®ã‚¿ãƒ–ãŒå­˜åœ¨ã—ã¦ã„ã‚‹æ™‚ã«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä¸Šã«ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ‰ãƒ­ãƒƒãƒ—ã™ã‚‹ã¨ã€ãƒ‰ãƒ­ãƒƒãƒ—
+ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ãŒå†ç”Ÿã•ã‚Œãªã„äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/4/30(æœˆ) Version 2.43 Î² 6 é–‹ç™ºç‰ˆ
+ã€€è¤‡æ•°ã®ã‚¿ãƒ–ãŒå­˜åœ¨ã—ã¦ã„ã‚‹æ™‚ã«ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ãã¨ã€é–‹ã„ãŸãƒ•ã‚¡ã‚¤ãƒ«ãŒå†ç”Ÿã•ã‚Œãªã„
+äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/4/30(æœˆ) Version 2.43 Î² 5 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆä¸Šã§é¸æŠžä¸­ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’å³ã‚¯ãƒªãƒƒã‚¯ã—ã¦ã€Œå‰Šé™¤ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’é¸æŠžã™ã‚‹äº‹
+ã«ã‚ˆã‚Šã€é¸æŠžä¸­ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’å‰Šé™¤ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/4/30(æœˆ) Version 2.43 Î² 4 é–‹ç™ºç‰ˆ
+ã€€ã‚¿ãƒ–ã‚’å³ã‚¯ãƒªãƒƒã‚¯ã—ã¦ã€Œæ–°ã—ã„ã‚¿ãƒ–ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’é¸æŠžã™ã‚‹äº‹ã«ã‚ˆã‚Šã€æ–°ã—ã„ã‚¿ãƒ–ã‚’
+ä½œæˆã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/4/30(æœˆ) Version 2.43 Î² 3 é–‹ç™ºç‰ˆ
+ã€€å‹•ç”»å†ç”Ÿä¸­ã«ãƒ“ãƒ‡ã‚ªç”»é¢ã‚’ãƒ€ãƒ–ãƒ«ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹äº‹ã«ã‚ˆã‚Šã€ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«ã§ãã‚‹
+ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/4/25(æ°´) Version 2.43 Î² 2 é–‹ç™ºç‰ˆ
+ã€€å‹•ç”»ã®å†ç”ŸãŒå®Œäº†ã—ã¦ã‚‚æ¬¡ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®å†ç”ŸãŒå§‹ã¾ã‚‰ãªã‹ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/4/24(ç«) Version 2.43 Î² 1 é–‹ç™ºç‰ˆ
+ã€€å‹•ç”»ã®èª­ã¿è¾¼ã¿ã«å¯¾å¿œã—ã¾ã—ãŸã€‚
+
+2012/3/6(ç«) Version 2.42 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2012/3/4(æ—¥) Version 2.41 Î² 5 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã§é¸æŠžãƒ•ã‚¡ã‚¤ãƒ«ã‚’å³ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹äº‹ã«ã‚ˆã‚Šã€å†ç”Ÿãƒªã‚¹ãƒˆé–“ã®ã‚³ãƒ”ãƒ¼ãŒ
+ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/2/28(ç«) Version 2.41 Î² 4 é–‹ç™ºç‰ˆ
+ã€€ç·¨é›†â†’å‰Šé™¤ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/2/27(æœˆ) Version 2.41 Î² 3 é–‹ç™ºç‰ˆ
+ã€€ç·¨é›†â†’ã™ã¹ã¦é¸æŠžãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/2/25(åœŸ) Version 2.41 Î² 2 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆå†…ã®ãƒ‰ãƒ©ãƒƒã‚°ã«ã‚ˆã‚‹ä¸¦ã³æ›¿ãˆæ™‚ã®æŒ™å‹•ã‚’æ”¹å–„ã—ã¾ã—ãŸã€‚
+
+2012/2/21(ç«) Version 2.41 Î² 1 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã‚’ã‚¿ãƒ–ã§ç®¡ç†ã§ãã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/2/15(æ°´) Version 2.40 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2012/2/12(æ—¥) Version 2.39 Î² 14 é–‹ç™ºç‰ˆ
+ã€€ä¿å­˜æ™‚ã«ãƒ‘ãƒ³ã®å¤‰æ›´ãŒåæ˜ ã•ã‚Œã¦ã„ãªã‹ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/2/7(ç«) Version 2.39 Î² 13 é–‹ç™ºç‰ˆ
+ã€€èµ·å‹•æ™‚ã«ç”»é¢è¡¨ç¤ºãŒãŠã‹ã—ããªã‚‹äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/2/1(æ°´) Version 2.39 Î² 12 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿä½ç½®ã‚¹ãƒ©ã‚¤ãƒ€ã‚’éžè¡¨ç¤ºã«ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/2/1(æ°´) Version 2.39 Î² 11 é–‹ç™ºç‰ˆ
+ã€€ãƒ•ã‚¡ã‚¤ãƒ«ã®è¿½åŠ æ™‚ã«å†ç”Ÿãƒªã‚¹ãƒˆå†…ã®ã€Œå†ç”Ÿä¸­ã€ã‚’è¡¨ã™ãƒžãƒ¼ã‚¯ãŒå†ç”Ÿä¸­ä»¥å¤–ã®ãƒ•ã‚¡ã‚¤ãƒ«
+ã«ã‚‚è¡¨ç¤ºã•ã‚Œã¦ã—ã¾ã†ä¸å…·åˆãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/2/1(æ°´) Version 2.39 Î² 10 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã«ã€ŒNo.ã€ã€Œã‚¿ã‚¤ãƒˆãƒ«ã€ã€Œã‚¢ãƒ¼ãƒ†ã‚£ã‚¹ãƒˆã€ã€Œå¹´ã€ã€Œé•·ã•ã€ã‚’è¡¨ç¤ºã™ã‚‹ã‚ˆã†ã«
+ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã®åˆ—ã®å¹…ï¼ä¸¦ã³é †ã‚’å¾©å…ƒã™ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/1/29(æ—¥) Version 2.39 Î² 9 é–‹ç™ºç‰ˆ
+ã€€ãƒŽãƒ¼ãƒžãƒ©ã‚¤ã‚ºæ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/1/26(æœ¨) Version 2.39 Î² 8 é–‹ç™ºç‰ˆ
+ã€€å¤§å®¹é‡ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚“ã æ™‚ã«ã‚¹ãƒ©ã‚¤ãƒ€ãŒå‹•ã‹ãªããªã‚‹ä¸å…·åˆãŒã‚ã£ãŸã®ã‚’
+ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2012/1/17(ç«) Version 2.39 Î² 7 é–‹ç™ºç‰ˆ
+ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ã®å„ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã«ã¤ã„ã¦ã€æ¨ªä½ç½®ãŒãšã‚Œã¦ã„ãŸã®ã‚’ä¿®æ­£
+ã—ã¾ã—ãŸã€‚
+
+2012/1/16(æœˆ) Version 2.39 Î² 6 é–‹ç™ºç‰ˆ
+ã€€ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰ã‚’æ•´ç†ã—ã€å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚ºã‚’å‰Šæ¸›ã—ã¾ã—ãŸã€‚
+
+2012/1/14(åœŸ) Version 2.39 Î² 5 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿé€Ÿåº¦ã‚’ã ã‚“ã ã‚“é…ãã™ã‚‹æ©Ÿèƒ½ã«ã¤ã„ã¦ã€ç§’æ•°ã‚’0.01ç§’å˜ä½ã§æŒ‡å®šã§ãã‚‹ã‚ˆã†ã«
+ã—ã¾ã—ãŸã€‚
+
+2012/1/14(åœŸ) Version 2.39 Î² 4 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿé€Ÿåº¦ã‚’ã ã‚“ã ã‚“é€Ÿãã™ã‚‹æ©Ÿèƒ½ã«ã¤ã„ã¦ã€ç§’æ•°ã‚’0.01ç§’å˜ä½ã§æŒ‡å®šã§ãã‚‹ã‚ˆã†ã«
+ã—ã¾ã—ãŸã€‚
+
+2012/1/13(é‡‘) Version 2.39 Î² 3 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿå‘¨æ³¢æ•°ã‚’ã ã‚“ã ã‚“é…ãã™ã‚‹æ©Ÿèƒ½ã«ã¤ã„ã¦ã€ç§’æ•°ã‚’0.01ç§’å˜ä½ã§æŒ‡å®šã§ãã‚‹ã‚ˆã†ã«
+ã—ã¾ã—ãŸã€‚
+
+2012/1/12(æœ¨) Version 2.39 Î² 2 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿå‘¨æ³¢æ•°ã‚’ã ã‚“ã ã‚“é€Ÿãã™ã‚‹æ©Ÿèƒ½ã«ã¤ã„ã¦ã€ç§’æ•°ã‚’0.01ç§’å˜ä½ã§æŒ‡å®šã§ãã‚‹ã‚ˆã†ã«
+ã—ã¾ã—ãŸã€‚
+
+2012/1/11(æ°´) Version 2.39 Î² 1 é–‹ç™ºç‰ˆ
+ã€€ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ã‚«ã‚¹ã‚¿ãƒžã‚¤ã‚ºæ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2012/1/10(ç«) Version 2.38 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2012/1/5(æœ¨) Version 2.37 Î² 7 é–‹ç™ºç‰ˆ
+ã€€å¤šæ•°ã®è¦æœ›ãŒã‚ã£ãŸï¼¡ï¼¢ãƒ«ãƒ¼ãƒ—æ©Ÿèƒ½ã®å¾©æ´»ã‚’å®Ÿç¾ã—ã¾ã—ãŸã€‚ä»Šå¾Œã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§ã¯ã€
+ï¼¡ï¼¢ãƒ«ãƒ¼ãƒ—ï¼ãƒžãƒ¼ã‚«ãƒ¼æ©Ÿèƒ½ã®ä¸¡æ–¹ã‚’ä½¿ç”¨å¯èƒ½ã§ã™ã€‚
+
+2012/1/4(æ°´) Version 2.37 Î² 6 é–‹ç™ºç‰ˆ
+ã€€éŸ³ç¨‹ã®è¨­å®šç¯„å›²ï¼ˆæœ€å¤§å€¤ï¼æœ€å°å€¤ï¼‰ã‚’ã‚«ã‚¹ã‚¿ãƒžã‚¤ã‚ºã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/1/2(æœˆ) Version 2.37 Î² 5 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿå‘¨æ³¢æ•°ã®è¨­å®šç¯„å›²ï¼ˆæœ€å¤§å€¤ï¼æœ€å°å€¤ï¼‰ã‚’ã‚«ã‚¹ã‚¿ãƒžã‚¤ã‚ºã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2012/1/2(æœˆ) Version 2.37 Î² 4 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿé€Ÿåº¦ã®è¨­å®šç¯„å›²ï¼ˆæœ€å¤§å€¤ï¼æœ€å°å€¤ï¼‰ã‚’ã‚«ã‚¹ã‚¿ãƒžã‚¤ã‚ºã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2011/12/24(åœŸ) Version 2.37 Î² 3 é–‹ç™ºç‰ˆ
+ã€€éˆ´æœ¨å¥æ²»ã•ã‚“ã®ã”å”åŠ›ã«ã‚ˆã‚Šã€ä¸‹è¨˜ã®æ›´æ–°ã‚’è¡Œã„ã¾ã—ãŸã€‚
+ã€€â‘ ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰ã‚’æ•´ç†ã—ã€å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚ºã‚’å‰Šæ¸›ã—ã¾ã—ãŸã€‚
+ã€€â‘¡ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ç™»éŒ²ã«ã¤ã„ã¦ã€ã„ãã¤ã‹ã®ä¸å…·åˆãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+ã€€â‘¢ä»Šã¾ã§ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã¨ã—ã¦ç™»éŒ²ã§ããªã‹ã£ãŸã‚³ãƒžãƒ³ãƒ‰ã‚’å…¨ã¦ç™»éŒ²å¯èƒ½ã«ã—ã¾
+ã€€ã€€ã—ãŸã€‚
+
+2011/12/20(ç«) Version 2.37 Î² 2 é–‹ç™ºç‰ˆ
+ã€€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®æ–‡è¨€ã«ã¤ã„ã¦ã€ã€Œã‚­ãƒ¼è¨­å®šã€ã‚’ã€Œã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼è¨­å®šã€ã«ã€ã€Œå¤–éƒ¨
+ã‚­ãƒ¼è¨­å®šã€ã‚’ã€Œã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ›ãƒƒãƒˆã‚­ãƒ¼è¨­å®šã€ã«å¤‰æ›´ã—ã¾ã—ãŸã€‚
+
+2011/12/12(æœˆ) Version 2.37 Î² 1 é–‹ç™ºç‰ˆ
+ã€€å·å£è²´å¤§ã•ã‚“ã®ã”å”åŠ›ã«ã‚ˆã‚Šã€ã‚¿ã‚¤ãƒžãƒ¼åœæ­¢æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚é–‹ç™ºã«ã”å”åŠ›
+ãã ã•ã£ãŸå·å£è²´å¤§ã•ã‚“ã«æ„Ÿè¬ã§ã™ã€‚
+
+2011/11/27(æ—¥) Version 2.36 å®‰å®šç‰ˆ revision 5
+ã€€ã‚­ãƒ¼è¨­å®šã«ã¦ã€Œ+ã€ã‚­ãƒ¼ãŒç™»éŒ²ã§ããªã‹ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2011/11/26(åœŸ) Version 2.36 å®‰å®šç‰ˆ revision 4
+ã€€å·å£è²´å¤§ã•ã‚“ã®ã”å”åŠ›ã«ã‚ˆã‚Šã€ã‚­ãƒ¼è¨­å®šã«ã¦ç™»éŒ²ã§ããªã„ã‚­ãƒ¼ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£
+ã—ã¾ã—ãŸã€‚é–‹ç™ºã«ã”å”åŠ›ãã ã•ã£ãŸå·å£è²´å¤§ã•ã‚“ã«æ„Ÿè¬ã§ã™ã€‚
+
+2011/11/25(é‡‘) Version 2.36 å®‰å®šç‰ˆ revision 3
+ã€€éˆ´æœ¨å¥æ²»ã•ã‚“ã®ã”å”åŠ›ã«ã‚ˆã‚Šã€Version 2.35 Î² 5 ä»¥é™ã‚¢ã‚¤ã‚³ãƒ³ã«ãƒ•ã‚¡ã‚¤ãƒ«ã‚’
+ãƒ‰ãƒ­ãƒƒãƒ—ã—ãŸæ™‚ã®æŒ™å‹•ãŒãŠã‹ã—ããªã£ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚é–‹ç™ºã«ã”å”åŠ›
+ãã ã•ã£ãŸéˆ´æœ¨å¥æ²»ã•ã‚“ã«æ„Ÿè¬ã§ã™ã€‚
+
+2011/11/19(åœŸ) Version 2.36 å®‰å®šç‰ˆ revision 2
+ã€€éˆ´æœ¨å¥æ²»ã•ã‚“ã®ã”å”åŠ›ã«ã‚ˆã‚Šã€Version 2.35 Î² 5 ä»¥é™ã‚¹ãƒ©ã‚¤ãƒ€ã«ã‚ˆã‚ŠéŸ³ç¨‹å¤‰æ›´ãŒ
+ã§ããªããªã£ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚é–‹ç™ºã«ã”å”åŠ›ãã ã•ã£ãŸéˆ´æœ¨å¥æ²»ã•ã‚“ã«æ„Ÿè¬
+ã§ã™ã€‚
+
+2011/11/14(æœˆ) Version 2.36 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2011/11/13(æ—¥) Version 2.35 Î² 6 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿå‘¨æ³¢æ•°ã‚’ã ã‚“ã ã‚“é…ãã™ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2011/11/13(æ—¥) Version 2.35 Î² 5 é–‹ç™ºç‰ˆ
+ã€€éˆ´æœ¨å¥æ²»ã•ã‚“ã®ã”å”åŠ›ã«ã‚ˆã‚Šã€UNICODEã«å¯¾å¿œã—ã¾ã—ãŸã€‚é–‹ç™ºã«ã”å”åŠ›ãã ã•ã£ãŸ
+éˆ´æœ¨å¥æ²»ã•ã‚“ã«æ„Ÿè¬ã§ã™ã€‚
+
+2011/11/05(åœŸ) Version 2.35 Î² 4 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿé€Ÿåº¦ã‚’ã ã‚“ã ã‚“é…ãã™ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2011/10/23(æ—¥) Version 2.35 Î² 3 é–‹ç™ºç‰ˆ
+ã€€ãƒžãƒ¼ã‚«ãƒ¼ä½ç½®ã®èª¿æ•´æ™‚ã«å†ç”Ÿä½ç½®ã‚’é€£å‹•ã•ã›ã‚‹ã‹ã©ã†ã‹ã‚’é¸ã¹ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2011/10/17(æœˆ) Version 2.35 Î² 2 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿå‘¨æ³¢æ•°ã‚’ã ã‚“ã ã‚“é€Ÿãã™ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2011/10/16(æ—¥) Version 2.35 Î² 1 é–‹ç™ºç‰ˆ
+ã€€WAVEå½¢å¼ã§æ›¸ãå‡ºã—ãŸéš›ã®ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆãŒãŠã‹ã—ããªã£ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2011/10/15(åœŸ) Version 2.34 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2011/10/12(æ°´) Version 2.33 Î² 8 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿâ†’ãƒžãƒ¼ã‚«ãƒ¼å‰Šé™¤ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ˆã‚Šãƒžãƒ¼ã‚«ãƒ¼ã‚’å‰Šé™¤ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2011/10/12(æ°´) Version 2.33 Î² 7 é–‹ç™ºç‰ˆ
+ã€€å‰å›žçµ‚äº†æ™‚ã®ã€Œãƒžãƒ¼ã‚«ãƒ¼è¿½åŠ æ™‚ã«ãƒ«ãƒ¼ãƒ—ã™ã‚‹ã‹ã©ã†ã‹ã€ã‚’å¾©å…ƒã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2011/10/11(ç«) Version 2.33 Î² 6 é–‹ç™ºç‰ˆ
+ã€€éŸ³å£°ã®ä¿å­˜æ™‚ã«ã¾ã ãƒŽã‚¤ã‚ºãŒå…¥ã£ã¦ã—ã¾ã†äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2011/10/10(æœˆ) Version 2.33 Î² 5 é–‹ç™ºç‰ˆ
+ã€€éŸ³å£°ã‚’ãƒ¢ãƒŽãƒ©ãƒ«åŒ–ã™ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2011/10/10(æœˆ) Version 2.33 Î² 4 é–‹ç™ºç‰ˆ
+ã€€ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã«ã€Œãƒžãƒ¼ã‚«ãƒ¼å‰Šé™¤ã€ãƒœã‚¿ãƒ³ã‚’è¿½åŠ ã—ã€ãƒžãƒ¼ã‚«ãƒ¼ã®è¿½åŠ ï¼å‰Šé™¤ã‚’ç°¡å˜ã«
+è¡Œãˆã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2011/10/10(æœˆ) Version 2.33 Î² 3 é–‹ç™ºç‰ˆ
+ã€€ãƒžãƒ¼ã‚«ãƒ¼è¿½åŠ æ™‚ã«ãƒ«ãƒ¼ãƒ—ã™ã‚‹ã‹ã©ã†ã‹ã‚’é¸ã¹ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2011/10/9(æ—¥) Version 2.33 Î² 2 é–‹ç™ºç‰ˆ
+ã€€éŸ³å£°ã®ä¿å­˜æ™‚ã«ãƒŽã‚¤ã‚ºãŒå…¥ã£ã¦ã—ã¾ã†äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2011/10/8(åœŸ) Version 2.33 Î² 1 é–‹ç™ºç‰ˆ
+ã€€è€³ã‚³ãƒ”ãªã©ã«ä¾¿åˆ©ãªã€Œã ã‚“ã ã‚“é€Ÿãã™ã‚‹æ©Ÿèƒ½ã€ã«ã€ãƒ«ãƒ¼ãƒ—ã”ã¨ã«å†ç”Ÿé€Ÿåº¦ã‚’ä¸Šã’ã‚‹
+æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2011/9/26(æœˆ) Version 2.32 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2011/9/25(æ—¥) Version 2.31 Î² 7 é–‹ç™ºç‰ˆ
+ã€€ãƒžãƒ¼ã‚«ãƒ¼é–“ã‚’æŒ‡å®šå›žæ•°ãšã¤ãƒ«ãƒ¼ãƒ—å†ç”Ÿã™ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2011/9/22(æœ¨) Version 2.31 Î² 6 é–‹ç™ºç‰ˆ
+ã€€é…å¸ƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’æœ€é©åŒ–ã—ã€ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºã‚’ç¸®å°ã—ã¾ã—ãŸã€‚
+ã€€â€» 933 KB â‡’ 655 KB ( 70.2 % )
+
+2011/9/21(æ°´) Version 2.31 Î² 5 é–‹ç™ºç‰ˆ
+ã€€å³ã‚¯ãƒªãƒƒã‚¯ã«ã‚ˆã‚Šãƒžãƒ¼ã‚«ãƒ¼ã‚’å‰Šé™¤ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2011/9/20(ç«) Version 2.31 Î² 4 é–‹ç™ºç‰ˆ
+ã€€Ctrl ã‚­ãƒ¼ã‚’æŠ¼ã—ãªãŒã‚‰ãƒ‰ãƒ©ãƒƒã‚°ã™ã‚‹äº‹ã§ã€ãƒžãƒ¼ã‚«ãƒ¼ä½ç½®ã®å¾®èª¿æ•´ã‚’ã§ãã‚‹ã‚ˆã†ã«
+ã—ã¾ã—ãŸã€‚
+
+2011/9/20(ç«) Version 2.31 Î² 3 é–‹ç™ºç‰ˆ
+ã€€ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã«ã‚ˆã‚Šã€ã€Œãƒžãƒ¼ã‚«ãƒ¼å†ç”Ÿã€ã€Œãƒžãƒ¼ã‚«ãƒ¼è¿½åŠ ã€ã‚’æ“ä½œã§ãã‚‹
+ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2011/9/20(ç«) Version 2.31 Î² 2 é–‹ç™ºç‰ˆ
+ã€€AB ãƒ«ãƒ¼ãƒ—ã®é€²åŒ–ç‰ˆã§ã‚ã‚‹ã€Œãƒžãƒ¼ã‚«ãƒ¼æ©Ÿèƒ½ã€ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚ã“ã®ãƒžãƒ¼ã‚«ãƒ¼æ©Ÿèƒ½ã«ã‚ˆã‚Š
+ä»»æ„ã®ç®‡æ‰€ã«ãƒžãƒ¼ã‚«ãƒ¼ã‚’ç½®ãäº‹ãŒã§ãã€è‡ªç”±ã«ãƒžãƒ¼ã‚«ãƒ¼é–“ã®ãƒ«ãƒ¼ãƒ—å†ç”ŸãŒã§ãã¾ã™ã€‚
+
+2011/9/14(æ°´) Version 2.31 Î² 1 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿåœæ­¢æ™‚ã‚‚ã€Œã ã‚“ã ã‚“é€Ÿãã™ã‚‹æ©Ÿèƒ½ã€ãŒæ©Ÿèƒ½ã—ã¦ã—ã¾ã£ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2011/9/7(æ°´) Version 2.30 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2011/9/2(é‡‘) Version 2.29 Î² 11 é–‹ç™ºç‰ˆ
+ã€€ã€Œã ã‚“ã ã‚“é€Ÿãã™ã‚‹æ©Ÿèƒ½ã€ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2011/9/1(æœ¨) Version 2.29 Î² 10 é–‹ç™ºç‰ˆ
+ã€€ã‚¿ã‚¤ãƒžãƒ¼å†ç”Ÿãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®æ“ä½œæ€§ã‚’æ”¹å–„ã—ã¾ã—ãŸã€‚
+
+2011/8/30(ç«) Version 2.29 Î² 9 é–‹ç™ºç‰ˆ
+ã€€ã‚¢ã‚¤ã‚³ãƒ³ã«256Ã—256ã®ã‚µã‚¤ã‚ºã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2011/8/29(æœˆ) Version 2.29 Î² 8 é–‹ç™ºç‰ˆ
+ã€€å¤–éƒ¨ã‚­ãƒ¼è¨­å®šãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®æ“ä½œæ€§ã‚’æ”¹å–„ã—ã¾ã—ãŸã€‚
+
+2011/8/28(æ—¥) Version 2.29 Î² 7 é–‹ç™ºç‰ˆ
+ã€€ã‚­ãƒ¼è¨­å®šãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®æ“ä½œæ€§ã‚’æ”¹å–„ã—ã¾ã—ãŸã€‚
+
+2011/8/26(é‡‘) Version 2.29 Î² 6 é–‹ç™ºç‰ˆ
+ã€€ä¿å­˜æ™‚ã«éŸ³é‡ã®è¨­å®šãŒåæ˜ ã•ã‚Œã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+ã€€éŸ³é‡ã‚’å°æ•°ç‚¹å˜ä½ã§è¨­å®šã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2011/8/25(æœ¨) Version 2.29 Î² 5 é–‹ç™ºç‰ˆ
+ã€€ã‚­ãƒ¼è¨­å®šï¼å¤–éƒ¨ã‚­ãƒ¼è¨­å®šã«ã€Œå†ç”Ÿä½ç½®ã€ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2011/8/24(æ°´) Version 2.29 Î² 4 é–‹ç™ºç‰ˆ
+ã€€ã‚·ã‚¹ãƒ†ãƒ â†’ã‚¨ãƒ•ã‚§ã‚¯ãƒˆâ†’ãƒªãƒãƒ¼ãƒ–ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ˆã‚Šã€ãƒªãƒãƒ¼ãƒ–ã‚’ã‹ã‘ã‚‰ã‚Œã‚‹ã‚ˆã†ã«
+ã—ã¾ã—ãŸã€‚
+
+2011/8/23(ç«) Version 2.29 Î² 3 é–‹ç™ºç‰ˆ
+ã€€ã‚·ã‚¹ãƒ†ãƒ â†’å†ç”Ÿä½ç½®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ˆã‚Šã€ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã§å†ç”Ÿä½ç½®ã‚’è¨­å®šã§ãã‚‹ã‚ˆã†ã«
+ã—ã¾ã—ãŸã€‚
+
+2011/8/22(æœˆ) Version 2.29 Î² 2 é–‹ç™ºç‰ˆ
+ã€€éžè¡¨ç¤ºã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã«ã‚‚ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ãŒç§»ã£ã¦ã—ã¾ã£ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2011/8/22(æœˆ) Version 2.29 Î² 1 é–‹ç™ºç‰ˆ
+ã€€ã€Œå·¦ã®ã¿å†ç”Ÿã€ã€Œå³ã®ã¿å†ç”Ÿã€æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2011/8/21(æ—¥) Version 2.28 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2011/8/21(æ—¥) Version 2.27 Î² 17 é–‹ç™ºç‰ˆ
+ã€€Windows XP ä»¥å‰ã® OS ã§ãƒ•ã‚©ãƒ³ãƒˆãŒãŠã‹ã—ããªã£ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2011/8/21(æ—¥) Version 2.27 Î² 16 é–‹ç™ºç‰ˆ
+ã€€ãƒœãƒ¼ã‚«ãƒ«ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2011/8/17(æ°´) Version 2.27 Î² 15 é–‹ç™ºç‰ˆ
+ã€€BASS.DLL ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’ 2.3.0.3 ã‹ã‚‰ 2.4.7.1 ã«ã—ã¾ã—ãŸã€‚
+
+2011/8/14(æ—¥) Version 2.27 Î² 14 é–‹ç™ºç‰ˆ
+ã€€ã‚­ãƒ¼è¨­å®šã€Œå†ç”Ÿé€Ÿåº¦ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«æˆ»ã™ã€ã€Œå†ç”Ÿå‘¨æ³¢æ•°ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«æˆ»ã™ã€ã€ŒéŸ³ç¨‹
+ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«æˆ»ã™ã€ãŒæ©Ÿèƒ½ã—ãªã„äº‹ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2011/8/14(æ—¥) Version 2.27 Î² 13 é–‹ç™ºç‰ˆ
+ã€€ABãƒ«ãƒ¼ãƒ—æ™‚ã«ä¿å­˜ã—ãŸå ´åˆã¯ã€ABãƒ«ãƒ¼ãƒ—éƒ¨åˆ†ã ã‘ã‚’ä¿å­˜ã™ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2011/8/13(åœŸ) Version 2.27 Î² 12 é–‹ç™ºç‰ˆ
+ã€€ã€Œå¤ã³ãŸãƒ¬ã‚³ãƒ¼ãƒ‰å†ç”Ÿã€ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆåŠ¹æžœã‚’æ”¹å–„ã—ã¾ã—ãŸã€‚
+
+2011/8/13(åœŸ) Version 2.27 Î² 11 é–‹ç™ºç‰ˆ
+ã€€Windows XP ä»¥å‰ã® OS ã§ç”»é¢è¡¨ç¤ºãŒå´©ã‚Œã¦ã„ãŸã®ã‚’æ”¹å–„ã—ã¾ã—ãŸã€‚
+ã€€ãƒ•ã‚¡ã‚¤ãƒ«â†’ä¿å­˜ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠžæ™‚ã€å‰å›žä¿å­˜ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«å½¢å¼ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§é¸æŠžã™ã‚‹
+ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2011/8/7(æ—¥) Version 2.27 Î² 10 é–‹ç™ºç‰ˆ
+ã€€é€†å›žè»¢å†ç”Ÿæ™‚ã«ä¿å­˜ã™ã‚‹ã¨ã€ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒãƒ¼ãŒé€†ã«é€²ã‚“ã§ã—ã¾ã£ã¦ã„ãŸã®ã‚’ä¿®æ­£
+ã—ã¾ã—ãŸã€‚
+
+2011/8/5(é‡‘) Version 2.27 Î² 9 é–‹ç™ºç‰ˆ
+ã€€ãƒ˜ãƒ«ãƒ—â†’ãƒžãƒ‹ãƒ¥ã‚¢ãƒ«ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2011/8/2(ç«) Version 2.27 Î² 8 é–‹ç™ºç‰ˆ
+ã€€é…å¸ƒæ™‚ã®ãƒ•ã‚¡ã‚¤ãƒ«å½¢å¼ã‚’ZIPãƒ•ã‚¡ã‚¤ãƒ«ã«å¤‰æ›´ã—ã¾ã—ãŸã€‚
+ã€€ã‚·ã‚¹ãƒ†ãƒ â†’ã‚­ãƒ¼è¨­å®šï¼å¤–éƒ¨ã‚­ãƒ¼è¨­å®šãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã¦ã€ã‚­ãƒ¼æ“ä½œã§éŸ³é‡ã‚’å¤‰æ›´ã§ãã‚‹
+ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2009/11/23(æœˆ) Version 2.27 Î² 7 é–‹ç™ºç‰ˆ
+ã€€EQãƒ—ãƒªã‚»ãƒƒãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ä½ŽéŸ³å¼·èª¿ï¼ˆæœ€å¼·ï¼‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€EQãƒ—ãƒªã‚»ãƒƒãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ä½ŽéŸ³å¼·èª¿ï¼ˆæœ€å¼±ï¼‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€EQãƒ—ãƒªã‚»ãƒƒãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ä¸­éŸ³å¼·èª¿ï¼ˆæœ€å¼·ï¼‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€EQãƒ—ãƒªã‚»ãƒƒãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ä¸­éŸ³å¼·èª¿ï¼ˆå¼·ï¼‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€EQãƒ—ãƒªã‚»ãƒƒãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ä¸­éŸ³å¼·èª¿ï¼ˆä¸­ï¼‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€EQãƒ—ãƒªã‚»ãƒƒãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ä¸­éŸ³å¼·èª¿ï¼ˆå¼±ï¼‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€EQãƒ—ãƒªã‚»ãƒƒãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ä¸­éŸ³å¼·èª¿ï¼ˆæœ€å¼±ï¼‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€EQãƒ—ãƒªã‚»ãƒƒãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«é«˜éŸ³å¼·èª¿ï¼ˆæœ€å¼·ï¼‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€EQãƒ—ãƒªã‚»ãƒƒãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«é«˜éŸ³å¼·èª¿ï¼ˆå¼·ï¼‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€EQãƒ—ãƒªã‚»ãƒƒãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«é«˜éŸ³å¼·èª¿ï¼ˆä¸­ï¼‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€EQãƒ—ãƒªã‚»ãƒƒãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«é«˜éŸ³å¼·èª¿ï¼ˆå¼±ï¼‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€EQãƒ—ãƒªã‚»ãƒƒãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«é«˜éŸ³å¼·èª¿ï¼ˆæœ€å¼±ï¼‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2009/11/23(æœˆ) Version 2.27 Î² 6 é–‹ç™ºç‰ˆ
+ã€€EQãƒ—ãƒªã‚»ãƒƒãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ä½ŽéŸ³å¼·èª¿ï¼ˆå¼·ï¼‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2009/11/23(æœˆ) Version 2.27 Î² 5 é–‹ç™ºç‰ˆ
+ã€€EQãƒ—ãƒªã‚»ãƒƒãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ä½ŽéŸ³å¼·èª¿ï¼ˆä¸­ï¼‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2009/11/23(æœˆ) Version 2.27 Î² 4 é–‹ç™ºç‰ˆ
+ã€€EQãƒ—ãƒªã‚»ãƒƒãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ä½ŽéŸ³å¼·èª¿ï¼ˆå¼±ï¼‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2009/11/23(æœˆ) Version 2.27 Î² 3 é–‹ç™ºç‰ˆ
+ã€€ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«EQãƒ—ãƒªã‚»ãƒƒãƒˆï¼ˆFLATï¼‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2009/10/31(åœŸ) Version 2.27 Î² 2 é–‹ç™ºç‰ˆ
+ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 125 Hz ) ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2009/10/20(ç«) Version 2.27 Î² 1 é–‹ç™ºç‰ˆ
+ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 16 KHz ) ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2008/10/11(åœŸ) Version 2.26 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2008/09/28(æ—¥) Version 2.25 Î² 9 é–‹ç™ºç‰ˆ
+ã€€ä¸€æ™‚åœæ­¢å¾Œã«å†ç”Ÿä½ç½®ã‚’1ç§’æˆ»ã™ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€ä¸€æ™‚åœæ­¢å¾Œã«å†ç”Ÿä½ç½®ã‚’2ç§’æˆ»ã™ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€ä¸€æ™‚åœæ­¢å¾Œã«å†ç”Ÿä½ç½®ã‚’3ç§’æˆ»ã™ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€ä¸€æ™‚åœæ­¢å¾Œã«å†ç”Ÿä½ç½®ã‚’5ç§’æˆ»ã™ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€ä¸€æ™‚åœæ­¢å¾Œã«å†ç”Ÿä½ç½®ã‚’10ç§’æˆ»ã™ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2008/09/23(ç«) Version 2.25 Î² 8 é–‹ç™ºç‰ˆ
+ã€€å¤–éƒ¨ã‚­ãƒ¼è¨­å®šãŒå¾©å…ƒã•ã‚Œã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2008/09/14(æ—¥) Version 2.25 Î² 7 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿé€Ÿåº¦ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«æˆ»ã™ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿå‘¨æ³¢æ•°ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«æˆ»ã™ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€éŸ³ç¨‹ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«æˆ»ã™ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2008/09/07(æ—¥) Version 2.25 Î² 6 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿé€Ÿåº¦ã‚’0.1%ä¸‹ã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿé€Ÿåº¦ã‚’0.1%ä¸Šã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿå‘¨æ³¢æ•°ã‚’0.1%ä¸‹ã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿå‘¨æ³¢æ•°ã‚’0.1%ä¸Šã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2008/08/31(æ—¥) Version 2.25 Î² 5 é–‹ç™ºç‰ˆ
+ã€€éŸ³ç¨‹ã‚’åŠéŸ³ä¸‹ã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€éŸ³ç¨‹ã‚’å…¨éŸ³ä¸‹ã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€éŸ³ç¨‹ã‚’åŠéŸ³ä¸Šã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€éŸ³ç¨‹ã‚’å…¨éŸ³ä¸Šã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2008/08/30(åœŸ) Version 2.25 Î² 4 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿå‘¨æ³¢æ•°ã‚’1%ä¸‹ã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿå‘¨æ³¢æ•°ã‚’2%ä¸‹ã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿå‘¨æ³¢æ•°ã‚’3%ä¸‹ã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿå‘¨æ³¢æ•°ã‚’5%ä¸‹ã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿå‘¨æ³¢æ•°ã‚’10%ä¸‹ã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿå‘¨æ³¢æ•°ã‚’1%ä¸Šã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿå‘¨æ³¢æ•°ã‚’2%ä¸Šã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿå‘¨æ³¢æ•°ã‚’3%ä¸Šã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿå‘¨æ³¢æ•°ã‚’5%ä¸Šã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿå‘¨æ³¢æ•°ã‚’10%ä¸Šã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2008/08/29(é‡‘) Version 2.25 Î² 3 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿé€Ÿåº¦ã‚’1%ä¸‹ã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿé€Ÿåº¦ã‚’2%ä¸‹ã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿé€Ÿåº¦ã‚’3%ä¸‹ã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿé€Ÿåº¦ã‚’5%ä¸‹ã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿé€Ÿåº¦ã‚’10%ä¸‹ã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿé€Ÿåº¦ã‚’1%ä¸Šã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿé€Ÿåº¦ã‚’2%ä¸Šã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿé€Ÿåº¦ã‚’3%ä¸Šã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿé€Ÿåº¦ã‚’5%ä¸Šã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿé€Ÿåº¦ã‚’10%ä¸Šã’ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2008/08/28(æœ¨) Version 2.25 Î² 2 é–‹ç™ºç‰ˆ
+ã€€ç¾åœ¨ã®å†ç”Ÿä½ç½®ã‚’ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2008/08/25(æœˆ) Version 2.25 Î² 1 é–‹ç™ºç‰ˆ
+ã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æœ€å‰é¢ã«è¡¨ç¤ºã™ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2008/07/22(ç«) Version 2.24 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2008/07/21(æœˆ) Version 2.23 Î² 8 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿä½ç½®ã‚’2ç§’é€²ã‚ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿä½ç½®ã‚’3ç§’é€²ã‚ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿä½ç½®ã‚’5ç§’é€²ã‚ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿä½ç½®ã‚’10ç§’é€²ã‚ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2008/07/21(æœˆ) Version 2.23 Î² 7 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿä½ç½®ã‚’1ç§’é€²ã‚ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2008/07/06(æ—¥) Version 2.23 Î² 6 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿä½ç½®ã‚’1ç§’æˆ»ã™æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2008/07/06(æ—¥) Version 2.23 Î² 5 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿä½ç½®ã‚’2ç§’æˆ»ã™æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2008/07/06(æ—¥) Version 2.23 Î² 4 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿä½ç½®ã‚’3ç§’æˆ»ã™æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2008/07/06(æ—¥) Version 2.23 Î² 3 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿä½ç½®ã‚’5ç§’æˆ»ã™æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2008/07/06(æ—¥) Version 2.23 Î² 2 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿä½ç½®ã‚’10ç§’æˆ»ã™æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2008/06/22(æ—¥) Version 2.23 Î² 1 é–‹ç™ºç‰ˆ
+ã€€ç›®è¦šã¾ã—æ©Ÿèƒ½ï¼ˆã‚¿ã‚¤ãƒžãƒ¼å†ç”Ÿï¼‰ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2008/06/22(æ—¥) Version 2.22 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2008/05/06(ç«) Version 2.21 Î² 4 é–‹ç™ºç‰ˆ
+ã€€ã‚·ã‚¹ãƒ†ãƒ â†’å¤–éƒ¨ã‚­ãƒ¼è¨­å®šãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ˆã‚‹å¤–éƒ¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‹ã‚‰ã®ã‚­ãƒ¼æ“ä½œã«å¯¾å¿œã—ã¾ã—ãŸã€‚
+
+2008/03/09(æ—¥) Version 2.21 Î² 3 é–‹ç™ºç‰ˆ
+ã€€ABãƒ«ãƒ¼ãƒ—ã‚’ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã«ã‚ˆã‚Šæ“ä½œã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2008/02/03(æ—¥) Version 2.21 Î² 2 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿï¼ä¸€æ™‚åœæ­¢ç”¨ã®ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã¨ã—ã¦ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã‚¹ãƒšãƒ¼ã‚¹ã‚­ãƒ¼ã‚’
+è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2008/01/30(æ°´) Version 2.21 Î² 1 é–‹ç™ºç‰ˆ
+ã€€ä½ç½®ï¼ã‚µã‚¤ã‚ºå¾©å…ƒã®éš›ã«ä¸€çž¬ã€ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ä½ç½®ï¼ã‚µã‚¤ã‚ºã§ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒè¡¨ç¤ºã•ã‚Œã¦
+ã—ã¾ã£ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2008/01/29(ç«) Version 2.20 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2008/01/28(æœˆ) Version 2.19 Î² 6 é–‹ç™ºç‰ˆ
+ã€€å¤šé‡èµ·å‹•ã®è¨­å®šå†…å®¹ãŒå¾©å…ƒã§ãã¦ã„ãªã‹ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2008/01/27(æ—¥) Version 2.19 Î² 5 é–‹ç™ºç‰ˆ
+ã€€éŸ³ç¨‹ã‚’ 0.1 å˜ä½ã§æŒ‡å®šã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2008/01/25(é‡‘) Version 2.19 Î² 4 é–‹ç™ºç‰ˆ
+ã€€ã‚­ãƒ¼è¨­å®šãŒå¾©å…ƒã•ã‚Œã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2008/01/23(æ°´) Version 2.19 Î² 3 é–‹ç™ºç‰ˆ
+ã€€æ—©é€ã‚Šã¨å·»ãæˆ»ã—ãŒåŒæ™‚ã«ã§ãã¦ã—ã¾ã£ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2008/01/22(ç«) Version 2.19 Î² 2 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã«å†ç”Ÿé †ã¨ã„ã†å†…éƒ¨åˆ¶å¾¡ç”¨ã®åˆ—ãŒè¡¨ç¤ºã•ã‚Œã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2008/01/21(æœˆ) Version 2.19 Î² 1 é–‹ç™ºç‰ˆ
+ã€€ã‚­ãƒ¼ã‚«ã‚¹ã‚¿ãƒžã‚¤ã‚ºæ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2008/01/13(æ—¥) Version 2.18 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2007/12/31(æœˆ) Version 2.17 Î² 7 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿé€Ÿåº¦ã‚’ 0.1% å˜ä½ã§æŒ‡å®šã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2007/12/31(æœˆ) Version 2.17 Î² 6 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿå‘¨æ³¢æ•°ã‚’ 0.1% å˜ä½ã§æŒ‡å®šã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+ã€€ã€Œå¤ã³ãŸãƒ¬ã‚³ãƒ¼ãƒ‰å†ç”Ÿã€ã‚’æ”¹è‰¯ã—ã¾ã—ãŸã€‚
+
+2007/12/31(æœˆ) Version 2.17 Î² 5 é–‹ç™ºç‰ˆ
+ã€€2.17 Î² 1 ä»¥é™ã€å†ç”Ÿãƒ•ã‚¡ã‚¤ãƒ«ã‚’å¤‰æ›´ã—ãŸéš›ã«å†ç”Ÿå‘¨æ³¢æ•°ãŒãƒªã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ãŸã®ã‚’
+ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2007/12/30(æ—¥) Version 2.17 Î² 4 é–‹ç™ºç‰ˆ
+ã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä½ç½®ï¼ã‚µã‚¤ã‚ºå¾©å…ƒæ™‚ã®æŒ™å‹•ã‚’æ”¹å–„ã—ã¾ã—ãŸã€‚
+
+2007/12/29(åœŸ) Version 2.17 Î² 3 é–‹ç™ºç‰ˆ
+ã€€ã‚·ã‚¹ãƒ†ãƒ â†’å¤šé‡èµ·å‹•ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ˆã‚Šå¤šé‡èµ·å‹•ã‚’è¨±ã™ã‹ã©ã†ã‹ã‚’é¸æŠžã§ãã‚‹ã‚ˆã†ã«ã—ã¾
+ã—ãŸã€‚
+
+2007/12/29(åœŸ) Version 2.17 Î² 2 é–‹ç™ºç‰ˆ
+ã€€å‰å›žçµ‚äº†æ™‚ã®å¤ã³ãŸãƒ¬ã‚³ãƒ¼ãƒ‰å†ç”Ÿã®çŠ¶æ…‹ã‚’å¾©å…ƒã™ã‚‹ã‹ã©ã†ã‹ã‚’é¸æŠžã§ãã‚‹ã‚ˆã†ã«ã—ã¾
+ã—ãŸã€‚
+
+2007/12/29(åœŸ) Version 2.17 Î² 1 é–‹ç™ºç‰ˆ
+ã€€ã€Œå¤ã³ãŸãƒ¬ã‚³ãƒ¼ãƒ‰å†ç”Ÿã€æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2007/12/27(æœ¨) Version 2.16 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2007/12/24(æœˆ) Version 2.15 Î² 3 é–‹ç™ºç‰ˆ
+ã€€ä¸€æ‹¬å¤‰æ›æ™‚ã«ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã‚’æŒ‡å®šã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2007/12/23(æ—¥) Version 2.15 Î² 2 é–‹ç™ºç‰ˆ
+ã€€ãƒ©ãƒ™ãƒ«ã®ãƒ•ã‚©ãƒ³ãƒˆãŒå…¨ã¦ã‚¿ã‚¤ãƒˆãƒ«ãƒãƒ¼ã¨åŒã˜ã‚‚ã®ã«ãªã£ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2007/11/18(æ—¥) Version 2.15 Î² 1 é–‹ç™ºç‰ˆ
+ã€€å‹•ä½œã‚’é«˜é€ŸåŒ–ã—ã¾ã—ãŸã€‚ï¼ˆINI ãƒ•ã‚¡ã‚¤ãƒ«ã®æ›¸ãè¾¼ã¿ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’æ”¹å–„ï¼‰
+
+2007/11/04(æ—¥) Version 2.14 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2007/10/17(æ°´) Version 2.13 Î² 5 é–‹ç™ºç‰ˆ
+ã€€2.11 Î² 2 ä»¥é™ã€é€Ÿåº¦ã‚„éŸ³ç¨‹ã®å¤‰æ›´æ™‚ã«ãƒ«ãƒ¼ãƒ—å†ç”ŸãŒã§ããªããªã£ã¦ã„ãŸã®ã‚’ä¿®æ­£
+ã—ã¾ã—ãŸã€‚
+
+2007/09/18(ç«) Version 2.13 Î² 4 é–‹ç™ºç‰ˆ
+ã€€ãƒªã‚¹ãƒˆãƒ“ãƒ¥ãƒ¼ã®ã‚½ãƒ¼ãƒˆã«å¯¾å¿œã—ã¾ã—ãŸã€‚
+
+2007/09/18(ç«) Version 2.13 Î² 3 é–‹ç™ºç‰ˆ
+ã€€2.13 Î² 1 ã‚ˆã‚Šã€ä¿å­˜æ™‚ã«å¿…ãšé€†å›žè»¢å†ç”Ÿã«ãªã£ã¦ã—ã¾ã£ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2007/09/17(æœˆ) Version 2.13 Î² 2 é–‹ç™ºç‰ˆ
+ã€€å‰å›žçµ‚äº†æ™‚ã®é€†å›žè»¢å†ç”Ÿã®çŠ¶æ…‹ã‚’å¾©å…ƒã™ã‚‹ã‹ã©ã†ã‹ã‚’é¸æŠžã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2007/09/16(æ—¥) Version 2.13 Î² 1 é–‹ç™ºç‰ˆ
+ã€€é€†å›žè»¢å†ç”Ÿæ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2007/09/16(æ—¥) Version 2.12 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2007/09/15(åœŸ) Version 2.11 Î² 4 é–‹ç™ºç‰ˆ
+ã€€2.11 Î² 2 ä»¥é™ã€ãƒ«ãƒ¼ãƒ—å†ç”ŸãŒã§ããªããªã£ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2007/08/20(æœˆ) Version 2.11 Î² 3 é–‹ç™ºç‰ˆ
+ã€€AAC ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¯¾å¿œã—ã¾ã—ãŸã€‚
+
+2007/08/20(æœˆ) Version 2.11 Î² 2 é–‹ç™ºç‰ˆ
+ã€€BASS.DLL ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’ 2.3.0.1 ã‹ã‚‰ 2.3.0.3 ã«ã—ã¾ã—ãŸã€‚
+
+2007/08/19(æ—¥) Version 2.11 Î² 1 é–‹ç™ºç‰ˆ
+ã€€å¯¾å¿œ OS ã« Windows Vista ( 32ãƒ“ãƒƒãƒˆç‰ˆ ) ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2007/03/05(æœˆ) Version 2.10 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2007/03/04(æ—¥) Version 2.09 Î² 6 é–‹ç™ºç‰ˆ
+ã€€FLAC ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¯¾å¿œã—ã¾ã—ãŸã€‚
+
+2007/02/27(ç«) Version 2.09 Î² 5 é–‹ç™ºç‰ˆ
+ã€€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã¨å†ç”Ÿãƒªã‚¹ãƒˆã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã®è¡¨ç¤ºçŠ¶æ…‹ã‚’ã‚ªãƒ³ã«ã—ã¾ã—ãŸã€‚
+
+2007/02/25(æ—¥) Version 2.09 Î² 4 é–‹ç™ºç‰ˆ
+ã€€CD ( CDA ãƒ•ã‚¡ã‚¤ãƒ« ) ã®èª­ã¿è¾¼ã¿ã«å¯¾å¿œã—ã¾ã—ãŸã€‚
+
+2007/02/25(æ—¥) Version 2.09 Î² 3 é–‹ç™ºç‰ˆ
+ã€€APE ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¯¾å¿œã—ã¾ã—ãŸã€‚
+
+2007/02/25(æ—¥) Version 2.09 Î² 2 é–‹ç™ºç‰ˆ
+ã€€Ogg Vorbis å½¢å¼ã§ã®ä¿å­˜ã«å¯¾å¿œã—ã¾ã—ãŸ ( è¦ oggenc.exe ) ã€‚
+
+2007/02/24(åœŸ) Version 2.09 Î² 1 é–‹ç™ºç‰ˆ
+ã€€MP3 å½¢å¼ã§ã®ä¿å­˜ã«å¯¾å¿œã—ã¾ã—ãŸ ( è¦ LAME.EXE ) ã€‚
+
+2007/02/22(æœ¨) Version 2.08 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2007/02/18(æ—¥) Version 2.07 Î² 8 é–‹ç™ºç‰ˆ
+ã€€ãƒ•ã‚¡ã‚¤ãƒ«â†’ãƒ•ã‚©ãƒ«ãƒ€ã‚’è¿½åŠ ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2007/02/18(æ—¥) Version 2.07 Î² 7 é–‹ç™ºç‰ˆ
+ã€€ãƒ•ã‚¡ã‚¤ãƒ«â†’è¿½åŠ ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ˆã‚Šã€ç¾åœ¨ã®å†ç”Ÿãƒªã‚¹ãƒˆã«ãƒ•ã‚¡ã‚¤ãƒ«ã‚’è¿½åŠ ã§ãã‚‹ã‚ˆã†ã«ã—
+ã¾ã—ãŸã€‚
+
+2007/02/18(æ—¥) Version 2.07 Î² 6 é–‹ç™ºç‰ˆ
+ã€€M3Uãƒ•ã‚¡ã‚¤ãƒ«å†…ã«èª­è¾¼å¯èƒ½ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ãªã‹ã£ãŸå ´åˆã€æŒ™å‹•ãŒãŠã‹ã—ããªã£ã¦ã„ãŸ
+ã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2007/02/18(æ—¥) Version 2.07 Î² 5 é–‹ç™ºç‰ˆ
+ã€€ãƒ•ã‚¡ã‚¤ãƒ«â†’ãƒ•ã‚©ãƒ«ãƒ€ã‚’é–‹ããƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2007/02/17(åœŸ) Version 2.07 Î² 4 é–‹ç™ºç‰ˆ
+ã€€ãƒ•ã‚¡ã‚¤ãƒ«â†’ä¸€æ‹¬å¤‰æ›ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ˆã‚Šä¸€æ‹¬å¤‰æ›ãŒã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2007/02/14(æ°´) Version 2.07 Î² 3 é–‹ç™ºç‰ˆ
+ã€€ï¼¡ï¼¢ãƒ«ãƒ¼ãƒ—ã‚’ãƒœã‚¿ãƒ³ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ãŸæ™‚ç‚¹ã§ã®å†ç”Ÿä½ç½®ã«è¨­å®šã™ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2007/02/13(ç«) Version 2.07 Î² 2 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿä½ç½®è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ãŒã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸä½ç½®ã«å†ç”Ÿä½ç½®ã‚’ç§»ã™ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2007/02/13(ç«) Version 2.07 Î² 1 é–‹ç™ºç‰ˆ
+ã€€èµ·å‹•ãŒã‚‚ãŸã¤ãã®ã‚’æ”¹å–„ã—ã¾ã—ãŸã€‚
+
+2007/02/12(æœˆ) Version 2.06 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2007/02/11(æ—¥) Version 2.05 Î² 17 é–‹ç™ºç‰ˆ
+ã€€ãƒ•ã‚¡ã‚¤ãƒ«â†’ä¿å­˜ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ˆã‚‹M3Uå½¢å¼ã®ãƒ—ãƒ¬ã‚¤ãƒªã‚¹ãƒˆï¼ˆç›¸å¯¾ãƒ‘ã‚¹ï¼‰ã®ä¿å­˜ã«å¯¾å¿œã—
+ã¾ã—ãŸã€‚
+
+2007/02/11(æ—¥) Version 2.05 Î² 16 é–‹ç™ºç‰ˆ
+ã€€ã‚·ã‚¹ãƒ†ãƒ â†’å¾©å…ƒâ†’å†ç”Ÿãƒ¢ãƒ¼ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ˆã‚Šã€å‰å›žçµ‚äº†æ™‚ã®ï¼‘æ›²ãƒ«ãƒ¼ãƒ—ç­‰ã®é¸æŠžçŠ¶æ…‹
+ã‚’å¾©å…ƒã™ã‚‹ã‹ã©ã†ã‹ã‚’é¸æŠžã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2007/02/11(æ—¥) Version 2.05 Î² 15 é–‹ç™ºç‰ˆ
+ã€€ã‚·ã‚¹ãƒ†ãƒ â†’å¾©å…ƒâ†’è¡¨ç¤ºçŠ¶æ…‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ˆã‚Šã€å‰å›žçµ‚äº†æ™‚ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒãƒ¼ç­‰ã®è¡¨ç¤º
+çŠ¶æ…‹ã‚’å¾©å…ƒã™ã‚‹ã‹ã©ã†ã‹ã‚’é¸æŠžã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2007/02/10(åœŸ) Version 2.05 Î² 14 é–‹ç™ºç‰ˆ
+ã€€ã‚·ã‚¹ãƒ†ãƒ â†’å¾©å…ƒâ†’å†ç”Ÿãƒªã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ˆã‚Šã€å‰å›žçµ‚äº†æ™‚ã®å†ç”Ÿãƒªã‚¹ãƒˆã‚’å¾©å…ƒã§ãã‚‹
+ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2007/02/10(åœŸ) Version 2.05 Î² 13 é–‹ç™ºç‰ˆ
+ã€€ã‚¢ã‚¤ã‚³ãƒ³ã«ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸM3Uå½¢å¼ã®ãƒ—ãƒ¬ã‚¤ãƒªã‚¹ãƒˆã®èª­ã¿è¾¼ã¿ã«å¯¾å¿œã—ã¾ã—ãŸã€‚
+
+2007/02/10(åœŸ) Version 2.05 Î² 12 é–‹ç™ºç‰ˆ
+ã€€ãƒ•ã‚¡ã‚¤ãƒ«â†’ä¿å­˜ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ˆã‚‹M3Uå½¢å¼ã®ãƒ—ãƒ¬ã‚¤ãƒªã‚¹ãƒˆã®ä¿å­˜ã«å¯¾å¿œã—ã¾ã—ãŸã€‚
+
+2007/02/06(ç«) Version 2.05 Î² 11 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿé–¢é€£ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ã€Œå†ç”Ÿã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¨ã—ã¦ç‹¬ç«‹ã•ã›ã¾ã—ãŸã€‚
+
+2007/02/06(ç«) Version 2.05 Î² 10 é–‹ç™ºç‰ˆ
+ã€€ã‚·ã‚¹ãƒ†ãƒ â†’å¾©å…ƒâ†’ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ˆã‚Šã€å‰å›žçµ‚äº†æ™‚ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒ
+ã‚¯ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ã‚’å¾©å…ƒã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2007/02/06(ç«) Version 2.05 Î² 9 é–‹ç™ºç‰ˆ
+ã€€ã‚·ã‚¹ãƒ†ãƒ â†’å¾©å…ƒâ†’ãƒ‘ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ˆã‚Šã€å‰å›žçµ‚äº†æ™‚ã®ãƒ‘ãƒ³ã‚’å¾©å…ƒã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—
+ãŸã€‚
+
+2007/02/06(ç«) Version 2.05 Î² 8 é–‹ç™ºç‰ˆ
+ã€€ã‚·ã‚¹ãƒ†ãƒ â†’å¾©å…ƒâ†’éŸ³é‡ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ˆã‚Šã€å‰å›žçµ‚äº†æ™‚ã®éŸ³é‡ã‚’å¾©å…ƒã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—
+ãŸã€‚
+
+2007/02/05(æœˆ) Version 2.05 Î² 7 é–‹ç™ºç‰ˆ
+ã€€M3Uå½¢å¼ã®ãƒ—ãƒ¬ã‚¤ãƒªã‚¹ãƒˆï¼ˆç›¸å¯¾ãƒ‘ã‚¹ï¼‰ã®èª­ã¿è¾¼ã¿ã«å¯¾å¿œã—ã¾ã—ãŸã€‚
+
+2007/02/05(æœˆ) Version 2.05 Î² 6 é–‹ç™ºç‰ˆ
+ã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸM3Uå½¢å¼ã®ãƒ—ãƒ¬ã‚¤ãƒªã‚¹ãƒˆï¼ˆçµ¶å¯¾ãƒ‘ã‚¹ï¼‰ã®èª­ã¿è¾¼ã¿ã«å¯¾å¿œã—
+ã¾ã—ãŸã€‚
+
+2007/02/05(æœˆ) Version 2.05 Î² 5 é–‹ç™ºç‰ˆ
+ã€€M3Uå½¢å¼ã®ãƒ—ãƒ¬ã‚¤ãƒªã‚¹ãƒˆï¼ˆçµ¶å¯¾ãƒ‘ã‚¹ï¼‰ã®èª­ã¿è¾¼ã¿ã«å¯¾å¿œã—ã¾ã—ãŸã€‚
+
+2007/01/29(æœˆ) Version 2.05 Î² 4 é–‹ç™ºç‰ˆ
+ã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä½ç½®ï¼ã‚µã‚¤ã‚ºã‚’å¾©å…ƒæ™‚ã«è£œæ­£ã™ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2007/01/29(æœˆ) Version 2.05 Î² 3 é–‹ç™ºç‰ˆ
+ã€€ã‚·ã‚¹ãƒ†ãƒ â†’å¾©å…ƒâ†’å†ç”Ÿé€Ÿåº¦ï¼å†ç”Ÿå‘¨æ³¢æ•°ï¼éŸ³ç¨‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ˆã‚Šã€å‰å›žçµ‚äº†æ™‚ã®å†ç”Ÿé€Ÿ
+åº¦ï¼å†ç”Ÿå‘¨æ³¢æ•°ï¼éŸ³ç¨‹ã‚’å¾©å…ƒã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2007/01/08(æœˆ) Version 2.05 Î² 2 é–‹ç™ºç‰ˆ
+ã€€ã‚·ã‚¹ãƒ†ãƒ â†’å¾©å…ƒâ†’ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½ç½®ï¼ã‚µã‚¤ã‚ºãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ˆã‚Šã€å‰å›žçµ‚äº†æ™‚ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ã®ä½ç½®ï¼ã‚µã‚¤ã‚ºã‚’å¾©å…ƒã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2007/01/02(ç«) Version 2.05 Î² 1 é–‹ç™ºç‰ˆ
+ã€€ã€Œãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ãã€ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‹ã‚‰ã€ã€Œèª­ã¿å–ã‚Šå°‚ç”¨ãƒ•ã‚¡ã‚¤ãƒ«ã¨ã—ã¦é–‹ãã€ã‚ªãƒ—ã‚·ãƒ§
+ãƒ³ã‚’å‰Šé™¤ã—ã¾ã—ãŸã€‚
+
+2006/06/25(æ—¥) Version 2.04 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2006/07/17(æœˆ) Version 2.03 Î² 4 é–‹ç™ºç‰ˆ
+ã€€ä»Šã¾ã§ BASS 2.2.0.4 ã‚’ä½¿ã£ã¦ã„ãŸã®ã‚’ 2.3.0.1 ã‚’ä½¿ç”¨ã™ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/07/15(åœŸ) Version 2.03 Î² 3 é–‹ç™ºç‰ˆ
+ã€€å‰å›žã®éŸ³é‡ã‚’å¾©å…ƒã™ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/07/12(æ°´) Version 2.03 Î² 2 é–‹ç™ºç‰ˆ
+ã€€é€£ç¶šå†ç”Ÿãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã‚ªãƒ•ã«ãªã£ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2006/07/09(æ—¥) Version 2.03 Î² 1 é–‹ç™ºç‰ˆ
+ã€€å‰å›žã®å†ç”Ÿãƒ¢ãƒ¼ãƒ‰ã®ã‚ªãƒ³ãƒ»ã‚ªãƒ•ã‚’å¾©å…ƒã™ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/06/25(æ—¥) Version 2.02 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2006/06/24(åœŸ) Version 2.01 Î² 24 é–‹ç™ºç‰ˆ
+ã€€ã‚¹ãƒ©ã‚¤ãƒ€ã«ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ãŒã‚ã‚‹å ´åˆã€PgUpã‚­ãƒ¼ã§å€¤ãŒæ¸›å°‘ã€PgDnã‚­ãƒ¼ã§å€¤ãŒå¢—åŠ ã—ã¦ã„
+ãŸã®ã‚’åå¯¾ã«ã—ã¾ã—ãŸã€‚
+
+2006/06/24(åœŸ) Version 2.01 Î² 23 é–‹ç™ºç‰ˆ
+ã€€ã‚¹ãƒ©ã‚¤ãƒ€ã«ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ãŒã‚ã‚‹å ´åˆã€ä¸Šã‚­ãƒ¼ã§å€¤ãŒæ¸›å°‘ã€ä¸‹ã‚­ãƒ¼ã§å€¤ãŒå¢—åŠ ã—ã¦ã„ãŸã®
+ã‚’åå¯¾ã«ã—ã¾ã—ãŸã€‚
+
+2006/06/11(æ—¥) Version 2.01 Î² 22 é–‹ç™ºç‰ˆ
+ã€€ã‚¹ãƒ©ã‚¤ãƒ€ã«ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ãŒã‚ã‚‹å ´åˆã€HOME ã‚­ãƒ¼ã«ã‚ˆã‚Šãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®å€¤ã«æˆ»ã›ã‚‹ã‚ˆã†ã«ã—
+ã¾ã—ãŸã€‚
+
+2006/06/10(åœŸ) Version 2.01 Î² 21 é–‹ç™ºç‰ˆ
+ã€€Î² 20 ã®æ›´æ–°ã§èµ·å‹•ãŒé…ããªã£ã¦ã—ã¾ã£ã¦ã„ãŸã®ã‚’æ”¹å–„ã—ã¾ã—ãŸã€‚
+
+2006/06/10(åœŸ) Version 2.01 Î² 20 é–‹ç™ºç‰ˆ
+ã€€å‰å›žã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒãƒ¼ãªã©ã®è¡¨ç¤ºçŠ¶æ…‹ã‚’å¾©å…ƒã™ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/04/25(ç«) Version 2.01 Î² 19 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ãƒ‡ã‚£ãƒƒãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã«ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ãŒã‚ã‚‹å ´åˆã€HOME ã‚­ãƒ¼ã«ã‚ˆã‚Šãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®å€¤ã«
+æˆ»ã›ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/04/23(æ—¥) Version 2.01 Î² 18 é–‹ç™ºç‰ˆ
+ã€€ã‚¢ãƒƒãƒ—ãƒ€ã‚¦ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã«ã‚ˆã‚Šæ•°å€¤ã‚’å¤‰æ›´ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/04/18(ç«) Version 2.01 Î² 17 é–‹ç™ºç‰ˆ
+ã€€é€£ç¶šå†ç”Ÿãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ˆã‚Šé€£ç¶šå†ç”Ÿã®ã‚ªãƒ³ãƒ»ã‚ªãƒ•ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‰ã‚Œã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/04/15(åœŸ) Version 2.01 Î² 16 é–‹ç™ºç‰ˆ
+ã€€ãƒ€ãƒ–ãƒ«ã‚¯ãƒªãƒƒã‚¯ã‚„ã‚¨ãƒ³ã‚¿ãƒ¼ã‚­ãƒ¼ã§å†ç”Ÿé †ã‚’å¤‰æ›´ã—ãŸå ´åˆã€ãã‚Œä»¥é™ãƒ©ãƒ³ãƒ€ãƒ å†ç”Ÿã«ãªã£
+ã¦ã—ã¾ã£ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2006/04/15(åœŸ) Version 2.01 Î² 15 é–‹ç™ºç‰ˆ
+ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 250 Hz ) ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2006/04/09(æ—¥) Version 2.01 Î² 14 é–‹ç™ºç‰ˆ
+ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 500 Hz ) ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2006/04/09(æ—¥) Version 2.01 Î² 13 é–‹ç™ºç‰ˆ
+ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 1 KHz ) ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2006/04/08(åœŸ) Version 2.01 Î² 12 é–‹ç™ºç‰ˆ
+ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 2 KHz ) ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2006/04/08(åœŸ) Version 2.01 Î² 11 é–‹ç™ºç‰ˆ
+ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 4 KHz ) ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2006/04/08(åœŸ) Version 2.01 Î² 10 é–‹ç™ºç‰ˆ
+ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 8 KHz ) ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2006/04/08(åœŸ) Version 2.01 Î² 9 é–‹ç™ºç‰ˆ
+ã€€ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã‹ã‚‰ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®é–‹é–‰ãƒœã‚¿ãƒ³ã‚’å‰Šé™¤ã—ã¾ã—ãŸã€‚
+
+2006/04/08(åœŸ) Version 2.01 Î² 8 é–‹ç™ºç‰ˆ
+ã€€èµ·å‹•æ™‚ã«ã€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã‚„å†ç”Ÿãƒªã‚¹ãƒˆã‚’è¡¨ç¤ºã—ãªã„ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/03/27(æœˆ) Version 2.01 Î² 7 é–‹ç™ºç‰ˆ
+ã€€ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆã®è¨­å®šã«ã‚ˆã£ã¦ã¯ã€ç”»é¢ã®ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆãŒå´©ã‚Œã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—
+ãŸã€‚
+
+2006/03/27(æœˆ) Version 2.01 Î² 6 é–‹ç™ºç‰ˆ
+ã€€ï¼‘æ›²ãƒ«ãƒ¼ãƒ—ã®ã¨ãã«ã€ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®å…¨æ›²ãƒ«ãƒ¼ãƒ—ãƒ»ãƒ©ãƒ³ãƒ€ãƒ å†ç”Ÿè¨­å®šç”¨ã®ãƒœã‚¿ãƒ³ã‚’éžè¡¨
+ç¤ºã«ã—ã¦ã„ãŸã®ã‚’ã€ç°è‰²è¡¨ç¤º ( é¸æŠžä¸å¯ ) ã«ã™ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/03/27(æœˆ) Version 2.01 Î² 5 é–‹ç™ºç‰ˆ
+ã€€ãƒ•ã‚©ãƒ«ãƒ€ã®ã‚¢ã‚¤ã‚³ãƒ³ãƒ»ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã¸ã®ãƒ‰ãƒ­ãƒƒãƒ—ã«å¯¾å¿œã—ã¾ã—ãŸã€‚
+
+2006/03/26(æ—¥) Version 2.01 Î² 4 é–‹ç™ºç‰ˆ
+ã€€Tab, Shift + Tab ã«ã‚ˆã‚Šã€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚’ç§»å‹•ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/03/26(æ—¥) Version 2.01 Î² 3 é–‹ç™ºç‰ˆ
+ã€€éŸ³é‡ãƒ»ãƒ‘ãƒ³ã®å€¤ã‚’ãƒ†ã‚­ã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã‹ã‚‰å¤‰æ›´ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/03/26(æ—¥) Version 2.01 Î² 2 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿé€Ÿåº¦ãƒ»å†ç”Ÿå‘¨æ³¢æ•°ãƒ»éŸ³ç¨‹ã®å€¤ã‚’ãƒ†ã‚­ã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã‹ã‚‰å¤‰æ›´ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/03/24(é‡‘) Version 2.01 Î² 1 é–‹ç™ºç‰ˆ
+ã€€Ctrl + A ã«ã‚ˆã‚Šå†ç”Ÿãƒªã‚¹ãƒˆã®ã™ã¹ã¦ã®é …ç›®ã‚’é¸æŠžã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/03/23(æœ¨) Version 2.00 å®‰å®šç‰ˆ
+ã€€å®‰å®šç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2006/03/22(æ°´) Version 2.00 Î² 6 é–‹ç™ºç‰ˆ
+ã€€AB ãƒ«ãƒ¼ãƒ—ä¸­ã«åœæ­¢ãƒ»ä¸€æ™‚åœæ­¢ã‚’ã™ã‚‹ã¨ã€AB ãƒ«ãƒ¼ãƒ—ãŒãã‹ãªããªã£ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—
+ã¾ã—ãŸã€‚
+
+2006/03/22(æ°´) Version 2.00 Î² 5 é–‹ç™ºç‰ˆ
+ã€€ä»˜å±žãƒ•ã‚¡ã‚¤ãƒ«ã¨ã—ã¦ã€ãƒžãƒ‹ãƒ¥ã‚¢ãƒ«ã‚’ä½œæˆãƒ»è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2006/03/21(ç«) Version 2.00 Î² 4 é–‹ç™ºç‰ˆ
+ã€€AB ãƒ«ãƒ¼ãƒ—æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2006/03/20(æœˆ) Version 2.00 Î² 3 é–‹ç™ºç‰ˆ
+ã€€Î² 2 ã®æ›´æ–°ã«ã‚ˆã‚Šã€å†ç”Ÿä½ç½®è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ãŸå ´åˆã®ç§»å‹•é‡ãŒãŠã‹ã—ã
+ãªã£ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2006/03/20(æœˆ) Version 2.00 Î² 2 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿä½ç½®è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ãŒç„¡é§„ãªãƒ¡ãƒ¢ãƒªã‚’å¤§é‡ã«æ¶ˆè²»ã—ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2006/03/20(æœˆ) Version 2.00 Î² 1 é–‹ç™ºç‰ˆ
+ã€€Î²ç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+2006/03/20(æœˆ) Version 2.00 Î± 46 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆå†…ã§ã®ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—ã«ã‚ˆã‚‹ä¸¦ã¹æ›¿ãˆæ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2006/03/19(æ—¥) Version 2.00 Î± 45 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿé€Ÿåº¦ãƒ»å†ç”Ÿå‘¨æ³¢æ•°ãƒ»éŸ³ç¨‹ãƒ»éŸ³é‡ãƒ»ãƒ‘ãƒ³ã®è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ã¤ã¾ã¿ã‚’ãƒ€ãƒ–ãƒ«ã‚¯ãƒªãƒƒã‚¯
+ã—ãŸå ´åˆã€å€¤ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«æˆ»ã™ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/03/19(æ—¥) Version 2.00 Î± 44 é–‹ç™ºç‰ˆ
+ã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã¸ã®ã‚¹ãƒŠãƒƒãƒ—æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2006/03/19(æ—¥) Version 2.00 Î± 43 é–‹ç™ºç‰ˆ
+ã€€æ–°ã—ãå†ç”Ÿã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ãŒãƒªã‚¹ãƒˆãƒ“ãƒ¥ãƒ¼ã®ä¸­å¤®ã«è¡¨ç¤ºã•ã‚Œã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã‚’ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã—ãŸçŠ¶æ…‹ã§ã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æœ€å°ã‚µã‚¤ã‚ºãŒæ­£ã—ãè¨­å®šã§ãã¦ã„
+ãªã‹ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2006/03/18(åœŸ) Version 2.00 Î± 42 é–‹ç™ºç‰ˆ
+ã€€ãƒ©ãƒ³ãƒ€ãƒ å†ç”Ÿã«å¯¾å¿œã—ã¾ã—ãŸã€‚
+
+2006/03/16(æœ¨) Version 2.00 Î± 41 é–‹ç™ºç‰ˆ
+ã€€ãƒ‡ãƒªãƒ¼ãƒˆã‚­ãƒ¼ã«ã‚ˆã‚Šå†ç”Ÿãƒªã‚¹ãƒˆã‹ã‚‰ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/03/16(æœ¨) Version 2.00 Î± 40 é–‹ç™ºç‰ˆ
+ã€€ãƒ€ãƒ–ãƒ«ã‚¯ãƒªãƒƒã‚¯ã«ã‚ˆã‚Šå†ç”Ÿãƒªã‚¹ãƒˆå†…ã§é¸æŠžä¸­ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å†ç”Ÿã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/03/16(æœ¨) Version 2.00 Î± 39 é–‹ç™ºç‰ˆ
+ã€€ã‚¨ãƒ³ã‚¿ãƒ¼ã‚­ãƒ¼ã§å†ç”Ÿãƒªã‚¹ãƒˆå†…ã§é¸æŠžä¸­ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å†ç”Ÿã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/03/16(æœ¨) Version 2.00 Î± 38 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿä¸­ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å†ç”Ÿãƒªã‚¹ãƒˆå†…ã§å¼·èª¿è¡¨ç¤ºã™ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/03/15(æ°´) Version 2.00 Î± 37 é–‹ç™ºç‰ˆ
+ã€€ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ããƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‹ã‚‰ã®è¤‡æ•°ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ªãƒ¼ãƒ—ãƒ³ã«å¯¾å¿œã—ã¾ã—ãŸã€‚
+
+2006/03/15(æ°´) Version 2.00 Î± 36 é–‹ç™ºç‰ˆ
+ã€€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã¸ã®ãƒ‰ãƒ­ãƒƒãƒ—å¾Œã«ã€å†ç”Ÿé †ãŒãŠã‹ã—ããªã‚‹ã“ã¨ãŒã‚ã£ãŸã®ã‚’ä¿®
+æ­£ã—ã¾ã—ãŸã€‚
+
+2006/03/15(æ°´) Version 2.00 Î± 35 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆéƒ¨åˆ†ã«ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ‰ãƒ­ãƒƒãƒ—ã—ãŸå ´åˆã¯ã€ãƒ•ã‚¡ã‚¤ãƒ«ã‚’è¿½åŠ ã™ã‚‹ã‚ˆã†ã«ã—ã¾ã—
+ãŸã€‚
+
+2006/03/15(æ°´) Version 2.00 Î± 34 é–‹ç™ºç‰ˆ
+ã€€èµ·å‹•ç›´å¾Œã«ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ããƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‹ã‚‰ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ãã¨ã€å‰ã¸ãƒ»æ¬¡ã¸ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®
+è¡¨ç¤ºçŠ¶æ…‹ãŒãŠã‹ã—ããªã£ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2006/03/15(æ°´) Version 2.00 Î± 33 é–‹ç™ºç‰ˆ
+ã€€å·»ãæˆ»ã—ãƒ»æ—©é€ã‚Šãƒœã‚¿ãƒ³ã‚’ã€å‰ã¸ãƒ»æ¬¡ã¸ã¨ã—ã¦ã‚‚æ©Ÿèƒ½ã™ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/03/15(æ°´) Version 2.00 Î± 32 é–‹ç™ºç‰ˆ
+ã€€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€å†ç”Ÿãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã²ã¨ã¤å‰ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ»ã²ã¨ã¤æ¬¡ã®ãƒ•ã‚¡ã‚¤ãƒ«ã«å¤‰æ›´ã§ã
+ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/03/15(æ°´) Version 2.00 Î± 31 é–‹ç™ºç‰ˆ
+ã€€å…¨æ›²ãƒ«ãƒ¼ãƒ—æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2006/03/14(ç«) Version 2.00 Î± 30 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã®è¡¨ç¤ºãƒ»éžè¡¨ç¤ºã‚’ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚„ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒœã‚¿ãƒ³ã‹ã‚‰åˆ‡ã‚Šæ›¿ãˆã‚‰ã‚Œã‚‹ã‚ˆã†
+ã«ã—ã¾ã—ãŸã€‚
+
+2006/03/14(ç«) Version 2.00 Î± 29 é–‹ç™ºç‰ˆ
+ã€€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®è¡¨ç¤ºãƒ»éžè¡¨ç¤ºã‚’ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒœã‚¿ãƒ³ã‹ã‚‰åˆ‡ã‚Šæ›¿ãˆã‚‰ã‚Œã‚‹ã‚ˆã†ã«ã—
+ã¾ã—ãŸã€‚
+
+2006/03/14(ç«) Version 2.00 Î± 28 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿãƒªã‚¹ãƒˆã®è¡¨ç¤ºç”¨ã«ãƒªã‚¹ãƒˆãƒ“ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æœ€å°ã‚µã‚¤ã‚ºã‚’è¨­å®šã—ã¾ã—ãŸã€‚
+
+2006/03/13(æœˆ) Version 2.00 Î± 27 é–‹ç™ºç‰ˆ
+ã€€ç’°å¢ƒã«ã‚ˆã£ã¦ã¯ã€èµ·å‹•ç›´å¾Œã«å¼·åˆ¶çµ‚äº†ã—ã¦ã—ã¾ã£ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2006/03/12(æ—¥) Version 2.00 Î± 26 é–‹ç™ºç‰ˆ
+ã€€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®é…ç½®ã‚’å†èª¿æ•´ã—ã¾ã—ãŸã€‚
+
+2006/03/12(æ—¥) Version 2.00 Î± 25 é–‹ç™ºç‰ˆ
+ã€€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®è¡¨ç¤ºãƒ»éžè¡¨ç¤ºã‚’ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰åˆ‡ã‚Šæ›¿ãˆã‚‰ã‚Œã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/03/11(åœŸ) Version 2.00 Î± 24 é–‹ç™ºç‰ˆ
+ã€€ãƒ‘ãƒ³ã®å¤‰æ›´æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2006/03/11(åœŸ) Version 2.00 Î± 23 é–‹ç™ºç‰ˆ
+ã€€éŸ³é‡ã®å¤‰æ›´æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2006/03/11(åœŸ) Version 2.00 Î± 22 é–‹ç™ºç‰ˆ
+ã€€å…¥åŠ›ãƒ»å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ«ãŒåŒä¸€ãƒ•ã‚¡ã‚¤ãƒ«ã®å ´åˆã¯ã€ã‚¨ãƒ©ãƒ¼ã‚’å‡ºã™ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/03/11(åœŸ) Version 2.00 Î± 21 é–‹ç™ºç‰ˆ
+ã€€ä¿å­˜ä¸­ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã«ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2006/03/11(åœŸ) Version 2.00 Î± 20 é–‹ç™ºç‰ˆ
+ã€€éŸ³å£°ãƒ•ã‚¡ã‚¤ãƒ«ã®ä¿å­˜æ©Ÿèƒ½ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+
+2006/03/10(é‡‘) Version 2.00 Î± 19 é–‹ç™ºç‰ˆ
+ã€€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã¸ã®ãƒ‰ãƒ­ãƒƒãƒ—ã«å¯¾å¿œã—ã¾ã—ãŸã€‚
+
+2006/03/09(æœ¨) Version 2.00 Î± 18 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿæ™‚é–“ã®è¡¨ç¤ºãŒãƒžã‚¤ãƒŠã‚¹ã«ãªã‚‹ã“ã¨ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2006/03/09(æœ¨) Version 2.00 Î± 17 é–‹ç™ºç‰ˆ
+ã€€èµ·å‹•ã‚’é«˜é€ŸåŒ–ã—ã¾ã—ãŸã€‚
+ã€€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¢ã‚¤ã‚³ãƒ³ã¸ã®ãƒ‰ãƒ­ãƒƒãƒ—ã«å¯¾å¿œã—ã¾ã—ãŸã€‚
+ã€€èª­ã¿è¾¼ã‚ãªã„ãƒ•ã‚¡ã‚¤ãƒ«å½¢å¼ã ã£ãŸå ´åˆã€å†ç”Ÿæ™‚é–“ã‚’ã‚¼ãƒ­ã«æˆ»ã™ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/03/08(æ°´) Version 2.00 Î± 16 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿä½ç½®è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½ç½®ã‚’èª¿æ•´ã—ã¾ã—ãŸã€‚
+
+2006/03/04(åœŸ) Version 2.00 Î± 15 é–‹ç™ºç‰ˆ
+ã€€Î± 13 ã®æ›´æ–°ã«ã‚ˆã‚Šã€é ­å‡ºã—ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒæ©Ÿèƒ½ã—ãªããªã£ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2006/03/04(åœŸ) Version 2.00 Î± 14 é–‹ç™ºç‰ˆ
+ã€€ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã«ã‚ˆã‚Šã€ä¸€éƒ¨ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’æ“ä½œã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/03/04(åœŸ) Version 2.00 Î± 13 é–‹ç™ºç‰ˆ
+ã€€å·»ãæˆ»ã—ãƒ»æ—©é€ã‚Šãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ã€€é ­å‡ºã—/å·»ãæˆ»ã—ãƒœã‚¿ãƒ³ãŒé ­å‡ºã—ã¨ã—ã¦èªè­˜ã•ã‚Œã‚‹æ™‚é–“ã‚’é•·ãã—ã¾ã—ãŸã€‚
+
+2006/03/04(åœŸ) Version 2.00 Î± 12 é–‹ç™ºç‰ˆ
+ã€€WMA ãƒ•ã‚¡ã‚¤ãƒ«ã®å†ç”Ÿã«å¯¾å¿œã—ã¾ã—ãŸã€‚
+
+2006/03/03(é‡‘) Version 2.00 Î± 11 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿæ™‚é–“è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½ç½®ã‚’èª¿æ•´ã—ã¾ã—ãŸã€‚
+
+2006/03/03(é‡‘) Version 2.00 Î± 10 é–‹ç™ºç‰ˆ
+ã€€ã‚¢ã‚¤ã‚³ãƒ³ã‚’ä½œæˆãƒ»è¨­å®šã—ã¾ã—ãŸã€‚
+
+2006/03/02(æœ¨) Version 2.00 Î± 9 é–‹ç™ºç‰ˆ
+ã€€æ—©é€ã‚Šãƒœã‚¿ãƒ³ã‚’é•·æŠ¼ã—ã™ã‚‹ã“ã¨ã§ã€æ—©é€ã‚ŠãŒã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/03/02(æœ¨) Version 2.00 Î± 8 é–‹ç™ºç‰ˆ
+ã€€é ­å‡ºã—ä»¥å¤–ã®ãƒœã‚¿ãƒ³ã§ã‚‚ã€é•·æŠ¼ã—ã™ã‚‹ã¨å·»ãæˆ»ã—ã«ãªã£ã¦ã—ã¾ã£ã¦ã„ãŸã®ã‚’ä¿®æ­£ã—ã¾
+ã—ãŸã€‚
+
+2006/03/02(æœ¨) Version 2.00 Î± 7 é–‹ç™ºç‰ˆ
+ã€€é ­å‡ºã—ãƒœã‚¿ãƒ³ã‚’é•·æŠ¼ã—ã™ã‚‹ã“ã¨ã§ã€å·»ãæˆ»ã—ãŒã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/02/28(ç«) Version 2.00 Î± 6 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿæ™‚é–“è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®æ›´æ–°å‡¦ç†ã‚’åœæ­¢ä¸­ã«ã¯è¡Œã‚ãªã„ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/02/28(ç«) Version 2.00 Î± 5 é–‹ç™ºç‰ˆ
+ã€€å†ç”Ÿæ™‚é–“è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã‚’ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹ã“ã¨ã§ã€ã€Œå†ç”Ÿæ™‚é–“è¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰ã€ã¨ã€Œæ®‹ã‚Šæ™‚é–“
+è¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰ã€ã¨ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‰ã‚Œã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/02/27(æœˆ) Version 2.00 Î± 4 é–‹ç™ºç‰ˆ
+ã€€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®é–“éš”ã‚’èª¿æ•´ã—ã¾ã—ãŸã€‚
+ã€€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é–“ã«åŒºåˆ‡ã‚Šç·šã‚’è¡¨ç¤ºã™ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+
+2006/02/27(æœˆ) Version 2.00 Î± 3 é–‹ç™ºç‰ˆ
+ã€€ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰ã‚’æ•´ç†ã—ã¾ã—ãŸã€‚
+
+2006/02/27(æœˆ) Version 2.00 Î± 2 é–‹ç™ºç‰ˆ
+ã€€ã‚¹ãƒ©ã‚¤ãƒ€ã‚’å‹•ã‹ã—ã¦ã‹ã‚‰ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€ã¨ã€å†ç”Ÿé€Ÿåº¦ãªã©ãŒè¨­å®šã•ã‚Œã¦ã„ãªã‹ã£ãŸ
+ã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+
+2006/02/27(æœˆ) Version 2.00 Î± 1 é–‹ç™ºç‰ˆ
+ã€€å…¬é–‹ã—ã¾ã—ãŸã€‚
+
+------------------------------------------------------------------------------
+ ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚µãƒ³ã‚¯ã‚¹
+------------------------------------------------------------------------------
+
+ã€€èžã€…ãƒãƒ¤ãˆã‚‚ã‚“ã®é–‹ç™ºã«ã‚ãŸã‚Šã€ä»¥ä¸‹ã®æ–¹ã€…ã«ãŸã„ã¸ã‚“ãŠä¸–è©±ã«ãªã£ã¦ãŠã‚Šã¾ã™ã€‚
+ã€€ã“ã®å ´ã‚’å€Ÿã‚Šã¦ã€ãŠç¤¼ç”³ã—ä¸Šã’ã¾ã™ã€‚ã‚ã‚ŠãŒã¨ã†ã”ã–ã„ã¾ã™ï¼
+
+â—‹Tetsuya Nã•ã‚“ï¼ˆ@TetuFonï¼‰
+â—‹éˆ´æœ¨ å¥æ²»ã•ã‚“
+â—‹å·å£ è²´å¤§ã•ã‚“
+â—‹iwamoto ã•ã‚“
+â—‹Shuel ã•ã‚“
+	ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒ»ãƒ¯ã‚¤ãƒ‰ãƒ»ã‚¨ãƒ‡ãƒ³ : http://wweden.s18.xrea.com
+â—‹ã„ã£ã—ï½žã•ã‚“
+	ããŠã™ã®ãŠéƒ¨å±‹ : http://www.so-s.com/
+â—‹ãƒ™ãƒ«ãƒŽã•ã‚“
+â—‹ãŸã¤ã‚ãã•ã‚“
+â—‹ç¨²ç©‚ã•ã‚“
+	ç¨²ç©‚ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆ : http://www13.ocn.ne.jp/~inaho/index.html
+â—‹DAI ã•ã‚“
+â—‹è¥¿å· è²´æ´‹ã•ã‚“
+â—‹æ²³ç”° æ­éƒŽã•ã‚“
+â—‹ä¸‰å®… å…ƒè²´ã•ã‚“
+â—‹æµ¦è¾º çŽ²ã•ã‚“
+	STAR DUSTç´ æé¤¨ : http://lunar.littlestar.jp/stardust/
+	STAR DUSTè‹±èªžé¤¨ : http://lunar.littlestar.jp/stardust/english/
 
 ------------------------------------------------------------------------------

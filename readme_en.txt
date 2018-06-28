@@ -26,9 +26,9 @@
  This software is Irresponsibility, no warranty. Only if you agree to the
  following conditions, you can use this software.
 
-　・Respect of damages caused by this software, the author do not accept any
+縲繝ｻRespect of damages caused by this software, the author do not accept any
     responsibility.
-　・Author does not undertake any obligation in any manner whatsoever for any
+縲繝ｻAuthor does not undertake any obligation in any manner whatsoever for any
     support (such as bug fix, version up) of this software.
 
  If you do not agree to these terms, please delete this software.
@@ -85,7 +85,9 @@
  Fixed not booting in Windows XP environment.
 
 2017/8/23 Version 2.75 beta 3
- @12guitar21 and @guxtuti_cording reflected the icon designed
+ Changed the development environment from Visual C ++ 2010 Express to
+ Visual Studio Community 2017.
+ @12guitar21 and Sakaguchi reflected the icon designed
  by @UmeboshiKantaro for iOS.
 
 2013/5/27 Version 2.75 beta 2
