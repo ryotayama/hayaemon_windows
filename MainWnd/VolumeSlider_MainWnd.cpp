@@ -2,9 +2,13 @@
 // VolumeSlider_MainWnd.cpp : 音量設定用スライダの管理を行う
 //----------------------------------------------------------------------------
 #include <windows.h>
+#include "../Common/CommandList.h"
 #include "../Common/Utils.h"
 #include "../App.h"
+#include "Divider3_MainWnd.h"
 #include "MainWnd.h"
+#include "Menu_MainWnd.h"
+#include "VolumeLabel_MainWnd.h"
 #include "VolumeSlider_MainWnd.h"
 //----------------------------------------------------------------------------
 // 作成

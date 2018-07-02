@@ -3,10 +3,16 @@
 //----------------------------------------------------------------------------
 #include <windows.h>
 #include <TCHAR.H>
+#include "../Common/CommandList.h"
 #include "../Common/Utils.h"
 #include "../App.h"
+#include "Explorer.h"
 #include "MainWnd.h"
+#include "Menu_MainWnd.h"
 #include "FreqLabel_MainWnd.h"
+#include "FreqSlider_MainWnd.h"
+#include "SpeedLabel_MainWnd.h"
+#include "SpeedSlider_MainWnd.h"
 //----------------------------------------------------------------------------
 // çÏê¨
 //----------------------------------------------------------------------------

@@ -5,6 +5,7 @@
 #include "../App.h"
 #include "../KeySettingWnd/KeySettingWnd_MainWnd.h"
 #include "OutKeyInputWnd.h"
+#include "OutKeySettingWnd_MainWnd.h"
 //----------------------------------------------------------------------------
 // çÏê¨
 //----------------------------------------------------------------------------

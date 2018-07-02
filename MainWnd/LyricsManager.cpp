@@ -12,6 +12,7 @@ extern "C"
 }
 #include "../App.h"
 #include "../Common/bassenc.h"
+#include "../Common/ClientDC.h"
 #include "MainWnd.h"
 #include "LyricsManager.h"
 //----------------------------------------------------------------------------

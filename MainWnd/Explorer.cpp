@@ -6,11 +6,16 @@
 #include <shlwapi.h>
 #include <TCHAR.H>
 #include <vector>
+#include "../Common/CommandList.h"
 #include "../Common/Utils.h"
 #include "../resource.h"
 #include "../App.h"
 #include "MainWnd.h"
+#include "Menu_MainWnd.h"
 #include "Explorer.h"
+#include "ExplorerBar.h"
+#include "PlayListView_MainWnd.h"
+#include "Sound.h"
 
 typedef struct _tagSORTDATA{
     HWND hwndList; // リストビューのhwnd

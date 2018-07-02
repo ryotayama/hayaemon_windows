@@ -3,10 +3,24 @@
 //----------------------------------------------------------------------------
 #include <windows.h>
 #include <WinInet.h>
+#include "../Common/CommandList.h"
 #include "../Common/Utils.h"
 #include "../App.h"
+#include "FreqLabel_MainWnd.h"
+#include "FreqSlider_MainWnd.h"
 #include "MainWnd.h"
 #include "Menu_MainWnd.h"
+#include "PanLabel_MainWnd.h"
+#include "PanSlider_MainWnd.h"
+#include "PitchLabel_MainWnd.h"
+#include "PitchSlider_MainWnd.h"
+#include "PlayListView_MainWnd.h"
+#include "Sound.h"
+#include "SpeedLabel_MainWnd.h"
+#include "SpeedSlider_MainWnd.h"
+#include "VolumeLabel_MainWnd.h"
+#include "VolumeSlider_MainWnd.h"
+#include "ToolBar_MainWnd.h"
 //----------------------------------------------------------------------------
 // çÏê¨
 //----------------------------------------------------------------------------

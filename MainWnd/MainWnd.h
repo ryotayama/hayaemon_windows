@@ -4,128 +4,127 @@
 #ifndef MainWndH
 #define MainWndH
 
+class C3DReverbCustomizeWnd;
+class CABLoopPosWnd;
 class CApp;
-#include "../Common/SnapWnd.h"
-#include "../Common/ToolBar.h"
-#include "../Common/Static.h"
-#include "Menu_MainWnd.h"
-#include "RMenu_Taskbar.h"
-#include "Divider_MainWnd.h"
-#include "ToolBar_MainWnd.h"
-#include "TimeLabel_MainWnd.h"
-#include "VideoScreen_MainWnd.h"
-#include "TimeSlider_MainWnd.h"
-#include "Divider2_MainWnd.h"
-#include "ExplorerBar.h"
-#include "Explorer.h"
-#include "SpeedLabel_MainWnd.h"
-#include "SpeedSlider_MainWnd.h"
-#include "FreqLabel_MainWnd.h"
-#include "FreqSlider_MainWnd.h"
-#include "PitchLabel_MainWnd.h"
-#include "PitchSlider_MainWnd.h"
-#include "Divider3_MainWnd.h"
-#include "VolumeLabel_MainWnd.h"
-#include "VolumeSlider_MainWnd.h"
-#include "PanLabel_MainWnd.h"
-#include "PanSlider_MainWnd.h"
-#include "Divider4_MainWnd.h"
-#include "EQ20Label_MainWnd.h"
-#include "EQ20Slider_MainWnd.h"
-#include "EQ25Label_MainWnd.h"
-#include "EQ25Slider_MainWnd.h"
-#include "EQ31_5Label_MainWnd.h"
-#include "EQ31_5Slider_MainWnd.h"
-#include "EQ40Label_MainWnd.h"
-#include "EQ40Slider_MainWnd.h"
-#include "EQ50Label_MainWnd.h"
-#include "EQ50Slider_MainWnd.h"
-#include "EQ63Label_MainWnd.h"
-#include "EQ63Slider_MainWnd.h"
-#include "EQ80Label_MainWnd.h"
-#include "EQ80Slider_MainWnd.h"
-#include "EQ100Label_MainWnd.h"
-#include "EQ100Slider_MainWnd.h"
-#include "EQ125Label_MainWnd.h"
-#include "EQ125Slider_MainWnd.h"
-#include "EQ160Label_MainWnd.h"
-#include "EQ160Slider_MainWnd.h"
-#include "EQ200Label_MainWnd.h"
-#include "EQ200Slider_MainWnd.h"
-#include "EQ250Label_MainWnd.h"
-#include "EQ250Slider_MainWnd.h"
-#include "EQ315Label_MainWnd.h"
-#include "EQ315Slider_MainWnd.h"
-#include "EQ400Label_MainWnd.h"
-#include "EQ400Slider_MainWnd.h"
-#include "EQ500Label_MainWnd.h"
-#include "EQ500Slider_MainWnd.h"
-#include "EQ630Label_MainWnd.h"
-#include "EQ630Slider_MainWnd.h"
-#include "EQ800Label_MainWnd.h"
-#include "EQ800Slider_MainWnd.h"
-#include "EQ1KLabel_MainWnd.h"
-#include "EQ1KSlider_MainWnd.h"
-#include "EQ1_25KLabel_MainWnd.h"
-#include "EQ1_25KSlider_MainWnd.h"
-#include "EQ1_6KLabel_MainWnd.h"
-#include "EQ1_6KSlider_MainWnd.h"
-#include "EQ2KLabel_MainWnd.h"
-#include "EQ2KSlider_MainWnd.h"
-#include "EQ2_5KLabel_MainWnd.h"
-#include "EQ2_5KSlider_MainWnd.h"
-#include "EQ3_15KLabel_MainWnd.h"
-#include "EQ3_15KSlider_MainWnd.h"
-#include "EQ4KLabel_MainWnd.h"
-#include "EQ4KSlider_MainWnd.h"
-#include "EQ5KLabel_MainWnd.h"
-#include "EQ5KSlider_MainWnd.h"
-#include "EQ6_3KLabel_MainWnd.h"
-#include "EQ6_3KSlider_MainWnd.h"
-#include "EQ8KLabel_MainWnd.h"
-#include "EQ8KSlider_MainWnd.h"
-#include "EQ10KLabel_MainWnd.h"
-#include "EQ10KSlider_MainWnd.h"
-#include "EQ12_5KLabel_MainWnd.h"
-#include "EQ12_5KSlider_MainWnd.h"
-#include "EQ16KLabel_MainWnd.h"
-#include "EQ16KSlider_MainWnd.h"
-#include "EQ20KLabel_MainWnd.h"
-#include "EQ20KSlider_MainWnd.h"
-#include "Divider5_MainWnd.h"
-#include "Tab_MainWnd.h"
-#include "PlayListView_MainWnd.h"
-#include "Sound.h"
-#include "LyricsManager.h"
-#include "PitchAnalyser.h"
-#include "../LimitSettingWnd/LimitSettingWnd_MainWnd.h"
-#include "../KeySettingWnd/KeySettingWnd_MainWnd.h"
-#include "../OutKeySettingWnd/OutKeySettingWnd_MainWnd.h"
-#include "../TimerPlayWnd/TimerPlayWnd_MainWnd.h"
-#include "../IncSpeedWnd/IncSpeedWnd_MainWnd.h"
-#include "../IncFreqWnd/IncFreqWnd_MainWnd.h"
-#include "../DecSpeedWnd/DecSpeedWnd_MainWnd.h"
-#include "../DecFreqWnd/DecFreqWnd_MainWnd.h"
-#include "../CountLoopWnd/CountLoopWnd_MainWnd.h"
-#include "../VideoScreenWnd/VideoScreenWnd_MainWnd.h"
-#include "../MetronomeWnd/MetronomeWnd_MainWnd.h"
-#include "PlayRangeWnd.h"
-#include "PlayPositionWnd.h"
-#include "OpenURLWnd.h"
-#include "LAMECommandLineWnd.h"
-#include "ReverbCustomizeWnd.h"
-#include "3DReverbCustomizeWnd.h"
-#include "DelayCustomizeWnd.h"
-#include "ChorusCustomizeWnd.h"
-#include "CompressorCustomizeWnd.h"
-#include "FlangerCustomizeWnd.h"
-#include "GargleCustomizeWnd.h"
-#include "DistortionCustomizeWnd.h"
-#include "PresetNameInputWnd.h"
-#include "TwitterAuthorizeWnd.h"
-#include "TweetWnd.h"
-#include "ABLoopPosWnd.h"
+class CChorusCustomizeWnd;
+class CCompressorCustomizeWnd;
+class CCountLoopWnd_MainWnd;
+class CDecFreqWnd_MainWnd;
+class CDecSpeedWnd_MainWnd;
+class CDelayCustomizeWnd;
+class CDistortionCustomizeWnd;
+class CDivider2_MainWnd;
+class CDivider3_MainWnd;
+class CDivider4_MainWnd;
+class CDivider5_MainWnd;
+class CDivider_MainWnd;
+class CEQ100Label_MainWnd;
+class CEQ100Slider_MainWnd;
+class CEQ10KLabel_MainWnd;
+class CEQ10KSlider_MainWnd;
+class CEQ125Label_MainWnd;
+class CEQ125Slider_MainWnd;
+class CEQ12_5KLabel_MainWnd;
+class CEQ12_5KSlider_MainWnd;
+class CEQ160Label_MainWnd;
+class CEQ160Slider_MainWnd;
+class CEQ16KLabel_MainWnd;
+class CEQ16KSlider_MainWnd;
+class CEQ1KLabel_MainWnd;
+class CEQ1KSlider_MainWnd;
+class CEQ1_25KLabel_MainWnd;
+class CEQ1_25KSlider_MainWnd;
+class CEQ1_6KLabel_MainWnd;
+class CEQ1_6KSlider_MainWnd;
+class CEQ200Label_MainWnd;
+class CEQ200Slider_MainWnd;
+class CEQ20KLabel_MainWnd;
+class CEQ20KSlider_MainWnd;
+class CEQ20Label_MainWnd;
+class CEQ20Slider_MainWnd;
+class CEQ250Label_MainWnd;
+class CEQ250Slider_MainWnd;
+class CEQ25Label_MainWnd;
+class CEQ25Slider_MainWnd;
+class CEQ2KLabel_MainWnd;
+class CEQ2KSlider_MainWnd;
+class CEQ2_5KLabel_MainWnd;
+class CEQ2_5KSlider_MainWnd;
+class CEQ315Label_MainWnd;
+class CEQ315Slider_MainWnd;
+class CEQ31_5Label_MainWnd;
+class CEQ31_5Slider_MainWnd;
+class CEQ3_15KLabel_MainWnd;
+class CEQ3_15KSlider_MainWnd;
+class CEQ400Label_MainWnd;
+class CEQ400Slider_MainWnd;
+class CEQ40Label_MainWnd;
+class CEQ40Slider_MainWnd;
+class CEQ4KLabel_MainWnd;
+class CEQ4KSlider_MainWnd;
+class CEQ500Label_MainWnd;
+class CEQ500Slider_MainWnd;
+class CEQ50Label_MainWnd;
+class CEQ50Slider_MainWnd;
+class CEQ5KLabel_MainWnd;
+class CEQ5KSlider_MainWnd;
+class CEQ630Label_MainWnd;
+class CEQ630Slider_MainWnd;
+class CEQ63Label_MainWnd;
+class CEQ63Slider_MainWnd;
+class CEQ6_3KLabel_MainWnd;
+class CEQ6_3KSlider_MainWnd;
+class CEQ800Label_MainWnd;
+class CEQ800Slider_MainWnd;
+class CEQ80Label_MainWnd;
+class CEQ80Slider_MainWnd;
+class CEQ8KLabel_MainWnd;
+class CEQ8KSlider_MainWnd;
+class CExplorer;
+class CExplorerBar;
+class CFlangerCustomizeWnd;
+class CFreqLabel_MainWnd;
+class CFreqSlider_MainWnd;
+class CGargleCustomizeWnd;
+class CIncFreqWnd_MainWnd;
+class CIncSpeedWnd_MainWnd;
+class CKeySettingWnd_MainWnd;
+class CLAMECommandLineWnd;
+class CLimitSettingWnd_MainWnd;
+class CLyricsManager;
+class CMenu_MainWnd;
+class CMetronomeWnd_MainWnd;
+class COpenURLWnd;
+class COutKeySettingWnd_MainWnd;
+class CPanLabel_MainWnd;
+class CPanSlider_MainWnd;
+class CPitchAnalyser;
+class CPitchLabel_MainWnd;
+class CPitchSlider_MainWnd;
+class CPlayListView_MainWnd;
+class CPlayPositionWnd;
+class CPlayRangeWnd;
+class CPresetNameInputWnd;
+class CReverbCustomizeWnd;
+class CSound;
+class CSpeedLabel_MainWnd;
+class CSpeedSlider_MainWnd;
+class CTab_MainWnd;
+class CTimeLabel_MainWnd;
+class CTimeSlider_MainWnd;
+class CTimerPlayWnd_MainWnd;
+class CToolBar_MainWnd;
+class CTweetWnd;
+class CTwitterAuthorizeWnd;
+class CVideoScreenWnd_MainWnd;
+class CVideoScreen_MainWnd;
+class CVolumeLabel_MainWnd;
+class CVolumeSlider_MainWnd;
 #include <cstdlib>
+#include <memory>
+#include <vector>
+#include "../Common/SnapWnd.h"
 #if _DEBUG
 #define _CRTDBG_MAP_ALLOC
 #include <crtdbg.h>
@@ -138,93 +137,8 @@ class CMainWnd : public CSnapWnd
 {
 public: // 関数
 
-	CMainWnd(CApp & app): controlOffset(5), m_rApp(app), m_menu(app, *this),
-		m_divider1(app, *this), limitSettingWnd(m_rApp, *this),
-		metronomeWnd(m_rApp, *this), lyricsManager(m_rApp, *this),
-		m_pitchAnalyser(m_rApp, *this),
-		keySettingWnd(m_rApp, *this), outKeySettingWnd(m_rApp, *this),
-		timerPlayWnd(m_rApp, *this), countLoopWnd(m_rApp, *this),
-		videoScreenWnd(m_rApp, *this),
-		incSpeedWnd(m_rApp, *this), incFreqWnd(m_rApp, *this),
-		decSpeedWnd(m_rApp, *this), decFreqWnd(m_rApp, *this),
-		playPositionWnd(m_rApp, *this), playRangeWnd(m_rApp, *this),
-		m_openURLWnd(m_rApp, *this),
-		m_lameCommandLineWnd(m_rApp, *this),
-		m_reverbCustomizeWnd(m_rApp, *this),
-		m_3dReverbCustomizeWnd(m_rApp, *this),
-		m_delayCustomizeWnd(m_rApp, *this),
-		m_chorusCustomizeWnd(m_rApp, *this),
-		m_compressorCustomizeWnd(m_rApp, *this),
-		m_flangerCustomizeWnd(m_rApp, *this),
-		m_gargleCustomizeWnd(m_rApp, *this),
-		m_distortionCustomizeWnd(m_rApp, *this),
-		presetNameInputWnd(m_rApp, *this),
-		m_twitterAuthorizeWnd(m_rApp, *this),
-		m_tweetWnd(m_rApp, *this), m_abLoopPosWnd(m_rApp, *this),
-		m_toolBar(app, *this),
-		m_timeLabel(app, *this), m_videoScreen(app, *this),
-		m_timeSlider(app, *this),
-		m_divider2(app, *this), m_explorerBar(app, *this),
-		m_explorer(app, *this),
-		m_speedLabel(app, *this),
-		m_speedSlider(app, *this), m_freqLabel(app, *this),
-		m_freqSlider(app, *this), m_pitchLabel(app, *this),
-		m_divider3(app, *this), m_pitchSlider(app, *this),
-		m_volumeLabel(app, *this), m_volumeSlider(app, *this),
-		m_panLabel(app, *this), m_panSlider(app, *this), m_divider4(app, *this),
-		m_eq20Label(app, *this), m_eq20Slider(app, *this),
-		m_eq25Label(app, *this), m_eq25Slider(app, *this),
-		m_eq31_5Label(app, *this), m_eq31_5Slider(app, *this),
-		m_eq40Label(app, *this), m_eq40Slider(app, *this),
-		m_eq50Label(app, *this), m_eq50Slider(app, *this),
-		m_eq63Label(app, *this), m_eq63Slider(app, *this),
-		m_eq80Label(app, *this), m_eq80Slider(app, *this),
-		m_eq100Label(app, *this), m_eq100Slider(app, *this),
-		m_eq125Label(app, *this), m_eq125Slider(app, *this),
-		m_eq160Label(app, *this), m_eq160Slider(app, *this),
-		m_eq200Label(app, *this), m_eq200Slider(app, *this),
-		m_eq250Label(app, *this), m_eq250Slider(app, *this),
-		m_eq315Label(app, *this), m_eq315Slider(app, *this),
-		m_eq400Label(app, *this), m_eq400Slider(app, *this),
-		m_eq500Label(app, *this), m_eq500Slider(app, *this),
-		m_eq630Label(app, *this), m_eq630Slider(app, *this),
-		m_eq800Label(app, *this), m_eq800Slider(app, *this),
-		m_eq1kLabel(app, *this), m_eq1kSlider(app, *this),
-		m_eq1_25kLabel(app, *this), m_eq1_25kSlider(app, *this),
-		m_eq1_6kLabel(app, *this), m_eq1_6kSlider(app, *this),
-		m_eq2kLabel(app, *this), m_eq2kSlider(app, *this),
-		m_eq2_5kLabel(app, *this), m_eq2_5kSlider(app, *this),
-		m_eq3_15kLabel(app, *this), m_eq3_15kSlider(app, *this),
-		m_eq4kLabel(app, *this), m_eq4kSlider(app, *this),
-		m_eq5kLabel(app, *this), m_eq5kSlider(app, *this),
-		m_eq6_3kLabel(app, *this), m_eq6_3kSlider(app, *this),
-		m_eq8kLabel(app, *this), m_eq8kSlider(app, *this),
-		m_eq10kLabel(app, *this), m_eq10kSlider(app, *this),
-		m_eq12_5kLabel(app, *this), m_eq12_5kSlider(app, *this),
-		m_eq16kLabel(app, *this), m_eq16kSlider(app, *this),
-		m_eq20kLabel(app, *this), m_eq20kSlider(app, *this),
-		m_divider5(app, *this), m_tab(app, *this), m_sound(app, *this),
-		m_soundEffect(app, *this, FALSE),
-		bTimerPlay(FALSE), bTimerStop(FALSE),
-		bTimerPlayNextDay(FALSE), bTimerStopNextDay(FALSE), bReverb(FALSE),
-		b3DReverb(FALSE),
-		bDelay(FALSE), bChorus(FALSE), bCompressor(FALSE), bFlanger(FALSE),
-		bGargle(FALSE), bDistortion(FALSE),
-		bMarkerPlay(FALSE), m_bVideo(FALSE),
-		m_bFullScreen(FALSE), m_bFinish(FALSE),
-		m_bExplorerResizing(FALSE), m_bVideoScreenResizing(FALSE),
-		isInitFileRead(FALSE), m_strLAMECommandLine(_T("--preset cbr 192")),
-		nMinWidth(0), nFreqVelo(0.0), nFreqAccel(0.0), nTimerPlayHour(0),
-		nTimerPlayMinute(0), nTimerStopHour(0), nTimerStopMinute(0),
-		nIncSpeed(0.0), nIncFreq(0.0), nDecSpeed(0.0), nDecFreq(0.0),
-		bCountLoop(FALSE), bInstantLoop(FALSE), bSetPositionAuto(FALSE),
-		nLoopCount(0), nCurrentLoopCount(0), nCurPlayTab(0), dwLastTime(0),
-		m_nBpm(120), dwFadeoutStartTime(0),
-		m_dStartSeconds(0.0), m_dEndSeconds(0.0), m_hUpdateThread(0),
-		m_hLyricsThread(0), m_bLyricsThreadAlive(FALSE), m_bRetryUpdate(FALSE),
-		m_hPitchAnalyserThread(0), m_bPitchAnalyserThreadAlive(FALSE)
-	{ }
-	virtual ~CMainWnd() { }
+	CMainWnd(CApp & app);
+	virtual ~CMainWnd();
 	virtual void AddDropFiles(HDROP hdrop, BOOL bClear);
 	virtual void AddFile(LPCTSTR lpszFilePath);
 	virtual void AddMarker();
@@ -492,124 +406,124 @@ private:
 protected: // メンバ変数
 
 	CApp & m_rApp;
-	CMenu_MainWnd m_menu;
-	CDivider_MainWnd m_divider1;
-	CToolBar_MainWnd m_toolBar;
-	CTimeLabel_MainWnd m_timeLabel;
-	CVideoScreen_MainWnd m_videoScreen;
-	CTimeSlider_MainWnd m_timeSlider;
-	CDivider2_MainWnd m_divider2;
-	CExplorerBar m_explorerBar;
-	CExplorer m_explorer;
-	CSpeedLabel_MainWnd m_speedLabel;
-	CSpeedSlider_MainWnd m_speedSlider;
-	CFreqLabel_MainWnd m_freqLabel;
-	CFreqSlider_MainWnd m_freqSlider;
-	CPitchLabel_MainWnd m_pitchLabel;
-	CPitchSlider_MainWnd m_pitchSlider;
-	CDivider3_MainWnd m_divider3;
-	CVolumeLabel_MainWnd m_volumeLabel;
-	CVolumeSlider_MainWnd m_volumeSlider;
-	CPanLabel_MainWnd m_panLabel;
-	CPanSlider_MainWnd m_panSlider;
-	CDivider4_MainWnd m_divider4;
-	CEQ20Label_MainWnd m_eq20Label;
-	CEQ20Slider_MainWnd m_eq20Slider;
-	CEQ25Label_MainWnd m_eq25Label;
-	CEQ25Slider_MainWnd m_eq25Slider;
-	CEQ31_5Label_MainWnd m_eq31_5Label;
-	CEQ31_5Slider_MainWnd m_eq31_5Slider;
-	CEQ40Label_MainWnd m_eq40Label;
-	CEQ40Slider_MainWnd m_eq40Slider;
-	CEQ50Label_MainWnd m_eq50Label;
-	CEQ50Slider_MainWnd m_eq50Slider;
-	CEQ63Label_MainWnd m_eq63Label;
-	CEQ63Slider_MainWnd m_eq63Slider;
-	CEQ80Label_MainWnd m_eq80Label;
-	CEQ80Slider_MainWnd m_eq80Slider;
-	CEQ100Label_MainWnd m_eq100Label;
-	CEQ100Slider_MainWnd m_eq100Slider;
-	CEQ125Label_MainWnd m_eq125Label;
-	CEQ125Slider_MainWnd m_eq125Slider;
-	CEQ160Label_MainWnd m_eq160Label;
-	CEQ160Slider_MainWnd m_eq160Slider;
-	CEQ200Label_MainWnd m_eq200Label;
-	CEQ200Slider_MainWnd m_eq200Slider;
-	CEQ250Label_MainWnd m_eq250Label;
-	CEQ250Slider_MainWnd m_eq250Slider;
-	CEQ315Label_MainWnd m_eq315Label;
-	CEQ315Slider_MainWnd m_eq315Slider;
-	CEQ400Label_MainWnd m_eq400Label;
-	CEQ400Slider_MainWnd m_eq400Slider;
-	CEQ500Label_MainWnd m_eq500Label;
-	CEQ500Slider_MainWnd m_eq500Slider;
-	CEQ630Label_MainWnd m_eq630Label;
-	CEQ630Slider_MainWnd m_eq630Slider;
-	CEQ800Label_MainWnd m_eq800Label;
-	CEQ800Slider_MainWnd m_eq800Slider;
-	CEQ1KLabel_MainWnd m_eq1kLabel;
-	CEQ1KSlider_MainWnd m_eq1kSlider;
-	CEQ1_25KLabel_MainWnd m_eq1_25kLabel;
-	CEQ1_25KSlider_MainWnd m_eq1_25kSlider;
-	CEQ1_6KLabel_MainWnd m_eq1_6kLabel;
-	CEQ1_6KSlider_MainWnd m_eq1_6kSlider;
-	CEQ2KLabel_MainWnd m_eq2kLabel;
-	CEQ2KSlider_MainWnd m_eq2kSlider;
-	CEQ2_5KLabel_MainWnd m_eq2_5kLabel;
-	CEQ2_5KSlider_MainWnd m_eq2_5kSlider;
-	CEQ3_15KLabel_MainWnd m_eq3_15kLabel;
-	CEQ3_15KSlider_MainWnd m_eq3_15kSlider;
-	CEQ4KLabel_MainWnd m_eq4kLabel;
-	CEQ4KSlider_MainWnd m_eq4kSlider;
-	CEQ5KLabel_MainWnd m_eq5kLabel;
-	CEQ5KSlider_MainWnd m_eq5kSlider;
-	CEQ6_3KLabel_MainWnd m_eq6_3kLabel;
-	CEQ6_3KSlider_MainWnd m_eq6_3kSlider;
-	CEQ8KLabel_MainWnd m_eq8kLabel;
-	CEQ8KSlider_MainWnd m_eq8kSlider;
-	CEQ10KLabel_MainWnd m_eq10kLabel;
-	CEQ10KSlider_MainWnd m_eq10kSlider;
-	CEQ12_5KLabel_MainWnd m_eq12_5kLabel;
-	CEQ12_5KSlider_MainWnd m_eq12_5kSlider;
-	CEQ16KLabel_MainWnd m_eq16kLabel;
-	CEQ16KSlider_MainWnd m_eq16kSlider;
-	CEQ20KLabel_MainWnd m_eq20kLabel;
-	CEQ20KSlider_MainWnd m_eq20kSlider;
-	CDivider5_MainWnd m_divider5;
-	CTab_MainWnd m_tab;
+	std::unique_ptr<CMenu_MainWnd> m_menu;
+	std::unique_ptr<CDivider_MainWnd> m_divider1;
+	std::unique_ptr<CToolBar_MainWnd> m_toolBar;
+	std::unique_ptr<CTimeLabel_MainWnd> m_timeLabel;
+	std::unique_ptr<CVideoScreen_MainWnd> m_videoScreen;
+	std::unique_ptr<CTimeSlider_MainWnd> m_timeSlider;
+	std::unique_ptr<CDivider2_MainWnd> m_divider2;
+	std::unique_ptr<CExplorerBar> m_explorerBar;
+	std::unique_ptr<CExplorer> m_explorer;
+	std::unique_ptr<CSpeedLabel_MainWnd> m_speedLabel;
+	std::unique_ptr<CSpeedSlider_MainWnd> m_speedSlider;
+	std::unique_ptr<CFreqLabel_MainWnd> m_freqLabel;
+	std::unique_ptr<CFreqSlider_MainWnd> m_freqSlider;
+	std::unique_ptr<CPitchLabel_MainWnd> m_pitchLabel;
+	std::unique_ptr<CPitchSlider_MainWnd> m_pitchSlider;
+	std::unique_ptr<CDivider3_MainWnd> m_divider3;
+	std::unique_ptr<CVolumeLabel_MainWnd> m_volumeLabel;
+	std::unique_ptr<CVolumeSlider_MainWnd> m_volumeSlider;
+	std::unique_ptr<CPanLabel_MainWnd> m_panLabel;
+	std::unique_ptr<CPanSlider_MainWnd> m_panSlider;
+	std::unique_ptr<CDivider4_MainWnd> m_divider4;
+	std::unique_ptr<CEQ20Label_MainWnd> m_eq20Label;
+	std::unique_ptr<CEQ20Slider_MainWnd> m_eq20Slider;
+	std::unique_ptr<CEQ25Label_MainWnd> m_eq25Label;
+	std::unique_ptr<CEQ25Slider_MainWnd> m_eq25Slider;
+	std::unique_ptr<CEQ31_5Label_MainWnd> m_eq31_5Label;
+	std::unique_ptr<CEQ31_5Slider_MainWnd> m_eq31_5Slider;
+	std::unique_ptr<CEQ40Label_MainWnd> m_eq40Label;
+	std::unique_ptr<CEQ40Slider_MainWnd> m_eq40Slider;
+	std::unique_ptr<CEQ50Label_MainWnd> m_eq50Label;
+	std::unique_ptr<CEQ50Slider_MainWnd> m_eq50Slider;
+	std::unique_ptr<CEQ63Label_MainWnd> m_eq63Label;
+	std::unique_ptr<CEQ63Slider_MainWnd> m_eq63Slider;
+	std::unique_ptr<CEQ80Label_MainWnd> m_eq80Label;
+	std::unique_ptr<CEQ80Slider_MainWnd> m_eq80Slider;
+	std::unique_ptr<CEQ100Label_MainWnd> m_eq100Label;
+	std::unique_ptr<CEQ100Slider_MainWnd> m_eq100Slider;
+	std::unique_ptr<CEQ125Label_MainWnd> m_eq125Label;
+	std::unique_ptr<CEQ125Slider_MainWnd> m_eq125Slider;
+	std::unique_ptr<CEQ160Label_MainWnd> m_eq160Label;
+	std::unique_ptr<CEQ160Slider_MainWnd> m_eq160Slider;
+	std::unique_ptr<CEQ200Label_MainWnd> m_eq200Label;
+	std::unique_ptr<CEQ200Slider_MainWnd> m_eq200Slider;
+	std::unique_ptr<CEQ250Label_MainWnd> m_eq250Label;
+	std::unique_ptr<CEQ250Slider_MainWnd> m_eq250Slider;
+	std::unique_ptr<CEQ315Label_MainWnd> m_eq315Label;
+	std::unique_ptr<CEQ315Slider_MainWnd> m_eq315Slider;
+	std::unique_ptr<CEQ400Label_MainWnd> m_eq400Label;
+	std::unique_ptr<CEQ400Slider_MainWnd> m_eq400Slider;
+	std::unique_ptr<CEQ500Label_MainWnd> m_eq500Label;
+	std::unique_ptr<CEQ500Slider_MainWnd> m_eq500Slider;
+	std::unique_ptr<CEQ630Label_MainWnd> m_eq630Label;
+	std::unique_ptr<CEQ630Slider_MainWnd> m_eq630Slider;
+	std::unique_ptr<CEQ800Label_MainWnd> m_eq800Label;
+	std::unique_ptr<CEQ800Slider_MainWnd> m_eq800Slider;
+	std::unique_ptr<CEQ1KLabel_MainWnd> m_eq1kLabel;
+	std::unique_ptr<CEQ1KSlider_MainWnd> m_eq1kSlider;
+	std::unique_ptr<CEQ1_25KLabel_MainWnd> m_eq1_25kLabel;
+	std::unique_ptr<CEQ1_25KSlider_MainWnd> m_eq1_25kSlider;
+	std::unique_ptr<CEQ1_6KLabel_MainWnd> m_eq1_6kLabel;
+	std::unique_ptr<CEQ1_6KSlider_MainWnd> m_eq1_6kSlider;
+	std::unique_ptr<CEQ2KLabel_MainWnd> m_eq2kLabel;
+	std::unique_ptr<CEQ2KSlider_MainWnd> m_eq2kSlider;
+	std::unique_ptr<CEQ2_5KLabel_MainWnd> m_eq2_5kLabel;
+	std::unique_ptr<CEQ2_5KSlider_MainWnd> m_eq2_5kSlider;
+	std::unique_ptr<CEQ3_15KLabel_MainWnd> m_eq3_15kLabel;
+	std::unique_ptr<CEQ3_15KSlider_MainWnd> m_eq3_15kSlider;
+	std::unique_ptr<CEQ4KLabel_MainWnd> m_eq4kLabel;
+	std::unique_ptr<CEQ4KSlider_MainWnd> m_eq4kSlider;
+	std::unique_ptr<CEQ5KLabel_MainWnd> m_eq5kLabel;
+	std::unique_ptr<CEQ5KSlider_MainWnd> m_eq5kSlider;
+	std::unique_ptr<CEQ6_3KLabel_MainWnd> m_eq6_3kLabel;
+	std::unique_ptr<CEQ6_3KSlider_MainWnd> m_eq6_3kSlider;
+	std::unique_ptr<CEQ8KLabel_MainWnd> m_eq8kLabel;
+	std::unique_ptr<CEQ8KSlider_MainWnd> m_eq8kSlider;
+	std::unique_ptr<CEQ10KLabel_MainWnd> m_eq10kLabel;
+	std::unique_ptr<CEQ10KSlider_MainWnd> m_eq10kSlider;
+	std::unique_ptr<CEQ12_5KLabel_MainWnd> m_eq12_5kLabel;
+	std::unique_ptr<CEQ12_5KSlider_MainWnd> m_eq12_5kSlider;
+	std::unique_ptr<CEQ16KLabel_MainWnd> m_eq16kLabel;
+	std::unique_ptr<CEQ16KSlider_MainWnd> m_eq16kSlider;
+	std::unique_ptr<CEQ20KLabel_MainWnd> m_eq20kLabel;
+	std::unique_ptr<CEQ20KSlider_MainWnd> m_eq20kSlider;
+	std::unique_ptr<CDivider5_MainWnd> m_divider5;
+	std::unique_ptr<CTab_MainWnd> m_tab;
 	std::vector<CPlayListView_MainWnd*> m_arrayList;
-	CLimitSettingWnd_MainWnd limitSettingWnd;
-	CKeySettingWnd_MainWnd keySettingWnd;
-	COutKeySettingWnd_MainWnd outKeySettingWnd;
-	CTimerPlayWnd_MainWnd timerPlayWnd;
-	CPlayPositionWnd playPositionWnd;
-	COpenURLWnd m_openURLWnd;
-	CPlayRangeWnd playRangeWnd;
-	CLAMECommandLineWnd m_lameCommandLineWnd;
-	CReverbCustomizeWnd m_reverbCustomizeWnd;
-	C3DReverbCustomizeWnd m_3dReverbCustomizeWnd;
-	CDelayCustomizeWnd m_delayCustomizeWnd;
-	CChorusCustomizeWnd m_chorusCustomizeWnd;
-	CCompressorCustomizeWnd m_compressorCustomizeWnd;
-	CFlangerCustomizeWnd m_flangerCustomizeWnd;
-	CGargleCustomizeWnd m_gargleCustomizeWnd;
-	CDistortionCustomizeWnd m_distortionCustomizeWnd;
-	CPresetNameInputWnd presetNameInputWnd;
-	CTwitterAuthorizeWnd m_twitterAuthorizeWnd;
-	CTweetWnd m_tweetWnd;
-	CABLoopPosWnd m_abLoopPosWnd;
-	CIncSpeedWnd_MainWnd incSpeedWnd;
-	CIncFreqWnd_MainWnd incFreqWnd;
-	CDecSpeedWnd_MainWnd decSpeedWnd;
-	CDecFreqWnd_MainWnd decFreqWnd;
-	CCountLoopWnd_MainWnd countLoopWnd;
-	CVideoScreenWnd_MainWnd videoScreenWnd;
-	CMetronomeWnd_MainWnd metronomeWnd;
-	CLyricsManager lyricsManager;
-	CPitchAnalyser m_pitchAnalyser;
+	std::unique_ptr<CLimitSettingWnd_MainWnd> limitSettingWnd;
+	std::unique_ptr<CKeySettingWnd_MainWnd> keySettingWnd;
+	std::unique_ptr<COutKeySettingWnd_MainWnd> outKeySettingWnd;
+	std::unique_ptr<CTimerPlayWnd_MainWnd> timerPlayWnd;
+	std::unique_ptr<CPlayPositionWnd> playPositionWnd;
+	std::unique_ptr<COpenURLWnd> m_openURLWnd;
+	std::unique_ptr<CPlayRangeWnd> playRangeWnd;
+	std::unique_ptr<CLAMECommandLineWnd> m_lameCommandLineWnd;
+	std::unique_ptr<CReverbCustomizeWnd> m_reverbCustomizeWnd;
+	std::unique_ptr<C3DReverbCustomizeWnd> m_3dReverbCustomizeWnd;
+	std::unique_ptr<CDelayCustomizeWnd> m_delayCustomizeWnd;
+	std::unique_ptr<CChorusCustomizeWnd> m_chorusCustomizeWnd;
+	std::unique_ptr<CCompressorCustomizeWnd> m_compressorCustomizeWnd;
+	std::unique_ptr<CFlangerCustomizeWnd> m_flangerCustomizeWnd;
+	std::unique_ptr<CGargleCustomizeWnd> m_gargleCustomizeWnd;
+	std::unique_ptr<CDistortionCustomizeWnd> m_distortionCustomizeWnd;
+	std::unique_ptr<CPresetNameInputWnd> presetNameInputWnd;
+	std::unique_ptr<CTwitterAuthorizeWnd> m_twitterAuthorizeWnd;
+	std::unique_ptr<CTweetWnd> m_tweetWnd;
+	std::unique_ptr<CABLoopPosWnd> m_abLoopPosWnd;
+	std::unique_ptr<CIncSpeedWnd_MainWnd> incSpeedWnd;
+	std::unique_ptr<CIncFreqWnd_MainWnd> incFreqWnd;
+	std::unique_ptr<CDecSpeedWnd_MainWnd> decSpeedWnd;
+	std::unique_ptr<CDecFreqWnd_MainWnd> decFreqWnd;
+	std::unique_ptr<CCountLoopWnd_MainWnd> countLoopWnd;
+	std::unique_ptr<CVideoScreenWnd_MainWnd> videoScreenWnd;
+	std::unique_ptr<CMetronomeWnd_MainWnd> metronomeWnd;
+	std::unique_ptr<CLyricsManager> lyricsManager;
+	std::unique_ptr<CPitchAnalyser> m_pitchAnalyser;
 
-	CSound m_sound;
-	CSound m_soundEffect; // 効果音
+	std::unique_ptr<CSound> m_sound;
+	std::unique_ptr<CSound> m_soundEffect; // 効果音
 
 	const int controlOffset; // コントロール間の間隔
 	BOOL isInitFileRead; // INI ファイルがすでに読み込まれたかどうか
@@ -700,99 +614,94 @@ public: // 定数
 
 public: // メンバ変数の取得・設定
 
-	CMenu_MainWnd & GetMenu() { return m_menu; }
-	const CDivider_MainWnd & GetDivider1() const { return m_divider1; }
-	CToolBar_MainWnd & GetToolBar() { return m_toolBar; }
-	const CTimeLabel_MainWnd & GetTimeLabel() const { return m_timeLabel; }
+	CMenu_MainWnd & GetMenu() { return *m_menu; }
+	const CDivider_MainWnd & GetDivider1() const { return *m_divider1; }
+	CToolBar_MainWnd & GetToolBar() { return *m_toolBar; }
+	const CTimeLabel_MainWnd & GetTimeLabel() const { return *m_timeLabel; }
 	const CVideoScreen_MainWnd & GetVideoScreen() const {
-		return m_videoScreen;
+		return *m_videoScreen;
 	}
-	const CTimeSlider_MainWnd & GetTimeSlider() const { return m_timeSlider; }
-	const CDivider2_MainWnd & GetDivider2() const { return m_divider2; }
-	CExplorerBar & GetExplorerBar() { return m_explorerBar; }
-	CExplorer & GetExplorer() { return m_explorer; }
-	CSpeedLabel_MainWnd & GetSpeedLabel() { return m_speedLabel; }
-	CSpeedSlider_MainWnd & GetSpeedSlider() { return m_speedSlider; }
-	CFreqLabel_MainWnd & GetFreqLabel() { return m_freqLabel; }
-	CFreqSlider_MainWnd & GetFreqSlider() {
-		return m_freqSlider;
-	}
-	CPitchLabel_MainWnd & GetPitchLabel() { return m_pitchLabel; }
-	CPitchSlider_MainWnd & GetPitchSlider() { return m_pitchSlider; }
-	const CDivider3_MainWnd & GetDivider3() const { return m_divider3; }
-	CVolumeLabel_MainWnd & GetVolumeLabel() { return m_volumeLabel; }
-	CVolumeSlider_MainWnd & GetVolumeSlider() { return m_volumeSlider; }
-	CPanLabel_MainWnd & GetPanLabel() { return m_panLabel; }
-	CPanSlider_MainWnd & GetPanSlider() { return m_panSlider; }
-	const CDivider4_MainWnd & GetDivider4() const { return m_divider4; }
-	CEQ20Label_MainWnd & GetEQ20Label() { return m_eq20Label; }
-	CEQ20Slider_MainWnd & GetEQ20Slider() { return m_eq20Slider; }
-	CEQ25Label_MainWnd & GetEQ25Label() { return m_eq25Label; }
-	CEQ25Slider_MainWnd & GetEQ25Slider() { return m_eq25Slider; }
-	CEQ31_5Label_MainWnd & GetEQ31_5Label() { return m_eq31_5Label; }
-	CEQ31_5Slider_MainWnd & GetEQ31_5Slider() { return m_eq31_5Slider; }
-	CEQ40Label_MainWnd & GetEQ40Label() { return m_eq40Label; }
-	CEQ40Slider_MainWnd & GetEQ40Slider() { return m_eq40Slider; }
-	CEQ50Label_MainWnd & GetEQ50Label() { return m_eq50Label; }
-	CEQ50Slider_MainWnd & GetEQ50Slider() { return m_eq50Slider; }
-	CEQ63Label_MainWnd & GetEQ63Label() { return m_eq63Label; }
-	CEQ63Slider_MainWnd & GetEQ63Slider() { return m_eq63Slider; }
-	CEQ80Label_MainWnd & GetEQ80Label() { return m_eq80Label; }
-	CEQ80Slider_MainWnd & GetEQ80Slider() { return m_eq80Slider; }
-	CEQ100Label_MainWnd & GetEQ100Label() { return m_eq100Label; }
-	CEQ100Slider_MainWnd & GetEQ100Slider() { return m_eq100Slider; }
-	CEQ125Label_MainWnd & GetEQ125Label() { return m_eq125Label; }
-	CEQ125Slider_MainWnd & GetEQ125Slider() { return m_eq125Slider; }
-	CEQ160Label_MainWnd & GetEQ160Label() { return m_eq160Label; }
-	CEQ160Slider_MainWnd & GetEQ160Slider() { return m_eq160Slider; }
-	CEQ200Label_MainWnd & GetEQ200Label() { return m_eq200Label; }
-	CEQ200Slider_MainWnd & GetEQ200Slider() { return m_eq200Slider; }
-	CEQ250Label_MainWnd & GetEQ250Label() { return m_eq250Label; }
-	CEQ250Slider_MainWnd & GetEQ250Slider() { return m_eq250Slider; }
-	CEQ315Label_MainWnd & GetEQ315Label() { return m_eq315Label; }
-	CEQ315Slider_MainWnd & GetEQ315Slider() { return m_eq315Slider; }
-	CEQ400Label_MainWnd & GetEQ400Label() { return m_eq400Label; }
-	CEQ400Slider_MainWnd & GetEQ400Slider() { return m_eq400Slider; }
-	CEQ500Label_MainWnd & GetEQ500Label() { return m_eq500Label; }
-	CEQ500Slider_MainWnd & GetEQ500Slider() { return m_eq500Slider; }
-	CEQ630Label_MainWnd & GetEQ630Label() { return m_eq630Label; }
-	CEQ630Slider_MainWnd & GetEQ630Slider() { return m_eq630Slider; }
-	CEQ800Label_MainWnd & GetEQ800Label() { return m_eq800Label; }
-	CEQ800Slider_MainWnd & GetEQ800Slider() { return m_eq800Slider; }
-	CEQ1KLabel_MainWnd & GetEQ1KLabel() { return m_eq1kLabel; }
-	CEQ1KSlider_MainWnd & GetEQ1KSlider() { return m_eq1kSlider; }
-	CEQ1_25KLabel_MainWnd & GetEQ1_25KLabel() { return m_eq1_25kLabel; }
-	CEQ1_25KSlider_MainWnd & GetEQ1_25KSlider() { return m_eq1_25kSlider; }
-	CEQ1_6KLabel_MainWnd & GetEQ1_6KLabel() { return m_eq1_6kLabel; }
-	CEQ1_6KSlider_MainWnd & GetEQ1_6KSlider() { return m_eq1_6kSlider; }
-	CEQ2KLabel_MainWnd & GetEQ2KLabel() { return m_eq2kLabel; }
-	CEQ2KSlider_MainWnd & GetEQ2KSlider() { return m_eq2kSlider; }
-	CEQ2_5KLabel_MainWnd & GetEQ2_5KLabel() { return m_eq2_5kLabel; }
-	CEQ2_5KSlider_MainWnd & GetEQ2_5KSlider() { return m_eq2_5kSlider; }
-	CEQ3_15KLabel_MainWnd & GetEQ3_15KLabel() { return m_eq3_15kLabel; }
-	CEQ3_15KSlider_MainWnd & GetEQ3_15KSlider() { return m_eq3_15kSlider; }
-	CEQ4KLabel_MainWnd & GetEQ4KLabel() { return m_eq4kLabel; }
-	CEQ4KSlider_MainWnd & GetEQ4KSlider() { return m_eq4kSlider; }
-	CEQ5KLabel_MainWnd & GetEQ5KLabel() { return m_eq5kLabel; }
-	CEQ5KSlider_MainWnd & GetEQ5KSlider() { return m_eq5kSlider; }
-	CEQ6_3KLabel_MainWnd & GetEQ6_3KLabel() { return m_eq6_3kLabel; }
-	CEQ6_3KSlider_MainWnd & GetEQ6_3KSlider() { return m_eq6_3kSlider; }
-	CEQ8KLabel_MainWnd & GetEQ8KLabel() { return m_eq8kLabel; }
-	CEQ8KSlider_MainWnd & GetEQ8KSlider() { return m_eq8kSlider; }
-	CEQ10KLabel_MainWnd & GetEQ10KLabel() { return m_eq10kLabel; }
-	CEQ10KSlider_MainWnd & GetEQ10KSlider() { return m_eq10kSlider; }
-	CEQ12_5KLabel_MainWnd & GetEQ12_5KLabel() { return m_eq12_5kLabel; }
-	CEQ12_5KSlider_MainWnd & GetEQ12_5KSlider() { return m_eq12_5kSlider; }
-	CEQ16KLabel_MainWnd & GetEQ16KLabel() { return m_eq16kLabel; }
-	CEQ16KSlider_MainWnd & GetEQ16KSlider() { return m_eq16kSlider; }
-	CEQ20KLabel_MainWnd & GetEQ20KLabel() { return m_eq20kLabel; }
-	CEQ20KSlider_MainWnd & GetEQ20KSlider() { return m_eq20kSlider; }
-	const CDivider5_MainWnd & GetDivider5() const { return m_divider5; }
-	CTab_MainWnd & GetTab() { return m_tab; }
-	CPlayListView_MainWnd & GetPlayList() {
-		int nSelect = m_tab.GetCurrentFocus();
-		return *m_arrayList[nSelect];
-	}
+	const CTimeSlider_MainWnd & GetTimeSlider() const { return *m_timeSlider; }
+	const CDivider2_MainWnd & GetDivider2() const { return *m_divider2; }
+	CExplorerBar & GetExplorerBar() { return *m_explorerBar; }
+	CExplorer & GetExplorer() { return *m_explorer; }
+	CSpeedLabel_MainWnd & GetSpeedLabel() { return *m_speedLabel; }
+	CSpeedSlider_MainWnd & GetSpeedSlider() { return *m_speedSlider; }
+	CFreqLabel_MainWnd & GetFreqLabel() { return *m_freqLabel; }
+	CFreqSlider_MainWnd & GetFreqSlider() { return *m_freqSlider; }
+	CPitchLabel_MainWnd & GetPitchLabel() { return *m_pitchLabel; }
+	CPitchSlider_MainWnd & GetPitchSlider() { return *m_pitchSlider; }
+	const CDivider3_MainWnd & GetDivider3() const { return *m_divider3; }
+	CVolumeLabel_MainWnd & GetVolumeLabel() { return *m_volumeLabel; }
+	CVolumeSlider_MainWnd & GetVolumeSlider() { return *m_volumeSlider; }
+	CPanLabel_MainWnd & GetPanLabel() { return *m_panLabel; }
+	CPanSlider_MainWnd & GetPanSlider() { return *m_panSlider; }
+	const CDivider4_MainWnd & GetDivider4() const { return *m_divider4; }
+	CEQ20Label_MainWnd & GetEQ20Label() { return *m_eq20Label; }
+	CEQ20Slider_MainWnd & GetEQ20Slider() { return *m_eq20Slider; }
+	CEQ25Label_MainWnd & GetEQ25Label() { return *m_eq25Label; }
+	CEQ25Slider_MainWnd & GetEQ25Slider() { return *m_eq25Slider; }
+	CEQ31_5Label_MainWnd & GetEQ31_5Label() { return *m_eq31_5Label; }
+	CEQ31_5Slider_MainWnd & GetEQ31_5Slider() { return *m_eq31_5Slider; }
+	CEQ40Label_MainWnd & GetEQ40Label() { return *m_eq40Label; }
+	CEQ40Slider_MainWnd & GetEQ40Slider() { return *m_eq40Slider; }
+	CEQ50Label_MainWnd & GetEQ50Label() { return *m_eq50Label; }
+	CEQ50Slider_MainWnd & GetEQ50Slider() { return *m_eq50Slider; }
+	CEQ63Label_MainWnd & GetEQ63Label() { return *m_eq63Label; }
+	CEQ63Slider_MainWnd & GetEQ63Slider() { return *m_eq63Slider; }
+	CEQ80Label_MainWnd & GetEQ80Label() { return *m_eq80Label; }
+	CEQ80Slider_MainWnd & GetEQ80Slider() { return *m_eq80Slider; }
+	CEQ100Label_MainWnd & GetEQ100Label() { return *m_eq100Label; }
+	CEQ100Slider_MainWnd & GetEQ100Slider() { return *m_eq100Slider; }
+	CEQ125Label_MainWnd & GetEQ125Label() { return *m_eq125Label; }
+	CEQ125Slider_MainWnd & GetEQ125Slider() { return *m_eq125Slider; }
+	CEQ160Label_MainWnd & GetEQ160Label() { return *m_eq160Label; }
+	CEQ160Slider_MainWnd & GetEQ160Slider() { return *m_eq160Slider; }
+	CEQ200Label_MainWnd & GetEQ200Label() { return *m_eq200Label; }
+	CEQ200Slider_MainWnd & GetEQ200Slider() { return *m_eq200Slider; }
+	CEQ250Label_MainWnd & GetEQ250Label() { return *m_eq250Label; }
+	CEQ250Slider_MainWnd & GetEQ250Slider() { return *m_eq250Slider; }
+	CEQ315Label_MainWnd & GetEQ315Label() { return *m_eq315Label; }
+	CEQ315Slider_MainWnd & GetEQ315Slider() { return *m_eq315Slider; }
+	CEQ400Label_MainWnd & GetEQ400Label() { return *m_eq400Label; }
+	CEQ400Slider_MainWnd & GetEQ400Slider() { return *m_eq400Slider; }
+	CEQ500Label_MainWnd & GetEQ500Label() { return *m_eq500Label; }
+	CEQ500Slider_MainWnd & GetEQ500Slider() { return *m_eq500Slider; }
+	CEQ630Label_MainWnd & GetEQ630Label() { return *m_eq630Label; }
+	CEQ630Slider_MainWnd & GetEQ630Slider() { return *m_eq630Slider; }
+	CEQ800Label_MainWnd & GetEQ800Label() { return *m_eq800Label; }
+	CEQ800Slider_MainWnd & GetEQ800Slider() { return *m_eq800Slider; }
+	CEQ1KLabel_MainWnd & GetEQ1KLabel() { return *m_eq1kLabel; }
+	CEQ1KSlider_MainWnd & GetEQ1KSlider() { return *m_eq1kSlider; }
+	CEQ1_25KLabel_MainWnd & GetEQ1_25KLabel() { return *m_eq1_25kLabel; }
+	CEQ1_25KSlider_MainWnd & GetEQ1_25KSlider() { return *m_eq1_25kSlider; }
+	CEQ1_6KLabel_MainWnd & GetEQ1_6KLabel() { return *m_eq1_6kLabel; }
+	CEQ1_6KSlider_MainWnd & GetEQ1_6KSlider() { return *m_eq1_6kSlider; }
+	CEQ2KLabel_MainWnd & GetEQ2KLabel() { return *m_eq2kLabel; }
+	CEQ2KSlider_MainWnd & GetEQ2KSlider() { return *m_eq2kSlider; }
+	CEQ2_5KLabel_MainWnd & GetEQ2_5KLabel() { return *m_eq2_5kLabel; }
+	CEQ2_5KSlider_MainWnd & GetEQ2_5KSlider() { return *m_eq2_5kSlider; }
+	CEQ3_15KLabel_MainWnd & GetEQ3_15KLabel() { return *m_eq3_15kLabel; }
+	CEQ3_15KSlider_MainWnd & GetEQ3_15KSlider() { return *m_eq3_15kSlider; }
+	CEQ4KLabel_MainWnd & GetEQ4KLabel() { return *m_eq4kLabel; }
+	CEQ4KSlider_MainWnd & GetEQ4KSlider() { return *m_eq4kSlider; }
+	CEQ5KLabel_MainWnd & GetEQ5KLabel() { return *m_eq5kLabel; }
+	CEQ5KSlider_MainWnd & GetEQ5KSlider() { return *m_eq5kSlider; }
+	CEQ6_3KLabel_MainWnd & GetEQ6_3KLabel() { return *m_eq6_3kLabel; }
+	CEQ6_3KSlider_MainWnd & GetEQ6_3KSlider() { return *m_eq6_3kSlider; }
+	CEQ8KLabel_MainWnd & GetEQ8KLabel() { return *m_eq8kLabel; }
+	CEQ8KSlider_MainWnd & GetEQ8KSlider() { return *m_eq8kSlider; }
+	CEQ10KLabel_MainWnd & GetEQ10KLabel() { return *m_eq10kLabel; }
+	CEQ10KSlider_MainWnd & GetEQ10KSlider() { return *m_eq10kSlider; }
+	CEQ12_5KLabel_MainWnd & GetEQ12_5KLabel() { return *m_eq12_5kLabel; }
+	CEQ12_5KSlider_MainWnd & GetEQ12_5KSlider() { return *m_eq12_5kSlider; }
+	CEQ16KLabel_MainWnd & GetEQ16KLabel() { return *m_eq16kLabel; }
+	CEQ16KSlider_MainWnd & GetEQ16KSlider() { return *m_eq16kSlider; }
+	CEQ20KLabel_MainWnd & GetEQ20KLabel() { return *m_eq20kLabel; }
+	CEQ20KSlider_MainWnd & GetEQ20KSlider() { return *m_eq20kSlider; }
+	const CDivider5_MainWnd & GetDivider5() const { return *m_divider5; }
+	CTab_MainWnd & GetTab() { return *m_tab; }
+	CPlayListView_MainWnd & GetPlayList();
 	CPlayListView_MainWnd & GetCurPlayList() {
 		return *m_arrayList[nCurPlayTab];
 	}
@@ -802,200 +711,54 @@ public: // メンバ変数の取得・設定
 	std::vector<CPlayListView_MainWnd*> GetArrayList() {
 		return m_arrayList;
 	}
-	CSound & GetSound() { return m_sound; }
-	CPlayPositionWnd & GetPlayPositionWnd() { return playPositionWnd; }
-	COpenURLWnd & GetOpenURLWnd() { return m_openURLWnd; }
-	CPlayRangeWnd & GetPlayRangeWnd() { return playRangeWnd; }
+	CSound & GetSound() { return *m_sound; }
+	CPlayPositionWnd & GetPlayPositionWnd() { return *playPositionWnd; }
+	COpenURLWnd & GetOpenURLWnd() { return *m_openURLWnd; }
+	CPlayRangeWnd & GetPlayRangeWnd() { return *playRangeWnd; }
 	CLAMECommandLineWnd & GetLAMECommandLineWnd() {
-		return m_lameCommandLineWnd;
+		return *m_lameCommandLineWnd;
 	}
 	CReverbCustomizeWnd & GetReverbCustomizeWnd() {
-		return m_reverbCustomizeWnd;
+		return *m_reverbCustomizeWnd;
 	}
 	C3DReverbCustomizeWnd & Get3DReverbCustomizeWnd() {
-		return m_3dReverbCustomizeWnd;
+		return *m_3dReverbCustomizeWnd;
 	}
 	CDelayCustomizeWnd & GetDelayCustomizeWnd() {
-		return m_delayCustomizeWnd;
+		return *m_delayCustomizeWnd;
 	}
 	CChorusCustomizeWnd & GetChorusCustomizeWnd() {
-		return m_chorusCustomizeWnd;
+		return *m_chorusCustomizeWnd;
 	}
 	CCompressorCustomizeWnd & GetCompressorCustomizeWnd() {
-		return m_compressorCustomizeWnd;
+		return *m_compressorCustomizeWnd;
 	}
 	CFlangerCustomizeWnd & GetFlangerCustomizeWnd() {
-		return m_flangerCustomizeWnd;
+		return *m_flangerCustomizeWnd;
 	}
 	CGargleCustomizeWnd & GetGargleCustomizeWnd() {
-		return m_gargleCustomizeWnd;
+		return *m_gargleCustomizeWnd;
 	}
 	CPresetNameInputWnd & GetPresetNameInputWnd() {
-		return presetNameInputWnd;
+		return *presetNameInputWnd;
 	}
 	CTwitterAuthorizeWnd & GetTwitterAuthorizeWnd() {
-		return m_twitterAuthorizeWnd;
+		return *m_twitterAuthorizeWnd;
 	}
 	CTweetWnd & GetTweetWnd() {
-		return m_tweetWnd;
+		return *m_tweetWnd;
 	}
 	CABLoopPosWnd & GetABLoopPosWnd() {
-		return m_abLoopPosWnd;
+		return *m_abLoopPosWnd;
 	}
-	int GetTimeSliderHeight() {
-		return m_menu.IsItemChecked(ID_TIMESLIDER) ? controlOffset * 2
-			+ m_timeSlider.GetHeight() : 0;
-	}
-	CVideoScreenWnd_MainWnd & GetVideoScreenWnd() { return videoScreenWnd; }
-	CLyricsManager & GetLyricsManager() { return lyricsManager; }
-	CPitchAnalyser & GetPitchAnalyser() { return m_pitchAnalyser; }
+	int GetTimeSliderHeight();
+	CVideoScreenWnd_MainWnd & GetVideoScreenWnd() { return *videoScreenWnd; }
+	CLyricsManager & GetLyricsManager() { return *lyricsManager; }
+	CPitchAnalyser & GetPitchAnalyser() { return *m_pitchAnalyser; }
 
-	int GetControlBarHeight() {
-		if(m_menu.IsItemChecked(ID_SPEED) || m_menu.IsItemChecked(ID_FREQ)
-			|| m_menu.IsItemChecked(ID_PITCH)) {
-			int nHeight = controlOffset;
-			nHeight += m_divider2.GetHeight();
-			if(m_menu.IsItemChecked(ID_SPEED)) {
-				nHeight += controlOffset;
-				nHeight += m_speedLabel.GetHeight() > m_speedSlider.GetHeight() ?
-						   m_speedLabel.GetHeight() : m_speedSlider.GetHeight();
-			}
-			if(m_menu.IsItemChecked(ID_FREQ)) {
-				nHeight += controlOffset;
-				nHeight += m_freqLabel.GetHeight() >
-						   m_freqSlider.GetHeight() ?
-						   m_freqLabel.GetHeight() :
-						   m_freqSlider.GetHeight();
-			}
-			if(m_menu.IsItemChecked(ID_PITCH)) {
-				nHeight += controlOffset;
-				nHeight += m_pitchLabel.GetHeight() > m_pitchSlider.GetHeight() ?
-						   m_pitchLabel.GetHeight() : m_pitchSlider.GetHeight();
-			}
-			return nHeight;
-		}
-		else return 0;
-	}
-	int GetControlBar2Height() {
-		if(m_menu.IsItemChecked(ID_VOLUME) || m_menu.IsItemChecked(ID_PAN)) {
-			int nHeight = controlOffset;
-			nHeight += m_divider3.GetHeight();
-			if(m_menu.IsItemChecked(ID_VOLUME)) {
-				nHeight += controlOffset;
-				nHeight += m_volumeLabel.GetHeight() > m_volumeSlider.GetHeight() ?
-						   m_volumeLabel.GetHeight() : m_volumeSlider.GetHeight();
-			}
-			if(m_menu.IsItemChecked(ID_PAN)) {
-			nHeight += controlOffset;
-				nHeight += m_panLabel.GetHeight() > m_panSlider.GetHeight() ?
-						   m_panLabel.GetHeight() : m_panSlider.GetHeight();
-			}
-			return nHeight;
-		}
-		else return 0;
-	}
-	int GetEQHeight() {
-		if(m_menu.IsItemChecked(ID_EQ)) {
-			int nHeight = controlOffset;
-			nHeight += m_divider4.GetHeight();
-			nHeight += controlOffset * 2;
-			if(m_menu.IsItemChecked(ID_EQ20))
-				nHeight += m_eq20Label.GetHeight() > m_eq20Slider.GetHeight() ?
-						   m_eq20Label.GetHeight() : m_eq20Slider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ25))
-				nHeight += m_eq25Label.GetHeight() > m_eq25Slider.GetHeight() ?
-						   m_eq25Label.GetHeight() : m_eq25Slider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ31_5))
-				nHeight += m_eq31_5Label.GetHeight() > m_eq31_5Slider.GetHeight() ?
-						   m_eq31_5Label.GetHeight() : m_eq31_5Slider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ40))
-				nHeight += m_eq40Label.GetHeight() > m_eq40Slider.GetHeight() ?
-						   m_eq40Label.GetHeight() : m_eq40Slider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ50))
-				nHeight += m_eq50Label.GetHeight() > m_eq50Slider.GetHeight() ?
-						   m_eq50Label.GetHeight() : m_eq50Slider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ63))
-				nHeight += m_eq63Label.GetHeight() > m_eq63Slider.GetHeight() ?
-						   m_eq63Label.GetHeight() : m_eq63Slider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ80))
-				nHeight += m_eq80Label.GetHeight() > m_eq80Slider.GetHeight() ?
-						   m_eq80Label.GetHeight() : m_eq80Slider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ100))
-				nHeight += m_eq100Label.GetHeight() > m_eq100Slider.GetHeight() ?
-						   m_eq100Label.GetHeight() : m_eq100Slider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ125))
-				nHeight += m_eq125Label.GetHeight() > m_eq125Slider.GetHeight() ?
-						   m_eq125Label.GetHeight() : m_eq125Slider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ160))
-				nHeight += m_eq160Label.GetHeight() > m_eq160Slider.GetHeight() ?
-						   m_eq160Label.GetHeight() : m_eq160Slider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ200))
-				nHeight += m_eq200Label.GetHeight() > m_eq200Slider.GetHeight() ?
-						   m_eq200Label.GetHeight() : m_eq200Slider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ250))
-				nHeight += m_eq250Label.GetHeight() > m_eq250Slider.GetHeight() ?
-						   m_eq250Label.GetHeight() : m_eq250Slider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ315))
-				nHeight += m_eq315Label.GetHeight() > m_eq315Slider.GetHeight() ?
-						   m_eq315Label.GetHeight() : m_eq315Slider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ400))
-				nHeight += m_eq400Label.GetHeight() > m_eq400Slider.GetHeight() ?
-						   m_eq400Label.GetHeight() : m_eq400Slider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ500))
-				nHeight += m_eq500Label.GetHeight() > m_eq500Slider.GetHeight() ?
-						   m_eq500Label.GetHeight() : m_eq500Slider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ630))
-				nHeight += m_eq630Label.GetHeight() > m_eq630Slider.GetHeight() ?
-						   m_eq630Label.GetHeight() : m_eq630Slider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ800))
-				nHeight += m_eq800Label.GetHeight() > m_eq800Slider.GetHeight() ?
-						   m_eq800Label.GetHeight() : m_eq800Slider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ1K))
-				nHeight += m_eq1kLabel.GetHeight() > m_eq1kSlider.GetHeight() ?
-						   m_eq1kLabel.GetHeight() : m_eq1kSlider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ1_25K))
-				nHeight += m_eq1_25kLabel.GetHeight() > m_eq1_25kSlider.GetHeight() ?
-						   m_eq1_25kLabel.GetHeight() : m_eq1_25kSlider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ1_6K))
-				nHeight += m_eq1_6kLabel.GetHeight() > m_eq1_6kSlider.GetHeight() ?
-						   m_eq1_6kLabel.GetHeight() : m_eq1_6kSlider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ2K))
-				nHeight += m_eq2kLabel.GetHeight() > m_eq2kSlider.GetHeight() ?
-						   m_eq2kLabel.GetHeight() : m_eq2kSlider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ2_5K))
-				nHeight += m_eq2_5kLabel.GetHeight() > m_eq2_5kSlider.GetHeight() ?
-						   m_eq2_5kLabel.GetHeight() : m_eq2_5kSlider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ3_15K))
-				nHeight += m_eq3_15kLabel.GetHeight() > m_eq3_15kSlider.GetHeight() ?
-						   m_eq3_15kLabel.GetHeight() : m_eq3_15kSlider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ4K))
-				nHeight += m_eq4kLabel.GetHeight() > m_eq4kSlider.GetHeight() ?
-						   m_eq4kLabel.GetHeight() : m_eq4kSlider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ5K))
-				nHeight += m_eq5kLabel.GetHeight() > m_eq5kSlider.GetHeight() ?
-						   m_eq5kLabel.GetHeight() : m_eq5kSlider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ6_3K))
-				nHeight += m_eq6_3kLabel.GetHeight() > m_eq6_3kSlider.GetHeight() ?
-						   m_eq6_3kLabel.GetHeight() : m_eq6_3kSlider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ8K))
-				nHeight += m_eq8kLabel.GetHeight() > m_eq8kSlider.GetHeight() ?
-						   m_eq8kLabel.GetHeight() : m_eq8kSlider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ10K))
-				nHeight += m_eq10kLabel.GetHeight() > m_eq10kSlider.GetHeight() ?
-						   m_eq10kLabel.GetHeight() : m_eq10kSlider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ12_5K))
-				nHeight += m_eq12_5kLabel.GetHeight() > m_eq12_5kSlider.GetHeight() ?
-						   m_eq12_5kLabel.GetHeight() : m_eq12_5kSlider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ16K))
-				nHeight += m_eq16kLabel.GetHeight() > m_eq16kSlider.GetHeight() ?
-						   m_eq16kLabel.GetHeight() : m_eq16kSlider.GetHeight();
-			if(m_menu.IsItemChecked(ID_EQ20K))
-				nHeight += m_eq20kLabel.GetHeight() > m_eq20kSlider.GetHeight() ?
-						   m_eq20kLabel.GetHeight() : m_eq20kSlider.GetHeight();
-			return nHeight;
-		}
-		else return 0;
-	}
+	int GetControlBarHeight();
+	int GetControlBar2Height();
+	int GetEQHeight();
 
 	int GetControlOffset() const { return controlOffset; }
 	int GetBpm() const { return m_nBpm; }

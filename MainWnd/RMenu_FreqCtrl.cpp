@@ -2,7 +2,9 @@
 // RMenu_FreqCtrl.cpp : 再生周波数コントロール用右クリックメニューの管理を行う
 //----------------------------------------------------------------------------
 #include <windows.h>
+#include "../Common/CommandList.h"
 #include "MainWnd.h"
+#include "Menu_MainWnd.h"
 #include "RMenu_FreqCtrl.h"
 //----------------------------------------------------------------------------
 // 作成

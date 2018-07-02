@@ -4,8 +4,13 @@
 #include <windows.h>
 #include <TCHAR.H>
 #include "../App.h"
+#include "../Common/CommandList.h"
+#include "Divider2_MainWnd.h"
+#include "Explorer.h"
 #include "MainWnd.h"
+#include "Menu_MainWnd.h"
 #include "SpeedLabel_MainWnd.h"
+#include "SpeedSlider_MainWnd.h"
 //----------------------------------------------------------------------------
 // çÏê¨
 //----------------------------------------------------------------------------

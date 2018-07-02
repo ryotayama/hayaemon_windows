@@ -6,6 +6,18 @@
 #include "../App.h"
 #include "MainWnd.h"
 #include "Edit_MainWnd.h"
+#include "EQ125Label_MainWnd.h"
+#include "EQ16KLabel_MainWnd.h"
+#include "EQ1KLabel_MainWnd.h"
+#include "EQ250Label_MainWnd.h"
+#include "EQ2KLabel_MainWnd.h"
+#include "EQ4KLabel_MainWnd.h"
+#include "EQ500Label_MainWnd.h"
+#include "EQ8KLabel_MainWnd.h"
+#include "FreqLabel_MainWnd.h"
+#include "PanLabel_MainWnd.h"
+#include "SpeedLabel_MainWnd.h"
+#include "VolumeLabel_MainWnd.h"
 //----------------------------------------------------------------------------
 // キーボードが押された
 //----------------------------------------------------------------------------

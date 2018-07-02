@@ -4,8 +4,10 @@
 #include <windows.h>
 #include "../App.h"
 #include "MainWnd.h"
+#include "Menu_MainWnd.h"
 #include "PlayListView_MainWnd.h"
 #include "RMenu_ListView.h"
+#include "Tab_MainWnd.h"
 //----------------------------------------------------------------------------
 // çÏê¨
 //----------------------------------------------------------------------------

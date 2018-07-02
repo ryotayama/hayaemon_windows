@@ -4,8 +4,14 @@
 #include <windows.h>
 #include <TCHAR.H>
 #include "../App.h"
+#include "../Common/CommandList.h"
+#include "Explorer.h"
+#include "FreqLabel_MainWnd.h"
+#include "FreqSlider_MainWnd.h"
 #include "MainWnd.h"
+#include "Menu_MainWnd.h"
 #include "PitchLabel_MainWnd.h"
+#include "PitchSlider_MainWnd.h"
 //----------------------------------------------------------------------------
 // キーボードが押された
 //----------------------------------------------------------------------------

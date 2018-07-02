@@ -4,15 +4,21 @@
 #include <windows.h>
 #include <shlwapi.h>
 #include "../App.h"
+#include "../Common/CommandList.h"
 #include "../Common/Utils.h"
 #include "../Common/bassenc.h"
 #include "../Common/bassmix.h"
 #include "../Common/bassasio.h"
 #include "../Common/basswasapi.h"
+#include "../VideoScreenWnd/VideoScreenWnd_MainWnd.h"
 #include "MainWnd.h"
+#include "Menu_MainWnd.h"
 #include "Sound.h"
 #include "../Common/xVideo.h"
+#include "PanSlider_MainWnd.h"
+#include "PlayListView_MainWnd.h"
 #include "ProgressWnd_MainWnd.h"
+#include "VideoScreen_MainWnd.h"
 //----------------------------------------------------------------------------
 // コンストラクタ
 //----------------------------------------------------------------------------

@@ -4,7 +4,13 @@
 #include <windows.h>
 #include "../resource.h"
 #include "../App.h"
+#include "../Common/CommandList.h"
+#include "Divider_MainWnd.h"
 #include "MainWnd.h"
+#include "Menu_MainWnd.h"
+#include "PlayListView_MainWnd.h"
+#include "Sound.h"
+#include "TimeLabel_MainWnd.h"
 #include "ToolBar_MainWnd.h"
 //----------------------------------------------------------------------------
 // çÏê¨

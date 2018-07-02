@@ -3,6 +3,7 @@
 //----------------------------------------------------------------------------
 #include <windows.h>
 #include "../App.h"
+#include "Divider_MainWnd.h"
 #include "MainWnd.h"
 #include "TimeLabel_MainWnd.h"
 //----------------------------------------------------------------------------

@@ -5,6 +5,9 @@
 #include "../App.h"
 #include "MainWnd.h"
 #include "OpenURLWnd.h"
+#include "PlayListView_MainWnd.h"
+#include "Sound.h"
+#include "Tab_MainWnd.h"
 //----------------------------------------------------------------------------
 // ÉLÅ[Ç™âüÇ≥ÇÍÇΩ
 //----------------------------------------------------------------------------
