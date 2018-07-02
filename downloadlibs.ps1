@@ -20,7 +20,7 @@ try {
 	Invoke-WebRequest -Uri http://uk.un4seen.com/files/z/2/bass_aac24.zip -OutFile bass_aac24.zip
 	Invoke-WebRequest -Uri http://uk.un4seen.com/files/bassalac24.zip -OutFile bassalac24.zip
 	Invoke-WebRequest -Uri http://uk.un4seen.com/files/z/2/bass_ape24.zip -OutFile bass_ape24.zip
-	Invoke-WebRequest -Uri http://surodev.com/downloads/BASS_DSHOW.zip -OutFile BASS_DSHOW.zip
+	Invoke-WebRequest -Uri http://soft.edolfzoku.com/hayaemon2/Hayaemon276.zip -OutFile Hayaemon276.zip
 	Invoke-WebRequest -Uri http://uk.un4seen.com/files/z/0/bass_fx24.zip -OutFile bass_fx24.zip
 	Invoke-WebRequest -Uri http://uk.un4seen.com/files/bassasio13.zip -OutFile bassasio13.zip
 	Invoke-WebRequest -Uri http://uk.un4seen.com/files/basscd24.zip -OutFile basscd24.zip
@@ -58,7 +58,7 @@ try {
 	Expand-Archive bass_aac24.zip -Force
 	Expand-Archive bassalac24.zip -Force
 	Expand-Archive bass_ape24.zip -Force
-	Expand-Archive BASS_DSHOW.zip -Force
+	Expand-Archive Hayaemon276.zip -Force
 	Expand-Archive bass_fx24.zip -Force
 	Expand-Archive bassasio13.zip -Force
 	Expand-Archive basscd24.zip -Force
@@ -90,7 +90,7 @@ Move-Item ./bass24.zip ./.backup/ -Force
 Move-Item ./bass_aac24.zip ./.backup/ -Force
 Move-Item ./bassalac24.zip ./.backup/ -Force
 Move-Item ./bass_ape24.zip ./.backup/ -Force
-Move-Item ./BASS_DSHOW.zip ./.backup/ -Force
+Move-Item ./Hayaemon276.zip ./.backup/ -Force
 Move-Item ./bass_fx24.zip ./.backup/ -Force
 Move-Item ./bassasio13.zip ./.backup/ -Force
 Move-Item ./basscd24.zip ./.backup/ -Force

@@ -3,7 +3,6 @@ Copy-Item bass24/c/bass.lib ./ -Force
 Copy-Item bass_aac24/c/bass_aac.lib ./ -Force
 Copy-Item bassalac24/c/bassalac.lib ./ -Force
 Copy-Item bass_ape24/c/bass_ape.lib ./ -Force
-Copy-Item BASS_DSHOW/C/xVideo.lib ./ -Force
 Copy-Item bass_fx24/C/bass_fx.lib ./ -Force
 Copy-Item bassasio13/c/bassasio.lib ./ -Force
 Copy-Item basscd24/c/basscd.lib ./ -Force
@@ -20,7 +19,7 @@ Copy-Item bass24/bass.dll ./Release -Force
 Copy-Item bass_aac24/bass_aac.dll ./Release -Force
 Copy-Item bassalac24/bassalac.dll ./Release -Force
 Copy-Item bass_ape24/bass_ape.dll ./Release -Force
-Copy-Item BASS_DSHOW/xVideo.dll ./Release -Force
+Copy-Item Hayaemon276/Hayaemon276/BASS_DSHOW.dll ./Release -Force
 Copy-Item bass_fx24/bass_fx.dll ./Release -Force
 Copy-Item bassasio13/bassasio.dll ./Release -Force
 Copy-Item basscd24/basscd.dll ./Release -Force
@@ -38,7 +37,7 @@ Remove-Item ./.backup/bass24 -Recurse -Force
 Remove-Item ./.backup/bass_aac24 -Recurse -Force
 Remove-Item ./.backup/bassalac24 -Recurse -Force
 Remove-Item ./.backup/bass_ape24 -Recurse -Force
-Remove-Item ./.backup/BASS_DSHOW -Recurse -Force
+Remove-Item ./.backup/Hayaemon276 -Recurse -Force
 Remove-Item ./.backup/bass_fx24 -Recurse -Force
 Remove-Item ./.backup/bassasio13 -Recurse -Force
 Remove-Item ./.backup/basscd24 -Recurse -Force
@@ -56,7 +55,7 @@ Move-Item ./bass24 ./.backup/ -Force
 Move-Item ./bass_aac24 ./.backup/ -Force
 Move-Item ./bassalac24 ./.backup/ -Force
 Move-Item ./bass_ape24 ./.backup/ -Force
-Move-Item ./BASS_DSHOW ./.backup/ -Force
+Move-Item ./Hayaemon276 ./.backup/ -Force
 Move-Item ./bass_fx24 ./.backup/ -Force
 Move-Item ./bassasio13 ./.backup/ -Force
 Move-Item ./basscd24 ./.backup/ -Force
