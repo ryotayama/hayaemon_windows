@@ -86,12 +86,12 @@ BOOL CSound::InitASIO()
 //----------------------------------------------------------------------------
 BOOL CSound::InitBASS_DSHOW()
 {
-	m_hXVideo = LoadLibrary((m_rApp.GetFilePath() + _T("BASS_DSHOW.dll")).c_str());
+	m_hXVideo = LoadLibrary((m_rApp.GetFilePath() + _T("BASS_DSHOW.DLL")).c_str());
 	if (!m_hXVideo) {
 #if JP
-		m_rApp.ShowError(_T("xVideo.DLL のロードに失敗しました。"));
+		m_rApp.ShowError(_T("BASS_DSHOW.DLL のロードに失敗しました。"));
 #else // JP
-		m_rApp.ShowError(_T("failed to load xVideo.DLL."));
+		m_rApp.ShowError(_T("failed to load BASS_DSHOW.DLL."));
 #endif // JP
 		return FALSE;
 	}
@@ -106,9 +106,9 @@ BOOL CSound::InitBASS_DSHOW()
 	m_lp_xVideo_Register(_T("taro@edolfzoku.com"), _T("09437237643421"), xVideo_UNICODE);
 	if (!m_lp_xVideo_Init((HWND)m_rMainWnd, 0)) {
 #if JP
-		m_rApp.ShowError(_T("xVideo.DLL の初期化に失敗しました。"));
+		m_rApp.ShowError(_T("BASS_DSHOW.DLL の初期化に失敗しました。"));
 #else // JP
-		m_rApp.ShowError(_T("failed to init xVideo.DLL."));
+		m_rApp.ShowError(_T("failed to init BASS_DSHOW.DLL."));
 #endif // JP
 		return FALSE;
 	}
