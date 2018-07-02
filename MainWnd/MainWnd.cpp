@@ -3086,7 +3086,7 @@ BOOL CMainWnd::OpenFile(LPCTSTR lpszFilePath, int nCount)
 	if(m_menu.IsItemChecked(ID_QUALITY_WASAPI)) m_sound.StartWASAPI();
 	if(PathIsURL(lpszFilePath)) bRet = m_sound.StreamCreateURL(lpszFilePath);
 	else bRet = m_sound.StreamCreateFile(lpszFilePath, FALSE, nCount);
-	if(!bRet) {
+	if(bRet == FALSE) {
 		m_menu.SetFileLoadState(FALSE);
 		KillTimer(IDT_TIME);
 		m_timeLabel.SetTime(0, 0);
@@ -10161,7 +10161,6 @@ void CMainWnd::WriteInitFile()
 		while(TRUE) {
 			TCHAR chKey[255];
 			_stprintf_s(chKey, _T("MarkerPos%d"), i + 1);
-			OutputDebugString(chKey);
 			if(GetPrivateProfileInt(_T("Options"), chKey, 0,
 					initFilePath.c_str()) > 0)
 				WritePrivateProfileString(_T("Options"), chKey, NULL,
@@ -10175,7 +10174,6 @@ void CMainWnd::WriteInitFile()
 		while(TRUE) {
 			TCHAR chKey[255];
 			_stprintf_s(chKey, _T("MarkerPos%d"), i + 1);
-			OutputDebugString(chKey);
 			if(GetPrivateProfileInt(_T("Options"), chKey, 0,
 					initFilePath.c_str()) > 0)
 				WritePrivateProfileString(_T("Options"), chKey, NULL,
@@ -10397,18 +10395,6 @@ LRESULT CMainWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 #endif // JP
 		return FALSE;
 	}
-
-	xVideo_Register(_T("taro@edolfzoku.com"), _T("09437237643421"),
-					xVideo_UNICODE);
-	if(!xVideo_Init(m_hWnd, 0)) {
-#if JP
-		m_rApp.ShowError(_T("xVideo.DLL ÇÃèâä˙âªÇ…é∏îsÇµÇ‹ÇµÇΩÅB"));
-#else // JP
-		m_rApp.ShowError(_T("failed to init xVideo.DLL."));
-#endif // JP
-		return FALSE;
-	}
-	xVideo_SetConfig(xVideo_CONFIG_VideoRenderer, xVideo_VMR9);
 
 	m_sound.InitASIO();
 

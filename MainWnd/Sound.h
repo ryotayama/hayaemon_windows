@@ -11,6 +11,8 @@
 class CApp;
 class CMainWnd;
 #include "../Common/BassFx.h"
+#include "../Common/BASS_DSHOW.h"
+#include "../Common/BASS_DSHOW_ExportFunc.h"
 #include "../Common/nsfsdk.h"
 #include <cstdlib>
 #if _DEBUG
@@ -32,6 +34,7 @@ public: // 関数
 	virtual int ChangeMarkerPos(int nMarker, QWORD nPos);
 	virtual void EraseMarker(int nMarker);
 	virtual BOOL InitASIO();
+	virtual BOOL InitBASS_DSHOW();
 	virtual void ResetSize(int left, int top, int right, int bottom);
 	virtual BOOL StreamCreateFile(LPCTSTR lpFilePath, BOOL bDecode = FALSE,
 		int nCount = 1);
@@ -180,6 +183,7 @@ private: // メンバ変数
 	BOOL m_bABLoopA; // AB ループ A がオンかどうか
 	BOOL m_bABLoopB; // AB ループ B がオンかどうか
 	BOOL m_bVideo; // ビデオかどうか
+	BOOL m_bInitBASS_DSHOWPlugin; // BASS_DSHOWプラグインを初期化したかどうか
 
 	tstring m_strCurFile;
 	int m_nCurFile;
@@ -220,6 +224,17 @@ private: // メンバ変数
 	BASS_DX8_COMPRESSOR m_bdcmp;
 	BASS_DX8_FLANGER m_bdf;
 	BASS_DX8_GARGLE m_bdg;
+
+	HMODULE m_hXVideo;
+	LPXVIDEO_REGISTER m_lp_xVideo_Register;
+	LPXVIDEO_INIT m_lp_xVideo_Init;
+	// xVideo_Init* m_lp_xVideo_Init;
+	LPXVIDEO_STREAMCREATEFILE m_lp_xVideo_StreamCreateFile;
+	LPXVIDEO_CHANNELRESIZEWINDOW m_lp_xVideo_ChannelResizeWindow;
+	LPXVIDEO_CHANNELGETINFO m_lp_xVideo_ChannelGetInfo;
+	LPXVIDEO_SETCONFIG m_lp_xVideo_SetConfig;
+	LPXVIDEO_CHANNELSETWINDOW m_lp_xVideo_ChannelSetWindow;
+	LPXVIDEO_STREAMFREE m_lp_xVideo_StreamFree;
 
 public: // メンバ変数の取得・設定
 

@@ -11,7 +11,6 @@
 #include "../Common/basswasapi.h"
 #include "MainWnd.h"
 #include "Sound.h"
-#include "../Common/xVideo.h"
 #include "ProgressWnd_MainWnd.h"
 //----------------------------------------------------------------------------
 // コンストラクタ
@@ -28,9 +27,11 @@ CSound::CSound(CApp & app, CMainWnd & mainWnd, BOOL bMainStream)
 	  m_hVocalCancelDsp(0), m_hOnlyLeftDsp(0), m_hOnlyRightDsp(0),
 	  m_hChangeLRDsp(0), m_hNormalizeDsp(0), m_hPanDsp(0),
 	  m_bMainStream(bMainStream), m_hMixer(0), m_hNSF(0), m_nNSFCount(0),
-	  m_nNSFCurrent(0)
+	  m_nNSFCurrent(0), m_bInitBASS_DSHOWPlugin(FALSE)
 {
-	if(bMainStream) LoadWmaPlugin();
+	if (bMainStream) {
+		LoadWmaPlugin();
+	}
 }
 //----------------------------------------------------------------------------
 // デストラクタ
@@ -81,6 +82,42 @@ BOOL CSound::InitASIO()
 	return TRUE;
 }
 //----------------------------------------------------------------------------
+// BASS_DSHOWの初期化
+//----------------------------------------------------------------------------
+BOOL CSound::InitBASS_DSHOW()
+{
+	m_hXVideo = LoadLibrary((m_rApp.GetFilePath() + _T("BASS_DSHOW.dll")).c_str());
+	if (!m_hXVideo) {
+#if JP
+		m_rApp.ShowError(_T("xVideo.DLL のロードに失敗しました。"));
+#else // JP
+		m_rApp.ShowError(_T("failed to load xVideo.DLL."));
+#endif // JP
+		return FALSE;
+	}
+	m_lp_xVideo_Register = (LPXVIDEO_REGISTER)GetProcAddress(m_hXVideo, "xVideo_Register");
+	m_lp_xVideo_Init = (LPXVIDEO_INIT)GetProcAddress(m_hXVideo, "xVideo_Init");
+	m_lp_xVideo_StreamCreateFile = (LPXVIDEO_STREAMCREATEFILE)GetProcAddress(m_hXVideo, "xVideo_StreamCreateFile");
+	m_lp_xVideo_ChannelResizeWindow = (LPXVIDEO_CHANNELRESIZEWINDOW)GetProcAddress(m_hXVideo, "xVideo_ChannelResizeWindow");
+	m_lp_xVideo_ChannelGetInfo = (LPXVIDEO_CHANNELGETINFO)GetProcAddress(m_hXVideo, "xVideo_ChannelGetInfo");
+	m_lp_xVideo_SetConfig = (LPXVIDEO_SETCONFIG)GetProcAddress(m_hXVideo, "xVideo_SetConfig");
+	m_lp_xVideo_ChannelSetWindow = (LPXVIDEO_CHANNELSETWINDOW)GetProcAddress(m_hXVideo, "xVideo_ChannelSetWIndow");
+	m_lp_xVideo_StreamFree = (LPXVIDEO_STREAMFREE)GetProcAddress(m_hXVideo, "xVideo_StreamFree");
+	m_lp_xVideo_Register(_T("taro@edolfzoku.com"), _T("09437237643421"), xVideo_UNICODE);
+	if (!m_lp_xVideo_Init((HWND)m_rMainWnd, 0)) {
+#if JP
+		m_rApp.ShowError(_T("xVideo.DLL の初期化に失敗しました。"));
+#else // JP
+		m_rApp.ShowError(_T("failed to init xVideo.DLL."));
+#endif // JP
+		return FALSE;
+	}
+	else {
+		m_lp_xVideo_SetConfig(xVideo_CONFIG_VideoRenderer, xVideo_VMR9);
+		return TRUE;
+	}
+}
+//----------------------------------------------------------------------------
 // サイズのリセット
 //----------------------------------------------------------------------------
 void CSound::ResetSize(int left, int top, int right, int bottom)
@@ -88,14 +125,14 @@ void CSound::ResetSize(int left, int top, int right, int bottom)
 	if(right >= bottom) { // 横幅が縦幅より大きい場合
 		int nHeight = bottom;
 		int nWidth = (int)(nHeight * m_nWidth / m_nHeight);
-		xVideo_ChannelResizeWindow(m_hVideoStream, 0,
+		m_lp_xVideo_ChannelResizeWindow(m_hVideoStream, 0,
 			(int)(right / 2 - nWidth / 2),
 			0, nWidth, nHeight);
 	}
 	else {  // 縦幅が横幅より大きい場合
 		int nWidth = right;
 		int nHeight = (int)(nWidth * m_nHeight / m_nWidth);
-		xVideo_ChannelResizeWindow(m_hVideoStream, 0, 0,
+		m_lp_xVideo_ChannelResizeWindow(m_hVideoStream, 0, 0,
 			(int)(bottom / 2 - nHeight / 2), nWidth, nHeight);
 	}
 }
@@ -1718,96 +1755,99 @@ BOOL CSound::StreamCreateURL(LPCTSTR lpFilePath, BOOL bDecode)
 	   _tcsicmp(ext, _T(".mp4")) == 0 || _tcsicmp(ext, _T(".mkv")) == 0 ||
 	   _tcsicmp(ext, _T(".flv")) == 0) {
 		StreamFree();
-		if(m_rMainWnd.IsFullScreen())
-			m_hVideoStream = xVideo_StreamCreateFile((PVOID)lpFilePath, 0,
-										(HWND)m_rMainWnd.GetVideoScreenWnd(),
-										BASS_STREAM_DECODE | xVideo_UNICODE);
-		else
-			m_hVideoStream = xVideo_StreamCreateFile((PVOID)lpFilePath, 0,
-										(HWND)m_rMainWnd.GetVideoScreen(),
-										BASS_STREAM_DECODE | xVideo_UNICODE);
+		if(!m_bInitBASS_DSHOWPlugin) m_bInitBASS_DSHOWPlugin = InitBASS_DSHOW();
+		if(m_bInitBASS_DSHOWPlugin) {
+			if (m_rMainWnd.IsFullScreen())
+				m_hVideoStream = m_lp_xVideo_StreamCreateFile((PVOID)lpFilePath, 0,
+				(HWND)m_rMainWnd.GetVideoScreenWnd(),
+					BASS_STREAM_DECODE | xVideo_UNICODE);
+			else
+				m_hVideoStream = m_lp_xVideo_StreamCreateFile((PVOID)lpFilePath, 0,
+				(HWND)m_rMainWnd.GetVideoScreen(),
+					BASS_STREAM_DECODE | xVideo_UNICODE);
 
-		xVideo_ChannelInfo xci;
-		xVideo_ChannelGetInfo(m_hVideoStream, &xci);
-		m_nWidth = xci.Width;
-		m_nHeight = xci.Height;
+			xVideo_ChannelInfo xci;
+			m_lp_xVideo_ChannelGetInfo(m_hVideoStream, &xci);
+			m_nWidth = xci.Width;
+			m_nHeight = xci.Height;
 
-		if(!m_rMainWnd.IsFullScreen())
-			ResetSize(0, 0, m_rMainWnd.GetVideoScreen().GetWidth(),
-						m_rMainWnd.GetVideoScreen().GetHeight());
+			if (!m_rMainWnd.IsFullScreen())
+				ResetSize(0, 0, m_rMainWnd.GetVideoScreen().GetWidth(),
+					m_rMainWnd.GetVideoScreen().GetHeight());
 
-		m_hStream = m_hVideoStream;
-		TempoCreate(bDecode);
-		m_strCurFile = lpFilePath;
-		m_nLoopPosA = 0;
-		m_nLoopPosB = ChannelGetLength();
-		m_hFx20Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx25Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx31_5Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx40Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx50Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx63Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx80Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx100Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx125Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx160Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx200Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx250Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx315Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx400Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx500Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx630Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx800Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx1KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx1_25KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx1_6KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx2KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx2_5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx3_15KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx4KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx6_3KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx8KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx10KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx12_5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx16KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx20KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx20Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx25Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx31_5Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx40Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx50Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx63Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx80Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx100Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx125Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx160Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx200Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx250Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx315Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx400Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx500Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx630Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx800Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx1KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx1_25KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx1_6KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx2KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx2_5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx3_15KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx4KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx6_3KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx8KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx10KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx12_5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx16KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx20KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFxVolume = ChannelSetFX(BASS_FX_BFX_VOLUME, 1);
+			m_hStream = m_hVideoStream;
+			TempoCreate(bDecode);
+			m_strCurFile = lpFilePath;
+			m_nLoopPosA = 0;
+			m_nLoopPosB = ChannelGetLength();
+			m_hFx20Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx25Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx31_5Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx40Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx50Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx63Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx80Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx100Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx125Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx160Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx200Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx250Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx315Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx400Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx500Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx630Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx800Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx1KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx1_25KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx1_6KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx2KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx2_5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx3_15KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx4KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx6_3KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx8KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx10KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx12_5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx16KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx20KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx20Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx25Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx31_5Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx40Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx50Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx63Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx80Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx100Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx125Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx160Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx200Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx250Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx315Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx400Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx500Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx630Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx800Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx1KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx1_25KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx1_6KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx2KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx2_5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx3_15KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx4KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx6_3KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx8KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx10KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx12_5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx16KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx20KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFxVolume = ChannelSetFX(BASS_FX_BFX_VOLUME, 1);
 
-		if(m_hStream) {
-			m_rMainWnd.SetVideo(TRUE);
-			bRet = TRUE;
+			if (m_hStream) {
+				m_rMainWnd.SetVideo(TRUE);
+				bRet = TRUE;
+			}
 		}
 	}
 
@@ -1914,96 +1954,100 @@ BOOL CSound::StreamCreateFile(LPCTSTR lpFilePath, BOOL bDecode, int nCount)
 	   _tcsicmp(ext, _T(".mp4")) == 0 || _tcsicmp(ext, _T(".mkv")) == 0 ||
 	   _tcsicmp(ext, _T(".flv")) == 0) {
 		StreamFree();
-		if(m_rMainWnd.IsFullScreen())
-			m_hVideoStream = xVideo_StreamCreateFile((PVOID)lpFilePath, 0,
-										(HWND)m_rMainWnd.GetVideoScreenWnd(),
-										BASS_STREAM_DECODE | xVideo_UNICODE);
-		else
-			m_hVideoStream = xVideo_StreamCreateFile((PVOID)lpFilePath, 0,
-										(HWND)m_rMainWnd.GetVideoScreen(),
-										BASS_STREAM_DECODE | xVideo_UNICODE);
+		if(!m_bInitBASS_DSHOWPlugin)
+		m_bInitBASS_DSHOWPlugin = InitBASS_DSHOW();
+		if(m_bInitBASS_DSHOWPlugin) {
+			if (m_rMainWnd.IsFullScreen())
+				m_hVideoStream = m_lp_xVideo_StreamCreateFile((PVOID)lpFilePath, 0,
+				(HWND)m_rMainWnd.GetVideoScreenWnd(),
+					BASS_STREAM_DECODE | xVideo_UNICODE);
+			else
+				m_hVideoStream = m_lp_xVideo_StreamCreateFile((PVOID)lpFilePath, 0,
+				(HWND)m_rMainWnd.GetVideoScreen(),
+					BASS_STREAM_DECODE | xVideo_UNICODE);
 
-		xVideo_ChannelInfo xci;
-		xVideo_ChannelGetInfo(m_hVideoStream, &xci);
-		m_nWidth = xci.Width;
-		m_nHeight = xci.Height;
+			xVideo_ChannelInfo xci;
+			m_lp_xVideo_ChannelGetInfo(m_hVideoStream, &xci);
+			m_nWidth = xci.Width;
+			m_nHeight = xci.Height;
 
-		if(!m_rMainWnd.IsFullScreen())
-			ResetSize(0, 0, m_rMainWnd.GetVideoScreen().GetWidth(),
-						m_rMainWnd.GetVideoScreen().GetHeight());
+			if (!m_rMainWnd.IsFullScreen())
+				ResetSize(0, 0, m_rMainWnd.GetVideoScreen().GetWidth(),
+					m_rMainWnd.GetVideoScreen().GetHeight());
 
-		m_hStream = m_hVideoStream;
-		TempoCreate(bDecode);
-		m_strCurFile = lpFilePath;
-		m_nLoopPosA = 0;
-		m_nLoopPosB = ChannelGetLength();
-		m_hFx20Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx25Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx31_5Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx40Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx50Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx63Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx80Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx100Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx125Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx160Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx200Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx250Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx315Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx400Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx500Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx630Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx800Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx1KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx1_25KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx1_6KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx2KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx2_5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx3_15KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx4KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx6_3KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx8KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx10KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx12_5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx16KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx20KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx20Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx25Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx31_5Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx40Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx50Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx63Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx80Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx100Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx125Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx160Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx200Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx250Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx315Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx400Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx500Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx630Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx800Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx1KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx1_25KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx1_6KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx2KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx2_5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx3_15KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx4KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx6_3KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx8KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx10KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx12_5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx16KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx20KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFxVolume = ChannelSetFX(BASS_FX_BFX_VOLUME, 1);
+			m_hStream = m_hVideoStream;
+			TempoCreate(bDecode);
+			m_strCurFile = lpFilePath;
+			m_nLoopPosA = 0;
+			m_nLoopPosB = ChannelGetLength();
+			m_hFx20Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx25Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx31_5Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx40Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx50Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx63Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx80Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx100Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx125Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx160Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx200Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx250Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx315Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx400Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx500Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx630Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx800Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx1KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx1_25KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx1_6KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx2KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx2_5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx3_15KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx4KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx6_3KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx8KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx10KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx12_5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx16KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx20KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx20Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx25Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx31_5Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx40Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx50Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx63Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx80Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx100Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx125Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx160Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx200Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx250Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx315Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx400Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx500Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx630Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx800Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx1KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx1_25KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx1_6KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx2KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx2_5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx3_15KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx4KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx6_3KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx8KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx10KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx12_5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx16KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx20KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFxVolume = ChannelSetFX(BASS_FX_BFX_VOLUME, 1);
 
-		if(m_hStream) {
-			m_rMainWnd.SetVideo(TRUE);
-			bRet = TRUE;
+			if (m_hStream) {
+				m_rMainWnd.SetVideo(TRUE);
+				bRet = TRUE;
+			}
 		}
 	}
 
@@ -2232,7 +2276,7 @@ BOOL CSound::StreamCreateNSFFile(LPCTSTR lpFilePath, int nCount)
 //----------------------------------------------------------------------------
 void CSound::StreamFree()
 {
-	if(m_hVideoStream) xVideo_StreamFree(m_hVideoStream), m_hVideoStream = 0;
+	if(m_hVideoStream) m_lp_xVideo_StreamFree(m_hVideoStream), m_hVideoStream = 0;
 	CBassFx::StreamFree();
 }
 //----------------------------------------------------------------------------
@@ -2241,10 +2285,10 @@ void CSound::StreamFree()
 void CSound::ChannelSetWindow()
 {
 	if(m_rMainWnd.IsFullScreen())
-		xVideo_ChannelSetWindow(m_hVideoStream, 0,
+		m_lp_xVideo_ChannelSetWindow(m_hVideoStream, 0,
 								(HWND)m_rMainWnd.GetVideoScreenWnd());
 	else
-		xVideo_ChannelSetWindow(m_hVideoStream, 0,
+		m_lp_xVideo_ChannelSetWindow(m_hVideoStream, 0,
 								(HWND)m_rMainWnd.GetVideoScreen());
 }
 //----------------------------------------------------------------------------
