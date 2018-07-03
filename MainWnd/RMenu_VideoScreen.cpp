@@ -2,7 +2,9 @@
 // RMenu_VideoScreen.cpp : ビデオ画面用右クリックメニューの管理を行う
 //----------------------------------------------------------------------------
 #include <windows.h>
+#include "../Common/CommandList.h"
 #include "MainWnd.h"
+#include "Menu_MainWnd.h"
 #include "VideoScreen_MainWnd.h"
 #include "RMenu_VideoScreen.h"
 //----------------------------------------------------------------------------

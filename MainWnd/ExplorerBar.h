@@ -8,6 +8,7 @@ class CApp;
 class CMainWnd;
 #include "../Common/Font.h"
 #include "../Common/EditExt.h"
+#include "../Common/Static.h"
 #if _DEBUG
 #define _CRTDBG_MAP_ALLOC
 #include <crtdbg.h>

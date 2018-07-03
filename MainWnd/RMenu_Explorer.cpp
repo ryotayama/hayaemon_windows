@@ -3,6 +3,7 @@
 //----------------------------------------------------------------------------
 #include <windows.h>
 #include "MainWnd.h"
+#include "Menu_MainWnd.h"
 #include "Explorer.h"
 #include "RMenu_Explorer.h"
 //----------------------------------------------------------------------------

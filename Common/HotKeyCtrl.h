@@ -5,6 +5,7 @@
 #define HotKeyCtrlH
 
 #include <commctrl.h>
+#include "ClientDC.h"
 #include "Wnd.h"
 #include "Font.h"
 #include "AcceleratorTable.h"

@@ -4,8 +4,10 @@
 #include <windows.h>
 #include <shlwapi.h>
 #include "../App.h"
+#include "../Common/ClientDC.h"
 #include "MainWnd.h"
 #include "PitchAnalyser.h"
+#include "Sound.h"
 //----------------------------------------------------------------------------
 // コンストラクタ
 //----------------------------------------------------------------------------

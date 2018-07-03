@@ -3,7 +3,11 @@
 //----------------------------------------------------------------------------
 #include <windows.h>
 #include "../App.h"
+#include "../MainWnd/FreqSlider_MainWnd.h"
 #include "../MainWnd/MainWnd.h"
+#include "../MainWnd/PanSlider_MainWnd.h"
+#include "../MainWnd/PitchSlider_MainWnd.h"
+#include "../MainWnd/SpeedSlider_MainWnd.h"
 #include "LimitSettingWnd_MainWnd.h"
 //----------------------------------------------------------------------------
 // コンストラクタ

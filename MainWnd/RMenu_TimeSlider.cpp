@@ -3,6 +3,7 @@
 //----------------------------------------------------------------------------
 #include <windows.h>
 #include "MainWnd.h"
+#include "Menu_MainWnd.h"
 #include "TimeSlider_MainWnd.h"
 #include "RMenu_TimeSlider.h"
 //----------------------------------------------------------------------------

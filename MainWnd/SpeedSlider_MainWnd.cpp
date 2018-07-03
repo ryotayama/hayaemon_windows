@@ -3,8 +3,12 @@
 //----------------------------------------------------------------------------
 #include <windows.h>
 #include "../App.h"
+#include "../Common/CommandList.h"
 #include "../Common/Utils.h"
+#include "Divider2_MainWnd.h"
 #include "MainWnd.h"
+#include "Menu_MainWnd.h"
+#include "SpeedLabel_MainWnd.h"
 #include "SpeedSlider_MainWnd.h"
 //----------------------------------------------------------------------------
 // çÏê¨

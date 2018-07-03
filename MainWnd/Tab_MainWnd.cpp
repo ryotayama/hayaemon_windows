@@ -4,7 +4,12 @@
 #include <windows.h>
 #include "../resource.h"
 #include "../App.h"
+#include "../Common/CommandList.h"
+#include "Divider5_MainWnd.h"
+#include "Explorer.h"
 #include "MainWnd.h"
+#include "Menu_MainWnd.h"
+#include "PlayListView_MainWnd.h"
 #include "Tab_MainWnd.h"
 //----------------------------------------------------------------------------
 // êVÇµÇ¢É^ÉuÇí«â¡

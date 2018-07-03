@@ -4,8 +4,13 @@
 #include <windows.h>
 #include <TCHAR.H>
 #include "../App.h"
+#include "../Common/CommandList.h"
+#include "Divider3_MainWnd.h"
+#include "Explorer.h"
 #include "MainWnd.h"
+#include "Menu_MainWnd.h"
 #include "VolumeLabel_MainWnd.h"
+#include "VolumeSlider_MainWnd.h"
 //----------------------------------------------------------------------------
 // çÏê¨
 //----------------------------------------------------------------------------

@@ -3,8 +3,12 @@
 //----------------------------------------------------------------------------
 #include <windows.h>
 #include "../App.h"
+#include "../Common/CommandList.h"
+#include "Explorer.h"
 #include "MainWnd.h"
+#include "Menu_MainWnd.h"
 #include "Divider3_MainWnd.h"
+#include "PitchSlider_MainWnd.h"
 //----------------------------------------------------------------------------
 // çÇÇ≥ÇìæÇÈ
 //----------------------------------------------------------------------------

@@ -2,7 +2,9 @@
 // RMenu_VolumeCtrl.cpp : 音量コントロール用右クリックメニューの管理を行う
 //----------------------------------------------------------------------------
 #include <windows.h>
+#include "../Common/CommandList.h"
 #include "MainWnd.h"
+#include "Menu_MainWnd.h"
 #include "RMenu_VolumeCtrl.h"
 //----------------------------------------------------------------------------
 // 作成

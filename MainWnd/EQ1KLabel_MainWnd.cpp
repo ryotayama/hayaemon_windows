@@ -4,8 +4,16 @@
 #include <windows.h>
 #include <TCHAR.H>
 #include "../App.h"
+#include "../Common/CommandList.h"
+#include "Explorer.h"
 #include "MainWnd.h"
+#include "Menu_MainWnd.h"
+#include "EQ12_5KLabel_MainWnd.h"
 #include "EQ1KLabel_MainWnd.h"
+#include "EQ1KSlider_MainWnd.h"
+#include "EQ800Label_MainWnd.h"
+#include "EQ800Slider_MainWnd.h"
+#include "PanLabel_MainWnd.h"
 //----------------------------------------------------------------------------
 // çÏê¨
 //----------------------------------------------------------------------------

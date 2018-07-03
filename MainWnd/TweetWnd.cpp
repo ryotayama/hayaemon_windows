@@ -4,6 +4,7 @@
 #include <windows.h>
 #include "../App.h"
 #include "MainWnd.h"
+#include "Sound.h"
 #include "TweetWnd.h"
 //----------------------------------------------------------------------------
 // ƒL[‚ª‰Ÿ‚³‚ê‚½

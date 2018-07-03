@@ -2,10 +2,14 @@
 // FreqSlider_MainWnd.cpp : 再生時間表示用ラベルの管理を行う
 //----------------------------------------------------------------------------
 #include <windows.h>
+#include "../Common/CommandList.h"
 #include "../Common/Utils.h"
 #include "../App.h"
 #include "MainWnd.h"
+#include "Menu_MainWnd.h"
+#include "FreqLabel_MainWnd.h"
 #include "FreqSlider_MainWnd.h"
+#include "SpeedSlider_MainWnd.h"
 //----------------------------------------------------------------------------
 // 作成
 //----------------------------------------------------------------------------

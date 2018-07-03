@@ -3,9 +3,14 @@
 //----------------------------------------------------------------------------
 #include <windows.h>
 #include "../App.h"
+#include "../Common/CommandList.h"
+#include "Explorer.h"
 #include "MainWnd.h"
+#include "Menu_MainWnd.h"
 #include "TimeSlider_MainWnd.h"
 #include "RMenu_TimeSlider.h"
+#include "Sound.h"
+#include "VideoScreen_MainWnd.h"
 //----------------------------------------------------------------------------
 // çÏê¨
 //----------------------------------------------------------------------------

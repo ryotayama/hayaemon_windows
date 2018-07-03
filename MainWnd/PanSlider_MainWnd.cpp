@@ -2,10 +2,14 @@
 // PanSlider_MainWnd.cpp : ボリューム表示用ラベルの管理を行う
 //----------------------------------------------------------------------------
 #include <windows.h>
+#include "../Common/CommandList.h"
 #include "../Common/Utils.h"
 #include "../App.h"
 #include "MainWnd.h"
+#include "Menu_MainWnd.h"
+#include "PanLabel_MainWnd.h"
 #include "PanSlider_MainWnd.h"
+#include "VolumeSlider_MainWnd.h"
 //----------------------------------------------------------------------------
 // 作成
 //----------------------------------------------------------------------------

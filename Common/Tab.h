@@ -4,6 +4,7 @@
 #ifndef TabH
 #define TabH
 
+#include <CommCtrl.h>
 #include "Wnd.h"
 #include "Font.h"
 #include "ClientDC.h"

@@ -3,8 +3,13 @@
 //----------------------------------------------------------------------------
 #include <windows.h>
 #include "../App.h"
+#include "../Common/CommandList.h"
 #include "MainWnd.h"
+#include "Menu_MainWnd.h"
+#include "EQ16KSlider_MainWnd.h"
+#include "EQ20KLabel_MainWnd.h"
 #include "EQ20KSlider_MainWnd.h"
+#include "PanSlider_MainWnd.h"
 //----------------------------------------------------------------------------
 // çÏê¨
 //----------------------------------------------------------------------------

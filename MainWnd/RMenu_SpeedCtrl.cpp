@@ -2,7 +2,9 @@
 // RMenu_SpeedCtrl.cpp : 再生速度コントロール用右クリックメニューの管理を行う
 //----------------------------------------------------------------------------
 #include <windows.h>
+#include "../Common/CommandList.h"
 #include "MainWnd.h"
+#include "Menu_MainWnd.h"
 #include "RMenu_SpeedCtrl.h"
 //----------------------------------------------------------------------------
 // 作成

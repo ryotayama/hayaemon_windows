@@ -2,9 +2,13 @@
 // PitchSlider_MainWnd.cpp : 再生時間表示用ラベルの管理を行う
 //----------------------------------------------------------------------------
 #include <windows.h>
+#include "../Common/CommandList.h"
 #include "../Common/Utils.h"
 #include "../App.h"
+#include "FreqSlider_MainWnd.h"
 #include "MainWnd.h"
+#include "Menu_MainWnd.h"
+#include "PitchLabel_MainWnd.h"
 #include "PitchSlider_MainWnd.h"
 //----------------------------------------------------------------------------
 // 作成

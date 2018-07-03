@@ -2,7 +2,9 @@
 // RMenu_Taskbar.cpp : タスクバー用右クリックメニューの管理を行う
 //----------------------------------------------------------------------------
 #include <windows.h>
+#include "../Common/CommandList.h"
 #include "MainWnd.h"
+#include "Menu_MainWnd.h"
 #include "RMenu_Taskbar.h"
 //----------------------------------------------------------------------------
 // 作成

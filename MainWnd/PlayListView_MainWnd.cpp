@@ -7,10 +7,17 @@
 #include <shlwapi.h>
 #include "../resource.h"
 #include "../App.h"
+#include "../Common/CommandList.h"
 #include "../Common/nsfsdk.h"
+#include "EQ20KLabel_MainWnd.h"
+#include "EQ20KSlider_MainWnd.h"
+#include "Explorer.h"
 #include "MainWnd.h"
+#include "Menu_MainWnd.h"
 #include "PlayListView_MainWnd.h"
 #include "M3UFile.h"
+#include "Sound.h"
+#include "Tab_MainWnd.h"
 
 typedef struct _tagSORTDATA{
     HWND hwndList; // リストビューのhwnd

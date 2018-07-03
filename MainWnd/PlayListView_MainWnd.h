@@ -10,6 +10,7 @@
 class CApp;
 class CMainWnd;
 #include "RMenu_ListView.h"
+#include "../Common/Font.h"
 #include "../Common/ListView.h"
 #include "../Common/mp3infp_ExportFunc.h"
 #include "../Common/EditExt.h"
