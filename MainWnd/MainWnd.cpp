@@ -1,4 +1,4 @@
-//----------------------------------------------------------------------------
+﻿//----------------------------------------------------------------------------
 // MainWnd.cpp : メインウィンドウの作成・管理を行う
 //----------------------------------------------------------------------------
 #include <windows.h>
@@ -10655,7 +10655,7 @@ LRESULT CMainWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return FALSE;
 	}
 
-	m_sound.InitASIO();
+	m_sound->InitASIO();
 
 	OpenInitFileAfterShow();
 
