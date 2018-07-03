@@ -86,21 +86,5 @@ catch {
 Start-Process -FilePath ./7za920/7za.exe -ArgumentList "x mp3infpu_dll_255-beta3.7z -o./mp3infp" -Wait
 #アーカイブをバックアップフォルダに移動して終了
 New-Item .backup -ItemType "directory" -Force| Out-Null
-Move-Item ./bass24.zip ./.backup/ -Force
-Move-Item ./bass_aac24.zip ./.backup/ -Force
-Move-Item ./bassalac24.zip ./.backup/ -Force
-Move-Item ./bass_ape24.zip ./.backup/ -Force
-Move-Item ./Hayaemon276.zip ./.backup/ -Force
-Move-Item ./bass_fx24.zip ./.backup/ -Force
-Move-Item ./bassasio13.zip ./.backup/ -Force
-Move-Item ./basscd24.zip ./.backup/ -Force
-Move-Item ./bassenc24.zip ./.backup/ -Force
-Move-Item ./bassflac24.zip ./.backup/ -Force
-Move-Item ./bassmix24.zip ./.backup/ -Force
-Move-Item ./basswasapi24.zip ./.backup/ -Force
-Move-Item ./basswm24.zip ./.backup/ -Force
-Move-Item ./tags18.zip ./.backup/ -Force
-Move-Item ./nezplug++.zip ./.backup/ -Force
-Move-Item ./jpegsr9c.zip ./.backup/ -Force
-Move-Item ./7za920.zip ./.backup/ -Force
-Move-Item ./mp3infpu_dll_255-beta3.7z ./.backup/ -Force
+Move-Item ./*.zip ./.backup/ -Force
+Move-Item ./mp3infpu_dll_*.7z ./.backup/ -Force
