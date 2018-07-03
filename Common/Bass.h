@@ -10,7 +10,6 @@
 #include "bassflac.h"
 #include "bass_aac.h"
 #include "tags.h"
-#include "xVideo.h"
 #include "bassalac.h"
 #include <cstdlib>
 #if _DEBUG

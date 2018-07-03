@@ -26,7 +26,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v141_xp</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -61,9 +61,10 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>comctl32.lib;Winmm.lib;wsock32.lib;Wininet.lib;libjpeg.lib;bass.lib;bass_ape.lib;basscd.lib;bassflac.lib;bass_fx.lib;bassenc.lib;shlwapi.lib;bass_aac.lib;tags.lib;xVideo.lib;bassalac.lib;bassasio.lib;basswasapi.lib;bassmix.lib;npnez.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>comctl32.lib;Winmm.lib;wsock32.lib;Wininet.lib;libjpeg.lib;bass.lib;bass_ape.lib;basscd.lib;bassflac.lib;bass_fx.lib;bassenc.lib;shlwapi.lib;bass_aac.lib;tags.lib;bassalac.lib;bassasio.lib;basswasapi.lib;bassmix.lib;npnez.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
@@ -85,9 +86,10 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <CallingConvention>Cdecl</CallingConvention>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>comctl32.lib;Winmm.lib;wsock32.lib;Wininet.lib;libjpeg.lib;bass.lib;bass_ape.lib;basscd.lib;bassflac.lib;bass_fx.lib;bassenc.lib;shlwapi.lib;bass_aac.lib;tags.lib;xVideo.lib;bassalac.lib;bassasio.lib;basswasapi.lib;bassmix.lib;npnez.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>comctl32.lib;Winmm.lib;wsock32.lib;Wininet.lib;libjpeg.lib;bass.lib;bass_ape.lib;basscd.lib;bassflac.lib;bass_fx.lib;bassenc.lib;shlwapi.lib;bass_aac.lib;tags.lib;bassalac.lib;bassasio.lib;basswasapi.lib;bassmix.lib;npnez.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -107,6 +109,7 @@
     <ClInclude Include="Common\bass_alac.h" />
     <ClInclude Include="Common\bass_ape.h" />
     <ClInclude Include="Common\BASS_DSHOW.h" />
+    <ClInclude Include="Common\BASS_DSHOW_ExportFunc.h" />
     <ClInclude Include="Common\bass_fx.h" />
     <ClInclude Include="Common\BassFx.h" />
     <ClInclude Include="Common\bassinc.h" />

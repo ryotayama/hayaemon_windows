@@ -1,7 +1,7 @@
+﻿------------------------------------------------------------------------------
+ Hayaemon Version 2.77 beta 2
 ------------------------------------------------------------------------------
- Hayaemon Version 2.77 beta 1
-------------------------------------------------------------------------------
-                                                        Last update: 2018/6/27
+                                                         Last update: 2018/7/3
                                       Ryota Yamauchi <ryota.yamauch@gmail.com>
                                             Free Software Development Station:
                                                     http://soft.edolfzoku.com/
@@ -44,7 +44,7 @@
  Development Environment
 ------------------------------------------------------------------------------
 
- Windows 7 / Visual C++ 2017, Windows SDK.
+ Windows 10 / Visual Studio Community 2017, Windows SDK.
 
  Hayaemon's sound engine is using the high performance audio library "BASS.DLL".
  Mr. Ian Luck that has provided useful libraries, thank you deeply.
@@ -68,6 +68,9 @@
 ------------------------------------------------------------------------------
  History
 ------------------------------------------------------------------------------
+
+2018/7/3 Version 2.77 beta 2
+ Fixed an error message has been shown "d3dx9_43.dll is not found" when booting.
 
 2018/6/27 Version 2.77 beta 1
  Updated external libraries to latest version.

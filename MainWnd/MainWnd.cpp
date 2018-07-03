@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------------
-// MainWnd.cpp : ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚Ìì¬EŠÇ—‚ğs‚¤
+// MainWnd.cpp : ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä½œæˆãƒ»ç®¡ç†ã‚’è¡Œã†
 //----------------------------------------------------------------------------
 #include <windows.h>
 #include <TCHAR.H>
@@ -135,7 +135,7 @@
 #include "VolumeLabel_MainWnd.h"
 #include "VolumeSlider_MainWnd.h"
 //----------------------------------------------------------------------------
-// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 //----------------------------------------------------------------------------
 CMainWnd::CMainWnd(CApp & app)
 	: m_rApp(app), m_menu(new CMenu_MainWnd(app, *this)),
@@ -273,11 +273,11 @@ CMainWnd::CMainWnd(CApp & app)
 {
 }
 //----------------------------------------------------------------------------
-// ƒfƒXƒgƒ‰ƒNƒ^
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 //----------------------------------------------------------------------------
 CMainWnd::~CMainWnd() = default;
 //----------------------------------------------------------------------------
-// ƒhƒƒbƒv‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Ì’Ç‰Á
+// ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã®è¿½åŠ 
 //----------------------------------------------------------------------------
 void CMainWnd::AddDropFiles(HDROP hdrop, BOOL bClear)
 {
@@ -320,7 +320,7 @@ void CMainWnd::AddDropFiles(HDROP hdrop, BOOL bClear)
 	StartUpdateInfo();
 }
 //----------------------------------------------------------------------------
-// ƒtƒ@ƒCƒ‹‚Ì’Ç‰Á
+// ãƒ•ã‚¡ã‚¤ãƒ«ã®è¿½åŠ 
 //----------------------------------------------------------------------------
 void CMainWnd::AddFile(LPCTSTR lpszFilePath)
 {
@@ -328,7 +328,7 @@ void CMainWnd::AddFile(LPCTSTR lpszFilePath)
 	m_arrayList[nSelect]->AddFile(lpszFilePath);
 }
 //----------------------------------------------------------------------------
-// ƒ}[ƒJ[‚Ì’Ç‰Á
+// ãƒãƒ¼ã‚«ãƒ¼ã®è¿½åŠ 
 //----------------------------------------------------------------------------
 void CMainWnd::AddMarker()
 {
@@ -340,21 +340,21 @@ void CMainWnd::AddMarker()
 	if(bInstantLoop) SetPrevMarker();
 }
 //----------------------------------------------------------------------------
-// ƒvƒŠƒZƒbƒg‚Ì’Ç‰Á
+// ãƒ—ãƒªã‚»ãƒƒãƒˆã®è¿½åŠ 
 //----------------------------------------------------------------------------
 void CMainWnd::AddPreset()
 {
 	presetNameInputWnd->Create();
 }
 //----------------------------------------------------------------------------
-// ƒvƒŠƒZƒbƒg‚Ì’Ç‰Á
+// ãƒ—ãƒªã‚»ãƒƒãƒˆã®è¿½åŠ 
 //----------------------------------------------------------------------------
 void CMainWnd::AddPreset(tstring str)
 {
 	SavePreset(str.c_str());
 }
 //----------------------------------------------------------------------------
-// Œ»İÄ¶’†‚Ìƒ^ƒu‚ğ•ÏX
+// ç¾åœ¨å†ç”Ÿä¸­ã®ã‚¿ãƒ–ã‚’å¤‰æ›´
 //----------------------------------------------------------------------------
 void CMainWnd::ChangeCurPlayTab()
 {
@@ -363,7 +363,7 @@ void CMainWnd::ChangeCurPlayTab()
 	nCurPlayTab = m_tab->GetCurrentFocus();
 }
 //----------------------------------------------------------------------------
-// ‰ñ”ƒ‹[ƒv‚Ìƒ`ƒFƒbƒN
+// å›æ•°ãƒ«ãƒ¼ãƒ—ã®ãƒã‚§ãƒƒã‚¯
 //----------------------------------------------------------------------------
 BOOL CMainWnd::CheckLoop()
 {
@@ -405,7 +405,7 @@ BOOL CMainWnd::CheckLoop()
 				}
 			}
 
-			BOOL bDone = FALSE; // ”ÍˆÍ‚ğİ’è‚µ‚½‚©‚Ç‚¤‚©
+			BOOL bDone = FALSE; // ç¯„å›²ã‚’è¨­å®šã—ãŸã‹ã©ã†ã‹
 			if(max > 0) {
 				if(0 <= qwTime && qwTime < arrayMarker[0]) {
 						bDone = TRUE;
@@ -461,7 +461,7 @@ BOOL CMainWnd::CheckLoop()
 	else return TRUE;
 }
 //----------------------------------------------------------------------------
-// Œ»İ‚ÌÄ¶ˆÊ’u‚ğƒNƒŠƒbƒvƒ{[ƒh‚ÉƒRƒs[
+// ç¾åœ¨ã®å†ç”Ÿä½ç½®ã‚’ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ã‚³ãƒ”ãƒ¼
 //----------------------------------------------------------------------------
 void CMainWnd::CopyTime()
 {
@@ -504,7 +504,7 @@ void CMainWnd::CopyTime()
 	CloseClipboard();
 }
 //----------------------------------------------------------------------------
-// V‚µ‚¢Ä¶ƒŠƒXƒg‚ğì¬
+// æ–°ã—ã„å†ç”Ÿãƒªã‚¹ãƒˆã‚’ä½œæˆ
 //----------------------------------------------------------------------------
 void CMainWnd::CreateNewList(BOOL bChangeFocus)
 {
@@ -523,7 +523,7 @@ void CMainWnd::CreateNewList(BOOL bChangeFocus)
 	m_tab->AddNewTab(bChangeFocus);
 }
 //----------------------------------------------------------------------------
-// ŠeƒRƒ“ƒgƒ[ƒ‹‚ğì¬
+// å„ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚’ä½œæˆ
 //----------------------------------------------------------------------------
 BOOL CMainWnd::CreateControls(BOOL bFirst, BOOL bVideoScreenVisible,
 	BOOL bTimeSliderVisible, BOOL bExplorerVisible, BOOL bSpeedVisible,
@@ -534,30 +534,30 @@ BOOL CMainWnd::CreateControls(BOOL bFirst, BOOL bVideoScreenVisible,
 	lstrcpy(chPath, (m_rApp.GetFilePath() + _T("Setting.ini")).c_str());
 
 	if(bFirst) {
-		// ‹æØ‚èü‚»‚Ì‚P‚Ìì¬
+		// åŒºåˆ‡ã‚Šç·šãã®ï¼‘ã®ä½œæˆ
 		if(!m_divider1->Create()) {
 #if JP
-			m_rApp.ShowError(_T("‹æØ‚èü‚»‚Ì‚P‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("åŒºåˆ‡ã‚Šç·šãã®ï¼‘ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create divider 1."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒc[ƒ‹ƒo[‚Ìì¬
+		// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ä½œæˆ
 		if(!m_toolBar->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒc[ƒ‹ƒo[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create toolbar."));
 #endif // JP
 			return FALSE;
 		}
 
-		// Ä¶ŠÔ•\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// å†ç”Ÿæ™‚é–“è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_timeLabel->Create()) {
 #if JP
-			m_rApp.ShowError(_T("Ä¶ŠÔ•\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("å†ç”Ÿæ™‚é–“è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create time label."));
 #endif // JP
@@ -565,11 +565,11 @@ BOOL CMainWnd::CreateControls(BOOL bFirst, BOOL bVideoScreenVisible,
 		}
 	}
 
-	// ƒrƒfƒI‰æ–Ê‚Ìì¬
+	// ãƒ“ãƒ‡ã‚ªç”»é¢ã®ä½œæˆ
 	if(bVideoScreenVisible) {
 		if(!m_videoScreen->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒrƒfƒI‰æ–Ê‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ãƒ“ãƒ‡ã‚ªç”»é¢ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create video screen."));
 #endif // JP
@@ -578,10 +578,10 @@ BOOL CMainWnd::CreateControls(BOOL bFirst, BOOL bVideoScreenVisible,
 	}
 
 	if(bTimeSliderVisible) {
-		// Ä¶ŠÔİ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// å†ç”Ÿæ™‚é–“è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_timeSlider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("Ä¶ŠÔİ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("å†ç”Ÿæ™‚é–“è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create time slider."));
 #endif // JP
@@ -590,10 +590,10 @@ BOOL CMainWnd::CreateControls(BOOL bFirst, BOOL bVideoScreenVisible,
 	}
 
 	if(bFirst) {
-		// ‹æØ‚èü‚»‚Ì‚Q‚Ìì¬
+		// åŒºåˆ‡ã‚Šç·šãã®ï¼’ã®ä½œæˆ
 		if(!m_divider2->Create()) {
 #if JP
-			m_rApp.ShowError(_T("‹æØ‚èü‚»‚Ì‚Q‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("åŒºåˆ‡ã‚Šç·šãã®ï¼’ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create divider 2."));
 #endif // JP
@@ -602,20 +602,20 @@ BOOL CMainWnd::CreateControls(BOOL bFirst, BOOL bVideoScreenVisible,
 	}
 
 	if(bExplorerVisible) {
-		// ƒGƒNƒXƒvƒ[ƒ‰—pƒc[ƒ‹ƒo[‚Ìì¬
+		// ã‚¨ã‚¯ã‚¹ãƒ—ãƒ­ãƒ¼ãƒ©ç”¨ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ä½œæˆ
 		if(!m_explorerBar->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒGƒNƒXƒvƒ[ƒ‰—pƒc[ƒ‹ƒo[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¨ã‚¯ã‚¹ãƒ—ãƒ­ãƒ¼ãƒ©ç”¨ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create explorer."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒGƒNƒXƒvƒ[ƒ‰‚Ìì¬
+		// ã‚¨ã‚¯ã‚¹ãƒ—ãƒ­ãƒ¼ãƒ©ã®ä½œæˆ
 		if(!m_explorer->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒGƒNƒXƒvƒ[ƒ‰‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¨ã‚¯ã‚¹ãƒ—ãƒ­ãƒ¼ãƒ©ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create explorer."));
 #endif // JP
@@ -631,20 +631,20 @@ BOOL CMainWnd::CreateControls(BOOL bFirst, BOOL bVideoScreenVisible,
 	}
 
 	if(bSpeedVisible) {
-		// Ä¶‘¬“x•\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// å†ç”Ÿé€Ÿåº¦è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_speedLabel->Create()) {
 #if JP
-			m_rApp.ShowError(_T("Ä¶‘¬“x•\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("å†ç”Ÿé€Ÿåº¦è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create speed label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// Ä¶‘¬“xİ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// å†ç”Ÿé€Ÿåº¦è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_speedSlider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("Ä¶‘¬“xİ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("å†ç”Ÿé€Ÿåº¦è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create speed slider."));
 #endif // JP
@@ -684,20 +684,20 @@ BOOL CMainWnd::CreateControls(BOOL bFirst, BOOL bVideoScreenVisible,
 	}
 
 	if(bFreqVisible) {
-		// Ä¶ü”g”•\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// å†ç”Ÿå‘¨æ³¢æ•°è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_freqLabel->Create()) {
 #if JP
-			m_rApp.ShowError(_T("Ä¶ü”g”•\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("å†ç”Ÿå‘¨æ³¢æ•°è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create frequency label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// Ä¶ü”g”İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// å†ç”Ÿå‘¨æ³¢æ•°è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_freqSlider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("Ä¶ü”g”İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("å†ç”Ÿå‘¨æ³¢æ•°è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create frequency slider."));
 #endif // JP
@@ -737,20 +737,20 @@ BOOL CMainWnd::CreateControls(BOOL bFirst, BOOL bVideoScreenVisible,
 	}
 
 	if(bPitchVisible) {
-		// ‰¹’ö•\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// éŸ³ç¨‹è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_pitchLabel->Create()) {
 #if JP
-			m_rApp.ShowError(_T("‰¹’ö•\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("éŸ³ç¨‹è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create pitch label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ‰¹’öİ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// éŸ³ç¨‹è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_pitchSlider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("‰¹’öİ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("éŸ³ç¨‹è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create pitch slider."));
 #endif // JP
@@ -791,10 +791,10 @@ BOOL CMainWnd::CreateControls(BOOL bFirst, BOOL bVideoScreenVisible,
 	}
 
 	if(bFirst) {
-		// ‹æØ‚èü‚»‚Ì‚R‚Ìì¬
+		// åŒºåˆ‡ã‚Šç·šãã®ï¼“ã®ä½œæˆ
 		if(!m_divider3->Create()) {
 #if JP
-			m_rApp.ShowError(_T("‹æØ‚èü‚»‚Ì‚R‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("åŒºåˆ‡ã‚Šç·šãã®ï¼“ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create divider 3."));
 #endif // JP
@@ -803,20 +803,20 @@ BOOL CMainWnd::CreateControls(BOOL bFirst, BOOL bVideoScreenVisible,
 	}
 
 	if(bVolumeVisible) {
-		// ‰¹—Ê•\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// éŸ³é‡è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_volumeLabel->Create()) {
 #if JP
-			m_rApp.ShowError(_T("‰¹—Ê•\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("éŸ³é‡è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create volume label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ‰¹—Êİ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// éŸ³é‡è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_volumeSlider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("‰¹—Êİ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("éŸ³é‡è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create volume slider."));
 #endif // JP
@@ -834,22 +834,22 @@ BOOL CMainWnd::CreateControls(BOOL bFirst, BOOL bVideoScreenVisible,
 	}
 
 	if(bFirst) {
-		// ƒCƒRƒ‰ƒCƒU ( 12.5KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 12.5KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq12_5kLabel->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 12.5KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 12.5KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(12.5KHz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 12.5KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 12.5KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq12_5kSlider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 12.5KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 12.5KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(12.5KHz) slider."));
 #endif // JP
@@ -858,20 +858,20 @@ BOOL CMainWnd::CreateControls(BOOL bFirst, BOOL bVideoScreenVisible,
 	}
 
 	if(bPanVisible) {
-		// ƒpƒ“•\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ãƒ‘ãƒ³è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_panLabel->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒpƒ“•\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ãƒ‘ãƒ³è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create pan label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒpƒ“İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ãƒ‘ãƒ³è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_panSlider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒpƒ“İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ãƒ‘ãƒ³è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create pan slider."));
 #endif // JP
@@ -888,10 +888,10 @@ BOOL CMainWnd::CreateControls(BOOL bFirst, BOOL bVideoScreenVisible,
 	}
 
 	if(bFirst) {
-		// ‹æØ‚èü‚»‚Ì‚S‚Ìì¬
+		// åŒºåˆ‡ã‚Šç·šãã®ï¼”ã®ä½œæˆ
 		if(!m_divider4->Create()) {
 #if JP
-			m_rApp.ShowError(_T("‹æØ‚èü‚»‚Ì‚S‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("åŒºåˆ‡ã‚Šç·šãã®ï¼”ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create divider 4."));
 #endif // JP
@@ -900,660 +900,660 @@ BOOL CMainWnd::CreateControls(BOOL bFirst, BOOL bVideoScreenVisible,
 	}
 
 	if(bEQVisible) {
-		// ƒCƒRƒ‰ƒCƒU ( 20Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 20Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq20Label->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 20Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 20Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(20Hz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 20Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 20Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq20Slider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 20Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 20Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(20Hz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 25Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 25Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq25Label->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 25Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 25Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(25Hz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 25Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 25Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq25Slider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 25Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 25Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(25Hz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 31.5Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 31.5Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq31_5Label->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 31.5Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 31.5Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(31.5Hz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 31.5Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 31.5Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq31_5Slider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 31.5Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 31.5Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(31.5Hz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 40Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 40Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq40Label->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 40Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 40Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(40Hz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 40Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 40Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq40Slider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 40Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 40Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(40Hz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 50Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 50Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq50Label->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 50Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 50Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(50Hz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 50Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 50Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq50Slider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 50Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 50Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(50Hz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 63Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 63Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq63Label->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 63Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 63Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(63Hz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 63Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 63Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq63Slider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 63Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 63Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(63Hz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 80Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 80Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq80Label->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 80Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 80Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(80Hz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 80Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 80Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq80Slider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 80Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 80Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(80Hz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 100Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 100Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq100Label->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 100Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 100Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(100Hz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 100Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 100Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq100Slider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 100Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 100Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(100Hz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 125Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 125Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq125Label->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 125Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 125Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(125Hz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 125Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 125Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq125Slider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 125Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 125Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(125Hz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 160Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 160Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq160Label->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 160Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 160Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(160Hz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 160Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 160Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq160Slider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 160Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 160Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(160Hz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 200Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 200Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq200Label->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 200Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 200Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(200Hz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 200Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 200Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq200Slider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 200Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 200Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(200Hz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 250Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 250Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq250Label->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 250Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 250Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(250Hz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 250Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 250Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq250Slider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 250Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 250Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(250Hz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 315Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 315Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq315Label->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 315Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 315Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(315Hz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 315Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 315Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq315Slider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 315Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 315Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(315Hz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 400Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 400Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq400Label->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 400Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 400Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(400Hz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 400Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 400Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq400Slider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 400Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 400Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(400Hz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 500Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 500Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq500Label->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 500Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 500Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(500Hz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 500Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 500Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq500Slider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 500Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 500Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(500Hz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 630Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 630Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq630Label->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 630Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 630Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(630Hz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 630Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 630Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq630Slider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 630Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 630Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(630Hz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 800Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 800Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq800Label->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 800Hz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 800Hz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(800Hz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 800Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 800Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq800Slider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 800Hz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 800Hz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(800Hz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 1KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 1KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq1kLabel->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 1KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 1KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(1KHz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 1KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 1KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq1kSlider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 1KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 1KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(1KHz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 1.25KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 1.25KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq1_25kLabel->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 1.25KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 1.25KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(1.25KHz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 1.25KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 1.25KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq1_25kSlider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 1.25KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 1.25KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(1.25KHz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 1.6KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 1.6KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq1_6kLabel->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 1.6KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 1.6KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(1.6KHz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 1.6KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 1.6KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq1_6kSlider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 1.6KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 1.6KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(1.6KHz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 2KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 2KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq2kLabel->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 2KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 2KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(2KHz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 2KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 2KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq2kSlider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 2KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 2KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(2KHz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 2.5KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 2.5KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq2_5kLabel->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 2.5KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 2.5KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(2.5KHz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 2.5KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 2.5KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq2_5kSlider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 2.5KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 2.5KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(2.5KHz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 3.15KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 3.15KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq3_15kLabel->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 3.15KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 3.15KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(3.15KHz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 3.15KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 3.15KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq3_15kSlider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 3.15KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 3.15KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(3.15KHz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 4KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 4KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq4kLabel->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 4KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 4KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(4KHz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 4KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 4KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq4kSlider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 4KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 4KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(4KHz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 5KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 5KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq5kLabel->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 5KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 5KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(5KHz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 5KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 5KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq5kSlider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 5KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 5KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(5KHz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 6.3KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 6.3KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq6_3kLabel->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 6.3KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 6.3KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(6.3KHz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 6.3KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 6.3KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq6_3kSlider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 6.3KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 6.3KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(6.3KHz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 8KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 8KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq8kLabel->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 8KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 8KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(8KHz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 8KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 8KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq8kSlider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 8KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 8KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(8KHz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 10KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 10KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq10kLabel->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 10KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 10KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(10KHz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 10KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 10KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq10kSlider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 10KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 10KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(10KHz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 16KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 16KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq16kLabel->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 16KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 16KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(16KHz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 16KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 16KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq16kSlider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 16KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 16KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(16KHz) slider."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 20KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 20KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆ
 		if(!m_eq20kLabel->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 20KHz ) •\¦—pƒ‰ƒxƒ‹‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 20KHz ) è¡¨ç¤ºç”¨ãƒ©ãƒ™ãƒ«ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(20KHz) label."));
 #endif // JP
 			return FALSE;
 		}
 
-		// ƒCƒRƒ‰ƒCƒU ( 20KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬
+		// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 20KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆ
 		if(!m_eq20kSlider->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒCƒRƒ‰ƒCƒU ( 20KHz ) İ’è—pƒXƒ‰ƒCƒ_‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 20KHz ) è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create EQ(20KHz) slider."));
 #endif // JP
@@ -1722,10 +1722,10 @@ BOOL CMainWnd::CreateControls(BOOL bFirst, BOOL bVideoScreenVisible,
 	}
 
 	if(bFirst) {
-		// ‹æØ‚èü‚»‚Ì‚T‚Ìì¬
+		// åŒºåˆ‡ã‚Šç·šãã®ï¼•ã®ä½œæˆ
 		if(!m_divider5->Create()) {
 #if JP
-			m_rApp.ShowError(_T("‹æØ‚èü‚»‚Ì‚T‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("åŒºåˆ‡ã‚Šç·šãã®ï¼•ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create divider 5."));
 #endif // JP
@@ -1734,21 +1734,21 @@ BOOL CMainWnd::CreateControls(BOOL bFirst, BOOL bVideoScreenVisible,
 	}
 
 	if(bFirst) {
-		// ƒ^ƒu‚Ìì¬
+		// ã‚¿ãƒ–ã®ä½œæˆ
 		if(!m_tab->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒ^ƒu‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ã‚¿ãƒ–ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create tab."));
 #endif // JP
 			return FALSE;
 		}
 		m_arrayList.push_back(new CPlayListView_MainWnd(m_rApp, *this));
-		// ƒvƒŒƒCƒŠƒXƒg—pƒŠƒXƒgƒrƒ…[‚Ìì¬
+		// ãƒ—ãƒ¬ã‚¤ãƒªã‚¹ãƒˆç”¨ãƒªã‚¹ãƒˆãƒ“ãƒ¥ãƒ¼ã®ä½œæˆ
 		if(!m_arrayList[0]->Create()) {
 #if JP
-			m_rApp.ShowError(_T("ƒvƒŒƒCƒŠƒXƒg—pƒŠƒXƒgƒrƒ…[‚Ìì¬‚É")
-							 _T("¸”s‚µ‚Ü‚µ‚½B"));
+			m_rApp.ShowError(_T("ãƒ—ãƒ¬ã‚¤ãƒªã‚¹ãƒˆç”¨ãƒªã‚¹ãƒˆãƒ“ãƒ¥ãƒ¼ã®ä½œæˆã«")
+							 _T("å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 			m_rApp.ShowError(_T("failed to create playlist."));
 #endif // JP
@@ -1761,7 +1761,7 @@ BOOL CMainWnd::CreateControls(BOOL bFirst, BOOL bVideoScreenVisible,
 	return TRUE;
 }
 //----------------------------------------------------------------------------
-// Ä¶ƒŠƒXƒg‚Ìíœ
+// å†ç”Ÿãƒªã‚¹ãƒˆã®å‰Šé™¤
 //----------------------------------------------------------------------------
 void CMainWnd::DeleteArrayList(int nList)
 {
@@ -1790,7 +1790,7 @@ void CMainWnd::DeleteArrayList(int nList)
 	}
 }
 //----------------------------------------------------------------------------
-// ƒ}[ƒJ[‚Ìíœ
+// ãƒãƒ¼ã‚«ãƒ¼ã®å‰Šé™¤
 //----------------------------------------------------------------------------
 void CMainWnd::DeleteMarker()
 {
@@ -1806,7 +1806,7 @@ void CMainWnd::DeleteMarker()
 	}
 }
 //----------------------------------------------------------------------------
-// ƒvƒŠƒZƒbƒg‚Ìíœ
+// ãƒ—ãƒªã‚»ãƒƒãƒˆã®å‰Šé™¤
 //----------------------------------------------------------------------------
 void CMainWnd::DeletePreset()
 {
@@ -2506,7 +2506,7 @@ void CMainWnd::DeletePreset()
 		DeleteMenu(m_menu->GetPresetMenu(), 2, MF_BYPOSITION);
 }
 //----------------------------------------------------------------------------
-// w’è‚µ‚½%Ä¶ü”g”‚ğ‰º‚°‚é
+// æŒ‡å®šã—ãŸ%å†ç”Ÿå‘¨æ³¢æ•°ã‚’ä¸‹ã’ã‚‹
 //----------------------------------------------------------------------------
 void CMainWnd::DownFreq(double freq)
 {
@@ -2520,7 +2520,7 @@ void CMainWnd::DownFreq(double freq)
 	SetFreq((double)(newFreq / dCalc));
 }
 //----------------------------------------------------------------------------
-// w’è‚µ‚½”’l~”¼‰¹•ª‰¹’ö‚ğ‰º‚°‚é
+// æŒ‡å®šã—ãŸæ•°å€¤Ã—åŠéŸ³åˆ†éŸ³ç¨‹ã‚’ä¸‹ã’ã‚‹
 //----------------------------------------------------------------------------
 void CMainWnd::DownPitch(double pitch)
 {
@@ -2533,7 +2533,7 @@ void CMainWnd::DownPitch(double pitch)
 	SetPitch((double)(newPitch / dCalc));
 }
 //----------------------------------------------------------------------------
-// w’è‚µ‚½%Ä¶‘¬“x‚ğ‰º‚°‚é
+// æŒ‡å®šã—ãŸ%å†ç”Ÿé€Ÿåº¦ã‚’ä¸‹ã’ã‚‹
 //----------------------------------------------------------------------------
 void CMainWnd::DownSpeed(double speed)
 {
@@ -2546,7 +2546,7 @@ void CMainWnd::DownSpeed(double speed)
 	SetSpeed((double)(newSpeed / dCalc));
 }
 //----------------------------------------------------------------------------
-// w’è‚µ‚½%‰¹—Ê‚ğ‰º‚°‚é
+// æŒ‡å®šã—ãŸ%éŸ³é‡ã‚’ä¸‹ã’ã‚‹
 //----------------------------------------------------------------------------
 void CMainWnd::DownVolume(int volume)
 {
@@ -2557,7 +2557,7 @@ void CMainWnd::DownVolume(int volume)
 	SetVolume((double)(newVolume / 10.0));
 }
 //----------------------------------------------------------------------------
-// ‘‘—‚è
+// æ—©é€ã‚Š
 //----------------------------------------------------------------------------
 void CMainWnd::Forward()
 {
@@ -2569,7 +2569,7 @@ void CMainWnd::Forward()
 	SetTime(m_sound->ChannelSeconds2Bytes(dPos + dDifference));
 }
 //----------------------------------------------------------------------------
-// w’è‚µ‚½•b”i‚Ş
+// æŒ‡å®šã—ãŸç§’æ•°é€²ã‚€
 //----------------------------------------------------------------------------
 void CMainWnd::ForwardSeconds(int seconds)
 {
@@ -2578,7 +2578,7 @@ void CMainWnd::ForwardSeconds(int seconds)
 	SetSeconds(pos);
 }
 //----------------------------------------------------------------------------
-// İ’èó‘Ô‚Ì“Ç‚İ‚İ
+// è¨­å®šçŠ¶æ…‹ã®èª­ã¿è¾¼ã¿
 //----------------------------------------------------------------------------
 void CMainWnd::LoadSettings(const PCTSTR & pFilePath)
 {
@@ -3308,7 +3308,7 @@ void CMainWnd::LoadSettings(const PCTSTR & pFilePath)
 		SetChangeLR();
 }
 //----------------------------------------------------------------------------
-// ƒŠƒXƒg‚ÌˆÚ“®
+// ãƒªã‚¹ãƒˆã®ç§»å‹•
 //----------------------------------------------------------------------------
 void CMainWnd::MoveList(int nFrom, int nTo)
 {
@@ -3323,7 +3323,7 @@ void CMainWnd::MoveList(int nFrom, int nTo)
 	else if(nTo <= nCurPlayTab && nCurPlayTab < nFrom) nCurPlayTab++;
 }
 //----------------------------------------------------------------------------
-// “ªo‚µ
+// é ­å‡ºã—
 //----------------------------------------------------------------------------
 void CMainWnd::Head()
 {
@@ -3332,7 +3332,7 @@ void CMainWnd::Head()
 	else SetTime(0);
 }
 //----------------------------------------------------------------------------
-// ƒtƒ@ƒCƒ‹‚ğŠJ‚­
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 //----------------------------------------------------------------------------
 BOOL CMainWnd::OpenFile(LPCTSTR lpszFilePath, int nCount)
 {
@@ -3396,7 +3396,7 @@ BOOL CMainWnd::OpenFile(LPCTSTR lpszFilePath, int nCount)
 	return TRUE;
 }
 //----------------------------------------------------------------------------
-// INI ƒtƒ@ƒCƒ‹‚ğŠJ‚­
+// INI ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 //----------------------------------------------------------------------------
 void CMainWnd::OpenInitFile()
 {
@@ -3504,7 +3504,7 @@ void CMainWnd::OpenInitFile()
 		m_toolBar->CheckButton(ID_EXPLORER, m_menu->IsItemChecked(ID_EXPLORER));
 	}
 
-	// Ä¶ƒ‚[ƒh‚Ìİ’è
+	// å†ç”Ÿãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
 	if(GetPrivateProfileInt(_T("PlayMode"), _T("RecoverSingleLoop"), 1,
 			chPath)) {
 		m_menu->SwitchItemChecked(ID_RECOVERSLOOP);
@@ -3525,7 +3525,7 @@ void CMainWnd::OpenInitFile()
 			SetRandom();
 	}
 
-	// ‚»‚Ì‘¼‚Ìİ’è
+	// ãã®ä»–ã®è¨­å®š
 	if(GetPrivateProfileInt(_T("Window"), _T("RecoverPos"), 0, chPath)) {
 		m_menu->SwitchItemChecked(ID_RECOVERWPOS);
 		WINDOWPLACEMENT wndPlace;
@@ -3548,7 +3548,7 @@ void CMainWnd::OpenInitFile()
 	else Show(m_rApp.GetNCmdShow());
 }
 //----------------------------------------------------------------------------
-// INI ƒtƒ@ƒCƒ‹‚ğŠJ‚­
+// INI ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 //----------------------------------------------------------------------------
 void CMainWnd::OpenInitFileAfterShow()
 {
@@ -3556,7 +3556,7 @@ void CMainWnd::OpenInitFileAfterShow()
 
 	TCHAR buf[255];
 
-	// ƒrƒfƒI‰æ–Ê•\¦“à—e‚Ìİ’è
+	// ãƒ“ãƒ‡ã‚ªç”»é¢è¡¨ç¤ºå†…å®¹ã®è¨­å®š
 	if(!GetPrivateProfileInt(_T("Visible"), _T("Lyrics"), 1,
 			initFilePath.c_str()))
 		m_menu->OnLyricsMenuSelected();
@@ -3564,7 +3564,7 @@ void CMainWnd::OpenInitFileAfterShow()
 			initFilePath.c_str()))
 		m_menu->OnPitchAnalyserMenuSelected();
 
-	// Ä¶ƒ‚[ƒh‚Ìİ’è
+	// å†ç”Ÿãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
 	GetPrivateProfileString(_T("PlayMode"), _T("RecoverContinue"), _T("1"), 
 		buf, 255, initFilePath.c_str());
 	int _bRecoverContinue = _ttoi(buf);
@@ -3602,7 +3602,7 @@ void CMainWnd::OpenInitFileAfterShow()
 		initFilePath.c_str());
 	int _bNormalize = _ttoi(buf);
 
-	// ƒVƒ‡[ƒgƒJƒbƒgƒL[İ’è
+	// ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼è¨­å®š
 	TCHAR szKey[32767];
 	CCommandList cmdlist;
 	if (GetPrivateProfileSection(_T("KeySetting"), szKey, 32767,
@@ -3638,7 +3638,7 @@ void CMainWnd::OpenInitFileAfterShow()
 	else
 		m_rApp.GetAccelTable().SetDefault();
 
-	// ƒOƒ[ƒoƒ‹ƒzƒbƒgƒL[İ’è
+	// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ›ãƒƒãƒˆã‚­ãƒ¼è¨­å®š
 	TCHAR szOutKey[32767];
 	GetPrivateProfileSection(_T("OutKeySetting"), szOutKey, 32767, 
 		initFilePath.c_str());
@@ -3682,7 +3682,7 @@ void CMainWnd::OpenInitFileAfterShow()
 	}
 	outKeySettingWnd->Close();
 
-	// ‚»‚Ì‘¼‚Ìİ’è
+	// ãã®ä»–ã®è¨­å®š
 	GetPrivateProfileString(_T("Options"), _T("LAMECommandLine"),
 		_T("--preset cbr 192"), buf, 255, initFilePath.c_str());
 	m_strLAMECommandLine = buf;
@@ -3733,7 +3733,7 @@ void CMainWnd::OpenInitFileAfterShow()
 	else if(_ttoi(buf) == 10000) m_menu->OnFadeoutNext10SecMenuSelected();
 	else m_menu->OnFadeoutNext3SecMenuSelected();
 
-	// ƒvƒŠƒZƒbƒg‚Ìİ’è
+	// ãƒ—ãƒªã‚»ãƒƒãƒˆã®è¨­å®š
 	int i = 1;
 	TCHAR section[255];
 	while(TRUE) {
@@ -3748,7 +3748,7 @@ void CMainWnd::OpenInitFileAfterShow()
 		i++;
 	}
 
-	// Ä¶ƒ‚[ƒh‚Ì•œŒ³
+	// å†ç”Ÿãƒ¢ãƒ¼ãƒ‰ã®å¾©å…ƒ
 	if(_bRecoverContinue) {
 		m_menu->SwitchItemChecked(ID_RECOVERCONTINUE);
 		if(!_bContinue) SetContinue();
@@ -3806,7 +3806,7 @@ void CMainWnd::OpenInitFileAfterShow()
 					}
 				}
 				else {
-					// ƒEƒBƒ“ƒhƒE‚ª•Â‚¶‚ç‚ê‚½‚çI—¹
+					// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒé–‰ã˜ã‚‰ã‚ŒãŸã‚‰çµ‚äº†
 					if(!IsWindow(m_hWnd)) return;
 
 					TCHAR filePath[MAX_PATH];
@@ -3908,13 +3908,13 @@ void CMainWnd::OpenInitFileAfterShow()
 	isInitFileRead = TRUE;
 }
 //----------------------------------------------------------------------------
-// Ÿ‚Ìƒtƒ@ƒCƒ‹‚ğŠJ‚­
+// æ¬¡ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 //----------------------------------------------------------------------------
 BOOL CMainWnd::OpenNext()
 {
 	if(m_menu->IsItemChecked(ID_RANDOM)) return OpenRandom();
 
-	// ŠJ‚­‚×‚«ƒtƒ@ƒCƒ‹‚ğ’T‚·
+	// é–‹ãã¹ããƒ•ã‚¡ã‚¤ãƒ«ã‚’æ¢ã™
 
 	int i = m_sound->GetCurFileNum();
 	if(m_sound->GetNSFCount() > 0
@@ -3966,24 +3966,24 @@ BOOL CMainWnd::OpenNext()
 			break;
 		}
 		else {
-			// ŠJ‚¯‚È‚©‚Á‚½ƒtƒ@ƒCƒ‹‚ğíœ
+			// é–‹ã‘ãªã‹ã£ãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤
 			m_arrayList[nCurPlayTab]->DeleteItem(i);
 			m_arrayList[nCurPlayTab]->ResetNumber();
 
-			i--; // íœ‚µ‚½•ªA‚Ğ‚Æ‚Â‘O‚É–ß‚·
+			i--; // å‰Šé™¤ã—ãŸåˆ†ã€ã²ã¨ã¤å‰ã«æˆ»ã™
 		}
 	}
 
 	m_arrayList[nCurPlayTab]->InvalidateRect(NULL, TRUE);
 	SetPreviousNextMenuState();
 
-	// Ÿ‚ÉŠJ‚­‚×‚«ƒtƒ@ƒCƒ‹‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½ê‡
+	// æ¬¡ã«é–‹ãã¹ããƒ•ã‚¡ã‚¤ãƒ«ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸå ´åˆ
 	if(i >= m_arrayList[nCurPlayTab]->GetItemCount()) return FALSE;
 
 	return TRUE;
 }
 //----------------------------------------------------------------------------
-// ‘O‚Ìƒtƒ@ƒCƒ‹‚ğŠJ‚­
+// å‰ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 //----------------------------------------------------------------------------
 BOOL CMainWnd::OpenPrevious()
 {
@@ -4047,13 +4047,13 @@ BOOL CMainWnd::OpenPrevious()
 		m_arrayList[nCurPlayTab]->InvalidateRect(NULL, TRUE);
 		SetPreviousNextMenuState();
 
-		// Ÿ‚ÉŠJ‚­‚×‚«ƒtƒ@ƒCƒ‹‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½ê‡
+		// æ¬¡ã«é–‹ãã¹ããƒ•ã‚¡ã‚¤ãƒ«ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸå ´åˆ
 		if(!bRet) return FALSE;
 
 		return TRUE;
 	}
 
-	// ŠJ‚­‚×‚«ƒtƒ@ƒCƒ‹‚ğ’T‚·
+	// é–‹ãã¹ããƒ•ã‚¡ã‚¤ãƒ«ã‚’æ¢ã™
 	i = m_sound->GetCurFileNum() - 2;
 	for(; i >= 0; i--) {
 		TCHAR filePath[MAX_PATH];
@@ -4082,7 +4082,7 @@ BOOL CMainWnd::OpenPrevious()
 			break;
 		}
 		else {
-			// ŠJ‚¯‚È‚©‚Á‚½ƒtƒ@ƒCƒ‹‚ğíœ
+			// é–‹ã‘ãªã‹ã£ãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤
 			m_arrayList[nCurPlayTab]->DeleteItem(i);
 			m_arrayList[nCurPlayTab]->ResetNumber();
 		}
@@ -4091,17 +4091,17 @@ BOOL CMainWnd::OpenPrevious()
 	m_arrayList[nCurPlayTab]->InvalidateRect(NULL, TRUE);
 	SetPreviousNextMenuState();
 
-	// ŠJ‚­‚×‚«ƒtƒ@ƒCƒ‹‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½ê‡
+	// é–‹ãã¹ããƒ•ã‚¡ã‚¤ãƒ«ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸå ´åˆ
 	if(i < 0) return FALSE;
 
 	return TRUE;
 }
 //----------------------------------------------------------------------------
-// ƒ‰ƒ“ƒ_ƒ€‚Éƒtƒ@ƒCƒ‹‚ğŠJ‚­
+// ãƒ©ãƒ³ãƒ€ãƒ ã«ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 //----------------------------------------------------------------------------
 BOOL CMainWnd::OpenRandom()
 {
-	// ‚·‚Å‚É‚·‚×‚Ä‚Ìƒtƒ@ƒCƒ‹‚ğÄ¶Ï‚İ‚Ìê‡
+	// ã™ã§ã«ã™ã¹ã¦ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å†ç”Ÿæ¸ˆã¿ã®å ´åˆ
 	if(m_arrayList[nCurPlayTab]->GetMaxPlayOrder()
 			== m_arrayList[nCurPlayTab]->GetItemCount() - 1)
 		m_arrayList[nCurPlayTab]->ClearPlayOrder();
@@ -4110,7 +4110,7 @@ BOOL CMainWnd::OpenRandom()
 	TCHAR chArtist[255];
 	m_arrayList[nCurPlayTab]->GetItemText(i - 1, 3, chArtist, 255);
 
-	// –¢Ä¶‚Ìƒtƒ@ƒCƒ‹‚ğ’T‚·
+	// æœªå†ç”Ÿã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ¢ã™
 	std::vector<int> list;
 	std::vector<int> order = m_arrayList[nCurPlayTab]->GetOrders();
 	for(int i = 0; i < m_arrayList[nCurPlayTab]->GetItemCount(); i++) {
@@ -4156,18 +4156,18 @@ BOOL CMainWnd::OpenRandom()
 	m_arrayList[nCurPlayTab]->InvalidateRect(NULL, TRUE);
 	SetPreviousNextMenuState();
 
-	// Ÿ‚ÉŠJ‚­‚×‚«ƒtƒ@ƒCƒ‹‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½ê‡
+	// æ¬¡ã«é–‹ãã¹ããƒ•ã‚¡ã‚¤ãƒ«ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸå ´åˆ
 	if(!bRet) return FALSE;
 
 	return TRUE;
 }
 //----------------------------------------------------------------------------
-// ˆê’â~
+// ä¸€æ™‚åœæ­¢
 //----------------------------------------------------------------------------
 void CMainWnd::Pause()
 {
 	if(m_sound->ChannelIsStopped() || m_sound->ChannelIsPausing())
-		// ’â~’†‚©Šù‚Éˆê’â~’†‚¾‚Á‚½ê‡‚ÍAÄ¶
+		// åœæ­¢ä¸­ã‹æ—¢ã«ä¸€æ™‚åœæ­¢ä¸­ã ã£ãŸå ´åˆã¯ã€å†ç”Ÿ
 		Play();
 	else if(m_menu->IsItemChecked(ID_QUALITY_WASAPI) &&
 			!BASS_WASAPI_IsStarted()) {
@@ -4186,7 +4186,7 @@ void CMainWnd::Pause()
 	}
 }
 //----------------------------------------------------------------------------
-// Ä¶
+// å†ç”Ÿ
 //----------------------------------------------------------------------------
 BOOL CMainWnd::Play()
 {
@@ -4195,7 +4195,7 @@ BOOL CMainWnd::Play()
 	dwFadeoutStartTime = 0;
 	m_sound->ChannelSetAttribute(BASS_ATTRIB_VOL, 1.0f);
 	if(!m_sound->ChannelPlay() && !m_menu->IsItemChecked(ID_QUALITY_WASAPI)) {
-		// Ä¶‚É¸”s
+		// å†ç”Ÿã«å¤±æ•—
 		m_menu->SetFileLoadState(FALSE);
 		KillTimer(IDT_TIME);
 		m_timeLabel->SetTime(0, 0);
@@ -4210,7 +4210,7 @@ BOOL CMainWnd::Play()
 	return TRUE;
 }
 //----------------------------------------------------------------------------
-// ”Ô†‚ğw’è‚µ‚ÄÄ¶
+// ç•ªå·ã‚’æŒ‡å®šã—ã¦å†ç”Ÿ
 //----------------------------------------------------------------------------
 void CMainWnd::Play(int n)
 {
@@ -4227,11 +4227,11 @@ void CMainWnd::Play(int n)
 	}
 }
 //----------------------------------------------------------------------------
-// Ÿ‚Ìƒtƒ@ƒCƒ‹‚ğÄ¶
+// æ¬¡ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å†ç”Ÿ
 //----------------------------------------------------------------------------
 void CMainWnd::PlayNext(BOOL bPlay, BOOL bFadeoutCancel)
 {
-	// bPlay : ‚©‚È‚ç‚¸Ä¶‚·‚é‚©‚Ç‚¤‚©
+	// bPlay : ã‹ãªã‚‰ãšå†ç”Ÿã™ã‚‹ã‹ã©ã†ã‹
 
 	if(!bPlay && !bFadeoutCancel && !m_sound->ChannelIsStopped() &&
 	   !m_sound->ChannelIsPausing() && dwFadeoutStartTime == 0 &&
@@ -4248,7 +4248,7 @@ void CMainWnd::PlayNext(BOOL bPlay, BOOL bFadeoutCancel)
 		BOOL bBassCopy = m_menu->IsItemChecked(ID_BASSCOPY);
 		BOOL bDrumsCopy = m_menu->IsItemChecked(ID_CYMBALCOPY);
 
-		// Ÿ‚ÉÄ¶‚·‚×‚«ƒtƒ@ƒCƒ‹‚ğ’T‚·
+		// æ¬¡ã«å†ç”Ÿã™ã¹ããƒ•ã‚¡ã‚¤ãƒ«ã‚’æ¢ã™
 		while(1) {
 			if(OpenNext()) {
 				if(Play()) break;
@@ -4289,15 +4289,15 @@ void CMainWnd::PlayNext(BOOL bPlay, BOOL bFadeoutCancel)
 	}
 }
 //----------------------------------------------------------------------------
-// ‘O‚Ìƒtƒ@ƒCƒ‹‚ğÄ¶
+// å‰ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å†ç”Ÿ
 //----------------------------------------------------------------------------
 void CMainWnd::PlayPrevious()
 {
 	BOOL bStopped = m_sound->ChannelIsStopped();
 	BOOL bPausing = m_sound->ChannelIsPausing();
 
-	// Ä¶‚·‚×‚«ƒtƒ@ƒCƒ‹‚ğ’T‚·
-	BOOL bEnd = FALSE; // Œã‚ë‚©‚çŒŸõ‚µ‚È‚¨‚µ‚½‚©‚Ç‚¤‚©
+	// å†ç”Ÿã™ã¹ããƒ•ã‚¡ã‚¤ãƒ«ã‚’æ¢ã™
+	BOOL bEnd = FALSE; // å¾Œã‚ã‹ã‚‰æ¤œç´¢ã—ãªãŠã—ãŸã‹ã©ã†ã‹
 	while(1) {
 		if(OpenPrevious()) {
 			if(Play()) break;
@@ -4327,7 +4327,7 @@ void CMainWnd::PlayPrevious()
 	}
 }
 //----------------------------------------------------------------------------
-// ‘S‚Ä‚ÌƒRƒ“ƒgƒ[ƒ‹‚ÌˆÊ’u‚ğÄİ’è
+// å…¨ã¦ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®ä½ç½®ã‚’å†è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::ResetAllControlPos()
 {
@@ -4425,7 +4425,7 @@ void CMainWnd::ResetAllControlPos()
 	InvalidateRect(NULL, TRUE);
 }
 //----------------------------------------------------------------------------
-// Œ»İ“Ç‚İ‚ñ‚Å‚¢‚éƒtƒ@ƒCƒ‹”Ô†‚ÌÄİ’è
+// ç¾åœ¨èª­ã¿è¾¼ã‚“ã§ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ç•ªå·ã®å†è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::ResetCurFileNum()
 {
@@ -4438,7 +4438,7 @@ void CMainWnd::ResetCurFileNum()
 	}
 }
 //----------------------------------------------------------------------------
-// Ä¶ü”g”‚ğƒfƒtƒHƒ‹ƒg‚É–ß‚·
+// å†ç”Ÿå‘¨æ³¢æ•°ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«æˆ»ã™
 //----------------------------------------------------------------------------
 void CMainWnd::ResetFreq()
 {
@@ -4448,7 +4448,7 @@ void CMainWnd::ResetFreq()
 	SetFreq(100.0);
 }
 //----------------------------------------------------------------------------
-// ‰¹’ö‚ğƒfƒtƒHƒ‹ƒg‚É–ß‚·
+// éŸ³ç¨‹ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«æˆ»ã™
 //----------------------------------------------------------------------------
 void CMainWnd::ResetPitch()
 {
@@ -4457,7 +4457,7 @@ void CMainWnd::ResetPitch()
 	SetPitch(0.0);
 }
 //----------------------------------------------------------------------------
-// ƒTƒCƒY‚ÌÄİ’è
+// ã‚µã‚¤ã‚ºã®å†è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::ResetSize()
 {
@@ -4595,7 +4595,7 @@ void CMainWnd::ResetSize()
 	InvalidateRect(NULL, TRUE);
 }
 //----------------------------------------------------------------------------
-// Ä¶‘¬“x‚ğƒfƒtƒHƒ‹ƒg‚É–ß‚·
+// å†ç”Ÿé€Ÿåº¦ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«æˆ»ã™
 //----------------------------------------------------------------------------
 void CMainWnd::ResetSpeed()
 {
@@ -4605,7 +4605,7 @@ void CMainWnd::ResetSpeed()
 	SetSpeed(100.0);
 }
 //----------------------------------------------------------------------------
-// ‰¹—Ê‚ğƒfƒtƒHƒ‹ƒg‚É–ß‚·
+// éŸ³é‡ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«æˆ»ã™
 //----------------------------------------------------------------------------
 void CMainWnd::ResetVolume()
 {
@@ -4614,7 +4614,7 @@ void CMainWnd::ResetVolume()
 	SetVolume(100.0);
 }
 //----------------------------------------------------------------------------
-// Šª‚«–ß‚µ
+// å·»ãæˆ»ã—
 //----------------------------------------------------------------------------
 void CMainWnd::Rewind()
 {
@@ -4625,7 +4625,7 @@ void CMainWnd::Rewind()
 	SetTime(m_sound->ChannelSeconds2Bytes(dPos - dDifference));
 }
 //----------------------------------------------------------------------------
-// w’è‚µ‚½•b”–ß‚é
+// æŒ‡å®šã—ãŸç§’æ•°æˆ»ã‚‹
 //----------------------------------------------------------------------------
 void CMainWnd::ReturnSeconds(int seconds)
 {
@@ -4634,7 +4634,7 @@ void CMainWnd::ReturnSeconds(int seconds)
 	SetSeconds(pos);
 }
 //----------------------------------------------------------------------------
-// ƒvƒŠƒZƒbƒg‚Ì•Û‘¶
+// ãƒ—ãƒªã‚»ãƒƒãƒˆã®ä¿å­˜
 //----------------------------------------------------------------------------
 void CMainWnd::SavePreset(PCTSTR pName)
 {
@@ -4661,7 +4661,7 @@ void CMainWnd::SavePreset(PCTSTR pName)
 		m_menu->GetPresetMenu().Append(MFS_ENABLED, ID_PRESET + i, pName);
 	}
 
-	// ƒvƒŠƒZƒbƒg–¼‚Ìİ’è
+	// ãƒ—ãƒªã‚»ãƒƒãƒˆåã®è¨­å®š
 	WritePrivateProfileString(section, _T("Name"), pName,
 		initFilePath.c_str());
 
@@ -5220,7 +5220,7 @@ void CMainWnd::SavePreset(PCTSTR pName)
 		initFilePath.c_str());
 }
 //----------------------------------------------------------------------------
-// İ’èó‘Ô‚Ì•Û‘¶
+// è¨­å®šçŠ¶æ…‹ã®ä¿å­˜
 //----------------------------------------------------------------------------
 void CMainWnd::SaveSettings(const PCTSTR & pFilePath)
 {
@@ -5780,14 +5780,14 @@ void CMainWnd::SaveSettings(const PCTSTR & pFilePath)
 		pFilePath);
 }
 //----------------------------------------------------------------------------
-// AB ƒ‹[ƒv A ‚Ìİ’è
+// AB ãƒ«ãƒ¼ãƒ— A ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetABLoopA(QWORD pos)
 {
 	m_sound->SetLoopPosA(pos);
 	m_sound->AddMarker(pos);
 
-	BOOL bDone = FALSE; // ”ÍˆÍ‚ğİ’è‚µ‚½‚©‚Ç‚¤‚©
+	BOOL bDone = FALSE; // ç¯„å›²ã‚’è¨­å®šã—ãŸã‹ã©ã†ã‹
 	std::vector<QWORD> arrayMarker = m_sound->GetArrayMarker();
 	QWORD length = m_sound->ChannelGetLength();
 	int max = (int)arrayMarker.size();
@@ -5808,7 +5808,7 @@ void CMainWnd::SetABLoopA(QWORD pos)
 	}
 
 	if(!bDone) {
-		// ’Ç‰Á‚µ‚½ƒ}[ƒJ[‚ÌˆÊ’u‚ªˆê”ÔÅŒã‚Ìê‡
+		// è¿½åŠ ã—ãŸãƒãƒ¼ã‚«ãƒ¼ã®ä½ç½®ãŒä¸€ç•ªæœ€å¾Œã®å ´åˆ
 		if(arrayMarker[max - 1] <= pos && pos <= length) {
 			bDone = TRUE;
 			m_timeSlider->SetStyle(m_timeSlider->GetStyle()
@@ -5822,7 +5822,7 @@ void CMainWnd::SetABLoopA(QWORD pos)
 	}
 }
 //----------------------------------------------------------------------------
-// AB ƒ‹[ƒv A ‚Ìİ’è
+// AB ãƒ«ãƒ¼ãƒ— A ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetABLoopA()
 {
@@ -5833,22 +5833,22 @@ void CMainWnd::SetABLoopA()
 	m_menu->SetABLoopState(bLoop, m_sound->IsABLoopB());
 
 	if(bLoop && m_sound->IsABLoopB()) {
-		// ‚`ƒ‹[ƒvFƒIƒ“
-		// ‚aƒ‹[ƒvFƒIƒ“
+		// ï¼¡ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ³
+		// ï¼¢ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ³
 
-		// Œ»İ‚ÌÄ¶ˆÊ’u‚É‚`‚aƒ‹[ƒv‚Ì‚`‚ğİ’è
+		// ç¾åœ¨ã®å†ç”Ÿä½ç½®ã«ï¼¡ï¼¢ãƒ«ãƒ¼ãƒ—ã®ï¼¡ã‚’è¨­å®š
 		QWORD time = m_sound->ChannelGetPosition();
 		SendMessage(*m_timeSlider, TBM_SETSELSTART, TRUE, (LONG)(time
 			/ 100000));
 		m_sound->SetLoopPosA(time);
 	}
 	else if(bLoop && !m_sound->IsABLoopB()) {
-		// ‚`ƒ‹[ƒvFƒIƒ“
-		// ‚aƒ‹[ƒvFƒIƒt
+		// ï¼¡ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ³
+		// ï¼¢ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ•
 
 		m_timeSlider->SetStyle(m_timeSlider->GetStyle() | TBS_ENABLESELRANGE);
 
-		// Œ»İ‚ÌÄ¶ˆÊ’u‚É‚`‚aƒ‹[ƒv‚Ì‚`‚ğİ’è
+		// ç¾åœ¨ã®å†ç”Ÿä½ç½®ã«ï¼¡ï¼¢ãƒ«ãƒ¼ãƒ—ã®ï¼¡ã‚’è¨­å®š
 		QWORD time = m_sound->ChannelGetPosition();
 		SendMessage(*m_timeSlider, TBM_SETSELSTART, TRUE, (LONG)(time
 			/ 100000));
@@ -5858,14 +5858,14 @@ void CMainWnd::SetABLoopA()
 			(LONG)(m_sound->ChannelGetLength() / 100000));
 	}
 	else if(!bLoop && m_sound->IsABLoopB()) {
-		// ‚`ƒ‹[ƒvFƒIƒt
-		// ‚aƒ‹[ƒvFƒIƒ“
+		// ï¼¡ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ•
+		// ï¼¢ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ³
 
 		SendMessage(*m_timeSlider, TBM_SETSELSTART, TRUE, 0L);
 	}
 	else if(!bLoop && !m_sound->IsABLoopB()) {
-		// ‚`ƒ‹[ƒvFƒIƒt
-		// ‚aƒ‹[ƒvFƒIƒt
+		// ï¼¡ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ•
+		// ï¼¢ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ•
 
 		SendMessage(*m_timeSlider, TBM_SETSELSTART, TRUE, 0L);
 		SendMessage(*m_timeSlider, TBM_SETSELEND, TRUE, 0L);
@@ -5873,7 +5873,7 @@ void CMainWnd::SetABLoopA()
 	}
 }
 //----------------------------------------------------------------------------
-// AB ƒ‹[ƒv A ‚Ìİ’èi•bj
+// AB ãƒ«ãƒ¼ãƒ— A ã®è¨­å®šï¼ˆç§’ï¼‰
 //----------------------------------------------------------------------------
 void CMainWnd::SetABLoopA_Sec(double dTime)
 {
@@ -5887,8 +5887,8 @@ void CMainWnd::SetABLoopA_Sec(double dTime)
 	m_menu->SetABLoopState(bLoop, m_sound->IsABLoopB());
 
 	if(bLoop && m_sound->IsABLoopB()) {
-		// ‚`ƒ‹[ƒvFƒIƒ“
-		// ‚aƒ‹[ƒvFƒIƒ“
+		// ï¼¡ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ³
+		// ï¼¢ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ³
 
 		SendMessage(*m_timeSlider, TBM_SETSELSTART, TRUE, (LONG)(time
 			/ 100000));
@@ -5897,8 +5897,8 @@ void CMainWnd::SetABLoopA_Sec(double dTime)
 			m_sound->ChannelSetPosition(time);
 	}
 	else if(bLoop && !m_sound->IsABLoopB()) {
-		// ‚`ƒ‹[ƒvFƒIƒ“
-		// ‚aƒ‹[ƒvFƒIƒt
+		// ï¼¡ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ³
+		// ï¼¢ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ•
 
 		m_timeSlider->SetStyle(m_timeSlider->GetStyle() | TBS_ENABLESELRANGE);
 
@@ -5913,14 +5913,14 @@ void CMainWnd::SetABLoopA_Sec(double dTime)
 			m_sound->ChannelSetPosition(time);
 	}
 	else if(!bLoop && m_sound->IsABLoopB()) {
-		// ‚`ƒ‹[ƒvFƒIƒt
-		// ‚aƒ‹[ƒvFƒIƒ“
+		// ï¼¡ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ•
+		// ï¼¢ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ³
 
 		SendMessage(*m_timeSlider, TBM_SETSELSTART, TRUE, 0L);
 	}
 	else if(!bLoop && !m_sound->IsABLoopB()) {
-		// ‚`ƒ‹[ƒvFƒIƒt
-		// ‚aƒ‹[ƒvFƒIƒt
+		// ï¼¡ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ•
+		// ï¼¢ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ•
 
 		SendMessage(*m_timeSlider, TBM_SETSELSTART, TRUE, 0L);
 		SendMessage(*m_timeSlider, TBM_SETSELEND, TRUE, 0L);
@@ -5928,7 +5928,7 @@ void CMainWnd::SetABLoopA_Sec(double dTime)
 	}
 }
 //----------------------------------------------------------------------------
-// AB ƒ‹[ƒv B ‚Ìİ’è
+// AB ãƒ«ãƒ¼ãƒ— B ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetABLoopB()
 {
@@ -5939,32 +5939,32 @@ void CMainWnd::SetABLoopB()
 	m_menu->SetABLoopState(m_sound->IsABLoopA(), bLoop);
 
 	if(m_sound->IsABLoopA() && bLoop) {
-		// ‚`ƒ‹[ƒvFƒIƒ“
-		// ‚aƒ‹[ƒvFƒIƒ“
+		// ï¼¡ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ³
+		// ï¼¢ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ³
 
-		// Œ»İ‚ÌÄ¶ˆÊ’u‚É‚`‚aƒ‹[ƒv‚Ì‚a‚ğİ’è
+		// ç¾åœ¨ã®å†ç”Ÿä½ç½®ã«ï¼¡ï¼¢ãƒ«ãƒ¼ãƒ—ã®ï¼¢ã‚’è¨­å®š
 		QWORD time = m_sound->ChannelGetPosition();
 		SendMessage(*m_timeSlider, TBM_SETSELEND, TRUE, (LONG)(time / 100000));
 		m_sound->SetLoopPosB(time);
 
-		// ‚`‚ÌˆÊ’u‚ÉÄ¶ˆÊ’u‚ğˆÚ‚·
+		// ï¼¡ã®ä½ç½®ã«å†ç”Ÿä½ç½®ã‚’ç§»ã™
 		SetTime(m_sound->GetLoopPosA());
 	}
 	else if(m_sound->IsABLoopA() && !bLoop) {
-		// ‚`ƒ‹[ƒvFƒIƒ“
-		// ‚aƒ‹[ƒvFƒIƒt
+		// ï¼¡ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ³
+		// ï¼¢ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ•
 
 		SendMessage(*m_timeSlider, TBM_SETSELEND, TRUE,
 					(LONG)(m_sound->ChannelGetLength() / 100000));		
 	}
 	else if(!m_sound->IsABLoopA() && bLoop) {
-		// ‚`ƒ‹[ƒvFƒIƒt
-		// ‚aƒ‹[ƒvFƒIƒ“
+		// ï¼¡ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ•
+		// ï¼¢ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ³
 
 		m_timeSlider->SetStyle(m_timeSlider->GetStyle() | TBS_ENABLESELRANGE);
 		SendMessage(*m_timeSlider, TBM_SETSELSTART, TRUE, 0L);
 
-		// Œ»İ‚ÌÄ¶ˆÊ’u‚É‚`‚aƒ‹[ƒv‚Ì‚a‚ğİ’è
+		// ç¾åœ¨ã®å†ç”Ÿä½ç½®ã«ï¼¡ï¼¢ãƒ«ãƒ¼ãƒ—ã®ï¼¢ã‚’è¨­å®š
 		QWORD time = m_sound->ChannelGetPosition();
 		SendMessage(*m_timeSlider, TBM_SETSELEND, TRUE, (LONG)(time / 100000));
 		m_sound->SetLoopPosB(time);
@@ -5972,8 +5972,8 @@ void CMainWnd::SetABLoopB()
 		SetTime(0);
 	}
 	else if(!m_sound->IsABLoopA() && !bLoop) {
-		// ‚`ƒ‹[ƒvFƒIƒt
-		// ‚aƒ‹[ƒvFƒIƒt
+		// ï¼¡ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ•
+		// ï¼¢ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ•
 
 		SendMessage(*m_timeSlider, TBM_SETSELSTART, TRUE, 0L);
 		SendMessage(*m_timeSlider, TBM_SETSELEND, TRUE, 0L);
@@ -5981,7 +5981,7 @@ void CMainWnd::SetABLoopB()
 	}
 }
 //----------------------------------------------------------------------------
-// AB ƒ‹[ƒv B ‚Ìİ’è
+// AB ãƒ«ãƒ¼ãƒ— B ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetABLoopB_Sec(double dTime)
 {
@@ -5995,25 +5995,25 @@ void CMainWnd::SetABLoopB_Sec(double dTime)
 	m_menu->SetABLoopState(m_sound->IsABLoopA(), bLoop);
 
 	if(m_sound->IsABLoopA() && bLoop) {
-		// ‚`ƒ‹[ƒvFƒIƒ“
-		// ‚aƒ‹[ƒvFƒIƒ“
+		// ï¼¡ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ³
+		// ï¼¢ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ³
 
 		SendMessage(*m_timeSlider, TBM_SETSELEND, TRUE, (LONG)(time / 100000));
 		m_sound->SetLoopPosB(time);
 
-		// ‚`‚ÌˆÊ’u‚ÉÄ¶ˆÊ’u‚ğˆÚ‚·
+		// ï¼¡ã®ä½ç½®ã«å†ç”Ÿä½ç½®ã‚’ç§»ã™
 		SetTime(m_sound->GetLoopPosA());
 	}
 	else if(m_sound->IsABLoopA() && !bLoop) {
-		// ‚`ƒ‹[ƒvFƒIƒ“
-		// ‚aƒ‹[ƒvFƒIƒt
+		// ï¼¡ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ³
+		// ï¼¢ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ•
 
 		SendMessage(*m_timeSlider, TBM_SETSELEND, TRUE,
 					(LONG)(m_sound->ChannelGetLength() / 100000));		
 	}
 	else if(!m_sound->IsABLoopA() && bLoop) {
-		// ‚`ƒ‹[ƒvFƒIƒt
-		// ‚aƒ‹[ƒvFƒIƒ“
+		// ï¼¡ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ•
+		// ï¼¢ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ³
 
 		m_timeSlider->SetStyle(m_timeSlider->GetStyle() | TBS_ENABLESELRANGE);
 		SendMessage(*m_timeSlider, TBM_SETSELSTART, TRUE, 0L);
@@ -6024,8 +6024,8 @@ void CMainWnd::SetABLoopB_Sec(double dTime)
 		SetTime(0);
 	}
 	else if(!m_sound->IsABLoopA() && !bLoop) {
-		// ‚`ƒ‹[ƒvFƒIƒt
-		// ‚aƒ‹[ƒvFƒIƒt
+		// ï¼¡ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ•
+		// ï¼¢ãƒ«ãƒ¼ãƒ—ï¼šã‚ªãƒ•
 
 		SendMessage(*m_timeSlider, TBM_SETSELSTART, TRUE, 0L);
 		SendMessage(*m_timeSlider, TBM_SETSELEND, TRUE, 0L);
@@ -6033,21 +6033,21 @@ void CMainWnd::SetABLoopB_Sec(double dTime)
 	}
 }
 //----------------------------------------------------------------------------
-// AB ƒ‹[ƒv A ‚ÌˆÊ’uİ’è
+// AB ãƒ«ãƒ¼ãƒ— A ã®ä½ç½®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetABLoopASetting()
 {
 	m_abLoopPosWnd->Create(TRUE);
 }
 //----------------------------------------------------------------------------
-// AB ƒ‹[ƒv B ‚ÌˆÊ’uİ’è
+// AB ãƒ«ãƒ¼ãƒ— B ã®ä½ç½®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetABLoopBSetting()
 {
 	m_abLoopPosWnd->Create(FALSE);
 }
 //----------------------------------------------------------------------------
-// ‘S‹Èƒ‹[ƒv
+// å…¨æ›²ãƒ«ãƒ¼ãƒ—
 //----------------------------------------------------------------------------
 void CMainWnd::SetAllLoop()
 {
@@ -6058,7 +6058,7 @@ void CMainWnd::SetAllLoop()
 	SetPreviousNextMenuState();
 }
 //----------------------------------------------------------------------------
-// ‘S‚Ä‚ÌƒGƒtƒFƒNƒg‚ğİ’è
+// å…¨ã¦ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetAllEffects()
 {
@@ -6118,7 +6118,7 @@ void CMainWnd::SetAllEffects()
 	SetDistortion(bDistortion);
 }
 //----------------------------------------------------------------------------
-// ˜A‘±Ä¶
+// é€£ç¶šå†ç”Ÿ
 //----------------------------------------------------------------------------
 void CMainWnd::SetContinue()
 {
@@ -6126,7 +6126,7 @@ void CMainWnd::SetContinue()
 	m_menu->CheckItem(ID_CONTINUE, bContinue ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
-// ƒrƒfƒI‰æ–Ê‚Ì•\¦ó‘Ô‚ğİ’è
+// ãƒ“ãƒ‡ã‚ªç”»é¢ã®è¡¨ç¤ºçŠ¶æ…‹ã‚’è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetVideoScreenVisible()
 {
@@ -6141,7 +6141,7 @@ void CMainWnd::SetVideoScreenVisible()
 	ResetSize();
 }
 //----------------------------------------------------------------------------
-// Ä¶ˆÊ’uƒXƒ‰ƒCƒ_‚Ì•\¦ó‘Ô‚ğİ’è
+// å†ç”Ÿä½ç½®ã‚¹ãƒ©ã‚¤ãƒ€ã®è¡¨ç¤ºçŠ¶æ…‹ã‚’è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetTimeSliderVisible()
 {
@@ -6155,7 +6155,7 @@ void CMainWnd::SetTimeSliderVisible()
 	ResetSize();
 }
 //----------------------------------------------------------------------------
-// ƒGƒNƒXƒvƒ[ƒ‰‚Ì•\¦ó‘Ô‚ğİ’è
+// ã‚¨ã‚¯ã‚¹ãƒ—ãƒ­ãƒ¼ãƒ©ã®è¡¨ç¤ºçŠ¶æ…‹ã‚’è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetExplorerVisible()
 {
@@ -6179,7 +6179,7 @@ void CMainWnd::SetExplorerVisible()
 	ResetSize();
 }
 //----------------------------------------------------------------------------
-// Ä¶‘¬“x‚Ì•\¦ó‘Ô‚ğİ’è
+// å†ç”Ÿé€Ÿåº¦ã®è¡¨ç¤ºçŠ¶æ…‹ã‚’è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetSpeedVisible()
 {
@@ -6199,7 +6199,7 @@ void CMainWnd::SetSpeedVisible()
 	ResetSize();
 }
 //----------------------------------------------------------------------------
-// Ä¶ü”g”‚Ì•\¦ó‘Ô‚ğİ’è
+// å†ç”Ÿå‘¨æ³¢æ•°ã®è¡¨ç¤ºçŠ¶æ…‹ã‚’è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetFreqVisible()
 {
@@ -6219,7 +6219,7 @@ void CMainWnd::SetFreqVisible()
 	ResetSize();
 }
 //----------------------------------------------------------------------------
-// ‰¹’ö‚Ì•\¦ó‘Ô‚ğİ’è
+// éŸ³ç¨‹ã®è¡¨ç¤ºçŠ¶æ…‹ã‚’è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetPitchVisible()
 {
@@ -6239,7 +6239,7 @@ void CMainWnd::SetPitchVisible()
 	ResetSize();
 }
 //----------------------------------------------------------------------------
-// ‰¹—Ê‚Ì•\¦ó‘Ô‚ğİ’è
+// éŸ³é‡ã®è¡¨ç¤ºçŠ¶æ…‹ã‚’è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetVolumeVisible()
 {
@@ -6257,7 +6257,7 @@ void CMainWnd::SetVolumeVisible()
 	ResetSize();
 }
 //----------------------------------------------------------------------------
-// ƒpƒ“‚Ì•\¦ó‘Ô‚ğİ’è
+// ãƒ‘ãƒ³ã®è¡¨ç¤ºçŠ¶æ…‹ã‚’è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetPanVisible()
 {
@@ -6274,14 +6274,14 @@ void CMainWnd::SetPanVisible()
 	ResetSize();
 }
 //----------------------------------------------------------------------------
-// ‰ñ”ƒ‹[ƒv‚Ìİ’è
+// å›æ•°ãƒ«ãƒ¼ãƒ—ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetCountLoop()
 {
 	if(bMarkerPlay) countLoopWnd->Create();
 }
 //----------------------------------------------------------------------------
-// ‰ñ”ƒ‹[ƒv‚Ìİ’è
+// å›æ•°ãƒ«ãƒ¼ãƒ—ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetCountLoop(int nCount)
 {
@@ -6296,7 +6296,7 @@ void CMainWnd::SetCountLoop(int nCount)
 	}
 }
 //----------------------------------------------------------------------------
-// ‰ñ”ƒ‹[ƒv‚Ìİ’è
+// å›æ•°ãƒ«ãƒ¼ãƒ—ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetCountLoop(BOOL bCountLoop, int nCount)
 {
@@ -6305,7 +6305,7 @@ void CMainWnd::SetCountLoop(BOOL bCountLoop, int nCount)
 	if(bCountLoop) Head();
 }
 //----------------------------------------------------------------------------
-// ‘½d‹N“®‚Ìİ’è
+// å¤šé‡èµ·å‹•ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetDoubleRun()
 {
@@ -6314,7 +6314,7 @@ void CMainWnd::SetDoubleRun()
 	WriteInitFile();
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 20Hz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 20Hz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ20(LONG lEQ20)
 {
@@ -6324,7 +6324,7 @@ void CMainWnd::SetEQ20(LONG lEQ20)
 	m_sound->SetEQ20(20, 0.7f, (float)lEQ20);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 25Hz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 25Hz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ25(LONG lEQ25)
 {
@@ -6334,7 +6334,7 @@ void CMainWnd::SetEQ25(LONG lEQ25)
 	m_sound->SetEQ25(25, 0.7f, (float)lEQ25);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 31.5Hz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 31.5Hz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ31_5(LONG lEQ31_5)
 {
@@ -6344,7 +6344,7 @@ void CMainWnd::SetEQ31_5(LONG lEQ31_5)
 	m_sound->SetEQ31_5(31.5, 0.7f, (float)lEQ31_5);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 40Hz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 40Hz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ40(LONG lEQ40)
 {
@@ -6354,7 +6354,7 @@ void CMainWnd::SetEQ40(LONG lEQ40)
 	m_sound->SetEQ40(40, 0.7f, (float)lEQ40);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 50Hz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 50Hz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ50(LONG lEQ50)
 {
@@ -6364,7 +6364,7 @@ void CMainWnd::SetEQ50(LONG lEQ50)
 	m_sound->SetEQ50(50, 0.7f, (float)lEQ50);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 63Hz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 63Hz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ63(LONG lEQ63)
 {
@@ -6374,7 +6374,7 @@ void CMainWnd::SetEQ63(LONG lEQ63)
 	m_sound->SetEQ63(63, 0.7f, (float)lEQ63);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 80Hz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 80Hz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ80(LONG lEQ80)
 {
@@ -6384,7 +6384,7 @@ void CMainWnd::SetEQ80(LONG lEQ80)
 	m_sound->SetEQ80(80, 0.7f, (float)lEQ80);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 100Hz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 100Hz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ100(LONG lEQ100)
 {
@@ -6394,7 +6394,7 @@ void CMainWnd::SetEQ100(LONG lEQ100)
 	m_sound->SetEQ100(100, 0.7f, (float)lEQ100);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 125Hz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 125Hz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ125(LONG lEQ125)
 {
@@ -6404,7 +6404,7 @@ void CMainWnd::SetEQ125(LONG lEQ125)
 	m_sound->SetEQ125(125, 0.7f, (float)lEQ125);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 160Hz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 160Hz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ160(LONG lEQ160)
 {
@@ -6414,7 +6414,7 @@ void CMainWnd::SetEQ160(LONG lEQ160)
 	m_sound->SetEQ160(160, 0.7f, (float)lEQ160);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 200Hz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 200Hz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ200(LONG lEQ200)
 {
@@ -6424,7 +6424,7 @@ void CMainWnd::SetEQ200(LONG lEQ200)
 	m_sound->SetEQ200(200, 0.7f, (float)lEQ200);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 250Hz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 250Hz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ250(LONG lEQ250)
 {
@@ -6434,7 +6434,7 @@ void CMainWnd::SetEQ250(LONG lEQ250)
 	m_sound->SetEQ250(250, 0.7f, (float)lEQ250);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 315Hz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 315Hz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ315(LONG lEQ315)
 {
@@ -6444,7 +6444,7 @@ void CMainWnd::SetEQ315(LONG lEQ315)
 	m_sound->SetEQ315(315, 0.7f, (float)lEQ315);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 400Hz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 400Hz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ400(LONG lEQ400)
 {
@@ -6454,7 +6454,7 @@ void CMainWnd::SetEQ400(LONG lEQ400)
 	m_sound->SetEQ400(400, 0.7f, (float)lEQ400);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 500Hz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 500Hz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ500(LONG lEQ500)
 {
@@ -6464,7 +6464,7 @@ void CMainWnd::SetEQ500(LONG lEQ500)
 	m_sound->SetEQ500(500, 0.7f, (float)lEQ500);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 630Hz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 630Hz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ630(LONG lEQ630)
 {
@@ -6474,7 +6474,7 @@ void CMainWnd::SetEQ630(LONG lEQ630)
 	m_sound->SetEQ630(630, 0.7f, (float)lEQ630);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 800Hz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 800Hz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ800(LONG lEQ800)
 {
@@ -6484,7 +6484,7 @@ void CMainWnd::SetEQ800(LONG lEQ800)
 	m_sound->SetEQ800(800, 0.7f, (float)lEQ800);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 1KHz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 1KHz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ1K(LONG lEQ1K)
 {
@@ -6494,7 +6494,7 @@ void CMainWnd::SetEQ1K(LONG lEQ1K)
 	m_sound->SetEQ1K(1000, 0.7f, (float)lEQ1K);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 1.25KHz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 1.25KHz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ1_25K(LONG lEQ1_25K)
 {
@@ -6504,7 +6504,7 @@ void CMainWnd::SetEQ1_25K(LONG lEQ1_25K)
 	m_sound->SetEQ1_25K(1250, 0.7f, (float)lEQ1_25K);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 1.6KHz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 1.6KHz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ1_6K(LONG lEQ1_6K)
 {
@@ -6514,7 +6514,7 @@ void CMainWnd::SetEQ1_6K(LONG lEQ1_6K)
 	m_sound->SetEQ1_6K(1600, 0.7f, (float)lEQ1_6K);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 2KHz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 2KHz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ2K(LONG lEQ2K)
 {
@@ -6524,7 +6524,7 @@ void CMainWnd::SetEQ2K(LONG lEQ2K)
 	m_sound->SetEQ2K(2000, 0.7f, (float)lEQ2K);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 2.5KHz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 2.5KHz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ2_5K(LONG lEQ2_5K)
 {
@@ -6534,7 +6534,7 @@ void CMainWnd::SetEQ2_5K(LONG lEQ2_5K)
 	m_sound->SetEQ2_5K(2500, 0.7f, (float)lEQ2_5K);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 3.15KHz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 3.15KHz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ3_15K(LONG lEQ3_15K)
 {
@@ -6544,7 +6544,7 @@ void CMainWnd::SetEQ3_15K(LONG lEQ3_15K)
 	m_sound->SetEQ3_15K(3150, 0.7f, (float)lEQ3_15K);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 4KHz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 4KHz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ4K(LONG lEQ4K)
 {
@@ -6554,7 +6554,7 @@ void CMainWnd::SetEQ4K(LONG lEQ4K)
 	m_sound->SetEQ4K(4000, 0.7f, (float)lEQ4K);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 5KHz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 5KHz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ5K(LONG lEQ5K)
 {
@@ -6564,7 +6564,7 @@ void CMainWnd::SetEQ5K(LONG lEQ5K)
 	m_sound->SetEQ5K(5000, 0.7f, (float)lEQ5K);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 6.3KHz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 6.3KHz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ6_3K(LONG lEQ6_3K)
 {
@@ -6574,7 +6574,7 @@ void CMainWnd::SetEQ6_3K(LONG lEQ6_3K)
 	m_sound->SetEQ6_3K(6300, 0.7f, (float)lEQ6_3K);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 8KHz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 8KHz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ8K(LONG lEQ8K)
 {
@@ -6584,7 +6584,7 @@ void CMainWnd::SetEQ8K(LONG lEQ8K)
 	m_sound->SetEQ8K(8000, 0.7f, (float)lEQ8K);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 10KHz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 10KHz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ10K(LONG lEQ10K)
 {
@@ -6594,7 +6594,7 @@ void CMainWnd::SetEQ10K(LONG lEQ10K)
 	m_sound->SetEQ10K(10000, 0.7f, (float)lEQ10K);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 12.5KHz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 12.5KHz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ12_5K(LONG lEQ12_5K)
 {
@@ -6604,7 +6604,7 @@ void CMainWnd::SetEQ12_5K(LONG lEQ12_5K)
 	m_sound->SetEQ12_5K(12500, 0.7f, (float)lEQ12_5K);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 16KHz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 16KHz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ16K(LONG lEQ16K)
 {
@@ -6614,7 +6614,7 @@ void CMainWnd::SetEQ16K(LONG lEQ16K)
 	m_sound->SetEQ16K(16000, 0.7f, (float)lEQ16K);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU ( 20KHz ) ‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ ( 20KHz ) ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ20K(LONG lEQ20K)
 {
@@ -6624,7 +6624,7 @@ void CMainWnd::SetEQ20K(LONG lEQ20K)
 	m_sound->SetEQ20K(20000, 0.7f, (float)lEQ20K);
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒU‚Ìİ’è
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQ(LONG lEQ20, LONG lEQ25, LONG lEQ31_5, LONG lEQ40,
 					 LONG lEQ50, LONG lEQ63, LONG lEQ80, LONG lEQ100,
@@ -6700,7 +6700,7 @@ void CMainWnd::SetEQ(LONG lEQ20, LONG lEQ25, LONG lEQ31_5, LONG lEQ40,
 	SetEQ20K(lEQ20K);
 }
 //----------------------------------------------------------------------------
-// ƒOƒ‰ƒtƒBƒbƒNƒCƒRƒ‰ƒCƒU‚Ì•\¦ó‘Ô‚ğİ’è
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ã®è¡¨ç¤ºçŠ¶æ…‹ã‚’è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetEQVisible()
 {
@@ -6776,7 +6776,7 @@ void CMainWnd::SetEQVisible()
 	ResetSize();
 }
 //----------------------------------------------------------------------------
-// ƒtƒ‹ƒXƒNƒŠ[ƒ“‚Ìİ’è
+// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetFullScreen()
 {
@@ -6794,14 +6794,14 @@ void CMainWnd::SetFullScreen()
 	}
 }
 //----------------------------------------------------------------------------
-// Ä¶ü”g”‚ğ‚¾‚ñ‚¾‚ñ‘¬‚­‚·‚éİ’è
+// å†ç”Ÿå‘¨æ³¢æ•°ã‚’ã ã‚“ã ã‚“é€Ÿãã™ã‚‹è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetIncFreq()
 {
 	incFreqWnd->Create();
 }
 //----------------------------------------------------------------------------
-// Ä¶ü”g”‚ğ‚¾‚ñ‚¾‚ñ‘¬‚­‚·‚éİ’èiŠÔ‚²‚Æj
+// å†ç”Ÿå‘¨æ³¢æ•°ã‚’ã ã‚“ã ã‚“é€Ÿãã™ã‚‹è¨­å®šï¼ˆæ™‚é–“ã”ã¨ï¼‰
 //----------------------------------------------------------------------------
 void CMainWnd::SetIncFreq(double nSecond, double nIncFreq)
 {
@@ -6817,7 +6817,7 @@ void CMainWnd::SetIncFreq(double nSecond, double nIncFreq)
 	}
 }
 //----------------------------------------------------------------------------
-// Ä¶ü”g”‚ğ‚¾‚ñ‚¾‚ñ‘¬‚­‚·‚éİ’èiƒ‹[ƒv‚²‚Æj
+// å†ç”Ÿå‘¨æ³¢æ•°ã‚’ã ã‚“ã ã‚“é€Ÿãã™ã‚‹è¨­å®šï¼ˆãƒ«ãƒ¼ãƒ—ã”ã¨ï¼‰
 //----------------------------------------------------------------------------
 void CMainWnd::SetIncFreq(double nIncFreq)
 {
@@ -6837,7 +6837,7 @@ void CMainWnd::SetIncFreq(double nIncFreq)
 	KillTimer(IDT_INCFREQ);
 }
 //----------------------------------------------------------------------------
-// Ä¶ü”g”‚ğ‚¾‚ñ‚¾‚ñ‘¬‚­‚·‚éİ’è
+// å†ç”Ÿå‘¨æ³¢æ•°ã‚’ã ã‚“ã ã‚“é€Ÿãã™ã‚‹è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetIncFreq(BOOL bIncFreq, double nSecond)
 {
@@ -6847,14 +6847,14 @@ void CMainWnd::SetIncFreq(BOOL bIncFreq, double nSecond)
 	else KillTimer(IDT_INCFREQ);
 }
 //----------------------------------------------------------------------------
-// ‚¾‚ñ‚¾‚ñ‘¬‚­‚·‚éİ’è
+// ã ã‚“ã ã‚“é€Ÿãã™ã‚‹è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetIncSpeed()
 {
 	incSpeedWnd->Create();
 }
 //----------------------------------------------------------------------------
-// ‚¾‚ñ‚¾‚ñ‘¬‚­‚·‚éİ’èiŠÔ‚²‚Æj
+// ã ã‚“ã ã‚“é€Ÿãã™ã‚‹è¨­å®šï¼ˆæ™‚é–“ã”ã¨ï¼‰
 //----------------------------------------------------------------------------
 void CMainWnd::SetIncSpeed(double nSecond, double nIncSpeed)
 {
@@ -6870,7 +6870,7 @@ void CMainWnd::SetIncSpeed(double nSecond, double nIncSpeed)
 	}
 }
 //----------------------------------------------------------------------------
-// ‚¾‚ñ‚¾‚ñ‘¬‚­‚·‚éİ’èiƒ‹[ƒv‚²‚Æj
+// ã ã‚“ã ã‚“é€Ÿãã™ã‚‹è¨­å®šï¼ˆãƒ«ãƒ¼ãƒ—ã”ã¨ï¼‰
 //----------------------------------------------------------------------------
 void CMainWnd::SetIncSpeed(double nIncSpeed)
 {
@@ -6889,7 +6889,7 @@ void CMainWnd::SetIncSpeed(double nIncSpeed)
 	KillTimer(IDT_INCSPEED);
 }
 //----------------------------------------------------------------------------
-// ‚¾‚ñ‚¾‚ñ‘¬‚­‚·‚éİ’è
+// ã ã‚“ã ã‚“é€Ÿãã™ã‚‹è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetIncSpeed(BOOL bIncSpeed, double nSecond)
 {
@@ -6898,14 +6898,14 @@ void CMainWnd::SetIncSpeed(BOOL bIncSpeed, double nSecond)
 	else KillTimer(IDT_INCSPEED);
 }
 //----------------------------------------------------------------------------
-// Ä¶ü”g”‚ğ‚¾‚ñ‚¾‚ñ’x‚­‚·‚éİ’è
+// å†ç”Ÿå‘¨æ³¢æ•°ã‚’ã ã‚“ã ã‚“é…ãã™ã‚‹è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetDecFreq()
 {
 	decFreqWnd->Create();
 }
 //----------------------------------------------------------------------------
-// Ä¶ü”g”‚ğ‚¾‚ñ‚¾‚ñ’x‚­‚·‚éİ’èiŠÔ‚²‚Æj
+// å†ç”Ÿå‘¨æ³¢æ•°ã‚’ã ã‚“ã ã‚“é…ãã™ã‚‹è¨­å®šï¼ˆæ™‚é–“ã”ã¨ï¼‰
 //----------------------------------------------------------------------------
 void CMainWnd::SetDecFreq(double nSecond, double nDecFreq)
 {
@@ -6921,7 +6921,7 @@ void CMainWnd::SetDecFreq(double nSecond, double nDecFreq)
 	}
 }
 //----------------------------------------------------------------------------
-// Ä¶ü”g”‚ğ‚¾‚ñ‚¾‚ñ’x‚­‚·‚éİ’èiƒ‹[ƒv‚²‚Æj
+// å†ç”Ÿå‘¨æ³¢æ•°ã‚’ã ã‚“ã ã‚“é…ãã™ã‚‹è¨­å®šï¼ˆãƒ«ãƒ¼ãƒ—ã”ã¨ï¼‰
 //----------------------------------------------------------------------------
 void CMainWnd::SetDecFreq(double nDecFreq)
 {
@@ -6941,7 +6941,7 @@ void CMainWnd::SetDecFreq(double nDecFreq)
 	KillTimer(IDT_DECFREQ);
 }
 //----------------------------------------------------------------------------
-// Ä¶ü”g”‚ğ‚¾‚ñ‚¾‚ñ’x‚­‚·‚éİ’è
+// å†ç”Ÿå‘¨æ³¢æ•°ã‚’ã ã‚“ã ã‚“é…ãã™ã‚‹è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetDecFreq(BOOL bDecFreq, double nSecond)
 {
@@ -6951,14 +6951,14 @@ void CMainWnd::SetDecFreq(BOOL bDecFreq, double nSecond)
 	else KillTimer(IDT_DECFREQ);
 }
 //----------------------------------------------------------------------------
-// ‚¾‚ñ‚¾‚ñ’x‚­‚·‚éİ’è
+// ã ã‚“ã ã‚“é…ãã™ã‚‹è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetDecSpeed()
 {
 	decSpeedWnd->Create();
 }
 //----------------------------------------------------------------------------
-// ‚¾‚ñ‚¾‚ñ’x‚­‚·‚éİ’èiŠÔ‚²‚Æj
+// ã ã‚“ã ã‚“é…ãã™ã‚‹è¨­å®šï¼ˆæ™‚é–“ã”ã¨ï¼‰
 //----------------------------------------------------------------------------
 void CMainWnd::SetDecSpeed(double nSecond, double nDecSpeed)
 {
@@ -6974,7 +6974,7 @@ void CMainWnd::SetDecSpeed(double nSecond, double nDecSpeed)
 	}
 }
 //----------------------------------------------------------------------------
-// ‚¾‚ñ‚¾‚ñ’x‚­‚·‚éİ’èiƒ‹[ƒv‚²‚Æj
+// ã ã‚“ã ã‚“é…ãã™ã‚‹è¨­å®šï¼ˆãƒ«ãƒ¼ãƒ—ã”ã¨ï¼‰
 //----------------------------------------------------------------------------
 void CMainWnd::SetDecSpeed(double nDecSpeed)
 {
@@ -6993,7 +6993,7 @@ void CMainWnd::SetDecSpeed(double nDecSpeed)
 	KillTimer(IDT_DECSPEED);
 }
 //----------------------------------------------------------------------------
-// ‚¾‚ñ‚¾‚ñ’x‚­‚·‚éİ’è
+// ã ã‚“ã ã‚“é…ãã™ã‚‹è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetDecSpeed(BOOL bDecSpeed, double nSecond)
 {
@@ -7002,7 +7002,7 @@ void CMainWnd::SetDecSpeed(BOOL bDecSpeed, double nSecond)
 	else KillTimer(IDT_DECSPEED);
 }
 //----------------------------------------------------------------------------
-// ƒ}[ƒJ[’Ç‰Á‚Éƒ‹[ƒv‚Ìİ’è
+// ãƒãƒ¼ã‚«ãƒ¼è¿½åŠ æ™‚ã«ãƒ«ãƒ¼ãƒ—ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetInstantLoop()
 {
@@ -7010,7 +7010,7 @@ void CMainWnd::SetInstantLoop()
 	m_menu->CheckItem(ID_INSTANTLOOP, bInstantLoop ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
-// ƒ}[ƒJ[ˆÊ’u•ÏX‚ÉÄ¶ˆÊ’u•ÏX‚Ìİ’è
+// ãƒãƒ¼ã‚«ãƒ¼ä½ç½®å¤‰æ›´æ™‚ã«å†ç”Ÿä½ç½®å¤‰æ›´ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetPositionAuto()
 {
@@ -7019,7 +7019,7 @@ void CMainWnd::SetPositionAuto()
 		? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
-// ƒVƒ‡[ƒgƒJƒbƒgƒL[‚Ìİ’è
+// ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetKeySetting()
 {
@@ -7029,14 +7029,14 @@ void CMainWnd::SetKeySetting()
 	keySettingWnd->Update();
 }
 //----------------------------------------------------------------------------
-// Å‘å’l^Å¬’l‚Ìİ’è
+// æœ€å¤§å€¤ï¼æœ€å°å€¤ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetLimit()
 {
 	limitSettingWnd->Create();
 }
 //----------------------------------------------------------------------------
-// Å‘å’l^Å¬’l‚Ìİ’è
+// æœ€å¤§å€¤ï¼æœ€å°å€¤ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetLimit(double dMinSpeed, double dMaxSpeed,
 						double dMinFreq, double dMaxFreq,
@@ -7050,7 +7050,7 @@ void CMainWnd::SetLimit(double dMinSpeed, double dMaxSpeed,
 	m_pitchLabel->SetLimit(dMinPitch, dMaxPitch);
 }
 //----------------------------------------------------------------------------
-// ƒ}[ƒJ[‚Ìİ’è
+// ãƒãƒ¼ã‚«ãƒ¼ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetMarkerPlay()
 {
@@ -7075,7 +7075,7 @@ void CMainWnd::SetMarkerPlay()
 		& ~TBS_ENABLESELRANGE));
 	if(bMarkerPlay) {
 		QWORD qwTime = m_sound->ChannelGetPosition();
-		BOOL bDone = FALSE; // ”ÍˆÍ‚ğİ’è‚µ‚½‚©‚Ç‚¤‚©
+		BOOL bDone = FALSE; // ç¯„å›²ã‚’è¨­å®šã—ãŸã‹ã©ã†ã‹
 		std::vector<QWORD> arrayMarker = m_sound->GetArrayMarker();
 		QWORD length = m_sound->ChannelGetLength();
 		int max = (int)arrayMarker.size();
@@ -7130,14 +7130,14 @@ void CMainWnd::SetMarkerPlay()
 	}
 }
 //----------------------------------------------------------------------------
-// ƒƒgƒƒm[ƒ€‚Ìİ’è
+// ãƒ¡ãƒˆãƒ­ãƒãƒ¼ãƒ ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetMetronome()
 {
 	metronomeWnd->Create();
 }
 //----------------------------------------------------------------------------
-// ƒƒgƒƒm[ƒ€‚Ìİ’è
+// ãƒ¡ãƒˆãƒ­ãƒãƒ¼ãƒ ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetMetronome(int nBpm)
 {
@@ -7148,7 +7148,7 @@ void CMainWnd::SetMetronome(int nBpm)
 	SetTimer(IDT_METRONOME, 1);
 }
 //----------------------------------------------------------------------------
-// ƒƒgƒƒm[ƒ€‚Ì’â~
+// ãƒ¡ãƒˆãƒ­ãƒãƒ¼ãƒ ã®åœæ­¢
 //----------------------------------------------------------------------------
 void CMainWnd::StopMetronome()
 {
@@ -7156,7 +7156,7 @@ void CMainWnd::StopMetronome()
 	SetPriorityClass(GetCurrentProcess(), NORMAL_PRIORITY_CLASS);
 }
 //----------------------------------------------------------------------------
-// ¶‰E“ü‚ê‘Ö‚¦
+// å·¦å³å…¥ã‚Œæ›¿ãˆ
 //----------------------------------------------------------------------------
 void CMainWnd::SetChangeLR()
 {
@@ -7171,7 +7171,7 @@ void CMainWnd::SetChangeLR()
 	m_menu->CheckItem(ID_CHANGELR, bChangeLR ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
-// ¶‰E“ü‚ê‘Ö‚¦
+// å·¦å³å…¥ã‚Œæ›¿ãˆ
 //----------------------------------------------------------------------------
 void CMainWnd::SetChangeLR(BOOL bChangeLR)
 {
@@ -7185,7 +7185,7 @@ void CMainWnd::SetChangeLR(BOOL bChangeLR)
 	m_menu->CheckItem(ID_CHANGELR, bChangeLR ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
-// ’®ŠoƒgƒŒ[ƒjƒ“ƒO
+// è´è¦šãƒˆãƒ¬ãƒ¼ãƒ‹ãƒ³ã‚°
 //----------------------------------------------------------------------------
 void CMainWnd::SetEarTraining()
 {
@@ -7207,7 +7207,7 @@ void CMainWnd::SetEarTraining()
 	}
 }
 //----------------------------------------------------------------------------
-// ’®ŠoƒgƒŒ[ƒjƒ“ƒO
+// è´è¦šãƒˆãƒ¬ãƒ¼ãƒ‹ãƒ³ã‚°
 //----------------------------------------------------------------------------
 void CMainWnd::SetEarTraining(BOOL bEarTraining)
 {
@@ -7225,7 +7225,7 @@ void CMainWnd::SetEarTraining(BOOL bEarTraining)
 	}
 }
 //----------------------------------------------------------------------------
-// ƒtƒH[ƒJƒX‚ğŸ‚ÌƒRƒ“ƒgƒ[ƒ‹İ’è
+// ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚’æ¬¡ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetFocusNextControl()
 {
@@ -7293,7 +7293,7 @@ void CMainWnd::SetFocusNextControl()
 	}
 }
 //----------------------------------------------------------------------------
-// Ÿ‚Ìƒ^ƒu‚ÉƒtƒH[ƒJƒX‚ğİ’è
+// æ¬¡ã®ã‚¿ãƒ–ã«ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚’è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetFocusNextTab()
 {
@@ -7309,7 +7309,7 @@ void CMainWnd::SetFocusNextTab()
 	m_tab->SetCurrentFocus(nFocus);
 }
 //----------------------------------------------------------------------------
-// ƒm[ƒ}ƒ‰ƒCƒY
+// ãƒãƒ¼ãƒãƒ©ã‚¤ã‚º
 //----------------------------------------------------------------------------
 void CMainWnd::SetNormalize()
 {
@@ -7319,7 +7319,7 @@ void CMainWnd::SetNormalize()
 	m_menu->CheckItem(ID_NORMALIZE, bNormalize ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
-// ƒm[ƒ}ƒ‰ƒCƒY
+// ãƒãƒ¼ãƒãƒ©ã‚¤ã‚º
 //----------------------------------------------------------------------------
 void CMainWnd::SetNormalize(BOOL bNormalize)
 {
@@ -7328,7 +7328,7 @@ void CMainWnd::SetNormalize(BOOL bNormalize)
 	m_menu->CheckItem(ID_NORMALIZE, bNormalize ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
-// ‰Ì‚Ö‚½ƒ‚[ƒh
+// æ­Œã¸ãŸãƒ¢ãƒ¼ãƒ‰
 //----------------------------------------------------------------------------
 void CMainWnd::SetNoSense()
 {
@@ -7380,7 +7380,7 @@ void CMainWnd::SetNoSense()
 	}
 }
 //----------------------------------------------------------------------------
-// ‰Ì‚Ö‚½ƒ‚[ƒh
+// æ­Œã¸ãŸãƒ¢ãƒ¼ãƒ‰
 //----------------------------------------------------------------------------
 void CMainWnd::SetNoSense(BOOL bNoSense)
 {
@@ -7431,13 +7431,13 @@ void CMainWnd::SetNoSense(BOOL bNoSense)
 	}
 }
 //----------------------------------------------------------------------------
-// Ÿ‚Ìƒ}[ƒJ[‚Ö
+// æ¬¡ã®ãƒãƒ¼ã‚«ãƒ¼ã¸
 //----------------------------------------------------------------------------
 void CMainWnd::SetNextMarker()
 {
 	if(bMarkerPlay) {
 		QWORD qwTime = m_sound->GetLoopPosA();
-		BOOL bDone = FALSE; // ”ÍˆÍ‚ğİ’è‚µ‚½‚©‚Ç‚¤‚©
+		BOOL bDone = FALSE; // ç¯„å›²ã‚’è¨­å®šã—ãŸã‹ã©ã†ã‹
 		std::vector<QWORD> arrayMarker = m_sound->GetArrayMarker();
 		QWORD length = m_sound->ChannelGetLength();
 		int max = (int)arrayMarker.size();
@@ -7457,7 +7457,7 @@ void CMainWnd::SetNextMarker()
 	}
 }
 //----------------------------------------------------------------------------
-// ¶‚Ì‚İÄ¶
+// å·¦ã®ã¿å†ç”Ÿ
 //----------------------------------------------------------------------------
 void CMainWnd::SetOnlyLeft()
 {
@@ -7473,7 +7473,7 @@ void CMainWnd::SetOnlyLeft()
 	m_menu->CheckItem(ID_ONLYLEFT, bOnlyLeft ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
-// ¶‚Ì‚İÄ¶
+// å·¦ã®ã¿å†ç”Ÿ
 //----------------------------------------------------------------------------
 void CMainWnd::SetOnlyLeft(BOOL bOnlyLeft)
 {
@@ -7488,7 +7488,7 @@ void CMainWnd::SetOnlyLeft(BOOL bOnlyLeft)
 	m_menu->CheckItem(ID_ONLYLEFT, bOnlyLeft ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
-// ‰E‚Ì‚İÄ¶
+// å³ã®ã¿å†ç”Ÿ
 //----------------------------------------------------------------------------
 void CMainWnd::SetOnlyRight()
 {
@@ -7504,7 +7504,7 @@ void CMainWnd::SetOnlyRight()
 	m_menu->CheckItem(ID_ONLYRIGHT, bOnlyRight ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
-// ‰E‚Ì‚İÄ¶
+// å³ã®ã¿å†ç”Ÿ
 //----------------------------------------------------------------------------
 void CMainWnd::SetOnlyRight(BOOL bOnlyRight)
 {
@@ -7519,7 +7519,7 @@ void CMainWnd::SetOnlyRight(BOOL bOnlyRight)
 	m_menu->CheckItem(ID_ONLYRIGHT, bOnlyRight ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
-// ƒOƒ[ƒoƒ‹ƒzƒbƒgƒL[‚Ìİ’è
+// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ›ãƒƒãƒˆã‚­ãƒ¼ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetOutKeySetting()
 {
@@ -7529,7 +7529,7 @@ void CMainWnd::SetOutKeySetting()
 	outKeySettingWnd->Update();
 }
 //----------------------------------------------------------------------------
-// Ä¶ƒŠƒXƒg‚Ì•\¦ó‘Ô‚ğİ’è
+// å†ç”Ÿãƒªã‚¹ãƒˆã®è¡¨ç¤ºçŠ¶æ…‹ã‚’è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetPlayListVisible()
 {
@@ -7547,7 +7547,7 @@ void CMainWnd::SetPlayListVisible()
 	ResetSize();
 }
 //----------------------------------------------------------------------------
-// ƒvƒŠƒZƒbƒg‚Ìİ’è
+// ãƒ—ãƒªã‚»ãƒƒãƒˆã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetPreset(int n)
 {
@@ -8289,13 +8289,13 @@ void CMainWnd::SetPreset(int n)
 		SetChangeLR();
 }
 //----------------------------------------------------------------------------
-// ‘O‚ÖEŸ‚Öƒƒjƒ…[‚Ì•\¦ó‘Ô‚ğİ’è
+// å‰ã¸ãƒ»æ¬¡ã¸ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®è¡¨ç¤ºçŠ¶æ…‹ã‚’è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetPreviousNextMenuState()
 {
 	if(m_sound->GetCurFileNum() <= 0) return;
 
-	// ‘O‚Öƒƒjƒ…[‚Ìg—p‰ÂE•s‰Â‚ğİ’è
+	// å‰ã¸ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ä½¿ç”¨å¯ãƒ»ä¸å¯ã‚’è¨­å®š
 	if(m_sound->GetNSFCount() > 0)
 		m_menu->EnableItem(ID_PREV, MFS_ENABLED);
 	else if(m_menu->IsItemChecked(ID_RANDOM)) {
@@ -8311,7 +8311,7 @@ void CMainWnd::SetPreviousNextMenuState()
 		else m_menu->EnableItem(ID_PREV, MFS_ENABLED);
 	}
 
-	// Ÿ‚Öƒƒjƒ…[‚Ìg—p‰ÂE•s‰Â‚ğİ’è
+	// æ¬¡ã¸ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ä½¿ç”¨å¯ãƒ»ä¸å¯ã‚’è¨­å®š
 	if(m_sound->GetNSFCount() > 0)
 		m_menu->EnableItem(ID_NEXT, MFS_ENABLED);
 	else if(m_menu->IsItemChecked(ID_RANDOM)) {
@@ -8330,13 +8330,13 @@ void CMainWnd::SetPreviousNextMenuState()
 	}
 }
 //----------------------------------------------------------------------------
-// ‘O‚Ìƒ}[ƒJ[‚Ö
+// å‰ã®ãƒãƒ¼ã‚«ãƒ¼ã¸
 //----------------------------------------------------------------------------
 void CMainWnd::SetPrevMarker()
 {
 	if(bMarkerPlay) {
 		QWORD qwTime = m_sound->GetLoopPosA();
-		BOOL bDone = FALSE; // ”ÍˆÍ‚ğİ’è‚µ‚½‚©‚Ç‚¤‚©
+		BOOL bDone = FALSE; // ç¯„å›²ã‚’è¨­å®šã—ãŸã‹ã©ã†ã‹
 		std::vector<QWORD> arrayMarker = m_sound->GetArrayMarker();
 		QWORD length = m_sound->ChannelGetLength();
 		int max = (int)arrayMarker.size();
@@ -8363,7 +8363,7 @@ void CMainWnd::SetPrevMarker()
 	}
 }
 //----------------------------------------------------------------------------
-// ƒ‰ƒ“ƒ_ƒ€Ä¶‚Ìİ’è
+// ãƒ©ãƒ³ãƒ€ãƒ å†ç”Ÿã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetRandom()
 {
@@ -8378,7 +8378,7 @@ void CMainWnd::SetRandom()
 	SetPreviousNextMenuState();
 }
 //----------------------------------------------------------------------------
-// ƒŠƒo[ƒu‚ğ‚©‚¯‚é
+// ãƒªãƒãƒ¼ãƒ–ã‚’ã‹ã‘ã‚‹
 //----------------------------------------------------------------------------
 void CMainWnd::SetReverb(BOOL bReverb)
 {
@@ -8387,7 +8387,7 @@ void CMainWnd::SetReverb(BOOL bReverb)
 	m_sound->SetReverb(bReverb);
 }
 //----------------------------------------------------------------------------
-// ‚R‚cƒŠƒo[ƒu‚ğ‚©‚¯‚é
+// ï¼“ï¼¤ãƒªãƒãƒ¼ãƒ–ã‚’ã‹ã‘ã‚‹
 //----------------------------------------------------------------------------
 void CMainWnd::Set3DReverb(BOOL b3DReverb)
 {
@@ -8396,7 +8396,7 @@ void CMainWnd::Set3DReverb(BOOL b3DReverb)
 	m_sound->Set3DReverb(b3DReverb);
 }
 //----------------------------------------------------------------------------
-// ƒfƒBƒŒƒC‚ğ‚©‚¯‚é
+// ãƒ‡ã‚£ãƒ¬ã‚¤ã‚’ã‹ã‘ã‚‹
 //----------------------------------------------------------------------------
 void CMainWnd::SetDelay(BOOL bDelay)
 {
@@ -8405,7 +8405,7 @@ void CMainWnd::SetDelay(BOOL bDelay)
 	m_sound->SetDelay(bDelay);
 }
 //----------------------------------------------------------------------------
-// ƒR[ƒ‰ƒX‚ğ‚©‚¯‚é
+// ã‚³ãƒ¼ãƒ©ã‚¹ã‚’ã‹ã‘ã‚‹
 //----------------------------------------------------------------------------
 void CMainWnd::SetChorus(BOOL bChorus)
 {
@@ -8414,7 +8414,7 @@ void CMainWnd::SetChorus(BOOL bChorus)
 	m_sound->SetChorus(bChorus);
 }
 //----------------------------------------------------------------------------
-// ƒRƒ“ƒvƒŒƒbƒT[‚ğ‚©‚¯‚é
+// ã‚³ãƒ³ãƒ—ãƒ¬ãƒƒã‚µãƒ¼ã‚’ã‹ã‘ã‚‹
 //----------------------------------------------------------------------------
 void CMainWnd::SetCompressor(BOOL bCompressor)
 {
@@ -8423,7 +8423,7 @@ void CMainWnd::SetCompressor(BOOL bCompressor)
 	m_sound->SetCompressor(bCompressor);
 }
 //----------------------------------------------------------------------------
-// ƒtƒ‰ƒ“ƒWƒƒ[‚ğ‚©‚¯‚é
+// ãƒ•ãƒ©ãƒ³ã‚¸ãƒ£ãƒ¼ã‚’ã‹ã‘ã‚‹
 //----------------------------------------------------------------------------
 void CMainWnd::SetFlanger(BOOL bFlanger)
 {
@@ -8432,7 +8432,7 @@ void CMainWnd::SetFlanger(BOOL bFlanger)
 	m_sound->SetFlanger(bFlanger);
 }
 //----------------------------------------------------------------------------
-// ƒK[ƒOƒ‹‚ğ‚©‚¯‚é
+// ã‚¬ãƒ¼ã‚°ãƒ«ã‚’ã‹ã‘ã‚‹
 //----------------------------------------------------------------------------
 void CMainWnd::SetGargle(BOOL bGargle)
 {
@@ -8441,7 +8441,7 @@ void CMainWnd::SetGargle(BOOL bGargle)
 	m_sound->SetGargle(bGargle);
 }
 //----------------------------------------------------------------------------
-// ƒfƒBƒXƒg[ƒVƒ‡ƒ“‚ğ‚©‚¯‚é
+// ãƒ‡ã‚£ã‚¹ãƒˆãƒ¼ã‚·ãƒ§ãƒ³ã‚’ã‹ã‘ã‚‹
 //----------------------------------------------------------------------------
 void CMainWnd::SetDistortion(BOOL bDistortion)
 {
@@ -8450,14 +8450,14 @@ void CMainWnd::SetDistortion(BOOL bDistortion)
 	m_sound->SetDistortion(bDistortion);
 }
 //----------------------------------------------------------------------------
-// LAMEƒRƒ}ƒ“ƒhƒ‰ƒCƒ“ƒIƒvƒVƒ‡ƒ“‚Ìİ’è
+// LAMEã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetLAMECommandLine(tstring strLAMECommandLine)
 {
 	m_strLAMECommandLine = strLAMECommandLine;
 }
 //----------------------------------------------------------------------------
-// “d’rØ‚ê
+// é›»æ± åˆ‡ã‚Œ
 //----------------------------------------------------------------------------
 void CMainWnd::SetLowBattery()
 {
@@ -8494,7 +8494,7 @@ void CMainWnd::SetLowBattery()
 	}
 }
 //----------------------------------------------------------------------------
-// “d’rØ‚ê
+// é›»æ± åˆ‡ã‚Œ
 //----------------------------------------------------------------------------
 void CMainWnd::SetLowBattery(BOOL bLowBattery)
 {
@@ -8530,7 +8530,7 @@ void CMainWnd::SetLowBattery(BOOL bLowBattery)
 	}
 }
 //----------------------------------------------------------------------------
-// ‹t‰ñ“]Ä¶
+// é€†å›è»¢å†ç”Ÿ
 //----------------------------------------------------------------------------
 void CMainWnd::SetReverse()
 {
@@ -8544,7 +8544,7 @@ void CMainWnd::SetReverse()
 	m_menu->CheckItem(ID_REVERSE, bReverse ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
-// ‹t‰ñ“]Ä¶
+// é€†å›è»¢å†ç”Ÿ
 //----------------------------------------------------------------------------
 void CMainWnd::SetReverse(BOOL bReverse)
 {
@@ -8557,7 +8557,7 @@ void CMainWnd::SetReverse(BOOL bReverse)
 	m_menu->CheckItem(ID_REVERSE, bReverse ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
-// ŒÃ‚Ñ‚½ƒŒƒR[ƒhÄ¶
+// å¤ã³ãŸãƒ¬ã‚³ãƒ¼ãƒ‰å†ç”Ÿ
 //----------------------------------------------------------------------------
 void CMainWnd::SetRecord()
 {
@@ -8583,7 +8583,7 @@ void CMainWnd::SetRecord()
 	}
 }
 //----------------------------------------------------------------------------
-// ŒÃ‚Ñ‚½ƒŒƒR[ƒhÄ¶
+// å¤ã³ãŸãƒ¬ã‚³ãƒ¼ãƒ‰å†ç”Ÿ
 //----------------------------------------------------------------------------
 void CMainWnd::SetRecord(BOOL bRecord)
 {
@@ -8606,7 +8606,7 @@ void CMainWnd::SetRecord(BOOL bRecord)
 	}
 }
 //----------------------------------------------------------------------------
-// ƒŒƒR[ƒhƒmƒCƒY‚Ìİ’è
+// ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒã‚¤ã‚ºã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetRecordNoise(BOOL bRecordNoise)
 {
@@ -8626,7 +8626,7 @@ void CMainWnd::SetRecordNoise(BOOL bRecordNoise)
 	else m_soundEffect->ChannelStop();
 }
 //----------------------------------------------------------------------------
-// ‚P‹Èƒ‹[ƒv‚Ìİ’è
+// ï¼‘æ›²ãƒ«ãƒ¼ãƒ—ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetSingleLoop()
 {
@@ -8635,7 +8635,7 @@ void CMainWnd::SetSingleLoop()
 	m_toolBar->SetSingleLoopState(m_sound->IsLoop());
 }
 //----------------------------------------------------------------------------
-// Ä¶‘¬“x‚Ìİ’è
+// å†ç”Ÿé€Ÿåº¦ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetSpeed(double dSpeed)
 {
@@ -8644,7 +8644,7 @@ void CMainWnd::SetSpeed(double dSpeed)
 	if(m_bVideo) m_sound->ChannelSetPosition(m_sound->ChannelGetPosition());
 }
 //----------------------------------------------------------------------------
-// Ä¶ü”g”‚Ìİ’è
+// å†ç”Ÿå‘¨æ³¢æ•°ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetFreq(double dFreq)
 {
@@ -8655,7 +8655,7 @@ void CMainWnd::SetFreq(double dFreq)
 	if(m_bVideo) m_sound->ChannelSetPosition(m_sound->ChannelGetPosition());
 }
 //----------------------------------------------------------------------------
-// ƒpƒ“‚Ìİ’è
+// ãƒ‘ãƒ³ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetPan(int nPan)
 {
@@ -8663,7 +8663,7 @@ void CMainWnd::SetPan(int nPan)
 	m_sound->ChannelSetPan(nPan);
 }
 //----------------------------------------------------------------------------
-// ‰¹’ö‚Ìİ’è
+// éŸ³ç¨‹ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetPitch(double dPitch)
 {
@@ -8674,14 +8674,14 @@ void CMainWnd::SetPitch(double dPitch)
 	if(m_bVideo) m_sound->ChannelSetPosition(m_sound->ChannelGetPosition());
 }
 //----------------------------------------------------------------------------
-// Ä¶ˆÊ’u‚Ìİ’è
+// å†ç”Ÿä½ç½®ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetPlayPosition()
 {
 	playPositionWnd->Create();
 }
 //----------------------------------------------------------------------------
-// Ä¶”ÍˆÍ‚Ìİ’è
+// å†ç”Ÿç¯„å›²ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetPlayRange()
 {
@@ -8689,7 +8689,7 @@ void CMainWnd::SetPlayRange()
 	playRangeWnd->Create();
 }
 //----------------------------------------------------------------------------
-// Ä¶”ÍˆÍ‚Ìİ’è
+// å†ç”Ÿç¯„å›²ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetPlayRange(double dStartSeconds, double dEndSeconds)
 {
@@ -8701,7 +8701,7 @@ void CMainWnd::SetPlayRange(double dStartSeconds, double dEndSeconds)
 		m_sound->ChannelSetSecondsPosition(m_dStartSeconds);
 }
 //----------------------------------------------------------------------------
-// ƒrƒfƒI‚©‚Ç‚¤‚©‚ğİ’è
+// ãƒ“ãƒ‡ã‚ªã‹ã©ã†ã‹ã‚’è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetVideo(BOOL bVideo)
 {
@@ -8709,7 +8709,7 @@ void CMainWnd::SetVideo(BOOL bVideo)
 	m_sound->SetVideo(bVideo);
 }
 //----------------------------------------------------------------------------
-// ƒ‚ƒmƒ‰ƒ‹‰»
+// ãƒ¢ãƒãƒ©ãƒ«åŒ–
 //----------------------------------------------------------------------------
 void CMainWnd::SetMonoral()
 {
@@ -8725,7 +8725,7 @@ void CMainWnd::SetMonoral()
 	m_menu->CheckItem(ID_MONORAL, bMonoral ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
-// ƒ‚ƒmƒ‰ƒ‹‰»
+// ãƒ¢ãƒãƒ©ãƒ«åŒ–
 //----------------------------------------------------------------------------
 void CMainWnd::SetMonoral(BOOL bMonoral)
 {
@@ -8740,7 +8740,7 @@ void CMainWnd::SetMonoral(BOOL bMonoral)
 	m_menu->CheckItem(ID_MONORAL, bMonoral ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
-// ƒ{[ƒJƒ‹ƒLƒƒƒ“ƒZƒ‹
+// ãƒœãƒ¼ã‚«ãƒ«ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 //----------------------------------------------------------------------------
 void CMainWnd::SetVocalCancel()
 {
@@ -8756,7 +8756,7 @@ void CMainWnd::SetVocalCancel()
 	m_menu->CheckItem(ID_VOCALCANCEL, bVocalCancel ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
-// ƒ{[ƒJƒ‹ƒLƒƒƒ“ƒZƒ‹
+// ãƒœãƒ¼ã‚«ãƒ«ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 //----------------------------------------------------------------------------
 void CMainWnd::SetVocalCancel(BOOL bVocalCancel)
 {
@@ -8771,14 +8771,14 @@ void CMainWnd::SetVocalCancel(BOOL bVocalCancel)
 	m_menu->CheckItem(ID_VOCALCANCEL, bVocalCancel ? MF_CHECKED : MF_UNCHECKED);
 }
 //----------------------------------------------------------------------------
-// ‰¹—Ê‚Ìİ’è
+// éŸ³é‡ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetVolume(double nVolume)
 {
 	m_sound->ChannelSetVolume((float)nVolume);
 }
 //----------------------------------------------------------------------------
-// ”g‰¹‚Ìİ’è
+// æ³¢éŸ³ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetWave(BOOL bWave)
 {
@@ -8798,14 +8798,14 @@ void CMainWnd::SetWave(BOOL bWave)
 	else m_soundEffect->ChannelStop();
 }
 //----------------------------------------------------------------------------
-// ŠÔ‚Ìİ’èi•b”j
+// æ™‚é–“ã®è¨­å®šï¼ˆç§’æ•°ï¼‰
 //----------------------------------------------------------------------------
 void CMainWnd::SetSeconds(double fSeconds)
 {
 	SetTime(m_sound->ChannelSeconds2Bytes(fSeconds));
 }
 //----------------------------------------------------------------------------
-// ƒ^ƒu‚Ì•\¦ó‘Ô‚ğİ’è
+// ã‚¿ãƒ–ã®è¡¨ç¤ºçŠ¶æ…‹ã‚’è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetTabVisible()
 {
@@ -8825,14 +8825,14 @@ void CMainWnd::SetTabVisible()
 	ResetSize();
 }
 //----------------------------------------------------------------------------
-// ŠÔ‚Ìİ’è
+// æ™‚é–“ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetTime(QWORD qwTime, BOOL bReset)
 {
 	if(bMarkerPlay) {
 		this->nCurrentLoopCount = 0;
 
-		BOOL bDone = FALSE; // ”ÍˆÍ‚ğİ’è‚µ‚½‚©‚Ç‚¤‚©
+		BOOL bDone = FALSE; // ç¯„å›²ã‚’è¨­å®šã—ãŸã‹ã©ã†ã‹
 		std::vector<QWORD> arrayMarker = m_sound->GetArrayMarker();
 		QWORD length = m_sound->ChannelGetLength();
 		int max = (int)arrayMarker.size();
@@ -8896,14 +8896,14 @@ void CMainWnd::SetTime(QWORD qwTime, BOOL bReset)
 	ShowTime();
 }
 //----------------------------------------------------------------------------
-// ƒ^ƒCƒ}[İ’è
+// ã‚¿ã‚¤ãƒãƒ¼è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetTimerPlay()
 {
 	timerPlayWnd->Create();
 }
 //----------------------------------------------------------------------------
-// ƒ^ƒCƒ}[Ä¶‚Ìİ’è
+// ã‚¿ã‚¤ãƒãƒ¼å†ç”Ÿã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetTimerPlay(int nHour, int nMinute)
 {
@@ -8917,7 +8917,7 @@ void CMainWnd::SetTimerPlay(int nHour, int nMinute)
 	SetTimerPlay(TRUE);
 }
 //----------------------------------------------------------------------------
-// ƒ^ƒCƒ}[Ä¶‚Ìİ’è
+// ã‚¿ã‚¤ãƒãƒ¼å†ç”Ÿã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetTimerPlay(BOOL bTimerPlay)
 {
@@ -8927,7 +8927,7 @@ void CMainWnd::SetTimerPlay(BOOL bTimerPlay)
 	else KillTimer(IDT_TIMERPLAY);
 }
 //----------------------------------------------------------------------------
-// ƒ^ƒCƒ}[’â~‚Ìİ’è
+// ã‚¿ã‚¤ãƒãƒ¼åœæ­¢ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetTimerStop(int nHour, int nMinute)
 {
@@ -8941,7 +8941,7 @@ void CMainWnd::SetTimerStop(int nHour, int nMinute)
 	SetTimerStop(TRUE);
 }
 //----------------------------------------------------------------------------
-// ƒ^ƒCƒ}[’â~‚Ìİ’è
+// ã‚¿ã‚¤ãƒãƒ¼åœæ­¢ã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetTimerStop(BOOL bTimerStop)
 {
@@ -8951,7 +8951,7 @@ void CMainWnd::SetTimerStop(BOOL bTimerStop)
 	else KillTimer(IDT_TIMERSTOP);
 }
 //----------------------------------------------------------------------------
-// Å‘O–Ê•\¦‚Ìİ’è
+// æœ€å‰é¢è¡¨ç¤ºã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::SetTopMost()
 {
@@ -8968,70 +8968,70 @@ void CMainWnd::SetTopMost()
 	}
 }
 //----------------------------------------------------------------------------
-// ‚R‚cƒŠƒo[ƒu‚ÌƒJƒXƒ^ƒ}ƒCƒY—pƒEƒBƒ“ƒhƒE‚Ì•\¦
+// ï¼“ï¼¤ãƒªãƒãƒ¼ãƒ–ã®ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚ºç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤º
 //----------------------------------------------------------------------------
 void CMainWnd::Show3DReverbCustomizeWnd()
 {
 	m_3dReverbCustomizeWnd->Create();
 }
 //----------------------------------------------------------------------------
-// ƒR[ƒ‰ƒX‚ÌƒJƒXƒ^ƒ}ƒCƒY—pƒEƒBƒ“ƒhƒE‚Ì•\¦
+// ã‚³ãƒ¼ãƒ©ã‚¹ã®ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚ºç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤º
 //----------------------------------------------------------------------------
 void CMainWnd::ShowChorusCustomizeWnd()
 {
 	m_chorusCustomizeWnd->Create();
 }
 //----------------------------------------------------------------------------
-// ƒRƒ“ƒvƒŒƒbƒT[‚ÌƒJƒXƒ^ƒ}ƒCƒY—pƒEƒBƒ“ƒhƒE‚Ì•\¦
+// ã‚³ãƒ³ãƒ—ãƒ¬ãƒƒã‚µãƒ¼ã®ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚ºç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤º
 //----------------------------------------------------------------------------
 void CMainWnd::ShowCompressorCustomizeWnd()
 {
 	m_compressorCustomizeWnd->Create();
 }
 //----------------------------------------------------------------------------
-// ƒfƒBƒŒƒC‚ÌƒJƒXƒ^ƒ}ƒCƒY—pƒEƒBƒ“ƒhƒE‚Ì•\¦
+// ãƒ‡ã‚£ãƒ¬ã‚¤ã®ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚ºç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤º
 //----------------------------------------------------------------------------
 void CMainWnd::ShowDelayCustomizeWnd()
 {
 	m_delayCustomizeWnd->Create();
 }
 //----------------------------------------------------------------------------
-// ƒfƒBƒXƒg[ƒVƒ‡ƒ“‚ÌƒJƒXƒ^ƒ}ƒCƒY—pƒEƒBƒ“ƒhƒE‚Ì•\¦
+// ãƒ‡ã‚£ã‚¹ãƒˆãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚ºç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤º
 //----------------------------------------------------------------------------
 void CMainWnd::ShowDistortionCustomizeWnd()
 {
 	m_distortionCustomizeWnd->Create();
 }
 //----------------------------------------------------------------------------
-// ƒtƒ‰ƒ“ƒWƒƒ[‚ÌƒJƒXƒ^ƒ}ƒCƒY—pƒEƒBƒ“ƒhƒE‚Ì•\¦
+// ãƒ•ãƒ©ãƒ³ã‚¸ãƒ£ãƒ¼ã®ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚ºç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤º
 //----------------------------------------------------------------------------
 void CMainWnd::ShowFlangerCustomizeWnd()
 {
 	m_flangerCustomizeWnd->Create();
 }
 //----------------------------------------------------------------------------
-// ƒK[ƒOƒ‹‚ÌƒJƒXƒ^ƒ}ƒCƒY—pƒEƒBƒ“ƒhƒE‚Ì•\¦
+// ã‚¬ãƒ¼ã‚°ãƒ«ã®ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚ºç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤º
 //----------------------------------------------------------------------------
 void CMainWnd::ShowGargleCustomizeWnd()
 {
 	m_gargleCustomizeWnd->Create();
 }
 //----------------------------------------------------------------------------
-// LAMEƒRƒ}ƒ“ƒhƒ‰ƒCƒ“ƒIƒvƒVƒ‡ƒ“İ’è—pƒEƒBƒ“ƒhƒE‚Ì•\¦
+// LAMEã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³ã‚ªãƒ—ã‚·ãƒ§ãƒ³è¨­å®šç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤º
 //----------------------------------------------------------------------------
 void CMainWnd::ShowLAMECommandLineWnd()
 {
 	m_lameCommandLineWnd->Create();
 }
 //----------------------------------------------------------------------------
-// URL‚ğŠJ‚­ƒEƒBƒ“ƒhƒE‚Ì•\¦
+// URLã‚’é–‹ãã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤º
 //----------------------------------------------------------------------------
 void CMainWnd::ShowOpenURLWnd(BOOL bAdd)
 {
 	m_openURLWnd->Create(bAdd);
 }
 //----------------------------------------------------------------------------
-// ƒtƒ@ƒCƒ‹‚ğŠJ‚­ƒ_ƒCƒAƒƒO‚Ì•\¦
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ããƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®è¡¨ç¤º
 //----------------------------------------------------------------------------
 void CMainWnd::ShowOpenFileDialog(BOOL bClear)
 {
@@ -9042,7 +9042,7 @@ void CMainWnd::ShowOpenFileDialog(BOOL bClear)
 	ofn.hInstance = GetModuleHandle(NULL);
 	ofn.hwndOwner = m_hWnd;
 #if JP
-	ofn.lpstrFilter = _T("“Ç‰Â”\ƒtƒ@ƒCƒ‹(*.wav;*.cda;*.mp*;*.ogg;*.wma;")
+	ofn.lpstrFilter = _T("èª­è¾¼å¯èƒ½ãƒ•ã‚¡ã‚¤ãƒ«(*.wav;*.cda;*.mp*;*.ogg;*.wma;")
 					  _T("*.aiff;*.aif;*.ape;*.flac;*.m4a;*.m4b;*.mp4;*.aac;")
 					  _T("*.nsf;")
 					  _T("*.avi;*.wmv;*.mkv;*.flv;*.ini;*.m3u;*.m3u8)\0*.wav;")
@@ -9050,32 +9050,32 @@ void CMainWnd::ShowOpenFileDialog(BOOL bClear)
 					  _T("*.ape;*.flac;*.m4a;*.m4b;*.mp4;*.aac;*.nsf;")
 					  _T("*.avi;*.wmv;")
 					  _T("*.mkv;*.flv;*.ini;*.m3u;*.m3u8\0")
-					  _T("Ä¶‰Â”\ƒtƒ@ƒCƒ‹(*.wav;*.cda;*.mp*;*.ogg;*.wma;")
+					  _T("å†ç”Ÿå¯èƒ½ãƒ•ã‚¡ã‚¤ãƒ«(*.wav;*.cda;*.mp*;*.ogg;*.wma;")
 					  _T("*.aiff;*.aif;*.ape;*.flac;*.m4a;*.m4b;*.mp4;*.aac;")
 					  _T("*.nsf;")
 					  _T("*.avi;*.wmv;*.mkv;*.flv)\0*.wav;*.cda;*.mp3;*.mp2;")
 					  _T("*.mp1;*.ogg;*.wma;*.aiff;*.aif;*.ape;*.flac;*.m4a;")
 					  _T("*.m4b;*.mp4;*.aac;*.nsf;")
 					  _T("*.avi;*.wmv;*.mkv;*.flv\0")
-					  _T("WAVE ƒtƒ@ƒCƒ‹(*.wav)\0*.wav\0")
-					  _T("CDA ƒtƒ@ƒCƒ‹(*.cda)\0*.cda\0")
-					  _T("MP3 ƒtƒ@ƒCƒ‹(*.mp3)\0*.mp3\0")
-					  _T("MP2 ƒtƒ@ƒCƒ‹(*.mp2)\0*.mp2\0")
-					  _T("MP1 ƒtƒ@ƒCƒ‹(*.mp1)\0*.mp1\0")
-					  _T("Ogg Vorbis ƒtƒ@ƒCƒ‹(*.ogg)\0*.ogg\0")
-					  _T("AIFF ƒtƒ@ƒCƒ‹(*.aiff;*.aif)\0*.aiff;*.aif\0")
-					  _T("APE ƒtƒ@ƒCƒ‹(*.ape)\0*.ape\0")
-					  _T("FLAC ƒtƒ@ƒCƒ‹(*.flac)\0*.flac\0")
-					  _T("AAC ƒtƒ@ƒCƒ‹(*.m4a;*.m4b;*.mp4;*.aac)\0*.m4a;*.m4b;")
+					  _T("WAVE ãƒ•ã‚¡ã‚¤ãƒ«(*.wav)\0*.wav\0")
+					  _T("CDA ãƒ•ã‚¡ã‚¤ãƒ«(*.cda)\0*.cda\0")
+					  _T("MP3 ãƒ•ã‚¡ã‚¤ãƒ«(*.mp3)\0*.mp3\0")
+					  _T("MP2 ãƒ•ã‚¡ã‚¤ãƒ«(*.mp2)\0*.mp2\0")
+					  _T("MP1 ãƒ•ã‚¡ã‚¤ãƒ«(*.mp1)\0*.mp1\0")
+					  _T("Ogg Vorbis ãƒ•ã‚¡ã‚¤ãƒ«(*.ogg)\0*.ogg\0")
+					  _T("AIFF ãƒ•ã‚¡ã‚¤ãƒ«(*.aiff;*.aif)\0*.aiff;*.aif\0")
+					  _T("APE ãƒ•ã‚¡ã‚¤ãƒ«(*.ape)\0*.ape\0")
+					  _T("FLAC ãƒ•ã‚¡ã‚¤ãƒ«(*.flac)\0*.flac\0")
+					  _T("AAC ãƒ•ã‚¡ã‚¤ãƒ«(*.m4a;*.m4b;*.mp4;*.aac)\0*.m4a;*.m4b;")
 					  _T("*.mp4;*.aac\0")
-					  _T("NSF ƒtƒ@ƒCƒ‹(*.nsf)\0*.nsf\0")
-					  _T("AVI ƒtƒ@ƒCƒ‹(*.avi)\0*.avi\0")
-					  _T("WMV ƒtƒ@ƒCƒ‹(*.wmv)\0*.wmv\0")
-					  _T("MKV ƒtƒ@ƒCƒ‹(*.mkv)\0*.mkv\0")
-					  _T("FLV ƒtƒ@ƒCƒ‹(*.flv)\0*.flv\0")
-					  _T("İ’èó‘Ôƒtƒ@ƒCƒ‹(*.ini)\0*.ini\0")
-					  _T("ƒvƒŒƒCƒŠƒXƒgƒtƒ@ƒCƒ‹(*.m3u;*.m3u8)\0*.m3u;*.m3u8\0")
-					  _T("‚·‚×‚Ä‚Ìƒtƒ@ƒCƒ‹ (*.*)\0*.*\0\0");
+					  _T("NSF ãƒ•ã‚¡ã‚¤ãƒ«(*.nsf)\0*.nsf\0")
+					  _T("AVI ãƒ•ã‚¡ã‚¤ãƒ«(*.avi)\0*.avi\0")
+					  _T("WMV ãƒ•ã‚¡ã‚¤ãƒ«(*.wmv)\0*.wmv\0")
+					  _T("MKV ãƒ•ã‚¡ã‚¤ãƒ«(*.mkv)\0*.mkv\0")
+					  _T("FLV ãƒ•ã‚¡ã‚¤ãƒ«(*.flv)\0*.flv\0")
+					  _T("è¨­å®šçŠ¶æ…‹ãƒ•ã‚¡ã‚¤ãƒ«(*.ini)\0*.ini\0")
+					  _T("ãƒ—ãƒ¬ã‚¤ãƒªã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«(*.m3u;*.m3u8)\0*.m3u;*.m3u8\0")
+					  _T("ã™ã¹ã¦ã®ãƒ•ã‚¡ã‚¤ãƒ« (*.*)\0*.*\0\0");
 #else // JP
 	ofn.lpstrFilter = _T("Readable file(*.wav;*.cda;*.mp*;*.ogg;*.wma;")
 					  _T("*.aiff;*.aif;*.ape;*.flac;*.m4a;*.m4b;*.mp4;*.aac;")
@@ -9132,15 +9132,15 @@ void CMainWnd::ShowOpenFileDialog(BOOL bClear)
 		}
 		LPTSTR pszDirectoryPath = szFilesPath;
 		LPTSTR pszFileName = szFilesPath;
-		BOOL bAdd = FALSE; // ƒtƒ@ƒCƒ‹‚ğ’Ç‰Á‚µ‚½‚©‚Ç‚¤‚©
+		BOOL bAdd = FALSE; // ãƒ•ã‚¡ã‚¤ãƒ«ã‚’è¿½åŠ ã—ãŸã‹ã©ã†ã‹
 		while(1) {
 			for(int i = lstrlen(pszFileName); i >= 0; i--)
 				pszFileName++;
 			TCHAR szFilePath[MAX_PATH];
 			lstrcpy(szFilePath, pszDirectoryPath);
 			if(*pszFileName == _T('\0')) {
-				// •¶š—ñ‚¨‚í‚è
-				if(!bAdd) // ‚Ü‚¾’Ç‰Á‚³‚ê‚Ä‚¢‚È‚¢ê‡
+				// æ–‡å­—åˆ—ãŠã‚ã‚Š
+				if(!bAdd) // ã¾ã è¿½åŠ ã•ã‚Œã¦ã„ãªã„å ´åˆ
 					m_arrayList[nSelect]->AddFile(szFilePath);
 				break;
 			}
@@ -9166,7 +9166,7 @@ void CMainWnd::ShowOpenFileDialog(BOOL bClear)
 	}
 }
 //----------------------------------------------------------------------------
-// ƒtƒHƒ‹ƒ_‚ğŠJ‚­ƒ_ƒCƒAƒƒO‚Ì•\¦
+// ãƒ•ã‚©ãƒ«ãƒ€ã‚’é–‹ããƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®è¡¨ç¤º
 //----------------------------------------------------------------------------
 void CMainWnd::ShowOpenFolderDialog(BOOL bClear)
 {
@@ -9176,23 +9176,23 @@ void CMainWnd::ShowOpenFolderDialog(BOOL bClear)
 	LPITEMIDLIST pidl;
 	LPMALLOC pMalloc;
 
-	// Shell ‚Ì•W€‚ÌƒAƒƒP[ƒ^‚ğæ“¾
+	// Shell ã®æ¨™æº–ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ã‚’å–å¾—
 	if(SUCCEEDED(SHGetMalloc(&pMalloc))) {
-		// BROWSEINFO \‘¢‘Ì‚ğ–„‚ß‚é
+		// BROWSEINFO æ§‹é€ ä½“ã‚’åŸ‹ã‚ã‚‹
 		ZeroMemory(&bi,sizeof(bi));
 		bi.hwndOwner = m_hWnd;
 #if JP
-		bi.lpszTitle = _T("ŠJ‚­ƒtƒHƒ‹ƒ_‚ğ‘I‘ğ‚µ‚Ä‰º‚³‚¢");
+		bi.lpszTitle = _T("é–‹ããƒ•ã‚©ãƒ«ãƒ€ã‚’é¸æŠã—ã¦ä¸‹ã•ã„");
 #else // JP
 		bi.lpszTitle = _T("Select directory");
 #endif // JP
 		bi.ulFlags = BIF_RETURNONLYFSDIRS;
 
-		// ƒtƒHƒ‹ƒ_‚ÌQÆƒ_ƒCƒAƒƒOƒ{ƒbƒNƒX‚Ì•\¦
+		// ãƒ•ã‚©ãƒ«ãƒ€ã®å‚ç…§ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒœãƒƒã‚¯ã‚¹ã®è¡¨ç¤º
 		pidl = SHBrowseForFolder(&bi);
 
 		if(pidl) {
-			// PIDL ‚ğƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ÌƒpƒX‚É•ÏŠ·
+			// PIDL ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ‘ã‚¹ã«å¤‰æ›
 			if(SHGetPathFromIDList(pidl,szDir)) {
 				int nSelect = m_tab->GetCurrentFocus();
 				if(bClear) {
@@ -9208,7 +9208,7 @@ void CMainWnd::ShowOpenFolderDialog(BOOL bClear)
 					TCHAR szFilePath[MAX_PATH];
 					lstrcpy(szFilePath, pszDirectoryPath);
 					if(*pszFileName == _T('\0')) {
-						// •¶š—ñ‚¨‚í‚è
+						// æ–‡å­—åˆ—ãŠã‚ã‚Š
 						if(m_arrayList[nSelect]->GetItemCount() == 0)
 							m_arrayList[nSelect]->AddFile(szFilePath);
 						break;
@@ -9232,24 +9232,24 @@ void CMainWnd::ShowOpenFolderDialog(BOOL bClear)
 				SetPreviousNextMenuState();
 			}
 
-			// SHBrowseForFolder ‚É‚æ‚Á‚ÄŠ„‚è“–‚Ä‚ç‚ê‚½ PIDL ‚ğ‰ğ•ú
+			// SHBrowseForFolder ã«ã‚ˆã£ã¦å‰²ã‚Šå½“ã¦ã‚‰ã‚ŒãŸ PIDL ã‚’è§£æ”¾
 			pMalloc->Free(pidl);
 			StartUpdateInfo();
 		}
 
-		// Shell ‚ÌƒAƒƒP[ƒ^‚ğŠJ•ú
+		// Shell ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ã‚’é–‹æ”¾
 		pMalloc->Release();
 	}
 }
 //----------------------------------------------------------------------------
-// ƒŠƒo[ƒu‚ÌƒJƒXƒ^ƒ}ƒCƒY—pƒEƒBƒ“ƒhƒE‚Ì•\¦
+// ãƒªãƒãƒ¼ãƒ–ã®ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚ºç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤º
 //----------------------------------------------------------------------------
 void CMainWnd::ShowReverbCustomizeWnd()
 {
 	m_reverbCustomizeWnd->Create();
 }
 //----------------------------------------------------------------------------
-// ƒtƒ@ƒCƒ‹‚ğ•Û‘¶ƒ_ƒCƒAƒƒO‚Ì•\¦
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¿å­˜ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®è¡¨ç¤º
 //----------------------------------------------------------------------------
 void CMainWnd::ShowSaveFileDialog()
 {
@@ -9260,14 +9260,14 @@ void CMainWnd::ShowSaveFileDialog()
 	ofn.hInstance = GetModuleHandle(NULL);
 	ofn.hwndOwner = m_hWnd;
 #if JP
-	ofn.lpstrFilter = _T("WAVE ƒtƒ@ƒCƒ‹(*.wav)\0*.wav\0")
-					  _T("MP3 ƒtƒ@ƒCƒ‹(*.mp3)\0*.mp3\0")
-					  _T("Ogg Vorbis ƒtƒ@ƒCƒ‹(*.ogg)\0*.ogg\0")
-					  _T("İ’èó‘Ô(*.ini)\0*.ini\0")
-					  _T("â‘ÎƒpƒX ƒvƒŒƒCƒŠƒXƒgƒtƒ@ƒCƒ‹(*.m3u)\0*.m3u\0")
-					  _T("‘Š‘ÎƒpƒX ƒvƒŒƒCƒŠƒXƒgƒtƒ@ƒCƒ‹(*.m3u)\0*.m3u\0")
-					  _T("â‘ÎƒpƒX ƒvƒŒƒCƒŠƒXƒgƒtƒ@ƒCƒ‹(*.m3u8)\0*.m3u8\0")
-					  _T("‘Š‘ÎƒpƒX ƒvƒŒƒCƒŠƒXƒgƒtƒ@ƒCƒ‹(*.m3u8)\0*.m3u8\0")
+	ofn.lpstrFilter = _T("WAVE ãƒ•ã‚¡ã‚¤ãƒ«(*.wav)\0*.wav\0")
+					  _T("MP3 ãƒ•ã‚¡ã‚¤ãƒ«(*.mp3)\0*.mp3\0")
+					  _T("Ogg Vorbis ãƒ•ã‚¡ã‚¤ãƒ«(*.ogg)\0*.ogg\0")
+					  _T("è¨­å®šçŠ¶æ…‹(*.ini)\0*.ini\0")
+					  _T("çµ¶å¯¾ãƒ‘ã‚¹ ãƒ—ãƒ¬ã‚¤ãƒªã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«(*.m3u)\0*.m3u\0")
+					  _T("ç›¸å¯¾ãƒ‘ã‚¹ ãƒ—ãƒ¬ã‚¤ãƒªã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«(*.m3u)\0*.m3u\0")
+					  _T("çµ¶å¯¾ãƒ‘ã‚¹ ãƒ—ãƒ¬ã‚¤ãƒªã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«(*.m3u8)\0*.m3u8\0")
+					  _T("ç›¸å¯¾ãƒ‘ã‚¹ ãƒ—ãƒ¬ã‚¤ãƒªã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«(*.m3u8)\0*.m3u8\0")
 					  _T("\0");
 #else // JP
 	ofn.lpstrFilter = _T("WAVE file(*.wav)\0*.wav\0")
@@ -9291,8 +9291,8 @@ void CMainWnd::ShowSaveFileDialog()
 		BOOL bRet = GetSaveFileName(&ofn);
 		if(!bRet) break;
 
-		// Šg’£q‚ªw’è‚³‚ê‚È‚©‚Á‚½ê‡‚ÍA’Ç‰Á
-		BOOL bAdd = FALSE; // Šg’£q‚ğ’Ç‰Á‚µ‚½‚©‚Ç‚¤‚©
+		// æ‹¡å¼µå­ãŒæŒ‡å®šã•ã‚Œãªã‹ã£ãŸå ´åˆã¯ã€è¿½åŠ 
+		BOOL bAdd = FALSE; // æ‹¡å¼µå­ã‚’è¿½åŠ ã—ãŸã‹ã©ã†ã‹
 		TCHAR ext[_MAX_EXT];
 		_tsplitpath_s(filePath, NULL, 0, NULL, 0, NULL, 0, ext, _MAX_EXT);
 		if(ofn.nFilterIndex == 1 && lstrcmpi(ext, _T(".wav")) != 0) {
@@ -9322,17 +9322,17 @@ void CMainWnd::ShowSaveFileDialog()
 			bAdd = TRUE;
 		}
 
-		// Šù‚É‘¶İ‚·‚éê‡‚ÍAã‘‚«Šm”F
+		// æ—¢ã«å­˜åœ¨ã™ã‚‹å ´åˆã¯ã€ä¸Šæ›¸ãç¢ºèª
 		if(bAdd && GetFileAttributes(filePath) != 0xFFFFFFFF) {
 			tstring str = filePath;
 #if JP
-			str += _T(" ‚ÍŠù‚É‘¶İ‚µ‚Ü‚·B\nã‘‚«‚µ‚Ü‚·‚©?");
+			str += _T(" ã¯æ—¢ã«å­˜åœ¨ã—ã¾ã™ã€‚\nä¸Šæ›¸ãã—ã¾ã™ã‹?");
 #else // JP
 			str += _T(" already exists.\nOverride?");
 #endif // JP
 			int nRet = MessageBox(0, str.c_str(),
 #if JP
-								  _T("–¼‘O‚ğ•t‚¯‚Ä•Û‘¶"),
+								  _T("åå‰ã‚’ä»˜ã‘ã¦ä¿å­˜"),
 #else // JP
 								  _T("Save"),
 #endif // JP
@@ -9343,14 +9343,14 @@ void CMainWnd::ShowSaveFileDialog()
 
 		if(ofn.nFilterIndex == 1 || ofn.nFilterIndex == 2 ||
 		   ofn.nFilterIndex == 3) {
-			// ‰¹ºƒtƒ@ƒCƒ‹
+			// éŸ³å£°ãƒ•ã‚¡ã‚¤ãƒ«
 
-			// “ü—ÍEo—Íƒtƒ@ƒCƒ‹‚ª“¯ˆêƒtƒ@ƒCƒ‹‚¾‚Á‚½ê‡‚ÍAƒGƒ‰[
+			// å…¥åŠ›ãƒ»å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ«ãŒåŒä¸€ãƒ•ã‚¡ã‚¤ãƒ«ã ã£ãŸå ´åˆã¯ã€ã‚¨ãƒ©ãƒ¼
 			if(lstrcmpi(filePath, m_sound->GetCurFileName().c_str()) == 0) {
 				MessageBox(m_hWnd,
 #if JP
-					_T("“¯ˆêƒtƒ@ƒCƒ‹‚Ìã‘‚«‚É‚Í‘Î‰‚µ‚Ä‚¢‚Ü‚¹‚ñB"),
-					_T("–¼‘O‚ğ•t‚¯‚Ä•Û‘¶"),
+					_T("åŒä¸€ãƒ•ã‚¡ã‚¤ãƒ«ã®ä¸Šæ›¸ãã«ã¯å¯¾å¿œã—ã¦ã„ã¾ã›ã‚“ã€‚"),
+					_T("åå‰ã‚’ä»˜ã‘ã¦ä¿å­˜"),
 #else // JP
 					_T("This software can't override input/output same file."),
 					_T("Save"),
@@ -9375,10 +9375,10 @@ void CMainWnd::ShowSaveFileDialog()
 				m_sound->SaveFile(filePath, 2);
 			}
 		}
-		else if(ofn.nFilterIndex == 4) // İ’èó‘Ô
+		else if(ofn.nFilterIndex == 4) // è¨­å®šçŠ¶æ…‹
 			SaveSettings(filePath);
 		else {
-			// ƒvƒŒƒCƒŠƒXƒgƒtƒ@ƒCƒ‹
+			// ãƒ—ãƒ¬ã‚¤ãƒªã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«
 			
 			tstring str = _T("");
 			for(int i = 0; i < m_arrayList[nCurPlayTab]->GetItemCount(); i++) {
@@ -9405,7 +9405,7 @@ void CMainWnd::ShowSaveFileDialog()
 	}
 }
 //----------------------------------------------------------------------------
-// ˆêŠ‡•ÏŠ·ƒ_ƒCƒAƒƒO‚Ì•\¦
+// ä¸€æ‹¬å¤‰æ›ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®è¡¨ç¤º
 //----------------------------------------------------------------------------
 void CMainWnd::ShowSaveAllFileDialog()
 {
@@ -9415,28 +9415,28 @@ void CMainWnd::ShowSaveAllFileDialog()
 	LPITEMIDLIST pidl;
 	LPMALLOC pMalloc;
 
-	// Shell ‚Ì•W€‚ÌƒAƒƒP[ƒ^‚ğæ“¾
+	// Shell ã®æ¨™æº–ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ã‚’å–å¾—
 	if(SUCCEEDED(SHGetMalloc(&pMalloc))) {
-		// BROWSEINFO \‘¢‘Ì‚ğ–„‚ß‚é
+		// BROWSEINFO æ§‹é€ ä½“ã‚’åŸ‹ã‚ã‚‹
 		ZeroMemory(&bi,sizeof(bi));
 		bi.hwndOwner = m_hWnd;
 #if JP
-		bi.lpszTitle = _T("o—Íæ‚ÌƒtƒHƒ‹ƒ_‚ğ‘I‘ğ‚µ‚Ä‰º‚³‚¢");
+		bi.lpszTitle = _T("å‡ºåŠ›å…ˆã®ãƒ•ã‚©ãƒ«ãƒ€ã‚’é¸æŠã—ã¦ä¸‹ã•ã„");
 #else // JP
 		bi.lpszTitle = _T("Select output directory");
 #endif // JP
 		bi.ulFlags = BIF_RETURNONLYFSDIRS;
 
-		// ƒtƒHƒ‹ƒ_‚ÌQÆƒ_ƒCƒAƒƒOƒ{ƒbƒNƒX‚Ì•\¦
+		// ãƒ•ã‚©ãƒ«ãƒ€ã®å‚ç…§ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒœãƒƒã‚¯ã‚¹ã®è¡¨ç¤º
 		pidl = SHBrowseForFolder(&bi);
 
 		if(pidl) {
-			// PIDL ‚ğƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ÌƒpƒX‚É•ÏŠ·
+			// PIDL ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ‘ã‚¹ã«å¤‰æ›
 			if(SHGetPathFromIDList(pidl,szDir)) {
 				CAllSaveWnd_MainWnd wnd(m_rApp, *this);
 				wnd.Create();
 #if JP
-				wnd.SetCaption(_T("ˆêŠ‡•ÏŠ·İ’è"));
+				wnd.SetCaption(_T("ä¸€æ‹¬å¤‰æ›è¨­å®š"));
 #else // JP
 				wnd.SetCaption(_T("Save all"));
 #endif // JP
@@ -9468,10 +9468,10 @@ void CMainWnd::ShowSaveAllFileDialog()
 										  + _T("lame.exe");
 					if(GetFileAttributes(strLamePath.c_str()) == 0xFFFFFFFF) {
 #if JP
-						MessageBox(m_hWnd, _T("MP3Œ`®‚Å‚Ì•Û‘¶‚É‚ÍALAME.EXE")
-							_T("‚ª•K—v‚Å‚·B\nHayaemon.exe‚Æ“¯‚¶ƒfƒBƒŒƒNƒgƒŠ")
-							_T("‚ÉLAME.EXE‚ğ’u‚¢‚Ä‰º‚³‚¢B"),
-							_T("–¼‘O‚ğ•t‚¯‚Ä•Û‘¶"), MB_ICONINFORMATION);
+						MessageBox(m_hWnd, _T("MP3å½¢å¼ã§ã®ä¿å­˜ã«ã¯ã€LAME.EXE")
+							_T("ãŒå¿…è¦ã§ã™ã€‚\nHayaemon.exeã¨åŒã˜ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª")
+							_T("ã«LAME.EXEã‚’ç½®ã„ã¦ä¸‹ã•ã„ã€‚"),
+							_T("åå‰ã‚’ä»˜ã‘ã¦ä¿å­˜"), MB_ICONINFORMATION);
 #else // JP
 						MessageBox(m_hWnd, _T("To save MP3 file, lame.exe ")
 							_T("is required.\nPut lame.exe in the same ")
@@ -9488,10 +9488,10 @@ void CMainWnd::ShowSaveAllFileDialog()
 										  + _T("oggenc.exe");
 					if(GetFileAttributes(strLamePath.c_str()) == 0xFFFFFFFF) {
 #if JP
-						MessageBox(m_hWnd, _T("Ogg VorbisŒ`®‚Å‚Ì•Û‘¶‚É‚ÍA")
-							_T("oggenc.exe‚ª•K—v‚Å‚·B\nHayaemon.exe‚Æ“¯‚¶")
-							_T("ƒfƒBƒŒƒNƒgƒŠ‚Éoggenc.exe‚ğ’u‚¢‚Ä‰º‚³‚¢B"),
-							_T("–¼‘O‚ğ•t‚¯‚Ä•Û‘¶"), MB_ICONINFORMATION);
+						MessageBox(m_hWnd, _T("Ogg Vorbiså½¢å¼ã§ã®ä¿å­˜ã«ã¯ã€")
+							_T("oggenc.exeãŒå¿…è¦ã§ã™ã€‚\nHayaemon.exeã¨åŒã˜")
+							_T("ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«oggenc.exeã‚’ç½®ã„ã¦ä¸‹ã•ã„ã€‚"),
+							_T("åå‰ã‚’ä»˜ã‘ã¦ä¿å­˜"), MB_ICONINFORMATION);
 #else // JP
 						MessageBox(m_hWnd, _T("To save Ogg Vorbis file, ")
 							_T("lame.exe is required.\nPut oggenc.exe in the ")
@@ -9504,7 +9504,7 @@ void CMainWnd::ShowSaveAllFileDialog()
 					}
 				}
 
-				// Œ»İ“Ç‚İ‚ñ‚Å‚¢‚éƒtƒ@ƒCƒ‹‚ğˆê“I‚É‘Ş”ğ
+				// ç¾åœ¨èª­ã¿è¾¼ã‚“ã§ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¸€æ™‚çš„ã«é€€é¿
 				tstring curFileName = m_sound->GetCurFileName();
 				KillTimer(IDT_TIME);
 				QWORD curPos = m_sound->ChannelGetPosition();
@@ -9512,7 +9512,7 @@ void CMainWnd::ShowSaveAllFileDialog()
 				if(m_sound->ChannelPause()) bPlaying = TRUE;
 				m_sound->ChannelStop();
 
-				// ‘S‚Ä‚Ìƒtƒ@ƒCƒ‹‚ğ•ÏŠ·
+				// å…¨ã¦ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å¤‰æ›
 				for(int i = 0; i < m_arrayList[nCurPlayTab]->GetItemCount();
 					i++) {
 					tstring str = szDir;
@@ -9522,7 +9522,7 @@ void CMainWnd::ShowSaveAllFileDialog()
 														  MAX_PATH);
 					str += CUtils::GetFileNameWithoutExt(sFilePath);
 
-					// ƒtƒ@ƒCƒ‹‚Ì‘¶İƒ`ƒFƒbƒN
+					// ãƒ•ã‚¡ã‚¤ãƒ«ã®å­˜åœ¨ãƒã‚§ãƒƒã‚¯
 					int n = 2;
 					TCHAR szNum[10];
 					tstring strFormat, str2 = str + strFormat;
@@ -9544,7 +9544,7 @@ void CMainWnd::ShowSaveAllFileDialog()
 					}
 
 					m_sound->SetCurFileName(sFilePath);
-						// •Û‘¶‚µ‚½‚¢ƒtƒ@ƒCƒ‹‚É•ÏX
+						// ä¿å­˜ã—ãŸã„ãƒ•ã‚¡ã‚¤ãƒ«ã«å¤‰æ›´
 					if(nFormat == 0) { // WAVE
 						strSaveFormat = _T("WAVE");
 						WriteInitFile();
@@ -9574,16 +9574,16 @@ void CMainWnd::ShowSaveAllFileDialog()
 				if(bPlaying) Pause();
 			}
 
-			// SHBrowseForFolder ‚É‚æ‚Á‚ÄŠ„‚è“–‚Ä‚ç‚ê‚½ PIDL ‚ğ‰ğ•ú
+			// SHBrowseForFolder ã«ã‚ˆã£ã¦å‰²ã‚Šå½“ã¦ã‚‰ã‚ŒãŸ PIDL ã‚’è§£æ”¾
 			pMalloc->Free(pidl);
 		}
 
-		// Shell ‚ÌƒAƒƒP[ƒ^‚ğŠJ•ú
+		// Shell ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ã‚’é–‹æ”¾
 		pMalloc->Release();
 	}
 }
 //----------------------------------------------------------------------------
-// Ä¶ŠÔ‚Ì•\¦
+// å†ç”Ÿæ™‚é–“ã®è¡¨ç¤º
 //----------------------------------------------------------------------------
 void CMainWnd::ShowTime(BOOL bReset)
 {
@@ -9592,7 +9592,7 @@ void CMainWnd::ShowTime(BOOL bReset)
 	m_timeSlider->SetThumbPos((LONG)(m_sound->ChannelGetPosition() / 100000));
 }
 //----------------------------------------------------------------------------
-// Šª‚«–ß‚µ‚ÌŠJn
+// å·»ãæˆ»ã—ã®é–‹å§‹
 //----------------------------------------------------------------------------
 void CMainWnd::StartRewind()
 {
@@ -9604,7 +9604,7 @@ void CMainWnd::StartRewind()
 	SetTimer(IDT_REWIND, 100);
 }
 //----------------------------------------------------------------------------
-// Šª‚«–ß‚µ‚Ì’â~
+// å·»ãæˆ»ã—ã®åœæ­¢
 //----------------------------------------------------------------------------
 void CMainWnd::StopRewind()
 {
@@ -9614,7 +9614,7 @@ void CMainWnd::StopRewind()
 	KillTimer(IDT_REWIND);
 }
 //----------------------------------------------------------------------------
-// ‘‘—‚è‚ÌŠJn
+// æ—©é€ã‚Šã®é–‹å§‹
 //----------------------------------------------------------------------------
 void CMainWnd::StartForward()
 {
@@ -9626,7 +9626,7 @@ void CMainWnd::StartForward()
 	SetTimer(IDT_FORWARD, 100);
 }
 //----------------------------------------------------------------------------
-// ‰ÌŒ‚Ì•\¦‚ğŠJn
+// æ­Œè©ã®è¡¨ç¤ºã‚’é–‹å§‹
 //----------------------------------------------------------------------------
 void CMainWnd::StartLyrics()
 {
@@ -9647,7 +9647,7 @@ void CMainWnd::StartLyrics()
 	}
 }
 //----------------------------------------------------------------------------
-// ƒsƒbƒ`ƒAƒiƒ‰ƒCƒU‚ğŠJn
+// ãƒ”ãƒƒãƒã‚¢ãƒŠãƒ©ã‚¤ã‚¶ã‚’é–‹å§‹
 //----------------------------------------------------------------------------
 void CMainWnd::StartPitchAnalyser()
 {
@@ -9667,7 +9667,7 @@ void CMainWnd::StartPitchAnalyser()
 	}
 }
 //----------------------------------------------------------------------------
-// î•ñ‚ÌXV‚ğŠJn
+// æƒ…å ±ã®æ›´æ–°ã‚’é–‹å§‹
 //----------------------------------------------------------------------------
 void CMainWnd::StartUpdateInfo()
 {
@@ -9683,7 +9683,7 @@ void CMainWnd::StartUpdateInfo()
 	SetThreadPriority(m_hUpdateThread, THREAD_PRIORITY_TIME_CRITICAL);
 }
 //----------------------------------------------------------------------------
-// ‘‘—‚è‚Ì’â~
+// æ—©é€ã‚Šã®åœæ­¢
 //----------------------------------------------------------------------------
 void CMainWnd::StopForward()
 {
@@ -9693,7 +9693,7 @@ void CMainWnd::StopForward()
 	KillTimer(IDT_FORWARD);
 }
 //----------------------------------------------------------------------------
-// ’â~
+// åœæ­¢
 //----------------------------------------------------------------------------
 void CMainWnd::Stop(BOOL bForce)
 {
@@ -9729,7 +9729,7 @@ void CMainWnd::Stop(BOOL bForce)
 	}
 }
 //----------------------------------------------------------------------------
-// Twitter‚Å‚Â‚Ô‚â‚­
+// Twitterã§ã¤ã¶ã‚„ã
 //----------------------------------------------------------------------------
 void CMainWnd::Tweet()
 {
@@ -9748,7 +9748,7 @@ void CMainWnd::Tweet()
 	m_tweetWnd->Create();
 }
 //----------------------------------------------------------------------------
-// Twitter‚Å‚Â‚Ô‚â‚­
+// Twitterã§ã¤ã¶ã‚„ã
 //----------------------------------------------------------------------------
 void CMainWnd::Tweet(std::string strMessage)
 {
@@ -9784,7 +9784,7 @@ void CMainWnd::Tweet(std::string strMessage)
 		false);
 }
 //----------------------------------------------------------------------------
-// w’è‚µ‚½%Ä¶ü”g”‚ğã‚°‚é
+// æŒ‡å®šã—ãŸ%å†ç”Ÿå‘¨æ³¢æ•°ã‚’ä¸Šã’ã‚‹
 //----------------------------------------------------------------------------
 void CMainWnd::UpFreq(double freq)
 {
@@ -9797,7 +9797,7 @@ void CMainWnd::UpFreq(double freq)
 	SetFreq((double)(newFreq / dCalc));
 }
 //----------------------------------------------------------------------------
-// w’è‚µ‚½”’l~”¼‰¹•ª‰¹’ö‚ğã‚°‚é
+// æŒ‡å®šã—ãŸæ•°å€¤Ã—åŠéŸ³åˆ†éŸ³ç¨‹ã‚’ä¸Šã’ã‚‹
 //----------------------------------------------------------------------------
 void CMainWnd::UpPitch(double pitch)
 {
@@ -9810,7 +9810,7 @@ void CMainWnd::UpPitch(double pitch)
 	SetPitch((double)(newPitch / dCalc));
 }
 //----------------------------------------------------------------------------
-// w’è‚µ‚½%Ä¶‘¬“x‚ğã‚°‚é
+// æŒ‡å®šã—ãŸ%å†ç”Ÿé€Ÿåº¦ã‚’ä¸Šã’ã‚‹
 //----------------------------------------------------------------------------
 void CMainWnd::UpSpeed(double speed)
 {
@@ -9823,7 +9823,7 @@ void CMainWnd::UpSpeed(double speed)
 	SetSpeed((double)(newSpeed / dCalc));
 }
 //----------------------------------------------------------------------------
-// w’è‚µ‚½%‰¹—Ê‚ğã‚°‚é
+// æŒ‡å®šã—ãŸ%éŸ³é‡ã‚’ä¸Šã’ã‚‹
 //----------------------------------------------------------------------------
 void CMainWnd::UpVolume(int volume)
 {
@@ -9834,7 +9834,7 @@ void CMainWnd::UpVolume(int volume)
 	SetVolume((double)(newVolume / 10.0));
 }
 //----------------------------------------------------------------------------
-// INI ƒtƒ@ƒCƒ‹‚Ì‘‚«‚İ
+// INI ãƒ•ã‚¡ã‚¤ãƒ«ã®æ›¸ãè¾¼ã¿
 //----------------------------------------------------------------------------
 void CMainWnd::WriteInitFile()
 {
@@ -9844,7 +9844,7 @@ void CMainWnd::WriteInitFile()
 
 	TCHAR buf[255];
 
-	// ƒEƒBƒ“ƒhƒE‚Ìİ’è
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¨­å®š
     WINDOWPLACEMENT wndPlace;
     wndPlace.length = sizeof(WINDOWPLACEMENT);
     GetWindowPlacement(m_hWnd, &wndPlace);
@@ -9874,7 +9874,7 @@ void CMainWnd::WriteInitFile()
 	WritePrivateProfileString(_T("Window"), _T("Zoomed"), buf, 
 		initFilePath.c_str());
 
-	// •\¦E”ñ•\¦‚Ìİ’è
+	// è¡¨ç¤ºãƒ»éè¡¨ç¤ºã®è¨­å®š
 	_stprintf_s(buf, _T("%d"),
 		m_menu->IsItemChecked(ID_RECOVERVIDEOSCREENVISIBLE) ? 1 : 0);
 	WritePrivateProfileString(_T("Visible"), _T("RecoverVideoScreen"), buf, 
@@ -10055,7 +10055,7 @@ void CMainWnd::WriteInitFile()
 			initFilePath.c_str());
 	}
 
-	// Ä¶ƒ‚[ƒh‚Ìİ’è
+	// å†ç”Ÿãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
 	_stprintf_s(buf, _T("%d"), m_menu->IsItemChecked(ID_RECOVERSLOOP) ? 1 : 0);
 	WritePrivateProfileString(_T("PlayMode"), _T("RecoverSingleLoop"), buf, 
 		initFilePath.c_str());
@@ -10114,7 +10114,7 @@ void CMainWnd::WriteInitFile()
 	WritePrivateProfileString(_T("PlayMode"), _T("Normalize"), buf, 
 		initFilePath.c_str());
 
-	// ƒVƒ‡[ƒgƒJƒbƒgƒL[İ’è
+	// ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼è¨­å®š
 	CCommandList cmdlist;
 	WritePrivateProfileSection(_T("KeySetting"), NULL, initFilePath.c_str());
 	CAcceleratorTable & accelTable = m_rApp.GetAccelTable();
@@ -10126,7 +10126,7 @@ void CMainWnd::WriteInitFile()
 			initFilePath.c_str());
 	}
 
-	// ƒOƒ[ƒoƒ‹ƒzƒbƒgƒL[İ’è
+	// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ›ãƒƒãƒˆã‚­ãƒ¼è¨­å®š
 	WritePrivateProfileSection(_T("OutKeySetting"), NULL, 
 		initFilePath.c_str());
 	CListView & list = outKeySettingWnd->GetList();
@@ -10142,7 +10142,7 @@ void CMainWnd::WriteInitFile()
 			initFilePath.c_str());
 	}
 
-	// ‚»‚Ì‘¼‚Ìİ’è
+	// ãã®ä»–ã®è¨­å®š
 	WritePrivateProfileString(_T("Options"), _T("LAMECommandLine"),
 		m_strLAMECommandLine.c_str(), initFilePath.c_str());
 	_stprintf_s(buf, _T("%d"), m_menu->IsItemChecked(ID_RECOVERSPEED) ? 1 : 0);
@@ -10420,7 +10420,6 @@ void CMainWnd::WriteInitFile()
 		while(TRUE) {
 			TCHAR chKey[255];
 			_stprintf_s(chKey, _T("MarkerPos%d"), i + 1);
-			OutputDebugString(chKey);
 			if(GetPrivateProfileInt(_T("Options"), chKey, 0,
 					initFilePath.c_str()) > 0)
 				WritePrivateProfileString(_T("Options"), chKey, NULL,
@@ -10434,7 +10433,6 @@ void CMainWnd::WriteInitFile()
 		while(TRUE) {
 			TCHAR chKey[255];
 			_stprintf_s(chKey, _T("MarkerPos%d"), i + 1);
-			OutputDebugString(chKey);
 			if(GetPrivateProfileInt(_T("Options"), chKey, 0,
 					initFilePath.c_str()) > 0)
 				WritePrivateProfileString(_T("Options"), chKey, NULL,
@@ -10502,7 +10500,7 @@ void CMainWnd::WriteInitFile()
 		m_explorerBar->GetEdit().GetText().c_str(),  initFilePath.c_str());
 }
 //----------------------------------------------------------------------------
-// ƒRƒ}ƒ“ƒh
+// ã‚³ãƒãƒ³ãƒ‰
 //----------------------------------------------------------------------------
 void CMainWnd::OnCommand(int id, HWND hwndCtl, UINT codeNotify)
 {
@@ -10512,7 +10510,7 @@ void CMainWnd::OnCommand(int id, HWND hwndCtl, UINT codeNotify)
 	CSnapWnd::OnCommand(id, hwndCtl, codeNotify);
 }
 //----------------------------------------------------------------------------
-// •Â‚¶‚ç‚ê‚æ‚¤‚Æ‚µ‚Ä‚¢‚é
+// é–‰ã˜ã‚‰ã‚Œã‚ˆã†ã¨ã—ã¦ã„ã‚‹
 //----------------------------------------------------------------------------
 void CMainWnd::OnClose()
 {
@@ -10531,23 +10529,23 @@ void CMainWnd::OnClose()
 	CSnapWnd::OnClose();
 }
 //----------------------------------------------------------------------------
-// ì¬‚³‚ê‚½
+// ä½œæˆã•ã‚ŒãŸ
 //----------------------------------------------------------------------------
 LRESULT CMainWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	m_hVideoScreenBrush = CreateSolidBrush(RGB(0, 0, 0));
 
-	SetMainWnd(true); // ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚Éİ’è
+	SetMainWnd(true); // ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«è¨­å®š
 	SetStyle(WS_OVERLAPPEDWINDOW);
 	SetExStyle(WS_EX_ACCEPTFILES);
 	SetIcon(LoadIcon(GetModuleHandle(NULL), (LPCTSTR)IDI_ICON1), TRUE);
 	SetIcon(LoadIcon(GetModuleHandle(NULL), (LPCTSTR)IDI_ICON1), FALSE);
 	SetSize(340, 240);
 
-	// ƒƒjƒ…[‚Ìì¬
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ä½œæˆ
 	if(!m_menu->Create() || !SetMenu(*m_menu)) {
 #if JP
-		m_rApp.ShowError(_T("ƒƒjƒ…[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B"));
+		m_rApp.ShowError(_T("ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 		m_rApp.ShowError(_T("failed to create menu."));
 #endif // JP
@@ -10647,33 +10645,21 @@ LRESULT CMainWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 			!bVolumeVisible, !bPanVisible, !bEQVisible, !bTabVisible))
 		return FALSE;
 
-	// bass ‚Ì‰Šú‰»
+	// bass ã®åˆæœŸåŒ–
 	if(!m_sound->Init(m_hWnd)) {
 #if JP
-		m_rApp.ShowError(_T("BASS ‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½B"));
+		m_rApp.ShowError(_T("BASS ã®åˆæœŸåŒ–ã«å¤±æ•—ã—ã¾ã—ãŸã€‚"));
 #else // JP
 		m_rApp.ShowError(_T("failed to init BASS.DLL."));
 #endif // JP
 		return FALSE;
 	}
 
-	xVideo_Register(_T("taro@edolfzoku.com"), _T("09437237643421"),
-					xVideo_UNICODE);
-	if(!xVideo_Init(m_hWnd, 0)) {
-#if JP
-		m_rApp.ShowError(_T("xVideo.DLL ‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½B"));
-#else // JP
-		m_rApp.ShowError(_T("failed to init xVideo.DLL."));
-#endif // JP
-		return FALSE;
-	}
-	xVideo_SetConfig(xVideo_CONFIG_VideoRenderer, xVideo_VMR9);
-
-	m_sound->InitASIO();
+	m_sound.InitASIO();
 
 	OpenInitFileAfterShow();
 
-	// ƒAƒCƒRƒ“‚Éƒhƒƒbƒv‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
+	// ã‚¢ã‚¤ã‚³ãƒ³ã«ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
 	for(int i = 1; i < __argc; i++)
 		m_arrayList[0]->AddFile(__targv[i]);
 
@@ -10700,7 +10686,7 @@ LRESULT CMainWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	return CSnapWnd::OnCreate(lpCreateStruct);
 }
 //----------------------------------------------------------------------------
-// ”wŒiF‚Ìİ’è
+// èƒŒæ™¯è‰²ã®è¨­å®š
 //----------------------------------------------------------------------------
 HBRUSH CMainWnd::OnCtlColorStatic(HDC hDc, HWND hWnd)
 {
@@ -10708,7 +10694,7 @@ HBRUSH CMainWnd::OnCtlColorStatic(HDC hDc, HWND hWnd)
 	return CFrameWnd::OnCtlColorStatic(hDc, hWnd);
 }
 //----------------------------------------------------------------------------
-// I—¹
+// çµ‚äº†
 //----------------------------------------------------------------------------
 void CMainWnd::OnDestroy()
 {
@@ -10722,7 +10708,7 @@ void CMainWnd::OnDestroy()
 	CSnapWnd::OnDestroy();
 }
 //----------------------------------------------------------------------------
-// ƒtƒ@ƒCƒ‹‚ªƒhƒƒbƒv‚³‚ê‚½
+// ãƒ•ã‚¡ã‚¤ãƒ«ãŒãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸ
 //----------------------------------------------------------------------------
 void CMainWnd::OnDropFiles(HDROP hdrop)
 {
@@ -10730,7 +10716,7 @@ void CMainWnd::OnDropFiles(HDROP hdrop)
 	CSnapWnd::OnDropFiles(hdrop);
 }
 //----------------------------------------------------------------------------
-// Å‘åEÅ¬ƒTƒCƒY‚Ìİ’è
+// æœ€å¤§ãƒ»æœ€å°ã‚µã‚¤ã‚ºã®è¨­å®š
 //----------------------------------------------------------------------------
 void CMainWnd::OnGetMinMaxInfo(LPMINMAXINFO lpMinMaxInfo)
 {
@@ -10835,7 +10821,7 @@ void CMainWnd::OnGetMinMaxInfo(LPMINMAXINFO lpMinMaxInfo)
 	CSnapWnd::OnGetMinMaxInfo(lpMinMaxInfo);
 }
 //----------------------------------------------------------------------------
-// ƒzƒbƒgƒL[‚ª‘—‚ç‚ê‚½
+// ãƒ›ãƒƒãƒˆã‚­ãƒ¼ãŒé€ã‚‰ã‚ŒãŸ
 //----------------------------------------------------------------------------
 void CMainWnd::OnHotKey(int idHotKey, UINT fuModifiers, UINT vk)
 {
@@ -10843,7 +10829,7 @@ void CMainWnd::OnHotKey(int idHotKey, UINT fuModifiers, UINT vk)
 	CFrameWnd::OnHotKey(idHotKey, fuModifiers, vk);
 }
 //----------------------------------------------------------------------------
-// ƒL[ƒ{[ƒh‚ª‰Ÿ‚³‚ê‚½
+// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãŒæŠ¼ã•ã‚ŒãŸ
 //----------------------------------------------------------------------------
 void CMainWnd::OnKeyDown(UINT vk, int cRepeat, UINT flags)
 {
@@ -10854,7 +10840,7 @@ void CMainWnd::OnKeyDown(UINT vk, int cRepeat, UINT flags)
 	CFrameWnd::OnKeyDown(vk, cRepeat, flags);
 }
 //----------------------------------------------------------------------------
-// ¶ƒNƒŠƒbƒN‚ª‰Ÿ‚³‚ê‚½
+// å·¦ã‚¯ãƒªãƒƒã‚¯ãŒæŠ¼ã•ã‚ŒãŸ
 //----------------------------------------------------------------------------
 void CMainWnd::OnLButtonDown(int x, int y, UINT keyFlags)
 {
@@ -10882,7 +10868,7 @@ void CMainWnd::OnLButtonDown(int x, int y, UINT keyFlags)
 	CSnapWnd::OnLButtonDown(x, y, keyFlags);
 }
 //----------------------------------------------------------------------------
-// ¶ƒNƒŠƒbƒN‚ª—£‚³‚ê‚½
+// å·¦ã‚¯ãƒªãƒƒã‚¯ãŒé›¢ã•ã‚ŒãŸ
 //----------------------------------------------------------------------------
 void CMainWnd::OnLButtonUp(int x, int y, UINT keyFlags)
 {
@@ -10897,7 +10883,7 @@ void CMainWnd::OnLButtonUp(int x, int y, UINT keyFlags)
 	CSnapWnd::OnLButtonUp(x, y, keyFlags);
 }
 //----------------------------------------------------------------------------
-// ƒ}ƒEƒX‚ª“®‚©‚³‚ê‚½
+// ãƒã‚¦ã‚¹ãŒå‹•ã‹ã•ã‚ŒãŸ
 //----------------------------------------------------------------------------
 void CMainWnd::OnMouseMove(int x, int y, UINT keyFlags)
 {
@@ -10926,7 +10912,7 @@ void CMainWnd::OnMouseMove(int x, int y, UINT keyFlags)
 	CSnapWnd::OnMouseMove(x, y, keyFlags);
 }
 //----------------------------------------------------------------------------
-// ƒRƒ‚ƒ“ƒRƒ“ƒgƒ[ƒ‹‚©‚ç‚Ì’Ê’m‚ª—ˆ‚½
+// ã‚³ãƒ¢ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‹ã‚‰ã®é€šçŸ¥ãŒæ¥ãŸ
 //----------------------------------------------------------------------------
 LRESULT CMainWnd::OnNotify(int idFrom, NMHDR* pnmhdr)
 {
@@ -11103,7 +11089,7 @@ LRESULT CMainWnd::OnNotify(int idFrom, NMHDR* pnmhdr)
 	return CSnapWnd::OnNotify(idFrom, pnmhdr);
 }
 //----------------------------------------------------------------------------
-// ƒTƒCƒY‚ª•ÏX‚³‚ê‚½
+// ã‚µã‚¤ã‚ºãŒå¤‰æ›´ã•ã‚ŒãŸ
 //----------------------------------------------------------------------------
 void CMainWnd::OnSize(UINT state, int cx, int cy)
 {
@@ -11194,7 +11180,7 @@ void CMainWnd::OnSize(UINT state, int cx, int cy)
 	CSnapWnd::OnSize(state, cx, cy);
 }
 //----------------------------------------------------------------------------
-// ƒVƒXƒeƒ€ƒRƒ}ƒ“ƒh‚ª‘—‚ç‚ê‚½
+// ã‚·ã‚¹ãƒ†ãƒ ã‚³ãƒãƒ³ãƒ‰ãŒé€ã‚‰ã‚ŒãŸ
 //----------------------------------------------------------------------------
 void CMainWnd::OnSysCommand(UINT cmd, int x, int y)
 {
@@ -11208,8 +11194,8 @@ void CMainWnd::OnSysCommand(UINT cmd, int x, int y)
 		ni.uFlags = NIF_ICON | NIF_MESSAGE | NIF_TIP;
 		ni.uID = 1;
 #if JP
-		_tcscpy_s(ni.szTip, _tcslen(_T("•·Xƒnƒ„‚¦‚à‚ñ")) + 1,
-				  _T("•·Xƒnƒ„‚¦‚à‚ñ"));
+		_tcscpy_s(ni.szTip, _tcslen(_T("èã€…ãƒãƒ¤ãˆã‚‚ã‚“")) + 1,
+				  _T("èã€…ãƒãƒ¤ãˆã‚‚ã‚“"));
 #else // JP
 		_tcscpy_s(ni.szTip, _tcslen(_T("Hayaemon")) + 1,
 				  _T("Hayaemon"));
@@ -11221,7 +11207,7 @@ void CMainWnd::OnSysCommand(UINT cmd, int x, int y)
 	CSnapWnd::OnSysCommand(cmd, x, y);
 }
 //----------------------------------------------------------------------------
-// ƒ^ƒXƒNƒgƒŒƒCƒƒbƒZ[ƒW‚ª‘—‚ç‚ê‚½
+// ã‚¿ã‚¹ã‚¯ãƒˆãƒ¬ã‚¤ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒé€ã‚‰ã‚ŒãŸ
 //----------------------------------------------------------------------------
 void CMainWnd::OnTray(UINT uMsg)
 {
@@ -11249,7 +11235,7 @@ void CMainWnd::OnTray(UINT uMsg)
 	}
 }
 //----------------------------------------------------------------------------
-// ‰¡‚ÉƒXƒNƒ[ƒ‹‚³‚ê‚½
+// æ¨ªã«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã•ã‚ŒãŸ
 //----------------------------------------------------------------------------
 void CMainWnd::OnHScroll(HWND hwndCtl, UINT code, int pos)
 {
@@ -11330,11 +11316,11 @@ void CMainWnd::OnHScroll(HWND hwndCtl, UINT code, int pos)
 	CSnapWnd::OnHScroll(hwndCtl, code, pos);
 }
 //----------------------------------------------------------------------------
-// ƒJ[ƒ\ƒ‹İ’è‚Ìƒ^ƒCƒ~ƒ“ƒO‚ª—ˆ‚½
+// ã‚«ãƒ¼ã‚½ãƒ«è¨­å®šã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæ¥ãŸ
 //----------------------------------------------------------------------------
 BOOL CMainWnd::OnSetCursor(HWND hwndCursor, UINT codeHitTest, UINT msg)
 {
-	// ƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚ğ“¾‚é
+	// ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã‚’å¾—ã‚‹
 	POINT ptCsr;
 	GetCursorPos(&ptCsr);
 	ScreenToClient(m_hWnd, &ptCsr);
@@ -11346,7 +11332,7 @@ BOOL CMainWnd::OnSetCursor(HWND hwndCursor, UINT codeHitTest, UINT msg)
 	int nToolBarBottom = pt.y + m_toolBar->GetHeight() + controlOffset;
 	int nVideoBottom = nToolBarBottom + m_videoScreen->GetHeight();
 
-	// ƒJ[ƒ\ƒ‹‚Ìİ’è
+	// ã‚«ãƒ¼ã‚½ãƒ«ã®è¨­å®š
 	int nDrag = GetSystemMetrics(SM_CXDRAG);
 	if(m_explorer->GetWidth() <= ptCsr.x &&
 			ptCsr.x <= m_explorer->GetWidth() + nDrag &&
@@ -11364,7 +11350,7 @@ BOOL CMainWnd::OnSetCursor(HWND hwndCursor, UINT codeHitTest, UINT msg)
 	return CSnapWnd::OnSetCursor(hwndCursor, codeHitTest, msg);
 }
 //----------------------------------------------------------------------------
-// ƒ^ƒCƒ}[‚ÌüŠú‚ª—ˆ‚½
+// ã‚¿ã‚¤ãƒãƒ¼ã®å‘¨æœŸãŒæ¥ãŸ
 //----------------------------------------------------------------------------
 void CMainWnd::OnTimer(UINT id)
 {
@@ -11473,21 +11459,21 @@ void CMainWnd::OnTimer(UINT id)
 		if(!m_sound->ChannelIsStopped() && !m_sound->ChannelIsPausing()) {
 			double freq_org = (double)(m_freqSlider->GetThumbPos()
 				/ pow(10.0, m_freqSlider->GetDecimalDigit()));
-					// Œ»İ‚Ìü”g”
+					// ç¾åœ¨ã®å‘¨æ³¢æ•°
 
-			// ‰Á‘¬“x‚Ìİ’è
-			// ü”g”‚ª98ˆÈã‚Ìê‡ : -0.1
-			// @@@@98–¢–‚Ìê‡ : +0.1
+			// åŠ é€Ÿåº¦ã®è¨­å®š
+			// å‘¨æ³¢æ•°ãŒ98ä»¥ä¸Šã®å ´åˆ : -0.1
+			// ã€€ã€€ã€€ã€€98æœªæº€ã®å ´åˆ : +0.1
 			nFreqAccel = freq_org >= 98 ? -0.1 : 0.1;
 
-			// ü”g”‚Ì·•ª‚É‰Á‘¬“x‚ğ‰Á‚¦‚é
+			// å‘¨æ³¢æ•°ã®å·®åˆ†ã«åŠ é€Ÿåº¦ã‚’åŠ ãˆã‚‹
 			nFreqVelo += nFreqAccel;
 
-			// ü”g”‚É·•ª‚ğ‰Á‚¦‚é
+			// å‘¨æ³¢æ•°ã«å·®åˆ†ã‚’åŠ ãˆã‚‹
 			if(nFreqVelo != 0.0) {
 				double freq = freq_org + nFreqVelo;
 
-				// 90 ` 100 ‚ÌŠÔ‚Å“®‚­‚æ‚¤‚É‚·‚é
+				// 90 ï½ 100 ã®é–“ã§å‹•ãã‚ˆã†ã«ã™ã‚‹
 				if(freq <= 90.0) freq = 90.0;
 				if(freq >= 100.0) freq = 100.0;
 
@@ -11502,21 +11488,21 @@ void CMainWnd::OnTimer(UINT id)
 		if(!m_sound->ChannelIsStopped() && !m_sound->ChannelIsPausing()) {
 			double freq_org = (double)(m_freqSlider->GetThumbPos()
 				/ pow(10.0, m_freqSlider->GetDecimalDigit()));
-					// Œ»İ‚Ìü”g”
+					// ç¾åœ¨ã®å‘¨æ³¢æ•°
 
-			// ‰Á‘¬“x‚Ìİ’è
-			// ü”g”‚ª68ˆÈã‚Ìê‡ : -0.02
-			// @@@@68–¢–‚Ìê‡ : +0.01
+			// åŠ é€Ÿåº¦ã®è¨­å®š
+			// å‘¨æ³¢æ•°ãŒ68ä»¥ä¸Šã®å ´åˆ : -0.02
+			// ã€€ã€€ã€€ã€€68æœªæº€ã®å ´åˆ : +0.01
 			nFreqAccel = freq_org >= 68 ? -0.02 : 0.01;
 
-			// ü”g”‚Ì·•ª‚É‰Á‘¬“x‚ğ‰Á‚¦‚é
+			// å‘¨æ³¢æ•°ã®å·®åˆ†ã«åŠ é€Ÿåº¦ã‚’åŠ ãˆã‚‹
 			nFreqVelo += nFreqAccel;
 
-			// ü”g”‚É·•ª‚ğ‰Á‚¦‚é
+			// å‘¨æ³¢æ•°ã«å·®åˆ†ã‚’åŠ ãˆã‚‹
 			if(nFreqVelo != 0.0) {
 				double freq = freq_org + nFreqVelo;
 
-				// 65 ` 70 ‚ÌŠÔ‚Å“®‚­‚æ‚¤‚É‚·‚é
+				// 65 ï½ 70 ã®é–“ã§å‹•ãã‚ˆã†ã«ã™ã‚‹
 				if(freq <= 65.0) freq = 65.0;
 				if(freq >= 70.0) freq = 70.0;
 
@@ -11540,7 +11526,7 @@ void CMainWnd::OnTimer(UINT id)
 		else if(!m_sound->ChannelIsStopped() && !m_sound->ChannelIsPausing()) {
 			double pitch_org = (double)(m_pitchSlider->GetThumbPos()
 				/ pow(10.0, m_pitchSlider->GetDecimalDigit()));
-					// Œ»İ‚Ì‰¹’ö
+					// ç¾åœ¨ã®éŸ³ç¨‹
 
 			if(m_sound->ChannelGetSecondsPosition() > 30.0)
 				nFreqVelo = CUtils::GetRandom(-100, 100) / 1000.0;
@@ -11550,11 +11536,11 @@ void CMainWnd::OnTimer(UINT id)
 			if(pitch_org <= -2.0 && nFreqVelo < 0.0) nFreqVelo *= -1.0;
 			if(pitch_org >= 2.0 && nFreqVelo > 0.0) nFreqVelo *= -1.0;
 
-			// ‰¹’ö‚É·•ª‚ğ‰Á‚¦‚é
+			// éŸ³ç¨‹ã«å·®åˆ†ã‚’åŠ ãˆã‚‹
 			if(nFreqVelo != 0.0) {
 				double pitch = pitch_org + nFreqVelo;
 
-				// ó2 ` ò2 ‚ÌŠÔ‚Å“®‚­‚æ‚¤‚É‚·‚é
+				// â™­2 ï½ â™¯2 ã®é–“ã§å‹•ãã‚ˆã†ã«ã™ã‚‹
 				// if(pitch < -2.0) pitch = -2.0;
 				// if(pitch > 2.0) pitch = 2.0;
 
@@ -11566,7 +11552,7 @@ void CMainWnd::OnTimer(UINT id)
 
 			double speed_org = (double)(m_speedSlider->GetThumbPos()
 				/ pow(10.0, m_speedSlider->GetDecimalDigit()));
-					// Œ»İ‚Ì‘¬“x
+					// ç¾åœ¨ã®é€Ÿåº¦
 
 			if(m_sound->ChannelGetSecondsPosition() > 30.0)
 				nFreqVelo = CUtils::GetRandom(-100, 100) / 1000.0;
@@ -11576,11 +11562,11 @@ void CMainWnd::OnTimer(UINT id)
 			if(speed_org <= -90.0 && nFreqVelo < 0.0) nFreqVelo *= -1.0;
 			if(speed_org >= 110.0 && nFreqVelo > 0.0) nFreqVelo *= -1.0;
 
-			// ‘¬“x‚É·•ª‚ğ‰Á‚¦‚é
+			// é€Ÿåº¦ã«å·®åˆ†ã‚’åŠ ãˆã‚‹
 			if(nFreqVelo != 0.0) {
 				double speed = speed_org + nFreqVelo;
 
-				// -90 ` ò2 ‚ÌŠÔ‚Å“®‚­‚æ‚¤‚É‚·‚é
+				// -90 ï½ â™¯2 ã®é–“ã§å‹•ãã‚ˆã†ã«ã™ã‚‹
 				// if(speed < -90.0) speed = -90.0;
 				// if(speed > 110.0) speed = 110.0;
 
@@ -11643,7 +11629,7 @@ void CMainWnd::OnTimer(UINT id)
 		{
 			SYSTEMTIME st;
 			GetLocalTime(&st);
-			if(bTimerPlayNextDay) { // —‚“ú‚É‚È‚Á‚½‚©‚Ç‚¤‚©‚Ì”»’è
+			if(bTimerPlayNextDay) { // ç¿Œæ—¥ã«ãªã£ãŸã‹ã©ã†ã‹ã®åˆ¤å®š
 				if(st.wHour < nTimerPlayHour || st.wHour == nTimerPlayHour
 					&& st.wMinute <= nTimerPlayMinute)
 					bTimerPlayNextDay = FALSE;
@@ -11664,7 +11650,7 @@ void CMainWnd::OnTimer(UINT id)
 		{
 			SYSTEMTIME st;
 			GetLocalTime(&st);
-			if(bTimerStopNextDay) { // —‚“ú‚É‚È‚Á‚½‚©‚Ç‚¤‚©‚Ì”»’è
+			if(bTimerStopNextDay) { // ç¿Œæ—¥ã«ãªã£ãŸã‹ã©ã†ã‹ã®åˆ¤å®š
 				if(st.wHour < nTimerStopHour || st.wHour == nTimerStopHour
 					&& st.wMinute <= nTimerStopMinute)
 					bTimerStopNextDay = FALSE;
@@ -11682,7 +11668,7 @@ void CMainWnd::OnTimer(UINT id)
 	}
 }
 //----------------------------------------------------------------------------
-// ƒVƒ‡[ƒgƒJƒbƒgƒL[•¶š—ñ‚ÌƒGƒXƒP[ƒviiniƒtƒ@ƒCƒ‹‘‚«o‚µ—pj
+// ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼æ–‡å­—åˆ—ã®ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—ï¼ˆiniãƒ•ã‚¡ã‚¤ãƒ«æ›¸ãå‡ºã—ç”¨ï¼‰
 //----------------------------------------------------------------------------
 #define ESC_LEFTBRACKET _T("U005B")
 #define ESC_SEMICOLON   _T("U003B")
@@ -11694,7 +11680,7 @@ const TCHAR* CMainWnd::EscapeKeystr(const TCHAR* src)
 	return src;
 }
 //----------------------------------------------------------------------------
-// ƒVƒ‡[ƒgƒJƒbƒgƒL[•¶š—ñ‚ÌƒAƒ“ƒGƒXƒP[ƒviiniƒtƒ@ƒCƒ‹“Ç‚İ‚İ—pj
+// ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼æ–‡å­—åˆ—ã®ã‚¢ãƒ³ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—ï¼ˆiniãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ç”¨ï¼‰
 //----------------------------------------------------------------------------
 const tstring CMainWnd::UnEscapeKeystr(const tstring src)
 {
@@ -11708,14 +11694,14 @@ LRESULT CMainWnd::WindowProc(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	switch(uMsg)
 	{
 	case WM_COPYDATA:
-		// ‘½d‹N“®‚ğ‚µ‚æ‚¤‚Æ‚µ‚½‚ÉŒ³‚ÌƒEƒBƒ“ƒhƒE‚É‘—‚ç‚ê‚éƒRƒ}ƒ“ƒhƒ‰ƒCƒ“ˆø”
+		// å¤šé‡èµ·å‹•ã‚’ã—ã‚ˆã†ã¨ã—ãŸæ™‚ã«å…ƒã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«é€ã‚‰ã‚Œã‚‹ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³å¼•æ•°
 		COPYDATASTRUCT * cd = (COPYDATASTRUCT *)lParam;
 
 		TCHAR ** pStr = (TCHAR **)&cd->lpData;
 
 		*pStr += lstrlen(*pStr) + 1;
 
-		// ƒAƒCƒRƒ“‚Éƒhƒƒbƒv‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
+		// ã‚¢ã‚¤ã‚³ãƒ³ã«ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
 		m_arrayList[nCurPlayTab]->DeleteAllItems();
 		for(int i = 1; i < (int)cd->dwData; i++) {
 			m_arrayList[nCurPlayTab]->AddFile(*pStr);
@@ -11737,7 +11723,7 @@ LRESULT CMainWnd::WindowProc(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	return CSnapWnd::WindowProc(uMsg, wParam, lParam);
 }
 //----------------------------------------------------------------------------
-// î•ñ‚ÌXV—pƒXƒŒƒbƒh
+// æƒ…å ±ã®æ›´æ–°ç”¨ã‚¹ãƒ¬ãƒƒãƒ‰
 //----------------------------------------------------------------------------
 void CMainWnd::UpdateThreadProc(void * pParam)
 {
@@ -11751,7 +11737,7 @@ void CMainWnd::UpdateThreadProc(void * pParam)
 	ExitThread(0);
 }
 //----------------------------------------------------------------------------
-// ŠÔ•\¦‚ÌXV—pƒXƒŒƒbƒh
+// æ™‚é–“è¡¨ç¤ºã®æ›´æ–°ç”¨ã‚¹ãƒ¬ãƒƒãƒ‰
 //----------------------------------------------------------------------------
 void CMainWnd::UpdateTimeThreadProc(void * pParam)
 {
@@ -11762,7 +11748,7 @@ void CMainWnd::UpdateTimeThreadProc(void * pParam)
 	}
 }
 //----------------------------------------------------------------------------
-// ‰ÌŒ•\¦‚ÌXV—pƒXƒŒƒbƒh
+// æ­Œè©è¡¨ç¤ºã®æ›´æ–°ç”¨ã‚¹ãƒ¬ãƒƒãƒ‰
 //----------------------------------------------------------------------------
 void CMainWnd::UpdateLyricsThreadProc(void * pParam)
 {
@@ -11779,7 +11765,7 @@ void CMainWnd::UpdateLyricsThreadProc(void * pParam)
 	ExitThread(0);
 }
 //----------------------------------------------------------------------------
-// ƒsƒbƒ`ƒAƒiƒ‰ƒCƒU‚ÌXV—pƒXƒŒƒbƒh
+// ãƒ”ãƒƒãƒã‚¢ãƒŠãƒ©ã‚¤ã‚¶ã®æ›´æ–°ç”¨ã‚¹ãƒ¬ãƒƒãƒ‰
 //----------------------------------------------------------------------------
 void CMainWnd::UpdatePitchAnalyserThreadProc(void * pParam)
 {
@@ -11796,7 +11782,7 @@ void CMainWnd::UpdatePitchAnalyserThreadProc(void * pParam)
 	ExitThread(0);
 }
 //----------------------------------------------------------------------------
-// ‘I‘ğ’†‚ÌƒvƒŒƒCƒŠƒXƒgƒrƒ…[‚ğæ“¾
+// é¸æŠä¸­ã®ãƒ—ãƒ¬ã‚¤ãƒªã‚¹ãƒˆãƒ“ãƒ¥ãƒ¼ã‚’å–å¾—
 //----------------------------------------------------------------------------
 CPlayListView_MainWnd & CMainWnd::GetPlayList()
 {
@@ -11804,7 +11790,7 @@ CPlayListView_MainWnd & CMainWnd::GetPlayList()
 	return *m_arrayList[nSelect];
 }
 //----------------------------------------------------------------------------
-// Ä¶ŠÔİ’è—pƒXƒ‰ƒCƒ_‚Ì‚‚³‚ğæ“¾
+// å†ç”Ÿæ™‚é–“è¨­å®šç”¨ã‚¹ãƒ©ã‚¤ãƒ€ã®é«˜ã•ã‚’å–å¾—
 //----------------------------------------------------------------------------
 int CMainWnd::GetTimeSliderHeight()
 {
@@ -11812,7 +11798,7 @@ int CMainWnd::GetTimeSliderHeight()
 		+ m_timeSlider->GetHeight() : 0;
 }
 //----------------------------------------------------------------------------
-// Ä¶ŠÔ, Ä¶ü”g”, ‰¹’öİ’è—pƒRƒ“ƒgƒ[ƒ‹‚Ì‚‚³‚Ì‘˜a‚ğæ“¾
+// å†ç”Ÿæ™‚é–“, å†ç”Ÿå‘¨æ³¢æ•°, éŸ³ç¨‹è¨­å®šç”¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®é«˜ã•ã®ç·å’Œã‚’å–å¾—
 //----------------------------------------------------------------------------
 int CMainWnd::GetControlBarHeight()
 {
@@ -11842,7 +11828,7 @@ int CMainWnd::GetControlBarHeight()
 	else return 0;
 }
 //----------------------------------------------------------------------------
-// ‰¹—Ê, ƒpƒ“İ’è—pƒRƒ“ƒgƒ[ƒ‹‚Ì‚‚³‚Ì‘˜a‚ğæ“¾
+// éŸ³é‡, ãƒ‘ãƒ³è¨­å®šç”¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®é«˜ã•ã®ç·å’Œã‚’å–å¾—
 //----------------------------------------------------------------------------
 int CMainWnd::GetControlBar2Height()
 {
@@ -11864,7 +11850,7 @@ int CMainWnd::GetControlBar2Height()
 	else return 0;
 }
 //----------------------------------------------------------------------------
-// ƒCƒRƒ‰ƒCƒUİ’è—pƒRƒ“ƒgƒ[ƒ‹‚Ì‚‚³‚Ì‘˜a‚ğæ“¾
+// ã‚¤ã‚³ãƒ©ã‚¤ã‚¶è¨­å®šç”¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®é«˜ã•ã®ç·å’Œã‚’å–å¾—
 //----------------------------------------------------------------------------
 int CMainWnd::GetEQHeight()
 {

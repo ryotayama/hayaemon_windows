@@ -305,9 +305,6 @@
     <ClInclude Include="MainWnd\RMenu_Tab.h">
       <Filter>MainWnd</Filter>
     </ClInclude>
-    <ClInclude Include="Common\BASS_DSHOW.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="MainWnd\VideoScreen_MainWnd.h">
       <Filter>MainWnd</Filter>
     </ClInclude>
@@ -588,6 +585,12 @@
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="Common\bassmix.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\BASS_DSHOW.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\BASS_DSHOW_ExportFunc.h">
       <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>

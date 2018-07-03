@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------------
-// Sound.cpp : âπÇÃçƒê∂ä«óù
+// Sound.cpp : Èü≥„ÅÆÂÜçÁîüÁÆ°ÁêÜ
 //----------------------------------------------------------------------------
 #include <windows.h>
 #include <shlwapi.h>
@@ -14,13 +14,12 @@
 #include "MainWnd.h"
 #include "Menu_MainWnd.h"
 #include "Sound.h"
-#include "../Common/xVideo.h"
 #include "PanSlider_MainWnd.h"
 #include "PlayListView_MainWnd.h"
 #include "ProgressWnd_MainWnd.h"
 #include "VideoScreen_MainWnd.h"
 //----------------------------------------------------------------------------
-// ÉRÉìÉXÉgÉâÉNÉ^
+// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 //----------------------------------------------------------------------------
 CSound::CSound(CApp & app, CMainWnd & mainWnd, BOOL bMainStream)
 	: m_rApp(app), m_rMainWnd(mainWnd), m_hVideoStream(0), m_bLoop(FALSE),
@@ -34,12 +33,14 @@ CSound::CSound(CApp & app, CMainWnd & mainWnd, BOOL bMainStream)
 	  m_hVocalCancelDsp(0), m_hOnlyLeftDsp(0), m_hOnlyRightDsp(0),
 	  m_hChangeLRDsp(0), m_hNormalizeDsp(0), m_hPanDsp(0),
 	  m_bMainStream(bMainStream), m_hMixer(0), m_hNSF(0), m_nNSFCount(0),
-	  m_nNSFCurrent(0)
+	  m_nNSFCurrent(0), m_bInitBASS_DSHOWPlugin(FALSE)
 {
-	if(bMainStream) LoadWmaPlugin();
+	if (bMainStream) {
+		LoadWmaPlugin();
+	}
 }
 //----------------------------------------------------------------------------
-// ÉfÉXÉgÉâÉNÉ^
+// „Éá„Çπ„Éà„É©„ÇØ„Çø
 //----------------------------------------------------------------------------
 CSound::~CSound()
 {
@@ -47,7 +48,7 @@ CSound::~CSound()
 	BASS_WASAPI_Free();
 }
 //----------------------------------------------------------------------------
-// É}Å[ÉJÅ[ÇÃí«â¡
+// „Éû„Éº„Ç´„Éº„ÅÆËøΩÂä†
 //----------------------------------------------------------------------------
 void CSound::AddMarker(QWORD nPos)
 {
@@ -55,7 +56,7 @@ void CSound::AddMarker(QWORD nPos)
 	std::sort(m_arrayMarker.begin(), m_arrayMarker.end());
 }
 //----------------------------------------------------------------------------
-// É}Å[ÉJÅ[ÇÃà íuÇïœçX
+// „Éû„Éº„Ç´„Éº„ÅÆ‰ΩçÁΩÆ„ÇíÂ§âÊõ¥
 //----------------------------------------------------------------------------
 int CSound::ChangeMarkerPos(int nMarker, QWORD nPos)
 {
@@ -67,14 +68,14 @@ int CSound::ChangeMarkerPos(int nMarker, QWORD nPos)
 	return 0;
 }
 //----------------------------------------------------------------------------
-// É}Å[ÉJÅ[ÇÃçÌèú
+// „Éû„Éº„Ç´„Éº„ÅÆÂâäÈô§
 //----------------------------------------------------------------------------
 void CSound::EraseMarker(int nMarker)
 {
 	m_arrayMarker.erase(m_arrayMarker.begin() + nMarker);
 }
 //----------------------------------------------------------------------------
-// ASIOÇÃèâä˙âª
+// ASIO„ÅÆÂàùÊúüÂåñ
 //----------------------------------------------------------------------------
 BOOL CSound::InitASIO()
 {
@@ -87,26 +88,62 @@ BOOL CSound::InitASIO()
 	return TRUE;
 }
 //----------------------------------------------------------------------------
-// ÉTÉCÉYÇÃÉäÉZÉbÉg
+// BASS_DSHOW„ÅÆÂàùÊúüÂåñ
+//----------------------------------------------------------------------------
+BOOL CSound::InitBASS_DSHOW()
+{
+	m_hXVideo = LoadLibrary((m_rApp.GetFilePath() + _T("BASS_DSHOW.DLL")).c_str());
+	if (!m_hXVideo) {
+#if JP
+		m_rApp.ShowError(_T("BASS_DSHOW.DLL „ÅÆ„É≠„Éº„Éâ„Å´Â§±Êïó„Åó„Åæ„Åó„Åü„ÄÇ"));
+#else // JP
+		m_rApp.ShowError(_T("failed to load BASS_DSHOW.DLL."));
+#endif // JP
+		return FALSE;
+	}
+	m_lp_xVideo_Register = (LPXVIDEO_REGISTER)GetProcAddress(m_hXVideo, "xVideo_Register");
+	m_lp_xVideo_Init = (LPXVIDEO_INIT)GetProcAddress(m_hXVideo, "xVideo_Init");
+	m_lp_xVideo_StreamCreateFile = (LPXVIDEO_STREAMCREATEFILE)GetProcAddress(m_hXVideo, "xVideo_StreamCreateFile");
+	m_lp_xVideo_ChannelResizeWindow = (LPXVIDEO_CHANNELRESIZEWINDOW)GetProcAddress(m_hXVideo, "xVideo_ChannelResizeWindow");
+	m_lp_xVideo_ChannelGetInfo = (LPXVIDEO_CHANNELGETINFO)GetProcAddress(m_hXVideo, "xVideo_ChannelGetInfo");
+	m_lp_xVideo_SetConfig = (LPXVIDEO_SETCONFIG)GetProcAddress(m_hXVideo, "xVideo_SetConfig");
+	m_lp_xVideo_ChannelSetWindow = (LPXVIDEO_CHANNELSETWINDOW)GetProcAddress(m_hXVideo, "xVideo_ChannelSetWIndow");
+	m_lp_xVideo_StreamFree = (LPXVIDEO_STREAMFREE)GetProcAddress(m_hXVideo, "xVideo_StreamFree");
+	m_lp_xVideo_Register(_T("taro@edolfzoku.com"), _T("09437237643421"), xVideo_UNICODE);
+	if (!m_lp_xVideo_Init((HWND)m_rMainWnd, 0)) {
+#if JP
+		m_rApp.ShowError(_T("BASS_DSHOW.DLL „ÅÆÂàùÊúüÂåñ„Å´Â§±Êïó„Åó„Åæ„Åó„Åü„ÄÇ"));
+#else // JP
+		m_rApp.ShowError(_T("failed to init BASS_DSHOW.DLL."));
+#endif // JP
+		return FALSE;
+	}
+	else {
+		m_lp_xVideo_SetConfig(xVideo_CONFIG_VideoRenderer, xVideo_VMR9);
+		return TRUE;
+	}
+}
+//----------------------------------------------------------------------------
+// „Çµ„Ç§„Ç∫„ÅÆ„É™„Çª„ÉÉ„Éà
 //----------------------------------------------------------------------------
 void CSound::ResetSize(int left, int top, int right, int bottom)
 {
-	if(right >= bottom) { // â°ïùÇ™ècïùÇÊÇËëÂÇ´Ç¢èÍçá
+	if(right >= bottom) { // Ê®™ÂπÖ„ÅåÁ∏¶ÂπÖ„Çà„ÇäÂ§ß„Åç„ÅÑÂ†¥Âêà
 		int nHeight = bottom;
 		int nWidth = (int)(nHeight * m_nWidth / m_nHeight);
-		xVideo_ChannelResizeWindow(m_hVideoStream, 0,
+		m_lp_xVideo_ChannelResizeWindow(m_hVideoStream, 0,
 			(int)(right / 2 - nWidth / 2),
 			0, nWidth, nHeight);
 	}
-	else {  // ècïùÇ™â°ïùÇÊÇËëÂÇ´Ç¢èÍçá
+	else {  // Á∏¶ÂπÖ„ÅåÊ®™ÂπÖ„Çà„ÇäÂ§ß„Åç„ÅÑÂ†¥Âêà
 		int nWidth = right;
 		int nHeight = (int)(nWidth * m_nHeight / m_nWidth);
-		xVideo_ChannelResizeWindow(m_hVideoStream, 0, 0,
+		m_lp_xVideo_ChannelResizeWindow(m_hVideoStream, 0, 0,
 			(int)(bottom / 2 - nHeight / 2), nWidth, nHeight);
 	}
 }
 //----------------------------------------------------------------------------
-// çƒê∂
+// ÂÜçÁîü
 //----------------------------------------------------------------------------
 BOOL CSound::ChannelPlay()
 {
@@ -118,14 +155,14 @@ BOOL CSound::ChannelPlay()
 	return CBass::ChannelPlay();
 }
 //----------------------------------------------------------------------------
-// É}Å[ÉJÅ[ÇÃÉNÉäÉA
+// „Éû„Éº„Ç´„Éº„ÅÆ„ÇØ„É™„Ç¢
 //----------------------------------------------------------------------------
 void CSound::ClearMarker()
 {
 	m_arrayMarker.clear();
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 20Hz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 20Hz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ20(float fCenter, float fBandwidth, float fGain)
 {
@@ -154,7 +191,7 @@ void CSound::SetEQ20(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 25Hz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 25Hz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ25(float fCenter, float fBandwidth, float fGain)
 {
@@ -183,7 +220,7 @@ void CSound::SetEQ25(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 31.5Hz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 31.5Hz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ31_5(float fCenter, float fBandwidth, float fGain)
 {
@@ -212,7 +249,7 @@ void CSound::SetEQ31_5(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 40Hz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 40Hz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ40(float fCenter, float fBandwidth, float fGain)
 {
@@ -241,7 +278,7 @@ void CSound::SetEQ40(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 50Hz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 50Hz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ50(float fCenter, float fBandwidth, float fGain)
 {
@@ -270,7 +307,7 @@ void CSound::SetEQ50(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 63Hz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 63Hz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ63(float fCenter, float fBandwidth, float fGain)
 {
@@ -299,7 +336,7 @@ void CSound::SetEQ63(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 80Hz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 80Hz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ80(float fCenter, float fBandwidth, float fGain)
 {
@@ -328,7 +365,7 @@ void CSound::SetEQ80(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 100Hz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 100Hz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ100(float fCenter, float fBandwidth, float fGain)
 {
@@ -357,7 +394,7 @@ void CSound::SetEQ100(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 125Hz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 125Hz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ125(float fCenter, float fBandwidth, float fGain)
 {
@@ -386,7 +423,7 @@ void CSound::SetEQ125(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 160Hz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 160Hz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ160(float fCenter, float fBandwidth, float fGain)
 {
@@ -415,7 +452,7 @@ void CSound::SetEQ160(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 200Hz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 200Hz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ200(float fCenter, float fBandwidth, float fGain)
 {
@@ -444,7 +481,7 @@ void CSound::SetEQ200(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 250Hz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 250Hz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ250(float fCenter, float fBandwidth, float fGain)
 {
@@ -473,7 +510,7 @@ void CSound::SetEQ250(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 315Hz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 315Hz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ315(float fCenter, float fBandwidth, float fGain)
 {
@@ -502,7 +539,7 @@ void CSound::SetEQ315(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 400Hz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 400Hz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ400(float fCenter, float fBandwidth, float fGain)
 {
@@ -531,7 +568,7 @@ void CSound::SetEQ400(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 500Hz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 500Hz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ500(float fCenter, float fBandwidth, float fGain)
 {
@@ -560,7 +597,7 @@ void CSound::SetEQ500(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 630Hz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 630Hz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ630(float fCenter, float fBandwidth, float fGain)
 {
@@ -589,7 +626,7 @@ void CSound::SetEQ630(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 800Hz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 800Hz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ800(float fCenter, float fBandwidth, float fGain)
 {
@@ -618,7 +655,7 @@ void CSound::SetEQ800(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 1KHz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 1KHz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ1K(float fCenter, float fBandwidth, float fGain)
 {
@@ -647,7 +684,7 @@ void CSound::SetEQ1K(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 1.25KHz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 1.25KHz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ1_25K(float fCenter, float fBandwidth, float fGain)
 {
@@ -676,7 +713,7 @@ void CSound::SetEQ1_25K(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 1.6KHz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 1.6KHz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ1_6K(float fCenter, float fBandwidth, float fGain)
 {
@@ -705,7 +742,7 @@ void CSound::SetEQ1_6K(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 2KHz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 2KHz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ2K(float fCenter, float fBandwidth, float fGain)
 {
@@ -734,7 +771,7 @@ void CSound::SetEQ2K(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 2.5KHz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 2.5KHz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ2_5K(float fCenter, float fBandwidth, float fGain)
 {
@@ -763,7 +800,7 @@ void CSound::SetEQ2_5K(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 3.15KHz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 3.15KHz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ3_15K(float fCenter, float fBandwidth, float fGain)
 {
@@ -792,7 +829,7 @@ void CSound::SetEQ3_15K(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 4KHz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 4KHz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ4K(float fCenter, float fBandwidth, float fGain)
 {
@@ -821,7 +858,7 @@ void CSound::SetEQ4K(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 5KHz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 5KHz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ5K(float fCenter, float fBandwidth, float fGain)
 {
@@ -850,7 +887,7 @@ void CSound::SetEQ5K(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 6.3KHz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 6.3KHz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ6_3K(float fCenter, float fBandwidth, float fGain)
 {
@@ -879,7 +916,7 @@ void CSound::SetEQ6_3K(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 8KHz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 8KHz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ8K(float fCenter, float fBandwidth, float fGain)
 {
@@ -908,7 +945,7 @@ void CSound::SetEQ8K(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 10KHz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 10KHz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ10K(float fCenter, float fBandwidth, float fGain)
 {
@@ -937,7 +974,7 @@ void CSound::SetEQ10K(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 12.5KHz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 12.5KHz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ12_5K(float fCenter, float fBandwidth, float fGain)
 {
@@ -966,7 +1003,7 @@ void CSound::SetEQ12_5K(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 16KHz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 16KHz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ16K(float fCenter, float fBandwidth, float fGain)
 {
@@ -995,7 +1032,7 @@ void CSound::SetEQ16K(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉCÉRÉâÉCÉU ( 20KHz ) ÇÃê›íË
+// „Ç§„Ç≥„É©„Ç§„Ç∂ ( 20KHz ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetEQ20K(float fCenter, float fBandwidth, float fGain)
 {
@@ -1024,7 +1061,7 @@ void CSound::SetEQ20K(float fCenter, float fBandwidth, float fGain)
 	}
 }
 //----------------------------------------------------------------------------
-// ÉäÉoÅ[ÉuÇÃÉpÉâÉÅÅ[É^ÇìæÇÈ
+// „É™„Éê„Éº„Éñ„ÅÆ„Éë„É©„É°„Éº„Çø„ÇíÂæó„Çã
 //----------------------------------------------------------------------------
 BOOL CSound::GetReverb(BASS_DX8_REVERB * bdr)
 {
@@ -1032,7 +1069,7 @@ BOOL CSound::GetReverb(BASS_DX8_REVERB * bdr)
 	return BASS_FXGetParameters(m_hFxReverb, bdr);
 }
 //----------------------------------------------------------------------------
-// ÉäÉoÅ[ÉuÇÃê›íË
+// „É™„Éê„Éº„Éñ„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetReverb(BOOL bReverb)
 {
@@ -1044,14 +1081,14 @@ void CSound::SetReverb(BOOL bReverb)
 	else ChannelRemoveFX(m_hFxReverb), m_hFxReverb = 0;
 }
 //----------------------------------------------------------------------------
-// ÉäÉoÅ[ÉuÇÃê›íË
+// „É™„Éê„Éº„Éñ„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetReverb()
 {
 	BASS_FXSetParameters(m_hFxReverb, &m_bdr);
 }
 //----------------------------------------------------------------------------
-// ÉäÉoÅ[ÉuÇÃê›íË
+// „É™„Éê„Éº„Éñ„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetReverb(float fInGain, float fReverbMix, float fReverbTime,
 					   float fHighFreqRTRatio, BOOL bReverb)
@@ -1062,7 +1099,7 @@ void CSound::SetReverb(float fInGain, float fReverbMix, float fReverbTime,
 	BASS_FXSetParameters(m_hFxReverb, &m_bdr);
 }
 //----------------------------------------------------------------------------
-// ÇRÇcÉäÉoÅ[ÉuÇÃÉpÉâÉÅÅ[É^ÇìæÇÈ
+// ÔºìÔº§„É™„Éê„Éº„Éñ„ÅÆ„Éë„É©„É°„Éº„Çø„ÇíÂæó„Çã
 //----------------------------------------------------------------------------
 BOOL CSound::Get3DReverb(BASS_DX8_I3DL2REVERB * bdir)
 {
@@ -1070,7 +1107,7 @@ BOOL CSound::Get3DReverb(BASS_DX8_I3DL2REVERB * bdir)
 	return BASS_FXGetParameters(m_hFx3DReverb, bdir);
 }
 //----------------------------------------------------------------------------
-// ÇRÇcÉäÉoÅ[ÉuÇÃê›íË
+// ÔºìÔº§„É™„Éê„Éº„Éñ„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::Set3DReverb(BOOL b3DReverb)
 {
@@ -1082,14 +1119,14 @@ void CSound::Set3DReverb(BOOL b3DReverb)
 	else ChannelRemoveFX(m_hFx3DReverb), m_hFx3DReverb = 0;
 }
 //----------------------------------------------------------------------------
-// ÇRÇcÉäÉoÅ[ÉuÇÃê›íË
+// ÔºìÔº§„É™„Éê„Éº„Éñ„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::Set3DReverb()
 {
 	BASS_FXSetParameters(m_hFx3DReverb, &m_bdir);
 }
 //----------------------------------------------------------------------------
-// ÇRÇcÉäÉoÅ[ÉuÇÃê›íË
+// ÔºìÔº§„É™„Éê„Éº„Éñ„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::Set3DReverb(int lRoom, int lRoomHF, float flRoomRolloffFactor,
 					   float flDecayTime, float flDecayHFRatio,
@@ -1105,7 +1142,7 @@ void CSound::Set3DReverb(int lRoom, int lRoomHF, float flRoomRolloffFactor,
 	BASS_FXSetParameters(m_hFx3DReverb, &m_bdir);
 }
 //----------------------------------------------------------------------------
-// ÉfÉBÉåÉCÇÃÉpÉâÉÅÅ[É^ÇìæÇÈ
+// „Éá„Ç£„É¨„Ç§„ÅÆ„Éë„É©„É°„Éº„Çø„ÇíÂæó„Çã
 //----------------------------------------------------------------------------
 BOOL CSound::GetDelay(BASS_DX8_ECHO * bde)
 {
@@ -1113,7 +1150,7 @@ BOOL CSound::GetDelay(BASS_DX8_ECHO * bde)
 	return BASS_FXGetParameters(m_hFxDelay, bde);
 }
 //----------------------------------------------------------------------------
-// ÉfÉBÉåÉCÇÃê›íË
+// „Éá„Ç£„É¨„Ç§„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetDelay(BOOL bDelay)
 {
@@ -1126,14 +1163,14 @@ void CSound::SetDelay(BOOL bDelay)
 		ChannelRemoveFX(m_hFxDelay), m_hFxDelay = 0;
 }
 //----------------------------------------------------------------------------
-// ÉfÉBÉåÉCÇÃê›íË
+// „Éá„Ç£„É¨„Ç§„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetDelay()
 {
 	BASS_FXSetParameters(m_hFxDelay, &m_bde);
 }
 //----------------------------------------------------------------------------
-// ÉfÉBÉåÉCÇÃê›íË
+// „Éá„Ç£„É¨„Ç§„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetDelay(float fWetDryMix, float fFeedback, float fLeftDelay,
 					  float fRightDelay, BOOL lPanDelay, BOOL bDelay)
@@ -1144,7 +1181,7 @@ void CSound::SetDelay(float fWetDryMix, float fFeedback, float fLeftDelay,
 	BASS_FXSetParameters(m_hFxDelay, &m_bde);
 }
 //----------------------------------------------------------------------------
-// ÉfÉBÉXÉgÅ[ÉVÉáÉìÇÃÉpÉâÉÅÅ[É^ÇìæÇÈ
+// „Éá„Ç£„Çπ„Éà„Éº„Ç∑„Éß„É≥„ÅÆ„Éë„É©„É°„Éº„Çø„ÇíÂæó„Çã
 //----------------------------------------------------------------------------
 BOOL CSound::GetDistortion(BASS_DX8_DISTORTION * bdd)
 {
@@ -1152,7 +1189,7 @@ BOOL CSound::GetDistortion(BASS_DX8_DISTORTION * bdd)
 	return BASS_FXGetParameters(m_hFxDistortion, bdd);
 }
 //----------------------------------------------------------------------------
-// ÉfÉBÉXÉgÅ[ÉVÉáÉìÇÃê›íË
+// „Éá„Ç£„Çπ„Éà„Éº„Ç∑„Éß„É≥„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetDistortion(BOOL bDistortion)
 {
@@ -1165,14 +1202,14 @@ void CSound::SetDistortion(BOOL bDistortion)
 		ChannelRemoveFX(m_hFxDistortion), m_hFxDistortion = 0;
 }
 //----------------------------------------------------------------------------
-// ÉfÉBÉXÉgÅ[ÉVÉáÉìÇÃê›íË
+// „Éá„Ç£„Çπ„Éà„Éº„Ç∑„Éß„É≥„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetDistortion()
 {
 	BASS_FXSetParameters(m_hFxDistortion, &m_bdd);
 }
 //----------------------------------------------------------------------------
-// ÉfÉBÉXÉgÅ[ÉVÉáÉìÇÃê›íË
+// „Éá„Ç£„Çπ„Éà„Éº„Ç∑„Éß„É≥„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetDistortion(float fGain, float fEdge,
 						   float fPostEQCenterFreq, float fPostEQBandwidth,
@@ -1184,7 +1221,7 @@ void CSound::SetDistortion(float fGain, float fEdge,
 	BASS_FXSetParameters(m_hFxDistortion, &m_bdd);
 }
 //----------------------------------------------------------------------------
-// ÉRÅ[ÉâÉXÇÃÉpÉâÉÅÅ[É^ÇìæÇÈ
+// „Ç≥„Éº„É©„Çπ„ÅÆ„Éë„É©„É°„Éº„Çø„ÇíÂæó„Çã
 //----------------------------------------------------------------------------
 BOOL CSound::GetChorus(BASS_DX8_CHORUS * bdc)
 {
@@ -1192,7 +1229,7 @@ BOOL CSound::GetChorus(BASS_DX8_CHORUS * bdc)
 	return BASS_FXGetParameters(m_hFxChorus, bdc);
 }
 //----------------------------------------------------------------------------
-// ÉRÅ[ÉâÉXÇÃê›íË
+// „Ç≥„Éº„É©„Çπ„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetChorus(BOOL bChorus)
 {
@@ -1205,14 +1242,14 @@ void CSound::SetChorus(BOOL bChorus)
 		ChannelRemoveFX(m_hFxChorus), m_hFxChorus = 0;
 }
 //----------------------------------------------------------------------------
-// ÉRÅ[ÉâÉXÇÃê›íË
+// „Ç≥„Éº„É©„Çπ„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetChorus()
 {
 	BASS_FXSetParameters(m_hFxChorus, &m_bdc);
 }
 //----------------------------------------------------------------------------
-// ÉRÅ[ÉâÉXÇÃê›íË
+// „Ç≥„Éº„É©„Çπ„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetChorus(float fWetDryMix, float fDepth, float fFeedback,
 					   float fFreq, DWORD lWaveform, float fDelay,
@@ -1224,7 +1261,7 @@ void CSound::SetChorus(float fWetDryMix, float fDepth, float fFeedback,
 	BASS_FXSetParameters(m_hFxChorus, &m_bdc);
 }
 //----------------------------------------------------------------------------
-// ÉRÉìÉvÉåÉbÉTÅ[ÇÃÉpÉâÉÅÅ[É^ÇìæÇÈ
+// „Ç≥„É≥„Éó„É¨„ÉÉ„Çµ„Éº„ÅÆ„Éë„É©„É°„Éº„Çø„ÇíÂæó„Çã
 //----------------------------------------------------------------------------
 BOOL CSound::GetCompressor(BASS_DX8_COMPRESSOR * bdcmp)
 {
@@ -1232,7 +1269,7 @@ BOOL CSound::GetCompressor(BASS_DX8_COMPRESSOR * bdcmp)
 	return BASS_FXGetParameters(m_hFxCompressor, bdcmp);
 }
 //----------------------------------------------------------------------------
-// ÉRÉìÉvÉåÉbÉTÅ[ÇÃê›íË
+// „Ç≥„É≥„Éó„É¨„ÉÉ„Çµ„Éº„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetCompressor(BOOL bCompressor)
 {
@@ -1245,14 +1282,14 @@ void CSound::SetCompressor(BOOL bCompressor)
 		ChannelRemoveFX(m_hFxCompressor), m_hFxCompressor = 0;
 }
 //----------------------------------------------------------------------------
-// ÉRÉìÉvÉåÉbÉTÅ[ÇÃê›íË
+// „Ç≥„É≥„Éó„É¨„ÉÉ„Çµ„Éº„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetCompressor()
 {
 	BASS_FXSetParameters(m_hFxCompressor, &m_bdcmp);
 }
 //----------------------------------------------------------------------------
-// ÉRÉìÉvÉåÉbÉTÅ[ÇÃê›íË
+// „Ç≥„É≥„Éó„É¨„ÉÉ„Çµ„Éº„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetCompressor(float fGain, float fAttack, float fRelease,
 						   float fThreshold, float fRatio, float fPredelay,
@@ -1264,7 +1301,7 @@ void CSound::SetCompressor(float fGain, float fAttack, float fRelease,
 	BASS_FXSetParameters(m_hFxCompressor, &m_bdcmp);
 }
 //----------------------------------------------------------------------------
-// ÉtÉâÉìÉWÉÉÅ[ÇÃÉpÉâÉÅÅ[É^ÇìæÇÈ
+// „Éï„É©„É≥„Ç∏„É£„Éº„ÅÆ„Éë„É©„É°„Éº„Çø„ÇíÂæó„Çã
 //----------------------------------------------------------------------------
 BOOL CSound::GetFlanger(BASS_DX8_FLANGER * bdf)
 {
@@ -1272,7 +1309,7 @@ BOOL CSound::GetFlanger(BASS_DX8_FLANGER * bdf)
 	return BASS_FXGetParameters(m_hFxFlanger, bdf);
 }
 //----------------------------------------------------------------------------
-// ÉtÉâÉìÉWÉÉÅ[ÇÃê›íË
+// „Éï„É©„É≥„Ç∏„É£„Éº„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetFlanger(BOOL bFlanger)
 {
@@ -1285,14 +1322,14 @@ void CSound::SetFlanger(BOOL bFlanger)
 		ChannelRemoveFX(m_hFxFlanger), m_hFxFlanger = 0;
 }
 //----------------------------------------------------------------------------
-// ÉtÉâÉìÉWÉÉÅ[ÇÃê›íË
+// „Éï„É©„É≥„Ç∏„É£„Éº„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetFlanger()
 {
 	BASS_FXSetParameters(m_hFxFlanger, &m_bdf);
 }
 //----------------------------------------------------------------------------
-// ÉtÉâÉìÉWÉÉÅ[ÇÃê›íË
+// „Éï„É©„É≥„Ç∏„É£„Éº„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetFlanger(float fWetDryMix, float fDepth, float fFeedback,
 						float fFreq, DWORD lWaveform, float fDelay,
@@ -1304,7 +1341,7 @@ void CSound::SetFlanger(float fWetDryMix, float fDepth, float fFeedback,
 	BASS_FXSetParameters(m_hFxFlanger, &m_bdf);
 }
 //----------------------------------------------------------------------------
-// ÉKÅ[ÉOÉãÇÃÉpÉâÉÅÅ[É^ÇìæÇÈ
+// „Ç¨„Éº„Ç∞„É´„ÅÆ„Éë„É©„É°„Éº„Çø„ÇíÂæó„Çã
 //----------------------------------------------------------------------------
 BOOL CSound::GetGargle(BASS_DX8_GARGLE * bdg)
 {
@@ -1312,7 +1349,7 @@ BOOL CSound::GetGargle(BASS_DX8_GARGLE * bdg)
 	return BASS_FXGetParameters(m_hFxGargle, bdg);
 }
 //----------------------------------------------------------------------------
-// ÉKÅ[ÉOÉãÇÃê›íË
+// „Ç¨„Éº„Ç∞„É´„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetGargle(BOOL bGargle)
 {
@@ -1325,14 +1362,14 @@ void CSound::SetGargle(BOOL bGargle)
 		ChannelRemoveFX(m_hFxGargle), m_hFxGargle = 0;
 }
 //----------------------------------------------------------------------------
-// ÉKÅ[ÉOÉãÇÃê›íË
+// „Ç¨„Éº„Ç∞„É´„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetGargle()
 {
 	BASS_FXSetParameters(m_hFxGargle, &m_bdg);
 }
 //----------------------------------------------------------------------------
-// ÉKÅ[ÉOÉãÇÃê›íË
+// „Ç¨„Éº„Ç∞„É´„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetGargle(DWORD dwRateHz, DWORD dwWaveShape, BOOL bGargle)
 {
@@ -1341,14 +1378,14 @@ void CSound::SetGargle(DWORD dwRateHz, DWORD dwWaveShape, BOOL bGargle)
 	BASS_FXSetParameters(m_hFxGargle, &m_bdg);
 }
 //----------------------------------------------------------------------------
-// ÉãÅ[ÉvÇÃê›íË
+// „É´„Éº„Éó„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetLoop(BOOL bLoop)
 {
 	m_bLoop = bLoop;
 }
 //----------------------------------------------------------------------------
-// ABÉãÅ[Év ( A ) ÇÃê›íË
+// AB„É´„Éº„Éó ( A ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetABLoopA(BOOL bLoop)
 {
@@ -1356,7 +1393,7 @@ void CSound::SetABLoopA(BOOL bLoop)
 	m_nLoopPosA = 0;
 }
 //----------------------------------------------------------------------------
-// ABÉãÅ[Év ( B ) ÇÃê›íË
+// AB„É´„Éº„Éó ( B ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetABLoopB(BOOL bLoop)
 {
@@ -1366,14 +1403,14 @@ void CSound::SetABLoopB(BOOL bLoop)
 	ChannelSetSync(BASS_SYNC_END, 0, LoopSyncProc, (DWORD *)this);
 }
 //----------------------------------------------------------------------------
-// ABÉãÅ[Év ( A ) ÇÃê›íË
+// AB„É´„Éº„Éó ( A ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetLoopPosA(QWORD nPos)
 {
 	m_nLoopPosA = nPos;
 }
 //----------------------------------------------------------------------------
-// ABÉãÅ[Év ( B ) ÇÃê›íË
+// AB„É´„Éº„Éó ( B ) „ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetLoopPosB(QWORD nPos)
 {
@@ -1386,7 +1423,7 @@ void CSound::SetLoopPosB(QWORD nPos)
 		ChannelSetSync(BASS_SYNC_POS, m_nLoopPosB, LoopSyncProc, (DWORD *)this);
 }
 //----------------------------------------------------------------------------
-// ASIOÇÃäJén
+// ASIO„ÅÆÈñãÂßã
 //----------------------------------------------------------------------------
 void CSound::StartASIO()
 {
@@ -1400,14 +1437,14 @@ void CSound::StartASIO()
 	}
 }
 //----------------------------------------------------------------------------
-// ASIOÇÃí‚é~
+// ASIO„ÅÆÂÅúÊ≠¢
 //----------------------------------------------------------------------------
 void CSound::StopASIO()
 {
 	if(BASS_ASIO_IsStarted()) BASS_ASIO_Stop();
 }
 //----------------------------------------------------------------------------
-// WASAPIÇÃäJén
+// WASAPI„ÅÆÈñãÂßã
 //----------------------------------------------------------------------------
 void CSound::StartWASAPI()
 {
@@ -1446,7 +1483,7 @@ void CSound::StartWASAPI()
 	}
 }
 //----------------------------------------------------------------------------
-// WASAPIÇÃí‚é~
+// WASAPI„ÅÆÂÅúÊ≠¢
 //----------------------------------------------------------------------------
 void CSound::StopWASAPI()
 {
@@ -1478,49 +1515,49 @@ void CSound::StopWASAPI()
 	}
 }
 //----------------------------------------------------------------------------
-// WASAPIÇÃàÍéûí‚é~
+// WASAPI„ÅÆ‰∏ÄÊôÇÂÅúÊ≠¢
 //----------------------------------------------------------------------------
 void CSound::PauseWASAPI()
 {
 	if(BASS_WASAPI_IsStarted()) BASS_WASAPI_Stop(FALSE);
 }
 //----------------------------------------------------------------------------
-// WASAPIÇÃçƒäJ
+// WASAPI„ÅÆÂÜçÈñã
 //----------------------------------------------------------------------------
 void CSound::ResumeWASAPI()
 {
 	BASS_WASAPI_Start();
 }
 //----------------------------------------------------------------------------
-// ÉeÉìÉ|ÇìæÇÈ
+// „ÉÜ„É≥„Éù„ÇíÂæó„Çã
 //----------------------------------------------------------------------------
 float CSound::GetTempo()
 {
 	return CBassFx::GetTempo() + 100.0f;
 }
 //----------------------------------------------------------------------------
-// ÉeÉìÉ|ÇÃê›íË
+// „ÉÜ„É≥„Éù„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 BOOL CSound::SetTempo(float tempo)
 {
 	return CBassFx::SetTempo(tempo - 100.0f);
 }
 //----------------------------------------------------------------------------
-// ÉTÉìÉvÉãÉåÅ[ÉgÇìæÇÈ
+// „Çµ„É≥„Éó„É´„É¨„Éº„Éà„ÇíÂæó„Çã
 //----------------------------------------------------------------------------
 float CSound::GetSampleRate()
 {
 	return CBassFx::GetSampleRate() * 100.0f / ChannelGetFreq();
 }
 //----------------------------------------------------------------------------
-// ÉTÉìÉvÉãÉåÅ[ÉgÇÃê›íË
+// „Çµ„É≥„Éó„É´„É¨„Éº„Éà„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 BOOL CSound::SetSampleRate(float samplerate)
 {
 	return CBassFx::SetSampleRate(ChannelGetFreq() * samplerate / 100.0f);
 }
 //----------------------------------------------------------------------------
-// âπó ÇÃê›íË
+// Èü≥Èáè„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 BOOL CSound::ChannelSetVolume(float volume)
 {
@@ -1528,14 +1565,14 @@ BOOL CSound::ChannelSetVolume(float volume)
 	return BASS_FXSetParameters(m_hFxVolume, &p);
 }
 //----------------------------------------------------------------------------
-// ÉrÉfÉIÇÃê›íË
+// „Éì„Éá„Ç™„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetVideo(BOOL bVideo)
 {
 	m_bVideo = bVideo;
 }
 //----------------------------------------------------------------------------
-// ÉãÅ[Év
+// „É´„Éº„Éó
 //----------------------------------------------------------------------------
 UINT CSound::OnLoop()
 {
@@ -1547,7 +1584,7 @@ UINT CSound::OnLoop()
 	return 0;
 }
 //----------------------------------------------------------------------------
-// ï€ë∂
+// ‰øùÂ≠ò
 //----------------------------------------------------------------------------
 void CSound::SaveFile(LPCTSTR lpszFilePath, int nFormat)
 {
@@ -1558,9 +1595,9 @@ void CSound::SaveFile(LPCTSTR lpszFilePath, int nFormat)
 		tstring strLamePath = m_rApp.GetFilePath() + _T("lame.exe");
 		if(GetFileAttributes(strLamePath.c_str()) == 0xFFFFFFFF) {
 #if JP
-			MessageBox(m_rMainWnd, _T("MP3å`éÆÇ≈ÇÃï€ë∂Ç…ÇÕÅALAME.EXEÇ™ïKóv")
-				_T("Ç≈Ç∑ÅB\nHayaemon.exeÇ∆ìØÇ∂ÉfÉBÉåÉNÉgÉäÇ…LAME.EXEÇíuÇ¢Çƒ")
-				_T("â∫Ç≥Ç¢ÅB"), _T("ñºëOÇïtÇØÇƒï€ë∂"), MB_ICONINFORMATION);
+			MessageBox(m_rMainWnd, _T("MP3ÂΩ¢Âºè„Åß„ÅÆ‰øùÂ≠ò„Å´„ÅØ„ÄÅLAME.EXE„ÅåÂøÖË¶Å")
+				_T("„Åß„Åô„ÄÇ\nHayaemon.exe„Å®Âêå„Åò„Éá„Ç£„É¨„ÇØ„Éà„É™„Å´LAME.EXE„ÇíÁΩÆ„ÅÑ„Å¶")
+				_T("‰∏ã„Åï„ÅÑ„ÄÇ"), _T("ÂêçÂâç„Çí‰ªò„Åë„Å¶‰øùÂ≠ò"), MB_ICONINFORMATION);
 #else // JP
 			MessageBox(m_rMainWnd, _T("To save MP3 file, lame.exe is ")
 					   _T("required.\nPut lame.exe in the same directory ")
@@ -1574,9 +1611,9 @@ void CSound::SaveFile(LPCTSTR lpszFilePath, int nFormat)
 		tstring strLamePath = m_rApp.GetFilePath() + _T("oggenc.exe");
 		if(GetFileAttributes(strLamePath.c_str()) == 0xFFFFFFFF) {
 #if JP
-			MessageBox(m_rMainWnd, _T("Ogg Vorbiså`éÆÇ≈ÇÃï€ë∂Ç…ÇÕÅA")
-				_T("oggenc.exeÇ™ïKóvÇ≈Ç∑ÅB\nHayaemon.exeÇ∆ìØÇ∂ÉfÉBÉåÉNÉgÉä")
-				_T("Ç…oggenc.exeÇíuÇ¢Çƒâ∫Ç≥Ç¢ÅB"), _T("ñºëOÇïtÇØÇƒï€ë∂"),
+			MessageBox(m_rMainWnd, _T("Ogg VorbisÂΩ¢Âºè„Åß„ÅÆ‰øùÂ≠ò„Å´„ÅØ„ÄÅ")
+				_T("oggenc.exe„ÅåÂøÖË¶Å„Åß„Åô„ÄÇ\nHayaemon.exe„Å®Âêå„Åò„Éá„Ç£„É¨„ÇØ„Éà„É™")
+				_T("„Å´oggenc.exe„ÇíÁΩÆ„ÅÑ„Å¶‰∏ã„Åï„ÅÑ„ÄÇ"), _T("ÂêçÂâç„Çí‰ªò„Åë„Å¶‰øùÂ≠ò"),
 				MB_ICONINFORMATION);
 #else // JP
 			MessageBox(m_rMainWnd, _T("To save Ogg Vorbis file, oggenc.exe ")
@@ -1591,7 +1628,7 @@ void CSound::SaveFile(LPCTSTR lpszFilePath, int nFormat)
 	m_rMainWnd.KillTimer(m_rMainWnd.IDT_TIME);
 	QWORD curPos = ChannelGetPosition();
 
-	// ABÉãÅ[ÉvíÜÇÃèÍçáÇÕÅAAÇ©ÇÁBÇ‹Ç≈Çï€ë∂
+	// AB„É´„Éº„Éó‰∏≠„ÅÆÂ†¥Âêà„ÅØ„ÄÅA„Åã„ÇâB„Åæ„Åß„Çí‰øùÂ≠ò
 	BOOL bABLoopA = m_bABLoopA;
 	BOOL bABLoopB = m_bABLoopB;
 	QWORD nStartPosition = m_bABLoopA ? GetLoopPosA() : 0;
@@ -1651,7 +1688,7 @@ void CSound::SaveFile(LPCTSTR lpszFilePath, int nFormat)
 	CProgressWnd_MainWnd wnd(m_rApp, m_rMainWnd);
 	wnd.Create();
 #if JP
-	tstring title = _T("ï€ë∂íÜ - ");
+	tstring title = _T("‰øùÂ≠ò‰∏≠ - ");
 #else // JP
 	tstring title = _T("Saving - ");
 #endif // JP
@@ -1673,7 +1710,7 @@ void CSound::SaveFile(LPCTSTR lpszFilePath, int nFormat)
 				DispatchMessage(&msg);
 			}
 
-			// ÉEÉBÉìÉhÉEÇ™ï¬Ç∂ÇÁÇÍÇΩèÍçáÇÕÅAèIóπ
+			// „Ç¶„Ç£„É≥„Éâ„Ç¶„ÅåÈñâ„Åò„Çâ„Çå„ÅüÂ†¥Âêà„ÅØ„ÄÅÁµÇ‰∫Ü
 			if(!IsWindow(wnd)) {
 				BASS_Encode_Stop(m_hStream);
 				_tremove(lpszFilePath);
@@ -1704,7 +1741,7 @@ void CSound::SaveFile(LPCTSTR lpszFilePath, int nFormat)
 	if(bABLoopB) SetLoopPosB(nEndPosition);
 }
 //----------------------------------------------------------------------------
-// ÉtÉ@ÉCÉãÇÃì«Ç›çûÇ›
+// „Éï„Ç°„Ç§„É´„ÅÆË™≠„ÅøËæº„Åø
 //----------------------------------------------------------------------------
 BOOL CSound::StreamCreateURL(LPCTSTR lpFilePath, BOOL bDecode)
 {
@@ -1724,96 +1761,99 @@ BOOL CSound::StreamCreateURL(LPCTSTR lpFilePath, BOOL bDecode)
 	   _tcsicmp(ext, _T(".mp4")) == 0 || _tcsicmp(ext, _T(".mkv")) == 0 ||
 	   _tcsicmp(ext, _T(".flv")) == 0) {
 		StreamFree();
-		if(m_rMainWnd.IsFullScreen())
-			m_hVideoStream = xVideo_StreamCreateFile((PVOID)lpFilePath, 0,
-										(HWND)m_rMainWnd.GetVideoScreenWnd(),
-										BASS_STREAM_DECODE | xVideo_UNICODE);
-		else
-			m_hVideoStream = xVideo_StreamCreateFile((PVOID)lpFilePath, 0,
-										(HWND)m_rMainWnd.GetVideoScreen(),
-										BASS_STREAM_DECODE | xVideo_UNICODE);
+		if(!m_bInitBASS_DSHOWPlugin) m_bInitBASS_DSHOWPlugin = InitBASS_DSHOW();
+		if(m_bInitBASS_DSHOWPlugin) {
+			if (m_rMainWnd.IsFullScreen())
+				m_hVideoStream = m_lp_xVideo_StreamCreateFile((PVOID)lpFilePath, 0,
+				(HWND)m_rMainWnd.GetVideoScreenWnd(),
+					BASS_STREAM_DECODE | xVideo_UNICODE);
+			else
+				m_hVideoStream = m_lp_xVideo_StreamCreateFile((PVOID)lpFilePath, 0,
+				(HWND)m_rMainWnd.GetVideoScreen(),
+					BASS_STREAM_DECODE | xVideo_UNICODE);
 
-		xVideo_ChannelInfo xci;
-		xVideo_ChannelGetInfo(m_hVideoStream, &xci);
-		m_nWidth = xci.Width;
-		m_nHeight = xci.Height;
+			xVideo_ChannelInfo xci;
+			m_lp_xVideo_ChannelGetInfo(m_hVideoStream, &xci);
+			m_nWidth = xci.Width;
+			m_nHeight = xci.Height;
 
-		if(!m_rMainWnd.IsFullScreen())
-			ResetSize(0, 0, m_rMainWnd.GetVideoScreen().GetWidth(),
-						m_rMainWnd.GetVideoScreen().GetHeight());
+			if (!m_rMainWnd.IsFullScreen())
+				ResetSize(0, 0, m_rMainWnd.GetVideoScreen().GetWidth(),
+					m_rMainWnd.GetVideoScreen().GetHeight());
 
-		m_hStream = m_hVideoStream;
-		TempoCreate(bDecode);
-		m_strCurFile = lpFilePath;
-		m_nLoopPosA = 0;
-		m_nLoopPosB = ChannelGetLength();
-		m_hFx20Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx25Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx31_5Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx40Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx50Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx63Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx80Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx100Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx125Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx160Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx200Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx250Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx315Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx400Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx500Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx630Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx800Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx1KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx1_25KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx1_6KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx2KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx2_5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx3_15KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx4KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx6_3KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx8KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx10KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx12_5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx16KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx20KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx20Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx25Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx31_5Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx40Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx50Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx63Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx80Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx100Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx125Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx160Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx200Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx250Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx315Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx400Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx500Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx630Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx800Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx1KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx1_25KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx1_6KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx2KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx2_5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx3_15KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx4KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx6_3KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx8KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx10KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx12_5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx16KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx20KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFxVolume = ChannelSetFX(BASS_FX_BFX_VOLUME, 1);
+			m_hStream = m_hVideoStream;
+			TempoCreate(bDecode);
+			m_strCurFile = lpFilePath;
+			m_nLoopPosA = 0;
+			m_nLoopPosB = ChannelGetLength();
+			m_hFx20Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx25Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx31_5Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx40Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx50Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx63Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx80Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx100Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx125Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx160Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx200Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx250Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx315Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx400Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx500Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx630Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx800Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx1KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx1_25KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx1_6KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx2KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx2_5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx3_15KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx4KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx6_3KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx8KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx10KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx12_5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx16KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx20KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx20Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx25Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx31_5Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx40Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx50Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx63Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx80Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx100Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx125Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx160Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx200Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx250Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx315Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx400Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx500Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx630Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx800Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx1KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx1_25KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx1_6KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx2KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx2_5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx3_15KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx4KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx6_3KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx8KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx10KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx12_5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx16KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx20KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFxVolume = ChannelSetFX(BASS_FX_BFX_VOLUME, 1);
 
-		if(m_hStream) {
-			m_rMainWnd.SetVideo(TRUE);
-			bRet = TRUE;
+			if (m_hStream) {
+				m_rMainWnd.SetVideo(TRUE);
+				bRet = TRUE;
+			}
 		}
 	}
 
@@ -1895,7 +1935,7 @@ BOOL CSound::StreamCreateURL(LPCTSTR lpFilePath, BOOL bDecode)
 	return bRet;
 }
 //----------------------------------------------------------------------------
-// ÉtÉ@ÉCÉãÇÃì«Ç›çûÇ›
+// „Éï„Ç°„Ç§„É´„ÅÆË™≠„ÅøËæº„Åø
 //----------------------------------------------------------------------------
 BOOL CSound::StreamCreateFile(LPCTSTR lpFilePath, BOOL bDecode, int nCount)
 {
@@ -1920,96 +1960,100 @@ BOOL CSound::StreamCreateFile(LPCTSTR lpFilePath, BOOL bDecode, int nCount)
 	   _tcsicmp(ext, _T(".mp4")) == 0 || _tcsicmp(ext, _T(".mkv")) == 0 ||
 	   _tcsicmp(ext, _T(".flv")) == 0) {
 		StreamFree();
-		if(m_rMainWnd.IsFullScreen())
-			m_hVideoStream = xVideo_StreamCreateFile((PVOID)lpFilePath, 0,
-										(HWND)m_rMainWnd.GetVideoScreenWnd(),
-										BASS_STREAM_DECODE | xVideo_UNICODE);
-		else
-			m_hVideoStream = xVideo_StreamCreateFile((PVOID)lpFilePath, 0,
-										(HWND)m_rMainWnd.GetVideoScreen(),
-										BASS_STREAM_DECODE | xVideo_UNICODE);
+		if(!m_bInitBASS_DSHOWPlugin)
+		m_bInitBASS_DSHOWPlugin = InitBASS_DSHOW();
+		if(m_bInitBASS_DSHOWPlugin) {
+			if (m_rMainWnd.IsFullScreen())
+				m_hVideoStream = m_lp_xVideo_StreamCreateFile((PVOID)lpFilePath, 0,
+				(HWND)m_rMainWnd.GetVideoScreenWnd(),
+					BASS_STREAM_DECODE | xVideo_UNICODE);
+			else
+				m_hVideoStream = m_lp_xVideo_StreamCreateFile((PVOID)lpFilePath, 0,
+				(HWND)m_rMainWnd.GetVideoScreen(),
+					BASS_STREAM_DECODE | xVideo_UNICODE);
 
-		xVideo_ChannelInfo xci;
-		xVideo_ChannelGetInfo(m_hVideoStream, &xci);
-		m_nWidth = xci.Width;
-		m_nHeight = xci.Height;
+			xVideo_ChannelInfo xci;
+			m_lp_xVideo_ChannelGetInfo(m_hVideoStream, &xci);
+			m_nWidth = xci.Width;
+			m_nHeight = xci.Height;
 
-		if(!m_rMainWnd.IsFullScreen())
-			ResetSize(0, 0, m_rMainWnd.GetVideoScreen().GetWidth(),
-						m_rMainWnd.GetVideoScreen().GetHeight());
+			if (!m_rMainWnd.IsFullScreen())
+				ResetSize(0, 0, m_rMainWnd.GetVideoScreen().GetWidth(),
+					m_rMainWnd.GetVideoScreen().GetHeight());
 
-		m_hStream = m_hVideoStream;
-		TempoCreate(bDecode);
-		m_strCurFile = lpFilePath;
-		m_nLoopPosA = 0;
-		m_nLoopPosB = ChannelGetLength();
-		m_hFx20Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx25Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx31_5Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx40Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx50Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx63Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx80Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx100Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx125Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx160Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx200Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx250Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx315Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx400Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx500Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx630Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx800Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx1KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx1_25KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx1_6KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx2KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx2_5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx3_15KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx4KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx6_3KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx8KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx10KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx12_5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx16KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx20KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx20Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx25Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx31_5Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx40Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx50Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx63Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx80Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx100Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx125Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx160Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx200Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx250Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx315Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx400Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx500Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx630Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx800Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx1KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx1_25KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx1_6KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx2KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx2_5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx3_15KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx4KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx6_3KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx8KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx10KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx12_5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx16KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFx20KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
-		m_hFxVolume = ChannelSetFX(BASS_FX_BFX_VOLUME, 1);
+			m_hStream = m_hVideoStream;
+			TempoCreate(bDecode);
+			m_strCurFile = lpFilePath;
+			m_nLoopPosA = 0;
+			m_nLoopPosB = ChannelGetLength();
+			m_hFx20Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx25Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx31_5Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx40Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx50Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx63Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx80Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx100Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx125Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx160Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx200Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx250Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx315Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx400Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx500Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx630Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx800Hz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx1KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx1_25KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx1_6KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx2KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx2_5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx3_15KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx4KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx6_3KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx8KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx10KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx12_5KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx16KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx20KHz = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx20Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx25Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx31_5Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx40Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx50Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx63Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx80Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx100Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx125Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx160Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx200Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx250Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx315Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx400Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx500Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx630Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx800Hz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx1KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx1_25KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx1_6KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx2KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx2_5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx3_15KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx4KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx6_3KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx8KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx10KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx12_5KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx16KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFx20KHz_2 = ChannelSetFX(BASS_FX_BFX_PEAKEQ, 0);
+			m_hFxVolume = ChannelSetFX(BASS_FX_BFX_VOLUME, 1);
 
-		if(m_hStream) {
-			m_rMainWnd.SetVideo(TRUE);
-			bRet = TRUE;
+			if (m_hStream) {
+				m_rMainWnd.SetVideo(TRUE);
+				bRet = TRUE;
+			}
 		}
 	}
 
@@ -2091,7 +2135,7 @@ BOOL CSound::StreamCreateFile(LPCTSTR lpFilePath, BOOL bDecode, int nCount)
 	return bRet;
 }
 //----------------------------------------------------------------------------
-// NSFÉtÉ@ÉCÉãópÉXÉgÉäÅ[ÉÄÇÃçÏê¨
+// NSF„Éï„Ç°„Ç§„É´Áî®„Çπ„Éà„É™„Éº„É†„ÅÆ‰ΩúÊàê
 //----------------------------------------------------------------------------
 BOOL CSound::StreamCreateNSFFile(LPCTSTR lpFilePath, int nCount)
 {
@@ -2234,27 +2278,27 @@ BOOL CSound::StreamCreateNSFFile(LPCTSTR lpFilePath, int nCount)
 	return TRUE;
 }
 //----------------------------------------------------------------------------
-// ÉXÉgÉäÅ[ÉÄÇÃâï˙
+// „Çπ„Éà„É™„Éº„É†„ÅÆËß£Êîæ
 //----------------------------------------------------------------------------
 void CSound::StreamFree()
 {
-	if(m_hVideoStream) xVideo_StreamFree(m_hVideoStream), m_hVideoStream = 0;
+	if(m_hVideoStream) m_lp_xVideo_StreamFree(m_hVideoStream), m_hVideoStream = 0;
 	CBassFx::StreamFree();
 }
 //----------------------------------------------------------------------------
-// ÉEÉBÉìÉhÉEÇÃê›íË
+// „Ç¶„Ç£„É≥„Éâ„Ç¶„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::ChannelSetWindow()
 {
 	if(m_rMainWnd.IsFullScreen())
-		xVideo_ChannelSetWindow(m_hVideoStream, 0,
+		m_lp_xVideo_ChannelSetWindow(m_hVideoStream, 0,
 								(HWND)m_rMainWnd.GetVideoScreenWnd());
 	else
-		xVideo_ChannelSetWindow(m_hVideoStream, 0,
+		m_lp_xVideo_ChannelSetWindow(m_hVideoStream, 0,
 								(HWND)m_rMainWnd.GetVideoScreen());
 }
 //----------------------------------------------------------------------------
-// ÉÇÉmÉâÉãâªÇÃê›íË
+// „É¢„Éé„É©„É´Âåñ„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetMonoral(BOOL bMonoral)
 {
@@ -2263,7 +2307,7 @@ void CSound::SetMonoral(BOOL bMonoral)
 	else BASS_ChannelRemoveDSP(m_hStream, m_hMonoralDsp);
 }
 //----------------------------------------------------------------------------
-// ÉÇÉmÉâÉãâªópÉRÅ[ÉãÉoÉbÉNä÷êî
+// „É¢„Éé„É©„É´ÂåñÁî®„Ç≥„Éº„É´„Éê„ÉÉ„ÇØÈñ¢Êï∞
 //----------------------------------------------------------------------------
 void CALLBACK CSound::Monoral(HDSP handle, DWORD channel,
 	void *buffer, DWORD length, void *user)
@@ -2274,7 +2318,7 @@ void CALLBACK CSound::Monoral(HDSP handle, DWORD channel,
 		data[a] = data[a + 1] = ((data[a]) + data[a + 1]) * 0.5f;
 }
 //----------------------------------------------------------------------------
-// É{Å[ÉJÉãÉLÉÉÉìÉZÉãÇÃê›íË
+// „Éú„Éº„Ç´„É´„Ç≠„É£„É≥„Çª„É´„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetVocalCancel(BOOL bVocalCancel)
 {
@@ -2283,7 +2327,7 @@ void CSound::SetVocalCancel(BOOL bVocalCancel)
 	else BASS_ChannelRemoveDSP(m_hStream, m_hVocalCancelDsp);
 }
 //----------------------------------------------------------------------------
-// É{Å[ÉJÉãÉLÉÉÉìÉZÉãópÉRÅ[ÉãÉoÉbÉNä÷êî
+// „Éú„Éº„Ç´„É´„Ç≠„É£„É≥„Çª„É´Áî®„Ç≥„Éº„É´„Éê„ÉÉ„ÇØÈñ¢Êï∞
 //----------------------------------------------------------------------------
 void CALLBACK CSound::VocalCancel(HDSP handle, DWORD channel,
 	void *buffer, DWORD length, void *user)
@@ -2294,7 +2338,7 @@ void CALLBACK CSound::VocalCancel(HDSP handle, DWORD channel,
 		data[a] = data[a + 1] = ((-data[a]) + data[a + 1]) * 0.5f;
 }
 //----------------------------------------------------------------------------
-// ç∂âEì¸ÇÍë÷Ç¶ÇÃê›íË
+// Â∑¶Âè≥ÂÖ•„ÇåÊõø„Åà„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetChangeLR(BOOL bChangeLR)
 {
@@ -2303,7 +2347,7 @@ void CSound::SetChangeLR(BOOL bChangeLR)
 	else BASS_ChannelRemoveDSP(m_hStream, m_hChangeLRDsp);
 }
 //----------------------------------------------------------------------------
-// ç∂âEì¸ÇÍë÷Ç¶ópÉRÅ[ÉãÉoÉbÉNä÷êî
+// Â∑¶Âè≥ÂÖ•„ÇåÊõø„ÅàÁî®„Ç≥„Éº„É´„Éê„ÉÉ„ÇØÈñ¢Êï∞
 //----------------------------------------------------------------------------
 void CALLBACK CSound::ChangeLR(HDSP handle, DWORD channel,
 	void *buffer, DWORD length, void *user)
@@ -2318,7 +2362,7 @@ void CALLBACK CSound::ChangeLR(HDSP handle, DWORD channel,
 	}
 }
 //----------------------------------------------------------------------------
-// ç∂ÇÃÇ›çƒê∂ÇÃê›íË
+// Â∑¶„ÅÆ„ÅøÂÜçÁîü„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetOnlyLeft(BOOL bOnlyLeft)
 {
@@ -2327,7 +2371,7 @@ void CSound::SetOnlyLeft(BOOL bOnlyLeft)
 	else BASS_ChannelRemoveDSP(m_hStream, m_hOnlyLeftDsp);
 }
 //----------------------------------------------------------------------------
-// ç∂ÇÃÇ›çƒê∂ópÉRÅ[ÉãÉoÉbÉNä÷êî
+// Â∑¶„ÅÆ„ÅøÂÜçÁîüÁî®„Ç≥„Éº„É´„Éê„ÉÉ„ÇØÈñ¢Êï∞
 //----------------------------------------------------------------------------
 void CALLBACK CSound::OnlyLeft(HDSP handle, DWORD channel,
 	void *buffer, DWORD length, void *user)
@@ -2337,7 +2381,7 @@ void CALLBACK CSound::OnlyLeft(HDSP handle, DWORD channel,
 	for(int a = 0; a < max; a += 2) data[a + 1] = data[a];
 }
 //----------------------------------------------------------------------------
-// âEÇÃÇ›çƒê∂ÇÃê›íË
+// Âè≥„ÅÆ„ÅøÂÜçÁîü„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetOnlyRight(BOOL bOnlyRight)
 {
@@ -2346,7 +2390,7 @@ void CSound::SetOnlyRight(BOOL bOnlyRight)
 	else BASS_ChannelRemoveDSP(m_hStream, m_hOnlyRightDsp);
 }
 //----------------------------------------------------------------------------
-// âEÇÃÇ›çƒê∂ópÉRÅ[ÉãÉoÉbÉNä÷êî
+// Âè≥„ÅÆ„ÅøÂÜçÁîüÁî®„Ç≥„Éº„É´„Éê„ÉÉ„ÇØÈñ¢Êï∞
 //----------------------------------------------------------------------------
 void CALLBACK CSound::OnlyRight(HDSP handle, DWORD channel,
 	void *buffer, DWORD length, void *user)
@@ -2356,7 +2400,7 @@ void CALLBACK CSound::OnlyRight(HDSP handle, DWORD channel,
 	for(int a = 0; a < max; a += 2) data[a] = data[a + 1];
 }
 //----------------------------------------------------------------------------
-// ÉmÅ[É}ÉâÉCÉYÇÃê›íË
+// „Éé„Éº„Éû„É©„Ç§„Ç∫„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetNormalize(BOOL bNormalize)
 {
@@ -2396,7 +2440,7 @@ void CSound::SetNormalize(BOOL bNormalize)
 	else BASS_ChannelRemoveDSP(m_hStream, m_hNormalizeDsp);
 }
 //----------------------------------------------------------------------------
-// ÉmÅ[É}ÉâÉCÉYópÉRÅ[ÉãÉoÉbÉNä÷êî
+// „Éé„Éº„Éû„É©„Ç§„Ç∫Áî®„Ç≥„Éº„É´„Éê„ÉÉ„ÇØÈñ¢Êï∞
 //----------------------------------------------------------------------------
 void CALLBACK CSound::Normalize(HDSP handle, DWORD channel,
 									   void *buffer, DWORD length, void *user)
@@ -2407,7 +2451,7 @@ void CALLBACK CSound::Normalize(HDSP handle, DWORD channel,
 	for(int a = 0; a < max; a++) data[a] = data[a] * 32767 / *peak;
 }
 //----------------------------------------------------------------------------
-// ÉpÉìÇÃê›íË
+// „Éë„É≥„ÅÆË®≠ÂÆö
 //----------------------------------------------------------------------------
 void CSound::SetPan(int nPan)
 {
@@ -2415,7 +2459,7 @@ void CSound::SetPan(int nPan)
 	m_hPanDsp = BASS_ChannelSetDSP(m_hStream, &Pan, &m_nPan, 4);
 }
 //----------------------------------------------------------------------------
-// ÉpÉìópÉRÅ[ÉãÉoÉbÉNä÷êî
+// „Éë„É≥Áî®„Ç≥„Éº„É´„Éê„ÉÉ„ÇØÈñ¢Êï∞
 //----------------------------------------------------------------------------
 void CALLBACK CSound::Pan(HDSP handle, DWORD channel,
 									   void *buffer, DWORD length, void *user)
@@ -2430,7 +2474,7 @@ void CALLBACK CSound::Pan(HDSP handle, DWORD channel,
 	}
 }
 //----------------------------------------------------------------------------
-// ÉãÅ[ÉvópÉRÅ[ÉãÉoÉbÉNä÷êî
+// „É´„Éº„ÉóÁî®„Ç≥„Éº„É´„Éê„ÉÉ„ÇØÈñ¢Êï∞
 //----------------------------------------------------------------------------
 void CALLBACK CSound::LoopSyncProc(HSYNC handle, DWORD channel,
 	DWORD data, void *user)
@@ -2440,7 +2484,7 @@ void CALLBACK CSound::LoopSyncProc(HSYNC handle, DWORD channel,
  	if(!pthis->OnLoop()) mainWnd->SetFinish(TRUE);
 }
 //----------------------------------------------------------------------------
-// ASIOópÉRÅ[ÉãÉoÉbÉNä÷êî
+// ASIOÁî®„Ç≥„Éº„É´„Éê„ÉÉ„ÇØÈñ¢Êï∞
 //----------------------------------------------------------------------------
 DWORD CALLBACK CSound::AsioProc(BOOL input, DWORD channel, void *buffer,
 								DWORD length, void *user)
@@ -2450,7 +2494,7 @@ DWORD CALLBACK CSound::AsioProc(BOOL input, DWORD channel, void *buffer,
 	return c;
 }
 //----------------------------------------------------------------------------
-// WASAPIópÉRÅ[ÉãÉoÉbÉNä÷êî
+// WASAPIÁî®„Ç≥„Éº„É´„Éê„ÉÉ„ÇØÈñ¢Êï∞
 //----------------------------------------------------------------------------
 DWORD CALLBACK CSound::WasapiProc(void *buffer, DWORD length, void *user)
 {
