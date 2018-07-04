@@ -183,6 +183,7 @@ private: // メンバ変数
 	BOOL m_bABLoopA; // AB ループ A がオンかどうか
 	BOOL m_bABLoopB; // AB ループ B がオンかどうか
 	BOOL m_bVideo; // ビデオかどうか
+	BOOL m_bInitASIO; // ASIOを初期化したかどうか
 	BOOL m_bInitBASS_DSHOWPlugin; // BASS_DSHOWプラグインを初期化したかどうか
 
 	tstring m_strCurFile;
@@ -242,6 +243,7 @@ public: // メンバ変数の取得・設定
 	virtual BOOL IsLoop() const { return m_bLoop; }
 	virtual BOOL IsABLoopA() const { return m_bABLoopA; }
 	virtual BOOL IsABLoopB() const { return m_bABLoopB; }
+	virtual BOOL IsInitASIO() const { return m_bInitASIO; }
 	virtual QWORD GetLoopPosA() const { return m_nLoopPosA; }
 	virtual QWORD GetLoopPosB() const { return m_nLoopPosB; }
 	virtual double GetLoopPosA_sec() const { return ChannelBytes2Seconds(m_nLoopPosA); }

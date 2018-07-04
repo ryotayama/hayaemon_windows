@@ -33,7 +33,7 @@ CSound::CSound(CApp & app, CMainWnd & mainWnd, BOOL bMainStream)
 	  m_hVocalCancelDsp(0), m_hOnlyLeftDsp(0), m_hOnlyRightDsp(0),
 	  m_hChangeLRDsp(0), m_hNormalizeDsp(0), m_hPanDsp(0),
 	  m_bMainStream(bMainStream), m_hMixer(0), m_hNSF(0), m_nNSFCount(0),
-	  m_nNSFCurrent(0), m_bInitBASS_DSHOWPlugin(FALSE)
+	  m_nNSFCurrent(0), m_bInitBASS_DSHOWPlugin(FALSE), m_bInitASIO(FALSE)
 {
 	if (bMainStream) {
 		LoadWmaPlugin();
@@ -85,6 +85,7 @@ BOOL CSound::InitASIO()
 	BASS_ASIO_ChannelEnable(0, 0, &AsioProc, NULL);
 	BASS_ASIO_ChannelJoin(0, 1, 0);
 	BASS_ASIO_ChannelSetFormat(0, 0, BASS_ASIO_FORMAT_FLOAT);
+	m_bInitASIO = TRUE;
 	return TRUE;
 }
 //----------------------------------------------------------------------------

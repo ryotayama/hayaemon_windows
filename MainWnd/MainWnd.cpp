@@ -10655,8 +10655,6 @@ LRESULT CMainWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return FALSE;
 	}
 
-	m_sound->InitASIO();
-
 	OpenInitFileAfterShow();
 
 	// アイコンにドロップされたファイルを読み込む

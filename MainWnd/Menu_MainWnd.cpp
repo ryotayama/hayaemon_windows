@@ -5237,6 +5237,16 @@ void CMenu_MainWnd::OnQualityNormalMenuSelected()
 //----------------------------------------------------------------------------
 void CMenu_MainWnd::OnQualityASIOMenuSelected()
 {
+	if (!m_rMainWnd.GetSound().IsInitASIO()) {
+		if (!m_rMainWnd.GetSound().InitASIO()) {
+#if JP
+			MessageBox(m_rMainWnd, _T("bassasio.dll ÇÃèâä˙âªÇ…é∏îsÇµÇ‹ÇµÇΩÅB"), _T("ÉGÉâÅ["), MB_ICONERROR);
+#else // JP
+			MessageBox(m_rMainWnd, _T("failed to init bassasio.dll."), _T("Error"), MB_ICONERROR);
+#endif // JP
+			return;
+		}
+	}
 	CheckItem(ID_QUALITY_NORMAL, MFS_UNCHECKED);
 	CheckItem(ID_QUALITY_ASIO, MFS_CHECKED);
 	CheckItem(ID_QUALITY_WASAPI, MFS_UNCHECKED);
