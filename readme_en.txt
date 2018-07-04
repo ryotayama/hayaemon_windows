@@ -1,7 +1,7 @@
 ﻿------------------------------------------------------------------------------
- Hayaemon Version 2.77 beta 2
+ Hayaemon Version 2.77 beta 3
 ------------------------------------------------------------------------------
-                                                         Last update: 2018/7/3
+                                                         Last update: 2018/7/4
                                       Ryota Yamauchi <ryota.yamauch@gmail.com>
                                             Free Software Development Station:
                                                     http://soft.edolfzoku.com/
@@ -68,6 +68,10 @@
 ------------------------------------------------------------------------------
  History
 ------------------------------------------------------------------------------
+
+2018/7/4 Version 2.77 beta 3
+ Fixed that there was a case that the sound did not come out competing with
+ ASIO even when ASIO was not selected.
 
 2018/7/3 Version 2.77 beta 2
  Fixed an error message has been shown "d3dx9_43.dll is not found" when booting.
