@@ -7,21 +7,17 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
-// #include "afxres.h"
-#include <windows.h>
-#define IDC_STATIC -1
+#include "afxres.h"
 
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// 日本語 resources
+// 日本語 (日本) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
-#ifdef _WIN32
 LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
 #pragma code_page(932)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -54,7 +50,7 @@ END
 // Toolbar
 //
 
-IDR_TOOLBARS TOOLBAR  16, 15
+IDR_TOOLBARS TOOLBAR 16, 15
 BEGIN
     BUTTON      ID_BUTTON40004
     BUTTON      ID_BUTTON40005
@@ -75,7 +71,8 @@ BEGIN
     BUTTON      ID_BUTTON40020
     BUTTON      ID_BUTTON40021
 END
-IDR_TOOLBARM TOOLBAR  20, 20
+
+IDR_TOOLBARM TOOLBAR 20, 20
 BEGIN
     BUTTON      ID_BUTTON40004
     BUTTON      ID_BUTTON40005
@@ -96,7 +93,8 @@ BEGIN
     BUTTON      ID_BUTTON40020
     BUTTON      ID_BUTTON40021
 END
-IDR_TOOLBARL TOOLBAR  24, 24
+
+IDR_TOOLBARL TOOLBAR 24, 24
 BEGIN
     BUTTON      ID_BUTTON40004
     BUTTON      ID_BUTTON40005
@@ -124,9 +122,12 @@ END
 // Bitmap
 //
 
-IDR_TOOLBARS            BITMAP                  "toolbarS.bmp"
-IDR_TOOLBARM            BITMAP                  "toolbarM.bmp"
-IDR_TOOLBARL            BITMAP                  "toolbarL.bmp"
+IDR_TOOLBARS            BITMAP                  "img\\toolbarS.bmp"
+
+IDR_TOOLBARM            BITMAP                  "img\\toolbarM.bmp"
+
+IDR_TOOLBARL            BITMAP                  "img\\toolbarL.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -135,19 +136,23 @@ IDR_TOOLBARL            BITMAP                  "toolbarL.bmp"
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_ICON1               ICON                    "icon1.ico"
-IDI_PLAY                ICON                    "play.ico"
-IDI_PAUSE               ICON                    "pause.ico"
+IDI_ICON1               ICON                    "img\\icon1.ico"
+
+IDI_PLAY                ICON                    "img\\play.ico"
+
+IDI_PAUSE               ICON                    "img\\pause.ico"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Cursor
 //
 
-IDC_DRAG_MOVE           CURSOR  DISCARDABLE     "drag_move.cur"
-IDC_DRAG_COPY           CURSOR  DISCARDABLE     "drag_copy.cur"
+IDC_DRAG_MOVE           CURSOR                  "img\\drag_move.cur"
 
-#endif    // 日本語 resources
+IDC_DRAG_COPY           CURSOR                  "img\\drag_copy.cur"
+
+#endif    // 日本語 (日本) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
