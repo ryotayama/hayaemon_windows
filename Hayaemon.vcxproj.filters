@@ -1060,10 +1060,16 @@
     <ResourceCompile Include="Hayaemon.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="icon1.ico" />
     <None Include="readme.txt" />
-    <None Include="toolbar1.bmp" />
-    <None Include="pause.ico" />
-    <None Include="play.ico" />
+    <None Include="img\drag_move.cur" />
+    <None Include="img\drag_copy.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="img\toolbarS.bmp" />
+    <Image Include="img\toolbarM.bmp" />
+    <Image Include="img\toolbarL.bmp" />
+    <Image Include="img\icon1.ico" />
+    <Image Include="img\play.ico" />
+    <Image Include="img\pause.ico" />
   </ItemGroup>
 </Project>

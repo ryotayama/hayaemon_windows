@@ -447,11 +447,17 @@
     <ResourceCompile Include="Hayaemon.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="icon1.ico" />
-    <None Include="pause.ico" />
-    <None Include="play.ico" />
+    <None Include="img\drag_copy.cur" />
+    <None Include="img\drag_move.cur" />
     <None Include="readme.txt" />
-    <None Include="toolbar1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="img\icon1.ico" />
+    <Image Include="img\pause.ico" />
+    <Image Include="img\play.ico" />
+    <Image Include="img\toolbarL.bmp" />
+    <Image Include="img\toolbarM.bmp" />
+    <Image Include="img\toolbarS.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
