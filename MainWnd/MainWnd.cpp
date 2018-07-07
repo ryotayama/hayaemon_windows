@@ -10669,7 +10669,7 @@ LRESULT CMainWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	SetPreviousNextMenuState();
 
-	tstring strClick = m_rApp.GetFilePath() + _T("click.wav");
+	tstring strClick = m_rApp.GetFilePath() + _T("sound\\click.wav");
 	HANDLE fh = CreateFile(strClick.c_str(), GENERIC_READ, 0, NULL,
 		OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 	DWORD dwFileSize = GetFileSize(fh,NULL);
