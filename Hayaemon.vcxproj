@@ -74,6 +74,9 @@
       <OptimizeReferences>
       </OptimizeReferences>
     </Link>
+    <PostBuildEvent>
+      <Command>if exist "$(ProjectDir)dll" copy /y "$(ProjectDir)dll\*.dll" $(OutDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -99,6 +102,9 @@
       </ModuleDefinitionFile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
+    <PostBuildEvent>
+      <Command>if exist "$(ProjectDir)dll" copy /y "$(ProjectDir)dll\*.dll" $(OutDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Common\AcceleratorTable.h" />
