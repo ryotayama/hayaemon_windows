@@ -17,12 +17,28 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int nCmdShow)
 //----------------------------------------------------------------------------
 CApp::CApp(const int & nCmdShow)
 #if JP
-	: m_nCmdShow(nCmdShow), m_cstrName(_T("聞々ハヤえもん")),
+	: m_nCmdShow(nCmdShow), 
+#ifdef NDEBUG
+	  m_cstrName(_T("聞々ハヤえもん")),
+#endif // NDEBUG
+
+#ifdef _DEBUG
+	  m_cstrName(_T("聞々ハヤえもん Debug")),
+#endif
+
 	  m_cstrAuthorName(_T("りょーた")),
 	  m_cstrAuthorEMail(_T("ryota.yamauch@gmail.com")),
 	  m_cstrAuthorWebSiteName(_T("フリーソフト開発所")),
 #else // JP
-	: m_nCmdShow(nCmdShow), m_cstrName(_T("Hayaemon")),
+	: m_nCmdShow(nCmdShow),
+#ifdef NDEBUG
+	  m_cstrName(_T("Hayaemon")),
+#endif // NDEBUG
+
+#ifdef _DEBUG
+	  m_cstrName(_T("Hayaemon Debug")),
+#endif // DEBUG
+
 	  m_cstrAuthorName(_T("Ryota")),
 	  m_cstrAuthorEMail(_T("ryota.yamauch@gmail.com")),
 	  m_cstrAuthorWebSiteName(_T("Free Software Development Station")),
