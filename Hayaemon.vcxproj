@@ -132,7 +132,8 @@
       </OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>if exist "$(ProjectDir)dll" copy /y "$(ProjectDir)dll\*.dll" $(OutDir)</Command>
+      <Command>if exist "$(ProjectDir)dll" copy /y "$(ProjectDir)dll\*.dll" $(OutDir)
+if exist "$(ProjectDir)sound" xcopy "$(ProjectDir)sound" $(OutDir)sound /i /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release（日本語、通常版）|Win32'">
@@ -160,7 +161,8 @@
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <PostBuildEvent>
-      <Command>if exist "$(ProjectDir)dll" copy /y "$(ProjectDir)dll\*.dll" $(OutDir)</Command>
+      <Command>if exist "$(ProjectDir)dll" copy /y "$(ProjectDir)dll\*.dll" $(OutDir)
+if exist "$(ProjectDir)sound" xcopy "$(ProjectDir)sound" $(OutDir)sound /i /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release（英語、XP版）|Win32'">
@@ -188,7 +190,8 @@
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <PostBuildEvent>
-      <Command>if exist "$(ProjectDir)dll" copy /y "$(ProjectDir)dll\*.dll" $(OutDir)</Command>
+      <Command>if exist "$(ProjectDir)dll" copy /y "$(ProjectDir)dll\*.dll" $(OutDir)
+if exist "$(ProjectDir)sound" xcopy "$(ProjectDir)sound" $(OutDir)sound /i /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release（英語、通常版）|Win32'">
@@ -216,7 +219,8 @@
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <PostBuildEvent>
-      <Command>if exist "$(ProjectDir)dll" copy /y "$(ProjectDir)dll\*.dll" $(OutDir)</Command>
+      <Command>if exist "$(ProjectDir)dll" copy /y "$(ProjectDir)dll\*.dll" $(OutDir)
+if exist "$(ProjectDir)sound" xcopy "$(ProjectDir)sound" $(OutDir)sound /i /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release（日本語、XP版）|Win32'">
@@ -244,7 +248,8 @@
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <PostBuildEvent>
-      <Command>if exist "$(ProjectDir)dll" copy /y "$(ProjectDir)dll\*.dll" $(OutDir)</Command>
+      <Command>if exist "$(ProjectDir)dll" copy /y "$(ProjectDir)dll\*.dll" $(OutDir)
+if exist "$(ProjectDir)sound" xcopy "$(ProjectDir)sound" $(OutDir)sound /i /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
