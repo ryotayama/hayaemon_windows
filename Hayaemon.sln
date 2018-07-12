@@ -7,23 +7,23 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hayaemon", "Hayaemon.vcxpro
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug（日本語、通常版）|Win32 = Debug（日本語、通常版）|Win32
-		Release（英語、XP版）|Win32 = Release（英語、XP版）|Win32
-		Release（英語、通常版）|Win32 = Release（英語、通常版）|Win32
-		Release（日本語、XP版）|Win32 = Release（日本語、XP版）|Win32
-		Release（日本語、通常版）|Win32 = Release（日本語、通常版）|Win32
+		Debug_jp|Win32 = Debug_jp|Win32
+		Release_en|Win32 = Release_en|Win32
+		Release_jp|Win32 = Release_jp|Win32
+		Release_XP_en|Win32 = Release_XP_en|Win32
+		Release_XP_jp|Win32 = Release_XP_jp|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Debug（日本語、通常版）|Win32.ActiveCfg = Debug（日本語、通常版）|Win32
-		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Debug（日本語、通常版）|Win32.Build.0 = Debug（日本語、通常版）|Win32
-		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Release（英語、XP版）|Win32.ActiveCfg = Release（英語、XP版）|Win32
-		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Release（英語、XP版）|Win32.Build.0 = Release（英語、XP版）|Win32
-		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Release（英語、通常版）|Win32.ActiveCfg = Release（英語、通常版）|Win32
-		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Release（英語、通常版）|Win32.Build.0 = Release（英語、通常版）|Win32
-		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Release（日本語、XP版）|Win32.ActiveCfg = Release（日本語、XP版）|Win32
-		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Release（日本語、XP版）|Win32.Build.0 = Release（日本語、XP版）|Win32
-		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Release（日本語、通常版）|Win32.ActiveCfg = Release（日本語、通常版）|Win32
-		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Release（日本語、通常版）|Win32.Build.0 = Release（日本語、通常版）|Win32
+		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Debug_jp|Win32.ActiveCfg = Debug_jp|Win32
+		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Debug_jp|Win32.Build.0 = Debug_jp|Win32
+		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Release_en|Win32.ActiveCfg = Release_en|Win32
+		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Release_en|Win32.Build.0 = Release_en|Win32
+		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Release_jp|Win32.ActiveCfg = Release_jp|Win32
+		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Release_jp|Win32.Build.0 = Release_jp|Win32
+		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Release_XP_en|Win32.ActiveCfg = Release_XP_en|Win32
+		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Release_XP_en|Win32.Build.0 = Release_XP_en|Win32
+		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Release_XP_jp|Win32.ActiveCfg = Release_XP_jp|Win32
+		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Release_XP_jp|Win32.Build.0 = Release_XP_jp|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
