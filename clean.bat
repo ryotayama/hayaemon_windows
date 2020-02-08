@@ -9,20 +9,62 @@ del *.bak
 del TMP*.$$$
 del *.exe
 del /a:a *.suo
-del Release\*.obj
-del Release\*.htm
-del Release\*.pdb
-del Release\*.idb
-del Release\*.res
-del Release\*.manifest
-del Release\*.dep
-del Release\*.lastbuildstate
-del Release\*.log
-del Release\*.tlog
-del Release\*.m3u8
-del Release\*.ini
-del Release\*.iobj
-del Release\*.ipdb
+del Release_en\*.obj
+del Release_en\*.htm
+del Release_en\*.pdb
+del Release_en\*.idb
+del Release_en\*.res
+del Release_en\*.manifest
+del Release_en\*.dep
+del Release_en\*.lastbuildstate
+del Release_en\*.log
+del Release_en\*.tlog
+del Release_en\*.m3u8
+del Release_en\*.ini
+del Release_en\*.iobj
+del Release_en\*.ipdb
+del Release_jp\*.obj
+del Release_jp\*.htm
+del Release_jp\*.pdb
+del Release_jp\*.idb
+del Release_jp\*.res
+del Release_jp\*.manifest
+del Release_jp\*.dep
+del Release_jp\*.lastbuildstate
+del Release_jp\*.log
+del Release_jp\*.tlog
+del Release_jp\*.m3u8
+del Release_jp\*.ini
+del Release_jp\*.iobj
+del Release_jp\*.ipdb
+del Release_XP_en\*.obj
+del Release_XP_en\*.htm
+del Release_XP_en\*.pdb
+del Release_XP_en\*.idb
+del Release_XP_en\*.res
+del Release_XP_en\*.manifest
+del Release_XP_en\*.dep
+del Release_XP_en\*.lastbuildstate
+del Release_XP_en\*.log
+del Release_XP_en\*.tlog
+del Release_XP_en\*.m3u8
+del Release_XP_en\*.ini
+del Release_XP_en\*.iobj
+del Release_XP_en\*.ipdb
+del Release_XP_jp\*.obj
+del Release_XP_jp\*.htm
+del Release_XP_jp\*.pdb
+del Release_XP_jp\*.idb
+del Release_XP_jp\*.res
+del Release_XP_jp\*.manifest
+del Release_XP_jp\*.dep
+del Release_XP_jp\*.lastbuildstate
+del Release_XP_jp\*.log
+del Release_XP_jp\*.tlog
+del Release_XP_jp\*.m3u8
+del Release_XP_jp\*.ini
+del Release_XP_jp\*.iobj
+del Release_XP_jp\*.ipdb
 del Debug\*.obj
 del Debug\*.htm
 del Debug\*.pdb
@@ -41,4 +83,7 @@ del Debug\*.ini
 del Debug\*.csv
 del Debug\*.vsp
 rmdir /q /s ipch
-rmdir /q /s Release\Hayaemon.tlog
+rmdir /q /s Release_en\Hayaemon.tlog
+rmdir /q /s Release_jp\Hayaemon.tlog
+rmdir /q /s Release_XP_en\Hayaemon.tlog
+rmdir /q /s Release_XP_jp\Hayaemon.tlog

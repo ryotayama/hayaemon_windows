@@ -28,7 +28,7 @@ CApp::CApp(const int & nCmdShow)
 
 	  m_cstrAuthorName(_T("りょーた")),
 	  m_cstrAuthorEMail(_T("ryota.yamauch@gmail.com")),
-	  m_cstrAuthorWebSiteName(_T("フリーソフト開発所")),
+	  m_cstrAuthorWebSiteName(_T("聞々ハヤえもん公式サイト")),
 #else // JP
 	: m_nCmdShow(nCmdShow),
 #ifdef NDEBUG
@@ -41,10 +41,10 @@ CApp::CApp(const int & nCmdShow)
 
 	  m_cstrAuthorName(_T("Ryota")),
 	  m_cstrAuthorEMail(_T("ryota.yamauch@gmail.com")),
-	  m_cstrAuthorWebSiteName(_T("Free Software Development Station")),
+	  m_cstrAuthorWebSiteName(_T("Hayaemon Official Website")),
 #endif // JP
-	  m_cstrVersionInfo(_T("2.77β3")),
-	  m_cstrAuthorURL(_T("http://soft.edolfzoku.com/")),
+	  m_cstrVersionInfo(_T("2.77β4")),
+	  m_cstrAuthorURL(_T("http://hayaemon.jp/")),
 	  m_wnd(*this)
 {
 	TCHAR pathName[MAX_PATH] = _T("");
