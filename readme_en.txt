@@ -1,10 +1,9 @@
 ﻿------------------------------------------------------------------------------
- Hayaemon Version 2.77 beta 3
+ Hayaemon Version 2.77 beta 4
 ------------------------------------------------------------------------------
-                                                         Last update: 2018/7/4
+                                                         Last update: 2020/2/8
                                       Ryota Yamauchi <ryota.yamauch@gmail.com>
-                                            Free Software Development Station:
-                                                    http://soft.edolfzoku.com/
+                                 Hayaemon Official Website:http://hayaemon.jp/
 ------------------------------------------------------------------------------
  After reading all of the following, please use this software.
 ------------------------------------------------------------------------------
@@ -68,6 +67,9 @@
 ------------------------------------------------------------------------------
  History
 ------------------------------------------------------------------------------
+
+2020/2/8
+ Fixed that one song loop was not working.
 
 2018/7/4 Version 2.77 beta 3
  Fixed that there was a case that the sound did not come out competing with
