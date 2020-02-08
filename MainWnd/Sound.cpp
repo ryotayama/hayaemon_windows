@@ -1580,6 +1580,7 @@ UINT CSound::OnLoop()
 	if(m_bABLoopA || m_bABLoopB || m_bLoop) {
 		if(!m_rMainWnd.CheckLoop()) return 1;
 		if(!ChannelSetPosition(m_nLoopPosA)) return 0;
+		if(ChannelIsActive() != BASS_ACTIVE_PLAYING) m_rMainWnd.Play();
 		return 1;
 	}
 	return 0;
