@@ -1958,6 +1958,21 @@ void CMenu_MainWnd::OnCommand(int id, HWND/* hwndCtl*/, UINT/* codeNotify*/)
 	case ID_PAUSE_RETURN10SEC:
 		OnPauseAndReturn10SecMenuSelected();
 		break;
+	case ID_RETURN1SEC_PAUSE:
+		OnReturn1SecAndPauseMenuSelected();
+		break;
+	case ID_RETURN2SEC_PAUSE:
+		OnReturn2SecAndPauseMenuSelected();
+		break;
+	case ID_RETURN3SEC_PAUSE:
+		OnReturn3SecAndPauseMenuSelected();
+		break;
+	case ID_RETURN5SEC_PAUSE:
+		OnReturn5SecAndPauseMenuSelected();
+		break;
+	case ID_RETURN10SEC_PAUSE:
+		OnReturn10SecAndPauseMenuSelected();
+		break;
 	case ID_RETURN1SEC:
 		OnReturn1SecMenuSelected();
 		break;
@@ -3454,6 +3469,46 @@ void CMenu_MainWnd::OnPauseAndReturn10SecMenuSelected()
 {
 	if(!m_rMainWnd.GetSound().ChannelIsStopped() && !m_rMainWnd.GetSound().ChannelIsPausing())
 		m_rMainWnd.ReturnSeconds(10);
+	m_rMainWnd.Pause();
+}
+//----------------------------------------------------------------------------
+// 1秒戻ってから再生/一時停止メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnReturn1SecAndPauseMenuSelected()
+{
+	if (m_rMainWnd.GetSound().ChannelIsPausing()) m_rMainWnd.ReturnSeconds(1);
+	m_rMainWnd.Pause();
+}
+//----------------------------------------------------------------------------
+// 2秒戻ってから再生/一時停止メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnReturn2SecAndPauseMenuSelected()
+{
+	if (m_rMainWnd.GetSound().ChannelIsPausing()) m_rMainWnd.ReturnSeconds(2);
+	m_rMainWnd.Pause();
+}
+//----------------------------------------------------------------------------
+// 3秒戻ってから再生/一時停止メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnReturn3SecAndPauseMenuSelected()
+{
+	if (m_rMainWnd.GetSound().ChannelIsPausing()) m_rMainWnd.ReturnSeconds(3);
+	m_rMainWnd.Pause();
+}
+//----------------------------------------------------------------------------
+// 5秒戻ってから再生/一時停止メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnReturn5SecAndPauseMenuSelected()
+{
+	if (m_rMainWnd.GetSound().ChannelIsPausing()) m_rMainWnd.ReturnSeconds(5);
+	m_rMainWnd.Pause();
+}
+//----------------------------------------------------------------------------
+// 10秒戻ってから再生/一時停止メニューが選択された
+//----------------------------------------------------------------------------
+void CMenu_MainWnd::OnReturn10SecAndPauseMenuSelected()
+{
+	if (m_rMainWnd.GetSound().ChannelIsPausing()) m_rMainWnd.ReturnSeconds(10);
 	m_rMainWnd.Pause();
 }
 //----------------------------------------------------------------------------

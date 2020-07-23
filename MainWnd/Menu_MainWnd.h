@@ -138,6 +138,11 @@ public: // ä÷êî
 	void OnPauseAndReturn3SecMenuSelected();
 	void OnPauseAndReturn5SecMenuSelected();
 	void OnPauseAndReturn10SecMenuSelected();
+	void OnReturn1SecAndPauseMenuSelected();
+	void OnReturn2SecAndPauseMenuSelected();
+	void OnReturn3SecAndPauseMenuSelected();
+	void OnReturn5SecAndPauseMenuSelected();
+	void OnReturn10SecAndPauseMenuSelected();
 	void OnReturn1SecMenuSelected();
 	void OnReturn2SecMenuSelected();
 	void OnReturn3SecMenuSelected();
