@@ -479,14 +479,8 @@ void CMainWnd::CopyTime()
 
 	TCHAR text[20];
 	int nLength = 0;
-	if(maxHour > 0) {
-		_stprintf_s(text, _T("%02d:%02d:%02d"), hour, second, minute);
-		nLength = 8;
-	}
-	else {
-		_stprintf_s(text, _T("%02d:%02d"), second, minute);
-		nLength = 5;
-	}
+	_stprintf_s(text, _T("%02d:%02d:%02d"), hour, second, minute);
+	nLength = 8;
 
 	HGLOBAL hGlobal = 0;
 	if(!(hGlobal = GlobalAlloc(GHND, (nLength+1) * sizeof(TCHAR)))) return;
