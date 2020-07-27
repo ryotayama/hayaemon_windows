@@ -1072,4 +1072,7 @@
     <Image Include="img\play.ico" />
     <Image Include="img\pause.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="readme_en.txt" />
+  </ItemGroup>
 </Project>

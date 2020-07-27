@@ -611,6 +611,9 @@ if exist "$(ProjectDir)sound" xcopy "$(ProjectDir)sound" $(OutDir)sound /i /y</C
     <Image Include="img\toolbarM.bmp" />
     <Image Include="img\toolbarS.bmp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="readme_en.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

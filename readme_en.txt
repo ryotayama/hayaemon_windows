@@ -1,7 +1,7 @@
 ﻿------------------------------------------------------------------------------
- Hayaemon Version 2.77 beta 5
+ Hayaemon Version 2.77 beta 6
 ------------------------------------------------------------------------------
-                                                        Last update: 2020/7/23
+                                                        Last update: 2020/7/25
                                       Ryota Yamauchi <ryota.yamauch@gmail.com>
                                  Hayaemon Official Website:http://hayaemon.jp/
 ------------------------------------------------------------------------------
@@ -67,6 +67,10 @@
 ------------------------------------------------------------------------------
  History
 ------------------------------------------------------------------------------
+
+2020/7/25
+ Unified the format of the function to copy current position to clipboard to
+ the "hh:mm:ss" format.
 
 2020/7/23
  Added "Rewind n sec. and play/pause" short cut menu.
