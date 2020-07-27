@@ -4625,6 +4625,7 @@ void CMainWnd::ReturnSeconds(int seconds)
 {
 	double pos = m_sound->ChannelGetSecondsPosition();
 	pos -= seconds;
+	if (pos < 0.0) pos = 0.0;
 	SetSeconds(pos);
 }
 //----------------------------------------------------------------------------
