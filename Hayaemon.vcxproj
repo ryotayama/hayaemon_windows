@@ -425,8 +425,6 @@ if exist "$(ProjectDir)sound" xcopy "$(ProjectDir)sound" $(OutDir)sound /i /y</C
     <ClInclude Include="MainWnd\TimeLabel_MainWnd.h" />
     <ClInclude Include="MainWnd\TimeSlider_MainWnd.h" />
     <ClInclude Include="MainWnd\ToolBar_MainWnd.h" />
-    <ClInclude Include="MainWnd\TweetWnd.h" />
-    <ClInclude Include="MainWnd\TwitterAuthorizeWnd.h" />
     <ClInclude Include="MainWnd\VideoScreen_MainWnd.h" />
     <ClInclude Include="MainWnd\VolumeLabel_MainWnd.h" />
     <ClInclude Include="MainWnd\VolumeSlider_MainWnd.h" />
@@ -582,8 +580,6 @@ if exist "$(ProjectDir)sound" xcopy "$(ProjectDir)sound" $(OutDir)sound /i /y</C
     <ClCompile Include="MainWnd\TimeLabel_MainWnd.cpp" />
     <ClCompile Include="MainWnd\TimeSlider_MainWnd.cpp" />
     <ClCompile Include="MainWnd\ToolBar_MainWnd.cpp" />
-    <ClCompile Include="MainWnd\TweetWnd.cpp" />
-    <ClCompile Include="MainWnd\TwitterAuthorizeWnd.cpp" />
     <ClCompile Include="MainWnd\VideoScreen_MainWnd.cpp" />
     <ClCompile Include="MainWnd\VolumeLabel_MainWnd.cpp" />
     <ClCompile Include="MainWnd\VolumeSlider_MainWnd.cpp" />

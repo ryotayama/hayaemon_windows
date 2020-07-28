@@ -115,8 +115,6 @@ class CTimeLabel_MainWnd;
 class CTimeSlider_MainWnd;
 class CTimerPlayWnd_MainWnd;
 class CToolBar_MainWnd;
-class CTweetWnd;
-class CTwitterAuthorizeWnd;
 class CVideoScreenWnd_MainWnd;
 class CVideoScreen_MainWnd;
 class CVolumeLabel_MainWnd;
@@ -364,7 +362,6 @@ public: // ŠÖ”
 	virtual void StopForward();
 	virtual void Stop(BOOL bForce = TRUE);
 	virtual void Tweet();
-	virtual void Tweet(std::string strMessage);
 	virtual void UpFreq(double freq);
 	virtual void UpPitch(double pitch);
 	virtual void UpSpeed(double speed);
@@ -509,8 +506,6 @@ protected: // ƒƒ“ƒo•Ï”
 	std::unique_ptr<CGargleCustomizeWnd> m_gargleCustomizeWnd;
 	std::unique_ptr<CDistortionCustomizeWnd> m_distortionCustomizeWnd;
 	std::unique_ptr<CPresetNameInputWnd> presetNameInputWnd;
-	std::unique_ptr<CTwitterAuthorizeWnd> m_twitterAuthorizeWnd;
-	std::unique_ptr<CTweetWnd> m_tweetWnd;
 	std::unique_ptr<CABLoopPosWnd> m_abLoopPosWnd;
 	std::unique_ptr<CIncSpeedWnd_MainWnd> incSpeedWnd;
 	std::unique_ptr<CIncFreqWnd_MainWnd> incFreqWnd;
@@ -741,12 +736,6 @@ public: // ƒƒ“ƒo•Ï”‚Ìæ“¾Eİ’è
 	}
 	CPresetNameInputWnd & GetPresetNameInputWnd() {
 		return *presetNameInputWnd;
-	}
-	CTwitterAuthorizeWnd & GetTwitterAuthorizeWnd() {
-		return *m_twitterAuthorizeWnd;
-	}
-	CTweetWnd & GetTweetWnd() {
-		return *m_tweetWnd;
 	}
 	CABLoopPosWnd & GetABLoopPosWnd() {
 		return *m_abLoopPosWnd;

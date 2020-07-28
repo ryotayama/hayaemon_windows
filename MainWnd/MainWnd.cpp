@@ -129,8 +129,6 @@
 #include "TimeLabel_MainWnd.h"
 #include "TimeSlider_MainWnd.h"
 #include "ToolBar_MainWnd.h"
-#include "TweetWnd.h"
-#include "TwitterAuthorizeWnd.h"
 #include "VideoScreen_MainWnd.h"
 #include "VolumeLabel_MainWnd.h"
 #include "VolumeSlider_MainWnd.h"
@@ -240,8 +238,6 @@ CMainWnd::CMainWnd(CApp & app)
 		m_gargleCustomizeWnd(new CGargleCustomizeWnd(m_rApp, *this)),
 		m_distortionCustomizeWnd(new CDistortionCustomizeWnd(m_rApp, *this)),
 		presetNameInputWnd(new CPresetNameInputWnd(m_rApp, *this)),
-		m_twitterAuthorizeWnd(new CTwitterAuthorizeWnd(m_rApp, *this)),
-		m_tweetWnd(new CTweetWnd(m_rApp, *this)),
 		m_abLoopPosWnd(new CABLoopPosWnd(m_rApp, *this)),
 		incSpeedWnd(new CIncSpeedWnd_MainWnd(m_rApp, *this)),
 		incFreqWnd(new CIncFreqWnd_MainWnd(m_rApp, *this)),
@@ -9728,55 +9724,53 @@ void CMainWnd::Stop(BOOL bForce)
 //----------------------------------------------------------------------------
 void CMainWnd::Tweet()
 {
-	tstring initFilePath = m_rApp.GetFilePath() + _T("Setting.ini");
+	// ファイル名を取得
+	TCHAR chFileName[_MAX_FNAME];
+	_tsplitpath_s(m_sound->GetCurFileName().c_str(), NULL, 0, NULL,
+		0, chFileName, _MAX_FNAME, NULL, 0);
 
-	TCHAR chKey[255], chSecret[255];
-	GetPrivateProfileString(_T("Twitter"), _T("Key"), _T(""), chKey, 255,
-		initFilePath.c_str());
-	GetPrivateProfileString(_T("Twitter"), _T("Secret"), _T(""), chSecret, 255,
-		initFilePath.c_str());
-	if(_tcsicmp(chKey, _T("")) == 0 || _tcsicmp(chSecret, _T("")) == 0) {
-		m_twitterAuthorizeWnd->Create();
-		return;
-	}
-	else Socket::initialize();
-	m_tweetWnd->Create();
-}
-//----------------------------------------------------------------------------
-// Twitterでつぶやく
-//----------------------------------------------------------------------------
-void CMainWnd::Tweet(std::string strMessage)
-{
-	std::string initFilePath = m_rApp.GetFilePathA() + "Setting.ini";
+	// タイトル
+	m_sound->StartReadTag(
+		m_sound->GetCurFileName().c_str());
+	LPCSTR t = (LPCSTR)m_sound->ReadTitleTag();
+	TCHAR chTitle[255];
+#ifdef UNICODE
+	int cchWC = MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, t, -1, NULL, 0);
+	wchar_t *wszTmp = new wchar_t[cchWC];
+	memset(wszTmp, 0, cchWC * sizeof(wchar_t));
+	MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, t, -1, wszTmp, cchWC);
+	_tcscpy_s(chTitle, cchWC + 1, wszTmp);
+	delete[] wszTmp;
+#else
+	chTitle = t;
+#endif
+	if (lstrcmp(chTitle, _T("")) == 0) lstrcpy(chTitle, chFileName);
+	if (lstrcmp(chTitle, _T("")) == 0) return;
 
-	char chKey[255], chSecret[255];
-	GetPrivateProfileStringA("Twitter", "Key", "", chKey, 255,
-		initFilePath.c_str());
-	GetPrivateProfileStringA("Twitter", "Secret", "", chSecret, 255,
-		initFilePath.c_str());
-	if(strcmp(chKey, "") == 0 || strcmp(chSecret, "") == 0) {
-		m_twitterAuthorizeWnd->Create();
-		return;
-	}
-	int n;
-	wchar_t ucs2[1000];
-	char utf8[1000];
-	n = MultiByteToWideChar(CP_ACP, 0, strMessage.c_str(), strMessage.size(),
-		ucs2, 1000);
-	n = WideCharToMultiByte(CP_UTF8, 0, ucs2, n, utf8, 1000, 0, 0);
-	strMessage.assign(utf8, n);
+	// アーティスト
+	t = (LPCSTR)m_sound->ReadArtistTag();
+	TCHAR chArtist[255];
+#ifdef UNICODE
+	cchWC = MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, t, -1, NULL, 0);
+	wszTmp = new wchar_t[cchWC];
+	memset(wszTmp, 0, cchWC * sizeof(wchar_t));
+	MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, t, -1, wszTmp, cchWC);
+	_tcscpy_s(chArtist, cchWC + 1, wszTmp);
+	delete[] wszTmp;
+#else
+	chArtist = t;
+#endif
+	m_sound->EndReadTag();
 
-	std::string uri = "http://api.twitter.com/1/statuses/update.xml";
-	uri += "?status=";
-	uri += oauth_url_escape(strMessage.c_str());
-
-	std::string c_key = "npkW3TKg8JqvELAlkqCfiA";
-	std::string c_secret = "pl502twI6r6tkL7ApH2ElN9Hb1Un4qWvLNpb149IC8";
-	std::string postarg;
-	std::string req_url = oauth_sign_url2(uri.c_str(), &postarg, OA_HMAC, 0,
-		c_key.c_str(), c_secret.c_str(), chKey, chSecret);
-	std::string reply = oauth_http_post(req_url.c_str(), postarg.c_str(),
-		false);
+	tstring strTweet = _T("♪");
+	strTweet = strTweet + chTitle;
+	if (lstrcmp(chArtist, _T("")) != 0)
+		strTweet = strTweet + _T(" / ") + chArtist;
+	strTweet = _T("https://twitter.com/intent/tweet?text=") + strTweet + _T(" %23NowPlaying %23Hayaemon");
+	TCHAR buf[255];
+	DWORD dwSize = 255;
+	UrlEscape(strTweet.c_str(), buf, &dwSize, 0);
+	ShellExecute(m_hWnd, _T("open"), buf, NULL, NULL, SW_SHOWDEFAULT);
 }
 //----------------------------------------------------------------------------
 // 指定した%再生周波数を上げる

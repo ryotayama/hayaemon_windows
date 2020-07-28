@@ -494,9 +494,6 @@
     <ClInclude Include="Common\bass_alac.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="MainWnd\TweetWnd.h">
-      <Filter>MainWnd</Filter>
-    </ClInclude>
     <ClInclude Include="Common\oauth.h">
       <Filter>Common</Filter>
     </ClInclude>
@@ -505,9 +502,6 @@
     </ClInclude>
     <ClInclude Include="Common\socket.h">
       <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="MainWnd\TwitterAuthorizeWnd.h">
-      <Filter>MainWnd</Filter>
     </ClInclude>
     <ClInclude Include="MainWnd\PlayRangeWnd.h">
       <Filter>MainWnd</Filter>
@@ -977,9 +971,6 @@
     <ClCompile Include="MainWnd\RMenu_Explorer.cpp">
       <Filter>MainWnd</Filter>
     </ClCompile>
-    <ClCompile Include="MainWnd\TweetWnd.cpp">
-      <Filter>MainWnd</Filter>
-    </ClCompile>
     <ClCompile Include="Common\oauth.cpp">
       <Filter>Common</Filter>
     </ClCompile>
@@ -994,9 +985,6 @@
     </ClCompile>
     <ClCompile Include="Common\hash.cpp">
       <Filter>Common</Filter>
-    </ClCompile>
-    <ClCompile Include="MainWnd\TwitterAuthorizeWnd.cpp">
-      <Filter>MainWnd</Filter>
     </ClCompile>
     <ClCompile Include="MainWnd\PlayRangeWnd.cpp">
       <Filter>MainWnd</Filter>
