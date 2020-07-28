@@ -1,7 +1,7 @@
 ﻿------------------------------------------------------------------------------
- Hayaemon Version 2.77 beta 7
+ Hayaemon Version 2.77 beta 8
 ------------------------------------------------------------------------------
-                                                        Last update: 2020/7/27
+                                                        Last update: 2020/7/28
                                       Ryota Yamauchi <ryota.yamauch@gmail.com>
                                  Hayaemon Official Website:http://hayaemon.jp/
 ------------------------------------------------------------------------------
@@ -16,7 +16,7 @@
  This software supports the most popular audio files formats as WAV, CDA, MP3,
  MP2, MP1, OGG, AIFF, AIF, APE, FLAC, M4A, MP4, AAC, etc.
 
- Feature requests and Bug reports are welcome. Please post on wiki.
+ Feature requests and Bug reports are welcome. Please send me.
 
 ------------------------------------------------------------------------------
  Disclaimer
@@ -68,18 +68,21 @@
  History
 ------------------------------------------------------------------------------
 
-2020/7/27
+2020/7/28 Version 2.77 beta 8
+ Fixed that "Tweet" menu did not work.
+
+2020/7/27 Version 2.77 beta 7
  Fixed a case where the behavior is strange when using the menu that returns
  the specified number of seconds at the beginning of the song.
 
-2020/7/25
+2020/7/25 Version 2.77 beta 6
  Unified the format of the function to copy current position to clipboard to
  the "hh:mm:ss" format.
 
-2020/7/23
+2020/7/23 Version 2.77 beta 5
  Added "Rewind n sec. and play/pause" short cut menu.
 
-2020/2/8
+2020/2/8 Version 2.77 beta 4
  Fixed that one song loop was not working.
 
 2018/7/4 Version 2.77 beta 3
