@@ -1,7 +1,7 @@
 ﻿------------------------------------------------------------------------------
- Hayaemon Version 2.77 beta 6
+ Hayaemon Version 2.77 beta 7
 ------------------------------------------------------------------------------
-                                                        Last update: 2020/7/25
+                                                        Last update: 2020/7/27
                                       Ryota Yamauchi <ryota.yamauch@gmail.com>
                                  Hayaemon Official Website:http://hayaemon.jp/
 ------------------------------------------------------------------------------
@@ -67,6 +67,10 @@
 ------------------------------------------------------------------------------
  History
 ------------------------------------------------------------------------------
+
+2020/7/27
+ Fixed a case where the behavior is strange when using the menu that returns
+ the specified number of seconds at the beginning of the song.
 
 2020/7/25
  Unified the format of the function to copy current position to clipboard to
