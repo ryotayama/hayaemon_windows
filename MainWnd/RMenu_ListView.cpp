@@ -64,38 +64,6 @@ BOOL CRMenu_ListView::Create(BOOL bOnItem)
 				if(!bExists) {
 					arArtists.push_back(chArtist);
 #if JP
-					Append(MFS_ENABLED, ID_SEARCHITUNES + nItem,
-						((tstring)chArtist +
-						_T("をiTunes Storeでサーチ(&I)")).c_str());
-#else // JP
-					Append(MFS_ENABLED, ID_SEARCHITUNES + nItem,
-						((tstring)_T("Search ") + chArtist +
-						_T(" by iTunes Store(&I)")).c_str());
-#endif // JP
-				}
-			}
-		}
-
-		bAdd = FALSE;
-		arArtists.clear();
-		nItem = -1;
-		while((nItem = m_rParent.GetMainWnd().GetPlayList().GetNextItem(nItem,
-			LVNI_SELECTED)) >= 0) {
-			TCHAR chArtist[255];
-			m_rParent.GetMainWnd().GetPlayList().GetItemText(nItem, 3, chArtist,
-				255);
-			if(lstrcmp(chArtist, _T("")) != 0) {
-				if(!bAdd) bAdd = TRUE, AppendSeparator();
-				BOOL bExists = FALSE;
-				for(int i = 0; i < (int)arArtists.size(); i++) {
-					if(arArtists[i] == chArtist) {
-						bExists = TRUE;
-						break;
-					}
-				}
-				if(!bExists) {
-					arArtists.push_back(chArtist);
-#if JP
 					Append(MFS_ENABLED, ID_SEARCHAMAZON + nItem,
 						((tstring)chArtist +
 						_T("をAmazonでサーチ(&S)")).c_str());
@@ -193,8 +161,6 @@ void CRMenu_ListView::OnCommand(int id, HWND/* hwndCtl*/, UINT/* codeNotify*/)
 	else if(id == ID_OPENFOLDER) OnOpenFolderMenuSelected();
 	else if(id == ID_PROPERTIES) OnPropertiesMenuSelected();
 	else if(id == ID_VISIBLE) OnVisibleMenuSelected();
-	else if(ID_SEARCHITUNES <= id && id < ID_SEARCHAMAZON)
-		OnSearchITunesMenuSelected(id);
 	else if(ID_SEARCHAMAZON <= id && id < ID_SEARCHLYRICS)
 		OnSearchAmazonMenuSelected(id);
 	else if(ID_SEARCHLYRICS <= id && id < ID_SEARCHLYRICSMASTER)
@@ -226,20 +192,6 @@ void CRMenu_ListView::OnDeleteMenuSelected()
 void CRMenu_ListView::OnPlayMenuSelected()
 {
 	m_rParent.GetMainWnd().GetPlayList().PlaySelectedItem();
-}
-//----------------------------------------------------------------------------
-// このアーティストをiTunesでサーチメニューが選択された
-//----------------------------------------------------------------------------
-void CRMenu_ListView::OnSearchITunesMenuSelected(int id)
-{
-	int nItem = id - ID_SEARCHITUNES;
-	TCHAR chArtist[255];
-	m_rParent.GetMainWnd().GetPlayList().GetItemText(nItem, 3, chArtist, 255);
-#if JP
-	ShellExecute(m_rParent.GetMainWnd(), _T("open"), ((tstring)_T("http://soft.edolfzoku.com/hayaemon2/itunes/") + chArtist).c_str(), NULL, NULL, SW_SHOWDEFAULT);
-#else // JP
-	ShellExecute(m_rParent.GetMainWnd(), _T("open"), ((tstring)_T("http://en.edolfzoku.com/hayaemon2/itunes/") + chArtist).c_str(), NULL, NULL, SW_SHOWDEFAULT);
-#endif // JP
 }
 //----------------------------------------------------------------------------
 // このアーティストをAmazonでサーチメニューが選択された

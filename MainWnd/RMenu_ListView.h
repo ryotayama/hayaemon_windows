@@ -28,7 +28,6 @@ public: // ä÷êî
 	void OnCopyNewListMenuSelected(int id);
 	void OnDeleteMenuSelected();
 	void OnPlayMenuSelected();
-	void OnSearchITunesMenuSelected(int id);
 	void OnSearchAmazonMenuSelected(int id);
 	void OnSearchLyricsMenuSelected(int id);
 	void OnSearchLyricsMasterMenuSelected(int id);
@@ -58,10 +57,9 @@ public: // íËêî
 		ID_PROPERTIES,
 		ID_VISIBLE,
 		ID_COPY,
-		ID_SEARCHITUNES = 10000,
-		ID_SEARCHAMAZON = 20000,
-		ID_SEARCHLYRICS = 30000,
-		ID_SEARCHLYRICSMASTER = 40000,
+		ID_SEARCHAMAZON = 10000,
+		ID_SEARCHLYRICS = 20000,
+		ID_SEARCHLYRICSMASTER = 30000,
 	};
 };
 //----------------------------------------------------------------------------
