@@ -1,7 +1,7 @@
 ﻿------------------------------------------------------------------------------
- Hayaemon Version 2.77 beta 8
+ Hayaemon Version 2.77 beta 9
 ------------------------------------------------------------------------------
-                                                        Last update: 2020/7/28
+                                                        Last update: 2020/7/29
                                       Ryota Yamauchi <ryota.yamauch@gmail.com>
                                  Hayaemon Official Website:http://hayaemon.jp/
 ------------------------------------------------------------------------------
@@ -67,6 +67,9 @@
 ------------------------------------------------------------------------------
  History
 ------------------------------------------------------------------------------
+
+2020/7/29 Version 2.77 beta 9
+ Removed the "Search by iTunes Store" menu that wasn't working.
 
 2020/7/28 Version 2.77 beta 8
  Fixed that "Tweet" menu did not work.
