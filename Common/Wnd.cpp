@@ -190,6 +190,8 @@ LRESULT CALLBACK CWnd::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 		case WM_VSCROLL:
 			pWnd->OnVScroll((HWND)lParam, (UINT)LOWORD(wParam), (int)(short)HIWORD(wParam));
 			return 0;
+		case WM_DEVICECHANGE:
+			pWnd->OnDeviceChange((UINT)wParam, (DWORD_PTR)lParam);
 		}
 		LRESULT lResult = pWnd->WindowProc(uMsg, wParam, lParam);
 		if(uMsg == WM_DESTROY) pWnd->ResetProc();

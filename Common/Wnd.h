@@ -264,6 +264,9 @@ public: // ä÷êî
 	virtual void OnVScroll(HWND hwndCtl, UINT code, int pos) {
 		WindowProc(WM_VSCROLL, MAKEWPARAM((UINT)(int)code, (UINT)pos), (LPARAM)hwndCtl);
 	}
+	virtual void OnDeviceChange(UINT nEventType, DWORD_PTR dwData) {
+		WindowProc(WM_DEVICECHANGE, (WPARAM)nEventType, (LPARAM)dwData);
+	}
 	virtual void SetPreviousFocus() { };
 	virtual void SetNextFocus() { };
 	virtual void OnReturnKeyPressed() { };

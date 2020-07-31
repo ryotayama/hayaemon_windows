@@ -42,6 +42,7 @@ public: // ä÷êî
 	virtual BOOL StreamCreateNSFFile(LPCTSTR lpFilePath, int nCount);
 	virtual void StreamFree();
 	virtual BOOL ChannelPlay();
+	virtual void UpdateSoundDeviceIfNeeded();
 	static void CALLBACK LoopSyncProc(HSYNC handle, DWORD channel, DWORD data,
 									  void *user);
 	virtual void ClearMarker();

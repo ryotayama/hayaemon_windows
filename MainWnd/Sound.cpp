@@ -149,11 +149,33 @@ void CSound::ResetSize(int left, int top, int right, int bottom)
 BOOL CSound::ChannelPlay()
 {
 	ChannelRemoveSync();
-	if(m_bABLoopB && m_nLoopPosB < ChannelGetLength())
+	if (m_bABLoopB && m_nLoopPosB < ChannelGetLength())
 		ChannelSetSync(BASS_SYNC_POS, m_nLoopPosB, LoopSyncProc,
-						(DWORD *)this);
+		(DWORD *)this);
 	else ChannelSetSync(BASS_SYNC_END, 0, LoopSyncProc, (DWORD *)this);
 	return CBass::ChannelPlay();
+}
+//----------------------------------------------------------------------------
+// サウンドデバイスの更新
+//----------------------------------------------------------------------------
+void CSound::UpdateSoundDeviceIfNeeded()
+{
+	BASS_DEVICEINFO di;
+	for (int d = 1; BASS_GetDeviceInfo(d, &di); d++) {
+		if (di.flags & BASS_DEVICE_DEFAULT) {
+			int od = BASS_GetDevice();
+			if (od == d) break;
+			DWORD dActive = ChannelIsActive();
+			BOOL bPlaying = (dActive == BASS_ACTIVE_PLAYING || dActive == 4);
+			if (!BASS_Init(d, 44100, 0, m_rMainWnd, NULL)) {
+				BASS_SetDevice(d);
+				BASS_Start();
+			}
+			BASS_ChannelSetDevice(m_hStream, d);
+			if (bPlaying) ChannelPlay();
+			break;
+		}
+	}
 }
 //----------------------------------------------------------------------------
 // マーカーのクリア

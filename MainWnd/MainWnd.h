@@ -388,6 +388,7 @@ public: // ä÷êî
 	virtual void OnHScroll(HWND hwndCtl, UINT code, int pos);
 	virtual BOOL OnSetCursor(HWND hwndCursor, UINT codeHitTest, UINT msg);
 	virtual void OnTimer(UINT id);
+	virtual void OnDeviceChange(UINT nEventType, DWORD_PTR dwData);
 
 	virtual LRESULT WindowProc(UINT uMsg, WPARAM wParam, LPARAM lParam);
 
