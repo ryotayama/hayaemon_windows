@@ -835,7 +835,7 @@ void CPlayListView_MainWnd::StartTagEdit()
 	// ショートカットキーを一時停止しておく
 	if(m_pAccel) delete [] m_pAccel;
 	m_nAccel = m_rApp.GetAccelTable().GetNum();
-	m_pAccel = new ACCEL[m_nAccel];
+	m_pAccel = new ACCEL[m_nAccel+1];
 	m_rApp.GetAccelTable().Copy(m_pAccel, m_nAccel);
 	m_rApp.GetAccelTable().Destroy();
 
