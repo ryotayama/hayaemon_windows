@@ -454,10 +454,6 @@ BOOL CPlayListView_MainWnd::DeleteAllItems()
 //----------------------------------------------------------------------------
 void CPlayListView_MainWnd::EndTagEdit()
 {
-	if(m_pAccel) {
-		m_rApp.GetAccelTable().Create(m_pAccel, m_nAccel);
-		delete [] m_pAccel; m_pAccel = NULL;
-	}
 	m_edit.Show(SW_HIDE);
 }
 //----------------------------------------------------------------------------
@@ -831,13 +827,6 @@ void CPlayListView_MainWnd::StartTagEdit()
 	GetItemText(m_nItem, m_nSubItem, chBuf, _MAX_PATH);
 	m_edit.SetText(chBuf);
 	m_strTag = chBuf;
-
-	// ショートカットキーを一時停止しておく
-	if(m_pAccel) delete [] m_pAccel;
-	m_nAccel = m_rApp.GetAccelTable().GetNum();
-	m_pAccel = new ACCEL[m_nAccel+1];
-	m_rApp.GetAccelTable().Copy(m_pAccel, m_nAccel);
-	m_rApp.GetAccelTable().Destroy();
 
 	m_edit.SetPos(rect.left, rect.top);
 	m_edit.SetSize(rect.right - rect.left, rect.bottom - rect.top);

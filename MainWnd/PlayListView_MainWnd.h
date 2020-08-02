@@ -114,8 +114,6 @@ private: // メンバ変数
 	int m_nItem;
 	int m_nSubItem;
 	tstring m_strTag;
-	int m_nAccel;
-	ACCEL* m_pAccel;
 
 	CRMenu_ListView m_rClickMenu; // 右クリックメニュー
 	CFont m_font;
