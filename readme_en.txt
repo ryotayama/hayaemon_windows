@@ -1,7 +1,7 @@
 ﻿------------------------------------------------------------------------------
- Hayaemon Version 2.77 beta 9
+ Hayaemon Version 2.77 beta 10
 ------------------------------------------------------------------------------
-                                                        Last update: 2020/7/29
+                                                        Last update: 2020/7/31
                                       Ryota Yamauchi <ryota.yamauch@gmail.com>
                                  Hayaemon Official Website:http://hayaemon.jp/
 ------------------------------------------------------------------------------
@@ -67,6 +67,11 @@
 ------------------------------------------------------------------------------
  History
 ------------------------------------------------------------------------------
+
+2020/7/31 Version 2.77 beta 10
+ Changed that the sound is output from the changed sound device when the
+ earphones are plugged in and unplugged. (When choosing "Quality" -> "Normal"
+ menu)
 
 2020/7/29 Version 2.77 beta 9
  Removed the "Search by iTunes Store" menu that wasn't working.
