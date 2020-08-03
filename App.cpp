@@ -43,7 +43,7 @@ CApp::CApp(const int & nCmdShow)
 	  m_cstrAuthorEMail(_T("ryota.yamauch@gmail.com")),
 	  m_cstrAuthorWebSiteName(_T("Hayaemon Official Website")),
 #endif // JP
-	  m_cstrVersionInfo(_T("2.77É¿10")),
+	  m_cstrVersionInfo(_T("2.77É¿11")),
 	  m_cstrAuthorURL(_T("http://hayaemon.jp/")),
 	  m_wnd(*this)
 {

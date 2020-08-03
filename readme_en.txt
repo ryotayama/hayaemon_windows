@@ -1,7 +1,7 @@
 ﻿------------------------------------------------------------------------------
- Hayaemon Version 2.77 beta 10
+ Hayaemon Version 2.77 beta 11
 ------------------------------------------------------------------------------
-                                                        Last update: 2020/7/31
+                                                         Last update: 2020/8/2
                                       Ryota Yamauchi <ryota.yamauch@gmail.com>
                                  Hayaemon Official Website:http://hayaemon.jp/
 ------------------------------------------------------------------------------
@@ -67,6 +67,9 @@
 ------------------------------------------------------------------------------
  History
 ------------------------------------------------------------------------------
+
+2020/8/2 Version 2.77 beta 11
+ Fixed a case that the app crashes when clicking the playlist.
 
 2020/7/31 Version 2.77 beta 10
  Changed that the sound is output from the changed sound device when the
