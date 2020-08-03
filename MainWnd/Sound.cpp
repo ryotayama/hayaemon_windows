@@ -7,6 +7,7 @@
 #include "../Common/CommandList.h"
 #include "../Common/Utils.h"
 #include "../Common/bassenc.h"
+#include "../Common/bassenc_mp3.h"
 #include "../Common/bassmix.h"
 #include "../Common/bassasio.h"
 #include "../Common/basswasapi.h"
@@ -1615,23 +1616,7 @@ void CSound::SaveFile(LPCTSTR lpszFilePath, int nFormat)
 	// nFormat : 0 ( WAVE ), 1 ( MP3 ), 2 ( OGG )
 
 	if(GetCurFileName() == _T("")) return;
-	if(nFormat == 1) { // MP3
-		tstring strLamePath = m_rApp.GetFilePath() + _T("lame.exe");
-		if(GetFileAttributes(strLamePath.c_str()) == 0xFFFFFFFF) {
-#if JP
-			MessageBox(m_rMainWnd, _T("MP3形式での保存には、LAME.EXEが必要")
-				_T("です。\nHayaemon.exeと同じディレクトリにLAME.EXEを置いて")
-				_T("下さい。"), _T("名前を付けて保存"), MB_ICONINFORMATION);
-#else // JP
-			MessageBox(m_rMainWnd, _T("To save MP3 file, lame.exe is ")
-					   _T("required.\nPut lame.exe in the same directory ")
-					   _T("as hayaemon.exe."), _T("Save file"),
-					   MB_ICONINFORMATION);
-#endif // JP
-			return;
-		}
-	}
-	else if(nFormat == 2) { // OGG
+	if(nFormat == 2) { // OGG
 		tstring strLamePath = m_rApp.GetFilePath() + _T("oggenc.exe");
 		if(GetFileAttributes(strLamePath.c_str()) == 0xFFFFFFFF) {
 #if JP
@@ -1678,15 +1663,12 @@ void CSound::SaveFile(LPCTSTR lpszFilePath, int nFormat)
 								 0);
 	}
 	else if(nFormat == 1) { // MP3
-		tstring strCmdLine = m_rApp.GetFilePath();
-		strCmdLine += _T("lame ");
-		strCmdLine += m_rMainWnd.GetStrLAMECommandLine();
-		strCmdLine += _T(" - \"");
-		strCmdLine += lpszFilePath;
-		strCmdLine += _T("\"");
-		bRet = BASS_Encode_Start(m_hStream, (char*)strCmdLine.c_str(),
-								 BASS_ENCODE_FP_16BIT | BASS_ENCODE_AUTOFREE |
-								 BASS_IF_UNICODE, NULL, 0);
+		tstring strFilePath = CUtils::Replace(lpszFilePath, _T("\\"),
+											  _T("\\\\"));
+		tstring strCmdLine = m_rMainWnd.GetStrLAMECommandLine();
+		bRet = BASS_Encode_MP3_StartFile(m_hStream, (char*)strCmdLine.c_str(),
+										 BASS_ENCODE_AUTOFREE | BASS_UNICODE,
+										 (char*)strFilePath.c_str());
 	}
 	else if(nFormat == 2) { // OGG
 		tstring strCmdLine = m_rApp.GetFilePath();

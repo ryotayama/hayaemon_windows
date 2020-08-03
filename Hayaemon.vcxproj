@@ -121,7 +121,7 @@
       <CallingConvention>Cdecl</CallingConvention>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>comctl32.lib;Winmm.lib;wsock32.lib;Wininet.lib;libjpeg.lib;bass.lib;bass_ape.lib;basscd.lib;bassflac.lib;bass_fx.lib;bassenc.lib;shlwapi.lib;bass_aac.lib;tags.lib;bassalac.lib;bassasio.lib;basswasapi.lib;bassmix.lib;npnez.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>comctl32.lib;Winmm.lib;wsock32.lib;Wininet.lib;libjpeg.lib;bass.lib;bass_ape.lib;basscd.lib;bassflac.lib;bass_fx.lib;bassenc.lib;bassenc_mp3.lib;shlwapi.lib;bass_aac.lib;tags.lib;bassalac.lib;bassasio.lib;basswasapi.lib;bassmix.lib;npnez.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
@@ -150,7 +150,7 @@ if exist "$(ProjectDir)sound" xcopy "$(ProjectDir)sound" $(OutDir)sound /i /y</C
       <CallingConvention>Cdecl</CallingConvention>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>comctl32.lib;Winmm.lib;wsock32.lib;Wininet.lib;libjpeg.lib;bass.lib;bass_ape.lib;basscd.lib;bassflac.lib;bass_fx.lib;bassenc.lib;shlwapi.lib;bass_aac.lib;tags.lib;bassalac.lib;bassasio.lib;basswasapi.lib;bassmix.lib;npnez.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>comctl32.lib;Winmm.lib;wsock32.lib;Wininet.lib;libjpeg.lib;bass.lib;bass_ape.lib;basscd.lib;bassflac.lib;bass_fx.lib;bassenc.lib;bassenc_mp3.lib;shlwapi.lib;bass_aac.lib;tags.lib;bassalac.lib;bassasio.lib;basswasapi.lib;bassmix.lib;npnez.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -208,7 +208,7 @@ if exist "$(ProjectDir)sound" xcopy "$(ProjectDir)sound" $(OutDir)sound /i /y</C
       <CallingConvention>Cdecl</CallingConvention>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>comctl32.lib;Winmm.lib;wsock32.lib;Wininet.lib;libjpeg.lib;bass.lib;bass_ape.lib;basscd.lib;bassflac.lib;bass_fx.lib;bassenc.lib;shlwapi.lib;bass_aac.lib;tags.lib;bassalac.lib;bassasio.lib;basswasapi.lib;bassmix.lib;npnez.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>comctl32.lib;Winmm.lib;wsock32.lib;Wininet.lib;libjpeg.lib;bass.lib;bass_ape.lib;basscd.lib;bassflac.lib;bass_fx.lib;bassenc.lib;bassenc_mp3.lib;shlwapi.lib;bass_aac.lib;tags.lib;bassalac.lib;bassasio.lib;basswasapi.lib;bassmix.lib;npnez.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -237,7 +237,7 @@ if exist "$(ProjectDir)sound" xcopy "$(ProjectDir)sound" $(OutDir)sound /i /y</C
       <CallingConvention>Cdecl</CallingConvention>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>comctl32.lib;Winmm.lib;wsock32.lib;Wininet.lib;libjpeg.lib;bass.lib;bass_ape.lib;basscd.lib;bassflac.lib;bass_fx.lib;bassenc.lib;shlwapi.lib;bass_aac.lib;tags.lib;bassalac.lib;bassasio.lib;basswasapi.lib;bassmix.lib;npnez.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>comctl32.lib;Winmm.lib;wsock32.lib;Wininet.lib;libjpeg.lib;bass.lib;bass_ape.lib;basscd.lib;bassflac.lib;bass_fx.lib;bassenc.lib;bassenc_mp3.lib;shlwapi.lib;bass_aac.lib;tags.lib;bassalac.lib;bassasio.lib;basswasapi.lib;bassmix.lib;npnez.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>

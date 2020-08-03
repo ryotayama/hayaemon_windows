@@ -9454,27 +9454,7 @@ void CMainWnd::ShowSaveAllFileDialog()
 				int nFormat = wnd.GetFormat();
 				wnd.Close();
 
-				if(nFormat == 1) { // MP3
-					tstring strLamePath = m_rApp.GetFilePath()
-										  + _T("lame.exe");
-					if(GetFileAttributes(strLamePath.c_str()) == 0xFFFFFFFF) {
-#if JP
-						MessageBox(m_hWnd, _T("MP3形式での保存には、LAME.EXE")
-							_T("が必要です。\nHayaemon.exeと同じディレクトリ")
-							_T("にLAME.EXEを置いて下さい。"),
-							_T("名前を付けて保存"), MB_ICONINFORMATION);
-#else // JP
-						MessageBox(m_hWnd, _T("To save MP3 file, lame.exe ")
-							_T("is required.\nPut lame.exe in the same ")
-							_T("directory as hayaemon.exe."),
-							_T("Save file"), MB_ICONINFORMATION);
-#endif // JP
-						pMalloc->Free(pidl);
-						pMalloc->Release();
-						return;
-					}
-				}
-				else if(nFormat == 2) { // OGG
+				if(nFormat == 2) { // OGG
 					tstring strLamePath = m_rApp.GetFilePath()
 										  + _T("oggenc.exe");
 					if(GetFileAttributes(strLamePath.c_str()) == 0xFFFFFFFF) {
