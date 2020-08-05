@@ -228,7 +228,7 @@ void CRMenu_ListView::OnSearchLyricsMenuSelected(int id)
 //----------------------------------------------------------------------------
 void CRMenu_ListView::OnSearchLyricsMasterMenuSelected(int id)
 {
-	tstring initFilePath = m_rParent.GetApp().GetFilePath() + _T("Setting.ini");
+	tstring initFilePath = m_rParent.GetApp().GetSettingFilePath();
 
 	TCHAR chPath[MAX_PATH];
 	GetPrivateProfileString(_T("Option"), _T("LyricsMasterPath"), _T(""),

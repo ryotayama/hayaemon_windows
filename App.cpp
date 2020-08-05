@@ -2,6 +2,8 @@
 // App.cpp : アプリケーションの管理を行う
 //----------------------------------------------------------------------------
 #include <windows.h>
+#include <shlobj.h>
+#include <shlwapi.h>
 #include "App.h"
 //----------------------------------------------------------------------------
 // WinMain 関数
@@ -100,8 +102,7 @@ BOOL CApp::CheckDoubleRun()
 
 		TCHAR buf[255];
 		GetPrivateProfileString(_T("Options"), _T("DoubleRun"), _T("1"), buf,
-								255, (GetFilePath() +
-								_T("Setting.ini")).c_str());
+								255, m_strSettingFilePath.c_str());
 		if(_ttoi(buf)) return FALSE;
 
 		if(hWnd) {
@@ -130,6 +131,7 @@ int CApp::Run()
 {
 	_tsetlocale(LC_ALL, _T(""));
 
+	MoveSettingFileIfNeeded();
 	if(CheckDoubleRun()) return 0;
 	if(!m_wnd.Create()) return 0;
 
@@ -141,6 +143,19 @@ int CApp::Run()
 		}
 	}
 	return (int)msg.wParam;
+}
+//----------------------------------------------------------------------------
+// 必要に応じてSetting.iniファイルを移動
+//----------------------------------------------------------------------------
+void CApp::MoveSettingFileIfNeeded()
+{
+	TCHAR pathName[MAX_PATH] = _T("");
+	SHGetSpecialFolderPath(NULL, pathName, CSIDL_LOCAL_APPDATA, false);
+	PathAppend(pathName, _T("Hayaemon"));
+	CreateDirectory(pathName, NULL);
+	PathAppend(pathName, _T("Setting.ini"));
+	m_strSettingFilePath = pathName;
+	MoveFileEx((GetFilePath() + _T("Setting.ini")).c_str(), m_strSettingFilePath.c_str(), MOVEFILE_REPLACE_EXISTING);
 }
 //----------------------------------------------------------------------------
 // エラーを出力して終了

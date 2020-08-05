@@ -25,6 +25,7 @@ public: // 関数
 	CApp(const int & nCmdShow);
 	~CApp();
 
+	void MoveSettingFileIfNeeded(); // 必要に応じてSetting.iniファイルを移動
 	BOOL CheckDoubleRun(); // 多重起動のチェック
 	int Run(); // 実行
 	void ShowError(tstring strError); // エラーを出力して終了
@@ -40,6 +41,7 @@ private: // メンバ変数
 	const tstring m_cstrAuthorURL; // 作者のサイトのアドレス
 	tstring m_strPath;
 	std::string m_strPathA;
+	tstring m_strSettingFilePath;
 
 	CMainWnd m_wnd;
 	CAcceleratorTable m_accelTable;
@@ -55,6 +57,7 @@ public: // メンバ変数の取得・設定
 	tstring GetAuthorURL() const { return m_cstrAuthorURL; }
 	tstring GetFilePath() const { return m_strPath; }
 	std::string GetFilePathA() const { return m_strPathA; }
+	tstring GetSettingFilePath() const { return m_strSettingFilePath; }
 	CAcceleratorTable & GetAccelTable() { return m_accelTable; }
 };
 //----------------------------------------------------------------------------

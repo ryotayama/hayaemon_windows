@@ -521,7 +521,7 @@ BOOL CMainWnd::CreateControls(BOOL bFirst, BOOL bVideoScreenVisible,
 	BOOL bPanVisible, BOOL bEQVisible, BOOL bTabVisible)
 {
 	TCHAR chPath[255], buf[255];
-	lstrcpy(chPath, (m_rApp.GetFilePath() + _T("Setting.ini")).c_str());
+	lstrcpy(chPath, m_rApp.GetSettingFilePath().c_str());
 
 	if(bFirst) {
 		// 区切り線その１の作成
@@ -1800,7 +1800,7 @@ void CMainWnd::DeleteMarker()
 //----------------------------------------------------------------------------
 void CMainWnd::DeletePreset()
 {
-	tstring initFilePath = m_rApp.GetFilePath() + _T("Setting.ini");
+	tstring initFilePath = m_rApp.GetSettingFilePath();
 
 	int nCount = GetMenuItemCount(m_menu->GetPresetMenu());
 	BOOL bHit = FALSE;
@@ -3391,7 +3391,7 @@ BOOL CMainWnd::OpenFile(LPCTSTR lpszFilePath, int nCount)
 void CMainWnd::OpenInitFile()
 {
 	TCHAR chPath[255], buf[255];
-	lstrcpy(chPath, (m_rApp.GetFilePath() + _T("Setting.ini")).c_str());
+	lstrcpy(chPath, m_rApp.GetSettingFilePath().c_str());
 
 	if(GetPrivateProfileInt(_T("Visible"), _T("eq20"), 0, chPath))
 		m_menu->SwitchEQVisible(ID_EQ20);
@@ -3542,7 +3542,7 @@ void CMainWnd::OpenInitFile()
 //----------------------------------------------------------------------------
 void CMainWnd::OpenInitFileAfterShow()
 {
-	tstring initFilePath = m_rApp.GetFilePath() + _T("Setting.ini");
+	tstring initFilePath = m_rApp.GetSettingFilePath();
 
 	TCHAR buf[255];
 
@@ -4629,7 +4629,7 @@ void CMainWnd::ReturnSeconds(int seconds)
 //----------------------------------------------------------------------------
 void CMainWnd::SavePreset(PCTSTR pName)
 {
-	tstring initFilePath = m_rApp.GetFilePath() + _T("Setting.ini");
+	tstring initFilePath = m_rApp.GetSettingFilePath();
 
 	int i = 1;
 	TCHAR section[255];
@@ -7542,7 +7542,7 @@ void CMainWnd::SetPlayListVisible()
 //----------------------------------------------------------------------------
 void CMainWnd::SetPreset(int n)
 {
-	tstring initFilePath = m_rApp.GetFilePath() + _T("Setting.ini");
+	tstring initFilePath = m_rApp.GetSettingFilePath();
 
 	TCHAR section[255];
 	TCHAR buf[255];
@@ -9809,7 +9809,7 @@ void CMainWnd::WriteInitFile()
 {
 	if(!isInitFileRead) return;
 
-	tstring initFilePath = m_rApp.GetFilePath() + _T("Setting.ini");
+	tstring initFilePath = m_rApp.GetSettingFilePath();
 
 	TCHAR buf[255];
 
@@ -10522,7 +10522,7 @@ LRESULT CMainWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	}
 
 	TCHAR chPath[255];
-	lstrcpy(chPath, (m_rApp.GetFilePath() + _T("Setting.ini")).c_str());
+	lstrcpy(chPath, m_rApp.GetSettingFilePath().c_str());
 
 	BOOL bVideoScreenVisible = TRUE, bTimeSliderVisible = TRUE,
 		bSpeedVisible = TRUE, bFreqVisible = TRUE, bPitchVisible = TRUE,
