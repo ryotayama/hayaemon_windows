@@ -1,7 +1,7 @@
 ﻿------------------------------------------------------------------------------
- Hayaemon Version 2.77 beta 11
+ Hayaemon Version 2.77 beta 12
 ------------------------------------------------------------------------------
-                                                         Last update: 2020/8/2
+                                                         Last update: 2020/8/3
                                       Ryota Yamauchi <ryota.yamauch@gmail.com>
                                  Hayaemon Official Website:http://hayaemon.jp/
 ------------------------------------------------------------------------------
@@ -67,6 +67,9 @@
 ------------------------------------------------------------------------------
  History
 ------------------------------------------------------------------------------
+
+2020/8/3 Version 2.77 beta 12
+ Changed to be able to save MP3 file without lame library.
 
 2020/8/2 Version 2.77 beta 11
  Fixed a case that the app crashes when clicking the playlist.
