@@ -5,17 +5,23 @@ VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hayaemon", "Hayaemon.vcxproj", "{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup_jp", "Setup_jp\Setup_jp.vdproj", "{B64D6A5C-6C98-4ED4-A223-AF8AEE226051}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_jp|Win32 = Debug_jp|Win32
+		Debug|Win32 = Debug|Win32
 		Release_en|Win32 = Release_en|Win32
 		Release_jp|Win32 = Release_jp|Win32
 		Release_XP_en|Win32 = Release_XP_en|Win32
 		Release_XP_jp|Win32 = Release_XP_jp|Win32
+		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Debug_jp|Win32.ActiveCfg = Debug_jp|Win32
 		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Debug_jp|Win32.Build.0 = Debug_jp|Win32
+		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Debug|Win32.ActiveCfg = Debug_jp|Win32
+		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Debug|Win32.Build.0 = Debug_jp|Win32
 		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Release_en|Win32.ActiveCfg = Release_en|Win32
 		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Release_en|Win32.Build.0 = Release_en|Win32
 		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Release_jp|Win32.ActiveCfg = Release_jp|Win32
@@ -24,6 +30,15 @@ Global
 		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Release_XP_en|Win32.Build.0 = Release_XP_en|Win32
 		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Release_XP_jp|Win32.ActiveCfg = Release_XP_jp|Win32
 		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Release_XP_jp|Win32.Build.0 = Release_XP_jp|Win32
+		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Release|Win32.ActiveCfg = Release_XP_jp|Win32
+		{751B0EF4-3890-4A6E-AFBC-D92F3BE8D82F}.Release|Win32.Build.0 = Release_XP_jp|Win32
+		{B64D6A5C-6C98-4ED4-A223-AF8AEE226051}.Debug_jp|Win32.ActiveCfg = Debug
+		{B64D6A5C-6C98-4ED4-A223-AF8AEE226051}.Debug|Win32.ActiveCfg = Debug
+		{B64D6A5C-6C98-4ED4-A223-AF8AEE226051}.Release_en|Win32.ActiveCfg = Release
+		{B64D6A5C-6C98-4ED4-A223-AF8AEE226051}.Release_jp|Win32.ActiveCfg = Release
+		{B64D6A5C-6C98-4ED4-A223-AF8AEE226051}.Release_XP_en|Win32.ActiveCfg = Release
+		{B64D6A5C-6C98-4ED4-A223-AF8AEE226051}.Release_XP_jp|Win32.ActiveCfg = Release
+		{B64D6A5C-6C98-4ED4-A223-AF8AEE226051}.Release|Win32.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

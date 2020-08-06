@@ -1048,7 +1048,6 @@
     <ResourceCompile Include="Hayaemon.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="readme.txt" />
     <None Include="img\drag_move.cur" />
     <None Include="img\drag_copy.cur" />
   </ItemGroup>
@@ -1061,6 +1060,7 @@
     <Image Include="img\pause.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="readme_en.txt" />
+    <Text Include="readme\jp\readme.txt" />
+    <Text Include="readme\en\readme.txt" />
   </ItemGroup>
 </Project>
