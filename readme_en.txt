@@ -1,7 +1,7 @@
 ﻿------------------------------------------------------------------------------
- Hayaemon Version 2.77 beta 12
+ Hayaemon Version 2.77 beta 13
 ------------------------------------------------------------------------------
-                                                         Last update: 2020/8/3
+                                                         Last update: 2020/8/6
                                       Ryota Yamauchi <ryota.yamauch@gmail.com>
                                  Hayaemon Official Website:http://hayaemon.jp/
 ------------------------------------------------------------------------------
@@ -67,6 +67,10 @@
 ------------------------------------------------------------------------------
  History
 ------------------------------------------------------------------------------
+
+2020/8/6 Version 2.77 beta 13
+ Changed to save Setting.ini in a folder for each user for supporting
+ multi-user.
 
 2020/8/3 Version 2.77 beta 12
  Changed to be able to save MP3 file without lame library.
