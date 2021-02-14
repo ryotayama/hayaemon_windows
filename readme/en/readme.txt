@@ -1,7 +1,7 @@
 ﻿------------------------------------------------------------------------------
- Hayaemon Version 2.77 beta 13
+ Hayaemon Version 2.77 beta 14
 ------------------------------------------------------------------------------
-                                                         Last update: 2020/8/6
+                                                         Last update: 2020/8/7
                                       Ryota Yamauchi <ryota.yamauch@gmail.com>
                                  Hayaemon Official Website:http://hayaemon.jp/
 ------------------------------------------------------------------------------
@@ -67,6 +67,9 @@
 ------------------------------------------------------------------------------
  History
 ------------------------------------------------------------------------------
+
+2020/8/7 Version 2.77 beta 14
+ Started to distribute in installer format.
 
 2020/8/6 Version 2.77 beta 13
  Changed to save Setting.ini in a folder for each user for supporting
