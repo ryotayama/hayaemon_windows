@@ -47,6 +47,7 @@ tstring CComboBox::GetSelectText()
 //--------------------------------------------------------------------------
 void CComboBox::Select(LPCTSTR lpText)
 {
-	SendMessage(m_hWnd, CB_SELECTSTRING, 0, (LPARAM)lpText);
+	int n = SendMessage(m_hWnd, CB_FINDSTRINGEXACT, 0, (LPARAM)lpText);
+	SendMessage(m_hWnd, CB_SETCURSEL, n, 0);
 }
 //--------------------------------------------------------------------------
