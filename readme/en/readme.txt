@@ -1,7 +1,7 @@
 ﻿------------------------------------------------------------------------------
- Hayaemon Version 2.77 beta 14
+ Hayaemon Version 2.77 beta 15
 ------------------------------------------------------------------------------
-                                                         Last update: 2020/8/7
+                                                        Last update: 2021/2/19
                                       Ryota Yamauchi <ryota.yamauch@gmail.com>
                                  Hayaemon Official Website:http://hayaemon.jp/
 ------------------------------------------------------------------------------
@@ -68,8 +68,14 @@
  History
 ------------------------------------------------------------------------------
 
+2021/2/19 Version 2.77 beta 15
+ Fixed a case where the action changed to a different action when changing
+ the key setting.
+
 2020/8/7 Version 2.77 beta 14
  Started to distribute in installer format.
+ (We have stopped distributing the XP-compatible version, which has expired
+  from Microsoft, from this version.)
 
 2020/8/6 Version 2.77 beta 13
  Changed to save Setting.ini in a folder for each user for supporting
