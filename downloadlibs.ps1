@@ -7,7 +7,7 @@ $networkListManager = [Activator]::CreateInstance([Type]::GetTypeFromCLSID([Guid
 $connections = $networkListManager.GetNetworkConnections()
 $connections = $connections | ForEach-Object {$_.isConnectedToInternet}
 if ($connections -eq $TRUE) {
-	Write-Host 'ダウンロードを開始します'
+	Write-Host '各種ライブラリのダウンロードを開始します'
 }
 else {
 	Write-Warning 'インターネット接続を確認してください'
@@ -20,7 +20,7 @@ try {
 	Invoke-WebRequest -Uri http://uk.un4seen.com/files/z/2/bass_aac24.zip -OutFile bass_aac24.zip
 	Invoke-WebRequest -Uri http://uk.un4seen.com/files/bassalac24.zip -OutFile bassalac24.zip
 	Invoke-WebRequest -Uri http://uk.un4seen.com/files/z/2/bass_ape24.zip -OutFile bass_ape24.zip
-	Invoke-WebRequest -Uri http://soft.edolfzoku.com/hayaemon2/Hayaemon276.zip -OutFile Hayaemon276.zip
+	Invoke-WebRequest -Uri https://hayaemon.jp/Hayaemon276.zip -OutFile Hayaemon276.zip
 	Invoke-WebRequest -Uri http://uk.un4seen.com/files/z/0/bass_fx24.zip -OutFile bass_fx24.zip
 	Invoke-WebRequest -Uri http://uk.un4seen.com/files/bassasio13.zip -OutFile bassasio13.zip
 	Invoke-WebRequest -Uri http://uk.un4seen.com/files/basscd24.zip -OutFile basscd24.zip
@@ -38,21 +38,23 @@ try {
 catch {
 	if ( ($error | ForEach-Object {$_.Exception.Status}) -eq "ConnectFailure" ) {
 		Write-Warning $Error[0] |ForEach-Object {$_.Exception}
-		$errorhost = $Error[0] |ForEach-Object {$.TargetObject.RequestUri.Host}
+		$errorhost = $Error[0] |ForEach-Object {$_.TargetObject.RequestUri.Host}
 		Write-Output $errorhost 'へ接続できる事を確認してください'
 	}
 	elseif ( ($error | ForEach-Object {$_.Exception.Status}) -eq "ProtocolError" ) {
 		Write-Warning $Error[0] |ForEach-Object {$_.Exception}
-		$errorfile = $error | ForEach-Object {$.TargetObject.Address.OriginalString}
+		$errorfile = $error | ForEach-Object {$_.TargetObject.Address.OriginalString}
 		Write-Output $errorfile
 		Write-Output 'が見つかりませんでした'
 	}
 	else {
-		Write-Warning $Error[0] |ForEach-Object {$.Exception}
+		Write-Warning $Error[0] |ForEach-Object {$_.Exception}
 	}
 	exit 1
 }
+Write-Output '各種ライブラリのダウンロードが完了しました'
 #展開開始
+Write-Output '各種ライブラリのzip解凍を開始します'
 try {
 	Expand-Archive bass24.zip -Force
 	Expand-Archive bass_aac24.zip -Force
@@ -73,11 +75,11 @@ try {
 	Expand-Archive 7za920.zip -Force
 }
 catch {
-	if( ($Error[0] |ForEach-Object {$.CategoryInfo.Category}) -eq "InvalidOperation") {
+	if( ($Error[0] |ForEach-Object {$_.CategoryInfo.Category}) -eq "InvalidOperation") {
 		Write-Warning 'ファイル操作に失敗しました'
 		Write-Output 'ファイルが破損している可能性があります'
 	}
-	elseif( ($Error[0] |ForEach-Object {$.CategoryInfo.Category}) -eq "InvalidArgument") {
+	elseif( ($Error[0] |ForEach-Object {$_.CategoryInfo.Category}) -eq "InvalidArgument") {
 		Write-Warning 'ファイルが見つかりません'
 		Write-Output '削除された可能性があります'
 	}
@@ -88,3 +90,4 @@ Start-Process -FilePath ./7za920/7za.exe -ArgumentList "x mp3infpu_dll_255-beta3
 New-Item .backup -ItemType "directory" -Force| Out-Null
 Move-Item ./*.zip ./.backup/ -Force
 Move-Item ./mp3infpu_dll_*.7z ./.backup/ -Force
+Write-Output '各種ライブラリのzip解凍が完了しました'

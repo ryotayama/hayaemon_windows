@@ -1,3 +1,9 @@
+function removeIfExists($dir) {
+    if (Test-Path $dir) {
+        Remove-Item $dir -Recurse -Force
+    }
+}
+
 #LIBファイルを直下に、DLLファイルをdllフォルダにコピー
 Copy-Item bass24/c/bass.lib ./ -Force
 Copy-Item bass_aac24/c/bass_aac.lib ./ -Force
@@ -33,24 +39,24 @@ Copy-Item nezplug++/npnez.dll ./dll -Force
 Copy-Item mp3infp/x86/mp3infp.dll ./dll -Force
 
 #各展開ファイルをバックアップフォルダに移動して終了
-Remove-Item ./.backup/bass24 -Recurse -Force
-Remove-Item ./.backup/bass_aac24 -Recurse -Force
-Remove-Item ./.backup/bassalac24 -Recurse -Force
-Remove-Item ./.backup/bass_ape24 -Recurse -Force
-Remove-Item ./.backup/Hayaemon276 -Recurse -Force
-Remove-Item ./.backup/bass_fx24 -Recurse -Force
-Remove-Item ./.backup/bassasio13 -Recurse -Force
-Remove-Item ./.backup/basscd24 -Recurse -Force
-Remove-Item ./.backup/bassenc24 -Recurse -Force
-Remove-Item ./.backup/bassflac24 -Recurse -Force
-Remove-Item ./.backup/bassmix24 -Recurse -Force
-Remove-Item ./.backup/basswasapi24 -Recurse -Force
-Remove-Item ./.backup/basswm24 -Recurse -Force
-Remove-Item ./.backup/tags18 -Recurse -Force
-Remove-Item ./.backup/nezplug++ -Recurse -Force
-Remove-Item ./.backup/jpegsr9c -Recurse -Force
-Remove-Item ./.backup/7za920 -Recurse -Force
-Remove-Item ./.backup/mp3infp -Recurse -Force
+removeIfExists ./.backup/bass24
+removeIfExists ./.backup/bass_aac24
+removeIfExists ./.backup/bassalac24
+removeIfExists ./.backup/bass_ape24
+removeIfExists ./.backup/Hayaemon276
+removeIfExists ./.backup/bass_fx24
+removeIfExists ./.backup/bassasio13
+removeIfExists ./.backup/basscd24
+removeIfExists ./.backup/bassenc24
+removeIfExists ./.backup/bassflac24
+removeIfExists ./.backup/bassmix24
+removeIfExists ./.backup/basswasapi24
+removeIfExists ./.backup/basswm24
+removeIfExists ./.backup/tags18
+removeIfExists ./.backup/nezplug++
+removeIfExists ./.backup/jpegsr9c
+removeIfExists ./.backup/7za920
+removeIfExists ./.backup/mp3infp
 Move-Item ./bass24 ./.backup/ -Force
 Move-Item ./bass_aac24 ./.backup/ -Force
 Move-Item ./bassalac24 ./.backup/ -Force

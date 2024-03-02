@@ -1,0 +1,3 @@
+*.bat diff=sjis
+*.ps1 diff=sjis
+
