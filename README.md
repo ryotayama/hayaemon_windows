@@ -19,6 +19,12 @@
 - git cloneコマンドを叩くか、ZIPファイルをダウンロードし、ハヤえもんのプロジェクトフォルダを入手してください。
 - プロジェクトフォルダ直下にある getlibs.bat というバッチファイルを実行してください。
 　※getlibs.bat を実行する事で、外部ライブラリのLIBファイルがプロジェクトフォルダ直下に保存され、DLLファイルがReleaseフォルダに保存されます。
+　※getlibs.bat 実行時に以下のようなエラーが出て終了する場合は出力されたURLにアクセスしてMicrosoft Windows SDK for Windows 7 and .NET Framework 4 をインストールしてください。
+ ```
+必要なSDKが見つかりませんでした
+Microsoft Windows SDK for Windows 7 and .NET Framework 4 をインストールしてください
+https://www.microsoft.com/en-us/download/details.aspx?id=8279
+```
 - Hayaemon.sln を開く事で開発を始める事ができます。
 
 ## ライセンス
