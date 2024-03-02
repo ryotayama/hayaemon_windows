@@ -14,8 +14,8 @@
 
 ## 開発環境の構築
 - Visual Studio Community 2017 をインストールしておいてください。
-　※Windows XP用にビルドする場合は、インストール時に C++ に関する Windows XP サポートというオプションが必要です。
-![スクリーンショット](https://user-images.githubusercontent.com/6075785/41812408-38a833a0-775d-11e8-9afb-4125a8dd0c8c.png)
+　※インストーラをビルドする為に、Microsoft Visual Studio INstaller Projectという拡張機能が必要です。
+![image](https://github.com/ryotayama/hayaemon_windows/assets/32073583/07b7c37f-cb3c-4d83-bb25-e88908ece686)
 - git cloneコマンドを叩くか、ZIPファイルをダウンロードし、ハヤえもんのプロジェクトフォルダを入手してください。
 - プロジェクトフォルダ直下にある getlibs.bat というバッチファイルを実行してください。
 　※getlibs.bat を実行する事で、外部ライブラリのLIBファイルがプロジェクトフォルダ直下に保存され、DLLファイルがReleaseフォルダに保存されます。
