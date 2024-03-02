@@ -27,6 +27,7 @@ if exist "%ProgramFiles(x86)%\Microsoft Visual Studio\2022\Community\Common7\Too
     echo "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\Common7\Tools\VsDevCmd.bat"
     SET /P VSDEVCMD="VsDevCmd.bat ‚ÌƒpƒX‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢->"
     if not exist "%VSDEVCMD%" (
+        echo "%VSDEVCMD%"
         echo [91m“ü—Í‚³‚ê‚½ƒpƒX‚ÉVsDevCmd.bat‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ[37m
         goto ERROR_VSDEVCMD_NOT_FOUND
     )
@@ -48,7 +49,6 @@ powershell -ExecutionPolicy Unrestricted ./downloadlibs.ps1
 if %ERRORLEVEL% equ 1 (
     goto ERROR_FAILED_TO_GET_LIBS
 )
-pause
 
 echo ƒrƒ‹ƒh‚ª•K—v‚Èˆê•”‚Ìƒ‰ƒCƒuƒ‰ƒŠ‚ðƒrƒ‹ƒh‚µ‚Ü‚·
 
@@ -61,7 +61,6 @@ copy jconfig.vc jconfig.h
 nmake /f makefile.vc clean all
 cd ../../
 echo ===========================jpegsr9c‚Ìƒrƒ‹ƒhŠ®—¹===========================
-pause
 
 rem nezplug++‚Ìƒrƒ‹ƒh
 echo ===========================nezplug++‚Ìƒrƒ‹ƒhŠJŽn===========================
@@ -72,7 +71,6 @@ cd ../
 echo ===========================nezplug++‚Ìƒrƒ‹ƒhŠ®—¹===========================
 
 echo ƒrƒ‹ƒh‚ª•K—v‚Èˆê•”‚Ìƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒrƒ‹ƒh‚ªŠ®—¹‚µ‚Ü‚µ‚½
-pause
 
 rem ƒ‰ƒCƒuƒ‰ƒŠ‚Ì”z’u
 echo ƒ‰ƒCƒuƒ‰ƒŠ‚Ì”z’u‚ðŠJŽn‚µ‚Ü‚·
@@ -88,6 +86,7 @@ echo [91mERROR_VSDEVCMD_NOT_FOUND: VsDevCmd.bat‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½
 echo ‚±‚Ìbat‚Å‚Í VisualStudio“à•”‚Ì VsDevCmd.bat ‚ªAˆê•”‚Ìƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒrƒ‹ƒh‚É•K{‚Å‚·
 echo ‚±‚ÌƒGƒ‰[‚ÍVisualStudioCommunity‚ðÄƒCƒ“ƒXƒg[ƒ‹‚·‚é“™‚Å‰ðŒˆ‚·‚é‰Â”\«‚ª‚ ‚è‚Ü‚·
 echo ‰½‚©ƒL[‚ð‰Ÿ‚·‚ÆI—¹‚µ‚Ü‚·[37m
+pause
 goto :EOF
 
 :ERROR_FAILED_TO_GET_LIBS
