@@ -4,6 +4,7 @@
 #include <windows.h>
 #include <shlobj.h>
 #include <shlwapi.h>
+#include <locale.h>
 #include "App.h"
 //----------------------------------------------------------------------------
 // WinMain ä÷êî
