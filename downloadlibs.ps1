@@ -25,6 +25,7 @@ try {
 	Invoke-WebRequest -Uri http://uk.un4seen.com/files/bassasio13.zip -OutFile bassasio13.zip
 	Invoke-WebRequest -Uri http://uk.un4seen.com/files/basscd24.zip -OutFile basscd24.zip
 	Invoke-WebRequest -Uri http://uk.un4seen.com/files/bassenc24.zip -OutFile bassenc24.zip
+	Invoke-WebRequest -Uri http://uk.un4seen.com/files/bassenc_mp324.zip -OutFile bassenc_mp324.zip
 	Invoke-WebRequest -Uri http://uk.un4seen.com/files/bassflac24.zip -OutFile bassflac24.zip
 	Invoke-WebRequest -Uri http://uk.un4seen.com/files/bassmix24.zip -OutFile bassmix24.zip
 	Invoke-WebRequest -Uri http://uk.un4seen.com/files/basswasapi24.zip -OutFile basswasapi24.zip
@@ -65,6 +66,7 @@ try {
 	Expand-Archive bassasio13.zip -Force
 	Expand-Archive basscd24.zip -Force
 	Expand-Archive bassenc24.zip -Force
+	Expand-Archive bassenc_mp324.zip -Force
 	Expand-Archive bassflac24.zip -Force
 	Expand-Archive bassmix24.zip -Force
 	Expand-Archive basswasapi24.zip -Force

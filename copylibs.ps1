@@ -13,6 +13,7 @@ Copy-Item bass_fx24/C/bass_fx.lib ./ -Force
 Copy-Item bassasio13/c/bassasio.lib ./ -Force
 Copy-Item basscd24/c/basscd.lib ./ -Force
 Copy-Item bassenc24/c/bassenc.lib ./ -Force
+Copy-Item bassenc_mp324/c/bassenc_mp3.lib ./ -Force
 Copy-Item bassflac24/c/bassflac.lib ./ -Force
 Copy-Item bassmix24/c/bassmix.lib ./ -Force
 Copy-Item basswasapi24/c/basswasapi.lib ./ -Force
@@ -30,6 +31,7 @@ Copy-Item bass_fx24/bass_fx.dll ./dll -Force
 Copy-Item bassasio13/bassasio.dll ./dll -Force
 Copy-Item basscd24/basscd.dll ./dll -Force
 Copy-Item bassenc24/bassenc.dll ./dll -Force
+Copy-Item bassenc_mp324/bassenc_mp3.dll ./dll -Force
 Copy-Item bassflac24/bassflac.dll ./dll -Force
 Copy-Item bassmix24/bassmix.dll ./dll -Force
 Copy-Item basswasapi24/basswasapi.dll ./dll -Force
@@ -48,6 +50,7 @@ removeIfExists ./.backup/bass_fx24
 removeIfExists ./.backup/bassasio13
 removeIfExists ./.backup/basscd24
 removeIfExists ./.backup/bassenc24
+removeIfExists ./.backup/bassenc_mp324
 removeIfExists ./.backup/bassflac24
 removeIfExists ./.backup/bassmix24
 removeIfExists ./.backup/basswasapi24
@@ -66,6 +69,7 @@ Move-Item ./bass_fx24 ./.backup/ -Force
 Move-Item ./bassasio13 ./.backup/ -Force
 Move-Item ./basscd24 ./.backup/ -Force
 Move-Item ./bassenc24 ./.backup/ -Force
+Move-Item ./bassenc_mp324 ./.backup/ -Force
 Move-Item ./bassflac24 ./.backup/ -Force
 Move-Item ./bassmix24 ./.backup/ -Force
 Move-Item ./basswasapi24 ./.backup/ -Force
