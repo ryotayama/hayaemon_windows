@@ -47,7 +47,7 @@ CApp::CApp(const int & nCmdShow)
 	  m_cstrAuthorWebSiteName(_T("Hayaemon Official Website")),
 #endif // JP
 	  m_cstrVersionInfo(_T("2.78")),
-	  m_cstrAuthorURL(_T("http://hayaemon.jp/")),
+	  m_cstrAuthorURL(_T("https://hayaemon.jp/")),
 	  m_wnd(*this)
 {
 	TCHAR pathName[MAX_PATH] = _T("");

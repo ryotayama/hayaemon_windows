@@ -1,9 +1,9 @@
 ﻿------------------------------------------------------------------------------
- Hayaemon Version 2.77 beta 15
+ Hayaemon Version 2.78 stable
 ------------------------------------------------------------------------------
-                                                        Last update: 2021/2/19
+                                                         Last update: 2024/3/7
                                       Ryota Yamauchi <ryota.yamauch@gmail.com>
-                                 Hayaemon Official Website:http://hayaemon.jp/
+                                Hayaemon Official Website:https://hayaemon.jp/
 ------------------------------------------------------------------------------
  After reading all of the following, please use this software.
 ------------------------------------------------------------------------------
@@ -36,7 +36,7 @@
  Requirement
 ------------------------------------------------------------------------------
 
- Supports the OS since Windows XP. Reported to work are welcome.
+ Supports the OS Windows 10 or later. Reported to work are welcome.
  DirectX 3 or later is required.
 
 ------------------------------------------------------------------------------
@@ -54,10 +54,11 @@
  Installation
 ------------------------------------------------------------------------------
 
- There is no installer, so extract on any directory.
+ Use the installer or extract zip on any directory.
 
- To uninstall this software, delete all files you downloaded. This software
- don't write to the registry.
+ To uninstall this software, uninstall in ControlPanel or delete all files you
+ extracted and placed. This software doesn't write to the registry.
+
 ------------------------------------------------------------------------------
  Manual
 ------------------------------------------------------------------------------
@@ -67,6 +68,9 @@
 ------------------------------------------------------------------------------
  History
 ------------------------------------------------------------------------------
+
+2024/3/7 Version 2.78 stable
+ Released Version 2.77 beta 15 as Version 2.78 stable.
 
 2021/2/19 Version 2.77 beta 15
  Fixed a case where the action changed to a different action when changing
