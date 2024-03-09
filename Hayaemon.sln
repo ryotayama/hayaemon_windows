@@ -7,7 +7,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hayaemon", "Hayaemon.vcxpro
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup_jp", "Setup_jp\Setup_jp.vdproj", "{B64D6A5C-6C98-4ED4-A223-AF8AEE226051}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup_en", "..\Setup_en\Setup_en.vdproj", "{51755853-A047-4420-A3CA-391DE7F66530}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup_en", "Setup_en\Setup_en.vdproj", "{51755853-A047-4420-A3CA-391DE7F66530}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
