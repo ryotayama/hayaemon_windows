@@ -1,7 +1,7 @@
 ﻿------------------------------------------------------------------------------
  Hayaemon Version 2.78 stable
 ------------------------------------------------------------------------------
-                                                         Last update: 2024/3/7
+                                                        Last update: 2024/3/10
                                       Ryota Yamauchi <ryota.yamauch@gmail.com>
                                 Hayaemon Official Website:https://hayaemon.jp/
 ------------------------------------------------------------------------------
@@ -69,7 +69,7 @@
  History
 ------------------------------------------------------------------------------
 
-2024/3/7 Version 2.78 stable
+2024/3/10 Version 2.78 stable
  Released Version 2.77 beta 15 as Version 2.78 stable.
 
 2021/2/19 Version 2.77 beta 15
