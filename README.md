@@ -1,4 +1,4 @@
-﻿聞々ハヤえもん for Windows
+聞々ハヤえもん for Windows
 =======================
 
 ## 免責事項
@@ -14,7 +14,7 @@
 
 ## 開発環境の構築
 - Visual Studio Community 2017 をインストールしておいてください。
-　※インストーラをビルドする為に、Microsoft Visual Studio INstaller Projectという拡張機能が必要です。
+　※インストーラをビルドする為に、Microsoft Visual Studio Installer Projectという拡張機能が必要です。
 ![image](https://github.com/ryotayama/hayaemon_windows/assets/32073583/07b7c37f-cb3c-4d83-bb25-e88908ece686)
 - git cloneコマンドを叩くか、ZIPファイルをダウンロードし、ハヤえもんのプロジェクトフォルダを入手してください。
 - プロジェクトフォルダ直下にある getlibs.bat というバッチファイルを実行してください。
